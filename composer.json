@@ -1,0 +1,10 @@
+{
+    "name": "GlobalView",
+    "require": {
+        "cakephp/cakephp": "2.6.*",
+        "cakephp/debug_kit": "2.2.*"
+    },
+    "config": {
+        "vendor-dir": "Vendor/"
+    }
+}

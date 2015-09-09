@@ -1,13 +1,12 @@
-CakePHP 3
-
-/vendor/*
-/config/app.php
-/tmp/*
-/logs/*
-
-CakePHP 2
-
-/app/tmp/*
-/app/Config/core.php
-/app/Config/database.php
-/vendors/*
+/Plugin/*
+/composer.lock
+/Vendor/*
+/.sass-cache/
+/Config/core.php
+/Config/database.php
+/Config/bootstrap.php
+/.buildpath
+/.settings/
+/scripts/
+/webroot/img/cache/*
+/.project

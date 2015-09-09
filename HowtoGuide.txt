@@ -1,0 +1,110 @@
+#Installer git:
+mkdir ~/git
+git init ./git
+
+#creer un projet php dans eclipe
+#Le partager sur git
+
+#copier/definir le fichier composer.json
+{
+    "name": "GlobalView",
+    "require": {
+        "cakephp/cakephp": "2.6.*",
+        "cakephp/debug_kit": "2.2.*"
+    },
+    "config": {
+        "vendor-dir": "Vendor/"
+    }
+}
+
+#Dans le repertoire projet lancer composer
+composer update
+
+#Bake project
+Vendor/bin/cake bake project ./
+
+touch .bowerrc
+
+#ajouter
+{
+  "directory": "webroot/js/bower/",
+  "analytics": false,
+  "timeout": 120000
+}
+
+
+#Bower init
+bower init
+
+#update in the bower.json the value bower_components in the ignore table by bower
+
+#install jquery & CK Editor & 
+bower install ckeditor --save
+bower install jquery --save
+bower install bootstrap-sass --save
+
+#generate bootstrap sass
+compass create sass -r bootstrap-sass --using bootstrap
+
+#edit the config.rb
+# don't use the sass bootstrap but the bower one
+# require 'bootstrap-sass'
+add_import_path "webroot/js/bower/bootstrap-sass/assets/stylesheets"
+
+#and update these variables
+css_dir = "./webroot/css"
+sass_dir = "sass"
+images_dir = "img"
+javascripts_dir = "js"
+
+#fonts, javascripts ans stylesheets folders can be removed from the /sass folder
+
+#move /sass/config.rb to the root (/) ans /sass/sass folder filer to the main sass folder (/sass) and delete the /sass/sass folder
+
+créer un répertoire fonts á la racine du projet
+
+#ajouter cette ligne dans /sass/_bootstrap-variables.scss
+$icon-font-path: "../webroot/js/bower/bootstrap-sass/assets/fonts/bootstrap/"
+
+#monitore scss
+compass watch
+
+#ajouter ceci a styles.scss
+#url-rewriting-warning {
+    display:none;
+}
+
+
+
+#dans /view/default/layout retirer les balises suivantes
+if (!Configure::read('debug')):
+	throw new NotFoundException();
+endif;
+
+#dans /view/default/layout ajouter les balises suivantes
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <title><?php echo $siteTitle."- ".$this->fetch('title'); ?></title>
+    
+    <!-- Bootstrap core CSS -->
+    <?php echo $this->Html->css('styles'); ?>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+
+	<?php 
+		echo $this->Html->script('bower/jquery/dist/jquery');
+	    echo $this->Html->script('bower/bootstrap-sass/assets/javascripts/bootstrap');
+	?>
+

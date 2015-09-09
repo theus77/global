@@ -1,0 +1,5 @@
+{
+  "directory": "webroot/js/bower/",
+  "analytics": false,
+  "timeout": 120000
+}

@@ -1,0 +1,20 @@
+
+#galerie-filmstrip{
+	
+  	/* fond en noir pour l'effet filmstrip*/
+	background-color: black;
+	
+	div.galerie-thumb-scroll{  			
+		/*will be override by the matchHeight*/
+		height:1px;	
+		
+		/*scrollable thumbnails container*/
+		overflow-y: scroll;	  	
+  	}
+  	
+  	div.galerie-carousel{
+  		/*for a beter loading effect*/
+  		overflow: hidden;
+  	}
+  	
+}
