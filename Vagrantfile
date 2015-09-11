@@ -11,6 +11,9 @@ Vagrant.configure("2") do |config|
     # Optional NFS. Make sure to remove other synced_folder line too
     #config.vm.synced_folder ".", "/var/www", :nfs => { :mount_options => ["dmode=777","fmode=666"] }
 
-	config.vm.provision :shell, path: "bootstrap.sh"
+	config.vm.provision :shell, 
+		inline: "/bin/sh /var/www/public/bootstrap.sh", 
+		keep_color: true,
+		privileged: false
 	
 end
