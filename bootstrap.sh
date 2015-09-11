@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+
+
 echo -e "\n--- Create vagrant config symlinks ---\n"
 if ! [ -L /var/www/public/Config/database.php ]; then
  ln -s /var/www/public/Config/database.vagrant.php /var/www/public/Config/database.php
@@ -13,8 +21,10 @@ fi
 
 cd /var/www/public/
 
+echo -e "\n--- Composer (Load cakePHP, ApertureConnector, ...) ---\n"
 composer update
 
+echo -e "\n--- Bower (Bootstrap, CKEditor, jquery, ...) ---\n"
 bower update
 
 gem install compass
