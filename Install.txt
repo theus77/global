@@ -1,58 +1,43 @@
 This web site is based on CakePHP 2 and Bootstrap 2
 
-How to install ( for developpers using vagrant)
+How to install ( for developpers using vagrant )
 -----------------------------------------------
 #see here for detailed vagrant install https://scotch.io/bar-talk/introducing-scotch-box-a-vagrant-lamp-stack-that-just-works
 
 #Download and Install Vagrant: https://www.vagrantup.com/downloads.html
 #Download and Install VirtualBox: https://www.virtualbox.org/wiki/Downloads
 
-#go to your projects folder
-cd ~/Projects
 
-#get the Vagrant preconfigured project
+#get the Vagrant preconfigured project (or via an ide)
 git clone https://github.com/scotch-io/scotch-box.git global
 
+#copy the Aperture SQLite DB files in a apdb folder (to create) in the global|projet folder
+
+
+#Open a command prompt in the projet folder
+#Launch the box
+vagrant up
 
 #Test the VM
-vagrant up
 vagrant ssh
 #you are in the VM ;-)
+#go to the projet folder
+cd /var/www/public/
+ls
+#you see the project's files
 exit
 #you left the VM
-#check this url: http://192.168.33.10/
-
-cd public
-rm index.php 
-ls
-# should be empty
-
-#get the project git repository (or with your prefered IDE) in the public folder:
-cd ..
-rm -R public
-git clone https://github.com/theus77/global.git public
-
-#copy the Aperture SQLite DB files in a apdb folder in the global folder
-
-#download external tools (Especially cakePHP)
-composer update
+#check this url in your prefered browser: http://192.168.33.10/
 
 
 
-
-
-#download le projet sur git up
-#unzip
-#copier la db aperture dans le repertoire apdb
-#command prompt
-vagrant up
-vagrant ssh
-cd /var/www/public
-ln -s /var/www/public/Config/database.vagrant.php /var/www/public/Config/database.php
-ln -s /var/www/public/Config/core.vagrant.php /var/www/public/Config/core.php
-ln -s /var/www/public/Config/bootstrap.vagrant.php /var/www/public/Config/bootstrap.php
-composer update
-bower update
-gem install compass
+Generate the CSS
+----------------
+#open a terminal in the projet folder
+vagrant up #if not yet running
+vagrant ssh #enter in the vm
+cd /var/www/public/
 compass compile
+
+
 
