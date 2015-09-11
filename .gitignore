@@ -8,5 +8,8 @@
 /.buildpath
 /.settings/
 /scripts/
-/webroot/img/cache/*
+/webroot/img/cache/*.*
 /.project
+/.vagrant/
+/Vendor/
+*/.DS_Store

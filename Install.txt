@@ -1,0 +1,55 @@
+This web site is based on CakePHP 2 and Bootstrap 2
+
+How to install ( for developpers using vagrant)
+-----------------------------------------------
+#see here for detailed vagrant install https://scotch.io/bar-talk/introducing-scotch-box-a-vagrant-lamp-stack-that-just-works
+
+#Download and Install Vagrant: https://www.vagrantup.com/downloads.html
+#Download and Install VirtualBox: https://www.virtualbox.org/wiki/Downloads
+
+#go to your projects folder
+cd ~/Projects
+
+#get the Vagrant preconfigured project
+git clone https://github.com/scotch-io/scotch-box.git global
+
+
+#Test the VM
+vagrant up
+vagrant ssh
+#you are in the VM ;-)
+exit
+#you left the VM
+#check this url: http://192.168.33.10/
+
+cd public
+rm index.php 
+ls
+# should be empty
+
+#get the project git repository (or with your prefered IDE) in the public folder:
+cd ..
+rm -R public
+git clone https://github.com/theus77/global.git public
+
+#copy the Aperture SQLite DB files in a apdb folder in the global folder
+
+#download external tools (Especially cakePHP)
+composer update
+
+
+
+
+
+#download le projet sur git up
+#unzip
+#copier la db aperture dans le repertoire apdb
+#command prompt
+vagrant up
+vagrant ssh
+cd /var/www/public
+composer update
+bower update
+gem install compass
+compass compile
+
