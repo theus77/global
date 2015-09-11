@@ -36,8 +36,7 @@ Generate the CSS
 #open a terminal in the projet folder
 vagrant up #if not yet running
 vagrant ssh #enter in the vm
-cd /var/www/public/
-compass compile
+compass watch --poll /var/www/public/ #watch the folder
 
 
 
