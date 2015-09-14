@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#EOL => LF
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
