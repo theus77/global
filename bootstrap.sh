@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-#EOL must be UNIX/OS X mode.
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
