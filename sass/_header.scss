@@ -1,0 +1,56 @@
+header {
+	background-color: lighten($color1, 96%);
+	.navbar-form {
+		min-width: em(60px);
+		margin: 0;
+		height: em(75px);
+		background-color: lighten($color1, 15%);
+		padding-top: em(30px);
+		box-sizing: border-box;
+		.form-group.search-toggle {
+    		display:none;
+		}
+		.search-trigger {
+		    cursor: pointer;
+		    position: relative;
+		    color: lighten($color1, 100%);
+		    margin: em(5px) 0 0 em(5px);
+		}
+		input.QuickSearchInput {
+		    padding: 10px;
+		}
+		.form-control{
+			background-color: transparent;
+			color: lighten($color1, 100%);
+			border: none;
+			border-radius: 0;
+			&:focus {text-shadow: none;}
+		}
+	}
+	.navbar-default {
+		.navbar-nav {
+			& > li {
+				border-right: 1px solid lighten($color1, 84%);
+				padding: em(15px) 0;
+				& > a {
+					font-family: $aileronlight;
+					font-size: em(15px);
+					text-transform: uppercase; 
+					color: darken($color1, 80%);
+				}
+			}
+		}
+	}
+	#nav.affix {
+	    position: fixed;
+	    top: 0 !important;
+	    width: 100%;
+	    z-index: 100;
+		height: em(75px);
+	}
+	.navbar-brand {
+		height: em(49px);
+		padding: em(8px) em(15px);
+	}
+	.navbar-collapse {padding-right:0;}
+}

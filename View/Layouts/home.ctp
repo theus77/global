@@ -11,37 +11,38 @@
     ?>
      
     <title><?php echo $this->i18n->t('site.title').' - '.$this->i18n->t('home.title'); ?></title>
-
+	<!-- vegas css -->
+	<?php echo $this->Html->css('vegas'); ?>
     <!-- Bootstrap core CSS -->
     <?php echo $this->Html->css('styles'); ?>
 
   </head>
   
   <body id="homepage">
+
 	<?php echo $this->element('main/header'); ?>
-  	
-  	
-	    <div class="row">
-	        <h2 class="col-lg-12 parallax"><?php echo $this->i18n->t('home.mojo'); ?></h2>
-	    </div>
-  	    <div class="row">
-	        <h3 class="col-lg-12 homepage" id="vols"><?php echo $this->i18n->t('home.nextflights'); ?></h3>
-	    </div>
-  		    
-      <!-- Three columns of text below the carousel -->
+  <div class="container-fluid">
+  
+  
+<!--  parallax -->
+<a id="home.flightsAnchor"></a>
+<div class="spacer s1">
+	<div class="box1">
       <div class="row" id="sortableFlights">
-      
+		<div class="flight-wrapper">
+			<h1 class="col-lg-12 homepage" id="vols"><?php echo $this->i18n->t('home.nextflights'); ?></h1>
 		<?php  
 		//print_r($flights);
 		foreach($flights as $idx => $flight):{
+			echo '<div class="box-home col-md-4">';
 				$content = $this->Html->tag(
-						'h3', 
+						'h2', 
 						$flight['Flight']['name']);
 				$content .= $this->Html->tag(
 						'div', 
 						$flight['Flight']['body'], 
 						array(
-								//'class' => 'text-justify'
+								'class' => 'text-wrapper'
 						));
 				$content .= $this->Html->tag(
 						'div', 
@@ -54,12 +55,12 @@
 										'language' => Configure::read('Config.language'), 
 										$flight['Flight']['id']
 										
-								), array('class' => 'btn btn-default btn-primary', 'role'=>'button')),
+								), array('class' => 'btn btn-default btn-primary pull-right', 'role'=>'button')),
 						array('class'=>'form-group'));
 				
 				
 				$divOptions = array(
-						'class'=>'col-md-4 text-center groupToMatch jumbotron',
+						'class'=>'groupToMatch clearfix',
 						);
 				
 				if(AuthComponent::user() && AuthComponent::user()['role'] === 'admin'){
@@ -136,45 +137,14 @@
 				}
 				
 				echo $this->Html->tag('div', $content, $divOptions);
-				
-				
-				/*
-				
-				
-				$content = $this->Html->link(
-						$this->Html->image('thumbnails/'.$gallery['Gallery']['thumbUuid'].'/thumbs.png', array('alt'=>$gallery['Gallery']['name'])).
-							$this->Html->tag(
-								'div',
-								$gallery['Gallery']['name'].' '.
-								$this->Html->tag(
-										'span',
-										$gallery['Gallery']['counter'],
-										array('class'=>"badge")
-								)),
-						$url,
-						array('escape' => false, 'class' => 'thumbnail'));
-				
-
-						
-
-				echo $this->Html->tag('div', 
-					$content, 
-					array(
-							'class' => 'col-sm-6 col-md-4 col-lg-3 ui-state-default',
-							'data-url' => $this->Html->url(array(
-									'controller' => 'Galleries',
-									'action' => 'edit',
-									'ext' => 'json',
-									$gallery['Gallery']['id']
-							)),
-							'data-object' => json_encode($gallery),
-				));*/
-			}	 
-			endforeach; ?>      
-      
-    
-      </div><!-- /.row -->  	
-  	<div class="row">
+			}
+			echo '</div>';	 
+			endforeach; 
+			?>      
+      	
+    </div> <!-- /row -->
+	</div> <!-- /.flight-wrapper -->
+	<div class="row">
  	<?php
 			if(AuthComponent::user() && AuthComponent::user()['role'] === 'admin'){
 				echo $this->Html->tag('div',
@@ -199,13 +169,20 @@
 			
 	?> 	
 	</div><!-- /.row -->  
-			<?php echo $this->element('main/nav'); ?>
+			<?php //echo $this->element('main/nav'); ?>
 
 			<?php echo $this->Session->flash(); ?>
 
 			<?php echo $this->fetch('content'); ?>
-
-	  	<div class="row">
+	</div>
+</div>
+<div class="spacer s0"></div>
+<div id="parallax1" class="parallaxParent">
+	<div></div>
+</div>
+<div class="spacer s2">
+	<div class="box2">
+		<div class="row">
 	        <h2 class="col-lg-12 parallax"><?php echo $this->i18n->t('home.searchInLibrary'); ?></h2>
 	    </div>	
 
@@ -247,17 +224,35 @@
         </div><!-- /.col-md-4 -->
         
       </div><!-- /.row -->  	
-	    
-	    
-	<div class="row" id="gallerySection">
+	</div>
+</div>
+<div class="spacer s0"></div>
+<div id="parallax2" class="parallaxParent">
+	<div></div>
+</div>
+<div class="spacer s3">
+<div class="box3">
+		
+<div class="row" id="gallerySection">
 		<h2 class="col-lg-12 parallax"><?php echo $this->i18n->t('home.galerySelection'); ?></h2>
 	</div>	
 	    
 	<div class="row" id="sortableGallery">
 			<?php echo $this->element('galleries', array('galleries', $galleries)); ?>
 	</div>
+	</div>
+</div>
+
+
+
+
+
+	<!-- /parallax -->
+	    <div class="row">
+	        <h2 class="col-lg-12 parallax"><?php echo $this->i18n->t('home.mojo'); ?></h2>
+	    </div>
 
 	<?php echo $this->element('main/footer'); ?>
-	
+	</div> <!-- /.constainer-fluid -->
 </body>
 </html>

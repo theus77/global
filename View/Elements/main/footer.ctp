@@ -39,6 +39,16 @@
 		echo $this->Html->script('bower/jquery/dist/jquery');
 	    echo $this->Html->script('bower/bootstrap-sass/assets/javascripts/bootstrap');
 	    echo $this->Html->script('bower/matchHeight/jquery.matchHeight');
+		// Parallax scripts
+		echo $this->Html->script('bower/gsap/src/uncompressed/TweenMax');
+		echo $this->Html->script('bower/ScrollMagic/scrollmagic/uncompressed/ScrollMagic'); 
+		echo $this->Html->script('bower/ScrollMagic/scrollmagic/uncompressed/plugins/animation.gsap');
+		echo $this->Html->script('bower/ScrollMagic/scrollmagic/uncompressed/plugins/debug.addIndicators');
+		// Vegas slideshow full page
+		echo $this->Html->script('bower/vegas/dist/vegas');
+		// boostrap responsive toolkit
+		echo $this->Html->script('bower/responsive-bootstrap-toolkit/js/bootstrap-toolkit.min.js');
+		
     	echo $this->Html->script('bower/jquery-ui/jquery-ui');
 	    
 	    if(AuthComponent::user()){

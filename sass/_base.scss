@@ -1,0 +1,15 @@
+body {
+	
+}
+h1 {
+	font-family: $aileronlight;
+	font-size: em(36px);
+	margin: em(15px, 36px) 0 em(25px, 36px) 0;
+}
+h2 ,h3 { font-family : $aileronregular; }
+header + .container-fluid {
+	padding-left:0;
+	padding-right:0;
+}
+
+.btn {border-radius:0;}

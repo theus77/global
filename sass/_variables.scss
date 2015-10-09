@@ -1,0 +1,53 @@
+// colors
+$color1: #000;
+$color2: #f3a224; // yellow
+
+// Font variable declarations.
+$aileronblack: "aileronblack", Arial, sans-serif;
+$aileronheavy: "aileronheavy", Arial, sans-serif;
+$aileronlight: "aileronlight", Arial, sans-serif;
+$aileronregular: "aileronregular", Arial, sans-serif;
+
+@include font-face(
+  'aileronblack',
+  font-files(
+    'aileron/black/aileron-black-webfont.woff',
+    'aileron/black/aileron-black-webfont.ttf'
+  ),
+  'aileron/black/aileron-black-webfont.eot',
+  normal,
+  normal
+);
+
+@include font-face(
+  'aileronheavy',
+  font-files(
+    'aileron/heavy/aileron-heavy-webfont.woff',
+    'aileron/heavy/aileron-heavy-webfont.ttf'
+  ),
+  'aileron/heavy/aileron-heavy-webfont.eot',
+  normal,
+  normal
+);
+
+@include font-face(
+  'aileronregular',
+  font-files(
+    'aileron/regular/aileron-regular-webfont.woff',
+    'aileron/regular/aileron-regular-webfont.ttf'
+  ),
+  'aileron/regular/aileron-regular-webfont.eot',
+  normal,
+  normal
+);
+
+@include font-face(
+  'aileronlight',
+  font-files(
+    'aileron/light/aileron-light-webfont.woff',
+    'aileron/light/aileron-light-webfont.ttf'
+  ),
+  'aileron/light/aileron-light-webfont.eot',
+  normal,
+  normal
+);
