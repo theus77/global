@@ -1,20 +1,179 @@
+/*
+* Specific design for gallery page
+*
+********************************************/
 
-#galerie-filmstrip{
-	
-  	/* fond en noir pour l'effet filmstrip*/
-	background-color: black;
-	
-	div.galerie-thumb-scroll{  			
-		/*will be override by the matchHeight*/
-		height:1px;	
-		
-		/*scrollable thumbnails container*/
-		overflow-y: scroll;	  	
+#galerie-filmstrip {
+	h2 {
+		color: lighten($color1, 100%);
+	}
+	position:relative;
+	&.container-fluid {
+		padding-left: 0;
+		padding-right: 0;
+		.row {padding-left: 15px;}
+	}
+	.galerie-thumb, #galerie-info {
+		position: absolute;
+		z-index: 100;
+		height: auto !important;
+		background: rgba($color1, 0.7);
+		.trigger-expand {
+		    padding: em(15px) em(25px);
+		    bottom: -50px;
+		    position: absolute;
+		    z-index: 101;
+		    left: 50%;
+		    @include transform(translate(-50%, 0));			
+			background: rgba($color1, 0.7);
+			@include border-bottom-radius(5px);
+			a { color: lighten($color1, 100%); }
+			@include MQ(XStoM) {
+				display:none;
+    		}
+    	}
+    	@include MQ(XStoM) {
+			position:relative;
+    	}
+	}
+	.galerie-thumb {
+    	@include MQ(XStoM) {
+    		padding-left:0;
+    		padding-right:0;
+			min-height:100px !important;
+    	}		
+	}
+	#galerie-info {
+		background-color: transparent;
+		top: 40%;
+		@include transform(translate(0, -60%));
+   		z-index: 10;
+   		width:80%;
+   		left:10%;
+   		.wrapper-info {
+   			min-width: em(150px);
+   			max-width: 30%;
+   			@include MQ(XStoM) {
+				max-width:100% !important;
+				margin-top:em(10px);
+   			}
+   		}
+   		h2 { 
+   			position: relative;
+   			color:$color1;
+   			font-size: em(40px);
+			background-color: rgba($color2, 0.7);
+			margin:0;
+			width:80%;
+			padding: em(20px, 40px);
+			span {
+				display: inline-block;
+				cursor: pointer;
+				position: absolute;
+				right: -25%;
+				bottom: 0;
+				height:60%;
+				line-height:1.5em;
+				width: 25%;
+   				background-color: lighten($color1, 100%);
+   				text-align: center;
+   				font-size: em(50px, 40px);
+   				min-height: 1.65em;
+   				&:after {content: "+";}
+   				&.open:after {content: "-";}
+   				&:hover {background-color:lighten($color1, 80%);}
+   				@include MQ(XStoM) {
+					display:none;
+   				}
+			}
+			@include MQ(XStoM) {
+				width:100%;
+				font-size: em(20px);
+   			}
+   		}
+   		.infos {
+		   	/* hidden because we have a google map cart, problem if we use display none */
+			position:absolute;
+			visibility: hidden;
+   			&.open {
+				position:relative;
+   				visibility:inherit;
+   			}
+
+   			padding: em(20px);
+   			background-color: lighten($color1, 100%);
+   			h3 {
+	   			color: $color1;
+	   			margin-bottom:0;
+	   			&:first-child {margin-top:0;}
+   			}
+
+   			ul {list-style-type:none; padding: 0;}
+   			#placesList li {
+   				display:inline;
+   				&:after {content: ',';}
+   				&:last-child:after {content: '';}
+   				a {text-decoration:underline;}
+   			}
+   			#map-ctp {margin-bottom: 0;}
+   			@include MQ(XStoM) {
+				position:relative;
+				visibility: visible;
+    		}
+   		}
+		@include MQ(XStoM) {
+			width:100%;
+			top:0;
+			left:0;
+			@include transform(translate(0, 0));
+			margin: em(15px) 0;
+		}  		
+	}
+	#price-ask {
+		position:absolute;
+		z-index:2;
+		bottom:0;
+		right:0;
+		.btn.btn-primary {
+			@extend %btn-ico;
+		}
+		@include MQ(XStoM) {
+			position:relative;
+		}
+	}
+	#galerie-thumb-bro .galerie-thumb-scroll {
+		@include MQ(Mplus) {
+			height:0;
+		}
+	}
+	#galerie-thumb-child {
+		.galerie-thumb {bottom:0;}
+	}
+	div.galerie-thumb-scroll {  			
+		width: 100%;
+		height: auto;
+		overflow:auto;
+		white-space:nowrap;		
+		a.thumbnail:first-child {padding-left:0;}
   	}
-  	
+  	.thumbnail { 
+  		display: inline-block; 
+  		margin-bottom: 0;
+  		background-color: transparent;
+  		border:0;
+  		padding: em(15px);
+  		&:hover img { outline: 1px solid lighten($color1, 70%); }
+  		img {
+  			@include MQ(XStoM) {
+  			max-width: em(150px);
+  			}
+  		}
+  		@include MQ(XStoM) {
+  			padding:0;
+  		}
+  	}
   	div.galerie-carousel{
   		/*for a beter loading effect*/
   		overflow: hidden;
-  	}
-  	
+  	}	
 }

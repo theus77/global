@@ -1,0 +1,15 @@
+/*
+* Footer design
+***********************/
+footer { 
+	color: lighten($color1, 100%);
+	padding: em(30px) em(15px) em(40px) em(15px);
+	font-size: em(13px);
+	font-weight: normal;
+	a, a:hover { 
+		color: lighten($color1, 100%); 
+	}
+}
+.admin-menu {
+	a {color: lighten($color1, 100%);}
+}

@@ -1,5 +1,5 @@
 <div class="row">
-    <div id="login" class="col-xs-offset-1 col-xs-10 col-sm-offset-3 col-sm-6 text-center col-md-offset-4 col-md-4 text-center">
+    <div id="login" class="col-xs-offset-1 col-xs-10 col-sm-offset-3 col-sm-6 https://www.socialsecurity.be/employer/ col-md-offset-4 col-md-4 https://www.socialsecurity.be/employer/">
 		<h2 class="form-signin-heading"><?php echo $this->i18n->t('login.title'); ?></h2>
     <!--        
     

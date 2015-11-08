@@ -1,6 +1,5 @@
 
-  <div class="navbar navbar-default " id="nav" data-spy="affix" data-offset-top="300">
-  <!-- navbar-fixed-bottom-->
+  <nav class="navbar navbar-default" id="nav" data-spy="affix" data-offset-top="300">
       <div class="container-fluid">
         <div class="navbar-header">
               <button id="navbar-toggle" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -21,10 +20,7 @@
 					?>
 	            
              </div>
-            <div id="navbar" class="navbar-collapse collapse pull-right">
-			
-			<!-- lang 
-			<ul class="nav nav-pills">
+             <ul class="nav navbar-nav lang pull-left hidden-xs">
 			<?php 
 				foreach(Configure::read('Config.languages') as $code => $language) { // show links for translated version
 					if(strcmp(Configure::read('Config.language'), $code)!==0){
@@ -36,85 +32,64 @@
 							$param[] = $pass;
 						}
 						$param['language'] = $code;		
-						echo $this->Html->tag('li', $this->Html->link($this->Html->tag('abbr', $code, array('title' => $language, 'lang' => $code, 'role' => 'presentation')), $param, array('escape' => false, 'class' => 'btn btn-primary btn-sm')));
+						echo $this->Html->tag('li', $this->Html->link($this->Html->tag('abbr', $code, array('title' => $language, 'lang' => $code, 'role' => 'presentation')), $param, array('escape' => false, 'class' => '')));
 					}
 				}
 			?>
 			</ul>
-			/end lang -->
+            <div id="navbar" class="navbar-collapse collapse pull-right">
               <ul class="nav navbar-nav">
-               <?php echo $this->Html->tag('li', $this->Html->link($this->i18n->t('menu.services'), array(
+				<li class="dropdown">
+                <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle hvr-sweep-to-top" href="#"><?php echo $this->i18n->t('menu.services'); ?><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                <?php echo $this->Html->tag('li', $this->Html->link($this->i18n->t('menu.services'), array(
 							'controller' => 'pages',
 							'action' => 'display',
 							'our-services',
-		            		'#' => '',
+		            		'#' => 'services',
 							'language' => Configure::read('Config.language')),
 							array('class' => 'menu-services')));?>
-							
-                <?php echo $this->Html->tag('li', $this->Html->link($this->i18n->t('menu.technics'), array(
+                  <?php echo $this->Html->tag('li', $this->Html->link($this->i18n->t('menu.technics'), array(
 							'controller' => 'pages',
 							'action' => 'display',
 							'our-services',
-		            		'#' => $this->i18n->t('our-service.technicsAnchor'),
+		            		'#' => 'technics',
 							'language' => Configure::read('Config.language')),
 							array('class' => 'menu-technics')));?>
+                  <?php echo $this->Html->tag('li', $this->Html->link($this->i18n->t('menu.prices'), array(
+							'controller' => 'pages',
+							'action' => 'display',
+							'our-services',
+		            		'#' => 'prices',
+							'language' => Configure::read('Config.language')),
+							array('class' => 'menu-prices')));?>	
+                </ul>
+              </li>
 							
 		        <?php echo $this->Html->tag('li', $this->Html->link($this->i18n->t('menu.library'),
 						array('controller' => 'galleries', 'action' => 'library', 'language' => Configure::read('Config.language')),
-						array('escape' => false, 'class' => 'menu-library')));?>
+						array('escape' => false, 'class' => 'menu-library hvr-sweep-to-top')));?>
+				
 				<?php echo $this->Html->tag('li', $this->Html->link($this->i18n->t('menu.map'),
 						array('controller' => 'aperture', 'action' => 'map', $this->i18n->t('menu.belgium'), 'placeId' => 26, 'language' => Configure::read('Config.language')),
-						array('escape' => false, 'class' => 'menu-map')));?> 
+						array('escape' => false, 'class' => 'menu-map hvr-sweep-to-top')));?> 
 				
-                <?php echo $this->Html->tag('li', $this->Html->link($this->i18n->t('menu.prices'), array(
-							'controller' => 'pages',
-							'action' => 'display',
-							'our-services',
-		            		'#' => $this->i18n->t('our-service.pricesAnchor'),
-							'language' => Configure::read('Config.language')),
-							array('class' => 'menu-prices')));?>	
-							
 		        <?php echo $this->Html->tag('li', $this->Html->link($this->i18n->t('menu.flights'), array(
 							'controller' => 'pages',
 							'action' => 'home',
-		            		'#' => $this->i18n->t('home.flightsAnchor'),
+		            		'#' => 'flights',
 							'language' => Configure::read('Config.language')),
-							array('class' => 'menu-flights')));?>
+							array('class' => 'menu-flights hvr-sweep-to-top')));?>
 	
 		        <?php echo $this->Html->tag('li', $this->Html->link($this->i18n->t('menu.contact'), array(
 							'controller' => 'pages',
 							'action' => 'display',
 							'our-services',
-		            		'#' => $this->i18n->t('our-service.contactAnchor'),
+		            		'#' => 'contact',
 							'language' => Configure::read('Config.language')),
-							array('class' => 'menu-contact')));?>	
+							array('class' => 'menu-contact hvr-sweep-to-top')));?>	
               </ul> 
-              
-              <form action="<?php 
-		      	echo $this->Html->url(
-					array(
-						'controller' => 'galleries',
-						'action' => 'search',
-						'language' => Configure::read('Config.language'))); 
-				?>" class="navbar-form navbar-right" role="search" method="GET">
-				<span class="glyphicon glyphicon-search pull-right search-trigger"></span>
-		        <div class="form-group search-toggle pull-right">
-
-		          <input type="text" class="form-control QuickSearchInput" placeholder="<?php echo $this->i18n->t('menu.quickSearch'); ?>" name="q" data-search-url="<?php 
-				      	echo $this->Html->url(
-								array(
-									'controller' => 'galleries',
-									'action' => 'search',
-									'language' => Configure::read('Config.language'),
-									'ext'=> 'json'
-				      	)); 
-							?>">
-				</div>
-		       <!-- <button type="submit" class="btn btn-default" ><span class="glyphicon glyphicon-search"></span></button>-->
-		      </form>
-		
-			  
-		      <ul class="nav navbar-nav pull-right visible-xs">
+		      <ul class="nav navbar-nav visible-xs">
 			      <?php 
 						foreach(Configure::read('Config.languages') as $code => $language) { // show links for translated version
 							if(strcmp($code, Configure::read('Config.language')) !==0 ){
@@ -131,6 +106,27 @@
 						}
 				?>
 		      </ul>
+              <form action="<?php 
+		      	echo $this->Html->url(
+					array(
+						'controller' => 'galleries',
+						'action' => 'search',
+						'language' => Configure::read('Config.language'))); 
+				?>" class="navbar-form navbar-right" role="search" method="GET">
+				<span class="glyphicon glyphicon-search pull-right search-trigger hidden-xs"></span>
+		        <div class="form-group search-toggle pull-right">
+		          <input type="text" class="form-control QuickSearchInput" placeholder="<?php echo $this->i18n->t('menu.quickSearch'); ?>" name="q" data-search-url="<?php 
+				      	echo $this->Html->url(
+								array(
+									'controller' => 'galleries',
+									'action' => 'search',
+									'language' => Configure::read('Config.language'),
+									'ext'=> 'json'
+				      	)); 
+							?>">
+				</div>
+		       <button type="submit" class="btn btn-default visible-xs-block pull-left" ><span class="glyphicon glyphicon-search"></span></button>
+		      </form>		  
 			</div>
           </div>
-        </div>
+        </nav>

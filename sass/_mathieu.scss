@@ -1,24 +1,3 @@
-#map-ctp{
-	.outer {
-	    position: relative;
-	    
-		.scaling-image {
-		    position: relative;
-		    visibility: hidden; /* make sure it's hidden */
-		    width: 100%;
-		    min-width: 100%;
-		}
-		
-		.inner {
-		    position: absolute;
-		    top: 0;
-		    left: 0;
-		    right: 0;
-		    bottom: 0;
-		    overflow:hidden;
-		}
-	}
-}
 
 .ui-widget-content {
   border: 1px solid #aaaaaa;

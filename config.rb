@@ -5,8 +5,8 @@ add_import_path "webroot/js/bower/bootstrap-sass/assets/stylesheets"
 require 'compass/import-once/activate'
 # Require any additional compass plugins here.
 
-sourcemap = true
-sass_options = {:debug_info => true}
+#sourcemap = true
+#sass_options = {:debug_info => true}
 
 # Set this to the root of your project when deployed:
 http_path = "/"

@@ -114,13 +114,10 @@ $(function () {
 		
 
 		$('#map-canvas-'+currentIdx).trigger('loadMap');
-
-		
-		
+		// hide the infos block
+		$( ".wrapper-info" ).find( ".infos" ).removeClass( "open" );
 		
 	});   
-	
-
 	
 	
 });

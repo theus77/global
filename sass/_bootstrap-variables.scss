@@ -78,7 +78,7 @@ $font-size-base:          14px;
 // [converter] If $bootstrap-sass-asset-helper if used, provide path relative to the assets load path.
 // [converter] This is because some asset helpers, such as Sprockets, do not work with file-relative paths.
 // $icon-font-path: if($bootstrap-sass-asset-helper, "bootstrap/", "../fonts/bootstrap/")
-$icon-font-path: "../webroot/js/bower/bootstrap-sass/assets/fonts/bootstrap/"
+$icon-font-path: "../webroot/js/bower/bootstrap-sass/assets/fonts/bootstrap/";
 
 
 //** File name for all font files.
@@ -280,8 +280,8 @@ $icon-font-path: "../webroot/js/bower/bootstrap-sass/assets/fonts/bootstrap/"
 
 // Small screen / tablet
 //** Deprecated `$screen-sm` as of v3.0.1
-// $screen-sm:                  768px
-// $screen-sm-min:              $screen-sm
+$screen-sm:                  768px;
+$screen-sm-min:              $screen-sm;
 //** Deprecated `$screen-tablet` as of v3.0.1
 // $screen-tablet:              $screen-sm-min
 
@@ -314,9 +314,9 @@ $icon-font-path: "../webroot/js/bower/bootstrap-sass/assets/fonts/bootstrap/"
 // $grid-gutter-width:         30px
 // Navbar collapse
 //** Point at which the navbar becomes uncollapsed.
-// $grid-float-breakpoint:     $screen-sm-min
+$grid-float-breakpoint:     ($screen-sm-min + 1);
 //** Point at which the navbar begins collapsing.
-// $grid-float-breakpoint-max: ($grid-float-breakpoint - 1)
+$grid-float-breakpoint-max: ($grid-float-breakpoint - 1);
 
 //== Container sizes
 //
@@ -770,8 +770,8 @@ $icon-font-path: "../webroot/js/bower/bootstrap-sass/assets/fonts/bootstrap/"
 
 // $carousel-text-shadow:                        0 1px 2px rgba(0,0,0,.6)
 
-// $carousel-control-color:                      #fff
-// $carousel-control-width:                      15%
+$carousel-control-color:						black;
+$carousel-control-width:						5%;
 // $carousel-control-opacity:                    .5
 // $carousel-control-font-size:                  20px
 

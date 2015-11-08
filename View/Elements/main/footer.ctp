@@ -1,5 +1,5 @@
       <footer>
-        <p class="pull-right"><a href="#"><?php echo __('Retour en haut');?></a></p>
+        <p class="pull-right hidden-xs"><a href="#"><?php echo __('Retour en haut');?></a></p>
         <p>
 	        &copy; 2004-<?php echo date('Y').' '.__('Global View S.P.R.L.'); ?> 
 	        &middot; <a href="tel:<?php echo __('+32472800900'); ?>"><?php echo __('+32/472.800.900'); ?></a> 
@@ -12,32 +12,37 @@
 	<?php 
 	
 		if(AuthComponent::user() && AuthComponent::user()['role'] === 'admin'){
+			echo '<div class="container-fluid">';
 			echo $this->Html->tag('h3', __('Options d\'administration'));
-			echo $this->Html->tag('ul', 
-					$this->Html->tag('li',
-							$this->Html->link(
-									__('Gestion des textes'),
-									array('controller' => 'wysiwygs', 'action' => 'text'))).
+			echo $this->Html->tag('div', 
+					$this->Html->tag('ul', 
+						$this->Html->tag('li',
+								$this->Html->link(
+										__('Gestion des textes'),
+										array('controller' => 'wysiwygs', 'action' => 'text'))).
 
-					$this->Html->tag('li',
-							$this->Html->link(
-									__('Gestion des traductions'),
-									array('controller' => 'wysiwygs', 'action' => 'index'))).
-										
-					$this->Html->tag('li',
-							$this->Html->link(
-									__('Lister les albums aperture'),
-									array('controller' => 'aperture', 'action' => 'albums'))).					
-					$this->Html->tag('li',
-							$this->Html->link(
-									__('Lister les mots clés aperture'),
-									array('controller' => 'aperture', 'action' => 'keywords'))));
+						$this->Html->tag('li',
+								$this->Html->link(
+										__('Gestion des traductions'),
+										array('controller' => 'wysiwygs', 'action' => 'index'))).
+											
+						$this->Html->tag('li',
+								$this->Html->link(
+										__('Lister les albums aperture'),
+										array('controller' => 'aperture', 'action' => 'albums'))).					
+						$this->Html->tag('li',
+								$this->Html->link(
+										__('Lister les mots clés aperture'),
+										array('controller' => 'aperture', 'action' => 'keywords'))))
+					, array('class' => 'admin-menu'));
+			echo '</div>';
 		}
 	
 	
-		echo $this->element('sql_dump');
+		//echo $this->element('sql_dump');
 		echo $this->Html->script('bower/jquery/dist/jquery');
-	    echo $this->Html->script('bower/bootstrap-sass/assets/javascripts/bootstrap');
+	    echo $this->Html->script('bower/bootstrap-sass/assets/javascripts/bootstrap'); 
+	     echo $this->Html->script('bower/responsive-bootstrap-toolkit/dist/bootstrap-toolkit.min');
 	    echo $this->Html->script('bower/matchHeight/jquery.matchHeight');
 		// Parallax scripts
 		echo $this->Html->script('bower/gsap/src/uncompressed/TweenMax');
@@ -46,8 +51,10 @@
 		echo $this->Html->script('bower/ScrollMagic/scrollmagic/uncompressed/plugins/debug.addIndicators');
 		// Vegas slideshow full page
 		echo $this->Html->script('bower/vegas/dist/vegas');
-		// boostrap responsive toolkit
-		echo $this->Html->script('bower/responsive-bootstrap-toolkit/js/bootstrap-toolkit.min.js');
+		// Jscrollpane
+		echo $this->Html->script('bower/jScrollPane/script/jquery.jscrollpane.min');
+		// enquire js
+		//echo $this->Html->script('bower/enquire/dist/enquire.min');
 		
     	echo $this->Html->script('bower/jquery-ui/jquery-ui');
 	    

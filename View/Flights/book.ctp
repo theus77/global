@@ -188,7 +188,7 @@
     </script>
     
     
-
+<div class="container">
 <div class="row">
 <h1><?php echo __('Reserver pour le vol "%s"', $flight['Flight']['name']);?></h1>
 
@@ -212,7 +212,7 @@
 
 <!-- Form Name -->
 
-<form>
+<form class="form-horizontal">
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="name">Nom et prénom</label>  
@@ -256,8 +256,7 @@
 
 <!-- Button -->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="send">Demande d'information</label>
-  <div class="col-md-8">
+  <div class="col-md-offset-4 col-md-8">
     <button id="send" name="send" class="btn btn-primary">Envoyer</button>
   </div>
 </div>
@@ -267,3 +266,4 @@
 
 </div>
 </form>
+</div>

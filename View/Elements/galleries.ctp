@@ -1,3 +1,4 @@
+		
 		<?php foreach($galleries as $idx => $gallery):{
 				$url = $this->App->getGalleryUrl($gallery['Gallery']['url']);
 				
@@ -19,7 +20,7 @@
 				echo $this->Html->tag('div', 
 					$content, 
 					array(
-							'class' => 'col-sm-6 col-md-4 col-lg-3 ui-state-default text-center groupToMatch',
+							'class' => 'col-sm-6 col-md-4 col-lg-3 ui-state-default groupToMatch',
 							'data-url' => $this->Html->url(array(
 									'controller' => 'Galleries',
 									'action' => 'update',

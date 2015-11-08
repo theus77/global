@@ -1,5 +1,5 @@
 
-<div class="row text-center">
+<div class="row https://www.socialsecurity.be/employer/">
 	<h2><?php echo __('Traductions');?></h2>
 </div>
 <div class="row">
