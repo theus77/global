@@ -10236,6 +10236,14 @@ body.default .default {
   height: 100%;
 }
 
+/**
+* 5. search
+*******************************************/
+/* line 341, ../../sass/_modules.scss */
+#sortableGallery {
+  margin: 1.42857em 0;
+}
+
 /*
 * Footer design
 ***********************/

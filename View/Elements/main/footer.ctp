@@ -52,9 +52,7 @@
 		echo $this->Html->script('bower/ScrollMagic/scrollmagic/uncompressed/plugins/debug.addIndicators');
 		// Vegas slideshow full page
 		echo $this->Html->script('bower/vegas/dist/vegas');
-		// Jscrollpane
-		//echo $this->Html->script('bower/jScrollPane/script/jquery.jscrollpane.min');
-		// Jscrollpane
+		// Jicescroll
 		echo $this->Html->script('bower/jquery.nicescroll/dist/jquery.nicescroll.min');
 		
     	echo $this->Html->script('bower/jquery-ui/jquery-ui');
@@ -88,4 +86,3 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
