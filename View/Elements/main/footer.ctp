@@ -42,7 +42,8 @@
 		//echo $this->element('sql_dump');
 		echo $this->Html->script('bower/jquery/dist/jquery');
 	    echo $this->Html->script('bower/bootstrap-sass/assets/javascripts/bootstrap'); 
-	     echo $this->Html->script('bower/responsive-bootstrap-toolkit/dist/bootstrap-toolkit.min');
+	    // https://github.com/maciej-gurban/responsive-bootstrap-toolkit
+	    echo $this->Html->script('bower/responsive-bootstrap-toolkit/dist/bootstrap-toolkit.min');
 	    echo $this->Html->script('bower/matchHeight/jquery.matchHeight');
 		// Parallax scripts
 		echo $this->Html->script('bower/gsap/src/uncompressed/TweenMax');
@@ -52,9 +53,9 @@
 		// Vegas slideshow full page
 		echo $this->Html->script('bower/vegas/dist/vegas');
 		// Jscrollpane
-		echo $this->Html->script('bower/jScrollPane/script/jquery.jscrollpane.min');
-		// enquire js
-		//echo $this->Html->script('bower/enquire/dist/enquire.min');
+		//echo $this->Html->script('bower/jScrollPane/script/jquery.jscrollpane.min');
+		// Jscrollpane
+		echo $this->Html->script('bower/jquery.nicescroll/dist/jquery.nicescroll.min');
 		
     	echo $this->Html->script('bower/jquery-ui/jquery-ui');
 	    
@@ -87,4 +88,4 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
+    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>

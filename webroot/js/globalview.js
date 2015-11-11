@@ -1,12 +1,62 @@
+// Parallax Homepage ScrollMagic
+// https://github.com/janpaepke/ScrollMagic
+function parallax() {	
+	// init controller
+	var controller = new ScrollMagic.Controller({globalSceneOptions: {triggerHook: "onEnter", duration: "200%"}});
+	// build scenes
+	var scene1 = new ScrollMagic.Scene({triggerElement: "#parallax1"})
+					.setTween("#parallax1 > div", {y: "80%", ease: Linear.easeNone})
+					.addTo(controller);
+
+	var scene2 = new ScrollMagic.Scene({triggerElement: "#parallax2"})
+					.setTween("#parallax2 > div", {y: "80%", ease: Linear.easeNone})
+					.addTo(controller);
+
+	if( $( "body.default" ).length) { 
+		var scene3 = new ScrollMagic.Scene({triggerElement: "#parallax3"})
+						.setTween("#parallax3 > div", {y: "80%", ease: Linear.easeNone})
+						.addTo(controller);
+		var scene4 = new ScrollMagic.Scene({triggerElement: "#parallax4"})
+						.setTween("#parallax4 > div", {y: "80%", ease: Linear.easeNone})
+						.addTo(controller);
+	}		
+ }
+// vegas slideshow
+// https://github.com/jaysalvat/vegas
+function vegas() {
+
+	var h = window.innerHeight;
+	$( "#sortableFlights" ).vegas({
+	    slides: [
+	        { src: "img/slideshow/beautiful-01.jpg" },
+	        { src: "img/slideshow/beautiful-02.jpg" },
+	        { src: "img/slideshow/beautiful-03.jpg" },
+	        { src: "img/slideshow/beautiful-04.jpg" }
+	    ],
+	    init: function (globalSettings) {
+	        $( ".vegas-container" ).css('height', h + 'px');
+	    }
+	});
+
+}
+
+function centerElementAbsolute(element)
+{
+	var heightWindow = $(window).height();
+
+	var haut = (hauteur_fenetre - element.height()) / 2 + $(window).scrollTop();
+	element.css({position: 'absolute', top: haut, left: gauche});
+}
+
 (function($, viewport){
   var
-    $win = $(window),
-    $filter = $('.navbar'),
-    $filterSpacer = $('<div />', {
+    $win 			= $(window),
+    $filter 		= $('.navbar'),
+    $filterSpacer 	= $('<div />', {
       "class": "filter-drop-spacer",
       "height": $filter.outerHeight()
     }),
-    $toggleButton = $('#navbar-toggle');
+    $toggleButton 	= $('#navbar-toggle');
 
 	// Add active class on menu
 	var url = location.pathname + window.location.hash;
@@ -22,7 +72,8 @@
 	var boxeTitle = $( ".groupToMatch" ).find( "h2" ); 
 	boxeTitle.each( function() {
 		var groupToMatch = $(this).parent( ".groupToMatch" );
-		groupToMatch.find( ".text-wrapper p:first-child" ).prepend( $(this) );
+		groupToMatch.find( ".text-wrapper p:first-child" ).wrap( "<div class='heading-wrapper' />");
+		groupToMatch.find( ".heading-wrapper" ).prepend( $(this) );
 	});
 
 
@@ -72,43 +123,75 @@
 	 });
 
 
-	 // show/hide infos.
-	 $( ".wrapper-info" ).find( "span" ).on( "click", function() {
-	 		$(this).toggleClass( "open" );
-	 		$(this).parent().next().toggleClass( "open" );
-	 })
-
-	// open thumb in galerie
-	$( ".trigger-expand" ).on( "click", "a", function(){
-		//console.log($(this).parent().prev());
-		if($(this).parent().hasClass( "open" )) {
-			$(this).parent().removeClass( "open");
-			$(this).parent().prev().animate({
-		    height: "0"
-		  }, 200);
+	// show/hide infos.
+	$( ".wrapper-info" ).find( "span" ).on( "click", function() {
+		$(this).toggleClass( "open" );
+		// smoth scroll
+		var offsetTop 	= $( "#infoCarousel" ).offset().top;
+		//$("html, body").animate({ scrollTop: offsetTop - 300}, 1000);
+		$(this).parent().next().toggleClass( "open" );
+		var trigger = $( "#galerie-thumb-bro .trigger-expand" ).find( "span" );
+		// hide opened galeries scroll
+		if ( trigger.hasClass( "glyphicon-chevron-up" ) ) {
+			console.log('visible');
+			$( ".trigger-expand" ).find( "span" )
+				.toggleClass( "glyphicon-chevron-down" )
+				.toggleClass( "glyphicon-chevron-up" );
+			$( ".galerie-thumb-scroll" ).animate({
+					height: "toggle",
+					opacity: "toggle"
+			});
 		}
-		else {
-			$(this).parent().addClass( "open");
-			$(this).parent().prev().animate({
-			    height: "250"
-			  }, 200, function() {
-			    
-					 // scrollpane
-					 $( ".galerie-thumb-scroll" ).jScrollPane(
-						{
-							horizontalDragMinWidth: 20,
-							horizontalDragMaxWidth: 20
-						}
-					);
+		// center on the page
+		var heightWindow = $(window).height();
+		var topElement = (heightWindow - $( ".galerie-info" ).height()) / 2 + $(window).scrollTop();
+		$( ".galerie-info" ).css({position: 'absolute', top: topElement});
+		// google map refresh ... googlemap doesn't like show/hide
+		var center = map.getCenter();
+        google.maps.event.trigger(map, 'resize');
+        map.setCenter(center);
 
-			  });
-		}
+	});
+
+	$( ".wrapper-info .infos" ).find( "h3" ).on( "click", function() {
+		$(this).toggleClass( "open" );
+		$(this).next( "ul" ).toggle();
+	});
+
+	// Nicescroll : https://github.com/inuyaksa/jquery.nicescroll
+	// add scrolling to the photos galeries
+	$( ".galerie-thumb-scroll" ).niceScroll({
+		cursorcolor:"#7C7B7B",
+		cursorborderradius:0,
+		cursorwidth: "15",
+		cursorborder: "1px solid #ddd",
+		cursorfixedheight: "100",
+		background: "transparent"
+	});
+
+	// Open thumb in galerie page.
+	$( ".trigger-expand" ).on( "click", "a", function(e){
+		e.preventDefault();
+		$(this).find( "span" )
+			.toggleClass( "glyphicon-chevron-down" )
+			.toggleClass( "glyphicon-chevron-up" );
+		$(this).parent().prev().animate({
+  			height: "toggle",
+  			opacity: "toggle"
+		});
 	})
-	//  bind scroll to anchor links
+
+	// thumbnail add active class
+	$( ".thumbnail" ).on( "click", function() {
+		$(this).siblings().removeClass( "active" );
+		$(this).addClass( "active" );
+	})
+
+	//  Bind scroll to anchor links.
 	$(document).on("click", "a", function (e) {
 		var url = $(this).attr("href");
 		var idx = url.indexOf("#")
-		var id = idx != -1 ? url.substring(idx) : "";
+		var id 	= idx != -1 ? url.substring(idx) : "";
 
 		if ($(id).length > 0) {
 			e.preventDefault();
@@ -123,27 +206,28 @@
 		}
 	});
 
-	// bootstrap jquery mediqueries.
-	// load vegas slideshow and parallax only if the breakpoint is bigger than 'md'.
+	// Search animation.
+	$( ".search-trigger" ).on ( "click", function () {
+		$( ".search-toggle" ).animate({
+		 		width: 'toggle'
+		});
+	});
+
+	// Bootstrap jquery mediaqueries.
+	// Load vegas slideshow and parallax only if the breakpoint is bigger than 'md'.
 	$(window).load(
 	 	viewport.changed(function(){
-
-		    if( viewport.is('>=sm') ) {		
-		    // Remove navbar-fixed-bottom class when we scroll
-				if ( $( "body#homepage" ).length ) {
-					// Add fixed effect to navbar top menu
-					$( "nav.navbar" ).addClass( "navbar-fixed-bottom" );
-					$(window).scroll( function() {
-					    var height = $(window).scrollTop();
-					    var number = $( "nav.navbar" ).attr( "data-offset-top" );
-					    
-					    if( height > number ) {
-					        $( "nav.navbar" ).removeClass( "navbar-fixed-bottom" );
-					    }
-					    else {
-					    	$( "nav.navbar" ).addClass( "navbar-fixed-bottom" );
-					    }
-					});	
+	 		console.log('1 current resize : ' + viewport.current());
+		    if( viewport.is('>=sm') ) {	
+		    	// Use affix fonctionality only on homepage
+				$('#nav').affix({offset: {top: 300} });
+		    	if ( $( "body#homepage" ).length ) {
+		    		$('#nav').addClass( "navbar-fixed-bottom" );
+				    $("#nav").on('affix.bs.affix', function(){
+				    	// I need to remove these class for dropdown menu
+				    	// after affix is fired
+				        $(this).toggleClass( "navbar-fixed-bottom" );
+				    });
 				}
 				// Same height for home boxes.
 				$( "#homepage .groupToMatch, .box2 .col-md-4" ).matchHeight();
@@ -154,23 +238,15 @@
 				if ( $( "body#homepage" ).length ) {
 					vegas();
 				}
-				// Search animation.
-				$( ".search-trigger" ).on ( "click", function () {
-					$( ".search-toggle" ).animate({
-					 		width: 'toggle'
-					});
-				});
+
 			}
-			else {
-				// scrollpane
-					 $( ".galerie-thumb-scroll" ).jScrollPane(
-						{
-							horizontalDragMinWidth: 20,
-							horizontalDragMaxWidth: 20
-						}
-					);
+
+			if( viewport.is('<lg') ) {
 				if ( $( "body#homepage" ).length ) {
-					$( "nav#nav" ).removeAttr( "data-spy data-offset-top" ).removeClass( "navbar-fixed-bottom affix-top" );
+					// destroy affix for mobile
+					$(window).off('.affix')
+					$( "nav#nav" ).removeData('bs.affix').removeClass('affix affix-top affix-bottom')
+					$( "nav#nav" ).removeClass( "navbar-fixed-bottom" );
 				}
 			}
 		}) // end window.changed
@@ -179,8 +255,8 @@
     // Execute code each time window size changes
     $(window).resize(
         viewport.changed( function(){
-        	//console.log('current resize' + viewport.current());
             if( viewport.is('>=sm') ) {
+            	// console.log('2 current resize :' + viewport.current());
 				// Same height for home boxes.
 				$( "#homepage .groupToMatch, .box2 .col-md-4" ).matchHeight();
 				// Parallax Homepage ScrollMagic - https://github.com/janpaepke/ScrollMagic
@@ -192,15 +268,14 @@
 				}            
             }
             else {
+            	//console.log('3 current resize :' + viewport.current());
             	$( "#homepage .groupToMatch, .box2 .col-md-4" ).matchHeight( 'remove' );          	
             	// we are under md breakpoints
 		    	if ( $( "body#homepage" ).length ) {
 		    		$( "#sortableFlights" ).vegas( "destroy" );
-		    		$( "nav#nav" ).removeClass( "navbar-fixed-bottom" );
-		    		$( "nav#nav" ).removeAttr( "data-spy data-offset-top" ).removeClass( "navbar-fixed-bottom affix-top" );
 		    	}
 		    	if ( $( ".parallaxParent" ).length ) {   			        	
-		        	controller.destroy();
+		        	//controller.destroy();
 			    	controller = null;
 			    	scene1.destroy();
 			    	scene2.destroy();
@@ -209,53 +284,17 @@
 				    	scene4.destroy();
 			    	}			    	
 		    	}
-		    }    
-        })
-    );
-
-
+		    }  
+		    if( viewport.is('<lg') ) {
+				if ( $( "body#homepage" ).length ) {
+					// destroy affix for mobile
+					$(window).off('.affix')
+					$( "nav#nav" ).removeData('bs.affix').removeClass('affix affix-top affix-bottom')
+					$( "nav#nav" ).removeClass( "navbar-fixed-bottom" );
+				}
+			}
+        }) // end window.changed
+    ); // end window.resize
 
 })(jQuery, ResponsiveBootstrapToolkit); // end anonymous function
 
-// Parallax Homepage ScrollMagic
-// https://github.com/janpaepke/ScrollMagic
-function parallax() {	
-	// init controller
-	var controller = new ScrollMagic.Controller({globalSceneOptions: {triggerHook: "onEnter", duration: "200%"}});
-	// build scenes
-	var scene1 = new ScrollMagic.Scene({triggerElement: "#parallax1"})
-					.setTween("#parallax1 > div", {y: "80%", ease: Linear.easeNone})
-					.addTo(controller);
-
-	var scene2 = new ScrollMagic.Scene({triggerElement: "#parallax2"})
-					.setTween("#parallax2 > div", {y: "80%", ease: Linear.easeNone})
-					.addTo(controller);
-
-	if( $( "body.default" ).length) { 
-		var scene3 = new ScrollMagic.Scene({triggerElement: "#parallax3"})
-						.setTween("#parallax3 > div", {y: "80%", ease: Linear.easeNone})
-						.addTo(controller);
-		var scene4 = new ScrollMagic.Scene({triggerElement: "#parallax4"})
-						.setTween("#parallax4 > div", {y: "80%", ease: Linear.easeNone})
-						.addTo(controller);
-	}		
- }
-
-// vegas slideshow
-// https://github.com/jaysalvat/vegas
-function vegas() {
-
-	var h = window.innerHeight;
-	$( "#sortableFlights" ).vegas({
-	    slides: [
-	        { src: "img/slideshow/beautiful-01.jpg" },
-	        { src: "img/slideshow/beautiful-02.jpg" },
-	        { src: "img/slideshow/beautiful-03.jpg" },
-	        { src: "img/slideshow/beautiful-04.jpg" }
-	    ],
-	    init: function (globalSettings) {
-	        $( ".vegas-container" ).css('height', h + 'px');
-	    }
-	});
-
-}

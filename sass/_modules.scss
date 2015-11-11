@@ -9,23 +9,25 @@
 * 1. Home design
 ********************************************/
 .flight-wrapper {
-	position: absolute;
-    top: 40%;
-    left: 50%;
-    margin-right: -50%;
-	-ms-transform: translate(-50%, -50%); /* IE 9 */
-	-webkit-transform: translate(-50%, -50%); /* Safari */
-    transform: translate(-50%, -50%);
 	h1 {
 		color: lighten($color1, 100%);
 	}
 
-	@include MQ(XStoM) {
+	@include MQ(Mneg) {
 		position: relative;
 		top: 0;
 		left: 0;
 		margin-right: 0;
 		transform: none;
+	}
+	@include MQ(Mplus) {
+		position: absolute;
+	    top: 40%;
+	    left: 50%;
+	    margin-right: -50%;
+		-ms-transform: translate(-50%, -50%); /* IE 9 */
+		-webkit-transform: translate(-50%, -50%); /* Safari */
+	    transform: translate(-50%, -50%);
 	}
 }
 .box-home {
@@ -51,10 +53,10 @@
 			} 		
 		}
 		img {width:100% !important; height: auto !important;}
-		.text-wrapper p:first-child {position: relative;}
+		.text-wrapper p:first-child, .heading-wrapper {position: relative;}
 	}
 	strong { color: lighten($color1, 60%);}
-	p:last-child {
+	.text-wrapper > p {
 		padding: 0 em(15px, 12px);
 		font-size: em(12px);
 		br {
@@ -92,7 +94,7 @@
 	&#parallax2 div {
 		background-image: image-url('map02.jpg');
 	}
-	@include MQ(XStoM) {
+	@include MQ(Mneg) {
 		height: auto;
 		overflow: visible;
 	}
@@ -106,7 +108,7 @@
 		margin:0;
 		h1 { color: lighten($color1, 100%); }
 	}
-	@include MQ(XStoM) {
+	@include MQ(Mneg) {
 		height: auto;
 		overflow: visible;
 	}
@@ -124,7 +126,7 @@
 	.col-md-4 {
 		padding-left: em(80px);
 		background: transparent image-url('box-01.png') no-repeat 0 20px;
-		@include MQ(XStoM) {
+		@include MQ(Mneg) {
 			background-position: em(20px) em(20px);
 			background-size: em(35px) auto;
 		}
@@ -164,7 +166,7 @@
 ********************************************/
 .spacer.s1 {
 	padding: em(50px) 0;
-	@include MQ(XStoM) {
+	@include MQ(Mneg) {
 		padding: em(20px) 0;
 	}
 }
@@ -260,6 +262,9 @@ body.default {
 	left: 0;
 	width: 100%;
 	height: 16px;
+	@include MQ(Mplus){
+		bottom: em(10px);
+	}
 }
 
 .jspCap {
@@ -272,7 +277,7 @@ body.default {
 
 .jspTrack {
 	position: relative;
-	@include MQ(XStoM) {
+	@include MQ(Mneg) {
 		background-color: $color1;
 	}
 }
@@ -284,7 +289,7 @@ body.default {
 	top: 0;
 	left: 0;
 	cursor: pointer;
-	@include MQ(XStoM) {
+	@include MQ(Mneg) {
 		width:em(50px) !important;
 	}
 }

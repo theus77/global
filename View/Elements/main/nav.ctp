@@ -1,5 +1,5 @@
 
-  <nav class="navbar navbar-default" id="nav" data-spy="affix" data-offset-top="300">
+  <nav class="navbar navbar-default" id="nav">
       <div class="container-fluid">
         <div class="navbar-header">
               <button id="navbar-toggle" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -20,7 +20,7 @@
 					?>
 	            
              </div>
-             <ul class="nav navbar-nav lang pull-left hidden-xs">
+             <ul class="nav navbar-nav lang pull-left visible-md visible-lg">
 			<?php 
 				foreach(Configure::read('Config.languages') as $code => $language) { // show links for translated version
 					if(strcmp(Configure::read('Config.language'), $code)!==0){
@@ -37,7 +37,7 @@
 				}
 			?>
 			</ul>
-            <div id="navbar" class="navbar-collapse collapse pull-right">
+            <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
 				<li class="dropdown">
                 <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle hvr-sweep-to-top" href="#"><?php echo $this->i18n->t('menu.services'); ?><span class="caret"></span></a>
@@ -89,7 +89,7 @@
 							'language' => Configure::read('Config.language')),
 							array('class' => 'menu-contact hvr-sweep-to-top')));?>	
               </ul> 
-		      <ul class="nav navbar-nav visible-xs">
+		      <ul class="nav navbar-nav visible-xs visible-sm">
 			      <?php 
 						foreach(Configure::read('Config.languages') as $code => $language) { // show links for translated version
 							if(strcmp($code, Configure::read('Config.language')) !==0 ){
@@ -112,9 +112,9 @@
 						'controller' => 'galleries',
 						'action' => 'search',
 						'language' => Configure::read('Config.language'))); 
-				?>" class="navbar-form navbar-right" role="search" method="GET">
-				<span class="glyphicon glyphicon-search pull-right search-trigger hidden-xs"></span>
-		        <div class="form-group search-toggle pull-right">
+				?>" class="navbar-form navbar-right" method="GET">
+				<span class="glyphicon glyphicon-search pull-right search-trigger hidden-xs hidden-sm"></span>
+		        <div class="form-group search-toggle">
 		          <input type="text" class="form-control QuickSearchInput" placeholder="<?php echo $this->i18n->t('menu.quickSearch'); ?>" name="q" data-search-url="<?php 
 				      	echo $this->Html->url(
 								array(
@@ -125,7 +125,7 @@
 				      	)); 
 							?>">
 				</div>
-		       <button type="submit" class="btn btn-default visible-xs-block pull-left" ><span class="glyphicon glyphicon-search"></span></button>
+		       <button type="submit" class="btn btn-default hidden-md hidden-lg pull-left" ><span class="glyphicon glyphicon-search"></span></button>
 		      </form>		  
 			</div>
           </div>

@@ -213,7 +213,7 @@
 												<?php echo $this->i18n->w('home.thematic-search'); ?>
 												<?php echo $this->Html->link($this->i18n->w('home.thematic-search-button'),
 																		array('controller' => 'galleries', 'action' => 'library', 'language' => Configure::read('Config.language')),
-											array('escape' => false, 'class' => 'btn btn-default btn-primary hvr-underline-from-center', 'role' => 'button'));?></p>
+											array('escape' => false, 'class' => 'btn btn-default btn-primary hvr-underline-from-center', 'role' => 'button'));?>
 											</div><!-- /.col-md-4 -->
 											
 											</div><!-- /.row -->

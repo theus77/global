@@ -8,7 +8,7 @@
 			<h2 id="intro" class="pull-left"><?php echo $title; ?></h2>
 			<div>
 				<nav>
-					<ul class="pagination">
+					<ul class="pagination pull-right">
 						<?php echo $this->Paginator->numbers(array(
 								'tag' => 'li',
 								'separator' => '',
@@ -30,7 +30,7 @@
 				?></a>
 				<?php endforeach;?>
 			</div>
-			<div class="trigger-expand">
+			<div class="trigger-expand top">
 		<a href="#">
           <span class="glyphicon glyphicon-chevron-down"></span>
         </a>
@@ -112,6 +112,11 @@
 								<?php endforeach;?>
 							<?php endforeach;?>
 						</div>
+						<div class="trigger-expand bottom">
+							<a href="#">
+					          <span class="glyphicon glyphicon-chevron-up"></span>
+					        </a>
+					    </div>
 					</div>
 					</div> <!-- / row -->
 					<!-- infos -->
@@ -199,6 +204,19 @@
 														<img src="data:image/gif;base64,R0lGODlhEAAJAIAAAP///wAAACH5BAEAAAAALAAAAAAQAAkAAAIKhI+py+0Po5yUFQA7" class="scaling-image" /> <!-- don't specify height and width so browser resizes it appropriately -->
 													</div>
 												</div>
+												<div id="price-ask">
+												<?php echo $this->Html->link(
+														'Demande de prix',
+														array(
+															'action' => 'price',
+															$version['Version']['encodedUuid']
+														),
+														array(
+															'role' => 'button',
+															'class' => 'btn btn-default btn-primary hvr-underline-from-center',
+												));
+												?>
+												</div>
 											</div>
 										</div>
 										<?php if(AuthComponent::user() && AuthComponent::user()['role'] === 'admin'):?>
@@ -223,19 +241,7 @@
 										)); ?>
 										
 										<?php endif;?>
-										<div id="price-ask">
-											<?php echo $this->Html->link(
-													'Demande de prix',
-													array(
-														'action' => 'price',
-														$version['Version']['encodedUuid']
-													),
-													array(
-														'role' => 'button',
-														'class' => 'btn btn-default btn-primary hvr-underline-from-center',
-											));
-											?>
-										</div>
+										
 									</div>
 									<?php endforeach; ?>
 								</div>

@@ -6,6 +6,17 @@
 #galerie-filmstrip {
 	h2 {
 		color: lighten($color1, 100%);
+		@include MQ(L) {
+			font-size:em(16px);
+			margin-top: em(10px, 16px);
+			margin-bottom: em(5px, 16px);
+		}
+		@include MQ(Mneg) {
+			padding: 0 em(5px, 16px);
+			font-size:em(14px);
+			margin-top: em(10px, 16px);
+			margin-bottom: em(5px, 16px);
+		}
 	}
 	position:relative;
 	&.container-fluid {
@@ -19,25 +30,31 @@
 		height: auto !important;
 		background: rgba($color1, 0.7);
 		.trigger-expand {
-		    padding: em(15px) em(25px);
-		    bottom: -50px;
-		    position: absolute;
+			position: absolute;
 		    z-index: 101;
 		    left: 50%;
 		    @include transform(translate(-50%, 0));			
-			background: rgba($color1, 0.7);
-			@include border-bottom-radius(5px);
+			background: rgba($color1, 0.7);	
+			&.top {
+				bottom: -44px;
+				@include border-bottom-radius(5px);
+			}
+			&.bottom {
+				top:-44px;
+				@include border-top-radius(5px);
+			}	    		
 			a { color: lighten($color1, 100%); }
-			@include MQ(XStoM) {
+			span {padding: em(15px) em(25px);}
+			@include MQ(Mneg) {
 				display:none;
     		}
     	}
-    	@include MQ(XStoM) {
+    	@include MQ(Mneg) {
 			position:relative;
     	}
 	}
 	.galerie-thumb {
-    	@include MQ(XStoM) {
+    	@include MQ(Mneg) {
     		padding-left:0;
     		padding-right:0;
 			min-height:100px !important;
@@ -45,17 +62,20 @@
 	}
 	#galerie-info {
 		background-color: transparent;
-		top: 40%;
+		top: 50%;
 		@include transform(translate(0, -60%));
    		z-index: 10;
    		width:80%;
    		left:10%;
    		.wrapper-info {
-   			min-width: em(150px);
-   			max-width: 30%;
-   			@include MQ(XStoM) {
-				max-width:100% !important;
-				margin-top:em(10px);
+   			@include MQ(Mneg) {
+				width:100% !important;
+   			}
+   			@include MQ(Mplus) {
+   				width: em(450px);
+   			}
+   			@include MQ(L) {
+   				width: em(350px);
    			}
    		}
    		h2 { 
@@ -70,34 +90,35 @@
 				display: inline-block;
 				cursor: pointer;
 				position: absolute;
-				right: -25%;
+				right: em(-72px, 40px);
 				bottom: 0;
-				height:60%;
-				line-height:1.5em;
-				width: 25%;
+				height: em(72px, 40px);
+				line-height: em(72px, 40px);
+				width: em(72px, 40px);
    				background-color: lighten($color1, 100%);
    				text-align: center;
    				font-size: em(50px, 40px);
-   				min-height: 1.65em;
    				&:after {content: "+";}
    				&.open:after {content: "-";}
    				&:hover {background-color:lighten($color1, 80%);}
-   				@include MQ(XStoM) {
+   				@include MQ(Mneg) {
 					display:none;
    				}
 			}
-			@include MQ(XStoM) {
+			@include MQ(Mneg) {
 				width:100%;
 				font-size: em(20px);
    			}
+   			@include MQ(L) {
+				font-size: em(25px);
+				padding: em(10px, 25px);
+   			}
    		}
    		.infos {
-		   	/* hidden because we have a google map cart, problem if we use display none */
-			position:absolute;
-			visibility: hidden;
+			position:relative;
+			display:none;
    			&.open {
-				position:relative;
-   				visibility:inherit;
+   				display:block;
    			}
 
    			padding: em(20px);
@@ -105,29 +126,57 @@
    			h3 {
 	   			color: $color1;
 	   			margin-bottom:0;
+	   			margin-top: em(10px, 24px);
 	   			&:first-child {margin-top:0;}
+	   			@include MQ(Mplus) {
+	   				cursor: pointer;
+					&:after {
+						padding: em(5px);
+						color: $color2;
+						content: '+';
+					}
+					&.open:after {
+						content: '-';
+					}
+   				}
+   				@include MQ(L) {
+    				font-size: em(18px);
+    			}
    			}
+   			ul {
+   				list-style-type:none; 
+   				padding: 0;
+   				display:none;
+   				@include MQ(Mneg) {
+					display:block;
+	   			}
 
-   			ul {list-style-type:none; padding: 0;}
+   			}
    			#placesList li {
    				display:inline;
    				&:after {content: ',';}
    				&:last-child:after {content: '';}
    				a {text-decoration:underline;}
    			}
-   			#map-ctp {margin-bottom: 0;}
-   			@include MQ(XStoM) {
+   			#map-ctp {
+   				margin-bottom: 0;
+   				@include MQ(Mplus) {
+   					margin-bottom:em(30px);
+					margin-top:em(10px);    			
+				}
+   			}
+   			@include MQ(Mneg) {
 				position:relative;
-				visibility: visible;
+				display:block;
     		}
    		}
-		@include MQ(XStoM) {
+		@include MQ(Mneg) {
 			width:100%;
 			top:0;
 			left:0;
 			@include transform(translate(0, 0));
-			margin: em(15px) 0;
-		}  		
+			margin: 0 0 em(15px) 0;
+		} 		
 	}
 	#price-ask {
 		position:absolute;
@@ -137,13 +186,15 @@
 		.btn.btn-primary {
 			@extend %btn-ico;
 		}
-		@include MQ(XStoM) {
+		@include MQ(Mneg) {
 			position:relative;
+			margin-top: em(10px);
 		}
 	}
-	#galerie-thumb-bro .galerie-thumb-scroll {
-		@include MQ(Mplus) {
-			height:0;
+	#galerie-thumb-bro .galerie-thumb-scroll,
+	#galerie-thumb-child .galerie-thumb-scroll {
+		@include MQ(Mplus) {			
+			display:none;
 		}
 	}
 	#galerie-thumb-child {
@@ -162,13 +213,20 @@
   		background-color: transparent;
   		border:0;
   		padding: em(15px);
+  		&.active img {outline:5px solid lighten($color1, 100%);}
   		&:hover img { outline: 1px solid lighten($color1, 70%); }
   		img {
-  			@include MQ(XStoM) {
+  			@include MQ(Mneg) {
   			max-width: em(150px);
   			}
+  			@include MQ(XS) {
+  			max-width: em(100px);
+  			}
+  			@include MQ(L) {
+  			max-width: em(200px);
+  			}
   		}
-  		@include MQ(XStoM) {
+  		@include MQ(Mneg) {
   			padding:0;
   		}
   	}
@@ -177,3 +235,5 @@
   		overflow: hidden;
   	}	
 }
+
+.carousel-indicators {bottom: em(80px);}
