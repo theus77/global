@@ -40,13 +40,6 @@ function vegas() {
 
 }
 
-function centerElementAbsolute(element)
-{
-	var heightWindow = $(window).height();
-
-	var haut = (hauteur_fenetre - element.height()) / 2 + $(window).scrollTop();
-	element.css({position: 'absolute', top: haut, left: gauche});
-}
 
 (function($, viewport){
   var
@@ -128,7 +121,6 @@ function centerElementAbsolute(element)
 		$(this).toggleClass( "open" );
 		// smoth scroll
 		var offsetTop 	= $( "#infoCarousel" ).offset().top;
-		//$("html, body").animate({ scrollTop: offsetTop - 300}, 1000);
 		$(this).parent().next().toggleClass( "open" );
 		var trigger = $( "#galerie-thumb-bro .trigger-expand" ).find( "span" );
 		// hide opened galeries scroll
@@ -183,10 +175,17 @@ function centerElementAbsolute(element)
 
 	// thumbnail add active class
 	$( ".thumbnail" ).on( "click", function() {
-		$(this).siblings().removeClass( "active" );
-		$(this).addClass( "active" );
+		$(this).addClass( "active" ).siblings().removeClass( "active");
 	})
 
+	// if we have a hash on load. Scroll to the id
+	$(window).load(function () {
+		if ( window.location.hash ) {
+			// scroll
+			var id = window.location.hash;
+			$("html, body").animate({ scrollTop: $(id).offset().top - 150}, 1000);
+		}
+	});
 	//  Bind scroll to anchor links.
 	$(document).on("click", "a", function (e) {
 		var url = $(this).attr("href");
@@ -195,9 +194,9 @@ function centerElementAbsolute(element)
 
 		if ($(id).length > 0) {
 			e.preventDefault();
-
+			console.log('top : ' +$(id).offset().top);
 			// trigger scroll
-			$("html, body").animate({ scrollTop: $(id).offset().top - 250 }, 1000);
+			$("html, body").animate({ scrollTop: $(id).offset().top - 150}, 1000);
 
 			// if supported by the browser we can even update the URL.
 			if (window.history && window.history.pushState) {
@@ -217,7 +216,7 @@ function centerElementAbsolute(element)
 	// Load vegas slideshow and parallax only if the breakpoint is bigger than 'md'.
 	$(window).load(
 	 	viewport.changed(function(){
-	 		console.log('1 current resize : ' + viewport.current());
+	 		//console.log('1 current resize : ' + viewport.current());
 		    if( viewport.is('>=sm') ) {	
 		    	// Use affix fonctionality only on homepage
 				$('#nav').affix({offset: {top: 300} });
@@ -255,8 +254,8 @@ function centerElementAbsolute(element)
     // Execute code each time window size changes
     $(window).resize(
         viewport.changed( function(){
+        	//console.log('2 current resize :' + viewport.current());
             if( viewport.is('>=sm') ) {
-            	// console.log('2 current resize :' + viewport.current());
 				// Same height for home boxes.
 				$( "#homepage .groupToMatch, .box2 .col-md-4" ).matchHeight();
 				// Parallax Homepage ScrollMagic - https://github.com/janpaepke/ScrollMagic
@@ -277,8 +276,10 @@ function centerElementAbsolute(element)
 		    	if ( $( ".parallaxParent" ).length ) {   			        	
 		        	//controller.destroy();
 			    	controller = null;
-			    	scene1.destroy();
-			    	scene2.destroy();
+			    	if ( $( "body#homepage" ).length ) {
+				    	scene1.destroy();
+				    	scene2.destroy();
+			    	}
 			    	if( $( "body.default" ).length) {
 				    	scene3.destroy();
 				    	scene4.destroy();
