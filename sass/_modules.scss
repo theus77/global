@@ -22,7 +22,7 @@
 	}
 	@include MQ(Mplus) {
 		position: absolute;
-	    top: 40%;
+	    top: 42%;
 	    left: 50%;
 	    margin-right: -50%;
 		-ms-transform: translate(-50%, -50%); /* IE 9 */
@@ -130,6 +130,7 @@
 			background-position: em(20px) em(20px);
 			background-size: em(35px) auto;
 		}
+
 	}
 	.text-search {background-image: image-url('box-02.png');}
 	.thematic-search  {background-image: image-url('box-03.png');}

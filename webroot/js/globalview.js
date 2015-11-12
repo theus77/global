@@ -216,18 +216,9 @@ function vegas() {
 	// Load vegas slideshow and parallax only if the breakpoint is bigger than 'md'.
 	$(window).load(
 	 	viewport.changed(function(){
-	 		//console.log('1 current resize : ' + viewport.current());
+	 		console.log('1 current resize : ' + viewport.current());
 		    if( viewport.is('>=sm') ) {	
-		    	// Use affix fonctionality only on homepage
-				$('#nav').affix({offset: {top: 300} });
-		    	if ( $( "body#homepage" ).length ) {
-		    		$('#nav').addClass( "navbar-fixed-bottom" );
-				    $("#nav").on('affix.bs.affix', function(){
-				    	// I need to remove these class for dropdown menu
-				    	// after affix is fired
-				        $(this).toggleClass( "navbar-fixed-bottom" );
-				    });
-				}
+		    	
 				// Same height for home boxes.
 				$( "#homepage .groupToMatch, .box2 .col-md-4" ).matchHeight();
 				// Parallax Homepage ScrollMagic - https://github.com/janpaepke/ScrollMagic
@@ -240,13 +231,33 @@ function vegas() {
 
 			}
 
-			if( viewport.is('<lg') ) {
+			if( viewport.is('<=lg') ) {
+				//console.log('current resize : ' + viewport.current());
 				if ( $( "body#homepage" ).length ) {
 					// destroy affix for mobile
 					$(window).off('.affix')
 					$( "nav#nav" ).removeData('bs.affix').removeClass('affix affix-top affix-bottom')
 					$( "nav#nav" ).removeClass( "navbar-fixed-bottom" );
 				}
+			}
+			else {
+				// Use affix fonctionality only on homepage
+				$('#nav').affix({offset: {top: 300} });
+		    	if ( $( "body#homepage" ).length ) {
+		    		$('#nav').addClass( "navbar-fixed-bottom" );
+				    $("#nav").on('affix.bs.affix', function(){
+				    	// I need to remove these class for dropdown menu
+				    	// after affix is fired
+				        $(this).toggleClass( "navbar-fixed-bottom" );
+				    });
+				}
+				// check the scroll window position only for home
+				$(window).on("scroll", function() {
+					var scrollPosition = $(window).scrollTop();
+					if( scrollPosition < 300 && $( "body#homepage" ).length ) {
+						$('#nav').addClass( "navbar-fixed-bottom" );
+					}
+				});
 			}
 		}) // end window.changed
 	); // end window.load
@@ -268,7 +279,8 @@ function vegas() {
             }
             else {
             	//console.log('3 current resize :' + viewport.current());
-            	$( "#homepage .groupToMatch, .box2 .col-md-4" ).matchHeight( 'remove' );          	
+            	$( "#homepage .groupToMatch, .box2 .col-md-4" ).matchHeight( 'remove' ); 
+            	$( "nav#nav" ).removeClass( "navbar-fixed-bottom" );         	
             	// we are under md breakpoints
 		    	if ( $( "body#homepage" ).length ) {
 		    		$( "#sortableFlights" ).vegas( "destroy" );
@@ -285,14 +297,34 @@ function vegas() {
 				    	scene4.destroy();
 			    	}			    	
 		    	}
-		    }  
-		    if( viewport.is('<lg') ) {
+		    }   
+
+		    if( viewport.is('<=lg') ) {
 				if ( $( "body#homepage" ).length ) {
 					// destroy affix for mobile
 					$(window).off('.affix')
 					$( "nav#nav" ).removeData('bs.affix').removeClass('affix affix-top affix-bottom')
 					$( "nav#nav" ).removeClass( "navbar-fixed-bottom" );
 				}
+			}
+			else {
+				// Use affix fonctionality only on homepage
+				$('#nav').affix({offset: {top: 300} });
+		    	if ( $( "body#homepage" ).length ) {
+		    		$('#nav').addClass( "navbar-fixed-bottom" );
+				    $("#nav").on('affix.bs.affix', function(){
+				    	// I need to remove these class for dropdown menu
+				    	// after affix is fired
+				        $(this).toggleClass( "navbar-fixed-bottom" );
+				    });
+				}
+				// check the scroll window position only for home
+				$(window).on("scroll", function() {
+					var scrollPosition = $(window).scrollTop();
+					if( scrollPosition < 300 && $( "body#homepage" ).length ) {
+						$('#nav').addClass( "navbar-fixed-bottom" );
+					}
+				});
 			}
         }) // end window.changed
     ); // end window.resize
