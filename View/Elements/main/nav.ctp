@@ -10,7 +10,7 @@
               </button>
 					<?php 
 						echo $this->Html->link(
-							$this->Html->image('GlobalView.png', array(
+							$this->Html->image('logo-global-view.png', array(
 								'alt' => $this->i18n->t('layout.logo-alt'),
 								'class' => 'img-responsive'
 						)),
