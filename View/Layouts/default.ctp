@@ -11,18 +11,20 @@
     ?>
      
     <title><?php echo $this->i18n->t('site.title').' - '.$this->i18n->t('home.title'); ?></title>
-
     <!-- Bootstrap core CSS -->
     <?php echo $this->Html->css('styles'); ?>
 
   </head>
-  <body>
+  <body class="default">
+    <div class="container-fluid">
   	<?php 
-	  	echo $this->element('main/header');
-	  	echo $this->element('main/nav');
+	  echo $this->element('main/header');
 		echo $this->Html->tag('div', $this->Session->flash(), array('class' => 'container flash'));
-	  	echo $this->fetch('content');
+    echo $this->Html->tag('div', $this->fetch('content'), array('class' => 'default')); 
+    ?>
+    </div>
+    <?php	
 		echo $this->element('main/footer'); 
-	?>
+	 ?>
   </body>
 </html>

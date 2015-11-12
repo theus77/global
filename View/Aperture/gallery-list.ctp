@@ -1,5 +1,5 @@
 
-<div class="row text-center">
+<div class="row">
 	<h2><?php echo __('Liste des mots clés Aperture');?></h2>
 </div>
 <div class="row">

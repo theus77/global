@@ -1,3 +1,4 @@
+<div class="container">
 	<div class="row" id="sortableGallery">
 			<?php echo $this->element('galleries', array('galleries', $galleries)); ?>
 	</div>
@@ -21,3 +22,4 @@
 			)); ?>
 		  </ul>
 		</nav>
+</div>

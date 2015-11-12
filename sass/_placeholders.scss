@@ -1,0 +1,19 @@
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+%no-padding {
+	padding-left:0;
+	padding-right:0;
+}
+
+%btn-ico {
+	padding-left: em(55px);
+	border: 0;
+	background: $brand-primary image-url('icon-camera.png') no-repeat center left;
+	&:hover {background-color: $color1;}
+}
