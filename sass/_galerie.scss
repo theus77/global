@@ -77,11 +77,11 @@
    			@include MQ(XSneg) {
 				width:100% !important;
    			}
-   			@include MQ(Mplus) {
+   			@include MQ(M) {
    				width: em(250px);
    			}
-   			@include MQ(L) {
-   				width: em(350px);
+   			@include MQ(Lplus) {
+   				width: em(450px);
    			}
    		}
    		h2 { 
@@ -115,7 +115,7 @@
 				width:100%;
 				font-size: em(20px);
    			}
-   			@include MQ(Mplus) {
+   			@include MQ(M) {
    				font-size: em(15px);
    			}
    			@include MQ(L) {

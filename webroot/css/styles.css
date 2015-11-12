@@ -8780,29 +8780,29 @@ button.close {
 ********************************/
 @font-face {
   font-family: "aileronblack";
-  src: url('../fonts/aileron/black/aileron-black-webfont.eot?1447274031');
-  src: url('../fonts/aileron/black/aileron-black-webfont.eot?&1447274031#iefix') format('embedded-opentype'), url('../fonts/aileron/black/aileron-black-webfont.woff?1447274031') format('woff'), url('../fonts/aileron/black/aileron-black-webfont.ttf?1447274031') format('truetype');
+  src: url('../fonts/aileron/black/aileron-black-webfont.eot?1447360101');
+  src: url('../fonts/aileron/black/aileron-black-webfont.eot?&1447360101#iefix') format('embedded-opentype'), url('../fonts/aileron/black/aileron-black-webfont.woff?1447360101') format('woff'), url('../fonts/aileron/black/aileron-black-webfont.ttf?1447360101') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "aileronheavy";
-  src: url('../fonts/aileron/heavy/aileron-heavy-webfont.eot?1447274031');
-  src: url('../fonts/aileron/heavy/aileron-heavy-webfont.eot?&1447274031#iefix') format('embedded-opentype'), url('../fonts/aileron/heavy/aileron-heavy-webfont.woff?1447274031') format('woff'), url('../fonts/aileron/heavy/aileron-heavy-webfont.ttf?1447274031') format('truetype');
+  src: url('../fonts/aileron/heavy/aileron-heavy-webfont.eot?1447360101');
+  src: url('../fonts/aileron/heavy/aileron-heavy-webfont.eot?&1447360101#iefix') format('embedded-opentype'), url('../fonts/aileron/heavy/aileron-heavy-webfont.woff?1447360101') format('woff'), url('../fonts/aileron/heavy/aileron-heavy-webfont.ttf?1447360101') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "aileronregular";
-  src: url('../fonts/aileron/regular/aileron-regular-webfont.eot?1447274031');
-  src: url('../fonts/aileron/regular/aileron-regular-webfont.eot?&1447274031#iefix') format('embedded-opentype'), url('../fonts/aileron/regular/aileron-regular-webfont.woff?1447274031') format('woff'), url('../fonts/aileron/regular/aileron-regular-webfont.ttf?1447274031') format('truetype');
+  src: url('../fonts/aileron/regular/aileron-regular-webfont.eot?1447360101');
+  src: url('../fonts/aileron/regular/aileron-regular-webfont.eot?&1447360101#iefix') format('embedded-opentype'), url('../fonts/aileron/regular/aileron-regular-webfont.woff?1447360101') format('woff'), url('../fonts/aileron/regular/aileron-regular-webfont.ttf?1447360101') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "aileronlight";
-  src: url('../fonts/aileron/light/aileron-light-webfont.eot?1447274031');
-  src: url('../fonts/aileron/light/aileron-light-webfont.eot?&1447274031#iefix') format('embedded-opentype'), url('../fonts/aileron/light/aileron-light-webfont.woff?1447274031') format('woff'), url('../fonts/aileron/light/aileron-light-webfont.ttf?1447274031') format('truetype');
+  src: url('../fonts/aileron/light/aileron-light-webfont.eot?1447360101');
+  src: url('../fonts/aileron/light/aileron-light-webfont.eot?&1447360101#iefix') format('embedded-opentype'), url('../fonts/aileron/light/aileron-light-webfont.woff?1447360101') format('woff'), url('../fonts/aileron/light/aileron-light-webfont.ttf?1447360101') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -8816,7 +8816,7 @@ body.default > .container-fluid {
 #galerie-filmstrip #price-ask .btn.btn-primary, .box-home .form-group:not(.admin) .btn.btn-primary {
   padding-left: 3.92857em;
   border: 0;
-  background: #343434 url('../img/icon-camera.png?1447275845') no-repeat center left;
+  background: #343434 url('../img/icon-camera.png?1447360101') no-repeat center left;
 }
 /* line 18, ../../sass/_placeholders.scss */
 #galerie-filmstrip #price-ask .btn.btn-primary:hover, .box-home .form-group:not(.admin) .btn.btn-primary:hover {
@@ -9540,16 +9540,16 @@ header .navbar-brand {
     width: 100% !important;
   }
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
   /* line 76, ../../sass/_galerie.scss */
   #galerie-filmstrip #galerie-info .wrapper-info {
     width: 17.85714em;
   }
 }
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
+@media only screen and (min-width: 992px) {
   /* line 76, ../../sass/_galerie.scss */
   #galerie-filmstrip #galerie-info .wrapper-info {
-    width: 25em;
+    width: 32.14286em;
   }
 }
 /* line 87, ../../sass/_galerie.scss */
@@ -9601,7 +9601,7 @@ header .navbar-brand {
     font-size: 1.42857em;
   }
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
   /* line 87, ../../sass/_galerie.scss */
   #galerie-filmstrip #galerie-info h2 {
     font-size: 1.07143em;
@@ -9959,11 +9959,11 @@ header .navbar-brand {
 }
 /* line 91, ../../sass/_modules.scss */
 .parallaxParent#parallax1 div {
-  background-image: url('../img/map01.jpg?1447275609');
+  background-image: url('../img/map01.jpg?1447360101');
 }
 /* line 94, ../../sass/_modules.scss */
 .parallaxParent#parallax2 div {
-  background-image: url('../img/map02.jpg?1447275662');
+  background-image: url('../img/map02.jpg?1447360101');
 }
 @media only screen and (max-width: 768px) {
   /* line 76, ../../sass/_modules.scss */
@@ -10013,7 +10013,7 @@ header .navbar-brand {
 /* line 126, ../../sass/_modules.scss */
 .box2 .col-md-4 {
   padding-left: 5.71429em;
-  background: transparent url('../img/box-01.png?1447307248') no-repeat 0 20px;
+  background: transparent url('../img/box-01.png?1447360101') no-repeat 0 20px;
 }
 @media only screen and (max-width: 768px) {
   /* line 126, ../../sass/_modules.scss */
@@ -10024,11 +10024,11 @@ header .navbar-brand {
 }
 /* line 135, ../../sass/_modules.scss */
 .box2 .text-search {
-  background-image: url('../img/box-02.png?1447307283');
+  background-image: url('../img/box-02.png?1447360101');
 }
 /* line 136, ../../sass/_modules.scss */
 .box2 .thematic-search {
-  background-image: url('../img/box-03.png?1447307309');
+  background-image: url('../img/box-03.png?1447360101');
 }
 /* line 137, ../../sass/_modules.scss */
 .box2 .navbar-form {
@@ -10095,7 +10095,7 @@ body.default .wysiwygContent > h2:first-child {
 }
 /* line 182, ../../sass/_modules.scss */
 body.default #parallax1 div {
-  background-image: url('../img/map01.jpg?1447275609');
+  background-image: url('../img/map01.jpg?1447360101');
 }
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   /* line 182, ../../sass/_modules.scss */
@@ -10105,7 +10105,7 @@ body.default #parallax1 div {
 }
 /* line 188, ../../sass/_modules.scss */
 body.default #parallax2 div {
-  background-image: url('../img/map02.jpg?1447275662');
+  background-image: url('../img/map02.jpg?1447360101');
 }
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   /* line 188, ../../sass/_modules.scss */
@@ -10115,7 +10115,7 @@ body.default #parallax2 div {
 }
 /* line 194, ../../sass/_modules.scss */
 body.default #parallax3 div {
-  background-image: url('../img/map03.jpg?1447275691');
+  background-image: url('../img/map03.jpg?1447360101');
 }
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   /* line 194, ../../sass/_modules.scss */
@@ -10125,7 +10125,7 @@ body.default #parallax3 div {
 }
 /* line 200, ../../sass/_modules.scss */
 body.default #parallax4 div {
-  background-image: url('../img/map04.jpg?1447275717');
+  background-image: url('../img/map04.jpg?1447360101');
 }
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   /* line 200, ../../sass/_modules.scss */
