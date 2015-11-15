@@ -1,5 +1,4 @@
 * text=auto
-
 * text eol=lf
 *.scss text
 *.jpg binary
