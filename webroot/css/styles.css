@@ -2011,7 +2011,7 @@ mark,
 /* line 8, ../js/bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_text-emphasis.scss */
 a.text-primary:hover,
 a.text-primary:focus {
-  color: #1a1a1a;
+  color: #1b1b1b;
 }
 
 /* line 5, ../js/bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_text-emphasis.scss */
@@ -2071,7 +2071,7 @@ a.text-danger:focus {
 /* line 8, ../js/bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_background-variant.scss */
 a.bg-primary:hover,
 a.bg-primary:focus {
-  background-color: #1a1a1a;
+  background-color: #1b1b1b;
 }
 
 /* line 5, ../js/bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_background-variant.scss */
@@ -4517,19 +4517,19 @@ a.btn.disabled, fieldset[disabled] a.btn {
 /* line 11, ../js/bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_buttons.scss */
 .btn-primary:focus, .btn-primary.focus {
   color: #fff;
-  background-color: #1a1a1a;
+  background-color: #1b1b1b;
   border-color: black;
 }
 /* line 17, ../js/bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_buttons.scss */
 .btn-primary:hover {
   color: #fff;
-  background-color: #1a1a1a;
+  background-color: #1b1b1b;
   border-color: #090909;
 }
 /* line 22, ../js/bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_buttons.scss */
 .btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #1a1a1a;
+  background-color: #1b1b1b;
   border-color: #090909;
 }
 /* line 29, ../js/bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_buttons.scss */
@@ -6470,7 +6470,7 @@ a.label:hover, a.label:focus {
 }
 /* line 7, ../js/bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_labels.scss */
 .label-primary[href]:hover, .label-primary[href]:focus {
-  background-color: #1a1a1a;
+  background-color: #1b1b1b;
 }
 
 /* line 52, ../js/bower/bootstrap-sass/assets/stylesheets/bootstrap/_labels.scss */
@@ -8813,14 +8813,367 @@ body.default > .container-fluid {
 }
 
 /* line 14, ../../sass/_placeholders.scss */
-#galerie-filmstrip #price-ask .btn.btn-primary, .box-home .form-group:not(.admin) .btn.btn-primary {
+.box-home .form-group:not(.admin) .btn.btn-primary, #galerie-filmstrip #price-ask .btn.btn-primary {
   padding-left: 3.92857em;
   border: 0;
   background: #343434 url('../img/icon-camera.png?1447360101') no-repeat center left;
 }
 /* line 18, ../../sass/_placeholders.scss */
-#galerie-filmstrip #price-ask .btn.btn-primary:hover, .box-home .form-group:not(.admin) .btn.btn-primary:hover {
+.box-home .form-group:not(.admin) .btn.btn-primary:hover, #galerie-filmstrip #price-ask .btn.btn-primary:hover {
   background-color: #000;
+}
+
+/*
+* 1. Home design
+* 2. Interior default design
+* 3. Map page design
+* 4. jquery scrollpane
+**/
+/*
+* 1. Home design
+********************************************/
+/* line 12, ../../sass/_home.scss */
+.flight-wrapper h1 {
+  color: white;
+}
+@media only screen and (max-width: 768px) {
+  /* line 11, ../../sass/_home.scss */
+  .flight-wrapper {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-right: 0;
+    transform: none;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* line 11, ../../sass/_home.scss */
+  .flight-wrapper {
+    top: 5%;
+    margin-right: auto;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  /* line 11, ../../sass/_home.scss */
+  .flight-wrapper {
+    top: 35%;
+  }
+}
+@media only screen and (min-width: 992px) {
+  /* line 11, ../../sass/_home.scss */
+  .flight-wrapper {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    margin-right: -50%;
+    -ms-transform: translate(-50%, -50%);
+    /* IE 9 */
+    -webkit-transform: translate(-50%, -50%);
+    /* Safari */
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* line 41, ../../sass/_home.scss */
+.box-home .groupToMatch {
+  position: relative;
+  background-color: white;
+  margin-bottom: 1.42857em;
+}
+/* line 45, ../../sass/_home.scss */
+.box-home .groupToMatch h2 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 0 0 0 .2em;
+  color: white;
+  line-height: 1.56em;
+  display: inline;
+  max-width: 95%;
+}
+/* line 54, ../../sass/_home.scss */
+.box-home .groupToMatch h2 span {
+  padding: .2em;
+  box-shadow: 0.2em 0 0 rgba(243, 162, 36, 0.8), -0.2em 0 0 rgba(243, 162, 36, 0.8);
+  background-color: #f3a224;
+  background-color: rgba(243, 162, 36, 0.8);
+  box-decoration-break: clone;
+}
+/* line 62, ../../sass/_home.scss */
+.box-home .groupToMatch img {
+  width: 100% !important;
+  height: auto !important;
+}
+/* line 63, ../../sass/_home.scss */
+.box-home .groupToMatch .text-wrapper p:first-child, .box-home .groupToMatch .heading-wrapper {
+  position: relative;
+}
+/* line 65, ../../sass/_home.scss */
+.box-home strong {
+  color: #999999;
+}
+/* line 66, ../../sass/_home.scss */
+.box-home .text-wrapper > p {
+  padding: 0 1.25em;
+  font-size: 0.85714em;
+}
+/* line 69, ../../sass/_home.scss */
+.box-home .text-wrapper > p br {
+  content: " ";
+  line-height: 1.66667em;
+  display: block;
+  margin-top: 0.83333em;
+}
+
+/* Parallax effect */
+/* line 83, ../../sass/_home.scss */
+.parallaxParent {
+  height: 50vh;
+  overflow: hidden;
+}
+/* line 86, ../../sass/_home.scss */
+.parallaxParent div {
+  background-size: cover;
+}
+/* line 89, ../../sass/_home.scss */
+.parallaxParent > * {
+  height: 200%;
+  position: relative;
+  top: -100%;
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  /* line 89, ../../sass/_home.scss */
+  .parallaxParent > * {
+    height: auto;
+    top: 0;
+  }
+}
+/* line 98, ../../sass/_home.scss */
+.parallaxParent#parallax1 div {
+  background-image: url('../img/map01.jpg?1447360101');
+}
+/* line 101, ../../sass/_home.scss */
+.parallaxParent#parallax2 div {
+  background-image: url('../img/map02.jpg?1447360101');
+}
+@media only screen and (max-width: 768px) {
+  /* line 83, ../../sass/_home.scss */
+  .parallaxParent {
+    height: auto;
+    overflow: visible;
+  }
+}
+
+/* line 111, ../../sass/_home.scss */
+#sortableFlights {
+  height: 100%;
+  background-color: #cccccc;
+}
+/* line 114, ../../sass/_home.scss */
+#sortableFlights .row {
+  margin: 0;
+}
+/* line 116, ../../sass/_home.scss */
+#sortableFlights .row h1 {
+  color: white;
+}
+@media only screen and (max-width: 480px) {
+  /* line 111, ../../sass/_home.scss */
+  #sortableFlights {
+    height: auto !important;
+    overflow: visible;
+  }
+}
+@media only screen and (min-width: 992px) {
+  /* line 111, ../../sass/_home.scss */
+  #sortableFlights {
+    min-height: 42.85714em;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  /* line 111, ../../sass/_home.scss */
+  #sortableFlights {
+    min-height: 53.57143em;
+  }
+}
+
+/* line 132, ../../sass/_home.scss */
+.box2 h3 {
+  color: #f3a224;
+}
+/* line 133, ../../sass/_home.scss */
+.box2 .col-md-4 {
+  padding-left: 5.71429em;
+  background: transparent url('../img/box-01.png?1447360101') no-repeat 0 20px;
+}
+@media only screen and (max-width: 768px) {
+  /* line 133, ../../sass/_home.scss */
+  .box2 .col-md-4 {
+    background-position: 1.42857em 1.42857em;
+    background-size: 2.5em auto;
+  }
+}
+/* line 142, ../../sass/_home.scss */
+.box2 .text-search {
+  background-image: url('../img/box-02.png?1447360101');
+}
+/* line 143, ../../sass/_home.scss */
+.box2 .thematic-search {
+  background-image: url('../img/box-03.png?1447360101');
+}
+@media only screen and (max-width: 768px) {
+  /* line 145, ../../sass/_home.scss */
+  .box2 .navbar-form .form-group {
+    float: left;
+    width: 14.28571em;
+  }
+}
+@media only screen and (max-width: 320px) {
+  /* line 145, ../../sass/_home.scss */
+  .box2 .navbar-form .form-group {
+    width: 11.42857em;
+  }
+}
+@media only screen and (min-width: 768px) {
+  /* line 144, ../../sass/_home.scss */
+  .box2 .navbar-form {
+    padding-left: 0;
+  }
+}
+
+/* line 159, ../../sass/_home.scss */
+.spacer {
+  background-color: white;
+}
+/* line 161, ../../sass/_home.scss */
+.spacer.s2 {
+  background-color: #e6e6e6;
+}
+
+/* line 166, ../../sass/_home.scss */
+.box3 .groupToMatch {
+  padding: 0.71429em;
+}
+
+/* line 169, ../../sass/_home.scss */
+.thumbnail {
+  border-radius: 0;
+}
+/* line 171, ../../sass/_home.scss */
+.thumbnail .badge {
+  background-color: transparent;
+  border-radius: 0;
+  color: #f3a224;
+  font-size: 1em;
+  font-weight: normal;
+  text-align: right;
+  display: inline-block;
+  float: right;
+}
+
+/* line 182, ../../sass/_home.scss */
+.library {
+  margin-top: 2.85714em;
+}
+
+/*
+* 2. Interior default design
+*
+********************************************/
+/* line 188, ../../sass/_home.scss */
+.spacer.s1 {
+  padding: 3.57143em 0;
+}
+@media only screen and (max-width: 768px) {
+  /* line 188, ../../sass/_home.scss */
+  .spacer.s1 {
+    padding: 1.42857em 0;
+  }
+}
+
+/* line 195, ../../sass/_home.scss */
+body.default > .container-fluid {
+  background-color: white;
+}
+/* line 200, ../../sass/_home.scss */
+body.default .wysiwygContent > h2:first-child {
+  margin-top: 0;
+}
+/* line 202, ../../sass/_home.scss */
+body.default #parallax1 div {
+  background-image: url('../img/map01.jpg?1447360101');
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  /* line 202, ../../sass/_home.scss */
+  body.default #parallax1 div {
+    background-image: none;
+  }
+}
+/* line 208, ../../sass/_home.scss */
+body.default #parallax2 div {
+  background-image: url('../img/map02.jpg?1447360101');
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  /* line 208, ../../sass/_home.scss */
+  body.default #parallax2 div {
+    background-image: none;
+  }
+}
+/* line 214, ../../sass/_home.scss */
+body.default #parallax3 div {
+  background-image: url('../img/map03.jpg?1447360101');
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  /* line 214, ../../sass/_home.scss */
+  body.default #parallax3 div {
+    background-image: none;
+  }
+}
+/* line 220, ../../sass/_home.scss */
+body.default #parallax4 div {
+  background-image: url('../img/map04.jpg?1447360101');
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  /* line 220, ../../sass/_home.scss */
+  body.default #parallax4 div {
+    background-image: none;
+  }
+}
+/* line 226, ../../sass/_home.scss */
+body.default .default {
+  overflow: hidden;
+}
+
+/*
+* 3. Map page design
+*
+***********************************************/
+/* line 235, ../../sass/_home.scss */
+#map-ctp .outer {
+  position: relative;
+}
+/* line 238, ../../sass/_home.scss */
+#map-ctp .outer .scaling-image {
+  position: relative;
+  visibility: hidden;
+  /* make sure it's hidden */
+  width: 100%;
+  min-width: 100%;
+  height: 100%;
+}
+/* line 246, ../../sass/_home.scss */
+#map-ctp .outer .inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+/* line 256, ../../sass/_home.scss */
+#map-canvas .thumbnail {
+  border: 0;
 }
 
 /* line 2, ../../sass/_mathieu.scss */
@@ -9413,7 +9766,7 @@ header .navbar-brand {
 @media only screen and (min-width: 768px) {
   /* line 229, ../../sass/_header.scss */
   #homepage header .navbar-default {
-    bottom: 0;
+    /*bottom: 0;*/
   }
 }
 
@@ -9428,6 +9781,14 @@ header .navbar-brand {
 /* line 7, ../../sass/_galerie.scss */
 #galerie-filmstrip h2 {
   color: white;
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  /* line 7, ../../sass/_galerie.scss */
+  #galerie-filmstrip h2 {
+    font-size: 1.28571em;
+    margin-top: 0.55556em;
+    margin-bottom: 0.27778em;
+  }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   /* line 7, ../../sass/_galerie.scss */
@@ -9445,7 +9806,15 @@ header .navbar-brand {
     margin-bottom: 0.25em;
   }
 }
-@media only screen and (max-width: 320px) {
+@media only screen and (min-width: 992px) {
+  /* line 7, ../../sass/_galerie.scss */
+  #galerie-filmstrip h2 {
+    font-size: 2em;
+    margin-top: 0.35714em;
+    margin-bottom: 0.17857em;
+  }
+}
+@media only screen and (max-width: 480px) {
   /* line 7, ../../sass/_galerie.scss */
   #galerie-filmstrip h2 {
     padding: 0 0.3125em;
@@ -9454,16 +9823,16 @@ header .navbar-brand {
     margin-bottom: 0.3125em;
   }
 }
-/* line 27, ../../sass/_galerie.scss */
+/* line 37, ../../sass/_galerie.scss */
 #galerie-filmstrip.container-fluid {
   padding-left: 0;
   padding-right: 0;
 }
-/* line 30, ../../sass/_galerie.scss */
+/* line 40, ../../sass/_galerie.scss */
 #galerie-filmstrip.container-fluid .row {
   padding-left: 15px;
 }
-/* line 32, ../../sass/_galerie.scss */
+/* line 42, ../../sass/_galerie.scss */
 #galerie-filmstrip .galerie-thumb, #galerie-filmstrip #galerie-info {
   position: absolute;
   width: 100%;
@@ -9471,7 +9840,7 @@ header .navbar-brand {
   height: auto !important;
   background: rgba(0, 0, 0, 0.7);
 }
-/* line 38, ../../sass/_galerie.scss */
+/* line 48, ../../sass/_galerie.scss */
 #galerie-filmstrip .galerie-thumb .trigger-expand, #galerie-filmstrip #galerie-info .trigger-expand {
   position: absolute;
   z-index: 101;
@@ -9482,47 +9851,47 @@ header .navbar-brand {
   transform: translate(-50%, 0);
   background: rgba(0, 0, 0, 0.7);
 }
-/* line 44, ../../sass/_galerie.scss */
+/* line 54, ../../sass/_galerie.scss */
 #galerie-filmstrip .galerie-thumb .trigger-expand.top, #galerie-filmstrip #galerie-info .trigger-expand.top {
   bottom: -44px;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
 }
-/* line 48, ../../sass/_galerie.scss */
+/* line 58, ../../sass/_galerie.scss */
 #galerie-filmstrip .galerie-thumb .trigger-expand.bottom, #galerie-filmstrip #galerie-info .trigger-expand.bottom {
   top: -44px;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
 }
-/* line 52, ../../sass/_galerie.scss */
+/* line 62, ../../sass/_galerie.scss */
 #galerie-filmstrip .galerie-thumb .trigger-expand a, #galerie-filmstrip #galerie-info .trigger-expand a {
   color: white;
 }
-/* line 53, ../../sass/_galerie.scss */
+/* line 63, ../../sass/_galerie.scss */
 #galerie-filmstrip .galerie-thumb .trigger-expand span, #galerie-filmstrip #galerie-info .trigger-expand span {
   padding: 1.07143em 1.78571em;
 }
 @media only screen and (max-width: 320px) {
-  /* line 38, ../../sass/_galerie.scss */
+  /* line 48, ../../sass/_galerie.scss */
   #galerie-filmstrip .galerie-thumb .trigger-expand, #galerie-filmstrip #galerie-info .trigger-expand {
     display: none;
   }
 }
 @media only screen and (max-width: 320px) {
-  /* line 32, ../../sass/_galerie.scss */
+  /* line 42, ../../sass/_galerie.scss */
   #galerie-filmstrip .galerie-thumb, #galerie-filmstrip #galerie-info {
     position: relative;
   }
 }
 @media only screen and (max-width: 320px) {
-  /* line 62, ../../sass/_galerie.scss */
+  /* line 72, ../../sass/_galerie.scss */
   #galerie-filmstrip .galerie-thumb {
     padding-left: 0;
     padding-right: 0;
-    min-height: 100px !important;
+    min-height: auto !important;
   }
 }
-/* line 69, ../../sass/_galerie.scss */
+/* line 79, ../../sass/_galerie.scss */
 #galerie-filmstrip #galerie-info {
   background-color: transparent;
   top: 50%;
@@ -9531,28 +9900,70 @@ header .navbar-brand {
   -webkit-transform: translate(0, -60%);
   transform: translate(0, -60%);
   z-index: 10;
-  width: 80%;
+  width: 50%;
   left: 10%;
 }
+/* line 86, ../../sass/_galerie.scss */
+#galerie-filmstrip #galerie-info .carousel-inner {
+  overflow: visible;
+}
 @media only screen and (max-width: 320px) {
-  /* line 76, ../../sass/_galerie.scss */
+  /* line 87, ../../sass/_galerie.scss */
   #galerie-filmstrip #galerie-info .wrapper-info {
     width: 100% !important;
   }
 }
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  /* line 87, ../../sass/_galerie.scss */
+  #galerie-filmstrip #galerie-info .wrapper-info {
+    width: 18.57143em;
+  }
+}
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-  /* line 76, ../../sass/_galerie.scss */
+  /* line 87, ../../sass/_galerie.scss */
   #galerie-filmstrip #galerie-info .wrapper-info {
     width: 17.85714em;
   }
 }
 @media only screen and (min-width: 992px) {
-  /* line 76, ../../sass/_galerie.scss */
+  /* line 87, ../../sass/_galerie.scss */
   #galerie-filmstrip #galerie-info .wrapper-info {
     width: 32.14286em;
   }
 }
-/* line 87, ../../sass/_galerie.scss */
+/* line 101, ../../sass/_galerie.scss */
+#galerie-filmstrip #galerie-info div.glyphicon {
+  cursor: move;
+  position: absolute;
+}
+/* line 104, ../../sass/_galerie.scss */
+#galerie-filmstrip #galerie-info div.glyphicon.glyphicon-move {
+  top: 0;
+  background-color: rgba(243, 162, 36, 0.7);
+}
+@media only screen and (max-width: 992px) {
+  /* line 101, ../../sass/_galerie.scss */
+  #galerie-filmstrip #galerie-info div.glyphicon {
+    padding: 0.71429em;
+    font-size: 1em;
+    left: -2.42857em;
+  }
+}
+@media only screen and (min-width: 992px) {
+  /* line 101, ../../sass/_galerie.scss */
+  #galerie-filmstrip #galerie-info div.glyphicon {
+    padding: 0.41667em;
+    font-size: 1.71429em;
+    left: -1.83333em;
+  }
+}
+@media only screen and (max-width: 320px) {
+  /* line 101, ../../sass/_galerie.scss */
+  #galerie-filmstrip #galerie-info div.glyphicon {
+    display: none;
+  }
+}
+/* line 122, ../../sass/_galerie.scss */
 #galerie-filmstrip #galerie-info h2 {
   position: relative;
   color: #000;
@@ -9562,7 +9973,7 @@ header .navbar-brand {
   width: 80%;
   padding: 0.5em;
 }
-/* line 95, ../../sass/_galerie.scss */
+/* line 130, ../../sass/_galerie.scss */
 #galerie-filmstrip #galerie-info h2 span {
   display: inline-block;
   cursor: pointer;
@@ -9576,147 +9987,165 @@ header .navbar-brand {
   text-align: center;
   font-size: 1.25em;
 }
-/* line 107, ../../sass/_galerie.scss */
+/* line 142, ../../sass/_galerie.scss */
 #galerie-filmstrip #galerie-info h2 span:after {
   content: "+";
 }
-/* line 108, ../../sass/_galerie.scss */
+/* line 143, ../../sass/_galerie.scss */
 #galerie-filmstrip #galerie-info h2 span.open:after {
   content: "-";
 }
-/* line 109, ../../sass/_galerie.scss */
+/* line 144, ../../sass/_galerie.scss */
 #galerie-filmstrip #galerie-info h2 span:hover {
   background-color: #cccccc;
 }
 @media only screen and (max-width: 320px) {
-  /* line 95, ../../sass/_galerie.scss */
+  /* line 130, ../../sass/_galerie.scss */
   #galerie-filmstrip #galerie-info h2 span {
     display: none;
   }
 }
 @media only screen and (max-width: 320px) {
-  /* line 87, ../../sass/_galerie.scss */
+  /* line 122, ../../sass/_galerie.scss */
   #galerie-filmstrip #galerie-info h2 {
     width: 100%;
     font-size: 1.42857em;
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-  /* line 87, ../../sass/_galerie.scss */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  /* line 122, ../../sass/_galerie.scss */
   #galerie-filmstrip #galerie-info h2 {
-    font-size: 1.07143em;
+    font-size: 1.21429em;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* line 122, ../../sass/_galerie.scss */
+  #galerie-filmstrip #galerie-info h2 {
+    font-size: 1.57143em;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-  /* line 87, ../../sass/_galerie.scss */
+  /* line 122, ../../sass/_galerie.scss */
   #galerie-filmstrip #galerie-info h2 {
     font-size: 1.78571em;
     padding: 0.4em;
   }
 }
-/* line 126, ../../sass/_galerie.scss */
+/* line 164, ../../sass/_galerie.scss */
 #galerie-filmstrip #galerie-info .infos {
   position: relative;
   display: none;
   padding: 1.42857em;
   background-color: white;
 }
-/* line 129, ../../sass/_galerie.scss */
+/* line 167, ../../sass/_galerie.scss */
 #galerie-filmstrip #galerie-info .infos.open {
   display: block;
 }
-/* line 135, ../../sass/_galerie.scss */
+/* line 173, ../../sass/_galerie.scss */
 #galerie-filmstrip #galerie-info .infos h3 {
   color: #000;
   margin-bottom: 0;
   margin-top: 0.41667em;
 }
-/* line 139, ../../sass/_galerie.scss */
+/* line 177, ../../sass/_galerie.scss */
 #galerie-filmstrip #galerie-info .infos h3:first-child {
   margin-top: 0;
 }
-@media only screen and (min-width: 320px) {
-  /* line 135, ../../sass/_galerie.scss */
+@media only screen and (min-width: 480px) {
+  /* line 173, ../../sass/_galerie.scss */
   #galerie-filmstrip #galerie-info .infos h3 {
     cursor: pointer;
   }
-  /* line 142, ../../sass/_galerie.scss */
+  /* line 181, ../../sass/_galerie.scss */
   #galerie-filmstrip #galerie-info .infos h3:after {
     padding: 0.35714em;
     color: #f3a224;
     content: '+';
   }
-  /* line 147, ../../sass/_galerie.scss */
+  /* line 186, ../../sass/_galerie.scss */
   #galerie-filmstrip #galerie-info .infos h3.open:after {
     content: '-';
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-  /* line 135, ../../sass/_galerie.scss */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  /* line 173, ../../sass/_galerie.scss */
   #galerie-filmstrip #galerie-info .infos h3 {
-    font-size: 1em;
+    font-size: 1.07143em;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* line 173, ../../sass/_galerie.scss */
+  #galerie-filmstrip #galerie-info .infos h3 {
+    font-size: 1.14286em;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-  /* line 135, ../../sass/_galerie.scss */
+  /* line 173, ../../sass/_galerie.scss */
   #galerie-filmstrip #galerie-info .infos h3 {
     font-size: 1.28571em;
   }
 }
-/* line 158, ../../sass/_galerie.scss */
+/* line 201, ../../sass/_galerie.scss */
 #galerie-filmstrip #galerie-info .infos ul {
   list-style-type: none;
   padding: 0;
   display: none;
 }
-@media only screen and (max-width: 320px) {
-  /* line 158, ../../sass/_galerie.scss */
+@media only screen and (max-width: 480px) {
+  /* line 201, ../../sass/_galerie.scss */
   #galerie-filmstrip #galerie-info .infos ul {
     display: block;
   }
 }
-/* line 167, ../../sass/_galerie.scss */
+/* line 210, ../../sass/_galerie.scss */
 #galerie-filmstrip #galerie-info .infos #placesList li {
   display: inline;
 }
-/* line 169, ../../sass/_galerie.scss */
+/* line 212, ../../sass/_galerie.scss */
 #galerie-filmstrip #galerie-info .infos #placesList li:after {
   content: ',';
 }
-/* line 170, ../../sass/_galerie.scss */
+/* line 213, ../../sass/_galerie.scss */
 #galerie-filmstrip #galerie-info .infos #placesList li:last-child:after {
   content: '';
 }
-/* line 171, ../../sass/_galerie.scss */
+/* line 214, ../../sass/_galerie.scss */
 #galerie-filmstrip #galerie-info .infos #placesList li a {
   text-decoration: underline;
 }
-/* line 173, ../../sass/_galerie.scss */
+/* line 216, ../../sass/_galerie.scss */
 #galerie-filmstrip #galerie-info .infos #map-ctp {
   margin-bottom: 0;
 }
 @media only screen and (min-width: 768px) {
-  /* line 173, ../../sass/_galerie.scss */
+  /* line 216, ../../sass/_galerie.scss */
   #galerie-filmstrip #galerie-info .infos #map-ctp {
     margin-bottom: 2.14286em;
     margin-top: 0.71429em;
   }
 }
 @media only screen and (max-width: 320px) {
-  /* line 126, ../../sass/_galerie.scss */
+  /* line 164, ../../sass/_galerie.scss */
   #galerie-filmstrip #galerie-info .infos {
     position: relative;
     display: block;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-  /* line 126, ../../sass/_galerie.scss */
+  /* line 164, ../../sass/_galerie.scss */
   #galerie-filmstrip #galerie-info .infos {
     padding: 1.07143em;
   }
 }
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  /* line 164, ../../sass/_galerie.scss */
+  #galerie-filmstrip #galerie-info .infos {
+    padding: 0.71429em;
+  }
+}
 @media only screen and (max-width: 320px) {
-  /* line 69, ../../sass/_galerie.scss */
+  /* line 79, ../../sass/_galerie.scss */
   #galerie-filmstrip #galerie-info {
     width: 100%;
     top: 0;
@@ -9728,7 +10157,7 @@ header .navbar-brand {
     margin: 0 0 1.07143em 0;
   }
 }
-/* line 196, ../../sass/_galerie.scss */
+/* line 242, ../../sass/_galerie.scss */
 #galerie-filmstrip #price-ask {
   position: absolute;
   z-index: 2;
@@ -9736,35 +10165,40 @@ header .navbar-brand {
   right: 0;
 }
 @media only screen and (max-width: 320px) {
-  /* line 196, ../../sass/_galerie.scss */
+  /* line 242, ../../sass/_galerie.scss */
   #galerie-filmstrip #price-ask {
     position: relative;
     margin-top: 0.71429em;
   }
 }
-@media only screen and (min-width: 768px) {
-  /* line 209, ../../sass/_galerie.scss */
+/* line 255, ../../sass/_galerie.scss */
+#galerie-filmstrip #galerie-thumb-bro .galerie-thumb-scroll,
+#galerie-filmstrip #galerie-thumb-child .galerie-thumb-scroll {
+  display: none;
+}
+@media only screen and (max-width: 480px) {
+  /* line 255, ../../sass/_galerie.scss */
   #galerie-filmstrip #galerie-thumb-bro .galerie-thumb-scroll,
   #galerie-filmstrip #galerie-thumb-child .galerie-thumb-scroll {
-    display: none;
+    display: block;
   }
 }
-/* line 216, ../../sass/_galerie.scss */
+/* line 263, ../../sass/_galerie.scss */
 #galerie-filmstrip #galerie-thumb-child .galerie-thumb {
   bottom: 0;
 }
-/* line 218, ../../sass/_galerie.scss */
+/* line 265, ../../sass/_galerie.scss */
 #galerie-filmstrip div.galerie-thumb-scroll {
   width: 100%;
   height: auto;
   overflow: auto;
   white-space: nowrap;
 }
-/* line 223, ../../sass/_galerie.scss */
+/* line 270, ../../sass/_galerie.scss */
 #galerie-filmstrip div.galerie-thumb-scroll a.thumbnail:first-child {
   padding-left: 0;
 }
-/* line 225, ../../sass/_galerie.scss */
+/* line 272, ../../sass/_galerie.scss */
 #galerie-filmstrip .thumbnail {
   display: inline-block;
   margin-bottom: 0;
@@ -9772,72 +10206,79 @@ header .navbar-brand {
   border: 0;
   padding: 1.07143em 0.53571em;
 }
-/* line 231, ../../sass/_galerie.scss */
+/* line 278, ../../sass/_galerie.scss */
 #galerie-filmstrip .thumbnail.active img {
   outline: 5px solid white;
 }
-/* line 232, ../../sass/_galerie.scss */
+/* line 279, ../../sass/_galerie.scss */
 #galerie-filmstrip .thumbnail:hover img {
   outline: 1px solid #b3b3b3;
 }
-@media only screen and (max-width: 768px) {
-  /* line 233, ../../sass/_galerie.scss */
-  #galerie-filmstrip .thumbnail img {
-    max-width: 10.71429em;
-  }
-}
 @media only screen and (min-width: 320px) and (max-width: 479px) {
-  /* line 233, ../../sass/_galerie.scss */
+  /* line 280, ../../sass/_galerie.scss */
   #galerie-filmstrip .thumbnail img {
     max-width: 7.14286em;
   }
 }
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
-  /* line 233, ../../sass/_galerie.scss */
+@media only screen and (max-width: 768px) {
+  /* line 280, ../../sass/_galerie.scss */
+  #galerie-filmstrip .thumbnail img {
+    max-width: 10em;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* line 280, ../../sass/_galerie.scss */
+  #galerie-filmstrip .thumbnail img {
+    max-width: 10.71429em;
+  }
+}
+@media only screen and (min-width: 992px) {
+  /* line 280, ../../sass/_galerie.scss */
   #galerie-filmstrip .thumbnail img {
     max-width: 14.28571em;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-  /* line 225, ../../sass/_galerie.scss */
+  /* line 272, ../../sass/_galerie.scss */
   #galerie-filmstrip .thumbnail {
     padding: 0.35714em 0.17857em;
   }
 }
 @media only screen and (max-width: 320px) {
-  /* line 225, ../../sass/_galerie.scss */
+  /* line 272, ../../sass/_galerie.scss */
   #galerie-filmstrip .thumbnail {
     padding: 0;
   }
 }
-/* line 251, ../../sass/_galerie.scss */
-#galerie-filmstrip div.galerie-carousel {
-  /*for a beter loading effect*/
-  overflow: hidden;
-}
 
-@media only screen and (min-width: 320px) {
-  /* line 257, ../../sass/_galerie.scss */
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+  /* line 304, ../../sass/_galerie.scss */
+  .carousel-indicators {
+    bottom: 0.71429em;
+  }
+}
+@media only screen and (min-width: 480px) {
+  /* line 304, ../../sass/_galerie.scss */
   .carousel-indicators {
     bottom: 3.57143em;
   }
 }
 @media only screen and (min-width: 992px) {
-  /* line 257, ../../sass/_galerie.scss */
+  /* line 304, ../../sass/_galerie.scss */
   .carousel-indicators {
     bottom: 5.71429em;
   }
 }
 
 @media only screen and (max-width: 768px) {
-  /* line 266, ../../sass/_galerie.scss */
+  /* line 316, ../../sass/_galerie.scss */
   .pagination > li > a, .pagination > li > span {
     font-size: 0.78571em;
     padding: 0.27273em 0.54545em;
   }
 }
 @media only screen and (max-width: 320px) {
-  /* line 265, ../../sass/_galerie.scss */
+  /* line 315, ../../sass/_galerie.scss */
   .pagination {
     float: none !important;
     margin-left: 0.35714em;
@@ -9846,346 +10287,21 @@ header .navbar-brand {
 }
 
 /*
-* 1. Home design
-* 2. Interior default design
-* 3. Map page design
-* 4. jquery scrollpane
-**/
-/*
-* 1. Home design
-********************************************/
-/* line 12, ../../sass/_modules.scss */
-.flight-wrapper h1 {
-  color: white;
-}
-@media only screen and (max-width: 768px) {
-  /* line 11, ../../sass/_modules.scss */
-  .flight-wrapper {
-    position: relative;
-    top: 0;
-    left: 0;
-    margin-right: 0;
-    transform: none;
-  }
-}
-@media only screen and (min-width: 768px) {
-  /* line 11, ../../sass/_modules.scss */
-  .flight-wrapper {
-    position: absolute;
-    top: 42%;
-    left: 50%;
-    margin-right: -50%;
-    -ms-transform: translate(-50%, -50%);
-    /* IE 9 */
-    -webkit-transform: translate(-50%, -50%);
-    /* Safari */
-    transform: translate(-50%, -50%);
-  }
-}
-
-/* line 34, ../../sass/_modules.scss */
-.box-home .groupToMatch {
-  position: relative;
-  background-color: white;
-  margin-bottom: 1.42857em;
-}
-/* line 38, ../../sass/_modules.scss */
-.box-home .groupToMatch h2 {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  margin: 0 0 0 .2em;
-  color: white;
-  line-height: 1.56em;
-  display: inline;
-  max-width: 95%;
-}
-/* line 47, ../../sass/_modules.scss */
-.box-home .groupToMatch h2 span {
-  padding: .2em;
-  box-shadow: 0.2em 0 0 rgba(243, 162, 36, 0.8), -0.2em 0 0 rgba(243, 162, 36, 0.8);
-  background-color: #f3a224;
-  background-color: rgba(243, 162, 36, 0.8);
-  box-decoration-break: clone;
-}
-/* line 55, ../../sass/_modules.scss */
-.box-home .groupToMatch img {
-  width: 100% !important;
-  height: auto !important;
-}
-/* line 56, ../../sass/_modules.scss */
-.box-home .groupToMatch .text-wrapper p:first-child, .box-home .groupToMatch .heading-wrapper {
-  position: relative;
-}
-/* line 58, ../../sass/_modules.scss */
-.box-home strong {
-  color: #999999;
-}
-/* line 59, ../../sass/_modules.scss */
-.box-home .text-wrapper > p {
-  padding: 0 1.25em;
-  font-size: 0.85714em;
-}
-/* line 62, ../../sass/_modules.scss */
-.box-home .text-wrapper > p br {
-  content: " ";
-  line-height: 1.66667em;
-  display: block;
-  margin-top: 0.83333em;
-}
-
-/* Parallax effect */
-/* line 76, ../../sass/_modules.scss */
-.parallaxParent {
-  height: 50vh;
-  overflow: hidden;
-}
-/* line 79, ../../sass/_modules.scss */
-.parallaxParent div {
-  background-size: cover;
-}
-/* line 82, ../../sass/_modules.scss */
-.parallaxParent > * {
-  height: 200%;
-  position: relative;
-  top: -100%;
-}
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-  /* line 82, ../../sass/_modules.scss */
-  .parallaxParent > * {
-    height: auto;
-    top: 0;
-  }
-}
-/* line 91, ../../sass/_modules.scss */
-.parallaxParent#parallax1 div {
-  background-image: url('../img/map01.jpg?1447360101');
-}
-/* line 94, ../../sass/_modules.scss */
-.parallaxParent#parallax2 div {
-  background-image: url('../img/map02.jpg?1447360101');
-}
-@media only screen and (max-width: 768px) {
-  /* line 76, ../../sass/_modules.scss */
-  .parallaxParent {
-    height: auto;
-    overflow: visible;
-  }
-}
-
-/* line 104, ../../sass/_modules.scss */
-#sortableFlights {
-  height: 100%;
-  background-color: #cccccc;
-}
-/* line 107, ../../sass/_modules.scss */
-#sortableFlights .row {
-  margin: 0;
-}
-/* line 109, ../../sass/_modules.scss */
-#sortableFlights .row h1 {
-  color: white;
-}
-@media only screen and (max-width: 768px) {
-  /* line 104, ../../sass/_modules.scss */
-  #sortableFlights {
-    height: auto;
-    overflow: visible;
-  }
-}
-@media only screen and (min-width: 992px) {
-  /* line 104, ../../sass/_modules.scss */
-  #sortableFlights {
-    min-height: 42.85714em;
-  }
-}
-@media only screen and (min-width: 1200px) {
-  /* line 104, ../../sass/_modules.scss */
-  #sortableFlights {
-    min-height: 53.57143em;
-  }
-}
-
-/* line 125, ../../sass/_modules.scss */
-.box2 h3 {
-  color: #f3a224;
-}
-/* line 126, ../../sass/_modules.scss */
-.box2 .col-md-4 {
-  padding-left: 5.71429em;
-  background: transparent url('../img/box-01.png?1447360101') no-repeat 0 20px;
-}
-@media only screen and (max-width: 768px) {
-  /* line 126, ../../sass/_modules.scss */
-  .box2 .col-md-4 {
-    background-position: 1.42857em 1.42857em;
-    background-size: 2.5em auto;
-  }
-}
-/* line 135, ../../sass/_modules.scss */
-.box2 .text-search {
-  background-image: url('../img/box-02.png?1447360101');
-}
-/* line 136, ../../sass/_modules.scss */
-.box2 .thematic-search {
-  background-image: url('../img/box-03.png?1447360101');
-}
-/* line 137, ../../sass/_modules.scss */
-.box2 .navbar-form {
-  padding-left: 0;
-}
-
-/* line 139, ../../sass/_modules.scss */
-.spacer {
-  background-color: white;
-}
-/* line 141, ../../sass/_modules.scss */
-.spacer.s2 {
-  background-color: #e6e6e6;
-}
-
-/* line 146, ../../sass/_modules.scss */
-.box3 .groupToMatch {
-  padding: 0.71429em;
-}
-
-/* line 149, ../../sass/_modules.scss */
-.thumbnail {
-  border-radius: 0;
-}
-/* line 151, ../../sass/_modules.scss */
-.thumbnail .badge {
-  background-color: transparent;
-  border-radius: 0;
-  color: #f3a224;
-  font-size: 1em;
-  font-weight: normal;
-  text-align: right;
-  display: inline-block;
-  float: right;
-}
-
-/* line 162, ../../sass/_modules.scss */
-.library {
-  margin-top: 2.85714em;
-}
-
-/*
-* 2. Interior default design
+*  jquery scrollpane
 *
 ********************************************/
-/* line 168, ../../sass/_modules.scss */
-.spacer.s1 {
-  padding: 3.57143em 0;
-}
-@media only screen and (max-width: 768px) {
-  /* line 168, ../../sass/_modules.scss */
-  .spacer.s1 {
-    padding: 1.42857em 0;
-  }
-}
-
-/* line 175, ../../sass/_modules.scss */
-body.default > .container-fluid {
-  background-color: white;
-}
-/* line 180, ../../sass/_modules.scss */
-body.default .wysiwygContent > h2:first-child {
-  margin-top: 0;
-}
-/* line 182, ../../sass/_modules.scss */
-body.default #parallax1 div {
-  background-image: url('../img/map01.jpg?1447360101');
-}
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-  /* line 182, ../../sass/_modules.scss */
-  body.default #parallax1 div {
-    background-image: none;
-  }
-}
-/* line 188, ../../sass/_modules.scss */
-body.default #parallax2 div {
-  background-image: url('../img/map02.jpg?1447360101');
-}
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-  /* line 188, ../../sass/_modules.scss */
-  body.default #parallax2 div {
-    background-image: none;
-  }
-}
-/* line 194, ../../sass/_modules.scss */
-body.default #parallax3 div {
-  background-image: url('../img/map03.jpg?1447360101');
-}
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-  /* line 194, ../../sass/_modules.scss */
-  body.default #parallax3 div {
-    background-image: none;
-  }
-}
-/* line 200, ../../sass/_modules.scss */
-body.default #parallax4 div {
-  background-image: url('../img/map04.jpg?1447360101');
-}
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-  /* line 200, ../../sass/_modules.scss */
-  body.default #parallax4 div {
-    background-image: none;
-  }
-}
-/* line 206, ../../sass/_modules.scss */
-body.default .default {
-  overflow: hidden;
-}
-
-/*
-* 3. Map page design
-*
-***********************************************/
-/* line 215, ../../sass/_modules.scss */
-#map-ctp .outer {
-  position: relative;
-}
-/* line 218, ../../sass/_modules.scss */
-#map-ctp .outer .scaling-image {
-  position: relative;
-  visibility: hidden;
-  /* make sure it's hidden */
-  width: 100%;
-  min-width: 100%;
-  height: 100%;
-}
-/* line 226, ../../sass/_modules.scss */
-#map-ctp .outer .inner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-}
-
-/* line 236, ../../sass/_modules.scss */
-#map-canvas .thumbnail {
-  border: 0;
-}
-
-/*
-*  4. jquery scrollpane
-*
-********************************************/
-/* line 243, ../../sass/_modules.scss */
+/* line 7, ../../sass/_modules.scss */
 .jspContainer {
   overflow: hidden;
   position: relative;
 }
 
-/* line 248, ../../sass/_modules.scss */
+/* line 12, ../../sass/_modules.scss */
 .jspPane {
   position: absolute;
 }
 
-/* line 252, ../../sass/_modules.scss */
+/* line 16, ../../sass/_modules.scss */
 .jspVerticalBar {
   position: absolute;
   top: 0;
@@ -10194,7 +10310,7 @@ body.default .default {
   height: 100%;
 }
 
-/* line 260, ../../sass/_modules.scss */
+/* line 24, ../../sass/_modules.scss */
 .jspHorizontalBar {
   position: absolute;
   bottom: 0;
@@ -10203,34 +10319,34 @@ body.default .default {
   height: 16px;
 }
 @media only screen and (min-width: 768px) {
-  /* line 260, ../../sass/_modules.scss */
+  /* line 24, ../../sass/_modules.scss */
   .jspHorizontalBar {
     bottom: 0.71429em;
   }
 }
 
-/* line 271, ../../sass/_modules.scss */
+/* line 35, ../../sass/_modules.scss */
 .jspCap {
   display: none;
 }
 
-/* line 275, ../../sass/_modules.scss */
+/* line 39, ../../sass/_modules.scss */
 .jspHorizontalBar .jspCap {
   float: left;
 }
 
-/* line 279, ../../sass/_modules.scss */
+/* line 43, ../../sass/_modules.scss */
 .jspTrack {
   position: relative;
 }
 @media only screen and (max-width: 768px) {
-  /* line 279, ../../sass/_modules.scss */
+  /* line 43, ../../sass/_modules.scss */
   .jspTrack {
     background-color: #000;
   }
 }
 
-/* line 286, ../../sass/_modules.scss */
+/* line 50, ../../sass/_modules.scss */
 .jspDrag {
   background: #595959;
   border: 1px solid #737373;
@@ -10240,20 +10356,20 @@ body.default .default {
   cursor: pointer;
 }
 @media only screen and (max-width: 768px) {
-  /* line 286, ../../sass/_modules.scss */
+  /* line 50, ../../sass/_modules.scss */
   .jspDrag {
     width: 3.57143em !important;
   }
 }
 
-/* line 298, ../../sass/_modules.scss */
+/* line 62, ../../sass/_modules.scss */
 .jspHorizontalBar .jspTrack,
 .jspHorizontalBar .jspDrag {
   float: left;
   height: 100%;
 }
 
-/* line 304, ../../sass/_modules.scss */
+/* line 68, ../../sass/_modules.scss */
 .jspArrow {
   background: #50506d;
   text-indent: -20000px;
@@ -10263,30 +10379,30 @@ body.default .default {
   margin: 0;
 }
 
-/* line 313, ../../sass/_modules.scss */
+/* line 77, ../../sass/_modules.scss */
 .jspArrow.jspDisabled {
   cursor: default;
   background: #80808d;
 }
 
-/* line 318, ../../sass/_modules.scss */
+/* line 82, ../../sass/_modules.scss */
 .jspVerticalBar .jspArrow {
   height: 16px;
 }
 
-/* line 322, ../../sass/_modules.scss */
+/* line 86, ../../sass/_modules.scss */
 .jspHorizontalBar .jspArrow {
   width: 16px;
   float: left;
   height: 100%;
 }
 
-/* line 328, ../../sass/_modules.scss */
+/* line 92, ../../sass/_modules.scss */
 .jspVerticalBar .jspArrow:focus {
   outline: none;
 }
 
-/* line 332, ../../sass/_modules.scss */
+/* line 96, ../../sass/_modules.scss */
 .jspCorner {
   background: #eeeef4;
   float: left;
@@ -10296,7 +10412,7 @@ body.default .default {
 /**
 * 5. search
 *******************************************/
-/* line 342, ../../sass/_modules.scss */
+/* line 106, ../../sass/_modules.scss */
 #sortableGallery {
   margin: 1.42857em 0;
 }

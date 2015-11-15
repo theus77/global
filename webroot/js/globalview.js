@@ -117,6 +117,7 @@ function vegas() {
 
 
 	// show/hide infos.
+	$( ".wrapper-info" ).draggable();
 	$( ".wrapper-info" ).find( "span" ).on( "click", function() {
 		$(this).toggleClass( "open" );
 		// smoth scroll
@@ -125,7 +126,6 @@ function vegas() {
 		var trigger = $( "#galerie-thumb-bro .trigger-expand" ).find( "span" );
 		// hide opened galeries scroll
 		if ( trigger.hasClass( "glyphicon-chevron-up" ) ) {
-			console.log('visible');
 			$( ".trigger-expand" ).find( "span" )
 				.toggleClass( "glyphicon-chevron-down" )
 				.toggleClass( "glyphicon-chevron-up" );
@@ -216,7 +216,7 @@ function vegas() {
 	// Load vegas slideshow and parallax only if the breakpoint is bigger than 'md'.
 	$(window).load(
 	 	viewport.changed(function(){
-	 		console.log('1 current resize : ' + viewport.current());
+	 		//console.log('1 current resize : ' + viewport.current());
 		    if( viewport.is('>=sm') ) {	
 		    	
 				// Same height for home boxes.
@@ -231,8 +231,8 @@ function vegas() {
 
 			}
 
-			if( viewport.is('<=lg') ) {
-				//console.log('current resize : ' + viewport.current());
+			if( viewport.is('<lg') ) {
+				//console.log('2 current resize  : ' + viewport.current());
 				if ( $( "body#homepage" ).length ) {
 					// destroy affix for mobile
 					$(window).off('.affix')

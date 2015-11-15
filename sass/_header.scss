@@ -232,6 +232,6 @@ header {
     z-index: 1030;
     margin-bottom:0;
     @include MQ(Mplus) {
-		bottom: 0;
+		/*bottom: 0;*/
 	}
 }

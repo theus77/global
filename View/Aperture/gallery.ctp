@@ -137,14 +137,19 @@
 										
 										
 										<div class="wrapper-info">
-											<h2 id="versionTitle"><?php
+											<div class="glyphicon glyphicon-move"></div>
+											<h2 id="versionTitle">
+
+											<?php
 															if(isset($properties[$version['Version']['modelId']]['ObjectName'])){
 																echo $properties[$version['Version']['modelId']]['ObjectName'];
 															}
 															else {
 																echo $version['Version']['name'];
 															}
-											?><span></span></h2>
+											?>
+											<span></span>
+											</h2>
 											
 											
 											<div class="infos">

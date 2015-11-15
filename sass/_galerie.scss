@@ -6,6 +6,11 @@
 #galerie-filmstrip {
 	h2 {
 		color: lighten($color1, 100%);
+		@include MQ(S) {
+			font-size:em(18px);
+			margin-top: em(10px, 18px);
+			margin-bottom: em(5px, 18px);
+		}
 		@include MQ(M) {
 			font-size:em(18px);
 			margin-top: em(10px, 18px);
@@ -16,7 +21,12 @@
 			margin-top: em(10px, 20px);
 			margin-bottom: em(5px, 20px);
 		}
-		@include MQ(XSneg) {
+		@include MQ(Lplus) {
+			font-size:em(28px);
+			margin-top: em(10px, 28px);
+			margin-bottom: em(5px, 28px);
+		}
+		@include MQ(Sneg) {
 			padding: 0 em(5px, 16px);
 			font-size:em(14px);
 			margin-top: em(10px, 16px);
@@ -63,7 +73,7 @@
     	@include MQ(XSneg) {
     		padding-left:0;
     		padding-right:0;
-			min-height:100px !important;
+			min-height:auto !important;
     	}		
 	}
 	#galerie-info {
@@ -71,11 +81,15 @@
 		top: 50%;
 		@include transform(translate(0, -60%));
    		z-index: 10;
-   		width:80%;
+   		width:50%;
    		left:10%;
+   		.carousel-inner {overflow:visible}
    		.wrapper-info {
    			@include MQ(XSneg) {
 				width:100% !important;
+   			}
+   			@include MQ(S) {
+				width: em(260px);
    			}
    			@include MQ(M) {
    				width: em(250px);
@@ -84,6 +98,27 @@
    				width: em(450px);
    			}
    		}
+   		div.glyphicon {
+			cursor: move;		
+			position: absolute;
+			&.glyphicon-move {
+				top:0;
+				background-color: rgba($color2, 0.7);
+			}
+			@include MQ(Lneg) {
+				padding: em(10px, 14px);
+				font-size:em(14px);
+				left:em(-34px, 14px);
+			}
+			@include MQ(Lplus) {
+				padding: em(10px, 24px);
+				font-size:em(24px);
+				left:em(-44px, 24px);
+			}
+			@include MQ(XSneg) {
+				display:none;
+   			}
+		}
    		h2 { 
    			position: relative;
    			color:$color1;
@@ -115,8 +150,11 @@
 				width:100%;
 				font-size: em(20px);
    			}
+   			@include MQ(S) {
+				font-size: em(17px);
+   			}
    			@include MQ(M) {
-   				font-size: em(15px);
+   				font-size: em(22px);
    			}
    			@include MQ(L) {
 				font-size: em(25px);
@@ -137,7 +175,8 @@
 	   			margin-bottom:0;
 	   			margin-top: em(10px, 24px);
 	   			&:first-child {margin-top:0;}
-	   			@include MQ(XSplus) {
+	   			
+	   			@include MQ(Splus) {
 	   				cursor: pointer;
 					&:after {
 						padding: em(5px);
@@ -147,9 +186,13 @@
 					&.open:after {
 						content: '-';
 					}
+
+   				}
+   				@include MQ(S) {
+					font-size: em(15px);
    				}
 				@include MQ(M) {
-					font-size: em(14px);
+					font-size: em(16px);
 				}
    				@include MQ(L) {
     				font-size: em(18px);
@@ -159,7 +202,7 @@
    				list-style-type:none; 
    				padding: 0;
    				display:none;
-   				@include MQ(XSneg) {
+   				@include MQ(Sneg) {
 					display:block;
 	   			}
 
@@ -184,6 +227,9 @@
    			@include MQ(M) {
 				padding: em(15px);
     		}
+    		@include MQ(S) {
+				padding: em(10px);
+    		}
    		}
 		@include MQ(XSneg) {
 			width:100%;
@@ -207,9 +253,10 @@
 		}
 	}
 	#galerie-thumb-bro .galerie-thumb-scroll,
-	#galerie-thumb-child .galerie-thumb-scroll {
-		@include MQ(Mplus) {			
-			display:none;
+	#galerie-thumb-child .galerie-thumb-scroll {		
+		display:none;
+		@include MQ(Sneg) {			
+			display:block;
 		}
 	}
 	#galerie-thumb-child {
@@ -231,13 +278,17 @@
   		&.active img {outline:5px solid lighten($color1, 100%);}
   		&:hover img { outline: 1px solid lighten($color1, 70%); }
   		img {
-  			@include MQ(Mneg) {
-  			max-width: em(150px);
-  			}
+
   			@include MQ(XS) {
   			max-width: em(100px);
   			}
-  			@include MQ(L) {
+  			@include MQ(Mneg) {
+  			max-width: em(140px);
+  			}
+  			@include MQ(M) {
+  			max-width: em(150px);
+  			}
+  			@include MQ(Lplus) {
   			max-width: em(200px);
   			}
   		}
@@ -247,15 +298,14 @@
   		@include MQ(XSneg) {
   			padding:0;
   		}
-  	}
-  	div.galerie-carousel{
-  		/*for a beter loading effect*/
-  		overflow: hidden;
   	}	
 }
 
 .carousel-indicators {
-	@include MQ(XSplus) {
+	@include MQ(XS) {
+		bottom: em(10px);
+	}
+	@include MQ(Splus) {
 		bottom: em(50px);
 	}
 	@include MQ(Lplus) {
