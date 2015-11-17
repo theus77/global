@@ -12,7 +12,7 @@
 	<?php 
 	
 		if(AuthComponent::user() && AuthComponent::user()['role'] === 'admin'){
-			echo '<div class="container-fluid">';
+			echo '<div class="admin-footer">';
 			echo $this->Html->tag('h3', __('Options d\'administration'));
 			echo $this->Html->tag('div', 
 					$this->Html->tag('ul', 

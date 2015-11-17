@@ -60,7 +60,10 @@ function vegas() {
 			$(this).parents( "li" ).addClass( "active" ).siblings().removeClass( "active");
 		})
 	}
-
+	// Admin collapse galery 
+	$( ".admin-galery" ).on( "click", "h2", function() {
+		$(this).next( "form" ).toggle();
+	});
 	// Replace the h2 at the good place for design.
 	var boxeTitle = $( ".groupToMatch" ).find( "h2" ); 
 	boxeTitle.each( function() {

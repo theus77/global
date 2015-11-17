@@ -33,9 +33,13 @@ header + .container-fluid {
 	padding-right:0;
 	overflow: hidden;
 }
-
+.admin-footer {
+  background-color: $color3;
+  padding-left:em(15px);
+  padding-right:em(15px);
+}
 .btn {border-radius:0; border:0;}
-
+.flashMessage {padding: em(10px);}
 /*
 * nice hover effects
 *********************/

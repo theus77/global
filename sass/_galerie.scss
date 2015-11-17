@@ -326,3 +326,18 @@
 		margin:em(5px);
 	}
 }
+.admin-galery-wrapper {	
+	.admin-galery {
+		margin: em(10px) 0;
+		h2 {
+			cursor: pointer;
+			width:100% !important;
+			font-size: em(20px) !important;
+			background-color: lighten($color1, 90%)!important;
+			padding: em(10px, 20px) !important;
+		}
+		background-color: lighten($color1, 100%);
+		form {display:none; padding:em(10px);}
+	}
+}
+

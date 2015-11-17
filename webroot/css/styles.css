@@ -9322,17 +9322,29 @@ header + .container-fluid {
   overflow: hidden;
 }
 
-/* line 37, ../../sass/_base.scss */
+/* line 36, ../../sass/_base.scss */
+.admin-footer {
+  background-color: #343434;
+  padding-left: 1.07143em;
+  padding-right: 1.07143em;
+}
+
+/* line 41, ../../sass/_base.scss */
 .btn {
   border-radius: 0;
   border: 0;
+}
+
+/* line 42, ../../sass/_base.scss */
+.flashMessage {
+  padding: 0.71429em;
 }
 
 /*
 * nice hover effects
 *********************/
 /* Underline From Center */
-/* line 43, ../../sass/_base.scss */
+/* line 47, ../../sass/_base.scss */
 .hvr-underline-from-center {
   display: inline-block;
   vertical-align: middle;
@@ -9346,7 +9358,7 @@ header + .container-fluid {
   overflow: hidden;
 }
 
-/* line 55, ../../sass/_base.scss */
+/* line 59, ../../sass/_base.scss */
 .hvr-underline-from-center:before {
   content: "";
   position: absolute;
@@ -9364,7 +9376,7 @@ header + .container-fluid {
   transition-timing-function: ease-out;
 }
 
-/* line 71, ../../sass/_base.scss */
+/* line 75, ../../sass/_base.scss */
 .hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
   left: 0;
   right: 0;
@@ -9372,7 +9384,7 @@ header + .container-fluid {
 
 /* Sweep To Top */
 @media only screen and (min-width: 992px) {
-  /* line 77, ../../sass/_base.scss */
+  /* line 81, ../../sass/_base.scss */
   .hvr-sweep-to-top {
     display: inline-block;
     vertical-align: middle;
@@ -9391,7 +9403,7 @@ header + .container-fluid {
 }
 
 @media only screen and (min-width: 992px) {
-  /* line 94, ../../sass/_base.scss */
+  /* line 98, ../../sass/_base.scss */
   .hvr-sweep-to-top:before {
     content: "";
     position: absolute;
@@ -9415,14 +9427,14 @@ header + .container-fluid {
 }
 
 @media only screen and (min-width: 992px) {
-  /* line 116, ../../sass/_base.scss */
+  /* line 120, ../../sass/_base.scss */
   .hvr-sweep-to-top:hover, .hvr-sweep-to-top:focus, .hvr-sweep-to-top:active {
     color: white;
   }
 }
 
 @media only screen and (min-width: 992px) {
-  /* line 121, ../../sass/_base.scss */
+  /* line 125, ../../sass/_base.scss */
   .hvr-sweep-to-top:hover:before, .hvr-sweep-to-top:focus:before, .hvr-sweep-to-top:active:before {
     -webkit-transform: scaleY(1);
     transform: scaleY(1);
@@ -10284,6 +10296,25 @@ header .navbar-brand {
     margin-left: 0.35714em;
     margin: 0.35714em;
   }
+}
+
+/* line 330, ../../sass/_galerie.scss */
+.admin-galery-wrapper .admin-galery {
+  margin: 0.71429em 0;
+  background-color: white;
+}
+/* line 332, ../../sass/_galerie.scss */
+.admin-galery-wrapper .admin-galery h2 {
+  cursor: pointer;
+  width: 100% !important;
+  font-size: 1.42857em !important;
+  background-color: #e6e6e6 !important;
+  padding: 0.5em !important;
+}
+/* line 340, ../../sass/_galerie.scss */
+.admin-galery-wrapper .admin-galery form {
+  display: none;
+  padding: 0.71429em;
 }
 
 /*

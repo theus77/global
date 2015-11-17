@@ -120,7 +120,7 @@
 					</div>
 					</div> <!-- / row -->
 					<!-- infos -->
-					<div id="galerie-info">
+					<div id="galerie-info" class="<?php if(AuthComponent::user() && AuthComponent::user()['role'] === 'admin'):?>admin-galery-wrapper<?php endif;?>">
 						<div class="galerie-carousel groupToMatch">
 							<!-- Carousel
 							================================================== -->
@@ -136,7 +136,7 @@
 									<div class="<?php echo $idx?'item':'item active'; ?>">
 										
 										
-										<div class="wrapper-info">
+										<div class="wrapper-info" >
 											<div class="glyphicon glyphicon-move"></div>
 											<h2 id="versionTitle">
 
@@ -225,10 +225,8 @@
 											</div>
 										</div>
 										<?php if(AuthComponent::user() && AuthComponent::user()['role'] === 'admin'):?>
-										<hr>
-										<h2><?php echo __('Administration');?></h2>
-										<!-- Form Name -->
-										<h2><?php echo __('Configuration de la galerie');?></h2>
+										<div class="admin-galery">
+										<h2><?php echo __('Administration') . " : " . __('Configuration de la galerie');?></h2>
 										<?php
 										$url = '';
 										foreach ($this->params['named'] as $id => $param){
@@ -244,7 +242,7 @@
 												'defaultUrl' => $url,
 												'defaultThumbUuid' => $version['Version']['encodedUuid']
 										)); ?>
-										
+										</div>
 										<?php endif;?>
 										
 									</div>
