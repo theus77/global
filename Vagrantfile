@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
 		privileged: false
 		
 	config.vm.provision :shell, 
-		inline: "/bin/sh /var/www/public/scripts/elasticsearch.sh", 
+		inline: "/bin/sh /var/www/public/provision/elasticsearch.sh", 
 		keep_color: true,
 		privileged: false	
 	
