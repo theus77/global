@@ -166,6 +166,132 @@ class ApertureController extends AppController {
 	}
 
 	
+	public function buildFindversionOptions(){
+	
+		$findversionOptions = array(
+		// 				'limit' => 20,
+				'conditions' => array(
+						'Version.isFlagged' => 1,
+						'Version.showInLibrary' => 1,
+						'Version.isHidden' => 0,
+						'Version.isInTrash' => 0,
+						'Version.mainRating >=' => 0
+				),
+				'contain' => array(
+						'PlaceForVersion' => array(
+								'fields' => array('placeId')
+						),
+						'Keyword' => array(
+								'fields' =>  array('modelId'),
+						)),
+				'order' => array('Version.imageDate DESC'),
+				//'fields' => array('Version.imageDate', 'Version.encodedUuid', 'Version.name', 'Version.exifLatitude', 'Version.exifLongitude', 'Version.unixImageDate', 'Version.stackUuid'),
+				//'group' => array( 'Version.imageDate', 'Version.encodedUuid', 'Version.name', 'Version.exifLatitude', 'Version.exifLongitude', 'Version.unixImageDate', 'Version.stackUuid'),
+		);
+	
+		if(isset($this->request->params['named']['album'])){
+			$album = $this->getAlbum($this->Version->decodeUuid($this->request->params['named']['album']));
+			// 			$title .= __(' de l\'album %s', $album['name']);
+			$findversionOptions['joins'][] = array(
+					'table' => 'RKAlbumVersion',
+					'alias' => 'AlbumVersion',
+					'type' => 'inner',
+					'conditions' => array(
+							'AlbumVersion.versionId = version.modelId',
+							'AlbumVersion.albumId' => $album['modelId'],
+					));
+		}
+		if(isset($this->request->params['named']['keyword'])){
+			$keywords = $this->getKeywords($this->request->params['named']['keyword']);
+			$ids = array();
+			foreach ($keywords as $key => $keyword){
+				$ids[] = $keyword['Keyword']['modelId'];
+				// 				if($key)
+					// 					$title .= ' et';
+					// 				$title .= __(' de %s', $keyword['Keyword']['name']);
+			}
+			$findversionOptions['joins'][] = array(
+					'table' => 'RKKeywordForVersion',
+					'alias' => 'KeywordForVersion',
+					'type' => 'inner',
+					'conditions' => array(
+							'KeywordForVersion.versionId = version.modelId',
+							'KeywordForVersion.keywordId' => $ids,
+					));
+		}
+		if(isset($this->request->params['named']['keywordId'])){
+	
+			$keywordIds = $this->getAllSubKeywords($this->request->params['named']['keywordId']);
+			//print_r($keywordIds); exit;
+	
+			// 			$title .= __(' pour le mot clé %s', $keywordIds[$this->request->params['named']['keywordId']]);
+	
+			$findversionOptions['joins'][] = array(
+					'table' => 'RKKeywordForVersion',
+					'alias' => 'KeywordForVersion',
+					'type' => 'inner',
+					'conditions' => array(
+							'KeywordForVersion.versionId = version.modelId',
+							'KeywordForVersion.keywordId' => array_keys($keywordIds),
+					));
+		}
+		if(isset($this->request->params['named']['versionId'])){
+			$findversionOptions['conditions']['Version.modelId'] = $this->request->params['named']['versionId'];
+		}
+	
+		if(isset($this->request->params['named']['place'])){
+			$locations = $this->getLocations($this->request->params['named']['place']);
+			$ids = array();
+			foreach ($locations as $key => $location){
+				$ids[] = $location['PlaceName']['placeId'];
+				/*if($key)
+				 $title .= ' et';
+					switch ($location['Place']['type']){
+					case 1:
+					$title .= __(' en %s', $location['PlaceName']['description']);
+					break;
+					case 2:
+					$title .= __(' dans %s', $location['PlaceName']['description']);
+					break;
+					default:
+					$title .= __(' à %s', $location['PlaceName']['description']);
+					}*/
+	
+	
+			}
+			$findversionOptions['joins'][] = array(
+					'table' => 'RKPlaceForVersion',
+					'alias' => 'PlaceForVersion',
+					'type' => 'inner',
+					'conditions' => array(
+							'PlaceForVersion.versionId = version.modelId',
+							'PlaceForVersion.placeId' => $ids,
+					));
+		}
+		else if(isset($this->request->params['named']['placeId'])){
+	
+			$places = $this->getLocations('', $this->request->params['named']['placeId']);
+			$findversionOptions['joins'][] = array(
+					'table' => 'RKPlaceForVersion',
+					'alias' => 'PlaceForVersion',
+					'type' => 'inner',
+					'conditions' => array(
+							'PlaceForVersion.versionId = version.modelId',
+							'PlaceForVersion.placeId' => $this->request->params['named']['placeId'],
+					));
+		}
+		if(isset($this->request->params['named']['from'])){
+			$findversionOptions['conditions']['version.imageDate >='] = $this->Version->convertToAppleDate($this->request->params['named']['from']);
+			// 			$title .= __(' à partir du %s', date("Y-m-d H:i:s", $this->request->params['named']['from']));
+		}
+	
+		if(isset($this->request->params['named']['to'])){
+			$findversionOptions['conditions']['version.imageDate <='] = $this->Version->convertToAppleDate($this->request->params['named']['to']);
+			// 			$title .= __(' jusqu\'au %s', date("Y-m-d H:i:s", $this->request->params['named']['to']));
+		}
+		return $findversionOptions;
+	
+	}
 	
 	
 	
