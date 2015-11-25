@@ -1,5 +1,6 @@
 <?php
 
+use Elasticsearch\Client;
 // Can be called by "Console/cake index"
 
 App::uses('Shell', 'Console');
@@ -7,6 +8,28 @@ App::uses('Shell', 'Console');
 App::import('Controller', 'Aperture');
 
 class ElasticShell extends AppShell {
+	
+	private $properties = [
+			'Byline',
+			'CopyrightNotice',
+			'CiEmailWork',
+			'UsageTerms',
+			'City',
+			'SubLocation',
+			'ObjectName',
+			'MasterLocation',
+			'AspectRatio',
+			'PixelSize',
+			'ProjectName',
+			'LensModel',
+			'Model',
+			'Copyright',
+			'Artist',
+			'UserComment',
+			'Altitude',
+			'Longitude',
+			'Latitude'
+	];
 
 	public function initialize()
 	{
@@ -18,6 +41,7 @@ class ElasticShell extends AppShell {
 		$this->loadModel('ApertureConnector.OtherProperty');
 		$this->loadModel('ApertureConnector.ExifStringProperty');
 		$this->loadModel('ApertureConnector.ExifNumberProperty');
+		$this->loadModel('ApertureConnector.ImageProxyState');
 	
 	}	
 	public function updateVersionsInfo(){
@@ -29,9 +53,21 @@ class ElasticShell extends AppShell {
 	
 		$versions = $this->Version->find('all', $findversionOptions);
 		foreach ($versions as $version){
-				
-			$data = $version['Version'];
-			$data['RepositoryId'] = Configure::read('repositoryId');
+
+			$data['uuid'] = $version['Version']['uuid'];
+			$data['name'] = $version['Version']['name'];
+			$data['date'] = $version['Version']['unixImageDate'];
+			$data['width'] = $version['Version']['masterWidth'];
+			$data['height'] = $version['Version']['masterHeight'];
+			$data['location'] = array(
+					'lat' => $version['Version']['exifLatitude'],
+					'lon' => $version['Version']['exifLongitude']
+			);
+			$data['server'] = 'http://global.theus.be/img/';
+			
+			//$data['url'] = Configure::read('repositoryId');
+			$imageProxy = $this->ImageProxyState->findByVersionuuid($data['uuid']);
+			$data['path'] = $imageProxy['ImageProxyState']['thumbnailPath'];
 				
 			$data['Locations'] = array();
 			foreach($version['PlaceForVersion'] as $location){
@@ -48,7 +84,11 @@ class ElasticShell extends AppShell {
 			if($version['Version']['stackUuid']) {
 				$stackVersions = $this->Version->findAllByStackuuid($version['Version']['stackUuid'], array('uuid', 'encodedUuid', 'name', 'unixImageDate'), array('unixImageDate'));
 				foreach($stackVersions as $stackVersion){
-					$data['Stack'][] = $stackVersion['Version'];
+					if(strcmp($data['uuid'], $stackVersion['Version']['uuid']) != 0){
+						$imageProxy = $this->ImageProxyState->findByVersionuuid($stackVersion['Version']['uuid']);
+						//$data['path'] = $imageProxy['ImageProxyState']['thumbnailPath'];
+						$data['Stack'][] = $imageProxy['ImageProxyState']['thumbnailPath'];
+					}
 				}
 			}
 	
@@ -57,24 +97,28 @@ class ElasticShell extends AppShell {
 			$this->IptcProperty->contain('UniqueString');
 			$props = $this->IptcProperty->findAllByVersionid($version['Version']['modelId']);
 			foreach($props as $prop){
-				$data['Properties'][$prop['IptcProperty']['propertyKey']] = $prop['UniqueString']['stringProperty'];
+				if(in_array($prop['IptcProperty']['propertyKey'], $this->properties))
+					$data['Properties'][$prop['IptcProperty']['propertyKey']] = $prop['UniqueString']['stringProperty'];
 			}
 				
 			$this->OtherProperty->contain('UniqueString');
 			$props = $this->OtherProperty->findAllByVersionid($version['Version']['modelId']);
 			foreach($props as $prop){
-				$data['Properties'][$prop['OtherProperty']['propertyKey']] = $prop['UniqueString']['stringProperty'];
+				if(in_array($prop['OtherProperty']['propertyKey'], $this->properties))
+					$data['Properties'][$prop['OtherProperty']['propertyKey']] = $prop['UniqueString']['stringProperty'];
 			}
 				
 			$this->ExifStringProperty->contain('UniqueString');
 			$props = $this->ExifStringProperty->findAllByVersionid($version['Version']['modelId']);
 			foreach($props as $prop){
-				$data['Properties'][$prop['ExifStringProperty']['propertyKey']] = $prop['UniqueString']['stringProperty'];
+				if(in_array($prop['ExifStringProperty']['propertyKey'], $this->properties))
+					$data['Properties'][$prop['ExifStringProperty']['propertyKey']] = $prop['UniqueString']['stringProperty'];
 			}
 				
 			$props = $this->ExifNumberProperty->findAllByVersionid($version['Version']['modelId']);
 			foreach($props as $prop){
-				$data['Properties'][$prop['ExifNumberProperty']['propertyKey']] = $prop['ExifNumberProperty']['numberProperty'];
+				if(in_array($prop['ExifNumberProperty']['propertyKey'], $this->properties))
+					$data['Properties'][$prop['ExifNumberProperty']['propertyKey']] = $prop['ExifNumberProperty']['numberProperty'];
 			}
 				
 			//json_encode($data);
@@ -82,7 +126,7 @@ class ElasticShell extends AppShell {
 			$this->putObjectToElasticSearch($data, "version", $version['Version']['encodedUuid']);
 				
 			//$this->out($data);
-			break;
+			//break;
 		}
 	
 	
@@ -91,7 +135,32 @@ class ElasticShell extends AppShell {
 	
 
 	public function putObjectToElasticSearch($data, $type, $id){
-		$data_json = json_encode($data);
+		
+		$client = new Client();
+		
+		$params = [
+				'index' => 'index',
+				'type' => 'version',
+				'id' => $id,
+				'body' => $data
+		];
+		
+		//dump
+		// Document will be indexed to my_index/my_type/my_id
+		$response = $client->index($params);
+		
+		//var_dump($data);
+		
+		
+		
+		
+		
+		/*$searchParams['index'] = 'global';
+		$searchParams['type']  = 'version';*/
+		
+		
+		
+		/*$data_json = json_encode($data);
 	
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, Configure::read('elasticSearchUrl').$type."/".$id);
@@ -101,7 +170,7 @@ class ElasticShell extends AppShell {
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		$response  = curl_exec($ch);
 		$this->out($response);
-		curl_close($ch);
+		curl_close($ch);*/
 	}	
 	
 	

@@ -42,6 +42,18 @@ Cache::config('default', array('engine' => 'File'));
  *
  */
 
+
+
+// Charger l'autoload de Composer.
+require APP . 'Vendor/autoload.php';
+
+// Retire et réajoute l'autoloader de CakePHP puisque C§omposer pense que
+// c'est le plus important.
+// See http://goo.gl/kKVJO7
+spl_autoload_unregister(array('App', 'load'));
+spl_autoload_register(array('App', 'load'), true, true);
+
+
 /**
  * Custom Inflector rules can be set to correctly pluralize or singularize table, model, controller names or whatever other
  * string is passed to the inflection functions
