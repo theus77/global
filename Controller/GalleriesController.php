@@ -1,4 +1,5 @@
 <?php
+use Elasticsearch\Client;
 App::uses('AppController', 'Controller');
 /**
  * Galleries Controller
@@ -41,7 +42,34 @@ class GalleriesController extends AppController {
 	}
 	
 	public function search() {
-		$tok = false;
+		$client = new Client();
+		
+		$searchParams = array(
+				'index' => 'index',
+				'type'  => 'version'
+				
+		);
+		
+		if(isset($this->request->query['q'])){
+			$searchParams['body']['query']['match']['_all'] = $this->request->query['q'];			
+		}
+		
+		$retDoc = $client->search($searchParams);
+
+		
+		
+		//print_r($retDoc);
+		//exit;
+
+		$this->set('versions', $retDoc['hits']['hits']);
+		$this->set('total', $retDoc['hits']['total']);
+		
+
+		$this->set('jsIncludes', ['gallery-view']);
+
+		$this->view = 'view';
+		
+		/*$tok = false;
 		if(isset($this->request->query['q'])){
 			$tok = preg_split("/[\s,]+/", $this->request->query['q']);
 		}

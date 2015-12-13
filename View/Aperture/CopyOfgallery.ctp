@@ -22,10 +22,10 @@
 				</nav>
 			</div>
 			<div class="galerie-thumb-scroll groupToMatch">
-				<?php foreach ($versions['hits']['hits'] as $idx => $version) : ?>
+				<?php foreach ($versions['hits']['hits']  as $idx => $version) : ?>
 				<a href="#" class="thumbnail"  data-target="#GalerieCarousel" data-slide-to="<?php echo $idx; ?>"><?php
 					echo $this->Html->image(
-					($version['_source']['uuid']).'/thumb.png',
+					($version['_id']).'/thumb.png',
 					array('class' => 'img-responsive'));
 				?></a>
 				<?php endforeach;?>
@@ -45,7 +45,7 @@
 				<!-- Indicators -->
 				<ol class="carousel-indicators">
 					<?php
-						foreach ($versions['hits']['hits'] as $idx => $version){
+						foreach ($versions['hits']['hits']  as $idx => $version){
 							echo $this->Html->tag('li', '', array(
 									'data-target' => '#GalerieCarousel',
 									'data-slide-to' => $idx,
@@ -57,23 +57,46 @@
 				<div class="carousel-inner" role="listbox">
 					<?php
 						foreach ($versions['hits']['hits'] as $idx => $version){
+							
+							//echo $this->element('images', array(
+						    //    "version" => $version,
+						    //));
+							
 							echo $this->Html->tag('div',
-								//$this->Html->link(
-									$this->Html->image(urlencode($version['_source']['uuid']).'/preview', array('data-src' => '/img/'.urlencode($version['_source']['uuid']).'/image', 'class' => 'lazy toLoad preview'))
+									//$this->Html->link(
+									//'laoding...'
+									$this->Html->image(urlencode($version['_id']).'/preview', array('data-src' => '/img/'.urlencode($version['_id']).'/image', 'class' => 'lazy toLoad preview'))
 									//$this->Html->image($version['Version']['encodedUuid'].'/preview.png'),
 									//array('controller' => 'aperture', 'action' =>  'image', $version['Version']['encodedUuid'], 'language' => Configure::read('Config.language')),
 									//array('escape' => false)),
 									.$this->Html->tag('div', 'Chargement en cours...', array('class' => 'carousel-caption')),
-								array('class' => $idx?'item':'item active', 'data-image-info' =>
-									$this->Html->url(array(
-										'controller' => 'aperture',
-										'action' =>  'image',
-										'language' => Configure::read('Config.language'),
-										$version['_source']['uuid'],
-										'ext' => 'json',
-									))
-								)
-														);
+									array('class' => $idx?'item':'item active', 'data-image-info' =>
+											$this->Html->url(array(
+													'controller' => 'aperture',
+													'action' =>  'image',
+													'language' => Configure::read('Config.language'),
+													$version['_id'],
+													'ext' => 'json',
+											))
+									));
+							
+// 							echo $this->Html->tag('div',
+// 								//$this->Html->link(
+// 									$this->Html->image(urlencode($version['Version']['encodedUuid']).'/preview', array('data-src' => '/img/'.urlencode($version['Version']['encodedUuid']).'/image', 'class' => 'lazy toLoad preview'))
+// 									//$this->Html->image($version['Version']['encodedUuid'].'/preview.png'),
+// 									//array('controller' => 'aperture', 'action' =>  'image', $version['Version']['encodedUuid'], 'language' => Configure::read('Config.language')),
+// 									//array('escape' => false)),
+// 									.$this->Html->tag('div', 'Chargement en cours...', array('class' => 'carousel-caption')),
+// 								array('class' => $idx?'item':'item active', 'data-image-info' =>
+// 									$this->Html->url(array(
+// 										'controller' => 'aperture',
+// 										'action' =>  'image',
+// 										'language' => Configure::read('Config.language'),
+// 										$version['Version']['encodedUuid'],
+// 										'ext' => 'json',
+// 									))
+// 								)
+// 														);
 						} // end foreach
 					?>
 				</div>
@@ -94,19 +117,30 @@
 								<?php foreach ($version['_source']['Stack'] as $idxStack => $stack) : ?>
 								<?php
 									
-									echo $this->Html->link(
-											$this->Html->image(
-												($version['_source']['uuid']).'/thumb.png',
-												array('class' => 'img-responsive lazy-thumb',
-												'data-src' => $this->Html->url(
-													'/img/'.urlencode($stack['uuid']).'/thumb.png'))),
-											'#',
-											array(
-																	'class' => 	'thumbnail',
-												'onclick' => 'javascript: return loadStackImage(this);',
-												'escape' => false,
-												'data-stack-uuid' => $this->Html->url('/img/'.urlencode($stack['uuid']).'/image'),
-											));
+									echo 
+											$this->Html->tag(
+													'img',
+													'',
+													array(
+														'src' => $version['_source']['server'].'thumb/'
+															//.urlencode($version['_id']).'/'
+															.str_replace('%', '_', str_replace(' ', '+', $stack))
+															)
+									);
+											
+											
+// 											$this->Html->image(
+// 												($version['_id']).'/thumb.png',
+// 												array('class' => 'img-responsive lazy-thumb',
+// 												'data-src' => $this->Html->url(
+// 													'/img/'.urlencode($stack['_id']).'/thumb.png')))
+// 											'#',
+// 											array(
+// 																	'class' => 	'thumbnail',
+// 												'onclick' => 'javascript: return loadStackImage(this);',
+// 												'escape' => false,
+// 												'data-stack-uuid' => $this->Html->url('/img/'.urlencode($stack['_id']).'/image'),
+// 											));
 								
 								?>
 								<?php endforeach;?>
@@ -132,7 +166,7 @@
 								<!--         <li data-target="#GalerieCarousel" data-slide-to="2"></li> -->
 								<!--       </ol> -->
 								<div class="carousel-inner" role="listbox">
-									<?php foreach ($versions['hits']['hits'] as $idx => &$version) : ?>
+									<?php foreach ($versions as $idx => &$version) : ?>
 									<div class="<?php echo $idx?'item':'item active'; ?>">
 										
 										
@@ -141,11 +175,11 @@
 											<h2 id="versionTitle">
 
 											<?php
-															if(isset($version['_source']['Properties']['ObjectName'])){
-																echo $version['_source']['Properties']['ObjectName'];
+															if(isset($properties[$version['Version']['modelId']]['ObjectName'])){
+																echo $properties[$version['Version']['modelId']]['ObjectName'];
 															}
 															else {
-																echo $version['_source']['name'];
+																echo $version['Version']['name'];
 															}
 											?>
 											<span></span>
@@ -153,10 +187,10 @@
 											
 											
 											<div class="infos">
-												<?php if(count($version['_source']['Keywords']) > 0) : ?>
+												<?php if(count($version['keywords']) > 0) : ?>
 												<h3>Mots clés</h3>
 												<ul id="keywordList">
-													<?php foreach ($version['_source']['Keywords'] as $keywordId => $keyword) :?>
+													<?php foreach ($version['keywords'] as $keywordId => $keyword) :?>
 													<?php echo $this->Html->tag('li',
 															$this->Html->link(
 																$keyword,
@@ -167,10 +201,10 @@
 												</ul>
 												<?php endif; ?>
 												
-												<?php if(count($version['_source']['Locations']) > 0) : ?>
+												<?php if(count($version['places']) > 0) : ?>
 												<h3>Emplacements</h3>
 												<ul id="placesList">
-													<?php foreach ($version['_source']['Locations'] as $placeid => $place) :?>
+													<?php foreach ($version['places'] as $placeid => $place) :?>
 													<?php echo $this->Html->tag('li',
 															$this->Html->link(
 																$place,
@@ -184,17 +218,17 @@
 												<h3>Détails</h3>
 												<ul id="detailList">
 													<li>Photographe: <?php
-																		if(isset($version['_source']['Properties']['Byline'])){
-																			echo $version['_source']['Properties']['Byline'];
+																		if(isset($properties[$version['Version']['modelId']]['Byline'])){
+																			echo $properties[$version['Version']['modelId']]['Byline'];
 																		}
 																		else {
 																			echo __('Simon Schmitt');
 																		}
 													?></li>
-													<li>Date: <time datetime="<?php echo date("Y-m-d H:m:s", $version['_source']['date']); ?>"><?php echo date("d M Y", $version['_source']['date']); ?></time></li>
+													<li>Date: <time datetime="<?php echo date("Y-m-d H:m:s", $version['Version']['unixImageDate']); ?>"><?php echo date("d M Y", $version['Version']['unixImageDate']); ?></time></li>
 													<li>Dimensions: <?php
-																		if(isset($version['_source']['Properties']['PixelSize'])){
-																			echo $version['_source']['Properties']['PixelSize'];
+																		if(isset($properties[$version['Version']['modelId']]['PixelSize'])){
+																			echo $properties[$version['Version']['modelId']]['PixelSize'];
 																		}
 																		else {
 																			echo __('Non défini');
@@ -203,7 +237,7 @@
 												</ul>
 												<div id="map-ctp">
 													<div class="outer">
-														<div class="inner map-div" id="map-canvas-<?php echo $idx;?>" data-lat="<?php echo $version['_source']['location']['lat'];?>" data-lng="<?php echo $version['_source']['location']['lon'];?>" >
+														<div class="inner map-div" id="map-canvas-<?php echo $idx;?>" data-lat="<?php echo $version['Version']['exifLatitude'];?>" data-lng="<?php echo $version['Version']['exifLongitude'];?>" >
 															<?php echo __('Connection à Google Map en cours ...'); ?>
 														</div>
 														<img src="data:image/gif;base64,R0lGODlhEAAJAIAAAP///wAAACH5BAEAAAAALAAAAAAQAAkAAAIKhI+py+0Po5yUFQA7" class="scaling-image" /> <!-- don't specify height and width so browser resizes it appropriately -->
@@ -214,7 +248,7 @@
 														'Demande de prix',
 														array(
 															'action' => 'price',
-															$version['_source']['uuid']
+															$version['Version']['encodedUuid']
 														),
 														array(
 															'role' => 'button',

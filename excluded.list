@@ -9,6 +9,7 @@
 Config/database.php
 Config/email.php
 Config/bootstrap.php
+Config/core.php
 tmp/cache/
 tmp/logs/
 webroot/img/cache/*.png

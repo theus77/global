@@ -54,7 +54,7 @@ class ElasticShell extends AppShell {
 		$versions = $this->Version->find('all', $findversionOptions);
 		foreach ($versions as $version){
 
-			$data['uuid'] = $version['Version']['uuid'];
+			$data['uuid'] = $version['Version']['encodedUuid'];
 			$data['name'] = $version['Version']['name'];
 			$data['date'] = $version['Version']['unixImageDate'];
 			$data['width'] = $version['Version']['masterWidth'];
@@ -63,10 +63,10 @@ class ElasticShell extends AppShell {
 					'lat' => $version['Version']['exifLatitude'],
 					'lon' => $version['Version']['exifLongitude']
 			);
-			$data['server'] = 'http://global.theus.be/img/';
+			$data['server'] = 'http://global.theus.be/';
 			
 			//$data['url'] = Configure::read('repositoryId');
-			$imageProxy = $this->ImageProxyState->findByVersionuuid($data['uuid']);
+			$imageProxy = $this->ImageProxyState->findByVersionuuid($version['Version']['uuid']);
 			$data['path'] = $imageProxy['ImageProxyState']['thumbnailPath'];
 				
 			$data['Locations'] = array();
@@ -87,7 +87,10 @@ class ElasticShell extends AppShell {
 					if(strcmp($data['uuid'], $stackVersion['Version']['uuid']) != 0){
 						$imageProxy = $this->ImageProxyState->findByVersionuuid($stackVersion['Version']['uuid']);
 						//$data['path'] = $imageProxy['ImageProxyState']['thumbnailPath'];
-						$data['Stack'][] = $imageProxy['ImageProxyState']['thumbnailPath'];
+						$data['Stack'][] = array(
+							'path' => $imageProxy['ImageProxyState']['thumbnailPath'],
+							'uuid' => $stackVersion['Version']['encodedUuid']						
+						);
 					}
 				}
 			}

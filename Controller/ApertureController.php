@@ -1,4 +1,5 @@
 <?php
+use Elasticsearch\Client;
 class ApertureController extends AppController {
 
 	public $uses = array('ApertureConnector.ApertureConnectorAppModel', 'Gallery', 'ApertureConnector.Version', 'ApertureConnector.Keyword', 'ApertureConnector.KeywordForVersion', 'ApertureConnector.PlaceName', 'ApertureConnector.Place', 'ApertureConnector.IptcProperty', 'ApertureConnector.OtherProperty', 'ApertureConnector.ExifStringProperty', 'ApertureConnector.ExifNumberProperty', 'ApertureConnector.PlaceForVersion', 'ApertureConnector.Album');
@@ -297,7 +298,29 @@ class ApertureController extends AppController {
 	
 	public function gallery() {
 		
+		$client = new Client();
 		
+		$searchParams = array(
+				'index' => 'index',
+				'type'  => 'version'
+		
+		);
+		
+// 		if(isset($this->request->query['q'])){
+// 			$searchParams['body']['query']['match']['_all'] = $this->request->query['q'];
+// 		}
+		
+		$retDoc = $client->search($searchParams);
+		
+		$this->set('title', __('Galerie photo'));
+		
+// 		var_dump($retDoc);
+// 		exit;
+		
+		$this->set('versions', $retDoc);
+		
+		
+		/*
 		
 		$title = __('Photos');		
 		$findversionOptions = array(
@@ -462,7 +485,7 @@ class ApertureController extends AppController {
 		
 		$this->set('title', $title);
 
-		$this->set('versions', $versions);
+		$this->set('versions', $versions);/**/
 		$this->set('jsIncludes', ['bower/jail/dist/jail.min', 'gallery2']);
 		
 		//$this->set('_serialize', array('properties', 'places', 'versions'));

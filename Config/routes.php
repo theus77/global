@@ -82,8 +82,8 @@
 	
 	Router::connect( '/img/thumbnails/:language/*', 
 		array(
-			'plugin' => 'ApertureConnector', 
-			'controller' => 'Img', 
+			//'plugin' => 'ApertureConnector', 
+			'controller' => 'Image', 
 			'action' => 'viewVersion',
 			'resize' => 'fill',
 			'width' => '320',
@@ -93,8 +93,8 @@
 	
 	Router::connect( '/img/previews/*', 
 		array(
-			'plugin' => 'ApertureConnector', 
-			'controller' => 'Img', 
+			//'plugin' => 'ApertureConnector', 
+			'controller' => 'Image', 
 			'action' => 'viewVersion',
 			'resize' => 'fillArea',
 			'watermark' => WWW_ROOT.'img/watermark.png',
@@ -105,8 +105,8 @@
 		));	
 	Router::connect( '/img/:uuid/thumb.png',
 		array(
-		'plugin' => 'ApertureConnector',
-		'controller' => 'Img',
+		//'plugin' => 'ApertureConnector',
+		'controller' => 'Image',
 		'action' => 'viewVersion',
 		'resize' => 'fillArea',
 		'height' => '200',
@@ -117,8 +117,8 @@
 	
 	Router::connect( '/img/:uuid/preview',
 		array(
-		'plugin' => 'ApertureConnector',
-		'controller' => 'Img',
+		//'plugin' => 'ApertureConnector',
+		'controller' => 'Image',
 		'action' => 'viewVersion',
 		'resize' => 'fill',
 		'height' => '1400',
@@ -130,8 +130,8 @@
 	
 	Router::connect( '/img/:uuid/image',
 		array(
-		'plugin' => 'ApertureConnector',
-		'controller' => 'Img',
+		//'plugin' => 'ApertureConnector',
+		'controller' => 'Image',
 		'action' => 'viewVersion',
 		'resize' => 'fill',
 		'height' => '1400',
@@ -144,8 +144,8 @@
 	
 	Router::connect( '/img/:uuid/banner.png',
 		array(
-		'plugin' => 'ApertureConnector',
-		'controller' => 'Img',
+		//'plugin' => 'ApertureConnector',
+		'controller' => 'Image',
 		'action' => 'viewVersion',
 		'resize' => 'fillArea',
 		'height' => '400',
@@ -156,8 +156,8 @@
 	
 	Router::connect( '/img/:uuid/teaser.png',
 	array(
-	'plugin' => 'ApertureConnector',
-	'controller' => 'Img',
+	//'plugin' => 'ApertureConnector',
+	'controller' => 'Image',
 	'action' => 'viewVersion',
 	'resize' => 'fillArea',
 	'height' => '1200',
@@ -169,8 +169,8 @@
 	
 	Router::connect( '/img/:uuid/marketing.png',
 	array(
-	'plugin' => 'ApertureConnector',
-	'controller' => 'Img',
+	//'plugin' => 'ApertureConnector',
+	'controller' => 'Image',
 	'action' => 'viewVersion',
 	'resize' => 'fillArea',
 	'height' => '500',
