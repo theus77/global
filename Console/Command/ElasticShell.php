@@ -30,6 +30,8 @@ class ElasticShell extends AppShell {
 			'Longitude',
 			'Latitude'
 	];
+	
+	private $client;
 
 	public function initialize()
 	{
@@ -84,14 +86,14 @@ class ElasticShell extends AppShell {
 			if($version['Version']['stackUuid']) {
 				$stackVersions = $this->Version->findAllByStackuuid($version['Version']['stackUuid'], array('uuid', 'encodedUuid', 'name', 'unixImageDate'), array('unixImageDate'));
 				foreach($stackVersions as $stackVersion){
-					if(strcmp($data['uuid'], $stackVersion['Version']['uuid']) != 0){
+					//if(strcmp($data['uuid'], $stackVersion['Version']['uuid']) != 0){
 						$imageProxy = $this->ImageProxyState->findByVersionuuid($stackVersion['Version']['uuid']);
 						//$data['path'] = $imageProxy['ImageProxyState']['thumbnailPath'];
 						$data['Stack'][] = array(
 							'path' => $imageProxy['ImageProxyState']['thumbnailPath'],
 							'uuid' => $stackVersion['Version']['encodedUuid']						
 						);
-					}
+					//}
 				}
 			}
 	
@@ -139,7 +141,7 @@ class ElasticShell extends AppShell {
 
 	public function putObjectToElasticSearch($data, $type, $id){
 		
-		$client = new Client();
+// 		$client = new Client();
 		
 		$params = [
 				'index' => 'index',
@@ -150,7 +152,7 @@ class ElasticShell extends AppShell {
 		
 		//dump
 		// Document will be indexed to my_index/my_type/my_id
-		$response = $client->index($params);
+		$response = $this->client->index($params);
 		
 		//var_dump($data);
 		
@@ -178,6 +180,13 @@ class ElasticShell extends AppShell {
 	
 	
 	public function main() {
+		$this->client = new Client();
+		
+		$params = ['index' => 'index'];
+		$response = $this->client->indices()->delete($params);
+		
+		
+		
 		$this->out('Start indexing series');
 		$this->updateVersionsInfo();
 	}

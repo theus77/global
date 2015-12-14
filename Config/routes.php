@@ -103,7 +103,7 @@
 // 			'radius' => '5',	
 // 			'background' => 'dbdbdb'
 		));	
-	Router::connect( '/img/:uuid/thumb.png',
+	Router::connect( '/img/:uuid/thumb',
 		array(
 		//'plugin' => 'ApertureConnector',
 		'controller' => 'Image',

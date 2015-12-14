@@ -25,8 +25,8 @@
 				<?php foreach ($versions['hits']['hits'] as $idx => $version) : ?>
 				<a href="#" class="thumbnail"  data-target="#GalerieCarousel" data-slide-to="<?php echo $idx; ?>"><?php
 					echo $this->Html->image(
-					($version['_source']['uuid']).'/thumb.png',
-					array('class' => 'img-responsive'));
+					($version['_source']['uuid']).'/thumb',
+					array('class' => 'img-responsive', 'escape' => false));
 				?></a>
 				<?php endforeach;?>
 			</div>
@@ -96,10 +96,10 @@
 									
 									echo $this->Html->link(
 											$this->Html->image(
-												($version['_source']['uuid']).'/thumb.png',
+												($version['_source']['uuid']).'/thumb',
 												array('class' => 'img-responsive lazy-thumb',
 												'data-src' => $this->Html->url(
-													'/img/'.urlencode($stack['uuid']).'/thumb.png'))),
+													'/img/'.urlencode($stack['uuid']).'/thumb'))),
 											'#',
 											array(
 																	'class' => 	'thumbnail',

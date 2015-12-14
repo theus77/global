@@ -1,1 +1,1 @@
-rsync  -rlth -v --force --exclude-from=./excluded.list ".//" "theus@septune:/Users/Shared/globalview//"
+rsync  -rlth -v --force --omit-dir-times --exclude-from=./excluded.list ".//" "theus@septune:/Users/Shared/globalview//"
