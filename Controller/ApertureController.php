@@ -1,5 +1,6 @@
 <?php
 use Elasticsearch\Client;
+
 class ApertureController extends AppController {
 
 	public $uses = array('ApertureConnector.ApertureConnectorAppModel', 'Gallery', 'ApertureConnector.Version', 'ApertureConnector.Keyword', 'ApertureConnector.KeywordForVersion', 'ApertureConnector.PlaceName', 'ApertureConnector.Place', 'ApertureConnector.IptcProperty', 'ApertureConnector.OtherProperty', 'ApertureConnector.ExifStringProperty', 'ApertureConnector.ExifNumberProperty', 'ApertureConnector.PlaceForVersion', 'ApertureConnector.Album');
@@ -19,47 +20,6 @@ class ApertureController extends AppController {
 						'Version.mainRating >=' => 0,
 				),
 		));
-	}
-	
-	public function albums() {
-		$albums = $this->Album->find('list', array(
-				'conditions' => array(
-					'albumtype' => 1,
-					'isintrash' => false,
-					'ishidden' => false,
-					'ismagic' => false,
-					'versioncount >' => 0,
-					array("NOT" => array(
-								"name" => null
-						)
-					)
-					//'name' => true							
-				),
-				'fields' => array('encodedUuid', 'name'),
-				'order' => 'name'
-		));
-
-		$this->Gallery->locale = Configure::read('Config.language');
-		$galleries = array();
-		foreach ($albums as $id => $album){
-			$gallery = $this->Gallery->find('first', array(
-					'conditions' => array('url' => '/album:'.$id)
-			));
-				
-			// 			echo $modelId.'<br>';
-			// 			print_r($gallery); exit;
-			if($gallery){
-				$galleries[$id] = $gallery;
-				//print_r($galleries);
-			}
-		}
-		
-
-		$this->set('models', $albums);
-		$this->set('model', 'album');
-		$this->set('galleries', $galleries);
-		$this->view = 'gallery-list';
-		
 	}
 	
 	
@@ -294,203 +254,12 @@ class ApertureController extends AppController {
 	
 	}
 	
-	
-	
 	public function gallery() {
-		
-		$client = new Client();
-		
-		$searchParams = array(
-				'index' => 'index',
-				'type'  => 'version'
-		
+		return $this->redirect(
+			array('controller' => 'galleries', 'action' => 'index', '?' => $this->request->query)
 		);
-		
-// 		if(isset($this->request->query['q'])){
-// 			$searchParams['body']['query']['match']['_all'] = $this->request->query['q'];
-// 		}
-		
-		$retDoc = $client->search($searchParams);
-		
-		$this->set('title', __('Galerie photo'));
-		
-// 		var_dump($retDoc);
-// 		exit;
-		
-		$this->set('versions', $retDoc);
-		
-		
-		/*
-		
-		$title = __('Photos');		
-		$findversionOptions = array(
-				'limit' => 20,
-				'conditions' => array(
-						'Version.isFlagged' => 1,
-						'Version.showInLibrary' => 1,
-						'Version.isHidden' => 0,
-						'Version.isInTrash' => 0,
-						'Version.mainRating >=' => 0
-				),
-				'contain' => array(
-						'PlaceForVersion' => array(
-							'fields' => array('placeId')
-						), 
-						'Keyword' => array(
-								'fields' =>  array('modelId'),
-						)),
-				'order' => 'Version.imageDate ASC',
-				'fields' => array('Version.encodedUuid', 'Version.name', 'Version.exifLatitude', 'Version.exifLongitude', 'Version.unixImageDate', 'Version.stackUuid'),
-				'group' => array('Version.encodedUuid', 'Version.name', 'Version.exifLatitude', 'Version.exifLongitude', 'Version.unixImageDate', 'Version.stackUuid'),
-				);		
-		
-		if(isset($this->request->params['named']['album'])){
-			$album = $this->getAlbum($this->Version->decodeUuid($this->request->params['named']['album']));
-			$title .= __(' de l\'album %s', $album['name']);
-			$findversionOptions['joins'][] = array(
-					'table' => 'RKAlbumVersion',
-					'alias' => 'AlbumVersion',
-					'type' => 'inner',
-					'conditions' => array(
-							'AlbumVersion.versionId = version.modelId',
-							'AlbumVersion.albumId' => $album['modelId'],
-			));
-		}
-		if(isset($this->request->params['named']['keyword'])){
-			$keywords = $this->getKeywords($this->request->params['named']['keyword']);
-			$ids = array();
-			foreach ($keywords as $key => $keyword){
-				$ids[] = $keyword['Keyword']['modelId'];
-				if($key)
-					$title .= ' et';
-				$title .= __(' de %s', $keyword['Keyword']['name']);
-			}
-			$findversionOptions['joins'][] = array(
-					'table' => 'RKKeywordForVersion',
-					'alias' => 'KeywordForVersion',
-					'type' => 'inner',
-					'conditions' => array(
-						'KeywordForVersion.versionId = version.modelId',
-						'KeywordForVersion.keywordId' => $ids,
-			));
-		}
-		if(isset($this->request->params['named']['keywordId'])){
-			
-			$keywordIds = $this->getAllSubKeywords($this->request->params['named']['keywordId']);
-			//print_r($keywordIds); exit;
-			
-			$title .= __(' pour le mot clé %s', $keywordIds[$this->request->params['named']['keywordId']]);
-			
-			$findversionOptions['joins'][] = array(
-				'table' => 'RKKeywordForVersion',
-				'alias' => 'KeywordForVersion',
-				'type' => 'inner',
-				'conditions' => array(
-						'KeywordForVersion.versionId = version.modelId',
-						'KeywordForVersion.keywordId' => array_keys($keywordIds),
-			));
-		}
-		if(isset($this->request->params['named']['versionId'])){
-			$findversionOptions['conditions']['Version.modelId'] = $this->request->params['named']['versionId'];
-		}
-		
-		if(isset($this->request->params['named']['place'])){
-			$locations = $this->getLocations($this->request->params['named']['place']);
-			$ids = array();
-			foreach ($locations as $key => $location){
-				$ids[] = $location['PlaceName']['placeId'];
-				if($key)
-					$title .= ' et';
-				switch ($location['Place']['type']){
-					case 1:
-						$title .= __(' en %s', $location['PlaceName']['description']);
-						break;
-					case 2:
-						$title .= __(' dans %s', $location['PlaceName']['description']);
-						break;
-					default:
-						$title .= __(' à %s', $location['PlaceName']['description']);
-				}
-				
-				
-			}
-			$findversionOptions['joins'][] = array(
-					'table' => 'RKPlaceForVersion',
-					'alias' => 'PlaceForVersion',
-					'type' => 'inner',
-					'conditions' => array(
-						'PlaceForVersion.versionId = version.modelId',
-						'PlaceForVersion.placeId' => $ids,
-			));
-		}
-		else if(isset($this->request->params['named']['placeId'])){
-			
-			$places = $this->getLocations('', $this->request->params['named']['placeId']);
-			$findversionOptions['joins'][] = array(
-					'table' => 'RKPlaceForVersion',
-					'alias' => 'PlaceForVersion',
-					'type' => 'inner',
-					'conditions' => array(
-							'PlaceForVersion.versionId = version.modelId',
-							'PlaceForVersion.placeId' => $this->request->params['named']['placeId'],
-			));
-		}
-		if(isset($this->request->params['named']['from'])){
-			$findversionOptions['conditions']['version.imageDate >='] = $this->Version->convertToAppleDate($this->request->params['named']['from']);
-			$title .= __(' à partir du %s', date("Y-m-d H:i:s", $this->request->params['named']['from']));
-		}
-		
-		if(isset($this->request->params['named']['to'])){
-			$findversionOptions['conditions']['version.imageDate <='] = $this->Version->convertToAppleDate($this->request->params['named']['to']);
-			$title .= __(' jusqu\'au %s', date("Y-m-d H:i:s", $this->request->params['named']['to']));
-		}
-		
-
-		//print_r($findversionOptions);
-		//exit;
-		$this->Paginator->settings = $findversionOptions;
-		
-		$versions = $this->Paginator->paginate('Version');
-		
-		
-		
-		
-		$info = $this->getImageInfomation($versions);
-		
-		$galleryUrl = '';
-		foreach ($this->request->params['named'] as $key => $value){
-			if(strcmp('page', $key) != 0 && strcmp('language', $key)){
-				$galleryUrl .= '/'.$key.':'.htmlentities($value);
-			}
-		}
-		
-		
-		$this->Gallery->locale = Configure::read('Config.language');
-		$gallery = $this->Gallery->findByUrl($galleryUrl);
-		//print_r($gallery);
-		if($gallery){
-			if($gallery['Gallery']['keyword']){
-				$title = __('Galerie pour le mot clé "%s"', $gallery['Gallery']['name']);
-			}
-			else{
-				$title = __('Galerie %s', $gallery['Gallery']['name']);
-			}
-
-			$this->request->data = $gallery;
-		}
-		else if(isset($this->request->params['named']['placeId'])){
-			$title .= __(' pour l\'emplacement "%s"', $info['places'][$this->request->params['named']['placeId']]);
-			
-		}
-		
-		$this->set('title', $title);
-
-		$this->set('versions', $versions);/**/
-		$this->set('jsIncludes', ['bower/jail/dist/jail.min', 'gallery2']);
-		
-		//$this->set('_serialize', array('properties', 'places', 'versions'));
-
 	}
+	
 	
 	private function getAlbum($uuid){
 		$album = $this->Album->findByUuid($uuid);

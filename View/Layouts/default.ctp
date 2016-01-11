@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php 
-    	echo $this->Html->meta('description', $this->i18n->t('site.description'));
-    	echo $this->Html->meta('author', $this->i18n->t('site.author'));
+		echo $this->Html->meta('description', __('Site web GlobalView.be; photographies aériennes et reportages aériens tridiemsionnels et multi-angle sur-mesure. Accès à la photothèque de plusieurs millions de clichés en Belgique et au Grand Duché du Luxembourg et planning des prochains vols.'));
+		echo $this->Html->meta('author', __('Simon Schmitt'));
     	echo $this->Html->meta('icon'); 
     ?>
      
-    <title><?php echo $this->i18n->t('site.title').' - '.$this->i18n->t('home.title'); ?></title>
+    <title><?php echo __('GlobalView'); ?>: <?php echo $title_for_layout; ?></title>
     <!-- Bootstrap core CSS -->
     <?php echo $this->Html->css('styles'); ?>
 

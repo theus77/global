@@ -31,7 +31,7 @@
 		<div class="box2 box container">
 			<div class="row">
 				<div class="col-xs-12">
-					<h2 class="parallax"><?php echo $this->i18n->t('our-service.library-title'); ?></h2>
+					<h2 class="parallax"><?php echo __('Nos services'); ?></h2>
 				</div>
 			</div>
 			<div class="row">
@@ -50,7 +50,7 @@
 		<div class="box3 box container">
 			<div class="row">
 				<div class="col-xs-12">
-					<h2 class="parallax"><?php echo $this->i18n->t('our-service.prices-title'); ?></h2>
+					<h2 class="parallax"><?php echo __('Les tarifs'); ?></h2>
 				</div>
 			</div>
 			<div class="row">
@@ -69,7 +69,7 @@
 		<div class="box4 box container">
 			<div class="row">
 				<div class="col-xs-12">
-					<h2 class="parallax"><?php echo $this->i18n->t('our-service.contact-us-title'); ?></h2>
+					<h2 class="parallax"><?php echo __('Contactez-nous'); ?></h2>
 				</div>
 			</div>
 			<div class="row">

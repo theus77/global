@@ -66,37 +66,13 @@ class DATABASE_CONFIG {
 
 	public $default = array(
 		'datasource' => 'Database/Mysql',
-		'persistent' => false,
+		//'persistent' => false,
 		'host' => 'localhost',
 		'login' => 'globalview',
 		'password' => 'globalview',
 		'database' => 'globalview',
 		'prefix' => 'gv_',
 		//'encoding' => 'utf8',
-	);
-
-	public $aperture = array(
-		'datasource' => 'Database/Sqlite',
-		'persistent' => false,
-		'database' => '/Volumes/gv/global.aplibrary/Database/Library.apdb',
-		'prefix' => '',
-		'encoding' => 'utf8',
-	);
-	
-	public $apertureProperties = array(
-		'datasource' => 'Database/Sqlite',
-		'persistent' => false,
-		'database' => '/Volumes/gv/global.aplibrary/Database/Properties.apdb',
-		'prefix' => '',
-		'encoding' => 'utf8',
-	);
-	
-	public $apertureImageProxies = array(
-		'datasource' => 'Database/Sqlite',
-		'persistent' => false,
-		'database' => '/Volumes/gv/global.aplibrary/Database/ImageProxies.apdb',
-		'prefix' => '',
-		'encoding' => 'utf8',
 	);
 	
 }

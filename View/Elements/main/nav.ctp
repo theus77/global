@@ -11,7 +11,7 @@
 					<?php 
 						echo $this->Html->link(
 							$this->Html->image('logo-global-view.png', array(
-								'alt' => $this->i18n->t('layout.logo-alt'),
+								'alt' => __('Retour à la page d\'accueil'),
 								'class' => 'img-responsive'
 						)),
 						array('controller' => 'pages', 'action' => 'home', 'language' => Configure::read('Config.language')),
@@ -40,23 +40,23 @@
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
 				<li class="dropdown">
-                <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle hvr-sweep-to-top" href="#"><?php echo $this->i18n->t('menu.services'); ?><span class="caret"></span></a>
+                <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle hvr-sweep-to-top" href="#"><?php echo __('Services'); ?><span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                <?php echo $this->Html->tag('li', $this->Html->link($this->i18n->t('menu.services'), array(
+                <?php echo $this->Html->tag('li', $this->Html->link(__('Services'), array(
 							'controller' => 'pages',
 							'action' => 'display',
 							'our-services',
 		            		'#' => 'services',
 							'language' => Configure::read('Config.language')),
 							array('class' => 'menu-services')));?>
-                  <?php echo $this->Html->tag('li', $this->Html->link($this->i18n->t('menu.technics'), array(
+                  <?php echo $this->Html->tag('li', $this->Html->link(__('Techniques'), array(
 							'controller' => 'pages',
 							'action' => 'display',
 							'our-services',
 		            		'#' => 'technics',
 							'language' => Configure::read('Config.language')),
 							array('class' => 'menu-technics')));?>
-                  <?php echo $this->Html->tag('li', $this->Html->link($this->i18n->t('menu.prices'), array(
+                  <?php echo $this->Html->tag('li', $this->Html->link(__('Prix'), array(
 							'controller' => 'pages',
 							'action' => 'display',
 							'our-services',
@@ -66,22 +66,22 @@
                 </ul>
               </li>
 							
-		        <?php echo $this->Html->tag('li', $this->Html->link($this->i18n->t('menu.library'),
-						array('controller' => 'galleries', 'action' => 'library', 'language' => Configure::read('Config.language')),
+		        <?php echo $this->Html->tag('li', $this->Html->link(__('Librairie'),
+						array('controller' => 'keywords', 'language' => Configure::read('Config.language')),
 						array('escape' => false, 'class' => 'menu-library hvr-sweep-to-top')));?>
 				
-				<?php echo $this->Html->tag('li', $this->Html->link($this->i18n->t('menu.map'),
-						array('controller' => 'aperture', 'action' => 'map', $this->i18n->t('menu.belgium'), 'placeId' => 26, 'language' => Configure::read('Config.language')),
+				<?php echo $this->Html->tag('li', $this->Html->link(__('Carte'),
+						array('controller' => 'map', 'action' => 'index', 'language' => Configure::read('Config.language')),
 						array('escape' => false, 'class' => 'menu-map hvr-sweep-to-top')));?> 
 				
-		        <?php echo $this->Html->tag('li', $this->Html->link($this->i18n->t('menu.flights'), array(
+		        <?php echo $this->Html->tag('li', $this->Html->link(__('Vols'), array(
 							'controller' => 'pages',
 							'action' => 'home',
 		            		'#' => 'flights',
 							'language' => Configure::read('Config.language')),
 							array('class' => 'menu-flights hvr-sweep-to-top')));?>
 	
-		        <?php echo $this->Html->tag('li', $this->Html->link($this->i18n->t('menu.contact'), array(
+		        <?php echo $this->Html->tag('li', $this->Html->link(__('Contact'), array(
 							'controller' => 'pages',
 							'action' => 'display',
 							'our-services',
@@ -115,7 +115,7 @@
 				?>" class="navbar-form navbar-right" method="GET">
 				<span class="glyphicon glyphicon-search pull-right search-trigger hidden-xs hidden-sm"></span>
 		        <div class="form-group search-toggle">
-		          <input type="text" class="form-control QuickSearchInput" placeholder="<?php echo $this->i18n->t('menu.quickSearch'); ?>" name="q" data-search-url="<?php 
+		          <input type="text" class="form-control QuickSearchInput" placeholder="<?php echo __('Recherche rapide'); ?>" name="q" data-search-url="<?php 
 				      	echo $this->Html->url(
 								array(
 									'controller' => 'galleries',
