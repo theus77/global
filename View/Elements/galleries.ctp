@@ -1,6 +1,6 @@
 		
 		<?php foreach($galleries as $idx => $gallery):{
-				$url = $this->App->getGalleryUrl($gallery['Gallery']['url']);
+				//$url = $this->App->getGalleryUrl($gallery['Gallery']['url']);
 				
 				$content = $this->Html->link(
 						$this->Html->image('thumbnails/'.Configure::read('Config.language').'/'.$gallery['Gallery']['thumbUuid'].'/thumbs.png', array('alt'=>$gallery['Gallery']['name'])).
@@ -13,7 +13,12 @@
 										$gallery['Gallery']['counter'],
 										array('class'=>"badge")
 								)),
-						$url,
+						[
+								'controller' => 'galleries',
+								'action' => 'slug',
+								$gallery['Gallery']['slug'],
+								'language' => Configure::read('Config.language')
+						],
 						array('escape' => false, 'class' => 'thumbnail'));
 						
 

@@ -1,0 +1,440 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"PO-Revision-Date: 2015-12-28 09:43+0100\n"
+"Language-Team: EMAIL@ADDRESS\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: \n"
+"X-Generator: Poedit 1.8.6\n"
+"Last-Translator: Mathieu DE Keyzer <mathieu@dekeyzer.net>\n"
+"Language: en\n"
+
+#: /Aperture/CopyOfgallery.ctp:225 /Aperture/gallery.ctp:191
+#: /Aperture/price.ctp:156 /Galleries/view.ctp:191
+msgid "Simon Schmitt"
+msgstr ""
+
+#: /Aperture/CopyOfgallery.ctp:234 /Aperture/gallery.ctp:200
+#: /Aperture/price.ctp:165 /Galleries/view.ctp:200
+msgid "Non défini"
+msgstr ""
+
+#: /Aperture/CopyOfgallery.ctp:241 /Aperture/gallery.ctp:207
+#: /Aperture/map.ctp:134 /Flights/book.ctp:203 /Galleries/view.ctp:207
+msgid "Connection à Google Map en cours ..."
+msgstr ""
+
+#: /Aperture/CopyOfgallery.ctp:263 /Aperture/gallery.ctp:229
+#: /Galleries/view.ctp:229
+msgid "Administration"
+msgstr ""
+
+#: /Aperture/CopyOfgallery.ctp:263 /Aperture/gallery.ctp:229
+#: /Galleries/view.ctp:229
+msgid "Configuration de la galerie"
+msgstr ""
+
+#: /Aperture/CopyOfgallery.ctp:273 /Aperture/gallery.ctp:239
+#: /Galleries/view.ctp:239
+msgid "Mettre à jour la galerie"
+msgstr ""
+
+#: /Aperture/CopyOfgallery.ctp:275 /Aperture/gallery.ctp:241
+#: /Galleries/view.ctp:241
+msgid "{:count}"
+msgstr ""
+
+#: /Aperture/albums.ctp:3 /Galleries/admin.ctp:3
+msgid "Liste des albums Aperture"
+msgstr ""
+
+#: /Aperture/gallery-list.ctp:3
+msgid "Liste des mots clés Aperture"
+msgstr ""
+
+#: /Aperture/gallery-list.ctp:9
+msgid "Nom Aperture"
+msgstr ""
+
+#: /Aperture/gallery-list.ctp:10 /Wysiwygs/index.ctp:14
+msgid "Traduction en français"
+msgstr ""
+
+#: /Aperture/gallery-list.ctp:11 /Wysiwygs/index.ctp:15
+msgid "Traduction en néerlandais"
+msgstr ""
+
+#: /Aperture/gallery-list.ctp:12 /Wysiwygs/index.ctp:16
+msgid "Traduction en anglais"
+msgstr ""
+
+#: /Aperture/gallery-list.ctp:13
+msgid "Compteur"
+msgstr ""
+
+#: /Aperture/gallery-list.ctp:14
+msgid "Mot clé"
+msgstr ""
+
+#: /Aperture/gallery-list.ctp:15
+msgid "Homepage"
+msgstr ""
+
+#: /Aperture/map.ctp:19
+msgid "Vers la page de recherche thématique"
+msgstr ""
+
+#: /Aperture/map.ctp:32
+msgid "Recherche thématique"
+msgstr ""
+
+#: /Elements/main/footer.ctp:2
+msgid "Retour en haut"
+msgstr ""
+
+#: /Elements/main/footer.ctp:4
+msgid "Global View S.P.R.L."
+msgstr ""
+
+#: /Elements/main/footer.ctp:5
+msgid "+32472800900"
+msgstr ""
+
+#: /Elements/main/footer.ctp:5
+msgid "+32/472.800.900"
+msgstr ""
+
+#: /Elements/main/footer.ctp:6
+msgid "conditions d'utilisation"
+msgstr ""
+
+#: /Elements/main/footer.ctp:7
+msgid "Rejoignez nous sur facebook"
+msgstr ""
+
+#: /Elements/main/footer.ctp:8
+msgid "Contactez-nous par email"
+msgstr ""
+
+#: /Elements/main/footer.ctp:16
+msgid "Options d'administration"
+msgstr ""
+
+#: /Elements/main/footer.ctp:21
+msgid "Gestion des textes"
+msgstr ""
+
+#: /Elements/main/footer.ctp:26
+msgid "Gestion des traductions"
+msgstr ""
+
+#: /Elements/main/footer.ctp:31
+msgid "Ajouter une gallerie"
+msgstr ""
+
+#: /Elements/main/footer.ctp:36
+msgid "Lister les albums aperture"
+msgstr ""
+
+#: /Elements/main/footer.ctp:40
+msgid "Lister les mots clés aperture"
+msgstr ""
+
+#: /Elements/models/flight.ctp:8
+msgid "Nom du vol en français"
+msgstr ""
+
+#: /Elements/models/flight.ctp:13;28;43 /Elements/models/gallery.ctp:26;45;65
+msgid "nom"
+msgstr ""
+
+#: /Elements/models/flight.ctp:23
+msgid "Nom du vol en néerlandais"
+msgstr ""
+
+#: /Elements/models/flight.ctp:38
+msgid "Nom du vol en anglais"
+msgstr ""
+
+#: /Elements/models/flight.ctp:53;58
+msgid "placeId"
+msgstr ""
+
+#: /Elements/models/flight.ctp:68
+msgid "Description en français"
+msgstr ""
+
+#: /Elements/models/flight.ctp:80
+msgid "Description en néerlandais"
+msgstr ""
+
+#: /Elements/models/flight.ctp:92
+msgid "Description en anglais"
+msgstr ""
+
+#: /Elements/models/flight.ctp:104
+msgid "Coût de départ"
+msgstr ""
+
+#: /Elements/models/flight.ctp:110
+msgid "coût"
+msgstr ""
+
+#: /Elements/models/flight.ctp:122
+msgid "Non"
+msgstr ""
+
+#: /Elements/models/flight.ctp:122
+msgid "Oui"
+msgstr ""
+
+#: /Elements/models/flight.ctp:147 /Elements/models/gallery.ctp:158
+msgid "Confirmer"
+msgstr ""
+
+#: /Elements/models/flight.ctp:152
+msgid "Annuler"
+msgstr ""
+
+#: /Elements/models/gallery.ctp:20
+msgid "Nom de la galerie en français"
+msgstr ""
+
+#: /Elements/models/gallery.ctp:39
+msgid "Nom de la galerie en neerlandais"
+msgstr ""
+
+#: /Elements/models/gallery.ctp:59
+msgid "Nom de la galerie en anglais"
+msgstr ""
+
+#: /Elements/models/gallery.ctp:77
+msgid "Clé de recherche"
+msgstr ""
+
+#: /Elements/models/gallery.ctp:83
+msgid "p.ex. code postal"
+msgstr ""
+
+#: /Elements/models/gallery.ctp:95
+msgid "Publication"
+msgstr ""
+
+#: /Elements/models/gallery.ctp:105
+msgid "Sur la page d'accueil"
+msgstr ""
+
+#: /Elements/models/gallery.ctp:117
+msgid "Sur la page des mots clés"
+msgstr ""
+
+#: /Elements/models/gallery.ctp:128 /Galleries/add.ctp:75
+#: /Galleries/edit.ctp:75
+msgid "Icône"
+msgstr "Icon"
+
+#: /Flights/add.ctp:1
+msgid "Ajout d'un vol à la page d'accueil"
+msgstr ""
+
+#: /Flights/add.ctp:3
+msgid "Créer le vol"
+msgstr ""
+
+#: /Flights/book.ctp:130;162
+msgid "Informations à propos de la cible"
+msgstr ""
+
+#: /Flights/book.ctp:130;162
+msgid "Effacer ce repère"
+msgstr ""
+
+#: /Flights/book.ctp:193
+msgid "Reserver pour le vol \"%s\""
+msgstr ""
+
+#: /Flights/edit.ctp:1
+msgid "Edition d'un vol"
+msgstr ""
+
+#: /Flights/edit.ctp:3
+msgid "Mettre le vol à jour"
+msgstr ""
+
+#: /Galleries/add.ctp:7 /Galleries/edit.ctp:7
+msgid "Créer une gallerie"
+msgstr ""
+
+#: /Galleries/add.ctp:10 /Galleries/edit.ctp:10
+msgid "Noms de la gallerie"
+msgstr ""
+
+#: /Galleries/add.ctp:32 /Galleries/edit.ctp:32
+msgid "URLs parlantes"
+msgstr ""
+
+#: /Galleries/add.ctp:60 /Galleries/edit.ctp:60
+msgid "Requête elasticsearch"
+msgstr ""
+
+#: /Galleries/add.ctp:70 /Galleries/edit.ctp:70
+msgid "Options de la gallerie"
+msgstr ""
+
+#: /Galleries/add.ctp:92 /Galleries/edit.ctp:92
+msgid "Visible sur la page d'accueil"
+msgstr ""
+
+#: /Galleries/add.ctp:100 /Galleries/edit.ctp:100
+msgid "Considérée comme une galerie mot-clé"
+msgstr ""
+
+#: /Galleries/add.ctp:108 /Galleries/edit.ctp:108
+msgid "Gallerie publiée"
+msgstr ""
+
+#: /Galleries/add.ctp:116 /Galleries/edit.ctp:116
+msgid "Créer la gallerie"
+msgstr ""
+
+#: /Galleries/index.ctp:3
+msgid "Liste des galeries"
+msgstr ""
+
+#: /Galleries/index.ctp:12 /Layouts/home.ctp:76
+msgid "Editer"
+msgstr ""
+
+#: /Galleries/index.ctp:25 /Layouts/home.ctp:104
+msgid "Dépublier"
+msgstr ""
+
+#: /Galleries/index.ctp:25 /Layouts/home.ctp:90
+msgid "Publier"
+msgstr ""
+
+#: /Galleries/index.ctp:38 /Layouts/home.ctp:118 /Wysiwygs/index.ctp:17
+msgid "Effacer"
+msgstr ""
+
+#: /Galleries/index.ctp:50 /Layouts/home.ctp:131
+msgid "Etes vous sûr de vouloir effacer la galerie %s?"
+msgstr ""
+
+#: /Galleries/search.ctp:8
+msgid ""
+"Page {:page} sur {:pages}, {:current} résultats sur un total de {:count}, de "
+"{:start} à {:end}"
+msgstr ""
+
+#: /Helper/I18nHelper.php:25
+msgid "Traduction manquante pour la clé \"%s\"."
+msgstr ""
+
+#: /Layouts/home.ctp:151
+msgid "Ajouter un vol"
+msgstr ""
+
+#: /Pages/CopyOfhome.ctp:12
+msgid "Nos services"
+msgstr ""
+
+#: /Pages/CopyOfhome.ctp:53
+msgid "Nos prochains vols"
+msgstr ""
+
+#: /Pages/CopyOfhome.ctp:85
+msgid "Galeries à découvrir"
+msgstr ""
+
+#: /Pages/CopyOfhome.ctp:88
+msgid "Facebook"
+msgstr ""
+
+#: /Pages/CopyOfhome.ctp:89
+msgid "Twitter"
+msgstr ""
+
+#: /Pages/CopyOfhome.ctp:92
+msgid "Newsletter"
+msgstr ""
+
+#: /Pages/advanced-search.ctp:5
+msgid "Date de début"
+msgstr ""
+
+#: /Pages/advanced-search.ctp:12
+msgid "Date de fin"
+msgstr ""
+
+#: /Pages/advanced-search.ctp:18
+msgid "Rechercher"
+msgstr ""
+
+#: /Users/add.ctp:5
+msgid "Ajouter User"
+msgstr ""
+
+#: /Users/add.ctp:13 /Wysiwygs/index.ctp:10
+msgid "Ajouter"
+msgstr ""
+
+#: /Wysiwygs/add.ctp:4
+msgid "Add Wysiwyg"
+msgstr ""
+
+#: /Wysiwygs/add.ctp:15 /Wysiwygs/edit.ctp:26
+msgid "Submit"
+msgstr ""
+
+#: /Wysiwygs/add.ctp:18 /Wysiwygs/edit.ctp:29
+msgid "Actions"
+msgstr ""
+
+#: /Wysiwygs/add.ctp:21 /Wysiwygs/edit.ctp:33
+msgid "List Wysiwygs"
+msgstr ""
+
+#: /Wysiwygs/edit.ctp:4
+msgid "Edit Wysiwyg"
+msgstr ""
+
+#: /Wysiwygs/edit.ctp:32
+msgid "Delete"
+msgstr ""
+
+#: /Wysiwygs/edit.ctp:32
+msgid "Are you sure you want to delete # %s?"
+msgstr ""
+
+#: /Wysiwygs/index.ctp:3
+msgid "Traductions"
+msgstr ""
+
+#: /Wysiwygs/index.ctp:13
+msgid "Clé"
+msgstr ""
+
+#: /Wysiwygs/index.ctp:104
+msgid "<span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\"></span>"
+msgstr ""
+
+#: /Wysiwygs/index.ctp:105
+msgid "<span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span>"
+msgstr ""
+
+#: /Wysiwygs/index.ctp:105
+msgid "Effacer la traduction %s?"
+msgstr ""
+
+#: /Wysiwygs/index.ctp:113
+msgid ""
+"Page {:page} sur {:pages}, {:current} traductions sur un total de {:count}, "
+"de {:start} à {:end}"
+msgstr ""

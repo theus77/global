@@ -67,37 +67,12 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		//'persistent' => false,
-		'host' => '127.0.0.1',
+		'host' => 'localhost',
 		'login' => 'root',
 		'password' => 'root',
 		'database' => 'scotchbox',
 		'prefix' => 'gv_',
 		//'encoding' => 'utf8',
-	);
-
-	public $aperture = array(
-		'datasource' => 'Database/Sqlite',
-		'persistent' => false,
-		'database' => '/var/www/public/apdb/Library.apdb',
-		'prefix' => '',
-		'encoding' => 'utf8',
-	);
-	
-	public $apertureProperties = array(
-		'datasource' => 'Database/Sqlite',
-		'persistent' => false,
-		'database' => '/var/www/public/apdb/Properties.apdb',
-		'prefix' => '',
-		'encoding' => 'utf8',
-	);
-
-	
-	public $apertureImageProxies = array(
-		'datasource' => 'Database/Sqlite',
-		'persistent' => false,
-		'database' => '/var/www/public/apdb/ImageProxies.apdb',
-		'prefix' => '',
-		'encoding' => 'utf8',
 	);
 	
 }

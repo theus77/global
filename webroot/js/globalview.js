@@ -41,6 +41,14 @@ function vegas() {
 }
 
 
+
+$(window).load(function() {
+	$("img.lazy").show().lazyload({
+	    effect : "fadeIn",
+	    threshold : 200
+	});
+});
+
 (function($, viewport){
   var
     $win 			= $(window),

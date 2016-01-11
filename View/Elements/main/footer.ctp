@@ -28,12 +28,17 @@
 											
 						$this->Html->tag('li',
 								$this->Html->link(
+										__('Ajouter une gallerie'),
+										array('controller' => 'galleries', 'action' => 'add'))).
+											
+						$this->Html->tag('li',
+								$this->Html->link(
 										__('Lister les albums aperture'),
-										array('controller' => 'aperture', 'action' => 'albums'))).					
+										array('controller' => 'galleries', 'action' => 'library'))).					
 						$this->Html->tag('li',
 								$this->Html->link(
 										__('Lister les mots clés aperture'),
-										array('controller' => 'aperture', 'action' => 'keywords'))))
+										array('controller' => 'albums', 'action' => 'keywords'))))
 					, array('class' => 'admin-menu'));
 			echo '</div>';
 		}
@@ -54,6 +59,8 @@
 		echo $this->Html->script('bower/vegas/dist/vegas');
 		// Jicescroll
 		echo $this->Html->script('bower/jquery.nicescroll/dist/jquery.nicescroll.min');
+		// lazy loading
+		echo $this->Html->script('bower/jquery_lazyload/jquery.lazyload');
 		
     	echo $this->Html->script('bower/jquery-ui/jquery-ui');
 	    

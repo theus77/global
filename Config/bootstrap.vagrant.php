@@ -117,15 +117,33 @@ CakeLog::config('error', array(
 define('DEFAULT_LANGUAGE', 'fr');
 
 Configure::write('Config.languages', array(
-'fr' => 'Version en français',
-'nl' => 'Nederlands versie',
-'en' => 'English version'));
+	'fr' => 'Version en français',
+	'nl' => 'Nederlands versie',
+	'en' => 'English version'));
 
-CakePlugin::load('ApertureConnector', array('bootstrap' => false, 'routes' => true));
+Configure::write('Config.defaultPlace', 'CWXATQwgQWGWnFa_iN78XQ');
 
-Configure::write('aperturePath', '/Volumes/gv/global.aplibrary/');
+Configure::write('Config.apertureIndex', 'aperture');
+
+Configure::write('Config.versionModel', 'version');
+Configure::write('Config.placeModel', 'place');
 
 Configure::write('googleApiKey', 'AIzaSyDqvofVJSIZXBfqxaLw9GNHc9cOBgdMlH8');
 
-Configure::write('defaultMapPlaceId', 26);
-Configure::write('rootKeywordId', 10762);
+Configure::write('awsESHosts', ['https://search-aperture-es-aiqcbttcloqndmfiagwvbu5nfu.eu-central-1.es.amazonaws.com:443/']);
+
+Configure::write('awsESDomainName', 'aperture-es');
+
+Configure::write('aws.credentials', [
+				'version' => 'latest',
+				'region'  => 'eu-central-1',
+				'credentials' => [
+						'key'    => 'AKIAIIKRH7D4M6OJHZKQ',
+						'secret' => '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',
+				]
+		]);
+
+Configure::write('Config.cluster', [
+		'http://global.theus.be',
+// 		'http://gv.local',
+] );

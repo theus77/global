@@ -37,10 +37,16 @@ class AppController extends Controller {
 			'Paginator',
 	);
 	
+	
+	public function fixUuid(&$uuid){
+		$uuid = str_replace(' ', '+', $uuid);
+		return $uuid;
+	}
+	
 	public function beforeFilter() {
 		parent::beforeFilter();
 		
-		$this->Auth->allow('viewVersion');
+		$this->Auth->allow('viewVersion', 's3');
 		
 		if(isset($this->request->params['language'])){
 			Configure::write('Config.language', $this->request->params['language'] );
@@ -102,7 +108,7 @@ class AppController extends Controller {
 					return $this->redirect($this->request->query);
 				
 				if($success){
-					return $this->redirect(array('action' => 'index', 'language' => Configure::read('Config.language')));
+					return $this->redirect(array('action' => 'view', $model->id, 'language' => Configure::read('Config.language')));
 				}			
 			}
 		}
