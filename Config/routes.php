@@ -77,8 +77,8 @@
 // 	Router::connect( '/en/place/*', array('controller' => 'aperture', 'action' => 'place', 'language' => 'en'));
 // 	Router::connect( '/nl/plaats/*', array('controller' => 'aperture', 'action' => 'place', 'language' => 'nl'));
 	
-// 	Router::connect( '/login', array('controller' => 'users', 'action' => 'login'));
-// 	Router::connect( '/logout', array('controller' => 'users', 'action' => 'logout'));
+	Router::connect( '/login', array('controller' => 'users', 'action' => 'login'));
+	Router::connect( '/logout', array('controller' => 'users', 'action' => 'logout'));
 	
 	Router::connect( '/img/:language/:uuid/thumb.jpg', array(
 		'controller' => 'img', 
