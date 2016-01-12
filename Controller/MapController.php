@@ -9,36 +9,120 @@ class MapController extends AppController {
 			->setHosts(Configure::read('awsESHosts'))      // Set the hosts
 			->build();              // Build the client object
 	}
-	
-	
+
+
 
 	public function markers(){
-		
-		
+		$client = ClientBuilder::create()           // Instantiate a new ClientBuilder
+			->setHosts(Configure::read('awsESHosts'))      // Set the hosts
+			->build();              // Build the client object
+
+
+		$bb = [
+				"top_left" => [
+						"lat" => (float)$this->request->query['north'],
+						"lon" => (float)$this->request->query['west']
+				],
+				"bottom_right" => [
+						"lat" => (float)$this->request->query['south'],
+						"lon" => (float)$this->request->query['east']
+				]
+		];
+
+		$getImages = false;
 		if($this->request->query['zoom'] > 11){ //quartier et commune
 			$levelRange = [ 'gte' => 16 ];
+
+			if($this->request->query['zoom'] >= 14){
+				$getImages = 6;
+			}
 		}
 		else if($this->request->query['zoom'] > 9){ //commune
-			$levelRange = [ 
-					'gte' => 10,
+			$levelRange = [
+					'gte' => 16,
 					'lte' => 20,
-						
+
 			];
 		}
 		else if($this->request->query['zoom'] > 6){ //region/province
-			$levelRange = [ 
+			$levelRange = [
 					'gte' => 2,
-					'lte' => 10,
-						
+					'lte' => 14,
+
 			];
 		}
 		else {//pays
-			$levelRange = [ 
+			$levelRange = [
 					'lte' => 1,
-						
+
 			];
 		}
-		
+
+		if($getImages){
+			$aggImageQuery = '
+					{
+					    "size": 0,
+					    "aggregations" : {
+					        "zoomedInView" : {
+					            "filter" : {
+					                "geo_bounding_box" : {
+					                    "location" : '.json_encode($bb).'
+					                }
+					            },
+					            "aggregations":{
+					                "zoom1":{
+					                    "geohash_grid" : {
+					                        "field":"location",
+					                        "precision": '.json_encode($getImages).'
+					                    },
+					                "aggregations" : {
+					        	                        "icon": {
+								                          "top_hits": {
+								                            "sort": [
+								                              {
+								                                "rating": {
+								                                  "order": "desc"
+								                                }
+								                              },
+								                              {
+								                                "lastUpdateDate": {
+								                                  "order": "desc"
+								                                }
+								                              }
+								                            ],
+								                            "_source": {
+								                              "include": [
+								                                "uuid",
+									                              "location.lon",
+									                              "location.lat",
+																								"label",
+																								"name"
+								                              ]
+								                            },
+								                            "size": 1
+								                          }
+								                        }
+								                      }
+					                }
+					            }
+					        }
+					    }
+					 }
+					';
+
+			$searchQuery = [
+					'index' => 'aperture',
+					'type' => 'version',
+					'body' => $aggImageQuery
+			];
+
+			// 		echo json_encode($searchQuery['body']); exit;
+			// echo $aggImageQuery; exit;
+			$aggr = $client->search($searchQuery);
+
+		}
+
+
 		$query = '
 			{
 			  "size": 0,
@@ -58,16 +142,7 @@ class MapController extends AppController {
 			            "by_coordinate": {
 			              "filter": {
 			                "geo_bounding_box": {
-			                  "locations.location": {
-			                    "top_left": {
-			                      "lat": '.json_encode((float)$this->request->query['north']).',
-			                      "lon": '.json_encode((float)$this->request->query['west']).'
-			                    },
-			                    "bottom_right": {
-			                      "lat": '.json_encode((float)$this->request->query['south']).',
-			                      "lon": '.json_encode((float)$this->request->query['east']).'
-			                    }
-			                  }
+			                  "locations.location": '.json_encode($bb).'
 			                }
 			              },
 			              "aggs": {
@@ -106,7 +181,7 @@ class MapController extends AppController {
 			                                "uuid"
 			                              ]
 			                            },
-			                            "size": 5
+			                            "size": 1
 			                          }
 			                        }
 			                      }
@@ -120,40 +195,36 @@ class MapController extends AppController {
 			      }
 			    }
 			  }
-			}				
+			}
 			';
-		
+
 		$searchQuery = [
 			'index' => 'aperture',
 			'type' => 'version',
-			'body' => $query	
+			'body' => $query
 		];
-		
-		
-		$client = ClientBuilder::create()           // Instantiate a new ClientBuilder
-		->setHosts(Configure::read('awsESHosts'))      // Set the hosts
-		->build();              // Build the client object
-		
+
 		// 		echo json_encode($searchQuery['body']); exit;
-			
+
 		$retDoc = $client->search($searchQuery);
-		
-		
+
+
 		$this->set('markers', $retDoc['aggregations']['locations']);
-			
-		
+		$this->set('aggregated', isset($aggr)?$aggr['aggregations']['zoomedInView']:[]);
+
+
 	}
-	
+
 	public function index() {
 // 		$searchParams = [
 // 			'index' => Configure::read('Config.apertureIndex'),
 // 			'type'  => Configure::read('Config.placeModel'),
 // 			'id' => $placeUuid,
 // 		];
-	
+
 // 		$retDoc = $this->client->get($searchParams);
-		
+
 // 		var_dump($retDoc); exit;
 	}
-	
+
 }

@@ -22,7 +22,7 @@
 	  // Set CSS for the control interior
 	  var controlText = document.createElement('a');
 	  controlText.setAttribute('href', '<?php echo $this->Html->url(
-				array('controller' => 'aperture', 'action' => 'library', 'language' => Configure::read('Config.language')));?>');
+				array('controller' => 'keywords', 'action' => 'index', 'language' => Configure::read('Config.language')));?>');
 	  controlText.style.color = 'rgb(25,25,25)';
 	  controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
 	  controlText.style.fontSize = '16px';
@@ -97,10 +97,15 @@
 
 
 				 
-		  		$.getJSON( "/map/markers/language:<?php echo Configure::read('Config.language'); ?>.json", data, function(result) {
+		  		$.getJSON( "<?php echo $this->Html->url([
+		  					'language' => Configure::read('Config.language'),
+		  					'controller' => 'map',
+		  					'action' => 'markers',
+		  					'ext' => 'json'
+		  				]); ?>", data, function(result) {
 						$.each( result.markers, function( key, val ) {
-							//console.log(val);
-							var myLatlng = new google.maps.LatLng(val['lat'], val['lng']);
+// 							console.log(val);
+							var myLatlng = new google.maps.LatLng(val['lat'], val['lon']);
 							var marker = new google.maps.Marker({
 							      position: myLatlng,
 							      map: map,

@@ -1,736 +1,711 @@
 # LANGUAGE translation of CakePHP Application
 # Copyright YEAR NAME <EMAIL@ADDRESS>
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
-"Last-Translator: NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2016-01-12 22:26+0100\n"
+"Language-Team: EMAIL@ADDRESS\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: \n"
+"X-Generator: Poedit 1.8.6\n"
+"Last-Translator: Mathieu DE Keyzer <mathieu@dekeyzer.net>\n"
+"Language: nl_BE\n"
 
 #: /AppController.php:86
 msgid "The model has been created."
-msgstr ""
+msgstr "Het model is gemaakt."
 
 #: /AppController.php:98
 msgid "The %s could not be saved. Please, try again."
-msgstr ""
+msgstr "De %s kon niet worden opgeslagen. Probeer later opnieuw."
 
 #: /AppController.php:158
 msgid "The %s model has been saved"
-msgstr ""
+msgstr "Het model %s is opgeslagen"
 
 #: /AppController.php:160
 msgid "The %s translation could not be saved. Please, try again."
-msgstr ""
+msgstr "De vertaling van %s kon niet worden opgeslagen. Probeer later opnieuw."
 
 #: /AppController.php:178;214;274
 msgid "Invalid model"
-msgstr ""
+msgstr "Ongeldige model"
 
 #: /AppController.php:184;222
 msgid "The model has been saved."
-msgstr ""
+msgstr "Het model heeft gered."
 
 #: /AppController.php:190;229
 msgid "Impossible de sauver le model %s. Réessayer plus tard."
-msgstr ""
+msgstr "Kan niet opslaan het model %s. Probeer later opnieuw."
 
 #: /AppController.php:282
 msgid "The %s has been saved."
-msgstr ""
+msgstr "De %s heeft gered."
 
 #: /AppController.php:286
 msgid "The %s hasn't been saved."
-msgstr ""
+msgstr "De %s eerder is niet opgeslagen."
 
 #: /AppController.php:298
 msgid "Invalid %"
-msgstr ""
+msgstr "Ongeldige %"
 
 #: /AppController.php:316
 msgid "Invalid %s"
-msgstr ""
+msgstr "Ongeldige %s"
 
 #: /AppController.php:322
 msgid "The model has been deleted."
-msgstr ""
+msgstr "Het model is verwijderd."
 
 #: /AppController.php:324
 msgid "The model could not be deleted. Please, try again."
 msgstr ""
+"Het model kan niet verwijderd worden. Wees zo goed, probeer het opnieuw."
 
 #: /FlightsController.php:24
 msgid "Vol non-identifié"
-msgstr ""
+msgstr "Niet-geïdentificeerde vlucht"
 
 #: /GalleriesController.php:90;93
 msgid "Galerie pour la localisation \"%s\""
-msgstr ""
+msgstr "Galerie voor de locatie ”%s”"
 
 #: /GalleriesController.php:129
 msgid "Galerie pour \"%s\" et aux alentours"
-msgstr ""
+msgstr "Galerie voor ”%s” en haar omgeving"
 
 #: /GalleriesController.php:132
 msgid "Galerie pour la serie \"%s\""
-msgstr ""
+msgstr "Galerie voor de serie ”%s”"
 
 #: /GalleriesController.php:175
 msgid "Galerie pour le mot-clé \"%s\""
-msgstr ""
+msgstr "Galerie voor het sleutelwoord ”%s”"
 
 #: /GalleriesController.php:299
 msgid "Résultat de la recherche pour \"%s\""
-msgstr ""
+msgstr "Resultaten van het onderzoek voor ”%s”"
 
 #: /UsersController.php:19;62
 msgid "User invalide"
-msgstr ""
+msgstr "Ongeldige naam"
 
 #: /UsersController.php:28;43
 msgid "L'user a été sauvegardé"
-msgstr ""
+msgstr "Gebruiker die het is opgeslagen"
 
 #: /UsersController.php:31;46
 msgid "L'user n'a pas été sauvegardé. Merci de réessayer."
-msgstr ""
+msgstr "Gebruiker die het nog niet is opgeslagen. Gelieve opnieuw te proberen."
 
 #: /UsersController.php:39
 msgid "User Invalide"
-msgstr ""
+msgstr "Ongeldige gebruiker"
 
 #: /UsersController.php:65
 msgid "User supprimé"
-msgstr ""
+msgstr "Gebruiker verwijderd"
 
 #: /UsersController.php:68
 msgid "L'user n'a pas été supprimé"
-msgstr ""
+msgstr "Gebruiker die het niet is verwijderd"
 
 #: /UsersController.php:80
 msgid "Nom d'user ou mot de passe invalide, réessayer"
-msgstr ""
+msgstr "Naam van gebruiker of ongeldig wachtwoord, opnieuw proberen"
 
 #: /WysiwygsController.php:52;61;108
 msgid "The wysiwyg has been saved"
-msgstr ""
+msgstr "De wysiwyg is opgeslagen"
 
 #: /WysiwygsController.php:63;69;110;119
 msgid "The wysiwyg could not be saved. Please, try again."
 msgstr ""
+"De wysiwyg kan niet worden opgeslagen. Wees zo goed, probeer het opnieuw."
 
 #: /WysiwygsController.php:94;140
 msgid "Invalid wysiwyg"
-msgstr ""
+msgstr "Ongeldige wysiwyg"
 
 #: /WysiwygsController.php:99
 msgid "The wysiwyg has been saved."
-msgstr ""
+msgstr "De wysiwyg heeft gered."
 
 #: /WysiwygsController.php:144
 msgid "The wysiwyg has been deleted."
-msgstr ""
+msgstr "De wysiwyg is verwijderd."
 
 #: /WysiwygsController.php:146
 msgid "The wysiwyg could not be deleted. Please, try again."
 msgstr ""
+"De wysiwyg kon niet worden verwijderd. Wees zo goed, probeer het opnieuw."
 
 #: /WysiwygsController.php:172
 msgid "Impossible de créer une traduction pour la clé %s."
-msgstr ""
+msgstr "Een vertaling voor de toets %s niet kan maken."
 
 #: /WysiwygsController.php:184
 msgid "Requête incomplète."
-msgstr ""
+msgstr "Onvolledige query."
 
-#: /Aperture/CopyOfgallery.ctp:225
-#: /Aperture/gallery.ctp:191
-#: /Aperture/price.ctp:156
-#: /Galleries/view.ctp:243
-#: /Layouts/default.ctp:9
+#: /Aperture/CopyOfgallery.ctp:225 /Aperture/gallery.ctp:191
+#: /Aperture/price.ctp:156 /Galleries/view.ctp:243 /Layouts/default.ctp:9
 #: /Layouts/home.ctp:9
 msgid "Simon Schmitt"
-msgstr ""
+msgstr "Simon Schmitt"
 
-#: /Aperture/CopyOfgallery.ctp:234
-#: /Aperture/gallery.ctp:200
-#: /Aperture/price.ctp:165
-#: /Galleries/view.ctp:252
+#: /Aperture/CopyOfgallery.ctp:234 /Aperture/gallery.ctp:200
+#: /Aperture/price.ctp:165 /Galleries/view.ctp:252
 msgid "Non défini"
-msgstr ""
+msgstr "Niet ingesteld"
 
-#: /Aperture/CopyOfgallery.ctp:241
-#: /Aperture/gallery.ctp:207
-#: /Aperture/map.ctp:134
-#: /Flights/book.ctp:203
-#: /Galleries/view.ctp:259
+#: /Aperture/CopyOfgallery.ctp:241 /Aperture/gallery.ctp:207
+#: /Aperture/map.ctp:134 /Flights/book.ctp:203 /Galleries/view.ctp:259
 #: /Map/index.ctp:139
 msgid "Connection à Google Map en cours ..."
-msgstr ""
+msgstr "Verbinding met Google kaart in vooruitgang…"
 
-#: /Aperture/CopyOfgallery.ctp:263
-#: /Aperture/gallery.ctp:229
+#: /Aperture/CopyOfgallery.ctp:263 /Aperture/gallery.ctp:229
 msgid "Administration"
-msgstr ""
+msgstr "Administratie"
 
-#: /Aperture/CopyOfgallery.ctp:263
-#: /Aperture/gallery.ctp:229
+#: /Aperture/CopyOfgallery.ctp:263 /Aperture/gallery.ctp:229
 msgid "Configuration de la galerie"
-msgstr ""
+msgstr "Configuratie van de galerij"
 
-#: /Aperture/CopyOfgallery.ctp:273
-#: /Aperture/gallery.ctp:239
+#: /Aperture/CopyOfgallery.ctp:273 /Aperture/gallery.ctp:239
 msgid "Mettre à jour la galerie"
-msgstr ""
+msgstr "Bijwerken van de galerij"
 
-#: /Aperture/CopyOfgallery.ctp:275
-#: /Aperture/gallery.ctp:241
+#: /Aperture/CopyOfgallery.ctp:275 /Aperture/gallery.ctp:241
 msgid "{:count}"
-msgstr ""
+msgstr "{:count}"
 
-#: /Aperture/albums.ctp:3
-#: /Galleries/admin.ctp:3
+#: /Aperture/albums.ctp:3 /Galleries/admin.ctp:3
 msgid "Liste des albums Aperture"
-msgstr ""
+msgstr "Lijst van Aperture albums"
 
 #: /Aperture/gallery-list.ctp:3
 msgid "Liste des mots clés Aperture"
-msgstr ""
+msgstr "Lijst van Aperture sleutelwoorden"
 
 #: /Aperture/gallery-list.ctp:9
 msgid "Nom Aperture"
-msgstr ""
+msgstr "Aperture naam"
 
-#: /Aperture/gallery-list.ctp:10
-#: /Wysiwygs/index.ctp:14
+#: /Aperture/gallery-list.ctp:10 /Wysiwygs/index.ctp:14
 msgid "Traduction en français"
-msgstr ""
+msgstr "Vertaling in het Frans"
 
-#: /Aperture/gallery-list.ctp:11
-#: /Wysiwygs/index.ctp:15
+#: /Aperture/gallery-list.ctp:11 /Wysiwygs/index.ctp:15
 msgid "Traduction en néerlandais"
-msgstr ""
+msgstr "Vertaling in het Nederlands"
 
-#: /Aperture/gallery-list.ctp:12
-#: /Wysiwygs/index.ctp:16
+#: /Aperture/gallery-list.ctp:12 /Wysiwygs/index.ctp:16
 msgid "Traduction en anglais"
-msgstr ""
+msgstr "Vertaling in het Frans"
 
 #: /Aperture/gallery-list.ctp:13
 msgid "Compteur"
-msgstr ""
+msgstr "Teller"
 
 #: /Aperture/gallery-list.ctp:14
 msgid "Mot clé"
-msgstr ""
+msgstr "Sleutelwoord"
 
 #: /Aperture/gallery-list.ctp:15
 msgid "Homepage"
-msgstr ""
+msgstr "Homepage"
 
-#: /Aperture/map.ctp:19
-#: /Map/index.ctp:19
+#: /Aperture/map.ctp:19 /Map/index.ctp:19
 msgid "Vers la page de recherche thématique"
-msgstr ""
+msgstr "Naar de thematische zoekpagina"
 
-#: /Aperture/map.ctp:32
-#: /Elements/searchs.ctp:34
-#: /Map/index.ctp:32
+#: /Aperture/map.ctp:32 /Elements/searchs.ctp:34 /Map/index.ctp:32
 msgid "Recherche thématique"
-msgstr ""
+msgstr "Thematische onderzoek"
 
 #: /Elements/searchs.ctp:4
 msgid "Recherche géographique"
-msgstr ""
+msgstr "Geografische onderzoek"
 
-#: /Elements/searchs.ctp:26
-#: /Elements/main/nav.ctp:118
+#: /Elements/searchs.ctp:26 /Elements/main/nav.ctp:118
 msgid "Recherche rapide"
-msgstr ""
+msgstr "Snel zoeken"
 
 #: /Elements/main/footer.ctp:2
 msgid "Retour en haut"
-msgstr ""
+msgstr "Terug naar boven"
 
 #: /Elements/main/footer.ctp:4
 msgid "Global View S.P.R.L."
-msgstr ""
+msgstr "Global View S.P.R.L."
 
 #: /Elements/main/footer.ctp:5
 msgid "+32472800900"
-msgstr ""
+msgstr "+ 32472800900"
 
 #: /Elements/main/footer.ctp:5
 msgid "+32/472.800.900"
-msgstr ""
+msgstr "+32/472.800.900"
 
 #: /Elements/main/footer.ctp:6
 msgid "conditions d'utilisation"
-msgstr ""
+msgstr "gebruiksvoorwaarden"
 
 #: /Elements/main/footer.ctp:7
 msgid "Rejoignez nous sur facebook"
-msgstr ""
+msgstr "Join us op facebook"
 
 #: /Elements/main/footer.ctp:8
 msgid "Contactez-nous par email"
-msgstr ""
+msgstr "Neem contact met ons op per e-mail"
 
 #: /Elements/main/footer.ctp:16
 msgid "Options d'administration"
-msgstr ""
+msgstr "Opties voor sitebeheer"
 
 #: /Elements/main/footer.ctp:21
 msgid "Gestion des textes"
-msgstr ""
+msgstr "Beheer van teksten"
 
 #: /Elements/main/footer.ctp:26
 msgid "Gestion des traductions"
-msgstr ""
+msgstr "Vertaalbeheer"
 
 #: /Elements/main/footer.ctp:31
 msgid "Ajouter une gallerie"
-msgstr ""
+msgstr "Een galerie toevoegen"
 
 #: /Elements/main/footer.ctp:36
 msgid "Lister les albums aperture"
-msgstr ""
+msgstr "Lister Aperture albums"
 
 #: /Elements/main/footer.ctp:40
 msgid "Lister les mots clés aperture"
-msgstr ""
+msgstr "Lijst van Aperture sleutelwoorden"
 
 #: /Elements/main/nav.ctp:14
 msgid "Retour à la page d'accueil"
-msgstr ""
+msgstr "Terug naar de homepage"
 
 #: /Elements/main/nav.ctp:43;45
 msgid "Services"
-msgstr ""
+msgstr "Diensten"
 
 #: /Elements/main/nav.ctp:52
 msgid "Techniques"
-msgstr ""
+msgstr "Technische"
 
 #: /Elements/main/nav.ctp:59
 msgid "Prix"
-msgstr ""
+msgstr "Prijs"
 
 #: /Elements/main/nav.ctp:69
 msgid "Librairie"
-msgstr ""
+msgstr "Bibliotheek"
 
 #: /Elements/main/nav.ctp:73
 msgid "Carte"
-msgstr ""
+msgstr "Kaart"
 
 #: /Elements/main/nav.ctp:77
 msgid "Vols"
-msgstr ""
+msgstr "Vluchten"
 
 #: /Elements/main/nav.ctp:84
 msgid "Contact"
-msgstr ""
+msgstr "Contact"
 
 #: /Elements/models/flight.ctp:8
 msgid "Nom du vol en français"
-msgstr ""
+msgstr "Naam van vlucht in Frans"
 
-#: /Elements/models/flight.ctp:13;28;43
-#: /Elements/models/gallery.ctp:26;45;65
+#: /Elements/models/flight.ctp:13;28;43 /Elements/models/gallery.ctp:26;45;65
 msgid "nom"
-msgstr ""
+msgstr "naam"
 
 #: /Elements/models/flight.ctp:23
 msgid "Nom du vol en néerlandais"
-msgstr ""
+msgstr "Naam van de vlucht in het Nederlands"
 
 #: /Elements/models/flight.ctp:38
 msgid "Nom du vol en anglais"
-msgstr ""
+msgstr "Naam van vlucht in het Engels"
 
 #: /Elements/models/flight.ctp:53;58
 msgid "placeId"
-msgstr ""
+msgstr "placeId"
 
 #: /Elements/models/flight.ctp:68
 msgid "Description en français"
-msgstr ""
+msgstr "Beschrijving in het Frans"
 
 #: /Elements/models/flight.ctp:80
 msgid "Description en néerlandais"
-msgstr ""
+msgstr "Beschrijving in het Nederlands"
 
 #: /Elements/models/flight.ctp:92
 msgid "Description en anglais"
-msgstr ""
+msgstr "Beschrijving in het Engels"
 
 #: /Elements/models/flight.ctp:104
 msgid "Coût de départ"
-msgstr ""
+msgstr "Kosten van het starten"
 
 #: /Elements/models/flight.ctp:110
 msgid "coût"
-msgstr ""
+msgstr "kosten;"
 
 #: /Elements/models/flight.ctp:122
 msgid "Non"
-msgstr ""
+msgstr "Nee"
 
 #: /Elements/models/flight.ctp:122
 msgid "Oui"
-msgstr ""
+msgstr "Ja"
 
-#: /Elements/models/flight.ctp:147
-#: /Elements/models/gallery.ctp:158
+#: /Elements/models/flight.ctp:147 /Elements/models/gallery.ctp:158
 msgid "Confirmer"
-msgstr ""
+msgstr "Bevestigen"
 
 #: /Elements/models/flight.ctp:152
 msgid "Annuler"
-msgstr ""
+msgstr "Annuleren"
 
 #: /Elements/models/gallery.ctp:20
 msgid "Nom de la galerie en français"
-msgstr ""
+msgstr "Naam van de galerie in het Frans"
 
 #: /Elements/models/gallery.ctp:39
 msgid "Nom de la galerie en neerlandais"
-msgstr ""
+msgstr "Naam van de galerie in het Nederlands"
 
 #: /Elements/models/gallery.ctp:59
 msgid "Nom de la galerie en anglais"
-msgstr ""
+msgstr "Naam van de galerie in het Engels"
 
 #: /Elements/models/gallery.ctp:77
 msgid "Clé de recherche"
-msgstr ""
+msgstr "Zoekbegrip"
 
 #: /Elements/models/gallery.ctp:83
 msgid "p.ex. code postal"
-msgstr ""
+msgstr "bijvoorbeeld postecode"
 
 #: /Elements/models/gallery.ctp:95
 msgid "Publication"
-msgstr ""
+msgstr "Publicatie"
 
 #: /Elements/models/gallery.ctp:105
 msgid "Sur la page d'accueil"
-msgstr ""
+msgstr "Op de home page"
 
 #: /Elements/models/gallery.ctp:117
 msgid "Sur la page des mots clés"
-msgstr ""
+msgstr "Op de sleutelwoorden pagina"
 
-#: /Elements/models/gallery.ctp:128
-#: /Galleries/add.ctp:75
+#: /Elements/models/gallery.ctp:128 /Galleries/add.ctp:75
 #: /Galleries/edit.ctp:75
 msgid "Icône"
-msgstr ""
+msgstr "Icoon"
 
 #: /Flights/add.ctp:1
 msgid "Ajout d'un vol à la page d'accueil"
-msgstr ""
+msgstr "Toevoeging van een vlucht naar de home page"
 
 #: /Flights/add.ctp:3
 msgid "Créer le vol"
-msgstr ""
+msgstr "Vlucht maken"
 
 #: /Flights/book.ctp:130;162
 msgid "Informations à propos de la cible"
-msgstr ""
+msgstr "Informatie over het doel"
 
 #: /Flights/book.ctp:130;162
 msgid "Effacer ce repère"
-msgstr ""
+msgstr "Wissen van dit merk"
 
 #: /Flights/book.ctp:193
 msgid "Reserver pour le vol \"%s\""
-msgstr ""
+msgstr "Boek voor vlucht ”%s”"
 
 #: /Flights/edit.ctp:1
 msgid "Edition d'un vol"
-msgstr ""
+msgstr "Editie van een vlucht"
 
 #: /Flights/edit.ctp:3
 msgid "Mettre le vol à jour"
-msgstr ""
+msgstr "Bijwerken van de vlucht"
 
-#: /Galleries/add.ctp:7
-#: /Galleries/edit.ctp:7
+#: /Galleries/add.ctp:7 /Galleries/edit.ctp:7
 msgid "Créer une gallerie"
-msgstr ""
+msgstr "Een galerie maken"
 
-#: /Galleries/add.ctp:10
-#: /Galleries/edit.ctp:10
+#: /Galleries/add.ctp:10 /Galleries/edit.ctp:10
 msgid "Noms de la gallerie"
-msgstr ""
+msgstr "Naam van de galerie"
 
-#: /Galleries/add.ctp:32
-#: /Galleries/edit.ctp:32
+#: /Galleries/add.ctp:32 /Galleries/edit.ctp:32
 msgid "URLs parlantes"
-msgstr ""
+msgstr "Sprekende url"
 
-#: /Galleries/add.ctp:60
-#: /Galleries/edit.ctp:60
+#: /Galleries/add.ctp:60 /Galleries/edit.ctp:60
 msgid "Requête elasticsearch"
-msgstr ""
+msgstr "Elasticsearch query"
 
-#: /Galleries/add.ctp:70
-#: /Galleries/edit.ctp:70
+#: /Galleries/add.ctp:70 /Galleries/edit.ctp:70
 msgid "Options de la gallerie"
-msgstr ""
+msgstr "Opties voor galerie"
 
-#: /Galleries/add.ctp:92
-#: /Galleries/edit.ctp:92
+#: /Galleries/add.ctp:92 /Galleries/edit.ctp:92
 msgid "Visible sur la page d'accueil"
-msgstr ""
+msgstr "Zichtbaar op de home page"
 
-#: /Galleries/add.ctp:100
-#: /Galleries/edit.ctp:100
+#: /Galleries/add.ctp:100 /Galleries/edit.ctp:100
 msgid "Considérée comme une galerie mot-clé"
-msgstr ""
+msgstr "Beschouwd als een sleutelword Gallery"
 
-#: /Galleries/add.ctp:108
-#: /Galleries/edit.ctp:108
+#: /Galleries/add.ctp:108 /Galleries/edit.ctp:108
 msgid "Gallerie publiée"
-msgstr ""
+msgstr "Galerie gepubliceerd"
 
-#: /Galleries/add.ctp:116
-#: /Galleries/edit.ctp:116
+#: /Galleries/add.ctp:116 /Galleries/edit.ctp:116
 msgid "Créer la gallerie"
-msgstr ""
+msgstr "Galerie maken"
 
 #: /Galleries/empty.ctp:3
 msgid "Pas de résultat pour cette recherche"
-msgstr ""
+msgstr "Geen resultaten voor deze onderzoek"
 
 #: /Galleries/index.ctp:3
 msgid "Liste des galeries"
-msgstr ""
+msgstr "Lijst van galerijen"
 
-#: /Galleries/index.ctp:12
-#: /Layouts/home.ctp:76
+#: /Galleries/index.ctp:12 /Layouts/home.ctp:76
 msgid "Editer"
-msgstr ""
+msgstr "Bewerken"
 
-#: /Galleries/index.ctp:25
-#: /Layouts/home.ctp:104
+#: /Galleries/index.ctp:25 /Layouts/home.ctp:104
 msgid "Dépublier"
-msgstr ""
+msgstr "Publicatie ongedaan maken"
 
-#: /Galleries/index.ctp:25
-#: /Layouts/home.ctp:90
+#: /Galleries/index.ctp:25 /Layouts/home.ctp:90
 msgid "Publier"
-msgstr ""
+msgstr "Publier"
 
-#: /Galleries/index.ctp:38
-#: /Layouts/home.ctp:118
-#: /Wysiwygs/index.ctp:17
+#: /Galleries/index.ctp:38 /Layouts/home.ctp:118 /Wysiwygs/index.ctp:17
 msgid "Effacer"
-msgstr ""
+msgstr "Verwijderen"
 
-#: /Galleries/index.ctp:50
-#: /Layouts/home.ctp:131
+#: /Galleries/index.ctp:50 /Layouts/home.ctp:131
 msgid "Etes vous sûr de vouloir effacer la galerie %s?"
-msgstr ""
+msgstr "Weet je zeker dat je de galerie %s verwijderen"
 
 #: /Galleries/search.ctp:8
-msgid "Page {:page} sur {:pages}, {:current} résultats sur un total de {:count}, de {:start} à {:end}"
+msgid ""
+"Page {:page} sur {:pages}, {:current} résultats sur un total de {:count}, de "
+"{:start} à {:end}"
 msgstr ""
+"Pagina {:page} op {:pages}, {:current} resultaten uit een totaal van {:"
+"count}, naar {:start} om {:end}"
 
 #: /Galleries/view.ctp:19
 msgid "%s de %s résultats"
-msgstr ""
+msgstr "%s van %s resultaten"
 
 #: /Galleries/view.ctp:198
 msgid "Mots clés"
-msgstr ""
+msgstr "Sleutelwoorden"
 
 #: /Galleries/view.ctp:220
 msgid "Emplacements"
-msgstr ""
+msgstr "Locaties"
 
 #: /Galleries/view.ctp:22
 msgid "1 résultat"
 msgid_plural "%s résultats"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1 resultaat"
+msgstr[1] "%s resultaten"
 
 #: /Helper/I18nHelper.php:25
 msgid "Traduction manquante pour la clé \"%s\"."
-msgstr ""
+msgstr "Ontbrekende vertaling voor ”%s” sleutel."
 
 #: /Keywords/index.ctp:8
 msgid "Liste des mots clés"
-msgstr ""
+msgstr "Lijst van sleutelwoorden"
 
-#: /Layouts/default.ctp:8
-#: /Layouts/home.ctp:8
-msgid "Site web GlobalView.be; photographies aériennes et reportages aériens tridiemsionnels et multi-angle sur-mesure. Accès à la photothèque de plusieurs millions de clichés en Belgique et au Grand Duché du Luxembourg et planning des prochains vols."
+#: /Layouts/default.ctp:8 /Layouts/home.ctp:8
+msgid ""
+"Site web GlobalView.be; photographies aériennes et reportages aériens "
+"tridiemsionnels et multi-angle sur-mesure. Accès à la photothèque de "
+"plusieurs millions de clichés en Belgique et au Grand Duché du Luxembourg et "
+"planning des prochains vols."
 msgstr ""
+"Website GlobalView.be; luchtfoto’s en rapporten air tridiemsionnels en multi "
+"hoek op maat. Toegang tot de bibliotheek van de foto van miljoenen opnamen "
+"in België en het Groothertogdom Luxemburg en planning van de volgende "
+"vluchten."
 
 #: /Layouts/default.ctp:13
 msgid "GlobalView"
-msgstr ""
+msgstr "GlobalView"
 
 #: /Layouts/home.ctp:13
 msgid "Bienvenu, GlobalView reportage aérien sur-mesure"
-msgstr ""
+msgstr "Welkom, GlobalView aangepaste luchtfoto reportage"
 
-#: /Layouts/home.ctp:31
-#: /Pages/CopyOfhome.ctp:53
+#: /Layouts/home.ctp:31 /Pages/CopyOfhome.ctp:53
 msgid "Nos prochains vols"
-msgstr ""
+msgstr "Onze volgende vluchten"
 
 #: /Layouts/home.ctp:49
 msgid "Ce vol déjà à partir de %s"
-msgstr ""
+msgstr "Deze vlucht al vanaf %s"
 
 #: /Layouts/home.ctp:51
 msgid "EUR"
-msgstr ""
+msgstr "EUR"
 
 #: /Layouts/home.ctp:151
 msgid "Ajouter un vol"
-msgstr ""
+msgstr "Toevoegen van een vlucht"
 
 #: /Layouts/home.ctp:180
 msgid "Comment parcourir notre photothèque"
-msgstr ""
+msgstr "Hoe om te bladeren onze fotogalerij"
 
 #: /Layouts/home.ctp:194
 msgid "Notre selection de galeries"
-msgstr ""
+msgstr "Onze selectie van galerijen"
 
 #: /Map/json/markers.ctp:44
 msgid "%s et alentour"
-msgstr ""
+msgstr "%s en het omliggende gebied"
 
-#: /Pages/CopyOfhome.ctp:12
-#: /Pages/our-services.ctp:34
+#: /Pages/CopyOfhome.ctp:12 /Pages/our-services.ctp:34
 msgid "Nos services"
-msgstr ""
+msgstr "Onze diensten"
 
 #: /Pages/CopyOfhome.ctp:85
 msgid "Galeries à découvrir"
-msgstr ""
+msgstr "Galerijen te ontdekken"
 
 #: /Pages/CopyOfhome.ctp:88
 msgid "Facebook"
-msgstr ""
+msgstr "Facebook"
 
 #: /Pages/CopyOfhome.ctp:89
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: /Pages/CopyOfhome.ctp:92
 msgid "Newsletter"
-msgstr ""
+msgstr "Nieuwsbrief"
 
 #: /Pages/advanced-search.ctp:5
 msgid "Date de début"
-msgstr ""
+msgstr "Begindatum"
 
 #: /Pages/advanced-search.ctp:12
 msgid "Date de fin"
-msgstr ""
+msgstr "Einddatum"
 
 #: /Pages/advanced-search.ctp:18
 msgid "Rechercher"
-msgstr ""
+msgstr "Zoeken"
 
 #: /Pages/our-services.ctp:53
 msgid "Les tarifs"
-msgstr ""
+msgstr "Tarieven"
 
 #: /Pages/our-services.ctp:72
 msgid "Contactez-nous"
-msgstr ""
+msgstr "Contacteer ons"
 
 #: /Users/add.ctp:5
 msgid "Ajouter User"
-msgstr ""
+msgstr "Gebruiker toevoegen"
 
-#: /Users/add.ctp:13
-#: /Wysiwygs/index.ctp:10
+#: /Users/add.ctp:13 /Wysiwygs/index.ctp:10
 msgid "Ajouter"
-msgstr ""
+msgstr "Toevoegen"
 
 #: /Users/login.ctp:3
 msgid "Identifiez-vous"
-msgstr ""
+msgstr "Identificeer uzelf"
 
 #: /Users/login.ctp:12
 msgid "Identifiant"
-msgstr ""
+msgstr "Gebruikersnaam"
 
 #: /Users/login.ctp:17
 msgid "Mot de passe"
-msgstr ""
+msgstr "Wachtwoord"
 
 #: /Users/login.ctp:22
 msgid "S'identifier"
-msgstr ""
+msgstr "Inloggen"
 
 #: /Wysiwygs/add.ctp:4
 msgid "Add Wysiwyg"
-msgstr ""
+msgstr "Toevoegen Wysiwyg"
 
-#: /Wysiwygs/add.ctp:15
-#: /Wysiwygs/edit.ctp:26
+#: /Wysiwygs/add.ctp:15 /Wysiwygs/edit.ctp:26
 msgid "Submit"
-msgstr ""
+msgstr "Voorleggen"
 
-#: /Wysiwygs/add.ctp:18
-#: /Wysiwygs/edit.ctp:29
+#: /Wysiwygs/add.ctp:18 /Wysiwygs/edit.ctp:29
 msgid "Actions"
-msgstr ""
+msgstr "Acties"
 
-#: /Wysiwygs/add.ctp:21
-#: /Wysiwygs/edit.ctp:33
+#: /Wysiwygs/add.ctp:21 /Wysiwygs/edit.ctp:33
 msgid "List Wysiwygs"
-msgstr ""
+msgstr "Lijst Wysiwygs"
 
 #: /Wysiwygs/edit.ctp:4
 msgid "Edit Wysiwyg"
-msgstr ""
+msgstr "Wysiwyg bewerken"
 
 #: /Wysiwygs/edit.ctp:32
 msgid "Delete"
-msgstr ""
+msgstr "Verwijderen"
 
 #: /Wysiwygs/edit.ctp:32
 msgid "Are you sure you want to delete # %s?"
-msgstr ""
+msgstr "Weet je zeker dat je wilt verwijderen # %s?"
 
 #: /Wysiwygs/index.ctp:3
 msgid "Traductions"
-msgstr ""
+msgstr "Vertalingen"
 
 #: /Wysiwygs/index.ctp:13
 msgid "Clé"
-msgstr ""
+msgstr "Sleutel"
 
 #: /Wysiwygs/index.ctp:104
 msgid "<span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\"></span>"
-msgstr ""
+msgstr "<span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\"></span>"
 
 #: /Wysiwygs/index.ctp:105
 msgid "<span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span>"
-msgstr ""
+msgstr "<span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span>"
 
 #: /Wysiwygs/index.ctp:105
 msgid "Effacer la traduction %s?"
-msgstr ""
+msgstr "Verwijderen van de %s vertaling?"
 
 #: /Wysiwygs/index.ctp:113
-msgid "Page {:page} sur {:pages}, {:current} traductions sur un total de {:count}, de {:start} à {:end}"
+msgid ""
+"Page {:page} sur {:pages}, {:current} traductions sur un total de {:count}, "
+"de {:start} à {:end}"
 msgstr ""
-
+"Pagina {:page} op {:pages}, {:current} vertalingen uit een totaal van {:"
+"count}, naar {:start} om {:end}"

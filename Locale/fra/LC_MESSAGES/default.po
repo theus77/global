@@ -1,21 +1,23 @@
 # LANGUAGE translation of CakePHP Application
 # Copyright YEAR NAME <EMAIL@ADDRESS>
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
-"Last-Translator: NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2016-01-12 22:27+0100\n"
+"Language-Team: EMAIL@ADDRESS\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"POT-Creation-Date: \n"
+"X-Generator: Poedit 1.8.6\n"
+"Last-Translator: Mathieu DE Keyzer <mathieu@dekeyzer.net>\n"
+"Language: fr\n"
 
 #: /AppController.php:86
 msgid "The model has been created."
-msgstr ""
+msgstr "Le model a été créé"
 
 #: /AppController.php:98
 msgid "The %s could not be saved. Please, try again."
@@ -149,53 +151,40 @@ msgstr ""
 msgid "Requête incomplète."
 msgstr ""
 
-#: /Aperture/CopyOfgallery.ctp:225
-#: /Aperture/gallery.ctp:191
-#: /Aperture/price.ctp:156
-#: /Galleries/view.ctp:243
-#: /Layouts/default.ctp:9
+#: /Aperture/CopyOfgallery.ctp:225 /Aperture/gallery.ctp:191
+#: /Aperture/price.ctp:156 /Galleries/view.ctp:243 /Layouts/default.ctp:9
 #: /Layouts/home.ctp:9
 msgid "Simon Schmitt"
 msgstr ""
 
-#: /Aperture/CopyOfgallery.ctp:234
-#: /Aperture/gallery.ctp:200
-#: /Aperture/price.ctp:165
-#: /Galleries/view.ctp:252
+#: /Aperture/CopyOfgallery.ctp:234 /Aperture/gallery.ctp:200
+#: /Aperture/price.ctp:165 /Galleries/view.ctp:252
 msgid "Non défini"
 msgstr ""
 
-#: /Aperture/CopyOfgallery.ctp:241
-#: /Aperture/gallery.ctp:207
-#: /Aperture/map.ctp:134
-#: /Flights/book.ctp:203
-#: /Galleries/view.ctp:259
+#: /Aperture/CopyOfgallery.ctp:241 /Aperture/gallery.ctp:207
+#: /Aperture/map.ctp:134 /Flights/book.ctp:203 /Galleries/view.ctp:259
 #: /Map/index.ctp:139
 msgid "Connection à Google Map en cours ..."
 msgstr ""
 
-#: /Aperture/CopyOfgallery.ctp:263
-#: /Aperture/gallery.ctp:229
+#: /Aperture/CopyOfgallery.ctp:263 /Aperture/gallery.ctp:229
 msgid "Administration"
 msgstr ""
 
-#: /Aperture/CopyOfgallery.ctp:263
-#: /Aperture/gallery.ctp:229
+#: /Aperture/CopyOfgallery.ctp:263 /Aperture/gallery.ctp:229
 msgid "Configuration de la galerie"
 msgstr ""
 
-#: /Aperture/CopyOfgallery.ctp:273
-#: /Aperture/gallery.ctp:239
+#: /Aperture/CopyOfgallery.ctp:273 /Aperture/gallery.ctp:239
 msgid "Mettre à jour la galerie"
 msgstr ""
 
-#: /Aperture/CopyOfgallery.ctp:275
-#: /Aperture/gallery.ctp:241
+#: /Aperture/CopyOfgallery.ctp:275 /Aperture/gallery.ctp:241
 msgid "{:count}"
 msgstr ""
 
-#: /Aperture/albums.ctp:3
-#: /Galleries/admin.ctp:3
+#: /Aperture/albums.ctp:3 /Galleries/admin.ctp:3
 msgid "Liste des albums Aperture"
 msgstr ""
 
@@ -207,18 +196,15 @@ msgstr ""
 msgid "Nom Aperture"
 msgstr ""
 
-#: /Aperture/gallery-list.ctp:10
-#: /Wysiwygs/index.ctp:14
+#: /Aperture/gallery-list.ctp:10 /Wysiwygs/index.ctp:14
 msgid "Traduction en français"
 msgstr ""
 
-#: /Aperture/gallery-list.ctp:11
-#: /Wysiwygs/index.ctp:15
+#: /Aperture/gallery-list.ctp:11 /Wysiwygs/index.ctp:15
 msgid "Traduction en néerlandais"
 msgstr ""
 
-#: /Aperture/gallery-list.ctp:12
-#: /Wysiwygs/index.ctp:16
+#: /Aperture/gallery-list.ctp:12 /Wysiwygs/index.ctp:16
 msgid "Traduction en anglais"
 msgstr ""
 
@@ -234,14 +220,11 @@ msgstr ""
 msgid "Homepage"
 msgstr ""
 
-#: /Aperture/map.ctp:19
-#: /Map/index.ctp:19
+#: /Aperture/map.ctp:19 /Map/index.ctp:19
 msgid "Vers la page de recherche thématique"
 msgstr ""
 
-#: /Aperture/map.ctp:32
-#: /Elements/searchs.ctp:34
-#: /Map/index.ctp:32
+#: /Aperture/map.ctp:32 /Elements/searchs.ctp:34 /Map/index.ctp:32
 msgid "Recherche thématique"
 msgstr ""
 
@@ -249,8 +232,7 @@ msgstr ""
 msgid "Recherche géographique"
 msgstr ""
 
-#: /Elements/searchs.ctp:26
-#: /Elements/main/nav.ctp:118
+#: /Elements/searchs.ctp:26 /Elements/main/nav.ctp:118
 msgid "Recherche rapide"
 msgstr ""
 
@@ -342,8 +324,7 @@ msgstr ""
 msgid "Nom du vol en français"
 msgstr ""
 
-#: /Elements/models/flight.ctp:13;28;43
-#: /Elements/models/gallery.ctp:26;45;65
+#: /Elements/models/flight.ctp:13;28;43 /Elements/models/gallery.ctp:26;45;65
 msgid "nom"
 msgstr ""
 
@@ -387,8 +368,7 @@ msgstr ""
 msgid "Oui"
 msgstr ""
 
-#: /Elements/models/flight.ctp:147
-#: /Elements/models/gallery.ctp:158
+#: /Elements/models/flight.ctp:147 /Elements/models/gallery.ctp:158
 msgid "Confirmer"
 msgstr ""
 
@@ -428,8 +408,7 @@ msgstr ""
 msgid "Sur la page des mots clés"
 msgstr ""
 
-#: /Elements/models/gallery.ctp:128
-#: /Galleries/add.ctp:75
+#: /Elements/models/gallery.ctp:128 /Galleries/add.ctp:75
 #: /Galleries/edit.ctp:75
 msgid "Icône"
 msgstr ""
@@ -462,48 +441,39 @@ msgstr ""
 msgid "Mettre le vol à jour"
 msgstr ""
 
-#: /Galleries/add.ctp:7
-#: /Galleries/edit.ctp:7
+#: /Galleries/add.ctp:7 /Galleries/edit.ctp:7
 msgid "Créer une gallerie"
 msgstr ""
 
-#: /Galleries/add.ctp:10
-#: /Galleries/edit.ctp:10
+#: /Galleries/add.ctp:10 /Galleries/edit.ctp:10
 msgid "Noms de la gallerie"
 msgstr ""
 
-#: /Galleries/add.ctp:32
-#: /Galleries/edit.ctp:32
+#: /Galleries/add.ctp:32 /Galleries/edit.ctp:32
 msgid "URLs parlantes"
 msgstr ""
 
-#: /Galleries/add.ctp:60
-#: /Galleries/edit.ctp:60
+#: /Galleries/add.ctp:60 /Galleries/edit.ctp:60
 msgid "Requête elasticsearch"
 msgstr ""
 
-#: /Galleries/add.ctp:70
-#: /Galleries/edit.ctp:70
+#: /Galleries/add.ctp:70 /Galleries/edit.ctp:70
 msgid "Options de la gallerie"
 msgstr ""
 
-#: /Galleries/add.ctp:92
-#: /Galleries/edit.ctp:92
+#: /Galleries/add.ctp:92 /Galleries/edit.ctp:92
 msgid "Visible sur la page d'accueil"
 msgstr ""
 
-#: /Galleries/add.ctp:100
-#: /Galleries/edit.ctp:100
+#: /Galleries/add.ctp:100 /Galleries/edit.ctp:100
 msgid "Considérée comme une galerie mot-clé"
 msgstr ""
 
-#: /Galleries/add.ctp:108
-#: /Galleries/edit.ctp:108
+#: /Galleries/add.ctp:108 /Galleries/edit.ctp:108
 msgid "Gallerie publiée"
 msgstr ""
 
-#: /Galleries/add.ctp:116
-#: /Galleries/edit.ctp:116
+#: /Galleries/add.ctp:116 /Galleries/edit.ctp:116
 msgid "Créer la gallerie"
 msgstr ""
 
@@ -515,34 +485,30 @@ msgstr ""
 msgid "Liste des galeries"
 msgstr ""
 
-#: /Galleries/index.ctp:12
-#: /Layouts/home.ctp:76
+#: /Galleries/index.ctp:12 /Layouts/home.ctp:76
 msgid "Editer"
 msgstr ""
 
-#: /Galleries/index.ctp:25
-#: /Layouts/home.ctp:104
+#: /Galleries/index.ctp:25 /Layouts/home.ctp:104
 msgid "Dépublier"
 msgstr ""
 
-#: /Galleries/index.ctp:25
-#: /Layouts/home.ctp:90
+#: /Galleries/index.ctp:25 /Layouts/home.ctp:90
 msgid "Publier"
 msgstr ""
 
-#: /Galleries/index.ctp:38
-#: /Layouts/home.ctp:118
-#: /Wysiwygs/index.ctp:17
+#: /Galleries/index.ctp:38 /Layouts/home.ctp:118 /Wysiwygs/index.ctp:17
 msgid "Effacer"
 msgstr ""
 
-#: /Galleries/index.ctp:50
-#: /Layouts/home.ctp:131
+#: /Galleries/index.ctp:50 /Layouts/home.ctp:131
 msgid "Etes vous sûr de vouloir effacer la galerie %s?"
 msgstr ""
 
 #: /Galleries/search.ctp:8
-msgid "Page {:page} sur {:pages}, {:current} résultats sur un total de {:count}, de {:start} à {:end}"
+msgid ""
+"Page {:page} sur {:pages}, {:current} résultats sur un total de {:count}, de "
+"{:start} à {:end}"
 msgstr ""
 
 #: /Galleries/view.ctp:19
@@ -571,9 +537,12 @@ msgstr ""
 msgid "Liste des mots clés"
 msgstr ""
 
-#: /Layouts/default.ctp:8
-#: /Layouts/home.ctp:8
-msgid "Site web GlobalView.be; photographies aériennes et reportages aériens tridiemsionnels et multi-angle sur-mesure. Accès à la photothèque de plusieurs millions de clichés en Belgique et au Grand Duché du Luxembourg et planning des prochains vols."
+#: /Layouts/default.ctp:8 /Layouts/home.ctp:8
+msgid ""
+"Site web GlobalView.be; photographies aériennes et reportages aériens "
+"tridiemsionnels et multi-angle sur-mesure. Accès à la photothèque de "
+"plusieurs millions de clichés en Belgique et au Grand Duché du Luxembourg et "
+"planning des prochains vols."
 msgstr ""
 
 #: /Layouts/default.ctp:13
@@ -584,8 +553,7 @@ msgstr ""
 msgid "Bienvenu, GlobalView reportage aérien sur-mesure"
 msgstr ""
 
-#: /Layouts/home.ctp:31
-#: /Pages/CopyOfhome.ctp:53
+#: /Layouts/home.ctp:31 /Pages/CopyOfhome.ctp:53
 msgid "Nos prochains vols"
 msgstr ""
 
@@ -613,8 +581,7 @@ msgstr ""
 msgid "%s et alentour"
 msgstr ""
 
-#: /Pages/CopyOfhome.ctp:12
-#: /Pages/our-services.ctp:34
+#: /Pages/CopyOfhome.ctp:12 /Pages/our-services.ctp:34
 msgid "Nos services"
 msgstr ""
 
@@ -658,8 +625,7 @@ msgstr ""
 msgid "Ajouter User"
 msgstr ""
 
-#: /Users/add.ctp:13
-#: /Wysiwygs/index.ctp:10
+#: /Users/add.ctp:13 /Wysiwygs/index.ctp:10
 msgid "Ajouter"
 msgstr ""
 
@@ -683,18 +649,15 @@ msgstr ""
 msgid "Add Wysiwyg"
 msgstr ""
 
-#: /Wysiwygs/add.ctp:15
-#: /Wysiwygs/edit.ctp:26
+#: /Wysiwygs/add.ctp:15 /Wysiwygs/edit.ctp:26
 msgid "Submit"
 msgstr ""
 
-#: /Wysiwygs/add.ctp:18
-#: /Wysiwygs/edit.ctp:29
+#: /Wysiwygs/add.ctp:18 /Wysiwygs/edit.ctp:29
 msgid "Actions"
 msgstr ""
 
-#: /Wysiwygs/add.ctp:21
-#: /Wysiwygs/edit.ctp:33
+#: /Wysiwygs/add.ctp:21 /Wysiwygs/edit.ctp:33
 msgid "List Wysiwygs"
 msgstr ""
 
@@ -731,6 +694,7 @@ msgid "Effacer la traduction %s?"
 msgstr ""
 
 #: /Wysiwygs/index.ctp:113
-msgid "Page {:page} sur {:pages}, {:current} traductions sur un total de {:count}, de {:start} à {:end}"
+msgid ""
+"Page {:page} sur {:pages}, {:current} traductions sur un total de {:count}, "
+"de {:start} à {:end}"
 msgstr ""
-

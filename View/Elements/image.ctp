@@ -38,7 +38,7 @@
 <?php endif; ?>
 <?php 
 	echo $this->Html->image(
-			Configure::read('Config.language').'/loading/'.$route,
+			(isset($lazy) && $lazy)?Configure::read('Config.language').'/loading/'.$route:$resolvedUrl,
 			[
 				'alt' 			=> $alt,
 				'data-original'	=> $resolvedUrl,

@@ -1,8 +1,12 @@
-<?php 
+<?php
 
 
 function cmpKeyword($a, $b) {
     return strcmp($a['name_'.Configure::read('Config.language')], $b['name_'.Configure::read('Config.language')]);
+}
+
+function cmpLocation($a, $b) {
+    return $a['level'] > $b['level'];
 }
 
 
@@ -14,17 +18,17 @@ function cmpKeyword($a, $b) {
 <div id="galerie-filmstrip" class="clearfix">
 	<div id="galerie-thumb-bro">
 		<div class="col-md-12 galerie-thumb">
-			<h2 id="intro" class="pull-left"><?php echo $title; ?> <span class="badge"><?php 
+			<h2 id="intro" class="pull-left"><?php echo $title; ?> <span class="badge"><?php
 			if($versions['hits']['total'] != count($versions['hits']['hits'])){
 				echo __("%s de %s résultats", count($versions['hits']['hits']), $versions['hits']['total']);
 			}
 			else {
 				echo __n("1 résultat", "%s résultats", $versions['hits']['total'], $versions['hits']['total']);
 			}
-			
-			
-			
-			
+
+
+
+
 			?></span></h2>
 
 			<div>
@@ -37,7 +41,7 @@ function cmpKeyword($a, $b) {
 								'first' => '«',
 								'last' => '»',
 								'currentTag' => 'a'
-								
+
 						)); ?>
 					</ul>
 				</nav>
@@ -52,9 +56,9 @@ function cmpKeyword($a, $b) {
 								'route' => 'preview.jpg',
 								'class' => 'lazy img-responsive'
 						));
-					
-					
-					
+
+
+
 // 					$this->Html->image(
 // 					($version['_source']['uuid']).'/thumb',
 // 					array('class' => 'img-responsive', 'escape' => false));
@@ -67,22 +71,22 @@ function cmpKeyword($a, $b) {
         </a>
         </div>
 		</div>
-		
+
 		</div> <!-- / row -->
 		<div class="galerie-carousel groupToMatch">
 			<!-- Carousel
 			================================================== -->
 			<div id="GalerieCarousel" class="carousel slide" data-ride="carousel">
-				
+
 				<div class="carousel-inner" role="listbox">
 					<?php
 						foreach ($versions['hits']['hits'] as $idx => $version){
 							echo $this->Html->tag('div',
 								//$this->Html->link(
-									
-									
+
+
 									//$this->Html->image(urlencode($version['_source']['uuid']).'/preview', array('data-src' => '/img/'.urlencode($version['_source']['uuid']).'/image', 'class' => 'lazy toLoad preview'))
-									
+
 									$this->element('image', array(
 											'lazy' => true,
 											'alt' => isset($version['_source']['label'])?$version['_source']['label']:$version['_source']['name'],
@@ -90,13 +94,13 @@ function cmpKeyword($a, $b) {
 											'route' => 'image.jpg',
 											'class' => 'lazy preview'
 									))
-									
-									
+
+
 									//$this->Html->image($version['Version']['encodedUuid'].'/preview.png'),
 									//array('controller' => 'aperture', 'action' =>  'image', $version['Version']['encodedUuid'], 'language' => Configure::read('Config.language')),
 									//array('escape' => false)),
 									//.$this->Html->tag('div', 'Chargement en cours...', array('class' => 'carousel-caption'))
-									
+
 									,
 								array('class' => $idx?'item':'item active', 'data-image-info' =>
 									$this->Html->url(array(
@@ -127,7 +131,7 @@ function cmpKeyword($a, $b) {
 							<?php foreach ($versions['hits']['hits'] as $idx => $version) : ?>
 								<?php foreach ($version['_source']['Stack'] as $stack) : ?>
 								<?php
-									
+
 									echo $this->Html->link(
 											$this->element('image', array(
 													'lazy' => true,
@@ -148,7 +152,7 @@ function cmpKeyword($a, $b) {
 												'escape' => false,
 												'data-stack-uuid' => $this->Html->url('/img/'.Configure::read('Config.language').'/'.urlencode($stack).'/image.jpg'),
 											));
-								
+
 								?>
 								<?php endforeach;?>
 							<?php endforeach;?>
@@ -175,8 +179,8 @@ function cmpKeyword($a, $b) {
 								<div class="carousel-inner" role="listbox">
 									<?php foreach ($versions['hits']['hits'] as $idx => &$version) : ?>
 									<div class="<?php echo $idx?'item':'item active'; ?>">
-										
-										
+
+
 										<div class="wrapper-info" >
 											<div class="glyphicon glyphicon-move"></div>
 											<h2 id="versionTitle">
@@ -191,16 +195,16 @@ function cmpKeyword($a, $b) {
 											?>
 											<span></span>
 											</h2>
-											
-											
+
+
 											<div class="infos">
 												<?php if(count($version['_source']['Keywords']) > 0) : ?>
 												<h3><?php echo __('Mots clés'); ?></h3>
 												<ul id="keywordList">
-													<?php 
+													<?php
 													$keywords = $version['_source']['Keywords'];
 													uasort($keywords, 'cmpKeyword');
-													
+
 													foreach ($keywords as $keyword) :?>
 													<?php echo $this->Html->tag('li',
 															$this->Html->link(
@@ -215,25 +219,29 @@ function cmpKeyword($a, $b) {
 													<?php endforeach; ?>
 												</ul>
 												<?php endif; ?>
-												
-												<?php if(count($version['_source']['locations']) > 0) : ?>
+
+												<?php if(count($version['_source']['locations']) > 0) :
+
+                          $locations = $version['_source']['locations'];
+                          uasort($locations, 'cmpLocation');
+
+                          ?>
 												<h3><?php echo __('Emplacements'); ?></h3>
 												<ul id="placesList">
-													<?php foreach ($version['_source']['locations'] as $place) :?>
+													<?php foreach ($locations as $place) :?>
 													<?php echo $this->Html->tag('li',
 															$this->Html->link(
 																(isset($place['name_'.Configure::read('Config.language')])? $place['name_'.Configure::read('Config.language')] : $place['name']),
 																[
-																	'controller' => 'map',
-																	'action' => 'index',
-																		$place['uuid'],
+																	'action' => 'place',
+																	$place['uuid'],
 																]
 																											)
 													); ?>
 													<?php endforeach; ?>
 												</ul>
 												<?php endif; ?>
-												
+
 												<h3>Détails</h3>
 												<ul id="detailList">
 													<li>Photographe: <?php
@@ -278,7 +286,7 @@ function cmpKeyword($a, $b) {
 											</div>
 										</div>
 
-										
+
 									</div>
 									<?php endforeach; ?>
 								</div>
