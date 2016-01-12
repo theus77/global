@@ -35,15 +35,24 @@
  */
 	//homepage en fr
 	Router::connect( '/', array('controller' => 'pages', 'action' => 'home', 'language' => 'fr'));
-	
+
 	//homepages dans les différentds langues
-	Router::connect('/:language', array(
-		'controller' => 'pages',
-		'action' => 'home',
-		'home'), array(
-		'language' => implode('|', array_keys(Configure::read('Config.languages')))));
+	Router::connect('/:language', 
+			array(
+				'controller' => 'pages',
+				'action' => 'home',
+			),
+			array('language' => '[a-z]{2}'));
+
+	//to prefix all other url with the language
+	Router::connect('/:language/:controller/:action/*',
+			array(),
+			array('language' => '[a-z]{2}'));
+	
+	
 		
 	
+
 	
 	
 /**

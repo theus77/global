@@ -3,7 +3,7 @@
 		<div>
 			<?php
 				echo $this->element('image', array(
-						'lazy' => true,
+						'lazy' => isset($lazy)?$lazy:true,
 						'alt' => $name,
 						'imageUuid' => $imageUuid,
 						'route' => 'thumb.jpg',
