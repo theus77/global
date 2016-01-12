@@ -12,6 +12,5 @@
 /.project
 /.vagrant/
 /Vendor/
-*/.DS_Store
+.DS_Store
 /apdb/
-/.DS_Store
