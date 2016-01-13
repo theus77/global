@@ -24,8 +24,8 @@
 											
 						$this->Html->tag('li',
 								$this->Html->link(
-										__('Ajouter une gallerie'),
-										array('controller' => 'galleries', 'action' => 'add'))).
+										__('Gestion des galleries'),
+										array('controller' => 'galleries', 'action' => 'index'))).
 											
 						$this->Html->tag('li',
 								$this->Html->link(

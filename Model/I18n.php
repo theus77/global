@@ -1,11 +1,17 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Gallery Model
+ * I18n Model
  *
  */
 class I18n extends AppModel {
-	
+
+/**
+ * Use table
+ *
+ * @var mixed False or table name
+ */
+	public $useTable = 'i18n';
 
 /**
  * Display field
@@ -13,6 +19,5 @@ class I18n extends AppModel {
  * @var string
  */
 	public $displayField = 'content';
-	
 
 }
