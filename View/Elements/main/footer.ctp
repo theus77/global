@@ -16,10 +16,6 @@
 			echo $this->Html->tag('h3', __('Options d\'administration'));
 			echo $this->Html->tag('div', 
 					$this->Html->tag('ul', 
-						$this->Html->tag('li',
-								$this->Html->link(
-										__('Gestion des textes'),
-										array('controller' => 'wysiwygs', 'action' => 'text'))).
 
 						$this->Html->tag('li',
 								$this->Html->link(
@@ -33,12 +29,9 @@
 											
 						$this->Html->tag('li',
 								$this->Html->link(
-										__('Lister les albums aperture'),
-										array('controller' => 'galleries', 'action' => 'library'))).					
-						$this->Html->tag('li',
-								$this->Html->link(
-										__('Lister les mots clés aperture'),
-										array('controller' => 'albums', 'action' => 'keywords'))))
+										__('Logout'),
+										array('controller' => 'users', 'action' => 'logout')))
+					)
 					, array('class' => 'admin-menu'));
 			echo '</div>';
 		}

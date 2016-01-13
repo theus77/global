@@ -17,11 +17,11 @@
 						'controller' => 'galleries',
 						'action' => 'keyword',
 						'language' => Configure::read('Config.language'),
-						$keyword['key']
+						$keyword["by_uuid"]['buckets'][0]['key']
 				]);
 				
 				
-				foreach ($keyword['keyword_to_version']['top_uuid_hits']['hits']['hits'] as $topHit){
+				foreach ($keyword["by_uuid"]['buckets'][0]['keyword_to_version']['top_uuid_hits']['hits']['hits'] as $topHit){
 					$imageUuid = $topHit['_id'];
 					if(!in_array($imageUuid, $alreadyUsed)){
 						$alreadyUsed[] = $imageUuid;
@@ -33,10 +33,10 @@
 				echo $this->element('thumb', array(
 						"url" => $url,
 						'count' => $keyword['doc_count'],
-						'name' => $keyword['key'],
+						'name' =>$keyword['key'],
 						'imageUuid' => $imageUuid
 				));
-
+				break;
 			?>
 		
 		

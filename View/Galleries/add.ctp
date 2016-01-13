@@ -59,7 +59,7 @@
 	<div class="panel panel-default">
   		<div class="panel-heading"><?php echo __('Requête elasticsearch')?></div>
   		<div class="panel-body">
-			 <?php echo $this->Form->input('query', array(
+			 <?php echo $this->Form->textarea('query', array(
 			  		'label' => false,
 			  		'class' => 'form-control'
 			  ));?>
@@ -90,14 +90,6 @@
 						'hiddenField' => false,
        					'div' => false
 				  )).__('Visible sur la page d\'accueil') ;?>
-			  </label>
-				<label class="btn btn-info">
-				<?php echo $this->Form->input('keyword', array(
-				  		'label' => false,
-				  		'autocomplete' => 'off',
-						'hiddenField' => false,
-       					'div' => false
-				  )).__('Considérée comme une galerie mot-clé') ;?>
 			  </label>
 				<label class="btn btn-info">
 				<?php echo $this->Form->input('published', array(

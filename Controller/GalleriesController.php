@@ -13,7 +13,7 @@ App::uses('AppController', 'Controller');
  */
 class GalleriesController extends AppController {
 
-	public $uses = array('Gallery');
+	public $uses = array('Gallery', 'I18n');
 	public $components = array('RequestHandler', 'Paginator', 'Acl', 'Session');
 	private $client;
 	
@@ -26,6 +26,8 @@ class GalleriesController extends AppController {
 			->setHosts(Configure::read('awsESHosts'))      // Set the hosts
 			->build();              // Build the client object
 	}
+
+	
 	
 	private function execute($body){
 
@@ -51,6 +53,17 @@ class GalleriesController extends AppController {
 		return $retDoc;
 	}
 	
+	
+	public function slug($slug) {
+		$gallery = $this->I18n->find('first', [
+			'conditions' => [
+				'model' => 'Gallery',
+				'field' => 'slug',
+				'content' => $slug
+			]	
+		]);
+		var_dump($gallery); exit;
+	}
 	
 	public function place($locationUuid) {
 
@@ -134,7 +147,10 @@ class GalleriesController extends AppController {
 	}
 	
 	
-	public function keyword($keywordName) {		
+	public function keyword($keywordUuid) {		
+		
+
+		$this->fixUuid($keywordUuid);
 		
 		$body = json_decode('
 		{
@@ -152,8 +168,8 @@ class GalleriesController extends AppController {
 		                    "must": [
 		                      {
 		                        "match": {
-		                          "Keywords.name_'.Configure::read('Config.language').'": {      
-		                "query":    '. json_encode($keywordName) . ',
+		                          "Keywords.uuid": {      
+		                "query":    '. json_encode($keywordUuid) . ',
 		                "operator": "and" }
 		                        }
 		                      }
@@ -172,8 +188,16 @@ class GalleriesController extends AppController {
 		  }
 		}');
 	
-		$this->set('title', __('Galerie pour le mot-clé "%s"', $keywordName));
-		$this->execute($body);
+		$ret = $this->execute($body);
+
+		$this->set('title', __('Galerie pour le mot-clé "%s"', $keywordUuid));
+		
+// 		var_dump($ret["hits"]["hits"][0]["_source"]["Keywords"]); exit;
+		foreach ($ret["hits"]["hits"][0]["_source"]["Keywords"] as $location){
+			if(strcmp($location['uuid'], $keywordUuid) == 0){
+				$this->set('title', __('Galerie pour le mot-clé "%s"', $location['name_'.Configure::read('Config.language')]));
+			}
+		}
 
 	}	
 	
