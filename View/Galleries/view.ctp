@@ -211,7 +211,7 @@ function cmpLocation($a, $b) {
 																$keyword['name_'.Configure::read('Config.language')],
 																[
 																		'action' => 'keyword',
-																		$keyword['name_'.Configure::read('Config.language')],
+																		$keyword['uuid'],
 																		'language' => Configure::read('Config.language')
 													]
 																											)
