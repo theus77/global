@@ -9,7 +9,7 @@ class Gallery extends AppModel {
 	public $actsAs = array(
 			'Translate' => array(
 				'name' => 'nameTranslation',
-				'slug' => 'slugTranlation'
+				'slug' => 'slugTranslation'
 			)
 	);
 	

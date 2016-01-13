@@ -1,7 +1,13 @@
 <div class="row">
 <div class="col-md-2 "></div>
 <div class="col-md-8">
-	<?php echo $this->Form->create('Gallery'); ?>
+	<?php 
+	
+	var_dump($this->request->data);
+	echo $this->Form->create('Gallery'); 
+	
+	$this->Form->input('id');
+	?>
 	
 	<!-- Form Name -->
 	<legend><?php echo __('Créer une gallerie');?></legend>
@@ -90,14 +96,6 @@
 						'hiddenField' => false,
        					'div' => false
 				  )).__('Visible sur la page d\'accueil') ;?>
-			  </label>
-				<label class="btn btn-info">
-				<?php echo $this->Form->input('keyword', array(
-				  		'label' => false,
-				  		'autocomplete' => 'off',
-						'hiddenField' => false,
-       					'div' => false
-				  )).__('Considérée comme une galerie mot-clé') ;?>
 			  </label>
 				<label class="btn btn-info">
 				<?php echo $this->Form->input('published', array(

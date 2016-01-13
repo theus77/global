@@ -36,7 +36,6 @@
 						'name' =>$keyword['key'],
 						'imageUuid' => $imageUuid
 				));
-				break;
 			?>
 		
 		

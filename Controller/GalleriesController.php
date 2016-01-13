@@ -13,11 +13,11 @@ App::uses('AppController', 'Controller');
  */
 class GalleriesController extends AppController {
 
-	public $uses = array('Gallery', 'I18n');
+	public $uses = array('Gallery', 'ModelTranslation');
 	public $components = array('RequestHandler', 'Paginator', 'Acl', 'Session');
 	private $client;
 	
-	const PAGING_SIZE = 50;
+	const PAGING_SIZE = 20;
 	
 	public function beforeFilter() {
 		parent::beforeFilter();
@@ -31,6 +31,11 @@ class GalleriesController extends AppController {
 	
 	private function execute($body){
 
+		
+// 		var_dump($body); exit;
+		if(!isset($body['size'])){
+			$body['size'] = self::PAGING_SIZE;
+		}
 		
 // 		echo $body; exit;
 		
@@ -53,17 +58,7 @@ class GalleriesController extends AppController {
 		return $retDoc;
 	}
 	
-	
-	public function slug($slug) {
-		$gallery = $this->I18n->find('first', [
-			'conditions' => [
-				'model' => 'Gallery',
-				'field' => 'slug',
-				'content' => $slug
-			]	
-		]);
-		var_dump($gallery); exit;
-	}
+
 	
 	public function place($locationUuid) {
 
@@ -97,7 +92,7 @@ class GalleriesController extends AppController {
 			      }
 			   }
 			}
-		');
+		', true);
 		
 		$retDoc = $this->execute($body);
 		$this->set('title', __('Galerie pour la localisation "%s"', $locationUuid));
@@ -132,7 +127,7 @@ class GalleriesController extends AppController {
 			      }
 			   }
 			}
-		');
+		', true);
 		
 		$retDoc = $this->execute($body);
 		
@@ -186,7 +181,7 @@ class GalleriesController extends AppController {
 		      }
 		    }
 		  }
-		}');
+		}', true);
 	
 		$ret = $this->execute($body);
 
@@ -204,10 +199,44 @@ class GalleriesController extends AppController {
 	
 	public function view ($slug = NULL) {
 
-		var_dump($slug);
-		$result = $this->Gallery->findBySlug($slug);
-		var_dump($result);
-// 		exit;
+		
+		$translation = $this->ModelTranslation->find('first', [
+				'conditions' => [
+						'model' => 'Gallery',
+						'field' => 'slug',
+						'content' => $slug
+				]
+		]);/**/
+// 		var_dump($this->ModelTranslation); exit;
+		
+		if (!$translation) {
+			throw new NotFoundException(__('Pas de galerie trouvée pour cette clé %', $slug));
+		}
+		
+		$id = $translation["ModelTranslation"]["foreign_key"];
+		
+		if (!$this->Gallery->exists($id)) {
+			throw new NotFoundException(__('Galerie inconnue'));
+		}
+		
+		$this->Gallery->locale = Configure::read('Config.language');
+		$options = ['conditions' => ['Gallery.id' => $id]];
+		
+		$gallery = $this->Gallery->find('first', $options);
+		
+		$ret = $this->execute(json_decode($gallery['Gallery']['query'], true));
+		
+		if($ret['hits']['total'] != $gallery['Gallery']['counter']){
+			try {
+				$gallery['Gallery']['counter'] = $ret['hits']['total'];
+				$this->Gallery->save($gallery);				
+			}
+			catch (Exception $e){
+				
+			}
+		}
+		
+		$this->set('title', __('Galerie %s', $gallery['Gallery']['name']));
 	}
 
 
@@ -316,12 +345,13 @@ class GalleriesController extends AppController {
 		if(isset($this->request->query['q'])){
 			$query = $this->request->query['q'];	
 			$this->redirect([
+					'language' => Configure::read('Config.language'),
 					$query
 			]);
 		}
 		else{
 			$this->set('title', __('Résultat de la recherche pour "%s"', $query));
-			$this->execute('
+			$this->execute(json_decode('
 				{
 			      "size": '.json_encode(self::PAGING_SIZE).',
 				  "query": {
@@ -384,7 +414,7 @@ class GalleriesController extends AppController {
 				    }
 				  }
 				}					
-					');
+					', true));
 		}
 
 	}
