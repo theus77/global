@@ -7,7 +7,7 @@
  */
 
 
-	$url = Configure::read('Config.language').'/'.urlencode($imageUuid).'/'.$route;
+	$url = Configure::read('Config.language').'/'.$imageUuid.'/'.$route;
 	
 	$urlArray = Router::parse('img/'.$url);
 	

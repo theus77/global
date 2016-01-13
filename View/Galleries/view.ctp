@@ -85,7 +85,7 @@ function cmpLocation($a, $b) {
 								//$this->Html->link(
 
 
-									//$this->Html->image(urlencode($version['_source']['uuid']).'/preview', array('data-src' => '/img/'.urlencode($version['_source']['uuid']).'/image', 'class' => 'lazy toLoad preview'))
+									//$this->Html->image($version['_source']['uuid'].'/preview', array('data-src' => '/img/'.$version['_source']['uuid'].'/image', 'class' => 'lazy toLoad preview'))
 
 									$this->element('image', array(
 											'lazy' => true,
@@ -140,17 +140,12 @@ function cmpLocation($a, $b) {
 													'route' => 'preview.jpg',
 													'class' => 'img-responsive'
 											)),
-// 											$this->Html->image(
-// 												($version['_source']['uuid']).'/thumb',
-// 												array('class' => 'img-responsive lazy-thumb',
-// 												'data-src' => $this->Html->url(
-// 													'/img/'.urlencode($stack).'/thumb'))),
 											'#',
 											array(
 												'class' => 	'thumbnail',
 												'onclick' => 'javascript: return loadStackImage(this);',
 												'escape' => false,
-												'data-stack-uuid' => $this->Html->url('/img/'.Configure::read('Config.language').'/'.urlencode($stack).'/image.jpg'),
+												'data-stack-uuid' => $this->Html->url('/img/'.Configure::read('Config.language').'/'.$stack.'/image.jpg'),
 											));
 
 								?>

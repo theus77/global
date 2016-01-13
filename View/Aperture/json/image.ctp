@@ -1,7 +1,7 @@
 <?php 
 
 foreach ($stack as &$image){
-	$image['Version']['encodedUuid'] = urlencode($image['Version']['encodedUuid']);
+	$image['Version']['encodedUuid'] = $image['Version']['encodedUuid'];
 }
 
 $version['Version']['formatedDate'] = date("d M Y", $version['Version']['unixImageDate']);

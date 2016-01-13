@@ -69,23 +69,39 @@ msgstr ""
 msgid "Vol non-identifié"
 msgstr ""
 
-#: /GalleriesController.php:90;93
+#: /GalleriesController.php:98;101
 msgid "Galerie pour la localisation \"%s\""
 msgstr ""
 
-#: /GalleriesController.php:129
+#: /GalleriesController.php:137
 msgid "Galerie pour \"%s\" et aux alentours"
 msgstr ""
 
-#: /GalleriesController.php:132
+#: /GalleriesController.php:140
 msgid "Galerie pour la serie \"%s\""
 msgstr ""
 
-#: /GalleriesController.php:175
+#: /GalleriesController.php:188;193
 msgid "Galerie pour le mot-clé \"%s\""
 msgstr ""
 
-#: /GalleriesController.php:299
+#: /GalleriesController.php:213
+msgid "Pas de galerie trouvée pour cette clé %"
+msgstr ""
+
+#: /GalleriesController.php:219
+msgid "Galerie inconnue"
+msgstr ""
+
+#: /GalleriesController.php:239
+msgid "Galerie %s"
+msgstr ""
+
+#: /GalleriesController.php:358
+msgid "Toute la photothèque"
+msgstr ""
+
+#: /GalleriesController.php:362
 msgid "Résultat de la recherche pour \"%s\""
 msgstr ""
 
@@ -149,51 +165,6 @@ msgstr ""
 msgid "Requête incomplète."
 msgstr ""
 
-#: /Aperture/CopyOfgallery.ctp:225
-#: /Aperture/gallery.ctp:191
-#: /Aperture/price.ctp:156
-#: /Galleries/view.ctp:243
-#: /Layouts/default.ctp:9
-#: /Layouts/home.ctp:9
-msgid "Simon Schmitt"
-msgstr ""
-
-#: /Aperture/CopyOfgallery.ctp:234
-#: /Aperture/gallery.ctp:200
-#: /Aperture/price.ctp:165
-#: /Galleries/view.ctp:252
-msgid "Non défini"
-msgstr ""
-
-#: /Aperture/CopyOfgallery.ctp:241
-#: /Aperture/gallery.ctp:207
-#: /Aperture/map.ctp:134
-#: /Flights/book.ctp:203
-#: /Galleries/view.ctp:259
-#: /Map/index.ctp:139
-msgid "Connection à Google Map en cours ..."
-msgstr ""
-
-#: /Aperture/CopyOfgallery.ctp:263
-#: /Aperture/gallery.ctp:229
-msgid "Administration"
-msgstr ""
-
-#: /Aperture/CopyOfgallery.ctp:263
-#: /Aperture/gallery.ctp:229
-msgid "Configuration de la galerie"
-msgstr ""
-
-#: /Aperture/CopyOfgallery.ctp:273
-#: /Aperture/gallery.ctp:239
-msgid "Mettre à jour la galerie"
-msgstr ""
-
-#: /Aperture/CopyOfgallery.ctp:275
-#: /Aperture/gallery.ctp:241
-msgid "{:count}"
-msgstr ""
-
 #: /Aperture/albums.ctp:3
 #: /Galleries/admin.ctp:3
 msgid "Liste des albums Aperture"
@@ -232,6 +203,42 @@ msgstr ""
 
 #: /Aperture/gallery-list.ctp:15
 msgid "Homepage"
+msgstr ""
+
+#: /Aperture/gallery.ctp:191
+#: /Aperture/price.ctp:156
+#: /Galleries/view.ctp:247
+msgid "Simon Schmitt"
+msgstr ""
+
+#: /Aperture/gallery.ctp:200
+#: /Aperture/price.ctp:165
+#: /Galleries/view.ctp:256
+msgid "Non défini"
+msgstr ""
+
+#: /Aperture/gallery.ctp:207
+#: /Aperture/map.ctp:134
+#: /Flights/book.ctp:203
+#: /Galleries/view.ctp:263
+#: /Map/index.ctp:139
+msgid "Connection à Google Map en cours ..."
+msgstr ""
+
+#: /Aperture/gallery.ctp:229
+msgid "Administration"
+msgstr ""
+
+#: /Aperture/gallery.ctp:229
+msgid "Configuration de la galerie"
+msgstr ""
+
+#: /Aperture/gallery.ctp:239
+msgid "Mettre à jour la galerie"
+msgstr ""
+
+#: /Aperture/gallery.ctp:241
+msgid "{:count}"
 msgstr ""
 
 #: /Aperture/map.ctp:19
@@ -286,24 +293,16 @@ msgstr ""
 msgid "Options d'administration"
 msgstr ""
 
-#: /Elements/main/footer.ctp:21
-msgid "Gestion des textes"
-msgstr ""
-
-#: /Elements/main/footer.ctp:26
+#: /Elements/main/footer.ctp:22
 msgid "Gestion des traductions"
 msgstr ""
 
-#: /Elements/main/footer.ctp:31
-msgid "Ajouter une gallerie"
+#: /Elements/main/footer.ctp:27
+msgid "Gestion des galleries"
 msgstr ""
 
-#: /Elements/main/footer.ctp:36
-msgid "Lister les albums aperture"
-msgstr ""
-
-#: /Elements/main/footer.ctp:40
-msgid "Lister les mots clés aperture"
+#: /Elements/main/footer.ctp:32
+msgid "Logout"
 msgstr ""
 
 #: /Elements/main/nav.ctp:14
@@ -430,7 +429,7 @@ msgstr ""
 
 #: /Elements/models/gallery.ctp:128
 #: /Galleries/add.ctp:75
-#: /Galleries/edit.ctp:75
+#: /Galleries/edit.ctp:81
 msgid "Icône"
 msgstr ""
 
@@ -440,6 +439,10 @@ msgstr ""
 
 #: /Flights/add.ctp:3
 msgid "Créer le vol"
+msgstr ""
+
+#: /Flights/book.ctp:1
+msgid "Boite de recherche"
 msgstr ""
 
 #: /Flights/book.ctp:130;162
@@ -463,47 +466,42 @@ msgid "Mettre le vol à jour"
 msgstr ""
 
 #: /Galleries/add.ctp:7
-#: /Galleries/edit.ctp:7
+#: /Galleries/edit.ctp:13
 msgid "Créer une gallerie"
 msgstr ""
 
 #: /Galleries/add.ctp:10
-#: /Galleries/edit.ctp:10
+#: /Galleries/edit.ctp:16
 msgid "Noms de la gallerie"
 msgstr ""
 
 #: /Galleries/add.ctp:32
-#: /Galleries/edit.ctp:32
+#: /Galleries/edit.ctp:38
 msgid "URLs parlantes"
 msgstr ""
 
 #: /Galleries/add.ctp:60
-#: /Galleries/edit.ctp:60
+#: /Galleries/edit.ctp:66
 msgid "Requête elasticsearch"
 msgstr ""
 
 #: /Galleries/add.ctp:70
-#: /Galleries/edit.ctp:70
+#: /Galleries/edit.ctp:76
 msgid "Options de la gallerie"
 msgstr ""
 
 #: /Galleries/add.ctp:92
-#: /Galleries/edit.ctp:92
+#: /Galleries/edit.ctp:98
 msgid "Visible sur la page d'accueil"
 msgstr ""
 
 #: /Galleries/add.ctp:100
-#: /Galleries/edit.ctp:100
-msgid "Considérée comme une galerie mot-clé"
-msgstr ""
-
-#: /Galleries/add.ctp:108
-#: /Galleries/edit.ctp:108
+#: /Galleries/edit.ctp:106
 msgid "Gallerie publiée"
 msgstr ""
 
-#: /Galleries/add.ctp:116
-#: /Galleries/edit.ctp:116
+#: /Galleries/add.ctp:108
+#: /Galleries/edit.ctp:114
 msgid "Créer la gallerie"
 msgstr ""
 
@@ -516,48 +514,52 @@ msgid "Liste des galeries"
 msgstr ""
 
 #: /Galleries/index.ctp:12
-#: /Layouts/home.ctp:76
+#: /Layouts/home.ctp:75
 msgid "Editer"
 msgstr ""
 
 #: /Galleries/index.ctp:25
-#: /Layouts/home.ctp:104
+#: /Layouts/home.ctp:103
 msgid "Dépublier"
 msgstr ""
 
 #: /Galleries/index.ctp:25
-#: /Layouts/home.ctp:90
+#: /Layouts/home.ctp:89
 msgid "Publier"
 msgstr ""
 
 #: /Galleries/index.ctp:38
-#: /Layouts/home.ctp:118
+#: /Layouts/home.ctp:117
 #: /Wysiwygs/index.ctp:17
 msgid "Effacer"
 msgstr ""
 
 #: /Galleries/index.ctp:50
-#: /Layouts/home.ctp:131
+#: /Layouts/home.ctp:130
 msgid "Etes vous sûr de vouloir effacer la galerie %s?"
+msgstr ""
+
+#: /Galleries/price.ctp:4
+msgid "Demande de prix pour un vol"
 msgstr ""
 
 #: /Galleries/search.ctp:8
 msgid "Page {:page} sur {:pages}, {:current} résultats sur un total de {:count}, de {:start} à {:end}"
 msgstr ""
 
-#: /Galleries/view.ctp:19
+#: /Galleries/view.ctp:23
 msgid "%s de %s résultats"
 msgstr ""
 
-#: /Galleries/view.ctp:198
+#: /Galleries/view.ctp:197
 msgid "Mots clés"
 msgstr ""
 
-#: /Galleries/view.ctp:220
+#: /Galleries/view.ctp:224
 msgid "Emplacements"
 msgstr ""
 
-#: /Galleries/view.ctp:22
+#: /Galleries/view.ctp:26
 msgid "1 résultat"
 msgid_plural "%s résultats"
 msgstr[0] ""
@@ -576,36 +578,35 @@ msgstr ""
 msgid "Site web GlobalView.be; photographies aériennes et reportages aériens tridiemsionnels et multi-angle sur-mesure. Accès à la photothèque de plusieurs millions de clichés en Belgique et au Grand Duché du Luxembourg et planning des prochains vols."
 msgstr ""
 
-#: /Layouts/default.ctp:13
+#: /Layouts/default.ctp:12
 msgid "GlobalView"
 msgstr ""
 
-#: /Layouts/home.ctp:13
+#: /Layouts/home.ctp:12
 msgid "Bienvenu, GlobalView reportage aérien sur-mesure"
 msgstr ""
 
-#: /Layouts/home.ctp:31
-#: /Pages/CopyOfhome.ctp:53
+#: /Layouts/home.ctp:30
 msgid "Nos prochains vols"
 msgstr ""
 
-#: /Layouts/home.ctp:49
+#: /Layouts/home.ctp:48
 msgid "Ce vol déjà à partir de %s"
 msgstr ""
 
-#: /Layouts/home.ctp:51
+#: /Layouts/home.ctp:50
 msgid "EUR"
 msgstr ""
 
-#: /Layouts/home.ctp:151
+#: /Layouts/home.ctp:150
 msgid "Ajouter un vol"
 msgstr ""
 
-#: /Layouts/home.ctp:180
+#: /Layouts/home.ctp:179
 msgid "Comment parcourir notre photothèque"
 msgstr ""
 
-#: /Layouts/home.ctp:194
+#: /Layouts/home.ctp:193
 msgid "Notre selection de galeries"
 msgstr ""
 
@@ -613,37 +614,8 @@ msgstr ""
 msgid "%s et alentour"
 msgstr ""
 
-#: /Pages/CopyOfhome.ctp:12
 #: /Pages/our-services.ctp:34
 msgid "Nos services"
-msgstr ""
-
-#: /Pages/CopyOfhome.ctp:85
-msgid "Galeries à découvrir"
-msgstr ""
-
-#: /Pages/CopyOfhome.ctp:88
-msgid "Facebook"
-msgstr ""
-
-#: /Pages/CopyOfhome.ctp:89
-msgid "Twitter"
-msgstr ""
-
-#: /Pages/CopyOfhome.ctp:92
-msgid "Newsletter"
-msgstr ""
-
-#: /Pages/advanced-search.ctp:5
-msgid "Date de début"
-msgstr ""
-
-#: /Pages/advanced-search.ctp:12
-msgid "Date de fin"
-msgstr ""
-
-#: /Pages/advanced-search.ctp:18
-msgid "Rechercher"
 msgstr ""
 
 #: /Pages/our-services.ctp:53
