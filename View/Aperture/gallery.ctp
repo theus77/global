@@ -59,7 +59,7 @@
 						foreach ($versions['hits']['hits'] as $idx => $version){
 							echo $this->Html->tag('div',
 								//$this->Html->link(
-									$this->Html->image(urlencode($version['_source']['uuid']).'/preview', array('data-src' => '/img/'.urlencode($version['_source']['uuid']).'/image', 'class' => 'lazy toLoad preview'))
+									$this->Html->image($version['_source']['uuid'].'/preview', array('data-src' => '/img/'.$version['_source']['uuid'].'/image', 'class' => 'lazy toLoad preview'))
 									//$this->Html->image($version['Version']['encodedUuid'].'/preview.png'),
 									//array('controller' => 'aperture', 'action' =>  'image', $version['Version']['encodedUuid'], 'language' => Configure::read('Config.language')),
 									//array('escape' => false)),
@@ -99,13 +99,13 @@
 												($version['_source']['uuid']).'/thumb',
 												array('class' => 'img-responsive lazy-thumb',
 												'data-src' => $this->Html->url(
-													'/img/'.urlencode($stack['uuid']).'/thumb'))),
+													'/img/'.$stack['uuid']).'/thumb')),
 											'#',
 											array(
 																	'class' => 	'thumbnail',
 												'onclick' => 'javascript: return loadStackImage(this);',
 												'escape' => false,
-												'data-stack-uuid' => $this->Html->url('/img/'.urlencode($stack['uuid']).'/image'),
+												'data-stack-uuid' => $this->Html->url('/img/'.$stack['uuid'].'/image'),
 											));
 								
 								?>

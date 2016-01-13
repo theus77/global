@@ -21,7 +21,7 @@ class GalleriesController extends AppController {
 	
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('index', 'search', 'keyword', 'view', 'place', 'geohash');
+		$this->Auth->allow('index', 'search', 'keyword', 'view', 'place', 'geohash', 'price');
 		$this->client = ClientBuilder::create()           // Instantiate a new ClientBuilder
 			->setHosts(Configure::read('awsESHosts'))      // Set the hosts
 			->build();              // Build the client object
@@ -340,7 +340,11 @@ class GalleriesController extends AppController {
 // 	}
 	
 	
-	public function search($query) {
+	public function price() {
+	
+	}
+	
+	public function search($query = NULL) {
 		
 		if(isset($this->request->query['q'])){
 			$query = $this->request->query['q'];	
@@ -350,71 +354,77 @@ class GalleriesController extends AppController {
 			]);
 		}
 		else{
-			$this->set('title', __('Résultat de la recherche pour "%s"', $query));
-			$this->execute(json_decode('
-				{
-			      "size": '.json_encode(self::PAGING_SIZE).',
-				  "query": {
-				    "function_score": {
-				      "query": {
-				        "bool": {
-				          "should": [
-				            {
-				              "match": {
-				                "label": {
-				                  "query": '.json_encode($query).',
-				                  "operator": "and"
-				                }
-				              }
-				            },
-				            {
-				              "nested": {
-				                "path": "Keywords",
-				                "query": {
-				                  "bool": {
-				                    "must": [
-				                      {
-				                        "match": {
-				                          "Keywords.name_'.Configure::read('Config.language').'": {
-				                            "query": '.json_encode($query).',
-				                            "operator": "and"
-				                          }
-				                        }
-				                      }
-				                    ]
-				                  }
-				                }
-				              }
-				            },
-				            {
-				              "nested": {
-				                "path": "locations",
-				                "query": {
-				                  "bool": {
-				                    "must": [
-				                      {
-				                        "match": {
-				                          "locations.name_'.Configure::read('Config.language').'": {
-				                            "query": '.json_encode($query).',
-				                            "operator": "and"
-				                          }
-				                        }
-				                      }
-				                    ]
-				                  }
-				                }
-				              }
-				            }
-				          ]
-				        }
-				      },
-				      "field_value_factor": {
-				        "field": "rating"
-				      }
-				    }
-				  }
-				}					
-					', true));
+			if(!isset($query)){
+				$this->set('title', __('Toute la photothèque'));
+				$this->execute([]);
+			}
+			else {				
+				$this->set('title', __('Résultat de la recherche pour "%s"', $query));
+				$this->execute(json_decode('
+					{
+				      "size": '.json_encode(self::PAGING_SIZE).',
+					  "query": {
+					    "function_score": {
+					      "query": {
+					        "bool": {
+					          "should": [
+					            {
+					              "match": {
+					                "label": {
+					                  "query": '.json_encode($query).',
+					                  "operator": "and"
+					                }
+					              }
+					            },
+					            {
+					              "nested": {
+					                "path": "Keywords",
+					                "query": {
+					                  "bool": {
+					                    "must": [
+					                      {
+					                        "match": {
+					                          "Keywords.name_'.Configure::read('Config.language').'": {
+					                            "query": '.json_encode($query).',
+					                            "operator": "and"
+					                          }
+					                        }
+					                      }
+					                    ]
+					                  }
+					                }
+					              }
+					            },
+					            {
+					              "nested": {
+					                "path": "locations",
+					                "query": {
+					                  "bool": {
+					                    "must": [
+					                      {
+					                        "match": {
+					                          "locations.name_'.Configure::read('Config.language').'": {
+					                            "query": '.json_encode($query).',
+					                            "operator": "and"
+					                          }
+					                        }
+					                      }
+					                    ]
+					                  }
+					                }
+					              }
+					            }
+					          ]
+					        }
+					      },
+					      "field_value_factor": {
+					        "field": "rating"
+					      }
+					    }
+					  }
+					}					
+						', true));
+			}
 		}
 
 	}

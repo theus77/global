@@ -1,4 +1,4 @@
-<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+<input id="pac-input" class="controls" type="text" placeholder="<?php echo __('Boite de recherche');?>">
 
 <script type="text/javascript" src="<?php 
 	echo 'https://maps.googleapis.com/maps/api/js?libraries=drawing,places&key='.Configure::read('googleApiKey');
@@ -215,41 +215,41 @@
 <form class="form-horizontal">
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="name">Nom et prénom</label>  
+  <label class="col-md-4 control-label" for="name"><?php echo('Nom et prénom')?></label>  
   <div class="col-md-8">
-  <input id="name" name="name" type="text" placeholder="nom et prénom" class="form-control input-md" required>
+  <input id="name" name="name" type="text" placeholder="<?php echo('nom et prénom')?>" class="form-control input-md" required>
     
   </div>
 </div>
 
 <!-- Prepended checkbox -->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="tva">Numéro de TVA</label>
+  <label class="col-md-4 control-label" for="tva"><?php echo('Numéro de TVA')?></label>
   <div class="col-md-8">
     <div class="input-group">
       <span class="input-group-addon">     
           <input type="checkbox">     
       </span>
-      <input id="tva" name="tva" class="form-control" type="text" placeholder="numéro de TVA">
+      <input id="tva" name="tva" class="form-control" type="text" placeholder="<?php echo('numéro de TVA')?>">
     </div>
-    <p class="help-block">Si d'application</p>
+    <p class="help-block"><?php echo('Si d\'application');?></p>
   </div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="email">Adresse email</label>  
+  <label class="col-md-4 control-label" for="email"><?php echo('Adresse email');?></label>  
   <div class="col-md-8">
-  <input id="email" name="email" type="text" placeholder="email" class="form-control input-md">
+  <input id="email" name="email" type="text" placeholder="<?php echo('email');?>" class="form-control input-md">
     
   </div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="phone">Numéro de téléphone</label>  
+  <label class="col-md-4 control-label" for="phone"><?php echo('Numéro de téléphone');?></label>  
   <div class="col-md-8">
-  <input id="phone" name="phone" type="text" placeholder="téléphone" class="form-control input-md">
+  <input id="phone" name="phone" type="text" placeholder="<?php echo('téléphone');?>" class="form-control input-md">
     
   </div>
 </div>
@@ -257,7 +257,7 @@
 <!-- Button -->
 <div class="form-group">
   <div class="col-md-offset-4 col-md-8">
-    <button id="send" name="send" class="btn btn-primary">Envoyer</button>
+    <button id="send" name="send" class="btn btn-primary"><?php echo('Envoyer');?></button>
   </div>
 </div>
 

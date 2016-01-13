@@ -6,7 +6,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<?php
 			echo $this->Html->meta('description', __('Site web GlobalView.be; photographies aériennes et reportages aériens tridiemsionnels et multi-angle sur-mesure. Accès à la photothèque de plusieurs millions de clichés en Belgique et au Grand Duché du Luxembourg et planning des prochains vols.'));
-			echo $this->Html->meta('author', __('Simon Schmitt'));
 			echo $this->Html->meta('icon');
 		?>
 		
