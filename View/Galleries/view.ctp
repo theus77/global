@@ -230,6 +230,7 @@ function cmpLocation($a, $b) {
 																[
 																	'action' => 'place',
 																	$place['uuid'],
+																	'language' => Configure::read('Config.language'),
 																]
 																											)
 													); ?>
@@ -247,8 +248,8 @@ function cmpLocation($a, $b) {
 																			echo __('Simon Schmitt');
 																		}
 													?></li>
-													<li>Date: <time datetime="<?php echo date("Y-m-d H:m:s", $version['_source']['date']); ?>"><?php echo date("d M Y", $version['_source']['date']); ?></time></li>
-													<li>Dimensions: <?php
+													<li><?php echo __('Date:')?> <time datetime="<?php echo date("Y-m-d H:m:s", strtotime($version['_source']['date'])); ?>"><?php echo date("d M Y",strtotime($version['_source']['date'])); ?></time></li>
+													<l><?php echo __('Dimensions:')?> <?php
 																		if(isset($version['_source']['pixel_size'])){
 																			echo $version['_source']['pixel_size'];
 																		}

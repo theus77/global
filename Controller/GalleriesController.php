@@ -226,7 +226,7 @@ class GalleriesController extends AppController {
 		
 		$ret = $this->execute(json_decode($gallery['Gallery']['query'], true));
 		
-		if($ret['hits']['total'] != $gallery['Gallery']['counter']){
+		if(isset($slug) && $ret['hits']['total'] != $gallery['Gallery']['counter']){
 			try {
 				$gallery['Gallery']['counter'] = $ret['hits']['total'];
 				$this->Gallery->save($gallery);				
@@ -371,6 +371,14 @@ class GalleriesController extends AppController {
 					            {
 					              "match": {
 					                "label": {
+					                  "query": '.json_encode($query).',
+					                  "operator": "and"
+					                }
+					              }
+					            },
+					            {
+					              "match": {
+					                "name": {
 					                  "query": '.json_encode($query).',
 					                  "operator": "and"
 					                }
