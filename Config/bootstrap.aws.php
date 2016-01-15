@@ -121,9 +121,12 @@ Configure::write('Config.languages', array(
 	'nl' => 'Nederlands versie',
 	'en' => 'English version'));
 
+Configure::write('Config.defaultPlace', 'CWXATQwgQWGWnFa_iN78XQ');
+
 Configure::write('Config.apertureIndex', 'aperture');
 
 Configure::write('Config.versionModel', 'version');
+Configure::write('Config.placeModel', 'place');
 
 Configure::write('googleApiKey', 'AIzaSyDqvofVJSIZXBfqxaLw9GNHc9cOBgdMlH8');
 
@@ -144,7 +147,6 @@ Configure::write('Config.cluster', [
 //		'http://global.theus.be',
 // 		'http://gv.local',
 ] );
-
 
 Configure::write('Config.defaultGoogleMap', [
 		'north' => 51.5041,
