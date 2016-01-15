@@ -27,15 +27,17 @@ function cmpLocation($a, $b) {
   <ul class="pagination  pagination-sm">
     
     <?php 
-
+    
+    
+    
     echo $this->Html->tag('li',
-    		$this->Html->link('&laquo;', $page == 0 ? '#': [], ['escape' => false]),
+    		$this->Html->link('&laquo;', $page == 0 ? '#': $this->request->params['pass'], ['escape' => false]),
     		[
     				'class' => ($page <= 0) ? 'disabled' : ''
     		]
     		);
     echo $this->Html->tag('li',
-    		$this->Html->link('&lt;', $page == 0 ? '#': $page-1 > 0 ? ['?' => ['page'=>$page-1]] : [], ['escape' => false]),
+    		$this->Html->link('&lt;', $page == 0 ? '#': $page-1 > 1 ? array_merge($this->request->params['pass'], ['?' => ['page'=>$page-1]]) : [$this->request->params['pass']], ['escape' => false]),
     		[
     				'class' => ($page <= 0) ? 'disabled' : ''
     		]
@@ -63,7 +65,7 @@ function cmpLocation($a, $b) {
     for ($i = $start; $i < $end ; ++$i){
     
     	echo $this->Html->tag('li',
-    		$this->Html->link($i+1, $i?['?' => ['page'=>$i]]:[], []),
+    		$this->Html->link($i+1, $i? array_merge($this->request->params['pass'], ['?' => ['page'=>$i]]):$this->request->params['pass'], []),
     		[
     			'class' => ($i == $page) ? 'active' : ''
     		]
@@ -73,14 +75,14 @@ function cmpLocation($a, $b) {
     }
     
     echo $this->Html->tag('li',
-    		$this->Html->link('&gt;', $page+1 == $pageMax ? '#': ['?' => ['page'=>$page+1]], ['escape' => false]),
+    		$this->Html->link('&gt;', $page+1 == $pageMax ? '#': array_merge($this->request->params['pass'], ['?' => ['page'=>$page+1]]), ['escape' => false]),
     		[
     				'class' => ($page+1 >= $pageMax) ? 'disabled' : ''
     		]
     		);
     
     echo $this->Html->tag('li',
-    		$this->Html->link('&raquo;', $page+1 == $pageMax ? '#': ['?' => ['page'=>$pageMax-1]], ['escape' => false]),
+    		$this->Html->link('&raquo;', $page+1 == $pageMax ? '#': array_merge($this->request->params['pass'], ['?' => ['page'=>$pageMax-1]]), ['escape' => false]),
     		[
     				'class' => ($page+1 >= $pageMax) ? 'disabled' : ''
     		]
