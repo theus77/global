@@ -22,7 +22,7 @@ function cmpLocation($a, $b) {
 			<h2 id="intro" class="pull-left"><?php echo $title; ?> 
 			
 
-<?php if($pageMax > 0):?>
+<?php if($pageMax > 1):?>
 <nav class="pull-right">
   <ul class="pagination  pagination-sm">
     
