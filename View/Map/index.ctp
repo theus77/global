@@ -41,10 +41,11 @@
 	}
 
 	function initialize() {
-      	 var north = 51.5041;
-    	 var south = 49.5037186;
-     	 var west = 2.54124443026395;
-    	 var est = 6.4067581;
+		<?php $mapBB = Configure::read('Config.defaultGoogleMap'); ?>
+      	 var north = <?php echo $mapBB['north']; ?>;
+    	 var south = <?php echo $mapBB['south']; ?>;
+     	 var west = <?php echo $mapBB['west']; ?>;
+    	 var est = <?php echo $mapBB['est']; ?>;
 	   	 var southwest = new google.maps.LatLng(south, west);
 		 var northeast = new google.maps.LatLng(north, est);
     	 

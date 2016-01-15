@@ -143,3 +143,11 @@ Configure::write('aws.credentials', [
 Configure::write('Config.cluster', [
 
 ] );
+
+
+Configure::write('Config.defaultGoogleMap', [
+		'north' => 51.5041,
+		'south' => 49.5037186,
+		'west' => 2.54124443026395,
+		'est' => 6.4067581,
+] );
