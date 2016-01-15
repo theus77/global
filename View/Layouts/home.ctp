@@ -181,8 +181,8 @@
 								<div class="row">
 											<?php echo $this->element('searchs'); ?>
 								</div><!-- /.row -->
-										</div>
-									</div>
+							</div>
+						</div>
 									<div id="parallax1" class="parallaxParent hidden-xs">
 										<div></div>
 									</div>

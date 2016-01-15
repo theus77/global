@@ -98,7 +98,8 @@ class FlightsController extends AppController {
 		}
 		
 		if ($this->request->is(array('post', 'put'))) {
-			$this->request->data['Booking']['flightId'] = $id; 			
+			$this->request->data['Booking']['flightId'] = $id; 		
+			$this->request->data['Booking']['isContactRequest'] = false; 			
  			
 			if ($this->Booking->save($this->request->data)) {
 				$this->Session->setFlash(__('Votre demande à été envoyée.'));
@@ -124,7 +125,13 @@ class FlightsController extends AppController {
 					
 				}
 				
-				$this->redirect('/');
+				$this->redirect([
+						'controller' => 'pages',
+						'action' => 'display',
+						'language' => Configure::read('Config.language'),
+						'thanks'
+						
+				]);
 			}
 			else {
 				$this->Session->setFlash(__('Impossible d\'enregistrer votre demande. Réessayer plus tard.'));

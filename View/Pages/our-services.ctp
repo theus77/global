@@ -73,8 +73,11 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-xs-12">
+				<div class="col-md-6">
 					<?php echo $this->i18n->w('our-service.contact-us');  ?>
+				</div>
+				<div class="col-md-6">
+					<?php echo $this->element('contact'); ?>
 				</div>
 			</div>
 		</div>
