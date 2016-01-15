@@ -37,6 +37,17 @@ class GalleriesController extends AppController {
 			$body['size'] = self::PAGING_SIZE;
 		}
 		
+
+// 		var_dump($this->request);exit;
+		
+		$page = 0;
+		if(isset($this->request->query["page"])){
+			$page = $this->request->query["page"];
+			$body['from'] = $page * self::PAGING_SIZE;
+		}
+		
+// 		var_dump($body);exit;
+		
 // 		echo $body; exit;
 		
 		$searchParams = [
@@ -51,6 +62,21 @@ class GalleriesController extends AppController {
 			$this->view = 'view';
 			$this->set('versions', $retDoc);
 			$this->set('jsIncludes', ['bower/jail/dist/jail.min', 'gallery2']);
+			
+			
+			$next = $page+1;
+			if( $next * self::PAGING_SIZE < $retDoc['hits']['total']) {
+				$this->set('next', $next);
+			}
+			if($page > 0) {
+				$prev = $page - 1;
+				$this->set('prev', $prev);
+			}
+
+
+			$this->set('page', $page);
+			
+			$this->set('pageMax', ceil( $retDoc['hits']['total'] / self::PAGING_SIZE ) );
 		}
 		else {
 			$this->view = 'empty';

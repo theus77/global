@@ -15,37 +15,120 @@ function cmpLocation($a, $b) {
 <?php
 	$this->assign('title', $title);
 ?>
+				
 <div id="galerie-filmstrip" class="clearfix">
 	<div id="galerie-thumb-bro">
 		<div class="col-md-12 galerie-thumb">
-			<h2 id="intro" class="pull-left"><?php echo $title; ?> <span class="badge"><?php
-			if($versions['hits']['total'] != count($versions['hits']['hits'])){
-				echo __("%s de %s résultats", count($versions['hits']['hits']), $versions['hits']['total']);
-			}
-			else {
-				echo __n("1 résultat", "%s résultats", $versions['hits']['total'], $versions['hits']['total']);
-			}
+			<h2 id="intro" class="pull-left"><?php echo $title; ?> 
+			
+
+<?php if($pageMax > 0):?>
+<nav class="pull-right">
+  <ul class="pagination  pagination-sm">
+    
+    <?php 
+
+    echo $this->Html->tag('li',
+    		$this->Html->link('&laquo;', $page == 0 ? '#': [], ['escape' => false]),
+    		[
+    				'class' => ($page <= 0) ? 'disabled' : ''
+    		]
+    		);
+    echo $this->Html->tag('li',
+    		$this->Html->link('&lt;', $page == 0 ? '#': $page-1 > 0 ? ['?' => ['page'=>$page-1]] : [], ['escape' => false]),
+    		[
+    				'class' => ($page <= 0) ? 'disabled' : ''
+    		]
+    );   
+        
+    
+    if($pageMax < 5){
+    	$start = 0;
+    	$end = $pageMax;
+    }
+    else if($page - 2 <= 0) {
+    	$start = 0;
+    	$end = 5;
+    }
+    else if ($page + 3 >= $pageMax) {
+    	$start = $pageMax-5;
+    	$end = $pageMax;
+    }
+    else {    	
+	    $start = $page - 2;
+	    $end = $page + 3;
+    }
+    
+    
+    for ($i = $start; $i < $end ; ++$i){
+    
+    	echo $this->Html->tag('li',
+    		$this->Html->link($i+1, $i?['?' => ['page'=>$i]]:[], []),
+    		[
+    			'class' => ($i == $page) ? 'active' : ''
+    		]
+    	);
+    	
+
+    }
+    
+    echo $this->Html->tag('li',
+    		$this->Html->link('&gt;', $page+1 == $pageMax ? '#': ['?' => ['page'=>$page+1]], ['escape' => false]),
+    		[
+    				'class' => ($page+1 >= $pageMax) ? 'disabled' : ''
+    		]
+    		);
+    
+    echo $this->Html->tag('li',
+    		$this->Html->link('&raquo;', $page+1 == $pageMax ? '#': ['?' => ['page'=>$pageMax-1]], ['escape' => false]),
+    		[
+    				'class' => ($page+1 >= $pageMax) ? 'disabled' : ''
+    		]
+    		);
+    
+    ?>
+    
+  </ul>
+</nav>
+<?php endif;?>		
+
+			<span class="badge"><?php
+				echo $versions['hits']['total'];
+
+// 			if(isset($prev)){
+// 				$url = [];
+// 				if($prev > 0){
+// 					$url = [
+// 						'?' => [
+// 							'from' => $prev		
+// 						]
+// 					];
+// 				}
+				
+// 				echo $this->Html->link(__('«'), $url)." ";
+// 			}
+			
+// 			if($versions['hits']['total'] != count($versions['hits']['hits'])){
+// 				echo __("%s", count($versions['hits']['hits']), $versions['hits']['total']);
+// 			}
+// 			else {
+// 				echo __n("1 résultat", "%s résultats", $versions['hits']['total'], $versions['hits']['total']);
+// 			}
+			
+// 			if(isset($next)){
+// 				echo " ".$this->Html->link(__('»'), [
+// 						'?' => [
+// 								'from' => $next
+// 						]
+// 				]);
+// 			}
 
 
 
+			?></span>			
+			</h2>
 
-			?></span></h2>
 
-			<div>
-				<nav>
-					<ul class="pagination pull-right">
-						<?php echo $this->Paginator->numbers(array(
-								'tag' => 'li',
-								'separator' => '',
-								'currentClass' => 'active',
-								'first' => '«',
-								'last' => '»',
-								'currentTag' => 'a'
-
-						)); ?>
-					</ul>
-				</nav>
-			</div>
 			<div class="galerie-thumb-scroll groupToMatch">
 				<?php foreach ($versions['hits']['hits'] as $idx => $version) : ?>
 				<a href="#" class="thumbnail"  data-target="#GalerieCarousel" data-slide-to="<?php echo $idx; ?>"><?php

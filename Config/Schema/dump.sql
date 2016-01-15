@@ -5,9 +5,9 @@
 # http://www.sequelpro.com/
 # https://github.com/sequelpro/sequelpro
 #
-# Hôte: 127.0.0.1 (MySQL 5.5.46-0ubuntu0.14.04.2)
-# Base de données: scotchbox
-# Temps de génération: 2016-01-15 00:27:16 +0000
+# Hôte: 127.0.0.1 (MySQL 5.6.22)
+# Base de données: globalview
+# Temps de génération: 2016-01-15 19:44:28 +0000
 # ************************************************************
 
 
@@ -31,32 +31,39 @@ CREATE TABLE `gv_booking` (
   `email` varchar(200) CHARACTER SET utf8 NOT NULL DEFAULT '',
   `vat` varchar(200) NOT NULL DEFAULT '',
   `phone` varchar(200) NOT NULL DEFAULT '',
-  `treated` tinyint(1) NOT NULL,
+  `treated` tinyint(1) NOT NULL DEFAULT '0',
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   `flightId` int(11) NOT NULL,
+  `comment` text NOT NULL,
+  `isContactRequest` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 LOCK TABLES `gv_booking` WRITE;
 /*!40000 ALTER TABLE `gv_booking` DISABLE KEYS */;
 
-INSERT INTO `gv_booking` (`id`, `name`, `email`, `vat`, `phone`, `treated`, `created`, `modified`, `flightId`)
+INSERT INTO `gv_booking` (`id`, `name`, `email`, `vat`, `phone`, `treated`, `created`, `modified`, `flightId`, `comment`, `isContactRequest`)
 VALUES
-	(10,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-14 23:37:27','2016-01-14 23:37:27',0),
-	(11,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-14 23:38:11','2016-01-14 23:38:11',5),
-	(12,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 00:54:58','2016-01-15 00:54:58',3),
-	(13,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 00:55:44','2016-01-15 00:55:44',5),
-	(14,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 00:56:09','2016-01-15 00:56:09',5),
-	(15,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:05:26','2016-01-15 01:05:26',6),
-	(16,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:05:30','2016-01-15 01:05:30',6),
-	(17,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:05:32','2016-01-15 01:05:32',6),
-	(18,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:13:35','2016-01-15 01:13:35',6),
-	(19,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:13:53','2016-01-15 01:13:53',6),
-	(20,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:18:07','2016-01-15 01:18:07',3),
-	(21,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:19:17','2016-01-15 01:19:17',3),
-	(22,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:20:07','2016-01-15 01:20:07',6),
-	(23,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:21:15','2016-01-15 01:21:15',3);
+	(10,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-14 23:37:27','2016-01-14 23:37:27',0,'',0),
+	(11,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-14 23:38:11','2016-01-14 23:38:11',5,'',0),
+	(12,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 00:54:58','2016-01-15 00:54:58',3,'',0),
+	(13,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 00:55:44','2016-01-15 00:55:44',5,'',0),
+	(14,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 00:56:09','2016-01-15 00:56:09',5,'',0),
+	(15,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:05:26','2016-01-15 01:05:26',6,'',0),
+	(16,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:05:30','2016-01-15 01:05:30',6,'',0),
+	(17,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:05:32','2016-01-15 01:05:32',6,'',0),
+	(18,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:13:35','2016-01-15 01:13:35',6,'',0),
+	(19,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:13:53','2016-01-15 01:13:53',6,'',0),
+	(20,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:18:07','2016-01-15 01:18:07',3,'',0),
+	(21,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:19:17','2016-01-15 01:19:17',3,'',0),
+	(22,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:20:07','2016-01-15 01:20:07',6,'',0),
+	(23,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:21:15','2016-01-15 01:21:15',3,'',0),
+	(24,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:37:25','2016-01-15 01:37:25',3,'',0),
+	(25,'De Keyzer Mathieu','theus77@gmail.com','','',0,'2016-01-15 01:38:33','2016-01-15 01:38:33',3,'',0),
+	(26,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+33478670047',0,'2016-01-15 01:40:29','2016-01-15 01:40:29',6,'',0),
+	(27,'Mathieu de Keyzer ','ma@theus.be','123','',0,'2016-01-15 01:59:29','2016-01-15 01:59:29',3,'',0),
+	(28,'Mathieu De Keyzer','mathieu@dekeyzer.net','44444','+3223743444',0,'2016-01-15 20:35:42','2016-01-15 20:35:42',6,'',0);
 
 /*!40000 ALTER TABLE `gv_booking` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -123,7 +130,7 @@ INSERT INTO `gv_galleries` (`id`, `name`, `zip`, `counter`, `url`, `thumbUuid`, 
 VALUES
 	(1,'Le meilleur de 2014','',20,'','mdj-uYKYRcKijVxex3LdaQ',1,0,0,1,'2016-01-13 00:03:10','2016-01-13 00:03:10','meilleur_de_2014','{\n   \"query\": {\n      \"bool\": {\n         \"must\": [\n            {\n               \"range\": {\n                  \"date\": {\n                     \"from\": \"2014/01/01\",\n                     \"to\": \"2014/12/31\",\n                    \"format\": \"yyyy/MM/dd\"\n                  }\n               }\n            },\n            {\n               \"term\": {\n                  \"rating\": {\n                     \"value\": 5\n                  }\n               }\n            }\n         ]\n      }\n   }\n}'),
 	(4,'Ouvrages d\'art ÃƒÂ  Bruxelles','',5,'','Y58XjauoTZSByLyiSxdboQ',1,0,0,1,'2016-01-13 12:42:54','2016-01-13 12:42:55','art_a_bruxelles','{\r\n   \"query\": {\r\n      \"bool\": {\r\n         \"must\": [\r\n            {\r\n               \"nested\": {\r\n                  \"path\": \"Keywords\",\r\n                  \"query\": {\r\n                      \"term\": {\r\n                         \"Keywords.uuid\": {\r\n                            \"value\": \"SSjwgQDJSaSWfc44IUKhgQ\"\r\n                         }\r\n                      }\r\n                  }\r\n               }\r\n            },\r\n            {\r\n               \"nested\": {\r\n                  \"path\": \"locations\",\r\n                  \"query\": {\r\n                      \"term\": {\r\n                         \"locations.uuid\": {\r\n                            \"value\": \"koQ6iIs7QSC0xFC_dKQolg\"\r\n                         }\r\n                      }\r\n                  }\r\n               }\r\n            }\r\n         ]\r\n      }\r\n   }\r\n}'),
-	(8,'Ponts','',12,'','1gjwc3UoTK6bquMUbS-9Lw',1,0,0,1,'2016-01-13 12:52:11','2016-01-13 12:52:11','ponts','{\r\n   \"query\": {\r\n      \"bool\": {\r\n         \"must\": [\r\n            {\r\n               \"nested\": {\r\n                  \"path\": \"Keywords\",\r\n                  \"query\": {\r\n                      \"term\": {\r\n                         \"Keywords.uuid\": {\r\n                            \"value\": \"GkOPaiNVQqq17s30tN-Yeg\"\r\n                         }\r\n                      }\r\n                  }\r\n               }\r\n            }\r\n         ]\r\n      }\r\n   }\r\n}');
+	(8,'Ponts','',16,'','1gjwc3UoTK6bquMUbS-9Lw',1,0,0,1,'2016-01-13 12:52:11','2016-01-13 12:52:11','ponts','{\r\n   \"query\": {\r\n      \"bool\": {\r\n         \"must\": [\r\n            {\r\n               \"nested\": {\r\n                  \"path\": \"Keywords\",\r\n                  \"query\": {\r\n                      \"term\": {\r\n                         \"Keywords.uuid\": {\r\n                            \"value\": \"GkOPaiNVQqq17s30tN-Yeg\"\r\n                         }\r\n                      }\r\n                  }\r\n               }\r\n            }\r\n         ]\r\n      }\r\n   }\r\n}');
 
 /*!40000 ALTER TABLE `gv_galleries` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -252,7 +259,12 @@ VALUES
 	(6,'maison','[{\"lat\":51.163198368387384,\"lng\":5.5426025390625},{\"lat\":50.455099617229536,\"lng\":5.3338623046875},{\"lat\":51.595201674618934,\"lng\":3.5321044921875},{\"lat\":51.321386485428924,\"lng\":5.4766845703125}]','2016-01-15 01:20:07','2016-01-15 01:20:07',22),
 	(7,'entreprise','[{\"lat\":51.30765258961638,\"lng\":6.7840576171875},{\"lat\":51.56789405249296,\"lng\":7.4102783203125},{\"lat\":50.89372191643621,\"lng\":7.2894287109375},{\"lat\":51.108048849946385,\"lng\":6.6522216796875}]','2016-01-15 01:20:07','2016-01-15 01:20:07',22),
 	(8,'A','[{\"lat\":49.882800516406746,\"lng\":4.68841552734375},{\"lat\":50.12641117809973,\"lng\":5.00152587890625},{\"lat\":49.992401526173225,\"lng\":5.57281494140625},{\"lat\":49.85447590798499,\"lng\":5.07293701171875},{\"lat\":49.75520894510064,\"lng\":5.07293701171875}]','2016-01-15 01:21:15','2016-01-15 01:21:15',23),
-	(9,'B','[{\"lat\":49.86570815992511,\"lng\":5.706024169921875},{\"lat\":50.0653487640064,\"lng\":5.821380615234375},{\"lat\":50.010662512866595,\"lng\":6.063079833984375},{\"lat\":49.83028727255109,\"lng\":5.785675048828125}]','2016-01-15 01:21:15','2016-01-15 01:21:15',23);
+	(9,'B','[{\"lat\":49.86570815992511,\"lng\":5.706024169921875},{\"lat\":50.0653487640064,\"lng\":5.821380615234375},{\"lat\":50.010662512866595,\"lng\":6.063079833984375},{\"lat\":49.83028727255109,\"lng\":5.785675048828125}]','2016-01-15 01:21:15','2016-01-15 01:21:15',23),
+	(10,'Ma maison','[{\"lat\":50.82322522630364,\"lng\":4.288325160741806},{\"lat\":50.82324386461185,\"lng\":4.287815541028976},{\"lat\":50.82322183751952,\"lng\":4.287780672311783},{\"lat\":50.82318794966488,\"lng\":4.288301020860672}]','2016-01-15 01:37:25','2016-01-15 01:37:25',24),
+	(11,'totot','[{\"lat\":50.03123229162374,\"lng\":4.86419677734375},{\"lat\":50.084132778328055,\"lng\":5.84197998046875},{\"lat\":49.90403307316397,\"lng\":4.83123779296875},{\"lat\":49.96060755991755,\"lng\":4.90264892578125}]','2016-01-15 01:38:33','2016-01-15 01:38:33',25),
+	(12,'Cool','[{\"lat\":50.66447857675186,\"lng\":2.9718017578125},{\"lat\":50.928357756555926,\"lng\":3.0816650390625},{\"lat\":50.67840411025711,\"lng\":3.4552001953125}]','2016-01-15 01:40:29','2016-01-15 01:40:29',26),
+	(13,'Toto','[{\"lat\":49.661294552128304,\"lng\":5.592041015625},{\"lat\":49.661294552128304,\"lng\":5.9765625},{\"lat\":49.497454970303046,\"lng\":5.855712890625},{\"lat\":49.572319543619166,\"lng\":5.548095703125}]','2016-01-15 01:59:29','2016-01-15 01:59:29',27),
+	(14,'toto','[{\"lat\":50.51102496681062,\"lng\":3.0322265625},{\"lat\":51.08044938563426,\"lng\":4.163818359375},{\"lat\":50.378094176069084,\"lng\":4.2626953125},{\"lat\":50.32902552550652,\"lng\":3.33984375}]','2016-01-15 20:35:42','2016-01-15 20:35:42',28);
 
 /*!40000 ALTER TABLE `gv_target` ENABLE KEYS */;
 UNLOCK TABLES;

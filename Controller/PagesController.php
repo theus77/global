@@ -26,7 +26,7 @@ class PagesController extends AppController {
  *
  * @var array
  */
-	public $uses = array('Flight', 'Gallery');
+	public $uses = array('Flight', 'Gallery', 'Booking');
 
 	
 	
@@ -44,6 +44,28 @@ class PagesController extends AppController {
  *   or MissingViewException in debug mode.
  */
 	public function display() {
+		
+		if ($this->request->is(array('post', 'put'))) {
+			if(isset($this->request->data['Booking'])){
+				$this->request->data['Booking']['isContactRequest'] = true;
+			
+				if ($this->Booking->save($this->request->data)) {
+					$this->Session->setFlash(__('Votre demande à été envoyée.'));			
+					$this->redirect([
+							'controller' => 'pages',
+							'action' => 'display',
+							'language' => Configure::read('Config.language'),
+							'thanks'
+					]);		
+				}
+			}
+			else {
+				$this->Session->setFlash(__('Impossible d\'enregistrer votre demande. Réessayer plus tard.'));
+			}
+		}
+		
+		
+		
 		$path = func_get_args();
 
 		$count = count($path);
