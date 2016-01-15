@@ -18,15 +18,13 @@
 	}
 
 	function initialize() {
-      	 var north = <?php echo $place['Place']['maxLatitude']; ?>;
-    	 var south = <?php echo $place['Place']['minLatitude']; ?>;
-     	 var west = <?php echo $place['Place']['minLongitude']; ?>;
-    	 var est = <?php echo $place['Place']['maxLongitude']; ?>;
-	   	 var southwest = new google.maps.LatLng(south, west);
+     	 var north = <?php echo $mapBB['north']; ?>;
+    	 var south = <?php echo $mapBB['south']; ?>;
+     	 var west = <?php echo $mapBB['west']; ?>;
+    	 var est = <?php echo $mapBB['est']; ?>;	   	 var southwest = new google.maps.LatLng(south, west);
 		 var northeast = new google.maps.LatLng(north, est);
     	 
     	 var bounds = new google.maps.LatLngBounds(southwest, northeast);
-         
 
 
 		var mapOptions = {
@@ -127,9 +125,19 @@
 			polygons[counter] = polygon;
 
 			var infowindow = new google.maps.InfoWindow({
-				content: '<label class="control-label" for="target-'+counter+'"><?php echo __('Informations à propos de la cible'); ?></label><textarea class="form-control" id="target-'+counter+'"></textarea><a href="#" onclick="removeMarker('+counter+'); return false;"><?php echo __('Effacer ce repère');?></a>'
-			});
+				content: '<label class="control-label" for="target-'+counter+'"><?php echo __('Informations à propos de la cible'); ?></label>'
+				+'<textarea data-target="input[name=\'data[Booking][target]['+counter+'][comment]\']" onChange="$(this.dataset.target).attr(\'value\', this.value);" class="form-control polygon-info" id="target-'+counter+'"></textarea>'+
+				'<a href="#" data-target="'+counter+'"  onclick="removeMarker('+counter+'); '+
+				'$(\'input[name=\\\'data[Booking][target]['+counter+'][comment]\\\']\').detach(); '+
+				'$(\'input[name=\\\'data[Booking][target]['+counter+'][polygon]\\\']\').detach(); '+
+				'return false;"><?php echo __('Effacer ce repère');?></a>'
+			});																																																									
 
+			$('form#BookingBookForm').append('<input name="data[Booking][target]['+counter+'][comment]" type="hidden" value="empty"/>');
+
+			$('form#BookingBookForm').append('<input name="data[Booking][target]['+counter+'][polygon]" type="hidden" value="'+encodeURIComponent(JSON.stringify(polygon.getPath().getArray()))+'"/>');			
+			
+			
 			drawingManager.setDrawingMode(null);
 			polygon.getPath().getAt(0);
 			infowindow.setPosition(polygon.getPath().getAt(0));
@@ -137,6 +145,7 @@
         	google.maps.event.addDomListener(polygon, 'click', function(event) {
         		infowindow.open(map,polygon);
         	});
+        	counter += 1;
             	
         });
 
@@ -185,6 +194,10 @@
 	
 	}
     google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+
     </script>
     
     
@@ -212,44 +225,69 @@
 
 <!-- Form Name -->
 
-<form class="form-horizontal">
+<?php echo $this->Form->create('Booking', ['class' => 'form-horizontal']); ?>
+
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="name"><?php echo('Nom et prénom')?></label>  
+  <label class="col-md-4 control-label" for="name"><?php echo __('Nom et prénom *')?></label>  
   <div class="col-md-8">
-  <input id="name" name="name" type="text" placeholder="<?php echo('nom et prénom')?>" class="form-control input-md" required>
+  
+  <?php echo $this->Form->input('name', array(
+  		'label' => false,
+  		'class' => 'form-control input-md',
+  		'placeholder' => __('nom et prénom'),
+  		'required' => true
+  		
+  ));?>
     
   </div>
 </div>
 
 <!-- Prepended checkbox -->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="tva"><?php echo('Numéro de TVA')?></label>
+  <label class="col-md-4 control-label" for="vat"><?php echo __('Numéro de TVA')?></label>
   <div class="col-md-8">
     <div class="input-group">
       <span class="input-group-addon">     
           <input type="checkbox">     
       </span>
-      <input id="tva" name="tva" class="form-control" type="text" placeholder="<?php echo('numéro de TVA')?>">
+      <?php echo $this->Form->input('vat', array(
+  		'label' => false,
+  		'class' => 'form-control',
+  		'placeholder' => __('numéro de TVA')
+  		
+  		));?>
+  
     </div>
-    <p class="help-block"><?php echo('Si d\'application');?></p>
+    <p class="help-block"><?php echo __('Si d\'application');?></p>
   </div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="email"><?php echo('Adresse email');?></label>  
+  <label class="col-md-4 control-label" for="email"><?php echo __('Adresse email *');?></label>  
   <div class="col-md-8">
-  <input id="email" name="email" type="text" placeholder="<?php echo('email');?>" class="form-control input-md">
+  <?php echo $this->Form->input('email', array(
+  		'label' => false,
+  		'class' => 'form-control input-md',
+  		'placeholder' => __('email'),
+  		'required' => true
+  		
+  		));?>
     
   </div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="phone"><?php echo('Numéro de téléphone');?></label>  
+  <label class="col-md-4 control-label" for="phone"><?php echo __('Numéro de téléphone');?></label>  
   <div class="col-md-8">
-  <input id="phone" name="phone" type="text" placeholder="<?php echo('téléphone');?>" class="form-control input-md">
+  <?php echo $this->Form->input('phone', array(
+  		'label' => false,
+  		'class' => 'form-control input-md',
+  		'placeholder' => __('téléphone')
+  		
+  		));?>
     
   </div>
 </div>

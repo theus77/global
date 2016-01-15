@@ -7,7 +7,7 @@
 #
 # Hôte: 127.0.0.1 (MySQL 5.5.46-0ubuntu0.14.04.2)
 # Base de données: scotchbox
-# Temps de génération: 2016-01-13 17:33:35 +0000
+# Temps de génération: 2016-01-15 00:27:16 +0000
 # ************************************************************
 
 
@@ -18,6 +18,48 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+# Affichage de la table gv_booking
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `gv_booking`;
+
+CREATE TABLE `gv_booking` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(1024) CHARACTER SET utf8 NOT NULL,
+  `email` varchar(200) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `vat` varchar(200) NOT NULL DEFAULT '',
+  `phone` varchar(200) NOT NULL DEFAULT '',
+  `treated` tinyint(1) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  `flightId` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+LOCK TABLES `gv_booking` WRITE;
+/*!40000 ALTER TABLE `gv_booking` DISABLE KEYS */;
+
+INSERT INTO `gv_booking` (`id`, `name`, `email`, `vat`, `phone`, `treated`, `created`, `modified`, `flightId`)
+VALUES
+	(10,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-14 23:37:27','2016-01-14 23:37:27',0),
+	(11,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-14 23:38:11','2016-01-14 23:38:11',5),
+	(12,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 00:54:58','2016-01-15 00:54:58',3),
+	(13,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 00:55:44','2016-01-15 00:55:44',5),
+	(14,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 00:56:09','2016-01-15 00:56:09',5),
+	(15,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:05:26','2016-01-15 01:05:26',6),
+	(16,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:05:30','2016-01-15 01:05:30',6),
+	(17,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:05:32','2016-01-15 01:05:32',6),
+	(18,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:13:35','2016-01-15 01:13:35',6),
+	(19,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:13:53','2016-01-15 01:13:53',6),
+	(20,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:18:07','2016-01-15 01:18:07',3),
+	(21,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:19:17','2016-01-15 01:19:17',3),
+	(22,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:20:07','2016-01-15 01:20:07',6),
+	(23,'Mathieu De Keyzer','mathieu@dekeyzer.net','','+3223743444',0,'2016-01-15 01:21:15','2016-01-15 01:21:15',3);
+
+/*!40000 ALTER TABLE `gv_booking` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Affichage de la table gv_flights
@@ -45,7 +87,7 @@ INSERT INTO `gv_flights` (`id`, `name`, `body`, `placeId`, `cost`, `weight`, `pu
 VALUES
 	(3,'Brussel center','<p><img alt=\"Localisation de la province en Belgique\" src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Province_of_Antwerp_%28Belgium%29_location.svg/langfr-280px-Province_of_Antwerp_%28Belgium%29_location.svg.png\" /></p>\r\n\r\n<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>\r\n','alUrqItUSLe4KLAcRSXF5g',675,1,1,'2015-05-25 01:05:21','2016-01-13 18:14:43'),
 	(5,'Grand Duchy of Luxembourg','<p><img alt=\"Localisation de la province en Belgique\" src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Province_of_Antwerp_%28Belgium%29_location.svg/langfr-280px-Province_of_Antwerp_%28Belgium%29_location.svg.png\" /></p>\r\n\r\n<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>\r\n','alUrqItUSLe4KLAcRSXF5g',715,0,1,'2015-05-25 01:07:10','2016-01-12 23:07:45'),
-	(6,'Brabant Walloon','<p><img alt=\"Localisation de la province en Belgique\" src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Province_of_Antwerp_%28Belgium%29_location.svg/langfr-280px-Province_of_Antwerp_%28Belgium%29_location.svg.png\" /></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>\r\n\r\n<p>&nbsp;</p>\r\n','alUrqItUSLe4KLAcRSXF5g',485,2,1,'2015-06-29 15:08:01','2016-01-13 18:22:49');
+	(6,'Not yet planned ?','<p><img alt=\"Localisation de la province en Belgique\" src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Province_of_Antwerp_%28Belgium%29_location.svg/langfr-280px-Province_of_Antwerp_%28Belgium%29_location.svg.png\" /></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>\r\n','',485,2,1,'2015-06-29 15:08:01','2016-01-14 23:06:34');
 
 /*!40000 ALTER TABLE `gv_flights` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -79,9 +121,9 @@ LOCK TABLES `gv_galleries` WRITE;
 
 INSERT INTO `gv_galleries` (`id`, `name`, `zip`, `counter`, `url`, `thumbUuid`, `homepage`, `keyword`, `weight`, `published`, `created`, `modified`, `slug`, `query`)
 VALUES
-	(1,'Le meilleur de 2014','',44,'','DdZtim0SS7mQ6hEfcsUV4A',1,0,0,1,'2016-01-13 00:03:10','2016-01-13 00:03:10','meilleur_de_2014','{\n   \"query\": {\n      \"bool\": {\n         \"must\": [\n            {\n               \"range\": {\n                  \"date\": {\n                     \"from\": 1388534400,\n                     \"to\": 1420070400\n                  }\n               }\n            },\n            {\n               \"term\": {\n                  \"rating\": {\n                     \"value\": 5\n                  }\n               }\n            }\n         ]\n      }\n   }\n}'),
-	(4,'Ouvrages d\'art ÃƒÂ  Bruxelles','',5,'','W6queGZPQyuxzvhN9r6gHw',1,0,0,1,'2016-01-13 12:42:54','2016-01-13 12:42:55','art_a_bruxelles','{\r\n   \"query\": {\r\n      \"bool\": {\r\n         \"must\": [\r\n            {\r\n               \"nested\": {\r\n                  \"path\": \"Keywords\",\r\n                  \"query\": {\r\n                      \"term\": {\r\n                         \"Keywords.uuid\": {\r\n                            \"value\": \"SSjwgQDJSaSWfc44IUKhgQ\"\r\n                         }\r\n                      }\r\n                  }\r\n               }\r\n            },\r\n            {\r\n               \"nested\": {\r\n                  \"path\": \"locations\",\r\n                  \"query\": {\r\n                      \"term\": {\r\n                         \"locations.uuid\": {\r\n                            \"value\": \"koQ6iIs7QSC0xFC_dKQolg\"\r\n                         }\r\n                      }\r\n                  }\r\n               }\r\n            }\r\n         ]\r\n      }\r\n   }\r\n}'),
-	(8,'Ponts','',10,'','2cMdNZkfSGS96dLB7OHDgw',1,0,0,1,'2016-01-13 12:52:11','2016-01-13 12:52:11','ponts','{\r\n   \"query\": {\r\n      \"bool\": {\r\n         \"must\": [\r\n            {\r\n               \"nested\": {\r\n                  \"path\": \"Keywords\",\r\n                  \"query\": {\r\n                      \"term\": {\r\n                         \"Keywords.uuid\": {\r\n                            \"value\": \"GkOPaiNVQqq17s30tN+Yeg\"\r\n                         }\r\n                      }\r\n                  }\r\n               }\r\n            }\r\n         ]\r\n      }\r\n   }\r\n}');
+	(1,'Le meilleur de 2014','',20,'','mdj-uYKYRcKijVxex3LdaQ',1,0,0,1,'2016-01-13 00:03:10','2016-01-13 00:03:10','meilleur_de_2014','{\n   \"query\": {\n      \"bool\": {\n         \"must\": [\n            {\n               \"range\": {\n                  \"date\": {\n                     \"from\": \"2014/01/01\",\n                     \"to\": \"2014/12/31\",\n                    \"format\": \"yyyy/MM/dd\"\n                  }\n               }\n            },\n            {\n               \"term\": {\n                  \"rating\": {\n                     \"value\": 5\n                  }\n               }\n            }\n         ]\n      }\n   }\n}'),
+	(4,'Ouvrages d\'art ÃƒÂ  Bruxelles','',5,'','Y58XjauoTZSByLyiSxdboQ',1,0,0,1,'2016-01-13 12:42:54','2016-01-13 12:42:55','art_a_bruxelles','{\r\n   \"query\": {\r\n      \"bool\": {\r\n         \"must\": [\r\n            {\r\n               \"nested\": {\r\n                  \"path\": \"Keywords\",\r\n                  \"query\": {\r\n                      \"term\": {\r\n                         \"Keywords.uuid\": {\r\n                            \"value\": \"SSjwgQDJSaSWfc44IUKhgQ\"\r\n                         }\r\n                      }\r\n                  }\r\n               }\r\n            },\r\n            {\r\n               \"nested\": {\r\n                  \"path\": \"locations\",\r\n                  \"query\": {\r\n                      \"term\": {\r\n                         \"locations.uuid\": {\r\n                            \"value\": \"koQ6iIs7QSC0xFC_dKQolg\"\r\n                         }\r\n                      }\r\n                  }\r\n               }\r\n            }\r\n         ]\r\n      }\r\n   }\r\n}'),
+	(8,'Ponts','',12,'','1gjwc3UoTK6bquMUbS-9Lw',1,0,0,1,'2016-01-13 12:52:11','2016-01-13 12:52:11','ponts','{\r\n   \"query\": {\r\n      \"bool\": {\r\n         \"must\": [\r\n            {\r\n               \"nested\": {\r\n                  \"path\": \"Keywords\",\r\n                  \"query\": {\r\n                      \"term\": {\r\n                         \"Keywords.uuid\": {\r\n                            \"value\": \"GkOPaiNVQqq17s30tN-Yeg\"\r\n                         }\r\n                      }\r\n                  }\r\n               }\r\n            }\r\n         ]\r\n      }\r\n   }\r\n}');
 
 /*!40000 ALTER TABLE `gv_galleries` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -144,12 +186,12 @@ VALUES
 	(273,'nl','Flight',5,'body','<p><img alt=\"Localisation de la province en Belgique\" src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Province_of_Antwerp_%28Belgium%29_location.svg/langfr-280px-Province_of_Antwerp_%28Belgium%29_location.svg.png\" /></p>\r\n\r\n<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>\r\n'),
 	(274,'en','Flight',5,'name','Grand Duchy of Luxembourg'),
 	(275,'en','Flight',5,'body','<p><img alt=\"Localisation de la province en Belgique\" src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Province_of_Antwerp_%28Belgium%29_location.svg/langfr-280px-Province_of_Antwerp_%28Belgium%29_location.svg.png\" /></p>\r\n\r\n<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>\r\n'),
-	(14954,'fr','Flight',6,'name','Province du Brabant-Wallon'),
-	(14955,'fr','Flight',6,'body','<p><img alt=\"Localisation de la province en Belgique\" src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Province_of_Antwerp_%28Belgium%29_location.svg/langfr-280px-Province_of_Antwerp_%28Belgium%29_location.svg.png\" /></p>\r\n\r\n<p>- Objet: r&eacute;alisation de photos et vid&eacute;os a&eacute;riennes&nbsp;sur commande.<br />\r\n- Caract&eacute;ristiques: Vol sans porte en&nbsp;h&eacute;licopt&egrave;re R44, &agrave; basse, moyenne et haute altitude. Boitiers&nbsp;Full frame D800 et D800E, 36 Mpxls, optiques 14-24, 24-70 et 70-200 f2/8,&nbsp;gyroscope 3 axes.<br />\r\n- Dates: R&eacute;alisation Septembre 2015,&nbsp;en semaine lors d&#39;une journ&eacute;e ensoleill&eacute;e;&nbsp;R&eacute;servation avant le 2 Septembre&nbsp;(briefing pr&eacute;alable sur site &agrave; partir du 3/09)&nbsp;</p>\r\n'),
-	(14956,'nl','Flight',6,'name','Vlaams Brabant'),
-	(14957,'nl','Flight',6,'body','<p><img alt=\"Localisation de la province en Belgique\" src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Province_of_Antwerp_%28Belgium%29_location.svg/langfr-280px-Province_of_Antwerp_%28Belgium%29_location.svg.png\" /></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>\r\n\r\n<p>&nbsp;</p>\r\n'),
-	(14958,'en','Flight',6,'name','Brabant Walloon'),
-	(14959,'en','Flight',6,'body','<p><img alt=\"Localisation de la province en Belgique\" src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Province_of_Antwerp_%28Belgium%29_location.svg/langfr-280px-Province_of_Antwerp_%28Belgium%29_location.svg.png\" /></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>\r\n\r\n<p>&nbsp;</p>\r\n'),
+	(14954,'fr','Flight',6,'name','Pas encore planifiÃƒÂ© ?'),
+	(14955,'fr','Flight',6,'body','<p><img alt=\"Localisation de la province en Belgique\" src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Province_of_Antwerp_%28Belgium%29_location.svg/langfr-280px-Province_of_Antwerp_%28Belgium%29_location.svg.png\" /></p>\r\n\r\n<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>\r\n\r\n<p>&nbsp;</p>\r\n'),
+	(14956,'nl','Flight',6,'name','Nog niet gepland ?'),
+	(14957,'nl','Flight',6,'body','<p><img alt=\"Localisation de la province en Belgique\" src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Province_of_Antwerp_%28Belgium%29_location.svg/langfr-280px-Province_of_Antwerp_%28Belgium%29_location.svg.png\" /></p>\r\n\r\n<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi</p>\r\n\r\n<p>&nbsp;</p>\r\n'),
+	(14958,'en','Flight',6,'name','Not yet planned ?'),
+	(14959,'en','Flight',6,'body','<p><img alt=\"Localisation de la province en Belgique\" src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Province_of_Antwerp_%28Belgium%29_location.svg/langfr-280px-Province_of_Antwerp_%28Belgium%29_location.svg.png\" /></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>\r\n'),
 	(14984,'fr','Wysiwyg',32,'value','<h2>Placez vos rep&egrave;res</h2>\r\n\r\n<p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus.</p>\r\n'),
 	(14985,'nl','Wysiwyg',32,'value','<h2>Plaats uw markers</h2>\r\n\r\n<p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus.</p>\r\n'),
 	(14986,'en','Wysiwyg',32,'value','<h2>Place your markers</h2>\r\n\r\n<p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus.</p>\r\n'),
@@ -179,6 +221,40 @@ VALUES
 	(15041,'en','Wysiwyg',35,'value','<h2>Aerial photography</h2>\r\n\r\n<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<h3>Services</h3>\r\n\r\n<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>\r\n\r\n<p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>\r\n');
 
 /*!40000 ALTER TABLE `gv_i18n` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Affichage de la table gv_target
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `gv_target`;
+
+CREATE TABLE `gv_target` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `comment` varchar(1024) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `polygon` text CHARACTER SET utf8 NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  `bookingId` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+LOCK TABLES `gv_target` WRITE;
+/*!40000 ALTER TABLE `gv_target` DISABLE KEYS */;
+
+INSERT INTO `gv_target` (`id`, `comment`, `polygon`, `created`, `modified`, `bookingId`)
+VALUES
+	(1,'stur','[{\"lat\":51.01137864085547,\"lng\":5.8721923828125},{\"lat\":51.376280962616,\"lng\":6.0919189453125},{\"lat\":51.0182903503433,\"lng\":7.1466064453125},{\"lat\":50.852124881781094,\"lng\":6.6412353515625},{\"lat\":50.85906029908938,\"lng\":5.6634521484375},{\"lat\":50.98372150040732,\"lng\":6.5093994140625},{\"lat\":51.052833446686115,\"lng\":6.3006591796875}]','2016-01-15 01:13:53','2016-01-15 01:13:53',19),
+	(2,'A','[{\"lat\":49.99593289233122,\"lng\":5.91339111328125},{\"lat\":50.12641117809973,\"lng\":6.23199462890625},{\"lat\":49.882800516406746,\"lng\":6.23199462890625}]','2016-01-15 01:18:07','2016-01-15 01:18:07',20),
+	(3,'B','[{\"lat\":50.245997378498,\"lng\":6.68243408203125},{\"lat\":50.3687881738857,\"lng\":6.99554443359375},{\"lat\":50.13345395010687,\"lng\":6.98455810546875},{\"lat\":50.21788638545399,\"lng\":6.89117431640625}]','2016-01-15 01:18:07','2016-01-15 01:18:07',20),
+	(4,'C','[{\"lat\":49.992401526173225,\"lng\":6.45172119140625},{\"lat\":49.95000490239457,\"lng\":6.90765380859375},{\"lat\":49.84739216045269,\"lng\":6.35833740234375},{\"lat\":49.92525628876856,\"lng\":6.36932373046875}]','2016-01-15 01:18:07','2016-01-15 01:18:07',20),
+	(5,'B','[{\"lat\":49.89695659220982,\"lng\":6.58905029296875},{\"lat\":50.23897118388973,\"lng\":7.10540771484375},{\"lat\":49.723258471695715,\"lng\":7.15484619140625}]','2016-01-15 01:19:17','2016-01-15 01:19:17',21),
+	(6,'maison','[{\"lat\":51.163198368387384,\"lng\":5.5426025390625},{\"lat\":50.455099617229536,\"lng\":5.3338623046875},{\"lat\":51.595201674618934,\"lng\":3.5321044921875},{\"lat\":51.321386485428924,\"lng\":5.4766845703125}]','2016-01-15 01:20:07','2016-01-15 01:20:07',22),
+	(7,'entreprise','[{\"lat\":51.30765258961638,\"lng\":6.7840576171875},{\"lat\":51.56789405249296,\"lng\":7.4102783203125},{\"lat\":50.89372191643621,\"lng\":7.2894287109375},{\"lat\":51.108048849946385,\"lng\":6.6522216796875}]','2016-01-15 01:20:07','2016-01-15 01:20:07',22),
+	(8,'A','[{\"lat\":49.882800516406746,\"lng\":4.68841552734375},{\"lat\":50.12641117809973,\"lng\":5.00152587890625},{\"lat\":49.992401526173225,\"lng\":5.57281494140625},{\"lat\":49.85447590798499,\"lng\":5.07293701171875},{\"lat\":49.75520894510064,\"lng\":5.07293701171875}]','2016-01-15 01:21:15','2016-01-15 01:21:15',23),
+	(9,'B','[{\"lat\":49.86570815992511,\"lng\":5.706024169921875},{\"lat\":50.0653487640064,\"lng\":5.821380615234375},{\"lat\":50.010662512866595,\"lng\":6.063079833984375},{\"lat\":49.83028727255109,\"lng\":5.785675048828125}]','2016-01-15 01:21:15','2016-01-15 01:21:15',23);
+
+/*!40000 ALTER TABLE `gv_target` ENABLE KEYS */;
 UNLOCK TABLES;
 
 

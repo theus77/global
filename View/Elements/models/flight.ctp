@@ -56,8 +56,7 @@
 			echo $this->Form->input('placeId', array(
 					'label' => false,
 					'placeholder' => __("placeId"),
-					'class' => 'form-control input-md',
-					'required' => true
+					'class' => 'form-control input-md'
 			));
 		?> 
 	  </div>
