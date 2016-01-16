@@ -1,18 +1,107 @@
 <div id="price-ctp">
 			<div class="row">
 				<h1>
-					<?php echo __('Demande de prix pour un vol');  ?>
+					<div class="col-md-12">
+						<?php echo __('Demande de prix pour un cliché');  ?>
+					</div>
 				</h1>
 			</div>
 			<div class="row">
-<p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus.
-</p>
-
-<p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-</p>
-
-<p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, At accusam aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore Stet clita ea et gubergren, kasd magna no rebum. sanctus sea sed takimata ut vero voluptua. est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.
-</p>
-
+				<div class="col-md-12">
+				<?php echo $this->i18n->w('price.intro');  ?>
+				</div>
 			</div>
 </div>
+
+<!-- Form Name -->
+
+<?php echo $this->Form->create('PricingRequest', ['class' => 'form-horizontal']); ?>
+
+<!-- Text input-->
+<div class="form-group">
+	<div class="col-md-5">
+		<div class="btn-group" data-toggle="buttons">
+			<?php foreach ($version["_source"]["Stack"] as $imageUuid):?>
+			  <label class="btn btn-primary col-md-6 col-lg-3">
+			    <input type="radio" name="data[PricingRequest][bestUuid]" id="data[PricingRequest][bestUuid]" autocomplete="off" value="<?php  echo $imageUuid?>"> 
+			      	<?php 
+			      	echo $this->element('image', array(
+			      			'lazy' => false,
+			      			'alt' => $imageUuid,
+			      			'imageUuid' => $imageUuid,
+			      			'route' => 'thumb.jpg',
+			      			'class' => 'img-responsive',
+			      	));
+			      	?>
+			  </label>
+			<?php endforeach; ?>
+		</div>
+	</div>
+	<div class="col-md-7">
+	      	<?php 
+echo $this->element('form/textInput', [
+		'field' => 'name',
+		'label' => __('Nom et prénom *'),
+		'placeholder' => __('nom et prénom'),
+  		'required' => true
+]);
+echo $this->element('form/prependedCheckbox', [
+		'field' => 'vat',
+		'label' => __('Numéro de TVA'),
+		'placeholder' => __('numéro de TVA'),
+		'help' => __('Si d\'application')
+]);
+echo $this->element('form/textInput', [
+		'field' => 'email',
+		'label' => __('Adresse email *'),
+		'placeholder' => __('email'),
+  		'required' => true
+]);
+echo $this->element('form/textInput', [
+		'field' => 'phone',
+		'label' => __('Numéro de téléphone'),
+		'placeholder' => __('téléphone')
+]);
+echo $this->element('form/textInput', [
+		'field' => 'media',
+		'label' => __('Support'),
+		'placeholder' => __('supports sur lesquels l’œuvre est reproduite'),
+		'help' => __('Internet, cartes postals, dossiers de presse, télévision, ...'),
+]);
+echo $this->element('form/textInput', [
+		'field' => 'printRun',
+		'label' => __('Tirage'),
+		'placeholder' => __('tirage en nombre d\'exemplaire'),
+		'help' => __('Si d\'application'),
+]);
+echo $this->element('form/textInput', [
+		'field' => 'maxFormat',
+		'label' => __('Format maximum'),
+		'placeholder' => __('format maximum du support en cm'),
+		'help' => __('En cm: 10X15, 20x30, ...'),
+]);
+echo $this->element('form/textInput', [
+		'field' => 'duration',
+		'label' => __('Durée'),
+		'placeholder' => __('durée de représentation de l’œuvre dans un film…'),
+		'help' => __('Si d\'application'),
+]);
+echo $this->element('form/textInput', [
+		'field' => 'special',
+		'label' => __('Critères spéciaux'),
+		'placeholder' => __('page de couverture, utilisation non-commerciale…'),
+		'help' => __('Si d\'application'),
+]);
+
+echo $this->element('form/textInput', [
+		'field' => 'comment',
+		'label' => __('Remarques'),
+		'placeholder' => __('commentaires, remarques, questions, ...')
+]);
+echo $this->element('form/sendButton', [
+]);
+      	?>	
+	</div>
+</div>
+
+</form>

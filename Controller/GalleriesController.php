@@ -1,6 +1,7 @@
 <?php
 use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;
+use Elasticsearch\Common\Exceptions\Missing404Exception;
 
 App::uses('AppController', 'Controller');
 /**
@@ -13,7 +14,7 @@ App::uses('AppController', 'Controller');
  */
 class GalleriesController extends AppController {
 
-	public $uses = array('Gallery', 'ModelTranslation');
+	public $uses = array('Gallery', 'ModelTranslation', 'PricingRequest');
 	public $components = array('RequestHandler', 'Paginator', 'Acl', 'Session');
 	private $client;
 	
@@ -88,7 +89,6 @@ class GalleriesController extends AppController {
 	
 	public function place($locationUuid) {
 
-		$this->fixUuid($locationUuid);
 		$body = json_decode('
 			{
 			   "size": '.json_encode(self::PAGING_SIZE).',
@@ -133,7 +133,7 @@ class GalleriesController extends AppController {
 	
 	
 	public function geohash($hash) {
-		$this->fixUuid($locationUuid);
+		
 		$body = json_decode('
 			{
 			   "size": '.json_encode(self::PAGING_SIZE).',
@@ -170,8 +170,6 @@ class GalleriesController extends AppController {
 	
 	public function keyword($keywordUuid) {		
 		
-
-		$this->fixUuid($keywordUuid);
 		
 		$body = json_decode('
 		{
@@ -366,8 +364,43 @@ class GalleriesController extends AppController {
 // 	}
 	
 	
-	public function price() {
-	
+	public function price($versionUuid=NULL) {
+		$searchParams = [
+				'index' => Configure::read('Config.apertureIndex'),
+				'type'  => Configure::read('Config.versionModel'),
+				'id' => $versionUuid,
+		];
+		try {
+			$version = $this->client->get($searchParams);			
+		}
+		catch (Missing404Exception $e){
+			throw new NotFoundException(__('Référence inconnue'));
+		}
+		
+		
+		if ($this->request->is(array('post', 'put'))) {
+			if(isset($this->request->data['PricingRequest'])){
+				$this->request->data['PricingRequest']['mainVersionUuid'] = $versionUuid;
+				$this->request->data['PricingRequest']['treated'] = false;
+					
+				if ($this->PricingRequest->save($this->request->data)) {
+					$this->Session->setFlash(__('Votre demande à été envoyée.'));
+					$this->redirect([
+							'controller' => 'pages',
+							'action' => 'display',
+							'language' => Configure::read('Config.language'),
+							'thanks'
+					]);
+				}
+			}
+			else {
+				$this->Session->setFlash(__('Impossible d\'enregistrer votre demande. Réessayer plus tard.'));
+			}
+		}
+		
+		$this->set('version', $version);
+		
+// 		var_dump($version); exit;
 	}
 	
 	public function search($query = NULL) {
