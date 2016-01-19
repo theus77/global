@@ -1,4 +1,6 @@
 <?php
+use Elasticsearch\ClientBuilder;
+
 /**
  * Static content controller.
  *
@@ -106,6 +108,35 @@ class PagesController extends AppController {
 		if(! AuthComponent::user()){
 			$options['conditions']['published'] = true;
 		}
+		
+		
+		$client = ClientBuilder::create()           // Instantiate a new ClientBuilder
+		->setHosts(Configure::read('awsESHosts'))      // Set the hosts
+		->build();              // Build the client object
+		
+		
+		$searchParams = [
+			'index' => Configure::read('Config.apertureIndex'),
+			'type'  => Configure::read('Config.versionModel'),
+			'body' => '
+				{
+				   "size": 0,
+				   "aggs": {
+				     "counter": {
+				       "cardinality": {
+				         "field": "Stack"
+				       }
+				     }
+				   }
+				}				
+			',
+		];
+		
+		
+		$retDoc = $client->search($searchParams);
+
+		$this->set('serieCount', $retDoc["hits"]["total"]);
+		$this->set('photoCount', $retDoc["aggregations"]["counter"]["value"]);
 		
 		$this->Flight->locale = Configure::read('Config.language');
 		$this->set('flights', $this->Flight->find('all', $options));
