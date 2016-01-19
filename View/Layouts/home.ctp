@@ -176,7 +176,18 @@
 						<div class="spacer s1">
 							<div class="box2 box container">
 								<div class="row">
-									<h2 class="col-lg-12 parallax"><?php echo __('Comment parcourir notre photothèque'); ?></h2>
+									<h2 class="col-lg-12 parallax"><?php echo __('Notre photothèque: %s photos réparties dans %s séries', $this->Number->format($photoCount, [
+											'places' => 0,
+										    'before' => '',
+										    'escape' => false,
+										    'decimals' => ',',
+										    'thousands' => '.']), 
+										$this->Number->format($serieCount, [
+											'places' => 0,
+										    'before' => '',
+										    'escape' => false,
+										    'decimals' => ',',
+										    'thousands' => '.'])); ?></h2>
 								</div>
 								<div class="row">
 											<?php echo $this->element('searchs'); ?>

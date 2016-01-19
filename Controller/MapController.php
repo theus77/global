@@ -34,7 +34,7 @@ class MapController extends AppController {
 			$levelRange = [ 'gte' => 16 ];
 
 			if($this->request->query['zoom'] >= 14){
-				$getImages = 6;
+				$getImages = 8;
 			}
 		}
 		else if($this->request->query['zoom'] > 9){ //commune
