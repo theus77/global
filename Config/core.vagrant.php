@@ -363,3 +363,22 @@ Cache::config('_cake_model_', array(
 	'serialize' => ($engine === 'File'),
 	'duration' => $duration
 ));
+
+
+App::uses( 'CakeNumber', 'Utility' );
+CakeNumber::addFormat(
+    'EUR',
+    array(
+			'wholeSymbol'      => ',-',
+	    'wholePosition'    => 'after',
+	    'fractionSymbol'   => false,
+	    'fractionPosition' => 'after',
+	    'zero'             => 0,
+	    'places'           => 0,
+	    'thousands'        => ',',
+	    'decimals'         => '.',
+	    'negative'         => '()',
+	    'escape'           => true,
+	    'fractionExponent' => 2
+    )
+);

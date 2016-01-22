@@ -2,11 +2,6 @@
 
 	<div class="spacer s1" id="services">
 		<div class="box2 box container">
-			<div class="row">
-				<div class="col-md-12">
-					<?php echo $this->i18n->w('our-service.services');  ?>
-				</div>
-			</div>
 		</div>
 	</div>
 	<div class="spacer"></div>
@@ -22,7 +17,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="spacer"></div>
 	<div id="parallax2" class="parallaxParent">
 		<div></div>
@@ -39,7 +34,7 @@
 					<?php echo $this->i18n->w('our-service.library');  ?>
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
 	<div class="spacer"></div>
@@ -57,8 +52,22 @@
 				<div class="col-xs-12">
 					<?php echo $this->i18n->w('our-service.prices');  ?>
 				</div>
+
+				<div>
+					<?php
+					echo $this->Html->link(__('Continuer'),
+							array(
+									'controller' => 'flights',
+									'action' => 'book',
+									'language' => Configure::read('Config.language'),
+									7
+
+							), array('class' => 'btn btn-default btn-primary pull-right hvr-underline-from-center', 'role'=>'button'))
+
+					 ?>
+				</div>
 			</div>
-			
+
 		</div>
 	</div>
 	<div class="spacer"></div>
