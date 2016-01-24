@@ -16,7 +16,7 @@ function cmpLocation($a, $b) {
 	$this->assign('title', $title);
 ?>
 				
-<div id="galerie-filmstrip" class="clearfix">
+<div id="galerie-filmstrip" class="clearfix" data-page="<?php echo $page;?>" data-page-count="<?php echo $pageMax;?>">
 	<div id="galerie-thumb-bro">
 		<div class="col-md-12 galerie-thumb">
 			<h2 id="intro" class="pull-left"><?php echo $title; ?> 
@@ -38,7 +38,7 @@ function cmpLocation($a, $b) {
     		]
     		);
     echo $this->Html->tag('li',
-    		$this->Html->link('&lt;', $page == 0 ? '#': $page-1 > 1 ? array_merge($this->request->params['pass'], ['?' => ['page'=>$page-1]]) : [$this->request->params['pass']], ['escape' => false]),
+    		$this->Html->link('&lt;', $page == 0 ? '#': $page-1 > 1 ? array_merge($this->request->params['pass'], ['?' => ['page'=>$page-1]]) : $this->request->params['pass'], ['escape' => false]),
     		[
     				'class' => ($page <= 0) ? 'disabled' : ''
     		]

@@ -17,9 +17,9 @@ class GalleriesController extends AppController {
 	public $uses = array('Gallery', 'ModelTranslation', 'PricingRequest');
 	public $components = array('RequestHandler', 'Paginator', 'Acl', 'Session');
 	private $client;
-	
+
 	const PAGING_SIZE = 20;
-	
+
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow('index', 'search', 'keyword', 'view', 'place', 'geohash', 'price');
@@ -28,43 +28,43 @@ class GalleriesController extends AppController {
 			->build();              // Build the client object
 	}
 
-	
-	
+
+
 	private function execute($body){
 
-		
+
 // 		var_dump($body); exit;
 		if(!isset($body['size'])){
 			$body['size'] = self::PAGING_SIZE;
 		}
-		
+
 
 // 		var_dump($this->request);exit;
-		
+
 		$page = 0;
 		if(isset($this->request->query["page"])){
 			$page = $this->request->query["page"];
 			$body['from'] = $page * self::PAGING_SIZE;
 		}
-		
+
 // 		var_dump($body);exit;
-		
+
 // 		echo $body; exit;
-		
+
 		$searchParams = [
 			'index' => Configure::read('Config.apertureIndex'),
 			'type'  => Configure::read('Config.versionModel'),
 			'body' => $body,
 		];
-		
-		
+
+
 		$retDoc = $this->client->search($searchParams);
-		if($retDoc['hits']['total'] > 0){			
+		if($retDoc['hits']['total'] > 0){
 			$this->view = 'view';
 			$this->set('versions', $retDoc);
 			$this->set('jsIncludes', ['bower/jail/dist/jail.min', 'gallery2']);
-			
-			
+
+
 			$next = $page+1;
 			if( $next * self::PAGING_SIZE < $retDoc['hits']['total']) {
 				$this->set('next', $next);
@@ -76,7 +76,7 @@ class GalleriesController extends AppController {
 
 
 			$this->set('page', $page);
-			
+
 			$this->set('pageMax', ceil( $retDoc['hits']['total'] / self::PAGING_SIZE ) );
 		}
 		else {
@@ -84,9 +84,9 @@ class GalleriesController extends AppController {
 		}
 		return $retDoc;
 	}
-	
 
-	
+
+
 	public function place($locationUuid) {
 
 		$body = json_decode('
@@ -119,21 +119,21 @@ class GalleriesController extends AppController {
 			   }
 			}
 		', true);
-		
+
 		$retDoc = $this->execute($body);
 		$this->set('title', __('Galerie pour la localisation "%s"', $locationUuid));
 		foreach ($retDoc["hits"]["hits"][0]["_source"]["locations"] as $location){
-			if(strcmp($location['uuid'], $locationUuid) == 0){				
+			if(strcmp($location['uuid'], $locationUuid) == 0){
 				$this->set('title', __('Galerie pour la localisation "%s"', $location['name_'.Configure::read('Config.language')]));
 				break;
 			}
 		}
 	}
-	
-	
-	
+
+
+
 	public function geohash($hash) {
-		
+
 		$body = json_decode('
 			{
 			   "size": '.json_encode(self::PAGING_SIZE).',
@@ -154,11 +154,11 @@ class GalleriesController extends AppController {
 			   }
 			}
 		', true);
-		
+
 		$retDoc = $this->execute($body);
-		
+
 		$elemTitle = isset($retDoc["hits"]["hits"][0]["_source"]["label"])?$retDoc["hits"]["hits"][0]["_source"]["label"]:$retDoc["hits"]["hits"][0]["_source"]["name"];
-		
+
 		if($retDoc["hits"]["total"] > 1){
 			$this->set('title', __('Galerie pour "%s" et aux alentours', $elemTitle));
 		}
@@ -166,11 +166,11 @@ class GalleriesController extends AppController {
 			$this->set('title', __('Galerie pour la serie "%s"', $elemTitle));
 		}
 	}
-	
-	
-	public function keyword($keywordUuid) {		
-		
-		
+
+
+	public function keyword($keywordUuid) {
+
+
 		$body = json_decode('
 		{
 		  "size": '.json_encode(self::PAGING_SIZE).',
@@ -187,7 +187,7 @@ class GalleriesController extends AppController {
 		                    "must": [
 		                      {
 		                        "match": {
-		                          "Keywords.uuid": {      
+		                          "Keywords.uuid": {
 		                "query":    '. json_encode($keywordUuid) . ',
 		                "operator": "and" }
 		                        }
@@ -206,11 +206,11 @@ class GalleriesController extends AppController {
 		    }
 		  }
 		}', true);
-	
+
 		$ret = $this->execute($body);
 
 		$this->set('title', __('Galerie pour le mot-clé "%s"', $keywordUuid));
-		
+
 // 		var_dump($ret["hits"]["hits"][0]["_source"]["Keywords"]); exit;
 		foreach ($ret["hits"]["hits"][0]["_source"]["Keywords"] as $location){
 			if(strcmp($location['uuid'], $keywordUuid) == 0){
@@ -218,12 +218,12 @@ class GalleriesController extends AppController {
 			}
 		}
 
-	}	
-	
-	
+	}
+
+
 	public function view ($slug = NULL) {
 
-		
+
 		$translation = $this->ModelTranslation->find('first', [
 				'conditions' => [
 						'model' => 'Gallery',
@@ -232,39 +232,39 @@ class GalleriesController extends AppController {
 				]
 		]);/**/
 // 		var_dump($this->ModelTranslation); exit;
-		
+
 		if (!$translation) {
 			throw new NotFoundException(__('Pas de galerie trouvée pour cette clé %', $slug));
 		}
-		
+
 		$id = $translation["ModelTranslation"]["foreign_key"];
-		
+
 		if (!$this->Gallery->exists($id)) {
 			throw new NotFoundException(__('Galerie inconnue'));
 		}
-		
+
 		$this->Gallery->locale = Configure::read('Config.language');
 		$options = ['conditions' => ['Gallery.id' => $id]];
-		
+
 		$gallery = $this->Gallery->find('first', $options);
-		
+
 		$ret = $this->execute(json_decode($gallery['Gallery']['query'], true));
-		
+
 		if(isset($slug) && $ret['hits']['total'] != $gallery['Gallery']['counter']){
 			try {
 				$gallery['Gallery']['counter'] = $ret['hits']['total'];
-				$this->Gallery->save($gallery);				
+				$this->Gallery->save($gallery);
 			}
 			catch (Exception $e){
-				
+
 			}
 		}
-		
+
 		$this->set('title', __('Galerie %s', $gallery['Gallery']['name']));
 	}
 
 
-	
+
 // 	public function library() {
 // 		$model = $this->{$this->modelClass};
 // 		//print_r($model); exit;
@@ -285,12 +285,12 @@ class GalleriesController extends AppController {
 // 					'keyword' => true
 // 				),
 // 				''
-// 		)));	
+// 		)));
 // 	}
-	
-	
+
+
 // 	public function keywords(){
-		
+
 
 // 		$searchQuery['search_type'] = 'count';
 // 		$searchQuery['body'] = json_decode('
@@ -322,48 +322,48 @@ class GalleriesController extends AppController {
 // 		    }
 // 		  }
 // 		}');
-		
+
 // 		$client = new Client();
 
 // 		$retDoc = $client->search($searchQuery);
-		
+
 // 		$this->set('keywords', $retDoc['aggregations']['keywords']);
 // 	}
-	
-	
+
+
 // 	public function index($query) {
-	
+
 // 		$client = new Client();
-	
+
 // 		$searchParams = array(
 // 				'index' => 'index',
 // 				'type'  => 'version'
-	
+
 // 		);
-	
+
 // 		// 		if(isset($this->request->query['q'])){
 // 		// 			$searchParams['body']['query']['match']['_all'] = $this->request->query['q'];
 // 		// 		}
-	
+
 // 		$retDoc = $client->search($searchParams);
-	
+
 // 		$this->set('title', __('Galerie photo'));
-	
+
 // 		// 		var_dump($retDoc);
 // 		// 		exit;
-	
+
 // 		$this->set('versions', $retDoc);
-	
-	
+
+
 
 // 			$this->set('jsIncludes', ['bower/jail/dist/jail.min', 'gallery2']);
 // 			$this->view = 'view';
-	
+
 // 			//$this->set('_serialize', array('properties', 'places', 'versions'));
-	
+
 // 	}
-	
-	
+
+
 	public function price($versionUuid=NULL) {
 		$searchParams = [
 				'index' => Configure::read('Config.apertureIndex'),
@@ -371,18 +371,18 @@ class GalleriesController extends AppController {
 				'id' => $versionUuid,
 		];
 		try {
-			$version = $this->client->get($searchParams);			
+			$version = $this->client->get($searchParams);
 		}
 		catch (Missing404Exception $e){
 			throw new NotFoundException(__('Référence inconnue'));
 		}
-		
-		
+
+
 		if ($this->request->is(array('post', 'put'))) {
 			if(isset($this->request->data['PricingRequest'])){
 				$this->request->data['PricingRequest']['mainVersionUuid'] = $versionUuid;
 				$this->request->data['PricingRequest']['treated'] = false;
-					
+
 				if ($this->PricingRequest->save($this->request->data)) {
 					$this->Session->setFlash(__('Votre demande à été envoyée.'));
 					$this->redirect([
@@ -397,16 +397,16 @@ class GalleriesController extends AppController {
 				$this->Session->setFlash(__('Impossible d\'enregistrer votre demande. Réessayer plus tard.'));
 			}
 		}
-		
+
 		$this->set('version', $version);
-		
+
 // 		var_dump($version); exit;
 	}
-	
+
 	public function search($query = NULL) {
-		
+
 		if(isset($this->request->query['q'])){
-			$query = $this->request->query['q'];	
+			$query = $this->request->query['q'];
 			$this->redirect([
 					'language' => Configure::read('Config.language'),
 					$query
@@ -417,7 +417,8 @@ class GalleriesController extends AppController {
 				$this->set('title', __('Toute la photothèque'));
 				$this->execute([]);
 			}
-			else {				
+			else {
+				$this->set('query', $query);
 				$this->set('title', __('Résultat de la recherche pour "%s"', $query));
 				$this->execute(json_decode('
 					{
@@ -489,22 +490,22 @@ class GalleriesController extends AppController {
 					      }
 					    }
 					  }
-					}					
+					}
 						', true));
 			}
 		}
 
 	}
-	
 
-	
-	
+
+
+
 
 	public function admin () {
 		$this->Gallery->locale = DEFAULT_LANGUAGE;
-	
+
 		$this->set('galleries', $this->Gallery->find('all'));
 	}
-	
-	
+
+
 }
