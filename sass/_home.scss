@@ -42,7 +42,9 @@
 		position:relative;
 		background-color: lighten($color1, 100%);
 		margin-bottom: em(20px);
+		padding-bottom: em(40px);
 		h2 {
+			font-size: em(26px);
 			position: absolute;
 			bottom: 0; 
 			left: 0;
@@ -61,6 +63,12 @@
 		}
 		img {width:100% !important; height: auto !important;}
 		.text-wrapper p:first-child, .heading-wrapper {position: relative;}
+		.form-group {
+			position:absolute;
+			bottom:0;
+			margin-bottom:0;
+			right:0;
+		}
 	}
 	strong { color: lighten($color1, 60%);}
 	.text-wrapper > p {
@@ -73,8 +81,10 @@
 			margin-top: em(10px, 12px);
 		}
 	}
-	.form-group:not(.admin) .btn.btn-primary {
-		@extend %btn-ico;
+	.form-group:not(.admin) {
+		.btn.btn-primary {
+			@extend %btn-ico;
+		}
 	}
 }
 

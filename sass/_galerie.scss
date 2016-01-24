@@ -4,42 +4,41 @@
 ********************************************/
 
 #galerie-filmstrip {
+	position:relative;
+	height: 100%;
+  	overflow: auto;
 	h2 {
 		color: lighten($color1, 100%);
-		@include MQ(S) {
-			font-size:em(18px);
-			margin-top: em(10px, 18px);
-			margin-bottom: em(5px, 18px);
-		}
-		@include MQ(M) {
-			font-size:em(18px);
-			margin-top: em(10px, 18px);
-			margin-bottom: em(5px, 18px);
-		}
-		@include MQ(L) {
-			font-size:em(20px);
-			margin-top: em(10px, 20px);
-			margin-bottom: em(5px, 20px);
-		}
-		@include MQ(Lplus) {
-			font-size:em(28px);
-			margin-top: em(10px, 28px);
-			margin-bottom: em(5px, 28px);
-		}
-		@include MQ(Sneg) {
-			padding: 0 em(5px, 16px);
-			font-size:em(14px);
-			margin-top: em(10px, 16px);
-			margin-bottom: em(5px, 16px);
-		}
+		font-size:em(17px);
+		&#intro {font-size:3vw;}
 	}
-	position:relative;
+	#toggle-sidebar {
+		position:absolute;
+		z-index:1000;
+		top:50%;
+		left:em(100px, 40px);
+		background-color: lighten($color1, 100%);
+		color: $color1;
+		font-size:em(40px);
+		@include border-radius(em(50px, 40px));
+		@include box-shadow($color1, em(5px, 40px));
+		width:em(50px, 40px);
+		height:em(50px, 40px);
+		line-height: em(50px, 40px);
+		text-align: center;
+		cursor:pointer;
+		span {
+			display:inline-block;
+			text-indent: -40000px;
+		}
+		&:hover {background-color: lighten($color1, 80%);}
+	}
 	&.container-fluid {
 		padding-left: 0;
 		padding-right: 0;
 		.row {padding-left: 15px;}
 	}
-	.galerie-thumb, #galerie-info {
+	.galerie-thumb {
 		position: absolute;
 		width:100%;
 		z-index: 100;
@@ -76,181 +75,22 @@
 			min-height:auto !important;
     	}		
 	}
-	#galerie-info {
-		background-color: transparent;
-		top: 50%;
-		@include transform(translate(0, -60%));
-   		z-index: 10;
-   		width:50%;
-   		left:10%;
-   		.carousel-inner {overflow:visible}
-   		.wrapper-info {
-   			@include MQ(XSneg) {
-				width:100% !important;
-   			}
-   			@include MQ(S) {
-				width: em(260px);
-   			}
-   			@include MQ(M) {
-   				width: em(250px);
-   			}
-   			@include MQ(Lplus) {
-   				width: em(450px);
-   			}
-   		}
-   		div.glyphicon {
-			cursor: move;		
-			position: absolute;
-			&.glyphicon-move {
-				top:0;
-				background-color: rgba($color2, 0.7);
-			}
-			@include MQ(Lneg) {
-				padding: em(10px, 14px);
-				font-size:em(14px);
-				left:em(-34px, 14px);
-			}
-			@include MQ(Lplus) {
-				padding: em(10px, 24px);
-				font-size:em(24px);
-				left:em(-44px, 24px);
-			}
-			@include MQ(XSneg) {
-				display:none;
-   			}
-		}
-   		h2 { 
-   			position: relative;
-   			color:$color1;
-   			font-size: em(40px);
-			background-color: rgba($color2, 0.7);
-			margin:0;
-			width:80%;
-			padding: em(20px, 40px);
-			span {
-				display: inline-block;
-				cursor: pointer;
-				position: absolute;
-				right: em(-72px, 40px);
-				bottom: 0;
-				height: em(72px, 40px);
-				line-height: em(72px, 40px);
-				width: em(72px, 40px);
-   				background-color: lighten($color1, 100%);
-   				text-align: center;
-   				font-size: em(50px, 40px);
-   				&:after {content: "+";}
-   				&.open:after {content: "-";}
-   				&:hover {background-color:lighten($color1, 80%);}
-   				@include MQ(XSneg) {
-					display:none;
-   				}
-			}
-			@include MQ(XSneg) {
-				width:100%;
-				font-size: em(20px);
-   			}
-   			@include MQ(S) {
-				font-size: em(17px);
-   			}
-   			@include MQ(M) {
-   				font-size: em(22px);
-   			}
-   			@include MQ(L) {
-				font-size: em(25px);
-				padding: em(10px, 25px);
-   			}
-   		}
-   		.infos {
-			position:relative;
-			display:none;
-   			&.open {
-   				display:block;
-   			}
-
-   			padding: em(20px);
-   			background-color: lighten($color1, 100%);
-   			h3 {
-	   			color: $color1;
-	   			margin-bottom:0;
-	   			margin-top: em(10px, 24px);
-	   			&:first-child {margin-top:0;}
-	   			
-	   			@include MQ(Splus) {
-	   				cursor: pointer;
-					&:after {
-						padding: em(5px);
-						color: $color2;
-						content: '+';
-					}
-					&.open:after {
-						content: '-';
-					}
-
-   				}
-   				@include MQ(S) {
-					font-size: em(15px);
-   				}
-				@include MQ(M) {
-					font-size: em(16px);
-				}
-   				@include MQ(L) {
-    				font-size: em(18px);
-    			}
-   			}
-   			ul {
-   				list-style-type:none; 
-   				padding: 0;
-   				display:none;
-   				@include MQ(Sneg) {
-					display:block;
-	   			}
-
-   			}
-   			#placesList li {
-   				display:inline;
-   				&:after {content: ',';}
-   				&:last-child:after {content: '';}
-   				a {text-decoration:underline;}
-   			}
-   			#map-ctp {
-   				margin-bottom: 0;
-   				@include MQ(Mplus) {
-   					margin-bottom:em(30px);
-					margin-top:em(10px);    			
-				}
-   			}
-   			@include MQ(XSneg) {
-				position:relative;
-				display:block;
-    		}
-   			@include MQ(M) {
-				padding: em(15px);
-    		}
-    		@include MQ(S) {
-				padding: em(10px);
-    		}
-   		}
-		@include MQ(XSneg) {
-			width:100%;
-			top:0;
-			left:0;
-			@include transform(translate(0, 0));
-			margin: 0 0 em(15px) 0;
-		} 		
+	#galerie-info {		
+		font-size:em(13px);
+		background-color: $color1; 
+		h3 {
+			font-size : em(15px, 13px)
+		}	
+		.groupToMatch {
+			padding: em(15px, 13px);
+			height: 100%;
+    		overflow-y: auto;
+    		position: relative;
+			}	
 	}
-	#price-ask {
-		position:absolute;
-		z-index:2;
-		bottom:0;
-		right:0;
-		.btn.btn-primary {
-			@extend %btn-ico;
-		}
-		@include MQ(XSneg) {
-			position:relative;
-			margin-top: em(10px);
-		}
+	#price-ask a{
+		font-size:em(14px);
+		margin-top:em(10px, 14px);
 	}
 	#galerie-thumb-bro .galerie-thumb-scroll,
 	#galerie-thumb-child .galerie-thumb-scroll {		

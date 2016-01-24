@@ -53,10 +53,12 @@
 		// Jicescroll
 		echo $this->Html->script('bower/jquery.nicescroll/dist/jquery.nicescroll.min');
 		// lazy loading
-		echo $this->Html->script('bower/jquery_lazyload/jquery.lazyload');
+		echo $this->Html->script('bower/jquery.lazyload/jquery.lazyload');
 		
     	echo $this->Html->script('bower/jquery-ui/jquery-ui');
-	    
+	    // simpler sidebar
+	    echo $this->Html->script('bower/simpler-sidebar/dist/jquery.simpler-sidebar.min');
+
 	    if(AuthComponent::user()){
 	    	echo $this->Html->script('bower/ckeditor/ckeditor');
 	    	if(AuthComponent::user()['role'] === 'admin'){
