@@ -127,7 +127,8 @@ $(window).load(function() {
 	 });
 
 
-	// show/hide infos.
+	// show/hide infos
+	/*	
 	$( ".wrapper-info" ).draggable();
 	$( ".wrapper-info" ).find( "span" ).on( "click", function() {
 		$(this).toggleClass( "open" );
@@ -160,6 +161,16 @@ $(window).load(function() {
 		$(this).toggleClass( "open" );
 		$(this).next( "ul" ).toggle();
 	});
+	*/
+
+	$('#galerie-info').simplerSidebar({
+	    opener: '#toggle-sidebar',
+	    sidebar: {
+	      align: 'right', //or 'right' - This option can be ignored, the sidebar will automatically align to right.
+	      width: 300, //You can ignore this option, the sidebar will automatically size itself to 300px.
+	      closingLinks: '.close-sidebar' // If you ignore this option, the plugin will look for all links and this can be buggy. Choose a class for every object inside the sidebar that once clicked will close the sidebar.
+	    }
+  	});
 
 	// Nicescroll : https://github.com/inuyaksa/jquery.nicescroll
 	// add scrolling to the photos galeries

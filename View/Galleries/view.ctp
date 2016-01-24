@@ -23,6 +23,7 @@ function cmpLocation($a, $b) {
 			
 
 <?php if($pageMax > 1):?>
+<noscript>
 <nav class="pull-right">
   <ul class="pagination  pagination-sm">
     
@@ -92,6 +93,7 @@ function cmpLocation($a, $b) {
     
   </ul>
 </nav>
+</noscript>
 <?php endif;?>		
 
 			<span class="badge"><?php
@@ -245,11 +247,15 @@ function cmpLocation($a, $b) {
 					</div>
 					</div> <!-- / row -->
 					<!-- infos -->
+					<div id="toggle-sidebar" class="glyphicon glyphicon-info-sign">
+						<a href="#"><span><?php echo __('More'); ?></span></a>
+					</div>
 					<div id="galerie-info" class="<?php if(AuthComponent::user() && AuthComponent::user()['role'] === 'admin'):?>admin-galery-wrapper<?php endif;?>">
 						<div class="galerie-carousel groupToMatch">
 							<!-- Carousel
 							================================================== -->
 							<div id="infoCarousel" class="carousel slide" data-ride="carousel">
+							<div class="close-sidebar pull-left"><a href="#">close</a></div>
 								<!-- Indicators -->
 								<!--       <ol class="carousel-indicators"> -->
 								<!--         <li data-target="#GalerieCarousel" data-slide-to="0" class="active"></li> -->
@@ -259,10 +265,20 @@ function cmpLocation($a, $b) {
 								<div class="carousel-inner" role="listbox">
 									<?php foreach ($versions['hits']['hits'] as $idx => &$version) : ?>
 									<div class="<?php echo $idx?'item':'item active'; ?>">
-
-
+										<div id="price-ask">
+												<?php echo $this->Html->link(
+														'Demande de prix',
+														array(
+															'action' => 'price',
+															$version['_source']['uuid']
+														),
+														array(
+															'role' => 'button',
+															'class' => 'btn btn-default btn-primary hvr-underline-from-center',
+												));
+												?>
+										</div>
 										<div class="wrapper-info" >
-											<div class="glyphicon glyphicon-move"></div>
 											<h2 id="versionTitle">
 
 											<?php
@@ -280,24 +296,26 @@ function cmpLocation($a, $b) {
 											<div class="infos">
 												<?php if(count($version['_source']['Keywords']) > 0) : ?>
 												<h3><?php echo __('Mots clés'); ?></h3>
-												<ul id="keywordList">
+												<div id="keywordList">
 													<?php
 													$keywords = $version['_source']['Keywords'];
 													uasort($keywords, 'cmpKeyword');
 
 													foreach ($keywords as $keyword) :?>
-													<?php echo $this->Html->tag('li',
+													<?php echo $this->Html->tag('span',
 															$this->Html->link(
 																$keyword['name_'.Configure::read('Config.language')],
 																[
 																		'action' => 'keyword',
 																		$keyword['uuid'],
 																		'language' => Configure::read('Config.language')
-													]
-																											)
+																]
+															),
+															array('class'=>'label label-default')
+
 													); ?>
 													<?php endforeach; ?>
-												</ul>
+												</div>
 												<?php endif; ?>
 
 												<?php if(count($version['_source']['locations']) > 0) :
@@ -307,9 +325,9 @@ function cmpLocation($a, $b) {
 
                           ?>
 												<h3><?php echo __('Emplacements'); ?></h3>
-												<ul id="placesList">
+												<div id="placesList">
 													<?php foreach ($locations as $place) :?>
-													<?php echo $this->Html->tag('li',
+													<?php echo $this->Html->tag('span',
 															$this->Html->link(
 																(isset($place['name_'.Configure::read('Config.language')])? $place['name_'.Configure::read('Config.language')] : $place['name']),
 																[
@@ -317,10 +335,12 @@ function cmpLocation($a, $b) {
 																	$place['uuid'],
 																	'language' => Configure::read('Config.language'),
 																]
-																											)
+																),
+															
+															array('class'=>'label label-default')
 													); ?>
 													<?php endforeach; ?>
-												</ul>
+												</div>
 												<?php endif; ?>
 
 												<h3>Détails</h3>
@@ -334,7 +354,7 @@ function cmpLocation($a, $b) {
 																		}
 													?></li>
 													<li><?php echo __('Date:')?> <time datetime="<?php echo date("Y-m-d H:m:s", strtotime($version['_source']['date'])); ?>"><?php echo date("d M Y",strtotime($version['_source']['date'])); ?></time></li>
-													<l><?php echo __('Dimensions:')?> <?php
+													<li><?php echo __('Dimensions:')?> <?php
 																		if(isset($version['_source']['pixel_size'])){
 																			echo $version['_source']['pixel_size'];
 																		}
@@ -350,19 +370,6 @@ function cmpLocation($a, $b) {
 														</div>
 														<img src="data:image/gif;base64,R0lGODlhEAAJAIAAAP///wAAACH5BAEAAAAALAAAAAAQAAkAAAIKhI+py+0Po5yUFQA7" class="scaling-image" /> <!-- don't specify height and width so browser resizes it appropriately -->
 													</div>
-												</div>
-												<div id="price-ask">
-												<?php echo $this->Html->link(
-														'Demande de prix',
-														array(
-															'action' => 'price',
-															$version['_source']['uuid']
-														),
-														array(
-															'role' => 'button',
-															'class' => 'btn btn-default btn-primary hvr-underline-from-center',
-												));
-												?>
 												</div>
 											</div>
 										</div>
