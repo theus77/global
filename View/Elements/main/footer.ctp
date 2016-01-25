@@ -54,6 +54,9 @@
 		echo $this->Html->script('bower/jquery.nicescroll/dist/jquery.nicescroll.min');
 		// lazy loading
 		echo $this->Html->script('bower/jquery.lazyload/jquery.lazyload');
+		// headroom.js
+		echo $this->Html->script('bower/headroom.js/dist/headroom.min');
+		echo $this->Html->script('bower/headroom.js/dist/jQuery.headroom.min');
 		
     	echo $this->Html->script('bower/jquery-ui/jquery-ui');
 	    // simpler sidebar
