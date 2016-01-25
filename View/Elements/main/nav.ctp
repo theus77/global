@@ -65,14 +65,20 @@
 							array('class' => 'menu-prices')));?>	
                 </ul>
               </li>
-							
-		        <?php echo $this->Html->tag('li', $this->Html->link(__('Librairie'),
+			<li class="dropdown">
+                <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle hvr-sweep-to-top" href="#"><?php echo __('Photothèque'); ?><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+               <?php echo $this->Html->tag('li', $this->Html->link(__('Mots-clés'),
 						array('controller' => 'keywords', 'language' => Configure::read('Config.language')),
 						array('escape' => false, 'class' => 'menu-library hvr-sweep-to-top')));?>
 				
 				<?php echo $this->Html->tag('li', $this->Html->link(__('Carte'),
 						array('controller' => 'map', 'action' => 'index', 'language' => Configure::read('Config.language')),
-						array('escape' => false, 'class' => 'menu-map hvr-sweep-to-top')));?> 
+						array('escape' => false, 'class' => 'menu-map hvr-sweep-to-top')));?> 	
+                </ul>
+              </li>
+							
+		        
 				
 		        <?php echo $this->Html->tag('li', $this->Html->link(__('Vols'), array(
 							'controller' => 'pages',
