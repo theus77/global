@@ -27,6 +27,7 @@
     "jScrollPane": "*",
     "jquery.lazyload": "~1.9.7",
     "jquery.nicescroll": "~3.6.0",
-    "simpler-sidebar": "~1.4.3"
+    "simpler-sidebar": "~1.4.3",
+    "headroom.js": "~0.7.0"
   }
 }

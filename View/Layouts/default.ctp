@@ -15,9 +15,11 @@
 
   </head>
   <body class="default">
+    <?php 
+    echo $this->element('main/header');
+    ?>
     <div class="container-fluid">
   	<?php 
-	  echo $this->element('main/header');
 		echo $this->Html->tag('div', $this->Session->flash(), array('class' => 'container flash'));
     echo $this->Html->tag('div', $this->fetch('content'), array('class' => 'default')); 
     ?>

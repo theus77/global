@@ -126,43 +126,6 @@ $(window).load(function() {
 	   }
 	 });
 
-
-	// show/hide infos
-	/*	
-	$( ".wrapper-info" ).draggable();
-	$( ".wrapper-info" ).find( "span" ).on( "click", function() {
-		$(this).toggleClass( "open" );
-		// smoth scroll
-		var offsetTop 	= $( "#infoCarousel" ).offset().top;
-		$(this).parent().next().toggleClass( "open" );
-		var trigger = $( "#galerie-thumb-bro .trigger-expand" ).find( "span" );
-		// hide opened galeries scroll
-		if ( trigger.hasClass( "glyphicon-chevron-up" ) ) {
-			$( ".trigger-expand" ).find( "span" )
-				.toggleClass( "glyphicon-chevron-down" )
-				.toggleClass( "glyphicon-chevron-up" );
-			$( ".galerie-thumb-scroll" ).animate({
-					height: "toggle",
-					opacity: "toggle"
-			});
-		}
-		// center on the page
-		var heightWindow = $(window).height();
-		var topElement = (heightWindow - $( ".galerie-info" ).height()) / 2 + $(window).scrollTop();
-		$( ".galerie-info" ).css({position: 'absolute', top: topElement});
-		// google map refresh ... googlemap doesn't like show/hide
-		var center = map.getCenter();
-        google.maps.event.trigger(map, 'resize');
-        map.setCenter(center);
-
-	});
-
-	$( ".wrapper-info .infos" ).find( "h3" ).on( "click", function() {
-		$(this).toggleClass( "open" );
-		$(this).next( "ul" ).toggle();
-	});
-	*/
-
 	$('#galerie-info').simplerSidebar({
 	    opener: '#toggle-sidebar',
 	    sidebar: {
@@ -234,6 +197,25 @@ $(window).load(function() {
 		});
 	});
 
+	var header = document.querySelector("header");
+    if(window.location.hash) {
+      header.classList.add("slide--up");
+    }
+
+    new Headroom(header, {
+        tolerance: {
+          down : 10,
+          up : 20
+        },
+        offset : 150,
+        classes: {
+          initial: "slide",
+          pinned: "slide--reset",
+          unpinned: "slide--up"
+        }
+    }).init();
+
+
 	// Bootstrap jquery mediaqueries.
 	// Load vegas slideshow and parallax only if the breakpoint is bigger than 'md'.
 	$(window).load(
@@ -251,35 +233,6 @@ $(window).load(function() {
 					vegas();
 				}
 
-			}
-
-			if( viewport.is('<lg') ) {
-				//console.log('2 current resize  : ' + viewport.current());
-				if ( $( "body#homepage" ).length ) {
-					// destroy affix for mobile
-					$(window).off('.affix')
-					$( "nav#nav" ).removeData('bs.affix').removeClass('affix affix-top affix-bottom')
-					$( "nav#nav" ).removeClass( "navbar-fixed-bottom" );
-				}
-			}
-			else {
-				// Use affix fonctionality only on homepage
-				$('#nav').affix({offset: {top: 300} });
-		    	if ( $( "body#homepage" ).length ) {
-		    		$('#nav').addClass( "navbar-fixed-bottom" );
-				    $("#nav").on('affix.bs.affix', function(){
-				    	// I need to remove these class for dropdown menu
-				    	// after affix is fired
-				        $(this).toggleClass( "navbar-fixed-bottom" );
-				    });
-				}
-				// check the scroll window position only for home
-				$(window).on("scroll", function() {
-					var scrollPosition = $(window).scrollTop();
-					if( scrollPosition < 300 && $( "body#homepage" ).length ) {
-						$('#nav').addClass( "navbar-fixed-bottom" );
-					}
-				});
 			}
 		}) // end window.changed
 	); // end window.load
@@ -301,8 +254,7 @@ $(window).load(function() {
             }
             else {
             	//console.log('3 current resize :' + viewport.current());
-            	$( "#homepage .groupToMatch, .box2 .col-md-4" ).matchHeight( 'remove' ); 
-            	$( "nav#nav" ).removeClass( "navbar-fixed-bottom" );         	
+            	$( "#homepage .groupToMatch, .box2 .col-md-4" ).matchHeight( 'remove' );         	
             	// we are under md breakpoints
 		    	if ( $( "body#homepage" ).length ) {
 		    		$( "#sortableFlights" ).vegas( "destroy" );
@@ -320,34 +272,6 @@ $(window).load(function() {
 			    	}			    	
 		    	}
 		    }   
-
-		    if( viewport.is('<=lg') ) {
-				if ( $( "body#homepage" ).length ) {
-					// destroy affix for mobile
-					$(window).off('.affix')
-					$( "nav#nav" ).removeData('bs.affix').removeClass('affix affix-top affix-bottom')
-					$( "nav#nav" ).removeClass( "navbar-fixed-bottom" );
-				}
-			}
-			else {
-				// Use affix fonctionality only on homepage
-				$('#nav').affix({offset: {top: 300} });
-		    	if ( $( "body#homepage" ).length ) {
-		    		$('#nav').addClass( "navbar-fixed-bottom" );
-				    $("#nav").on('affix.bs.affix', function(){
-				    	// I need to remove these class for dropdown menu
-				    	// after affix is fired
-				        $(this).toggleClass( "navbar-fixed-bottom" );
-				    });
-				}
-				// check the scroll window position only for home
-				$(window).on("scroll", function() {
-					var scrollPosition = $(window).scrollTop();
-					if( scrollPosition < 300 && $( "body#homepage" ).length ) {
-						$('#nav').addClass( "navbar-fixed-bottom" );
-					}
-				});
-			}
         }) // end window.changed
     ); // end window.resize
 
