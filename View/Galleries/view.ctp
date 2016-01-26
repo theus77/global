@@ -255,7 +255,7 @@ function cmpLocation($a, $b) {
 							<!-- Carousel
 							================================================== -->
 							<div id="infoCarousel" class="carousel slide" data-ride="carousel">
-							<div class="close-sidebar pull-left"><a href="#">close</a></div>
+							<div class="close-side"><a href="#" class="close-sidebar"></a></div>
 								<!-- Indicators -->
 								<!--       <ol class="carousel-indicators"> -->
 								<!--         <li data-target="#GalerieCarousel" data-slide-to="0" class="active"></li> -->

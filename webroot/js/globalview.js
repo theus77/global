@@ -196,7 +196,8 @@ $(window).load(function() {
 		 		width: 'toggle'
 		});
 	});
-
+	
+	// headroom.js
 	var header = document.querySelector("header");
     if(window.location.hash) {
       header.classList.add("slide--up");

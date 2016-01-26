@@ -2,6 +2,10 @@ body {
 	background-color: $color3;
 	position: relatiive;
 }
+body.default {
+  padding-top:em(70px);
+  @include MQ(XSneg) {padding-top:em(60px);}
+}
 h1, h2 {
 	font-family: $aileronlight;
 }
