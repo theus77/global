@@ -1,10 +1,7 @@
 body {
 	background-color: $color3;
 	position: relatiive;
-}
-body.default {
-  padding-top:em(70px);
-  @include MQ(XSneg) {padding-top:em(60px);}
+  padding-top:em(75px);
 }
 h1, h2 {
 	font-family: $aileronlight;
@@ -83,7 +80,7 @@ header + .container-fluid {
 
 /* Sweep To Top */
 .hvr-sweep-to-top {
-  @include MQ (Lplus) {
+  @include MQ (Mplus) {
     display: inline-block;
     vertical-align: middle;
     -webkit-transform: translateZ(0);
@@ -100,7 +97,7 @@ header + .container-fluid {
   }
 }
 .hvr-sweep-to-top:before {
-  @include MQ (Lplus) {
+  @include MQ (Mplus) {
     content: "";
     position: absolute;
     z-index: -1;
@@ -122,17 +119,14 @@ header + .container-fluid {
   }
 }
 .hvr-sweep-to-top:hover, .hvr-sweep-to-top:focus, .hvr-sweep-to-top:active {
-  @include MQ (Lplus) {
+  @include MQ (Mplus) {
     color: white;
   }
 }
 .hvr-sweep-to-top:hover:before, .hvr-sweep-to-top:focus:before, .hvr-sweep-to-top:active:before {
-  @include MQ (Lplus) {
+  @include MQ (Mplus) {
     -webkit-transform: scaleY(1);
     transform: scaleY(1);
   }
 }
-/*******************
-
-********************/
 

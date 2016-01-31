@@ -59,7 +59,15 @@
 				background-color: $color2;
 				background-color: rgba($color2,0.8);
 				box-decoration-break: clone;
-			} 		
+			} 
+			@include MQ(Sneg) {
+				font-size: em(25px);
+				line-height:em(27px);
+			}
+			@include MQ(Sneg) {
+				font-size: em(20px);
+				line-height:em(22px);
+			}		
 		}
 		img {width:100% !important; height: auto !important;}
 		.text-wrapper p:first-child, .heading-wrapper {position: relative;}
@@ -84,6 +92,8 @@
 	.form-group:not(.admin) {
 		.btn.btn-primary {
 			@extend %btn-ico;
+			white-space:normal;
+			font-size:em(12px);
 		}
 	}
 }
@@ -123,7 +133,22 @@
 	background-color: lighten($color1, 80%);
 	.row {
 		margin:0;
-		h1 { color: lighten($color1, 100%); }
+		h1 { 
+			color: lighten($color1, 100%); 
+			@include MQ(Mplus) {
+				@include text-shadow(0px 0px 4px $color1);
+			}
+			@include MQ(Mneg) {
+				font-size:em(30px);
+				margin-top:em(15px, 30px);
+				color: lighten($color1, 10%);
+			}
+			@include MQ(Sneg) {
+				font-size:em(20px);
+				margin-top:em(15px, 20px);
+				color: lighten($color1, 10%);
+			}
+		}
 	}
 	@include MQ(Sneg) {
 		height: auto !important;
@@ -138,6 +163,11 @@
 }
 
 // Central boxes : 3 search boxes
+.box {
+	h2 {
+		@include MQ(Mneg) {font-size:em(28px);}
+	}
+}
 .box2 {
 	h3 {color: $color2;}
 	.col-md-4 {

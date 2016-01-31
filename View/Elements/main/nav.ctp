@@ -20,7 +20,7 @@
 					?>
 	            
              </div>
-             <ul class="nav navbar-nav lang pull-left visible-md visible-lg">
+             <ul class="nav navbar-nav lang pull-left visible-sm visible-md visible-lg">
 			<?php 
 				foreach(Configure::read('Config.languages') as $code => $language) { // show links for translated version
 					if(strcmp(Configure::read('Config.language'), $code)!==0){
@@ -95,7 +95,7 @@
 							'language' => Configure::read('Config.language')),
 							array('class' => 'menu-contact hvr-sweep-to-top')));?>	
               </ul> 
-		      <ul class="nav navbar-nav visible-xs visible-sm">
+		      <ul class="nav navbar-nav visible-xs">
 			      <?php 
 						foreach(Configure::read('Config.languages') as $code => $language) { // show links for translated version
 							if(strcmp($code, Configure::read('Config.language')) !==0 ){
@@ -112,27 +112,51 @@
 						}
 				?>
 		      </ul>
-              <form action="<?php 
-		      	echo $this->Html->url(
-					array(
-						'controller' => 'galleries',
-						'action' => 'search',
-						'language' => Configure::read('Config.language'))); 
-				?>" class="navbar-form navbar-right" method="GET">
-				<span class="glyphicon glyphicon-search pull-right search-trigger hidden-xs hidden-sm"></span>
-		        <div class="form-group search-toggle">
-		          <input type="text" class="form-control QuickSearchInput" placeholder="<?php echo __('Recherche rapide'); ?>" name="q" data-search-url="<?php 
-				      	echo $this->Html->url(
-								array(
-									'controller' => 'galleries',
-									'action' => 'search',
-									'language' => Configure::read('Config.language'),
-									'ext'=> 'json'
-				      	)); 
-							?>">
-				</div>
-		       <button type="submit" class="btn btn-default hidden-md hidden-lg pull-left" ><span class="glyphicon glyphicon-search"></span></button>
-		      </form>		  
+		      <div class="visible-xs-block">
+		      <form action="<?php 
+			      	echo $this->Html->url(
+						array(
+							'controller' => 'galleries',
+							'action' => 'search',
+							'language' => Configure::read('Config.language'))); 
+					?>" class="navbar-form" method="GET">
+			        <div class="form-group search-toggle">
+			          <input type="text" class="form-control QuickSearchInput" placeholder="<?php echo __('Recherche rapide'); ?>" name="q" data-search-url="<?php 
+					      	echo $this->Html->url(
+									array(
+										'controller' => 'galleries',
+										'action' => 'search',
+										'language' => Configure::read('Config.language'),
+										'ext'=> 'json'
+					      	)); 
+								?>">
+					</div>
+			       <button type="submit" class="btn btn-default" ><span class="glyphicon glyphicon-search"></span></button>
+			  </form>
+			  </div>	
+		      <div class="glyphicon glyphicon-search pull-right search-trigger hidden-xs "></div>
 			</div>
+			<div class="search-form hidden-xs-block">
+	              <form action="<?php 
+			      	echo $this->Html->url(
+						array(
+							'controller' => 'galleries',
+							'action' => 'search',
+							'language' => Configure::read('Config.language'))); 
+					?>" class="navbar-form" method="GET">
+			        <div class="form-group search-toggle">
+			          <input type="text" class="form-control QuickSearchInput" placeholder="<?php echo __('Recherche rapide'); ?>" name="q" data-search-url="<?php 
+					      	echo $this->Html->url(
+									array(
+										'controller' => 'galleries',
+										'action' => 'search',
+										'language' => Configure::read('Config.language'),
+										'ext'=> 'json'
+					      	)); 
+								?>">
+					</div>
+			       <button type="submit" class="btn btn-default" ><span class="glyphicon glyphicon-search"></span></button>
+			      </form>	
+		      </div>	  
           </div>
         </nav>

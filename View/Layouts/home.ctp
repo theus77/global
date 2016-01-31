@@ -27,169 +27,173 @@
 				<div class="box1 box">
 					<div class="row" id="sortableFlights">
 						<div class="flight-wrapper container">
-							<h1 class="col-lg-12 homepage" id="vols"><?php echo __('Photos aériennes sur mesure en hélicoptère: Profitez de nos prochains vols groupés !'); ?></h1>
-							<?php
-							//print_r($flights);
-							foreach($flights as $idx => $flight):{
-								echo '<div class="box-home col-md-4 col-sm-6">';
-										$content = $this->Html->tag(
-												'h2',
-												$this->Html->tag(
-												'span',
-												$flight['Flight']['name']));
-										$content .= $this->Html->tag(
-												'div',
-												$flight['Flight']['body'],
-												array(
-														'class' => 'text-wrapper'
-												));
-										$content .= $this->Html->tag(
-												'div',
-												$this->Html->link(__(
-														'Mission complète à partir de %s',
-														$this->Number->currency($flight['Flight']['cost'], __('EUR'))),
-														array(
-																'controller' => 'flights',
-																'action' => 'book',
-																'language' => Configure::read('Config.language'),
-																$flight['Flight']['id']
-
-														), array('class' => 'btn btn-default btn-primary pull-right hvr-underline-from-center', 'role'=>'button')),
-												array('class'=>'form-group'));
-
-
-										$divOptions = array(
-												'class'=>'groupToMatch clearfix',
-												);
-
-										if(AuthComponent::user() && AuthComponent::user()['role'] === 'admin'){
-
-											$divOptions['data-object'] = json_encode($flight);
-											$divOptions['data-url'] = $this->Html->url(array(
-														'controller' => 'Flights',
-														'action' => 'update',
-														'ext' => 'json',
-														$flight['Flight']['id']
-												));
-
-											$links = $this->Html->link(__('Editer'), array(
-													'controller' => 'flights',
-													'action' => 'edit',
-													'language' => Configure::read('Config.language'),
-													$flight['Flight']['id'],
-													'?' => array(
-															'controller' => 'pages',
-															'action' => 'home',
-															'language' => Configure::read('Config.language')
-													)
-											), array(
-													'class' => 'btn btn-default btn-primary',
-													'role' => 'button',
-											));
-											$links .= $this->Form->postLink(__('Publier'), array(
-													'controller' => 'flights',
-													'action' => 'publish',
-													'language' => Configure::read('Config.language'),
-													$flight['Flight']['id'],
-													'?' => array(
-															'controller' => 'pages',
-															'action' => 'home',
-															'language' => Configure::read('Config.language')
-													)
-											), array(
-													'class' => ('btn btn-default btn-primary'.($flight['Flight']['published']?' hidden':'')),
-													'role' => 'button',
-											));
-											$links .= $this->Form->postLink(__('Dépublier'), array(
-													'controller' => 'flights',
-													'action' => 'publish',
-													'language' => Configure::read('Config.language'),
-													$flight['Flight']['id'],
-													'?' => array(
-															'controller' => 'pages',
-															'action' => 'home',
-															'language' => Configure::read('Config.language')
-													)
-											), array(
-													'class' => ('btn btn-default btn-primary'.($flight['Flight']['published']?'':' hidden')),
-													'role' => 'button',
-											));
-											$links .= $this->Form->postLink(__('Effacer'), array(
-													'controller' => 'flights',
-													'action' => 'delete',
-													'language' => Configure::read('Config.language'),
-													'?' => array(
-															'controller' => 'pages',
-															'action' => 'home',
-															'language' => Configure::read('Config.language')
-													),
-													$flight['Flight']['id']
-											), array(
-													'class' => 'btn btn-danger btn-primary',
-													'role' => 'button',
-											), __('Etes vous sûr de vouloir effacer la galerie %s?', $flight['Flight']['name']));
-
-											$content .= $this->Html->tag('div', $this->Html->tag('div', $links, array(
-													'class' => 'btn-group btn-group-xs',
-													'role' => 'group',
-											)), array('class' => 'form-group admin'));
-										}
-
-										echo $this->Html->tag('div', $content, $divOptions);
-									}
-									echo '</div>';
-								endforeach;
-
-								echo $this->Html->link(__('Continuer'),
-										array(
-												'controller' => 'flights',
-												'action' => 'book',
-												'language' => Configure::read('Config.language'),
-												7
-								
-										), array('class' => 'btn btn-default btn-primary pull-right hvr-underline-from-center', 'role'=>'button'));
-								
-								echo $this->Html->link(__('+ d\'info'), [
-									'controller' => 'pages',
-									'action' => 'display',
-									'our-services',
-									'#' => 'prices',
-									'language' => Configure::read('Config.language')
-								], array('class' => 'btn btn-default btn-primary pull-right hvr-underline-from-center', 'role'=>'button'));
-							?>
-
-							</div> <!-- /row -->
-							</div> <!-- /.flight-wrapper -->
 							<div class="row">
+								<h1 class="col-lg-12 homepage" id="vols"><?php echo __('Photos aériennes sur mesure en hélicoptère: Profitez de nos prochains vols groupés !'); ?></h1>
 								<?php
-										if(AuthComponent::user() && AuthComponent::user()['role'] === 'admin'){
-											echo $this->Html->tag('div',
-												$this->Html->link(__('Ajouter un vol'), array(
-													'controller' => 'flights',
-													'action' => 'add',
-													'language' => Configure::read('Config.language'),
-													'?' => array(
-															'controller' => 'pages',
-															'action' => 'home',
-															'language' => Configure::read('Config.language')
-													)
+								//print_r($flights);
+								foreach($flights as $idx => $flight):{
+									echo '<div class="box-home col-md-4 col-sm-4 col-xs-12">';
+											$content = $this->Html->tag(
+													'h2',
+													$this->Html->tag(
+													'span',
+													$flight['Flight']['name']));
+											$content .= $this->Html->tag(
+													'div',
+													$flight['Flight']['body'],
+													array(
+															'class' => 'text-wrapper'
+													));
+											$content .= $this->Html->tag(
+													'div',
+													$this->Html->link(__(
+															'Mission complète à partir de %s',
+															$this->Number->currency($flight['Flight']['cost'], __('EUR'))),
+															array(
+																	'controller' => 'flights',
+																	'action' => 'book',
+																	'language' => Configure::read('Config.language'),
+																	$flight['Flight']['id']
+
+															), array('class' => 'btn btn-default btn-primary pull-right hvr-underline-from-center', 'role'=>'button')),
+													array('class'=>'form-group'));
+
+
+											$divOptions = array(
+													'class'=>'groupToMatch clearfix',
+													);
+
+											if(AuthComponent::user() && AuthComponent::user()['role'] === 'admin'){
+
+												$divOptions['data-object'] = json_encode($flight);
+												$divOptions['data-url'] = $this->Html->url(array(
+															'controller' => 'Flights',
+															'action' => 'update',
+															'ext' => 'json',
+															$flight['Flight']['id']
+													));
+
+												$links = $this->Html->link(__('Editer'), array(
+														'controller' => 'flights',
+														'action' => 'edit',
+														'language' => Configure::read('Config.language'),
+														$flight['Flight']['id'],
+														'?' => array(
+																'controller' => 'pages',
+																'action' => 'home',
+																'language' => Configure::read('Config.language')
+														)
 												), array(
-													'class' => 'btn btn-default btn-primary btn-xs',
-													'role' => 'button',
-												)),
-												array(
-														'class' => 'col-sm-12 form-group'
+														'class' => 'btn btn-default btn-primary',
+														'role' => 'button',
 												));
+												$links .= $this->Form->postLink(__('Publier'), array(
+														'controller' => 'flights',
+														'action' => 'publish',
+														'language' => Configure::read('Config.language'),
+														$flight['Flight']['id'],
+														'?' => array(
+																'controller' => 'pages',
+																'action' => 'home',
+																'language' => Configure::read('Config.language')
+														)
+												), array(
+														'class' => ('btn btn-default btn-primary'.($flight['Flight']['published']?' hidden':'')),
+														'role' => 'button',
+												));
+												$links .= $this->Form->postLink(__('Dépublier'), array(
+														'controller' => 'flights',
+														'action' => 'publish',
+														'language' => Configure::read('Config.language'),
+														$flight['Flight']['id'],
+														'?' => array(
+																'controller' => 'pages',
+																'action' => 'home',
+																'language' => Configure::read('Config.language')
+														)
+												), array(
+														'class' => ('btn btn-default btn-primary'.($flight['Flight']['published']?'':' hidden')),
+														'role' => 'button',
+												));
+												$links .= $this->Form->postLink(__('Effacer'), array(
+														'controller' => 'flights',
+														'action' => 'delete',
+														'language' => Configure::read('Config.language'),
+														'?' => array(
+																'controller' => 'pages',
+																'action' => 'home',
+																'language' => Configure::read('Config.language')
+														),
+														$flight['Flight']['id']
+												), array(
+														'class' => 'btn btn-danger btn-primary',
+														'role' => 'button',
+												), __('Etes vous sûr de vouloir effacer la galerie %s?', $flight['Flight']['name']));
 
-												}
+												$content .= $this->Html->tag('div', $this->Html->tag('div', $links, array(
+														'class' => 'btn-group btn-group-xs',
+														'role' => 'group',
+												)), array('class' => 'form-group admin'));
+											}
 
+											echo $this->Html->tag('div', $content, $divOptions);
+										}
+										echo '</div>';
+									endforeach;
+									?>
+									<div class="col-md-12 col-sm-12 col-xs-12">
+									<?php
+									echo $this->Html->link(__('Continuer'),
+											array(
+													'controller' => 'flights',
+													'action' => 'book',
+													'language' => Configure::read('Config.language'),
+													7
+									
+											), array('class' => 'btn btn-default btn-primary pull-right hvr-underline-from-center', 'role'=>'button'));
+									
+									echo $this->Html->link(__('+ d\'info'), [
+										'controller' => 'pages',
+										'action' => 'display',
+										'our-services',
+										'#' => 'prices',
+										'language' => Configure::read('Config.language')
+									], array('class' => 'btn btn-default btn-primary pull-right hvr-underline-from-center', 'role'=>'button'));
 								?>
-										<?php
+								</div>
+								</div> 
+								</div> 
+								<div class="row">
+									<?php
+											if(AuthComponent::user() && AuthComponent::user()['role'] === 'admin'){
+												echo $this->Html->tag('div',
+													$this->Html->link(__('Ajouter un vol'), array(
+														'controller' => 'flights',
+														'action' => 'add',
+														'language' => Configure::read('Config.language'),
+														'?' => array(
+																'controller' => 'pages',
+																'action' => 'home',
+																'language' => Configure::read('Config.language')
+														)
+													), array(
+														'class' => 'btn btn-default btn-primary btn-xs',
+														'role' => 'button',
+													)),
+													array(
+															'class' => 'col-sm-12 form-group'
+													));
 
-										?>
-								</div><!-- /.row -->
-								<?php echo $this->Session->flash(); ?>
-								<?php echo $this->fetch('content'); ?>
+													}
+
+									?>
+											<?php
+
+											?>
+									</div><!-- /.row -->
+									<?php echo $this->Session->flash(); ?>
+									<?php echo $this->fetch('content'); ?>
+								</div>
 							</div>
 						</div>
 

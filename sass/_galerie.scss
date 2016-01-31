@@ -17,14 +17,14 @@
 	}
 	#toggle-sidebar {
 		position:fixed;
-		top :em(200px, 40px);
+		top :em(220px, 40px);
 		left:em(150px, 40px);
 		background-color: lighten($color1, 100%);
 		color: $color1;
 		font-size:em(40px);
 		padding: em(5px,40px) em(5px,40px) em(5px,40px) em(15px,40px);
 		@include border-radius(em(50px, 40px));
-		@include box-shadow(rgba($color1, 0.4) 0 0 25px, rgba($color1, 0.2) 0 0 3px 1px inset);
+		@include box-shadow(rgba($color1, 0.4) 0 0 15px, rgba($color1, 0.2) 0 0 3px 1px inset);
 		width:em(50px, 40px);
 		height:em(50px, 40px);
 		line-height: em(50px, 40px);
@@ -42,7 +42,6 @@
 			font-size:em(25px);
 			padding: em(5px,25px) em(5px,25px) em(5px,25px) em(10px,25px);
 			position:absolute;
-			top:220px;
 			left:30px;
 			z-index:100;
     	}
@@ -198,4 +197,13 @@
 		form {display:none; padding:em(10px);}
 	}
 }
+.thumb {
+	.thumb-link {
+		@include MQ(Sneg) {
+			font-size:em(12px);
+		}
+	}
+}
+/* thumbnail on map page */
+.gm-style-iw .col-sm-4 {width:100%;}
 
