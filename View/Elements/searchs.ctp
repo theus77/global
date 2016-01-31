@@ -1,4 +1,4 @@
-<div class="col-md-4 geographic-search">
+<div class="col-md-4 col-sm-12 col-xs-12 geographic-search">
 	<?php echo $this->i18n->w('home.geographic-search'); ?>
 	<p>
 		<?php echo $this->Html->link(__('Recherche géographique'),
@@ -13,7 +13,7 @@
 	</p>	
 </div><!-- /.col-md-4 -->
 
-<div class="col-md-4 text-search">
+<div class="col-md-4 col-sm-12 col-xs-12 text-search">
 	<?php echo $this->i18n->w('home.free-text-search'); ?>
 	<?php $searchUrl = $this->Html->url(
 							array(
@@ -29,7 +29,7 @@
 	</form>
 </div><!-- /.col-md-4 -->
 
-<div class="col-md-4 thematic-search">
+<div class="col-md-4 col-sm-12 col-xs-12 thematic-search">
 	<?php echo $this->i18n->w('home.thematic-search'); ?>
 	<?php echo $this->Html->link(__('Recherche thématique'), [
 			'controller' => 'keywords', 

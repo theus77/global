@@ -72,6 +72,7 @@ $(window).load(function() {
 	$( ".admin-galery" ).on( "click", "h2", function() {
 		$(this).next( "form" ).toggle();
 	});
+
 	// Replace the h2 at the good place for design.
 	var boxeTitle = $( ".groupToMatch" ).find( "h2" ); 
 	boxeTitle.each( function() {
@@ -157,6 +158,10 @@ $(window).load(function() {
   			opacity: "toggle"
 		});
 	})
+	// Search animation
+	$( ".search-trigger" ).on( "click", function() {
+		$( ".search-form" ).slideToggle();
+	})
 
 	// thumbnail add active class
 	$( ".thumbnail" ).on( "click", function() {
@@ -189,13 +194,6 @@ $(window).load(function() {
 			}
 		}
 	});
-
-	// Search animation.
-	$( ".search-trigger" ).on ( "click", function () {
-		$( ".search-toggle" ).animate({
-		 		width: 'toggle'
-		});
-	});
 	
 	// headroom.js
 	var header = document.querySelector("header");
@@ -216,6 +214,7 @@ $(window).load(function() {
         }
     }).init();
 
+	$( ".thumb" ).matchHeight();
 
 	// Bootstrap jquery mediaqueries.
 	// Load vegas slideshow and parallax only if the breakpoint is bigger than 'md'.
