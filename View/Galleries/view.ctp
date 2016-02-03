@@ -247,8 +247,10 @@ function cmpLocation($a, $b) {
 					</div>
 					</div> <!-- / row -->
 					<!-- infos -->
-					<div id="toggle-sidebar" class="glyphicon glyphicon-info-sign">
-						<a href="#"><span><?php echo __('More'); ?></span></a>
+					<div id="toggle-sidebar">
+						<a href="#">
+					         <span class="glyphicon glyphicon-info-sign"></span>
+					    </a>
 					</div>
 					<div id="galerie-info" class="<?php if(AuthComponent::user() && AuthComponent::user()['role'] === 'admin'):?>admin-galery-wrapper<?php endif;?>">
 						<div class="galerie-carousel groupToMatch">

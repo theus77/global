@@ -1,5 +1,7 @@
       <footer>
-        <p class="pull-right hidden-xs"><a href="#"><?php echo __('Retour en haut');?></a></p>
+        <a href="#" id="back-to-top" title="<?php echo __('Retour en haut');?>" class="btn btn-default btn-lg">
+          <span class="glyphicon glyphicon-chevron-up"></span>
+        </a>
         <p>
 	        &copy; 2004-<?php echo date('Y').' '.__('Global View S.P.R.L.'); ?> 
 	        &middot; <a href="tel:<?php echo __('+32472800900'); ?>"><?php echo __('+32/472.800.900'); ?></a> 

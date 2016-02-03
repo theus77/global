@@ -127,7 +127,35 @@ $(window).load(function() {
 	   }
 	 });
 
-	$('#galerie-info').simplerSidebar({
+	 $( "#toggle-sidebar, .close-side" ).on( "click", "a",  function (e) {
+	 	e.preventDefault();
+	 });
+
+	/* back-to-top */
+	if ($( "#back-to-top" ).length) {
+	    var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $( "#back-to-top" ).addClass( "show" );
+	            } else {
+	                $( "#back-to-top" ).removeClass( "show" );
+	            }
+	        };
+	    backToTop();
+	    $(window).on( "scroll", function () {
+	        backToTop();
+	    });
+	    $( "#back-to-top" ).on( "click", function (e) {
+	        e.preventDefault();
+	        $( "html,body" ).animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+	 /* simple sidebar */
+	$( "#galerie-info" ).simplerSidebar({
 	    opener: '#toggle-sidebar',
 	    sidebar: {
 	      align: 'right', //or 'right' - This option can be ignored, the sidebar will automatically align to right.
@@ -173,7 +201,9 @@ $(window).load(function() {
 		if ( window.location.hash ) {
 			// scroll
 			var id = window.location.hash;
-			$("html, body").animate({ scrollTop: $(id).offset().top - 150}, 1000);
+			if ($(id).length) {
+				$("html, body").animate({ scrollTop: $(id).offset().top - 150}, 1000);
+			}
 		}
 	});
 	//  Bind scroll to anchor links.
