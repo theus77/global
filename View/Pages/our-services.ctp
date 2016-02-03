@@ -1,10 +1,11 @@
 <div id="our-services-ctp">
-
+	<!--
 	<div class="spacer s1" id="services">
 		<div class="box2 box container">
 		</div>
 	</div>
-	<div class="spacer"></div>
+		<div class="spacer"></div>
+	-->
 	<div id="parallax1" class="parallaxParent">
 		<div></div>
 	</div>

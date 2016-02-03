@@ -1,5 +1,4 @@
-
-  <nav class="navbar navbar-default" id="nav">
+	<nav class="navbar navbar-default" id="nav">
       <div class="container-fluid">
         <div class="navbar-header">
               <button id="navbar-toggle" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">

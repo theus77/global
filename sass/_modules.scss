@@ -100,9 +100,29 @@
 }
 
 /**
-* 5. search
+* search
 *******************************************/
-
 #sortableGallery {
 	margin: em(20px) 0;
+}
+
+/**
+* back to top
+******************************************/
+#back-to-top {
+    position: fixed;
+    bottom: em(40px);
+    right: em(40px);
+    z-index: 9999;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s ease-out;
+    opacity: 0;
+    background: lighten($color3, 70%);
+    @include border-radius(em(2px));
+	border:1px solid lighten($color3, 40%);
+    &:hover {
+    	background: lighten($color3, 40%);
+	}
+	&.show {opacity:1;}
 }

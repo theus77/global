@@ -7,11 +7,11 @@ header {
 	    border: 0;
 	    color: lighten($color1, 100%);
 	    @include MQ(Mneg){
-			 color: #333333;
+			 color: $color4;
 		}
 	}
 	.btn-default:hover {
-	    color: #333333;
+	    color: $color4;
 	}
 	.container-fluid {
 		padding-right: 0;
