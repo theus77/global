@@ -116,13 +116,14 @@
     z-index: 9999;
     cursor: pointer;
     text-decoration: none;
-    transition: opacity 0.2s ease-out;
     opacity: 0;
-    background: lighten($color3, 70%);
+    background-color: $color2;
     @include border-radius(em(2px));
-	border:1px solid lighten($color3, 40%);
+  	@include transition-property(opacity);
+  	@include transition-duration(2s);
+  	@include transition-timing-function(ease-out);
     &:hover {
-    	background: lighten($color3, 40%);
+    	background-color: darken($color2, 5%);
 	}
 	&.show {opacity:1;}
 }
