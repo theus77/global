@@ -178,6 +178,13 @@ $(window).load(function() {
 	// Open thumb in galerie page.
 	$( ".trigger-expand" ).on( "click", "a", function(e){
 		e.preventDefault();
+		/* trigger bottom */
+		if ( $(this).parent().hasClass( "bottom" ) ) {
+			var childOpened = $( "span[class*='child-']:visible" );
+			if (childOpened) {
+				childOpened.hide();
+			}
+		}
 		$(this).find( "span" )
 			.toggleClass( "glyphicon-chevron-down" )
 			.toggleClass( "glyphicon-chevron-up" );
@@ -185,16 +192,23 @@ $(window).load(function() {
   			height: "toggle",
   			opacity: "toggle"
 		});
-	})
+	});
 	// Search animation
 	$( ".search-trigger" ).on( "click", function() {
 		$( ".search-form" ).slideToggle();
-	})
+	});
 
 	// thumbnail add active class
 	$( ".thumbnail" ).on( "click", function() {
 		$(this).addClass( "active" ).siblings().removeClass( "active");
-	})
+	});
+
+	$( "span[class*='child-']" ).hide();
+	$( "a[class*='parent-']" ).on( "click", function() {
+		var child = ".child-" + $(this).attr( "data-slide-to" );
+		$( "span[class*='child-']" ).not($(this)).hide();
+		$( child ).show();
+	});
 
 	// if we have a hash on load. Scroll to the id
 	$(window).load(function () {

@@ -135,7 +135,7 @@ function cmpLocation($a, $b) {
 
 			<div class="galerie-thumb-scroll groupToMatch">
 				<?php foreach ($versions['hits']['hits'] as $idx => $version) : ?>
-				<a href="#" class="thumbnail"  data-target="#GalerieCarousel" data-slide-to="<?php echo $idx; ?>"><?php
+				<a href="#" class="thumbnail parent-<?php echo $idx; ?>"  data-target="#GalerieCarousel" data-slide-to="<?php echo $idx; ?>"><?php
 					echo $this->element('image', array(
 								'lazy' => true,
 								'alt' => isset($version['_source']['label'])?$version['_source']['label']:$version['_source']['name'],
@@ -216,6 +216,7 @@ function cmpLocation($a, $b) {
 					<div class="col-md-12 galerie-thumb">
 						<div class="galerie-thumb-scroll groupToMatch">
 							<?php foreach ($versions['hits']['hits'] as $idx => $version) : ?>
+								<span class="child-<?php echo $idx; ?>">
 								<?php foreach ($version['_source']['Stack'] as $stack) : ?>
 								<?php
 
@@ -237,6 +238,7 @@ function cmpLocation($a, $b) {
 
 								?>
 								<?php endforeach;?>
+								</span>
 							<?php endforeach;?>
 						</div>
 						<div class="trigger-expand bottom">
