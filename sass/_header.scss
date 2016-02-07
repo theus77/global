@@ -37,6 +37,7 @@ header {
 	}
 	.search-trigger {
 		min-width: em(60px);
+		top:0;
 		height: em(80px);
 		background-color: lighten($color1, 15%);
 		line-height:em(80px);
@@ -88,11 +89,11 @@ header {
 					border-bottom:1px solid lighten($color1, 84%);
 					padding-left: em(15px, 15px);
 					padding-right: em(15px, 15px);
-					line-height: 3.5em;
 					font-family: $aileronlight;
 					font-size: em(14px);
 					text-transform: uppercase; 
 					color: darken($color1, 80%);
+					@include MQ(Mplus){line-height: 3.5em;}
 				}
 			}
 			&.lang {

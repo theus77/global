@@ -102,15 +102,6 @@ $(function () {
 		
 		$(elem).find('img').trigger('loadImage');
 		
-		$('#galerie-thumb-child > div > div').each(function( index, element ) {
-			if($(element).hasClass('stack-'+currentIdx)){
-				$(element).removeClass('hidden');
-			}
-			else{
-				$(element).addClass('hidden');
-			}
-		});
-		
 		
 
 		$('#map-canvas-'+currentIdx).trigger('loadMap');

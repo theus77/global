@@ -21,16 +21,11 @@ function cmpLocation($a, $b) {
 		<div class="col-md-12 galerie-thumb">
 			<h2 id="intro" class="pull-left"><?php echo $title; ?> 
 			
-
 <?php if($pageMax > 1):?>
 <noscript>
 <nav class="pull-right">
-  <ul class="pagination  pagination-sm">
-    
+  <ul class="pagination  pagination-sm">   
     <?php 
-    
-    
-    
     echo $this->Html->tag('li',
     		$this->Html->link('&laquo;', $page == 0 ? '#': $this->request->params['pass'], ['escape' => false]),
     		[
@@ -43,8 +38,7 @@ function cmpLocation($a, $b) {
     				'class' => ($page <= 0) ? 'disabled' : ''
     		]
     );   
-        
-    
+          
     if($pageMax < 5){
     	$start = 0;
     	$end = $pageMax;
