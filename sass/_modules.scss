@@ -117,13 +117,16 @@
     cursor: pointer;
     text-decoration: none;
     opacity: 0;
-    background-color: $color2;
-    @include border-radius(em(2px));
+    background-color: lighten($color3, 50%);
+    @include border-radius(em(5px));
   	@include transition-property(opacity);
   	@include transition-duration(2s);
   	@include transition-timing-function(ease-out);
     &:hover {
-    	background-color: darken($color2, 5%);
+    	background-color: lighten($color3, 45%);
 	}
-	&.show {opacity:1;}
+	&.show {opacity:.8;}
+	@include MQ(Mneg) {
+		display:none !important;
+	}
 }

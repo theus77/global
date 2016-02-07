@@ -76,7 +76,7 @@ $(window).load(function() {
 	// Replace the h2 at the good place for design.
 	var boxeTitle = $( ".groupToMatch" ).find( "h2" ); 
 	boxeTitle.each( function() {
-		var groupToMatch = $(this).parent( ".groupToMatch" );
+		var groupToMatch = $(this).parent( ".groupToMatch" 
 		groupToMatch.find( ".text-wrapper p:first-child" ).wrap( "<div class='heading-wrapper' />");
 		groupToMatch.find( ".heading-wrapper" ).prepend( $(this) );
 	});
@@ -176,15 +176,34 @@ $(window).load(function() {
 	});
 
 	// Open thumb in galerie page.
+	var childOpened;
+	//var oldChildOpened;
+	$( "#galerie-thumb-child span[class*='child-']" ).hide();
+	$( "a[class*='parent-']" ).on( "click", function() {
+		var child = ".child-" + $(this).attr( "data-slide-to" );
+		$( "#galerie-thumb-child span[class*='child-']" ).not($(this)).hide().parent().show();
+		$( child ).show();
+	});
+
 	$( ".trigger-expand" ).on( "click", "a", function(e){
 		e.preventDefault();
 		/* trigger bottom */
+		/*
 		if ( $(this).parent().hasClass( "bottom" ) ) {
-			var childOpened = $( "span[class*='child-']:visible" );
-			if (childOpened) {
-				childOpened.hide();
-			}
 		}
+		*/
+		if ( typeof childOpened === "undefined" ) {
+			// on page load
+			$( "#galerie-filmstrip #galerie-thumb-child .galerie-thumb-scroll" ).show();
+			childOpened = $( "#galerie-thumb-child span.child-0" );
+			$( "#galerie-thumb-bro .parent-0" ).addClass( "active" );
+		}
+		else {
+			// we have a visible child because a parent was clicked
+			childOpened = $( "#galerie-thumb-child span[class*='child-']:visible" );
+		}
+		childOpened.toggle();
+		// animate effect to show/hide the expand collapse
 		$(this).find( "span" )
 			.toggleClass( "glyphicon-chevron-down" )
 			.toggleClass( "glyphicon-chevron-up" );
@@ -201,13 +220,6 @@ $(window).load(function() {
 	// thumbnail add active class
 	$( ".thumbnail" ).on( "click", function() {
 		$(this).addClass( "active" ).siblings().removeClass( "active");
-	});
-
-	$( "span[class*='child-']" ).hide();
-	$( "a[class*='parent-']" ).on( "click", function() {
-		var child = ".child-" + $(this).attr( "data-slide-to" );
-		$( "span[class*='child-']" ).not($(this)).hide();
-		$( child ).show();
 	});
 
 	// if we have a hash on load. Scroll to the id

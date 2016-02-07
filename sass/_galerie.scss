@@ -17,8 +17,8 @@
 	}
 	#toggle-sidebar {
 		position:fixed;
-		top :em(220px, 40px);
-		left:em(150px, 40px);
+		top :em(250px, 40px);
+		left:em(100px, 40px);
 		color: lighten($color1,100%);
 		font-size:em(40px);
 		background-color:$color2;
@@ -128,15 +128,13 @@
 		}
 	}
 	#galerie-thumb-child {
-		.hidden {display:block !important;}
 		.galerie-thumb {bottom:0;}
 	}
 	div.galerie-thumb-scroll {  			
 		width: 100%;
 		height: auto;
 		overflow:auto;
-		white-space:nowrap;		
-		a.thumbnail:first-child {padding-left:0;}
+		white-space:nowrap;
   	}
   	.thumbnail { 
   		display: inline-block; 
@@ -200,6 +198,9 @@
 	img {
 		max-width:em(100px);
 		outline:1px solid lighten($color3, 30%);
+		@include MQ(Sneg){
+			max-width:em(60px);
+		}
 	}
 	.thumb-link {
 		max-width:em(100px, 11px);
