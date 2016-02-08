@@ -22,13 +22,19 @@
 		color: lighten($color1,100%);
 		font-size:em(40px);
 		background-color:$color2;
-		border-radius:em(50px,40px);
+		@include border-radius(em(50px,40px));
 		width:em(50px,40px);
 		height:em(50px,40px);
 		text-align:center;
+		opacity:1;
+		@include box-shadow(rgba($color1, 0.6) 0 0 em(10px, 40px));
+		@include transition-property(opacity);
+  		@include transition-duration(2s);
+  		@include transition-timing-function(ease-out);
 		a {display:inline-block;width:100%;height:auto;}
 		&:hover {
-			color:lighten($color1,70%);
+			opacity:.75;
+			@include box-shadow($color1 0 0 em(10px, 40px));
 		}
 		@include MQ(Sneg) {
 			font-size:em(25px);
@@ -57,11 +63,7 @@
 			&.top {
 				bottom: -44px;
 				@include border-bottom-radius(5px);
-			}
-			&.bottom {
-				top:-44px;
-				@include border-top-radius(5px);
-			}	    		
+			}    		
 			a { color: lighten($color1, 100%); }
 			span {padding: em(15px) em(25px);}
 			@include MQ(Sneg) {

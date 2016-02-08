@@ -76,7 +76,7 @@ $(window).load(function() {
 	// Replace the h2 at the good place for design.
 	var boxeTitle = $( ".groupToMatch" ).find( "h2" ); 
 	boxeTitle.each( function() {
-		var groupToMatch = $(this).parent( ".groupToMatch" 
+		var groupToMatch = $(this).parent( ".groupToMatch" );
 		groupToMatch.find( ".text-wrapper p:first-child" ).wrap( "<div class='heading-wrapper' />");
 		groupToMatch.find( ".heading-wrapper" ).prepend( $(this) );
 	});
@@ -187,11 +187,6 @@ $(window).load(function() {
 
 	$( ".trigger-expand" ).on( "click", "a", function(e){
 		e.preventDefault();
-		/* trigger bottom */
-		/*
-		if ( $(this).parent().hasClass( "bottom" ) ) {
-		}
-		*/
 		if ( typeof childOpened === "undefined" ) {
 			// on page load
 			$( "#galerie-filmstrip #galerie-thumb-child .galerie-thumb-scroll" ).show();

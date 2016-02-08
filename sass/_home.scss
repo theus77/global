@@ -32,9 +32,7 @@
 	    top: 42%;
 	    left: 50%;
 	    margin-right: -50%;
-		-ms-transform: translate(-50%, -50%); /* IE 9 */
-		-webkit-transform: translate(-50%, -50%); /* Safari */
-	    transform: translate(-50%, -50%);
+	    @include transform(translate(-50%, -50%));
 	}
 }
 .box-home {
@@ -136,7 +134,7 @@
 		h1 { 
 			color: lighten($color1, 100%); 
 			@include MQ(Mplus) {
-				@include text-shadow(0px 0px 4px $color1);
+				@include text-shadow(1px 1px 0px $color1);
 			}
 			@include MQ(Mneg) {
 				font-size:em(30px);
