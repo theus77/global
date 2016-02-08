@@ -235,11 +235,6 @@ function cmpLocation($a, $b) {
 								</span>
 							<?php endforeach;?>
 						</div>
-						<div class="trigger-expand bottom">
-							<a href="#">
-					          <span class="glyphicon glyphicon-chevron-up"></span>
-					        </a>
-					    </div>
 					</div>
 					</div> <!-- / row -->
 					<!-- infos -->
