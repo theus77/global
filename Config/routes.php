@@ -98,7 +98,7 @@
 		'height' => '320',
 		'route' => 'thumb.jpg',
 // 		'radius' => '3',
-		'background' => 'dbdbdb'
+		'background' => 'ffffff'
 	), array('pass' => array('uuid')));	
 	
 	Router::connect( '/img/:language/:key/image.jpg', array(

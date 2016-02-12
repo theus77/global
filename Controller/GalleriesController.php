@@ -167,7 +167,23 @@ class GalleriesController extends AppController {
 		}
 	}
 
-
+	public function version($uuid) {
+	
+		$body = json_decode('
+			{
+			    "query" : {
+			        "term" : { "uuid" : '.json_encode($uuid).' }
+			    }
+			}
+		', true);
+	
+		$retDoc = $this->execute($body);
+	
+		$elemTitle = isset($retDoc["hits"]["hits"][0]["_source"]["label"])?$retDoc["hits"]["hits"][0]["_source"]["label"]:$retDoc["hits"]["hits"][0]["_source"]["name"];
+		$this->set('title', __('Galerie pour la serie "%s"', $elemTitle));
+	}
+	
+	
 	public function keyword($keywordUuid) {
 
 
