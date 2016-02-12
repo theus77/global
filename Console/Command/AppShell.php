@@ -27,11 +27,17 @@ class AppShell extends Shell {
 	}
 	
 	private function allowAccessToES(){
-		$this->out("Checking IP....");
-	
-		$externalContent = file_get_contents('http://checkip.dyndns.com/');
-		preg_match('/Current IP Address: \[?([:.0-9a-fA-F]+)\]?/', $externalContent, $m);
-		$externalIp = $m[1];
+		
+		if(isset($this->args[0])){
+			$externalIp = $this->args[0];
+		}
+		else{
+			$this->out("Checking IP....");
+		
+			$externalContent = file_get_contents('http://checkip.dyndns.com/');
+			preg_match('/Current IP Address: \[?([:.0-9a-fA-F]+)\]?/', $externalContent, $m);
+			$externalIp = $m[1];			
+		}
 	
 	
 		$this->out("Check ES allow access to IP: $externalIp");
@@ -75,6 +81,15 @@ class AppShell extends Shell {
 
 		$this->out("$externalIp is now registered to AWS, It will take some times to be enabled (around 5 minutes)");
 	}
+	
+	public function getOptionParser() {
+	    $parser = parent::getOptionParser();
+	    $parser->addArgument('ip', array(
+	        'help' => 'Your Internet IP.'
+	    ))->description(__('Ensure that you have access to ELK (if AWS).'));
+	    return $parser;
+	}
+	
 	
 	public function main()
 	{
