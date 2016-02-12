@@ -79,7 +79,7 @@ class AppShell extends Shell {
 	
 		$this->out("Access policies updated");
 
-		$this->out("$externalIp is now registered to AWS, It will take some times to be enabled (around 5 minutes)");
+		$this->out("$externalIp is now registered to AWS, It will take some times to be enabled (around 20 minutes)");
 	}
 	
 	public function getOptionParser() {
