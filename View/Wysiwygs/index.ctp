@@ -1,8 +1,8 @@
-
-<div class="row https://www.socialsecurity.be/employer/">
+<div class="container">
+<div class="row admin-page">
 	<h2><?php echo __('Traductions');?></h2>
 </div>
-<div class="row">
+<div class="row lang-i18n">
 <div class="">
 <table class="table table-striped">
   <tr>
@@ -108,7 +108,7 @@
   <?php endforeach; ?>
   <tfoot>
     <tr>
-      <td colspan="2"><?php
+      <td colspan="2" class="pagination-status"><?php
 		echo $this->Paginator->counter(array(
 			'format' => __('Page {:page} sur {:pages}, {:current} traductions sur un total de {:count}, de {:start} à {:end}')
 		));
@@ -134,5 +134,6 @@
     </tr>
   </tfoot>
 </table>
+</div>
 </div>
 </div>

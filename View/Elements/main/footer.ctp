@@ -1,21 +1,22 @@
-      <footer>
-        <a href="#" id="back-to-top" title="<?php echo __('Retour en haut');?>" class="btn btn-default btn-lg">
-          <span class="glyphicon glyphicon-chevron-up"></span>
-        </a>
-        <p>
-	        &copy; 2004-<?php echo date('Y').' '.__('Global View S.P.R.L.'); ?> 
-	        &middot; <a href="tel:<?php echo __('+32472800900'); ?>"><?php echo __('+32/472.800.900'); ?></a> 
-	        &middot; <a href="#"><?php echo __('conditions d\'utilisation'); ?></a>
-	        &middot; <a href="https://www.facebook.com/globalview.be"><?php echo  $this->Html->image('facebook.png').'&nbsp;'.__('Rejoignez nous sur facebook'); ?></a>
-	        &middot; <a href="mailto:simon@globalview.be"><?php echo __('Contactez-nous par email'); ?></a>
-	    </p>
-      </footer>
+
+		<footer id="footer">
+			<div class="container">
+				<ul class="list-inline">
+					<li><a href="tel:<?php echo __('+32472800900'); ?>"><i class="fa fa-phone"></i> <?php echo __('+32/472.800.900'); ?> </a></li>
+					<li><a href="https://www.facebook.com/globalview.be"><i class="fa fa-facebook"></i></a></li>
+					<li><a href="mailto:simon@globalview.be"><i class="fa fa-envelope-o"></i></a></li>
+					<li><a href="#"><i class="fa fa-camera"></i> <?php echo __('conditions d\'utilisation'); ?></a></li>
+				</ul>
+			</div>
+		</footer>
+		<!-- ./footer -->
+
 
 	<?php 
 	
 		if(AuthComponent::user() && AuthComponent::user()['role'] === 'admin'){
-			echo '<div class="admin-footer">';
-			echo $this->Html->tag('h3', __('Options d\'administration'));
+			echo '<nav class="navbar navbar-inverse"><div class="container-fluid">';
+			echo $this->Html->tag('h4', __('Options d\'administration'));
 			echo $this->Html->tag('div', 
 					$this->Html->tag('ul', 
 
@@ -30,40 +31,47 @@
 										array('controller' => 'galleries', 'action' => 'index'))).
 											
 						$this->Html->tag('li',
+						$this->Html->link(__('Ajouter un vol'), array(
+														'controller' => 'flights',
+														'action' => 'add',
+														'language' => Configure::read('Config.language'),
+														'?' => array(
+																'controller' => 'pages',
+																'action' => 'home',
+																'language' => Configure::read('Config.language')
+														)
+													))).
+						$this->Html->tag('li',
 								$this->Html->link(
 										__('Logout'),
 										array('controller' => 'users', 'action' => 'logout')))
-					)
+					, array('class' => 'nav navbar-nav'))
 					, array('class' => 'admin-menu'));
-			echo '</div>';
+			echo '</div></nav>';
 		}
+		?>
 	
-	
+	<?php
 		//echo $this->element('sql_dump');
-		echo $this->Html->script('bower/jquery/dist/jquery');
+		echo $this->Html->script('bower/jquery/jquery.min');
 	    echo $this->Html->script('bower/bootstrap-sass/assets/javascripts/bootstrap'); 
-	    // https://github.com/maciej-gurban/responsive-bootstrap-toolkit
-	    echo $this->Html->script('bower/responsive-bootstrap-toolkit/dist/bootstrap-toolkit.min');
 	    echo $this->Html->script('bower/matchHeight/jquery.matchHeight');
-		// Parallax scripts
-		echo $this->Html->script('bower/gsap/src/uncompressed/TweenMax');
-		echo $this->Html->script('bower/ScrollMagic/scrollmagic/uncompressed/ScrollMagic'); 
-		echo $this->Html->script('bower/ScrollMagic/scrollmagic/uncompressed/plugins/animation.gsap');
-		echo $this->Html->script('bower/ScrollMagic/scrollmagic/uncompressed/plugins/debug.addIndicators');
-		// Vegas slideshow full page
-		echo $this->Html->script('bower/vegas/dist/vegas');
-		// Jicescroll
-		echo $this->Html->script('bower/jquery.nicescroll/dist/jquery.nicescroll.min');
 		// lazy loading
-		echo $this->Html->script('bower/jquery.lazyload/jquery.lazyload');
-		// headroom.js
-		echo $this->Html->script('bower/headroom.js/dist/headroom.min');
-		echo $this->Html->script('bower/headroom.js/dist/jQuery.headroom.min');
-		
+		echo $this->Html->script('bower/jquery.lazyload/jquery.lazyload');	
     	echo $this->Html->script('bower/jquery-ui/jquery-ui');
 	    // simpler sidebar
 	    echo $this->Html->script('bower/simpler-sidebar/dist/jquery.simpler-sidebar.min');
-
+	    // smooth-scroll
+		echo $this->Html->script('bower/smooth-scroll/dist/js/smooth-scroll.min');
+		// Jicescroll
+		echo $this->Html->script('bower/jquery.nicescroll/dist/jquery.nicescroll.min');
+		// backstretch
+		echo $this->Html->script('bower/jquery-backstretch/src/jquery.backstretch');
+		// wowjs
+		echo $this->Html->script('bower/wowjs/dist/wow.min');
+?>
+	
+<?php
 	    if(AuthComponent::user()){
 	    	echo $this->Html->script('bower/ckeditor/ckeditor');
 	    	if(AuthComponent::user()['role'] === 'admin'){
@@ -87,9 +95,3 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="/js/ie-emulation-modes-warning.js"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->

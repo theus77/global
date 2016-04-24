@@ -1,6 +1,6 @@
+<div class="container admin-page">
 <div class="row">
-<div class="col-md-2 "></div>
-<div class="col-md-8">
+<div class="col-md-12">
 	<?php 
 	
 	var_dump($this->request->data);
@@ -118,4 +118,5 @@
 		]); ?>
 	</div>
 	</div>
+</div>
 </div>

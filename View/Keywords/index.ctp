@@ -3,12 +3,19 @@
 	$alreadyUsed = [];
 
 ?>
-<div class="container library">
-	<div class="row">
-		<h2 class="col-lg-12 parallax"><?php echo __('Liste des mots clés')?> </h2>
-	</div>
-	<div class="row">
-		<?php foreach ($keywords['keyword_name']['buckets'] as $keyword) : ?>
+
+<!-- gallery -->
+		<section id="gallery" class="section wow fadeInUp">
+			<div class="container">	
+			
+				<div class="section-heading">
+					<h2><?php echo __('Liste des mots clés')?></h2>
+						
+				</div>
+				
+				<div class="row">
+														
+			<?php foreach ($keywords['keyword_name']['buckets'] as $keyword) : ?>
 			
 			<?php 
 				
@@ -40,5 +47,9 @@
 		
 		
 		<?php endforeach;?>
-	</div>
-</div>
+										
+				</div><!-- ./row -->
+																														
+			</div>
+		</section>
+		<!-- ./gallery -->

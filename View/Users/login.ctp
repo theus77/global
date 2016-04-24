@@ -1,5 +1,5 @@
 <div class="row">
-    <div id="login" class="col-xs-offset-1 col-xs-10 col-sm-offset-3 col-sm-6 https://www.socialsecurity.be/employer/ col-md-offset-4 col-md-4 https://www.socialsecurity.be/employer/">
+    <div id="login" class="col-xs-offset-1 col-xs-10 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">
 		<h2 class="form-signin-heading"><?php echo __('Identifiez-vous'); ?></h2>
 
 		

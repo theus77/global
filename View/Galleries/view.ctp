@@ -1,3 +1,6 @@
+
+
+
 <?php
 
 
@@ -15,7 +18,7 @@ function cmpLocation($a, $b) {
 <?php
 	$this->assign('title', $title);
 ?>
-				
+
 <div id="galerie-filmstrip" class="clearfix" data-page="<?php echo $page;?>" data-page-count="<?php echo $pageMax;?>">
 	<div id="galerie-thumb-bro">
 		<div class="col-md-12 galerie-thumb">
@@ -240,7 +243,7 @@ function cmpLocation($a, $b) {
 					<!-- infos -->
 					<div id="toggle-sidebar">
 						<a href="#">
-					         <span class="glyphicon glyphicon-info-sign"></span>
+					         <span class="fa fa-question-circle"></span>
 					    </a>
 					</div>
 					<div id="galerie-info" class="<?php if(AuthComponent::user() && AuthComponent::user()['role'] === 'admin'):?>admin-galery-wrapper<?php endif;?>">
