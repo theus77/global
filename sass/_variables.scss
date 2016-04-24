@@ -5,6 +5,12 @@ $color1: #000; // black
 $color2: #f3a224; // yellow
 $color3: #343434; // grey
 $color4: #333333;
+$color5: #444;
+$color6: #555;
+$color7: #ddd;
+$color8: #f26c4f;
+$color9: #f2bf0d;
+$color10: #0099ff;
 
 $defined-bs-type : border-box;
 
@@ -16,55 +22,3 @@ $S : 480px;
 $M : 768px; 
 $L : 992px; 
 $XL : 1200px; 
-
-/**
-* Font variable declarations.
-********************************/
-@include font-face(
-  'aileronblack',
-  font-files(
-    'aileron/black/aileron-black-webfont.woff',
-    'aileron/black/aileron-black-webfont.ttf'
-  ),
-  'aileron/black/aileron-black-webfont.eot',
-  normal,
-  normal
-);
-
-@include font-face(
-  'aileronheavy',
-  font-files(
-    'aileron/heavy/aileron-heavy-webfont.woff',
-    'aileron/heavy/aileron-heavy-webfont.ttf'
-  ),
-  'aileron/heavy/aileron-heavy-webfont.eot',
-  normal,
-  normal
-);
-
-@include font-face(
-  'aileronregular',
-  font-files(
-    'aileron/regular/aileron-regular-webfont.woff',
-    'aileron/regular/aileron-regular-webfont.ttf'
-  ),
-  'aileron/regular/aileron-regular-webfont.eot',
-  normal,
-  normal
-);
-
-@include font-face(
-  'aileronlight',
-  font-files(
-    'aileron/light/aileron-light-webfont.woff',
-    'aileron/light/aileron-light-webfont.ttf'
-  ),
-  'aileron/light/aileron-light-webfont.eot',
-  normal,
-  normal
-);
-
-$aileronblack: "aileronblack", Arial, sans-serif;
-$aileronheavy: "aileronheavy", Arial, sans-serif;
-$aileronlight: "aileronlight", Arial, sans-serif;
-$aileronregular: "aileronregular", Arial, sans-serif;
