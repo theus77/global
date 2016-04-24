@@ -50,11 +50,6 @@
 			array('language' => '[a-z]{2}'));
 	
 	
-		
-	
-
-	
-	
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
  */
