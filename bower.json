@@ -21,13 +21,12 @@
     "jail": "*",
     "jquery-ui": "~1.11.4",
     "gsap": "~1.18.0",
-    "ScrollMagic": "~2.0.5",
-    "vegas": "~2.1.3", 
-    "responsive-bootstrap-toolkit": "~2.5.0",
-    "jScrollPane": "*",
     "jquery.lazyload": "~1.9.7",
-    "jquery.nicescroll": "~3.6.0",
     "simpler-sidebar": "~1.4.3",
-    "headroom.js": "~0.7.0"
+    "jquery.nicescroll": "~3.6.0",
+    "wowjs": "~1.1.2",
+    "jquery-backstretch": "~2.0.4",
+    "owlcarousel": "~1.3.2",
+    "smooth-scroll": "9.1.2"
   }
 }

@@ -1,46 +1,3 @@
-// Parallax Homepage ScrollMagic
-// https://github.com/janpaepke/ScrollMagic
-function parallax() {	
-	// init controller
-	var controller = new ScrollMagic.Controller({globalSceneOptions: {triggerHook: "onEnter", duration: "200%"}});
-	// build scenes
-	var scene1 = new ScrollMagic.Scene({triggerElement: "#parallax1"})
-					.setTween("#parallax1 > div", {y: "80%", ease: Linear.easeNone})
-					.addTo(controller);
-
-	var scene2 = new ScrollMagic.Scene({triggerElement: "#parallax2"})
-					.setTween("#parallax2 > div", {y: "80%", ease: Linear.easeNone})
-					.addTo(controller);
-
-	if( $( "body.default" ).length) { 
-		var scene3 = new ScrollMagic.Scene({triggerElement: "#parallax3"})
-						.setTween("#parallax3 > div", {y: "80%", ease: Linear.easeNone})
-						.addTo(controller);
-		var scene4 = new ScrollMagic.Scene({triggerElement: "#parallax4"})
-						.setTween("#parallax4 > div", {y: "80%", ease: Linear.easeNone})
-						.addTo(controller);
-	}		
- }
-// vegas slideshow
-// https://github.com/jaysalvat/vegas
-function vegas() {
-
-	var h = window.innerHeight;
-	$( "#sortableFlights" ).vegas({
-	    slides: [
-	        { src: "img/slideshow/beautiful-01.jpg" },
-	        { src: "img/slideshow/beautiful-02.jpg" },
-	        { src: "img/slideshow/beautiful-03.jpg" },
-	        { src: "img/slideshow/beautiful-04.jpg" }
-	    ],
-	    init: function (globalSettings) {
-	        $( ".vegas-container" ).css('height', h + 'px');
-	    }
-	});
-
-}
-
-
 
 $(window).load(function() {
 	$("img.lazy").show().lazyload({
@@ -49,7 +6,7 @@ $(window).load(function() {
 	});
 });
 
-(function($, viewport){
+(function($){
   var
     $win 			= $(window),
     $filter 		= $('.navbar'),
@@ -71,6 +28,60 @@ $(window).load(function() {
 	// Admin collapse galery 
 	$( ".admin-galery" ).on( "click", "h2", function() {
 		$(this).next( "form" ).toggle();
+	});
+
+
+ 	$( "#toggle-sidebar, .close-side" ).on( "click", "a",  function (e) {
+	 	e.preventDefault();
+	 });
+
+ 		// Open thumb in galerie page.
+	var childOpened;
+	//var oldChildOpened;
+	$( "#galerie-thumb-child span[class*='child-']" ).hide();
+	$( "a[class*='parent-']" ).on( "click", function() {
+		var child = ".child-" + $(this).attr( "data-slide-to" );
+		$( "#galerie-thumb-child span[class*='child-']" ).not($(this)).hide().parent().show();
+		$( child ).show();
+	});
+
+	$( ".trigger-expand" ).on( "click", "a", function(e){
+		e.preventDefault();
+		if ( typeof childOpened === "undefined" ) {
+			// on page load
+			$( "#galerie-filmstrip #galerie-thumb-child .galerie-thumb-scroll" ).show();
+			childOpened = $( "#galerie-thumb-child span.child-0" );
+			$( "#galerie-thumb-bro .parent-0" ).addClass( "active" );
+		}
+		else {
+			// we have a visible child because a parent was clicked
+			childOpened = $( "#galerie-thumb-child span[class*='child-']:visible" );
+		}
+		childOpened.toggle();
+		// animate effect to show/hide the expand collapse
+		$(this).find( "span" )
+			.toggleClass( "glyphicon-chevron-down" )
+			.toggleClass( "glyphicon-chevron-up" );
+		$(this).parent().prev().animate({
+  			height: "toggle",
+  			opacity: "toggle"
+		});
+	});
+
+	// thumbnail add active class
+	$( ".thumbnail" ).on( "click", function() {
+		$(this).addClass( "active" ).siblings().removeClass( "active");
+	});	
+
+ 	// Nicescroll : https://github.com/inuyaksa/jquery.nicescroll
+	// add scrolling to the photos galeries
+	$( ".galerie-thumb-scroll" ).niceScroll({
+		cursorcolor:"#7C7B7B",
+		cursorborderradius:0,
+		cursorwidth: "15",
+		cursorborder: "1px solid #ddd",
+		cursorfixedheight: "100",
+		background: "transparent"
 	});
 
 	// Replace the h2 at the good place for design.
@@ -127,33 +138,6 @@ $(window).load(function() {
 	   }
 	 });
 
-	 $( "#toggle-sidebar, .close-side" ).on( "click", "a",  function (e) {
-	 	e.preventDefault();
-	 });
-
-	/* back-to-top */
-	if ($( "#back-to-top" ).length) {
-	    var scrollTrigger = 100, // px
-	        backToTop = function () {
-	            var scrollTop = $(window).scrollTop();
-	            if (scrollTop > scrollTrigger) {
-	                $( "#back-to-top" ).addClass( "show" );
-	            } else {
-	                $( "#back-to-top" ).removeClass( "show" );
-	            }
-	        };
-	    backToTop();
-	    $(window).on( "scroll", function () {
-	        backToTop();
-	    });
-	    $( "#back-to-top" ).on( "click", function (e) {
-	        e.preventDefault();
-	        $( "html,body" ).animate({
-	            scrollTop: 0
-	        }, 700);
-	    });
-	}
-
 	 /* simple sidebar */
 	$( "#galerie-info" ).simplerSidebar({
 	    opener: '#toggle-sidebar',
@@ -164,167 +148,182 @@ $(window).load(function() {
 	    }
   	});
 
-	// Nicescroll : https://github.com/inuyaksa/jquery.nicescroll
-	// add scrolling to the photos galeries
-	$( ".galerie-thumb-scroll" ).niceScroll({
-		cursorcolor:"#7C7B7B",
-		cursorborderradius:0,
-		cursorwidth: "15",
-		cursorborder: "1px solid #ddd",
-		cursorfixedheight: "100",
-		background: "transparent"
-	});
-
-	// Open thumb in galerie page.
-	var childOpened;
-	//var oldChildOpened;
-	$( "#galerie-thumb-child span[class*='child-']" ).hide();
-	$( "a[class*='parent-']" ).on( "click", function() {
-		var child = ".child-" + $(this).attr( "data-slide-to" );
-		$( "#galerie-thumb-child span[class*='child-']" ).not($(this)).hide().parent().show();
-		$( child ).show();
-	});
-
-	$( ".trigger-expand" ).on( "click", "a", function(e){
-		e.preventDefault();
-		if ( typeof childOpened === "undefined" ) {
-			// on page load
-			$( "#galerie-filmstrip #galerie-thumb-child .galerie-thumb-scroll" ).show();
-			childOpened = $( "#galerie-thumb-child span.child-0" );
-			$( "#galerie-thumb-bro .parent-0" ).addClass( "active" );
-		}
-		else {
-			// we have a visible child because a parent was clicked
-			childOpened = $( "#galerie-thumb-child span[class*='child-']:visible" );
-		}
-		childOpened.toggle();
-		// animate effect to show/hide the expand collapse
-		$(this).find( "span" )
-			.toggleClass( "glyphicon-chevron-down" )
-			.toggleClass( "glyphicon-chevron-up" );
-		$(this).parent().prev().animate({
-  			height: "toggle",
-  			opacity: "toggle"
-		});
-	});
 	// Search animation
 	$( ".search-trigger" ).on( "click", function() {
 		$( ".search-form" ).slideToggle();
 	});
 
-	// thumbnail add active class
-	$( ".thumbnail" ).on( "click", function() {
-		$(this).addClass( "active" ).siblings().removeClass( "active");
-	});
+	
+	$( ".image-box" ).matchHeight();
 
-	// if we have a hash on load. Scroll to the id
-	$(window).load(function () {
-		if ( window.location.hash ) {
-			// scroll
-			var id = window.location.hash;
-			if ($(id).length) {
-				$("html, body").animate({ scrollTop: $(id).offset().top - 150}, 1000);
-			}
-		}
-	});
-	//  Bind scroll to anchor links.
-	$(document).on("click", "a", function (e) {
-		var url = $(this).attr("href");
-		var idx = url.indexOf("#")
-		var id 	= idx != -1 ? url.substring(idx) : "";
-
-		if ($(id).length > 0) {
-			e.preventDefault();
-			console.log('top : ' +$(id).offset().top);
-			// trigger scroll
-			$("html, body").animate({ scrollTop: $(id).offset().top - 150}, 1000);
-
-			// if supported by the browser we can even update the URL.
-			if (window.history && window.history.pushState) {
-				history.pushState("", document.title, id);
-			}
-		}
+	//prevent # links from moving to top	
+	$('a[href="#"][data-top!=true]').click(function(e){
+		e.preventDefault();
 	});
 	
-	// headroom.js
-	var header = document.querySelector("header");
-    if(window.location.hash) {
-      header.classList.add("slide--up");
-    }
+	
+	//	SMOOTH SCROLL
+	smoothScroll.init({
+		offset: 0
+	});
+	//	SCROLL
+	$(window).scroll(function() {    
+		var scroll = $(window).scrollTop();
 
-    new Headroom(header, {
-        tolerance: {
-          down : 10,
-          up : 20
-        },
-        offset : 150,
-        classes: {
-          initial: "slide",
-          pinned: "slide--reset",
-          unpinned: "slide--up"
-        }
-    }).init();
+		if (scroll >= 100) {
+			$(".navbar-inverse").addClass("navbar-scroll");
+		} else {
+			$(".navbar-inverse").removeClass("navbar-scroll");
+		}
+				
+	});
+	// onepage active link
+	var sections = $('section')
+		  , nav = $('nav')
+		  , nav_height = nav.outerHeight();
+		 
+		$(window).on('scroll', function () {
+		  var cur_pos = $(this).scrollTop();
+		 
+		  sections.each(function() {
+			var top = $(this).offset().top - nav_height,
+				bottom = top + $(this).outerHeight();
+		 
+			if (cur_pos >= top && cur_pos <= bottom) {
+			  nav.find('a').removeClass('active');
+			  sections.removeClass('active');
+		 
+			  $(this).addClass('active');
+			  nav.find('a[href="#'+$(this).attr('id')+'"]').addClass('active');
+			}
+		  });
+		});
 
-	$( ".thumb" ).matchHeight();
+		//	SLIDER BACKGROUND  (BACKSTRETCH)
+		if($('.slider-background').length > 0){
+			 $.backstretch([
+				  "/img/bg1.jpg"
+				, "/img/bg2.jpg"
+				, "/img/bg3.jpg"
+				, "/img/bg4.jpg"
+				, "/img/bg5.jpg"
+			  ], {duration: 4000, fade: 1000});
+		}
+		// menu toggle
+		$( ".menu-toggle" ).click(function() {
+			 $( ".menu" ).slideToggle( "slow", function() {
+				// Animation complete.
+			  });
+			
+		});	
 
-	// Bootstrap jquery mediaqueries.
-	// Load vegas slideshow and parallax only if the breakpoint is bigger than 'md'.
-	$(window).load(
-	 	viewport.changed(function(){
-	 		//console.log('1 current resize : ' + viewport.current());
-		    if( viewport.is('>=sm') ) {	
-		    	
-				// Same height for home boxes.
-				$( "#homepage .groupToMatch, .box2 .col-md-4" ).matchHeight();
-				// Parallax Homepage ScrollMagic - https://github.com/janpaepke/ScrollMagic
-	     		if ( $( ".parallaxParent" ).length ) {
-					parallax();
-				}
-				if ( $( "body#homepage" ).length ) {
-					vegas();
-				}
+		//scrolltotop Check to see if the window is top if not then display button
+		$(window).scroll(function(){
+			if ($(this).scrollTop() > 100) {
+				$('.scrollToTop').fadeIn();
+			} else {
+				$('.scrollToTop').fadeOut();
+			}
+		});
+		
+		//Click event to scroll to top
+		$('.scrollToTop').click(function(){
+			$('html, body').animate({scrollTop : 0},800);
+			return false;
+		});
+
+		$(window).load(function() { // makes sure the whole site is loaded
+			$('#status').fadeOut(); // will first fade out the loading animation
+			$('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
+			$('body').delay(350).css({'overflow':'visible'});
+		})
+
+		// BANNER CAROUSEL	
+		
+	/*
+		if($('#slider').length > 0){	
+			var owl = $("#slider");
+		 
+			owl.owlCarousel({			 
+				autoplay: true,
+    			autoplayHoverPause: true,
+    			items: 1,
+    			loop: true,
+				pagination : true
+			});
+		  
+			// Custom Navigation Events
+			$(".next").click(function(){
+				owl.trigger('owl.next');
+			})
+			$(".prev").click(function(){
+				owl.trigger('owl.prev');
+			})
+		}
+		*/
+
+		//	WOW
+	
+	var wow = new WOW(
+	  {
+		boxClass:     'wow',      // animated element css class (default is wow)
+		animateClass: 'animated', // animation css class (default is animated)
+		offset:       100,          // distance to the element when triggering the animation (default is 0)
+		mobile:       true,       // trigger animations on mobile devices (default is true)
+		live:         true,       // act on asynchronously loaded content (default is true)
+		callback:     function(box) {
+		  // the callback is fired every time an animation is started
+		  // the argument that is passed in is the DOM node being animated
+		},
+		scrollContainer: null // optional scroll container selector, otherwise use window
+	  }
+	);
+	wow.init();
+
+		
+
+})(jQuery); // end anonymous function
+
+
+	
+	// PORTFOLIO FILTER
+	/*	
+	$(document).ready(function() {
+	  $('ul#filter a').click(function() {
+		$(this).css('outline','none');
+		$('ul#filter .current').removeClass('current');
+		$(this).parent().addClass('current');
+		
+		var filterVal = $(this).text().toLowerCase().replace(' ','-');
+		
+
+		
+		if(filterVal == 'all') {
+		  $('ul#portfolio-filter li.hidden').fadeIn('slow').removeClass('hidden');
+		} else {
+		  $('ul#portfolio-filter li').each(function() {
+							
+			if(!$(this).hasClass(filterVal)) {
+			  $(this).fadeOut('normal').addClass('hidden');
+
+				
+			} else {
+			$(this).fadeIn('slow').removeClass('hidden');
 
 			}
-		}) // end window.changed
-	); // end window.load
+		  });
+		}
+		
+		return false;
+	  });
+	});
+	*/
 
-    // Execute code each time window size changes
-    $(window).resize(
-        viewport.changed( function(){
-        	//console.log('2 current resize :' + viewport.current());
-            if( viewport.is('>=sm') ) {
-				// Same height for home boxes.
-				$( "#homepage .groupToMatch, .box2 .col-md-4" ).matchHeight();
-				// Parallax Homepage ScrollMagic - https://github.com/janpaepke/ScrollMagic
-                if ( $( ".parallaxParent" ).length ) {
-					parallax();
-				}
-				if ( $( "body#homepage" ).length ) {
-					vegas();
-				}            
-            }
-            else {
-            	//console.log('3 current resize :' + viewport.current());
-            	$( "#homepage .groupToMatch, .box2 .col-md-4" ).matchHeight( 'remove' );         	
-            	// we are under md breakpoints
-		    	if ( $( "body#homepage" ).length ) {
-		    		$( "#sortableFlights" ).vegas( "destroy" );
-		    	}
-		    	if ( $( ".parallaxParent" ).length ) {   			        	
-		        	//controller.destroy();
-			    	controller = null;
-			    	if ( $( "body#homepage" ).length ) {
-				    	scene1.destroy();
-				    	scene2.destroy();
-			    	}
-			    	if( $( "body.default" ).length) {
-				    	scene3.destroy();
-				    	scene4.destroy();
-			    	}			    	
-		    	}
-		    }   
-        }) // end window.changed
-    ); // end window.resize
 
-})(jQuery, ResponsiveBootstrapToolkit); // end anonymous function
+	
+
+	
+	
+	
+
 

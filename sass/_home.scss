@@ -1,294 +1,125 @@
 /*
-* 1. Home design
-* 2. Interior default design
-* 3. Map page design
-* 4. jquery scrollpane
+* 1. vols
+* 2. services
+* 3. section heading
 **/
 
-/*
-* 1. Home design
-********************************************/
-.flight-wrapper {
-	h1 {
-		color: lighten($color1, 100%);
-	}
+/* ==================================================
+ 1. vols
+======================================================*/
 
-	@include MQ(Mneg) {
-		position: relative;
-		top: 0;
-		left: 0;
-		margin-right: 0;
-		transform: none;
-	}
-	@include MQ(M) {
-		top: 5%;
-		margin-right:auto;
-	}
-	@include MQ(L) {
-		top: 35%;
-	}
-	@include MQ(Lplus) {
-		position: absolute;
-	    top: 42%;
-	    left: 50%;
-	    margin-right: -50%;
-	    @include transform(translate(-50%, -50%));
-	}
-}
-.box-home {
-	.groupToMatch {
-		position:relative;
-		background-color: lighten($color1, 100%);
-		margin-bottom: em(20px);
-		padding-bottom: em(40px);
-		h2 {
-			font-size: em(26px);
-			position: absolute;
-			bottom: 0; 
-			left: 0;
-			margin:0 0 0 .2em;
-			color: lighten($color1, 100%);
-			line-height: 1.56em;
- 			display: inline;
- 			max-width: 95%;
-			span {
-				padding:.2em;
-				box-shadow: 0.2em 0 0 rgba($color2,0.8), -0.2em 0 0 rgba($color2,0.8);
-				background-color: $color2;
-				background-color: rgba($color2,0.8);
-				box-decoration-break: clone;
-			} 
-			@include MQ(Sneg) {
-				font-size: em(25px);
-				line-height:em(27px);
-			}
-			@include MQ(Sneg) {
-				font-size: em(20px);
-				line-height:em(22px);
-			}		
-		}
-		img {width:100% !important; height: auto !important;}
-		.text-wrapper p:first-child, .heading-wrapper {position: relative;}
-		.form-group {
-			position:absolute;
-			bottom:0;
-			margin-bottom:0;
-			right:0;
-		}
-	}
-	strong { color: lighten($color1, 60%);}
-	.text-wrapper > p {
-		padding: 0 em(15px, 12px);
-		font-size: em(12px);
-		br {
-			content: " ";
-			line-height: em(20px, 12px);
-			display: block; 
-			margin-top: em(10px, 12px);
-		}
-	}
-	.form-group:not(.admin) {
-		.btn.btn-primary {
-			@extend %btn-ico;
-			white-space:normal;
-			font-size:em(12px);
-		}
-	}
-}
-
-
-/* Parallax effect */
-.parallaxParent {
-	height: 50vh;
-	overflow: hidden;
-	div {
-		background-size: cover;
-	}
-	& > * {
-		height: 200%;
-		position: relative;
-		top: -100%;
-		@include MQ(S) {
-			height: auto;
-			top:0;
-		}
-	}
-	&#parallax1 div {
-		background-image: image-url('map01.jpg');
-	}
-	&#parallax2 div {
-		background-image: image-url('map02.jpg');
-	}
-	@include MQ(Mneg) {
-		height: auto;
-		overflow: visible;
-	}
-}
-
-// 3 boxes for flight reservation on the home 
-#sortableFlights {
-	height: 100%;
-	background-color: lighten($color1, 80%);
-	.row {
-		margin:0;
-		h1 { 
-			color: lighten($color1, 100%); 
-			@include MQ(Mplus) {
-				@include text-shadow(1px 1px 0px $color1);
-			}
-			@include MQ(Mneg) {
-				font-size:em(30px);
-				margin-top:em(15px, 30px);
-				color: lighten($color1, 10%);
-			}
-			@include MQ(Sneg) {
-				font-size:em(20px);
-				margin-top:em(15px, 20px);
-				color: lighten($color1, 10%);
-			}
-		}
-	}
-	@include MQ(Sneg) {
-		height: auto !important;
-		overflow: visible;
-	}
-	@include MQ(Lplus) {
-		min-height: em(600px);
-	}
-	@include MQ(XLplus) {
-		min-height: em(750px);
-	}
-}
-
-// Central boxes : 3 search boxes
-.box {
+#flights {
 	h2 {
-		@include MQ(Mneg) {font-size:em(28px);}
+		font-size: em(50px);
+	    font-weight: bold;
+	    margin-bottom: em(30px, 60px);
+	}
+	.section-heading {padding-top:0;}
+	.box {
+	margin:em(10px) 0;
+	background: rgba($color1,0.3);
+    padding: em(15px);	
+	h3 {
+		margin: em(20px, 20px) 0;
+		font-size:em(20px);
+	}
+	span {
+		font-size:em(13px);
+	}
+	img {		
+		@include filter(grayscale(0));
+		@include transition(all 0.5s ease-in-out);
+		}
+
+	&:hover {
+		img {
+			margin:0;
+			@include filter(grayscale(100%));
+			@include transition(all 0.5s ease-in-out);
+			}
 	}
 }
-.box2 {
-	h3 {color: $color2;}
-	.col-md-4 {
-		padding-left: em(80px);
-		background: transparent image-url('box-01.png') no-repeat 0 20px;
+}
+/*========================================
+	2. services
+===========================================*/
+.services {
+	padding: em(40px) em(20px);
+	text-align: center;
+	img {
+	  	margin: 0 auto;
+	  	margin-bottom: em(20px);
+	 }
+
+	.style2 {
+		i {
+			min-width: em(80px, 36px);
+			font-size: em(36px);
+			padding: em(20px, 36px);
+			margin-bottom: em(10px, 36px);
+			border: 2px solid lighten($color1, 100%);
+			background: rgba(lighten($color1, 100%), 0.2);
+			display: inline-block;
+			text-align: center;
+		}
+		&:hover i{background: rgba($color1, 0.5);}
+		@include MQ(Lneg) {
+			padding: 20px 0;
+		}
 		@include MQ(Mneg) {
-			background-position: em(20px) em(20px);
-			background-size: em(35px) auto;
+			padding: 20px 40px;
 		}
+	}
 
+	i {
+		color: lighten($color1, 100%);
+		@include transition(all 0.5s ease-in-out);
 	}
-	.text-search {background-image: image-url('box-02.png');}
-	.thematic-search  {background-image: image-url('box-03.png');}
-	.navbar-form {
-		.form-group {
-			@include MQ(Mneg) {
-				float:left;
-				width:em(200px);
-			}
-			@include MQ(XSneg) {
-				width:em(160px);
-			}
-		}
-		@include MQ(Mplus) {
-			padding-left:0;
-		}
-	}
-}
-.spacer {
-	background-color: lighten($color1, 100%);
- 	&.s2 {background-color: lighten($color1, 90%);}
-}
 
-// gallery home
-.box3 {
-	.groupToMatch {padding: em(10px);}
-}
-
-.thumbnail {
-	border-radius: 0;
-	.badge {
-		background-color: transparent;
-	    border-radius: 0;
-	    color: $color2;
-	    font-size: 1em;
-	    font-weight: normal;
-	    text-align: right;
-	    display: inline-block;
-	    float: right;
-	}
-}
-.library {margin-top:em(40px);}
-
-/*
-* 2. Interior default design
-*
-********************************************/
-.spacer.s1 {
-	padding: em(50px) 0;
-	@include MQ(Mneg) {
-		padding: em(20px) 0;
-	}
-}
-body.default {
-	> .container-fluid {
-		background-color: lighten($color1, 100%);
-		@extend %no-padding;
-	}
-	.wysiwygContent {
-		> h2:first-child {margin-top:0;}
-	}
-	#parallax1 div {
-		background-image: image-url('map01.jpg');
-		@include MQ(S) {
-			background-image: none;
+    & > .fa {
+		font-size:em(85px);
+		width:em(150px, 85px);
+		height:em(150px, 85px);
+		border-radius:50%;
+		color:lighten($color1, 100%);
+		line-height:em(150px, 85px);
+		text-align:center;
+		background:$color8;
+		margin-bottom:em(30px,85px);
+		@include transition(all 0.3s ease-in-out);
+		&:hover {
+			font-size:em(90px);
 		}
-	}
-	#parallax2 div {
-		background-image: image-url('map02.jpg');
-			@include MQ(S) {
-			background-image: none;
-		}
-	}
-	#parallax3 div {
-		background-image: image-url('map03.jpg');
-		@include MQ(S) {
-			background-image: none;
-		}
-	}
-	#parallax4 div {
-		background-image: image-url('map04.jpg');
-		@include MQ(S) {
-			background-image: none;
-		}
-	}
-	.default {overflow: hidden;}
-
-}
-
-/*
-* 3. Map page design
-*
-***********************************************/
-#map-ctp {
-	.outer {
-	    position: relative;
-	    
-		.scaling-image {
-		    position: relative;
-		    visibility: hidden; /* make sure it's hidden */
-		    width: 100%;
-		    min-width: 100%;
+		a {
+		    display: inline-block;
 		    height: 100%;
-		}
-		
-		.inner {
+		    left: 0;
 		    position: absolute;
 		    top: 0;
-		    left: 0;
-		    right: 0;
-		    bottom: 0;
-		    overflow:hidden;
+		    width: 100%;
 		}
 	}
+	& >.fa-search {background:$color9;}
+	.fa-tags {background:$color10;}
 }
-#map-canvas .thumbnail {border:0;}
+
+/* ==================================================
+  3. section-heading
+====================================================*/
+.section-heading {
+  text-align: center;
+  padding: em(40px) 0;
+  h2 {
+    margin: 0;
+    font-size: em(36px);
+    letter-spacing: -1px;
+    @include text-shadow(2px 2px 2px rgba($color1, 0.5));
+  }
+  .separator {
+    width: em(30px);
+    height: em(4px);
+    background: lighten($color1, 100%);
+    text-align: center;
+    display: inline-block;
+  }
+}
