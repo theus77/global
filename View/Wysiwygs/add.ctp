@@ -1,25 +1,22 @@
-<div class="wysiwygs form">
-<?php echo $this->Form->create('Wysiwyg'); ?>
-	<fieldset>
-		<legend><?php echo __('Add Wysiwyg'); ?></legend>
-	<?php
-		echo $this->Form->input('key');
-		echo $this->Form->checkbox('singleline');
-		/*echo $this->Form->input('value', array(
-		    'label' => 'Texte en français',
-			'type' => 'textarea',
-			'class' => 'withCk',
-		));*/
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Html->link(__('List Wysiwygs'), array('action' => 'index')); ?></li>
-	</ul>
+<div class="container wysiwygs admin-page">
+		<div class="wysiwygs form">
+		<?php echo $this->Form->create('Wysiwyg'); ?>
+				<h2><?php echo __('Add Wysiwyg'); ?></h2>
+			<?php
+				echo $this->Form->input('key');
+				echo $this->Form->checkbox('singleline');
+				/*echo $this->Form->input('value', array(
+				    'label' => 'Texte en français',
+					'type' => 'textarea',
+					'class' => 'withCk',
+				));*/
+			?>
+		<?php echo $this->Form->end(__('Submit')); ?>
+			<h3><?php echo __('Actions'); ?></h3>
+			<ul>
+				<li><?php echo $this->Html->link(__('List Wysiwygs'), array('action' => 'index')); ?></li>
+			</ul>
+		</div>
 </div>
 <script>
 

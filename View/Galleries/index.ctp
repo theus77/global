@@ -1,10 +1,7 @@
-
+<div class="container admin-page">
 <div class="row">
 	<h2><?php echo __('Liste des galeries');?></h2>
-</div>
-<div class="row">
-<div class="col-md-2 "></div>
-<div class="col-md-8">
+<div class="col-md-12">
 	<ul class="list-group">
 		<?php 
 			foreach ($galleries as $gallery){
@@ -68,5 +65,5 @@
 		?>
 	</ul>
 </div>
-<div class="col-md-2 "></div>
+</div>
 </div>

@@ -14,7 +14,8 @@
 	  controlUI.style.borderRadius = '2px';
 	  controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
 	  //controlUI.style.cursor = 'pointer';
-	  controlUI.style.marginTop = '10px';
+	  controlUI.style.marginTop = '100px';
+	  controlUI.style.marginLeft = '10px';
 	  controlUI.style.textAlign = 'center';
 	  controlUI.title = '<?php echo __('Vers la page de recherche thématique'); ?>';
 	  controlDiv.appendChild(controlUI);
@@ -58,7 +59,11 @@
           minZoom: 7,
           zoom: 9,
           tilt: 0,
-          mapTypeId: google.maps.MapTypeId.HYBRID
+          mapTypeId: google.maps.MapTypeId.HYBRID,
+          mapTypeControlOptions: {
+        	style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+        	position: google.maps.ControlPosition.LEFT_BOTTOM
+    	  },
         };
         var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 	 
@@ -131,16 +136,15 @@
 	}
     google.maps.event.addDomListener(window, 'load', initialize);
     </script>
-    
-<div class="row" id="map-ctp">
-	<div class="col-xs-12">
+
+
+<div id="map-ctp">
 		<div class="outer">
 		    <div class="inner" id="map-canvas">
 		        <?php echo __('Connection à Google Map en cours ...'); ?>
 		    </div>
 		    <img src="data:image/gif;base64,R0lGODlhEAAJAIAAAP///wAAACH5BAEAAAAALAAAAAAQAAkAAAIKhI+py+0Po5yUFQA7" class="scaling-image" /> <!-- don't specify height and width so browser resizes it appropriately -->
-		</div>
-	</div>	   
+		</div>	   
 </div>
 
 
