@@ -46,7 +46,7 @@ class PagesController extends AppController {
  *   or MissingViewException in debug mode.
  */
 	public function display() {
-		
+		$this->set('home', 'false');
 		if ($this->request->is(array('post', 'put'))) {
 			if(isset($this->request->data['Booking'])){
 				$this->request->data['Booking']['isContactRequest'] = true;
@@ -99,7 +99,7 @@ class PagesController extends AppController {
 	
 	public function home() {
 		$this->layout = 'home';
-		
+		$this->set('home', 'true');
 		$options = array(
 				'conditions' => array(),
 		);

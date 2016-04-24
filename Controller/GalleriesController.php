@@ -88,7 +88,7 @@ class GalleriesController extends AppController {
 
 
 	public function place($locationUuid) {
-
+		$this->layout = 'map';
 		$body = json_decode('
 			{
 			   "size": '.json_encode(self::PAGING_SIZE).',
@@ -186,7 +186,7 @@ class GalleriesController extends AppController {
 	
 	public function keyword($keywordUuid) {
 
-
+		$this->layout = 'map';
 		$body = json_decode('
 		{
 		  "size": '.json_encode(self::PAGING_SIZE).',
@@ -239,7 +239,7 @@ class GalleriesController extends AppController {
 
 	public function view ($slug = NULL) {
 
-
+		$this->layout = 'map';
 		$translation = $this->ModelTranslation->find('first', [
 				'conditions' => [
 						'model' => 'Gallery',
@@ -348,7 +348,6 @@ class GalleriesController extends AppController {
 
 
 // 	public function index($query) {
-
 // 		$client = new Client();
 
 // 		$searchParams = array(

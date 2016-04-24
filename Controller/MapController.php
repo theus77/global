@@ -13,6 +13,7 @@ class MapController extends AppController {
 
 
 	public function markers(){
+		$this->layout = 'map';
 		$client = ClientBuilder::create()           // Instantiate a new ClientBuilder
 			->setHosts(Configure::read('awsESHosts'))      // Set the hosts
 			->build();              // Build the client object
@@ -216,6 +217,7 @@ class MapController extends AppController {
 	}
 
 	public function index() {
+		$this->layout = 'map';
 // 		$searchParams = [
 // 			'index' => Configure::read('Config.apertureIndex'),
 // 			'type'  => Configure::read('Config.placeModel'),
