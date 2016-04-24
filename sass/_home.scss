@@ -13,6 +13,12 @@
 		font-size: em(50px);
 	    font-weight: bold;
 	    margin-bottom: em(30px, 60px);
+	    a {
+	    	color:$color2;
+	    	&:hover {
+	    		text-decoration:underline;
+	    	}
+	    }
 	}
 	.section-heading {padding-top:0;}
 	.box {
