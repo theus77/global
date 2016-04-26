@@ -13,8 +13,8 @@
     <!-- fontawesome css -->
 		<?php echo $this->Html->css('../js/bower/components-font-awesome/css/font-awesome.min'); ?>
     <!-- owl carousel css -->
-    <?php echo $this->Html->css('/js/bower/OwlCarousel/owl-carousel/owl.carousel'); ?>
-    <?php echo $this->Html->css('/js/bower/OwlCarousel/owl-carousel/owl.theme'); ?>
+    <?php echo $this->Html->css('/js/bower/owlcarousel/owl-carousel/owl.carousel'); ?>
+    <?php echo $this->Html->css('/js/bower/owlcarousel/owl-carousel/owl.theme'); ?>
     <!-- animate css -->
     <?php echo $this->Html->css('animate/animate.min'); ?>
 
