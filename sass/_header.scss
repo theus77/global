@@ -47,28 +47,29 @@ header {
   }
 }
 
-@media (min-width: 1200px) {
+@include MQ(XLplus) {
   .navbar-inverse {
     border: none;
     padding: 20px 0;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba($color1, 0.3);
     .navbar-nav li a {
-      color: #fff;
+      color: lighten($color1, 100%);
       &:hover {
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba($color1, 0.5);
         color:$color2;
       }
     }
   }
   .navbar-scroll {
     padding: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba($color1, 0.7);
   }
 }
 /* ==================================================
   navbar-collapse
 ====================================================*/
-@media (max-width: 991px) {
+// 991
+@include MQ(toL) {
   .navbar-header {
     float: none;
   }
@@ -85,19 +86,18 @@ header {
   .navbar-nav {
     float: none!important;
     margin: 7.5px -15px;
-  }
-  .navbar-nav > li {
-    float: none;
-  }
-  .navbar-nav > li > a {
-    padding-top: em(10px);
-    padding-bottom: em(10px);
+    & > li {
+      float: none;
+      & > a {
+        padding-top: em(10px);
+        padding-bottom: em(10px);
+      }
+    }
   }
   .navbar-text {
     float: none;
     margin: em(15px) 0;
   }
-  /* since 3.1.0 */
   .navbar-collapse.collapse.in {
     display: block!important;
   }

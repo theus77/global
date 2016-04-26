@@ -155,6 +155,7 @@ $(window).load(function() {
 
 	
 	$( ".image-box" ).matchHeight();
+	$( "#flights .col-md-4 .box" ).matchHeight();
 
 	//prevent # links from moving to top	
 	$('a[href="#"][data-top!=true]').click(function(e){
