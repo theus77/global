@@ -72,7 +72,7 @@ spl_autoload_register(array('App', 'load'), true, true);
  * CakePlugin::load('DebugKit'); //Loads a single plugin named DebugKit
  *
  */
-CakePlugin::load('DebugKit');
+// CakePlugin::load('DebugKit');
 
 /**
  * You can attach event listeners to the request lifecycle as Dispatcher Filter . By default CakePHP bundles two filters:
@@ -144,9 +144,9 @@ Configure::write('aws.credentials', [
 		]);
 
 Configure::write('Config.cluster', [
-		//'http://global.theus.be',
-		 		'http://gv.local',
+
 ] );
+
 
 Configure::write('Config.defaultGoogleMap', [
 		'north' => 51.5041,
@@ -154,6 +154,3 @@ Configure::write('Config.defaultGoogleMap', [
 		'west' => 2.54124443026395,
 		'est' => 6.4067581,
 ] );
-
-
-

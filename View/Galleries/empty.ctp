@@ -4,7 +4,7 @@
 	</div>
 	<div class="row ">
 		<div class="col-md-12">
-			<?php echo $this->i18n->w('galery.empty');  ?>
+			<?php echo $this->I18n->w('galery.empty');  ?>
 		</div>
 	</div>
 	<div class="row">

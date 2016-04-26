@@ -183,7 +183,7 @@
 					<div class="content">
 						<div class="col-md-7" id="map-ctp">
 							<p>
-							<?php echo $this->i18n->w('book.enter-your-markers'); ?>
+							<?php echo $this->I18n->w('book.enter-your-markers'); ?>
 							</p>
 							<div class="outer">
 	   							<div class="inner" id="map-canvas">
@@ -193,7 +193,7 @@
 							</div>
 						</div>
 						<div  class="col-md-5">
-							<?php echo $this->i18n->w('book.enter-your-coordinates'); ?>
+							<?php echo $this->I18n->w('book.enter-your-coordinates'); ?>
 							<?php echo $this->element('contact'); ?>
 						</div>
 						<div class="clearfix"></div>

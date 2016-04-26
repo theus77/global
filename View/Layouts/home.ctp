@@ -221,7 +221,7 @@
 					    </div>
 					    <div id="technicsOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 					      <div class="panel-body">
-					        <?php echo $this->i18n->w('our-service.techniques.photo');  ?>
+					        <?php echo $this->I18n->w('our-service.techniques.photo');  ?>
 					      </div>
 					    </div>
 					  </div>
@@ -235,7 +235,7 @@
 					    </div>
 					    <div id="technicsTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
 					      <div class="panel-body">
-					       <?php echo $this->i18n->w('our-service.techniques.helico');  ?>
+					       <?php echo $this->I18n->w('our-service.techniques.helico');  ?>
 					      </div>
 					    </div>
 					  </div>
@@ -249,7 +249,7 @@
 					    </div>
 					    <div id="technicsThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
 					      <div class="panel-body">
-					        <?php echo $this->i18n->w('our-service.techniques.meteo');  ?>
+					        <?php echo $this->I18n->w('our-service.techniques.meteo');  ?>
 					      </div>
 					    </div>
 					  </div>
@@ -263,7 +263,7 @@
 					    </div>
 					    <div id="technicsFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
 					      <div class="panel-body">
-					        <?php echo $this->i18n->w('our-service.techniques.delais');  ?>
+					        <?php echo $this->I18n->w('our-service.techniques.delais');  ?>
 					      </div>
 					    </div>
 					  </div>
@@ -277,7 +277,7 @@
 					    </div>
 					    <div id="technicsFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
 					      <div class="panel-body">
-					        <?php echo $this->i18n->w('our-service.techniques.video');  ?>
+					        <?php echo $this->I18n->w('our-service.techniques.video');  ?>
 					      </div>
 					    </div>
 					  </div>
@@ -310,7 +310,7 @@
 					    </div>
 					    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 					      <div class="panel-body">
-					        <?php echo $this->i18n->w('prices.content.command');  ?>
+					        <?php echo $this->I18n->w('prices.content.command');  ?>
 					      </div>
 					    </div>
 					  </div>
@@ -324,7 +324,7 @@
 					    </div>
 					    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
 					      <div class="panel-body">
-					        <?php echo $this->i18n->w('prices.content.exist');  ?>
+					        <?php echo $this->I18n->w('prices.content.exist');  ?>
 					      </div>
 					    </div>
 					  </div>
@@ -338,7 +338,7 @@
 					    </div>
 					    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
 					      <div class="panel-body">
-					        <?php echo $this->i18n->w('prices.content.rights');  ?>
+					        <?php echo $this->I18n->w('prices.content.rights');  ?>
 					      </div>
 					    </div>
 					  </div>
