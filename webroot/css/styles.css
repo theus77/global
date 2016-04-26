@@ -8905,6 +8905,7 @@ button.close {
 }
 /* line 85, ../../sass/_home.scss */
 .services > .fa {
+  position: relative;
   font-size: 6.07143em;
   width: 1.76471em;
   height: 1.76471em;
@@ -8918,11 +8919,11 @@ button.close {
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-/* line 96, ../../sass/_home.scss */
+/* line 97, ../../sass/_home.scss */
 .services > .fa:hover {
   font-size: 6.42857em;
 }
-/* line 99, ../../sass/_home.scss */
+/* line 100, ../../sass/_home.scss */
 .services > .fa a {
   display: inline-block;
   height: 100%;
@@ -8931,11 +8932,11 @@ button.close {
   top: 0;
   width: 100%;
 }
-/* line 108, ../../sass/_home.scss */
+/* line 109, ../../sass/_home.scss */
 .services > .fa-search {
   background: #f2bf0d;
 }
-/* line 109, ../../sass/_home.scss */
+/* line 110, ../../sass/_home.scss */
 .services .fa-tags {
   background: #0099ff;
 }
@@ -8943,19 +8944,19 @@ button.close {
 /* ==================================================
   3. section-heading
 ====================================================*/
-/* line 115, ../../sass/_home.scss */
+/* line 116, ../../sass/_home.scss */
 .section-heading {
   text-align: center;
   padding: 2.85714em 0;
 }
-/* line 118, ../../sass/_home.scss */
+/* line 119, ../../sass/_home.scss */
 .section-heading h2 {
   margin: 0;
   font-size: 2.57143em;
   letter-spacing: -1px;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
-/* line 124, ../../sass/_home.scss */
+/* line 125, ../../sass/_home.scss */
 .section-heading .separator {
   width: 2.14286em;
   height: 0.28571em;
@@ -9095,61 +9096,50 @@ input[type=radio] {
   margin: 8px 0 0;
 }
 
-/* admin */
 /* line 29, ../../sass/_base.scss */
-.admin-page {
-  margin-top: 3.57143em;
-}
-/* line 31, ../../sass/_base.scss */
-.admin-page .list-group-item > a {
-  color: #000;
-  margin-right: 0.71429em;
-}
-
-/* line 33, ../../sass/_base.scss */
 .table-striped > tbody > tr {
   background-color: #737373;
 }
 
-/* line 36, ../../sass/_base.scss */
+/* line 32, ../../sass/_base.scss */
 .table-striped > tbody > tr:nth-of-type(2n+1) {
   background-color: #e6e6e6;
 }
 
-/* line 39, ../../sass/_base.scss */
+/* line 35, ../../sass/_base.scss */
 .cke_wysiwyg_frame, .cke_wysiwyg_div, .cke_source, .lang-i18n table td, #WysiwygKey, #pac-input {
   color: #000;
 }
 
-/* line 42, ../../sass/_base.scss */
+/* line 38, ../../sass/_base.scss */
 .lang-i18n table tfoot .pagination-status {
   color: white;
 }
 
-/* line 43, ../../sass/_base.scss */
+/* line 39, ../../sass/_base.scss */
 .help-block {
   color: white;
 }
 
-/* line 44, ../../sass/_base.scss */
+/* line 40, ../../sass/_base.scss */
 body#default {
   margin-top: 5.71429em;
 }
-/* line 47, ../../sass/_base.scss */
+/* line 43, ../../sass/_base.scss */
 body#default #BookingBookForm label {
   font-weight: normal;
   font-size: 0.85714em;
 }
-/* line 51, ../../sass/_base.scss */
+/* line 47, ../../sass/_base.scss */
 body#default #BookingBookForm .input-group-addon {
   height: 3.21429em;
 }
-/* line 52, ../../sass/_base.scss */
+/* line 48, ../../sass/_base.scss */
 body#default #BookingBookForm .input-group-addon, body#default #BookingBookForm .input-group-addon + .input.text {
   float: left;
   width: auto;
 }
-/* line 56, ../../sass/_base.scss */
+/* line 52, ../../sass/_base.scss */
 body#default #BookingBookForm .input-group-addon input[type="radio"], body#default #BookingBookForm .input-group-addon input[type="checkbox"] {
   margin-top: 0.57143em;
 }
@@ -9157,49 +9147,34 @@ body#default #BookingBookForm .input-group-addon input[type="radio"], body#defau
 /* ==================================================
 	elements
 ====================================================*/
-/* line 62, ../../sass/_base.scss */
+/* line 58, ../../sass/_base.scss */
 a {
-  color: #fff;
+  color: white;
   -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-
-/* line 69, ../../sass/_base.scss */
+/* line 61, ../../sass/_base.scss */
 a:hover {
   text-decoration: none;
-  color: #fff;
+  color: white;
 }
 
-/* line 73, ../../sass/_base.scss */
-hr {
-  margin: 10px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-/* line 77, ../../sass/_base.scss */
+/* line 66, ../../sass/_base.scss */
 pre {
   word-wrap: normal;
 }
 
-/* line 80, ../../sass/_base.scss */
-blockquote .small,
-blockquote footer,
-blockquote small {
-  color: #fff;
-}
-
-/* line 85, ../../sass/_base.scss */
+/* line 69, ../../sass/_base.scss */
 .section {
   position: relative;
   min-height: 100%;
   padding: 100px 0 100px;
 }
 
-/* line 90, ../../sass/_base.scss */
+/* line 74, ../../sass/_base.scss */
 #bg_pattern {
-  background-image: url('../img/bg_pattern.png?1461615226');
+  background-image: url('../img/bg_pattern.png?1461011459');
   position: fixed;
   opacity: 0.8;
   left: 0px;
@@ -9209,65 +9184,25 @@ blockquote small {
   z-index: -1;
 }
 
-/* line 100, ../../sass/_base.scss */
-.rounded {
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  border-radius: 0px;
-}
-
-/* line 105, ../../sass/_base.scss */
-.circle {
-  -webkit-border-radius: 100%;
-  -moz-border-radius: 100%;
-  border-radius: 100%;
-}
-
-/* line 110, ../../sass/_base.scss */
-.rounded {
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-}
-
-/* line 115, ../../sass/_base.scss */
-.padd-t-10 {
-  padding-top: 10px;
-}
-
-/* line 118, ../../sass/_base.scss */
-.padd-t-100 {
-  padding-top: 100px;
-}
-
-/* line 121, ../../sass/_base.scss */
-.padd-tb-10 {
-  padding: 10px 0;
-}
-
-/* line 124, ../../sass/_base.scss */
-.padd-tb-20 {
-  padding: 20px 0;
-}
-
-/* line 127, ../../sass/_base.scss */
-.nopadd {
-  padding: 0;
-}
-
-/* line 130, ../../sass/_base.scss */
-.margin-t-100 {
-  margin-top: 100px;
-}
-
-/* line 133, ../../sass/_base.scss */
+/* admin */
+/* line 85, ../../sass/_base.scss */
 .admin-footer {
   background-color: #343434;
   padding-left: 1.07143em;
   padding-right: 1.07143em;
 }
 
-/* line 138, ../../sass/_base.scss */
+/* line 90, ../../sass/_base.scss */
+.admin-page {
+  margin-top: 3.57143em;
+}
+/* line 92, ../../sass/_base.scss */
+.admin-page .list-group-item > a {
+  color: #000;
+  margin-right: 0.71429em;
+}
+
+/* line 94, ../../sass/_base.scss */
 .flashMessage {
   padding: 0.71429em;
 }
@@ -9340,7 +9275,7 @@ header .dropdown-menu {
   background: transparent;
 }
 
-@media (min-width: 1200px) {
+@media only screen and (min-width: 1200px) {
   /* line 51, ../../sass/_header.scss */
   .navbar-inverse {
     border: none;
@@ -9349,7 +9284,7 @@ header .dropdown-menu {
   }
   /* line 55, ../../sass/_header.scss */
   .navbar-inverse .navbar-nav li a {
-    color: #fff;
+    color: white;
   }
   /* line 57, ../../sass/_header.scss */
   .navbar-inverse .navbar-nav li a:hover {
@@ -9366,52 +9301,49 @@ header .dropdown-menu {
 /* ==================================================
   navbar-collapse
 ====================================================*/
-@media (max-width: 991px) {
-  /* line 72, ../../sass/_header.scss */
+@media only screen and (max-width: 991px) {
+  /* line 73, ../../sass/_header.scss */
   .navbar-header {
     float: none;
   }
 
-  /* line 75, ../../sass/_header.scss */
+  /* line 76, ../../sass/_header.scss */
   .navbar-toggle {
     display: block;
   }
 
-  /* line 78, ../../sass/_header.scss */
+  /* line 79, ../../sass/_header.scss */
   .navbar-collapse {
     border-top: 1px solid transparent;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
-  /* line 82, ../../sass/_header.scss */
+  /* line 83, ../../sass/_header.scss */
   .navbar-collapse.collapse {
     display: none !important;
   }
 
-  /* line 85, ../../sass/_header.scss */
+  /* line 86, ../../sass/_header.scss */
   .navbar-nav {
     float: none !important;
     margin: 7.5px -15px;
   }
-
   /* line 89, ../../sass/_header.scss */
   .navbar-nav > li {
     float: none;
   }
-
-  /* line 92, ../../sass/_header.scss */
+  /* line 91, ../../sass/_header.scss */
   .navbar-nav > li > a {
     padding-top: 0.71429em;
     padding-bottom: 0.71429em;
   }
 
-  /* line 96, ../../sass/_header.scss */
+  /* line 97, ../../sass/_header.scss */
   .navbar-text {
     float: none;
     margin: 1.07143em 0;
   }
 
-  /* since 3.1.0 */
   /* line 101, ../../sass/_header.scss */
   .navbar-collapse.collapse.in {
     display: block !important;
@@ -10158,7 +10090,7 @@ a.link:after:hover:after {
   position: absolute;
   left: 50%;
   top: 50%;
-  background-image: url('../img/loading.gif?1461615226');
+  background-image: url('../img/loading.gif?1436123270');
   background-repeat: no-repeat;
   background-position: center;
   margin: -7.14286em 0 0 -7.14286em;

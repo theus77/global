@@ -419,7 +419,7 @@ class GalleriesController extends AppController {
 	}
 
 	public function search($query = NULL) {
-
+		$this->layout = 'map';
 		if(isset($this->request->query['q'])){
 			$query = $this->request->query['q'];
 			$this->redirect([
