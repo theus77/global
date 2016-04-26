@@ -11,7 +11,7 @@
 
 		<title><?php echo __('Bienvenue, GlobalView reportage aérien sur mesure'); ?></title>
 		<!-- fontawesome css -->
-		<?php echo $this->Html->css('font-awesome/font-awesome.min'); ?>
+		<?php echo $this->Html->css('../js/bower/components-font-awesome/css/font-awesome.min'); ?>
 		<!-- animate css -->
 		<?php echo $this->Html->css('animate/animate.min'); ?>
 

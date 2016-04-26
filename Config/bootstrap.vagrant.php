@@ -144,8 +144,8 @@ Configure::write('aws.credentials', [
 		]);
 
 Configure::write('Config.cluster', [
-		'http://global.theus.be',
-		// 		'http://gv.local',
+		//'http://global.theus.be',
+		 		'http://gv.local',
 ] );
 
 Configure::write('Config.defaultGoogleMap', [

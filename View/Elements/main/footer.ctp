@@ -53,7 +53,7 @@
 	
 	<?php
 		//echo $this->element('sql_dump');
-		echo $this->Html->script('bower/jquery/jquery.min');
+		echo $this->Html->script('bower/jquery/dist/jquery.min');
 	    echo $this->Html->script('bower/bootstrap-sass/assets/javascripts/bootstrap'); 
 	    echo $this->Html->script('bower/matchHeight/jquery.matchHeight');
 		// lazy loading
