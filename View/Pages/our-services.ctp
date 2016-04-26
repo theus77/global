@@ -13,7 +13,7 @@
 		<div class="box2 box container">
 			<div class="row ">
 				<div class="col-md-12">
-					<?php echo $this->i18n->w('our-service.techniques');  ?>
+					<?php echo $this->I18n->w('our-service.techniques');  ?>
 				</div>
 			</div>
 		</div>
@@ -32,7 +32,7 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-12">
-					<?php echo $this->i18n->w('our-service.library');  ?>
+					<?php echo $this->I18n->w('our-service.library');  ?>
 				</div>
 			</div>
 
@@ -51,7 +51,7 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-12">
-					<?php echo $this->i18n->w('our-service.prices');  ?>
+					<?php echo $this->I18n->w('our-service.prices');  ?>
 				</div>
 
 				<div>
@@ -84,7 +84,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-6">
-					<?php echo $this->i18n->w('our-service.contact-us');  ?>
+					<?php echo $this->I18n->w('our-service.contact-us');  ?>
 				</div>
 				<div class="col-md-6">
 					<?php echo $this->element('contact'); ?>

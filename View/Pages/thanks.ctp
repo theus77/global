@@ -4,7 +4,7 @@
 		<div class="box2 box container">
 			<div class="row">
 				<div class="col-md-12">
-					<?php echo $this->i18n->w('thanks.content');  ?>
+					<?php echo $this->I18n->w('thanks.content');  ?>
 				</div>
 			</div>
 		</div>

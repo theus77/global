@@ -5,7 +5,7 @@
 			</h1>
 		<div class="row">
 			<div class="col-md-12">
-			<?php echo $this->i18n->w('price.intro');  ?>
+			<?php echo $this->I18n->w('price.intro');  ?>
 				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 					  <div class="panel panel-default">
 					    <div class="panel-heading" role="tab" id="headingOne">
@@ -17,7 +17,7 @@
 					    </div>
 					    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 					      <div class="panel-body">
-					        <?php echo $this->i18n->w('price.intro.decoration');  ?>
+					        <?php echo $this->I18n->w('price.intro.decoration');  ?>
 					      </div>
 					    </div>
 					  </div>
@@ -31,7 +31,7 @@
 					    </div>
 					    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
 					      <div class="panel-body">
-					        <?php echo $this->i18n->w('price.intro.free');  ?>
+					        <?php echo $this->I18n->w('price.intro.free');  ?>
 					      </div>
 					    </div>
 					  </div>
@@ -45,7 +45,7 @@
 					    </div>
 					    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
 					      <div class="panel-body">
-					        <?php echo $this->i18n->w('price.intro.generated');  ?>
+					        <?php echo $this->I18n->w('price.intro.generated');  ?>
 					      </div>
 					    </div>
 					  </div>
