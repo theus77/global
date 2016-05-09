@@ -43,6 +43,7 @@ body#default {
     label{
       font-weight:normal;
       font-size:em(12px);
+      line-height:em(16px, 12px);
     }
     .input-group-addon {height:em(45px);}
     .input-group-addon, .input-group-addon + .input.text {

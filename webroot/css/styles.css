@@ -9129,17 +9129,18 @@ body#default {
 body#default #BookingBookForm label {
   font-weight: normal;
   font-size: 0.85714em;
+  line-height: 1.33333em;
 }
-/* line 47, ../../sass/_base.scss */
+/* line 48, ../../sass/_base.scss */
 body#default #BookingBookForm .input-group-addon {
   height: 3.21429em;
 }
-/* line 48, ../../sass/_base.scss */
+/* line 49, ../../sass/_base.scss */
 body#default #BookingBookForm .input-group-addon, body#default #BookingBookForm .input-group-addon + .input.text {
   float: left;
   width: auto;
 }
-/* line 52, ../../sass/_base.scss */
+/* line 53, ../../sass/_base.scss */
 body#default #BookingBookForm .input-group-addon input[type="radio"], body#default #BookingBookForm .input-group-addon input[type="checkbox"] {
   margin-top: 0.57143em;
 }
@@ -9147,32 +9148,32 @@ body#default #BookingBookForm .input-group-addon input[type="radio"], body#defau
 /* ==================================================
 	elements
 ====================================================*/
-/* line 58, ../../sass/_base.scss */
+/* line 59, ../../sass/_base.scss */
 a {
   color: white;
   -webkit-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-/* line 61, ../../sass/_base.scss */
+/* line 62, ../../sass/_base.scss */
 a:hover {
   text-decoration: none;
   color: white;
 }
 
-/* line 66, ../../sass/_base.scss */
+/* line 67, ../../sass/_base.scss */
 pre {
   word-wrap: normal;
 }
 
-/* line 69, ../../sass/_base.scss */
+/* line 70, ../../sass/_base.scss */
 .section {
   position: relative;
   min-height: 100%;
   padding: 100px 0 100px;
 }
 
-/* line 74, ../../sass/_base.scss */
+/* line 75, ../../sass/_base.scss */
 #bg_pattern {
   background-image: url('../img/bg_pattern.png?1461011459');
   position: fixed;
@@ -9185,24 +9186,24 @@ pre {
 }
 
 /* admin */
-/* line 85, ../../sass/_base.scss */
+/* line 86, ../../sass/_base.scss */
 .admin-footer {
   background-color: #343434;
   padding-left: 1.07143em;
   padding-right: 1.07143em;
 }
 
-/* line 90, ../../sass/_base.scss */
+/* line 91, ../../sass/_base.scss */
 .admin-page {
   margin-top: 3.57143em;
 }
-/* line 92, ../../sass/_base.scss */
+/* line 93, ../../sass/_base.scss */
 .admin-page .list-group-item > a {
   color: #000;
   margin-right: 0.71429em;
 }
 
-/* line 94, ../../sass/_base.scss */
+/* line 95, ../../sass/_base.scss */
 .flashMessage {
   padding: 0.71429em;
 }
@@ -9816,22 +9817,16 @@ abbr[title], abbr[data-original-title] {
   background: rgba(0, 0, 0, 0.7) none repeat scroll 0 0;
   padding: 0;
 }
-
-/* line 23, ../../sass/_modules.scss */
-#map-canvas {
+/* line 22, ../../sass/_modules.scss */
+#map #map-ctp {
   min-height: 100vh;
 }
-
-/* line 26, ../../sass/_modules.scss */
-#map-ctp {
-  min-height: 100vh;
-}
-/* line 28, ../../sass/_modules.scss */
-#map-ctp .outer {
+/* line 24, ../../sass/_modules.scss */
+#map #map-ctp .outer {
   position: relative;
 }
-/* line 30, ../../sass/_modules.scss */
-#map-ctp .outer .scaling-image {
+/* line 26, ../../sass/_modules.scss */
+#map #map-ctp .outer .scaling-image {
   position: relative;
   visibility: hidden;
   /* make sure it's hidden */
@@ -9839,8 +9834,8 @@ abbr[title], abbr[data-original-title] {
   min-width: 100%;
   height: 100%;
 }
-/* line 38, ../../sass/_modules.scss */
-#map-ctp .outer .inner {
+/* line 34, ../../sass/_modules.scss */
+#map #map-ctp .outer .inner {
   position: absolute;
   top: 0;
   left: 0;
@@ -9848,16 +9843,25 @@ abbr[title], abbr[data-original-title] {
   bottom: 0;
   overflow: hidden;
 }
-
-/* line 48, ../../sass/_modules.scss */
-#map-canvas .thumbnail {
+/* line 44, ../../sass/_modules.scss */
+#map #map-canvas {
+  min-height: 100vh;
+}
+/* line 47, ../../sass/_modules.scss */
+#map #map-canvas .thumbnail {
   border: 0;
+}
+
+/* line 50, ../../sass/_modules.scss */
+#map-canvas {
+  /* book a flight */
+  min-height: 28.57143em;
 }
 
 /*=========================================
  2. search
 ============================================*/
-/* line 54, ../../sass/_modules.scss */
+/* line 59, ../../sass/_modules.scss */
 #sortableGallery {
   margin: 1.42857em 0;
 }
@@ -9865,17 +9869,17 @@ abbr[title], abbr[data-original-title] {
 /* ==================================================
   3. social
 ====================================================*/
-/* line 61, ../../sass/_modules.scss */
+/* line 66, ../../sass/_modules.scss */
 .social {
   padding: 0;
   margin: 0;
   list-style: none;
 }
-/* line 65, ../../sass/_modules.scss */
+/* line 70, ../../sass/_modules.scss */
 .social li {
   display: inline-block;
 }
-/* line 67, ../../sass/_modules.scss */
+/* line 72, ../../sass/_modules.scss */
 .social li a {
   width: 2em;
   height: 2em;
@@ -9886,15 +9890,15 @@ abbr[title], abbr[data-original-title] {
   line-height: 2em;
   margin-right: 0.35714em;
 }
-/* line 76, ../../sass/_modules.scss */
+/* line 81, ../../sass/_modules.scss */
 .social li a:hover {
   background: #e6e6e6;
 }
-/* line 78, ../../sass/_modules.scss */
+/* line 83, ../../sass/_modules.scss */
 .social li a:hover i {
   color: white;
 }
-/* line 82, ../../sass/_modules.scss */
+/* line 87, ../../sass/_modules.scss */
 .social li a i {
   color: #444;
   text-shadow: none;
@@ -9903,12 +9907,12 @@ abbr[title], abbr[data-original-title] {
 /* ==================================================
   4. buttons
 ====================================================*/
-/* line 92, ../../sass/_modules.scss */
+/* line 97, ../../sass/_modules.scss */
 a.link {
   color: white;
   position: relative;
 }
-/* line 95, ../../sass/_modules.scss */
+/* line 100, ../../sass/_modules.scss */
 a.link:after {
   top: -3px;
   right: -20px;
@@ -9920,7 +9924,7 @@ a.link:after {
   position: absolute;
   color: white;
 }
-/* line 105, ../../sass/_modules.scss */
+/* line 110, ../../sass/_modules.scss */
 a.link:after:hover:after {
   right: -35px;
   -webkit-transition: all 0.2s ease-in-out;
@@ -9928,7 +9932,7 @@ a.link:after:hover:after {
   transition: all 0.2s ease-in-out;
 }
 
-/* line 111, ../../sass/_modules.scss */
+/* line 116, ../../sass/_modules.scss */
 .btn-custom {
   display: inline-block;
   font-size: 1.07143em;
@@ -9938,7 +9942,7 @@ a.link:after:hover:after {
   margin: 0.35714em 0.14286em 0.35714em 0;
   background-color: rgba(255, 255, 255, 0.1);
 }
-/* line 119, ../../sass/_modules.scss */
+/* line 124, ../../sass/_modules.scss */
 .btn-custom:hover, .btn-custom:active, .btn-custom:focus {
   background-color: rgba(255, 255, 255, 0.3);
   color: white;
@@ -9947,14 +9951,14 @@ a.link:after:hover:after {
 /* ==================================================
   5. box
 ====================================================*/
-/* line 131, ../../sass/_modules.scss */
+/* line 136, ../../sass/_modules.scss */
 .simple-box2 {
   -webkit-transition: all 0.5s ease-in-out;
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
   margin: 2.85714em 0;
 }
-/* line 134, ../../sass/_modules.scss */
+/* line 139, ../../sass/_modules.scss */
 .simple-box2 .content {
   position: relative;
   margin-left: 6.42857em;
@@ -9965,16 +9969,16 @@ a.link:after:hover:after {
   -webkit-border-radius: 4px;
   border-radius: 4px;
 }
-/* line 141, ../../sass/_modules.scss */
+/* line 146, ../../sass/_modules.scss */
 .simple-box2 .content span {
   font-weight: bold;
   display: block;
 }
-/* line 145, ../../sass/_modules.scss */
+/* line 150, ../../sass/_modules.scss */
 .simple-box2 .content i {
   margin: 0 0.35714em;
 }
-/* line 148, ../../sass/_modules.scss */
+/* line 153, ../../sass/_modules.scss */
 .simple-box2 .content .arrow-left {
   width: 0;
   height: 0;
@@ -9988,14 +9992,14 @@ a.link:after:hover:after {
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
-/* line 159, ../../sass/_modules.scss */
+/* line 164, ../../sass/_modules.scss */
 .simple-box2 .content:hover .content {
   background: rgba(0, 0, 0, 0.3);
   -webkit-transition: all 0.5s ease-in-out;
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
-/* line 163, ../../sass/_modules.scss */
+/* line 168, ../../sass/_modules.scss */
 .simple-box2 .content:hover .arrow-left {
   border-right: 0.71429em solid rgba(0, 0, 0, 0.3);
   -webkit-transition: all 0.5s ease-in-out;
@@ -10006,7 +10010,7 @@ a.link:after:hover:after {
 /* ==================================================
   6. footer
 ====================================================*/
-/* line 173, ../../sass/_modules.scss */
+/* line 178, ../../sass/_modules.scss */
 #footer {
   text-align: center;
   padding: 1.42857em 0;
@@ -10015,11 +10019,11 @@ a.link:after:hover:after {
 /* ==================================================
   7. accordion
 ====================================================*/
-/* line 182, ../../sass/_modules.scss */
+/* line 187, ../../sass/_modules.scss */
 .panel-group {
   margin: 2.85714em 0;
 }
-/* line 184, ../../sass/_modules.scss */
+/* line 189, ../../sass/_modules.scss */
 .panel-group .panel {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -10027,7 +10031,7 @@ a.link:after:hover:after {
   background: transparent;
   border: 2px solid #000;
 }
-/* line 189, ../../sass/_modules.scss */
+/* line 194, ../../sass/_modules.scss */
 .panel-group .panel-heading {
   position: relative;
   padding: 0;
@@ -10038,7 +10042,7 @@ a.link:after:hover:after {
   background: rgba(0, 0, 0, 0.7);
   border-color: #000;
 }
-/* line 196, ../../sass/_modules.scss */
+/* line 201, ../../sass/_modules.scss */
 .panel-group .panel-heading a {
   position: relative;
   display: block;
@@ -10046,7 +10050,7 @@ a.link:after:hover:after {
   color: inherit;
   text-decoration: none;
 }
-/* line 202, ../../sass/_modules.scss */
+/* line 207, ../../sass/_modules.scss */
 .panel-group .panel-heading a:after {
   position: absolute;
   right: 0.55556em;
@@ -10059,12 +10063,12 @@ a.link:after:hover:after {
   font-family: FontAwesome;
   color: #ddd;
 }
-/* line 215, ../../sass/_modules.scss */
+/* line 220, ../../sass/_modules.scss */
 .panel-group .panel-heading .collapsed:after {
   font-family: 'fontawesome';
   content: "\f067" !important;
 }
-/* line 220, ../../sass/_modules.scss */
+/* line 225, ../../sass/_modules.scss */
 .panel-group .panel-body {
   background: rgba(0, 0, 0, 0.5);
 }
@@ -10072,7 +10076,7 @@ a.link:after:hover:after {
 /* ==================================================
   8. preloader
 ====================================================*/
-/* line 228, ../../sass/_modules.scss */
+/* line 233, ../../sass/_modules.scss */
 #preloader {
   position: fixed;
   top: 0;
@@ -10083,7 +10087,7 @@ a.link:after:hover:after {
   z-index: 1040;
 }
 
-/* line 237, ../../sass/_modules.scss */
+/* line 242, ../../sass/_modules.scss */
 #status {
   width: 14.28571em;
   height: 14.28571em;
@@ -10099,7 +10103,7 @@ a.link:after:hover:after {
 /* ==================================================
   9. scrollToTop
 ==================================================== */
-/* line 251, ../../sass/_modules.scss */
+/* line 256, ../../sass/_modules.scss */
 .scrollToTop {
   width: 3em;
   height: 3em;
@@ -10128,13 +10132,13 @@ a.link:after:hover:after {
   -webkit-border-radius: 3.57143em;
   border-radius: 3.57143em;
 }
-/* line 271, ../../sass/_modules.scss */
+/* line 276, ../../sass/_modules.scss */
 .scrollToTop:hover, .scrollToTop:visited, .scrollToTop:focus {
   text-decoration: none;
   background-color: #000;
   color: white;
 }
-/* line 278, ../../sass/_modules.scss */
+/* line 283, ../../sass/_modules.scss */
 .scrollToTop i {
   line-height: 0.71429em;
 }
