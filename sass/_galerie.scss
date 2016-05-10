@@ -23,7 +23,7 @@
 		left:em(100px);
 		a {
 			color: lighten($color1,100%);
-			font-size:em(40px);
+			font-size:em(60px);
 			opacity:1;
 			@include transition-property(color);
 	  		@include transition-duration(2s);

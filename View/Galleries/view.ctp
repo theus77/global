@@ -261,19 +261,6 @@ function cmpLocation($a, $b) {
 								<div class="carousel-inner" role="listbox">
 									<?php foreach ($versions['hits']['hits'] as $idx => &$version) : ?>
 									<div class="<?php echo $idx?'item':'item active'; ?>">
-										<div id="price-ask">
-												<?php echo $this->Html->link(
-														'Demande de prix',
-														array(
-															'action' => 'price',
-															$version['_source']['uuid']
-														),
-														array(
-															'role' => 'button',
-															'class' => 'btn btn-default btn-primary hvr-underline-from-center',
-												));
-												?>
-										</div>
 										<div class="wrapper-info" >
 											<h2 id="versionTitle">
 
@@ -287,7 +274,19 @@ function cmpLocation($a, $b) {
 											?>
 											<span></span>
 											</h2>
-
+											<div id="price-ask">
+													<?php echo $this->Html->link(
+															'Demande de prix',
+															array(
+																'action' => 'price',
+																$version['_source']['uuid']
+															),
+															array(
+																'role' => 'button',
+																'class' => 'btn btn-default btn-primary hvr-underline-from-center',
+													));
+													?>
+											</div>
 
 											<div class="infos">
 												<?php if(count($version['_source']['Keywords']) > 0) : ?>
