@@ -38,11 +38,11 @@
 								'action' => 'search',
 								'language' => Configure::read('Config.language'))) ?>
 							</div>
-							<h4><a role="button" data-toggle="collapse" href="#searchCollapse" aria-expanded="false" aria-controls="searchCollapse"><?php echo __('Recherche rapide'); ?></a>
+							<h4><a role="button" data-toggle="collapse" href="#searchCollapse" aria-expanded="false" aria-controls="searchCollapse"><?php echo __('Recherche libre'); ?></a>
 							<div class="collapse" id="searchCollapse">
 								<form action="<?php echo $searchUrl; ?>" class="navbar-form" role="search" method="GET">
 									<div class="form-group">
-										<input type="text" class="form-control QuickSearchInput" placeholder="<?php echo __('Recherche rapide'); ?>" name="q">
+										<input type="text" class="form-control QuickSearchInput" placeholder="<?php echo __('Nom, code postal, ...'); ?>" name="q">
 									</div>
 									<button type="submit" class="btn btn-default"><span class="fa fa-search"></span></button>
 								</form>

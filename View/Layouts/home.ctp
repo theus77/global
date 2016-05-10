@@ -170,7 +170,10 @@
 		<section id="services" class="section wow fadeInUp">
 			<div class="container">	
 				<div class="section-heading">
-					<h2><?php echo __('Notre photothèque: %s photos réparties dans %s séries', $this->Number->format($photoCount, [
+					<h2><?php echo __('Banque d\'images online. Des dizaines de milliers de photos depuis 2003'); ?></h2>
+
+					<p>
+					<?php echo __('Actuellement,  %s photos réparties dans %s séries', $this->Number->format($photoCount, [
 											'places' => 0,
 										    'before' => '',
 										    'escape' => false,
@@ -181,7 +184,7 @@
 										    'before' => '',
 										    'escape' => false,
 										    'decimals' => ',',
-										    'thousands' => '.'])); ?></h2>
+										    'thousands' => '.'])); ?></p>
 						
 				</div>
 				<?php echo $this->element('searchs'); ?>
