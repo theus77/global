@@ -10161,6 +10161,7 @@ footer {
 /* line 9, ../../sass/_footer.scss */
 footer a, footer a:hover {
   color: white;
+  font-size: 1.1em;
 }
 @media only screen and (max-width: 480px) {
   /* line 4, ../../sass/_footer.scss */
@@ -10170,7 +10171,7 @@ footer a, footer a:hover {
   }
 }
 
-/* line 18, ../../sass/_footer.scss */
+/* line 19, ../../sass/_footer.scss */
 .admin-menu a {
   color: white;
 }
