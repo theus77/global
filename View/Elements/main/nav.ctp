@@ -47,48 +47,87 @@
 							$scroll = false;
 						}
 					?>
-					<li class="dropdown">
-                		<a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle menu-services" data="data-sroll" href="#"><?php echo __('Services'); ?><span class="caret"></span></a>
-                		<ul class="dropdown-menu">
-                		<?php echo $this->Html->tag('li', $this->Html->link(__('Services'), array(
-							'controller' => 'pages',
-							'action' => 'home',
-		            		'#' => 'services',
-							'language' => Configure::read('Config.language')),
-							array('class' => 'menu-services')));?>
-                  		<?php echo $this->Html->tag('li', $this->Html->link(__('Techniques'), array(
-							'controller' => 'pages',
-							'action' => 'home',
-		            		'#' => 'technics',
-							'language' => Configure::read('Config.language')),
-							array('class' => 'menu-technics')));?>
-                  		<?php echo $this->Html->tag('li', $this->Html->link(__('Prix'), array(
-							'controller' => 'pages',
-							'action' => 'home',
-		            		'#' => 'pricing',
-							'language' => Configure::read('Config.language')),
-							array('class' => 'menu-prices', 'data-scroll'=>$scroll)));?>	
-                		</ul>
-		              </li>
-						<li class="dropdown">
-		                <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#"><?php echo __('Photothèque'); ?><span class="caret"></span></a>
-		                <ul class="dropdown-menu">
-		               <?php echo $this->Html->tag('li', $this->Html->link(__('Mots-clés'),
-								array('controller' => 'keywords', 'language' => Configure::read('Config.language')),
-								array('escape' => false, 'class' => 'menu-library')));?>
-						
-						<?php echo $this->Html->tag('li', $this->Html->link(__('Carte'),
-								array('controller' => 'map', 'action' => 'index', 'language' => Configure::read('Config.language')),
-								array('escape' => false, 'class' => 'menu-map')));?> 	
-		                </ul>
-		              </li>
-              			<?php echo $this->Html->tag('li', $this->Html->link(__('Vols'), array(
+					<?php echo $this->Html->tag('li', $this->Html->link(__('Vols'), array(
 							'controller' => 'pages',
 							'action' => 'home',
 		            		'#' => 'flights',
 							'language' => Configure::read('Config.language')),
 							array('class' => 'menu-flights', 'data-scroll'=>$scroll)));?>
-	
+					<li class="dropdown">
+		                <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#"><?php echo __('Photothèque'); ?><span class="caret"></span></a>
+		                <ul class="dropdown-menu">
+		                <?php echo $this->Html->tag('li', $this->Html->link(__('Recherche géographique'),
+								array('controller' => 'map', 'action' => 'index', 'language' => Configure::read('Config.language')),
+								array('escape' => false, 'class' => 'menu-map')));?> 
+		               <?php echo $this->Html->tag('li', $this->Html->link(__('Thèmes et mots clés'),
+								array('controller' => 'keywords', 'language' => Configure::read('Config.language')),
+								array('escape' => false, 'class' => 'menu-library')));?>
+						<?php echo $this->Html->tag('li', $this->Html->link(__('Recherche libre'), array(
+							'controller' => 'pages',
+							'action' => 'home',
+		            		'#' => 'services',
+							'language' => Configure::read('Config.language')),
+							array('class' => 'menu-services')));?>	
+		                </ul>
+		            </li>
+					<li class="dropdown">
+                		<a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle menu-technics" data="data-sroll" href="#"><?php echo __('Techniques'); ?><span class="caret"></span></a>
+                		<ul class="dropdown-menu">
+                		<?php echo $this->Html->tag('li', $this->Html->link(__('Le photographe'), array(
+							'controller' => 'pages',
+							'action' => 'home',
+		            		'#' => 'technics',
+							'language' => Configure::read('Config.language')),
+							array('class' => 'technicsOne')));?>
+                  		<?php echo $this->Html->tag('li', $this->Html->link(__('L\'hélicoptère'), array(
+							'controller' => 'pages',
+							'action' => 'home',
+		            		'#' => 'technics',
+							'language' => Configure::read('Config.language')),
+							array('class' => 'technicsTwo')));?>
+                  		<?php echo $this->Html->tag('li', $this->Html->link(__('La météo'), array(
+							'controller' => 'pages',
+							'action' => 'home',
+		            		'#' => 'technics',
+							'language' => Configure::read('Config.language')),
+							array('class' => 'technicsThree', 'data-scroll'=>$scroll)));?>
+						<?php echo $this->Html->tag('li', $this->Html->link(__('Les délais'), array(
+							'controller' => 'pages',
+							'action' => 'home',
+		            		'#' => 'technics',
+							'language' => Configure::read('Config.language')),
+							array('class' => 'technicsFour', 'data-scroll'=>$scroll)));?>
+						<?php echo $this->Html->tag('li', $this->Html->link(__('La vidéo'), array(
+							'controller' => 'pages',
+							'action' => 'home',
+		            		'#' => 'technics',
+							'language' => Configure::read('Config.language')),
+							array('class' => 'technicsFive', 'data-scroll'=>$scroll)));?>	
+                		</ul>
+		              </li>
+		              	<li class="dropdown">
+                		<a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle menu-prices" data="data-sroll" href="#"><?php echo __('Tarifs'); ?><span class="caret"></span></a>
+                		<ul class="dropdown-menu">
+                		<?php echo $this->Html->tag('li', $this->Html->link(__('Mission sur commande'), array(
+							'controller' => 'pages',
+							'action' => 'home',
+		            		'#' => 'pricing',
+							'language' => Configure::read('Config.language')),
+							array('class' => 'collapseOne','data-scroll'=>$scroll)));?>
+                  		<?php echo $this->Html->tag('li', $this->Html->link(__('Achat de clichés existants'), array(
+							'controller' => 'pages',
+							'action' => 'home',
+		            		'#' => 'pricing',
+							'language' => Configure::read('Config.language')),
+							array('class' => 'collapseTwo','data-scroll'=>$scroll)));?>
+                  		<?php echo $this->Html->tag('li', $this->Html->link(__('Supports & droits'), array(
+							'controller' => 'pages',
+							'action' => 'home',
+		            		'#' => 'pricing',
+							'language' => Configure::read('Config.language')),
+							array('class' => 'collapseThree', 'data-scroll'=>$scroll)));?>
+                		</ul>
+		              </li>
 		        		<?php echo $this->Html->tag('li', $this->Html->link(__('Contact'), array(
 							'controller' => 'pages',
 							'action' => 'home',

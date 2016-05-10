@@ -40,10 +40,13 @@ header {
 .navbar-inverse {
   @include transition(all 0.5s ease-in-out);
   background: rgba($color1, 0.7);
-  .navbar-nav li a {
-    color: lighten($color1, 100%);
-    font-size:em(16px);
-    &.active {background: transparent;}
+  .navbar-nav > li {
+    &.active > a {background-color:transparent; color:$color2;}
+    a {
+      color: lighten($color1, 100%);
+      font-size:em(16px);
+      &.active {background: transparent;}
+    }
   }
 }
 
