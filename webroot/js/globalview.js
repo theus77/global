@@ -30,6 +30,13 @@ $(window).load(function() {
 		$(this).next( "form" ).toggle();
 	});
 
+	$( "a[class^='collapse'], a[class^='technics']" ).on( "click", function() {
+		var collapseToOpen = $(this).attr('class');
+		$( ".panel-heading h4 a").removeClass( "in" ).attr( "aria-expanded",  "false" );
+		$( "div.panel-collapse").removeClass( "in" ).attr( "aria-expanded",  "false" );
+		$( "#" +  collapseToOpen).prev( "div" ).find( "a" ).attr( "aria-expanded",  "true" );
+		$( "#" +  collapseToOpen).addClass( "in" ).attr( "aria-expanded",  "true" );
+	}); 
 
  	$( "#toggle-sidebar, .close-side" ).on( "click", "a",  function (e) {
 	 	e.preventDefault();

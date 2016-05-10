@@ -301,42 +301,42 @@
 					<div class="col-md-12">
 					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 					  <div class="panel panel-default">
-					    <div class="panel-heading" role="tab" id="headingOne">
+					    <div class="panel-heading" role="tab" id="priceOne">
 					      <h4 class="panel-title">
 					        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
 					          <?php echo __('Mission sur commande'); ?>
 					        </a>
 					      </h4>
 					    </div>
-					    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+					    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="priceOne">
 					      <div class="panel-body">
 					        <?php echo $this->I18n->w('prices.content.command');  ?>
 					      </div>
 					    </div>
 					  </div>
 					  <div class="panel panel-default">
-					    <div class="panel-heading" role="tab" id="headingTwo">
+					    <div class="panel-heading" role="tab" id="priceTwo">
 					      <h4 class="panel-title">
 					        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
 					          <?php echo __('Achat de clichés existants'); ?>
 					        </a>
 					      </h4>
 					    </div>
-					    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+					    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="priceTwo">
 					      <div class="panel-body">
 					        <?php echo $this->I18n->w('prices.content.exist');  ?>
 					      </div>
 					    </div>
 					  </div>
 					  <div class="panel panel-default">
-					    <div class="panel-heading" role="tab" id="headingThree">
+					    <div class="panel-heading" role="tab" id="priceThree">
 					      <h4 class="panel-title">
 					        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
 					          <?php echo __('Supports & Droits'); ?>
 					          </a>
 					      </h4>
 					    </div>
-					    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+					    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="priceThree">
 					      <div class="panel-body">
 					        <?php echo $this->I18n->w('prices.content.rights');  ?>
 					      </div>
