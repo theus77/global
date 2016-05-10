@@ -3,7 +3,7 @@
 			<div class="container">
 				<ul class="list-inline">
 					<li><a href="tel:<?php echo __('+32472800900'); ?>"><i class="fa fa-phone"></i> <?php echo __('+32/472.800.900'); ?> </a></li>
-					<li><a href="https://www.facebook.com/globalview.be"><i class="fa fa-facebook"></i></a></li>
+					<li><a href="https://www.facebook.com/globalview.be"><i class="fa fa-facebook"></i> <?php echo __('Follow us'); ?></a></li>
 					<li><a href="mailto:simon@globalview.be"><i class="fa fa-envelope-o"></i></a></li>
 					<li><a href="#"><i class="fa fa-camera"></i> <?php echo __('conditions d\'utilisation'); ?></a></li>
 				</ul>
@@ -53,7 +53,7 @@
 	
 	<?php
 		//echo $this->element('sql_dump');
-		echo $this->Html->script('bower/jquery/dist/jquery.min');
+		echo $this->Html->script('bower/jquery/jquery.min');
 	    echo $this->Html->script('bower/bootstrap-sass/assets/javascripts/bootstrap'); 
 	    echo $this->Html->script('bower/matchHeight/jquery.matchHeight');
 		// lazy loading

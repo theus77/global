@@ -8,6 +8,7 @@ footer {
 	font-weight: normal;
 	a, a:hover { 
 		color: lighten($color1, 100%); 
+		font-size:1.1em;
 	}
 	@include MQ(Sneg) {
 		font-size: em(11px);
