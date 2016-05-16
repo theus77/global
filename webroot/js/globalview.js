@@ -45,26 +45,17 @@ $(window).load(function() {
  		// Open thumb in galerie page.
 	var childOpened;
 	//var oldChildOpened;
-	$( "#galerie-thumb-child span[class*='child-']" ).hide();
+	$( "div[class*='child-']" ).hide();
+	$( "div.child-0" ).show();
+	$( "#galerie-thumb-bro .parent-0" ).addClass( "active" );
 	$( "a[class*='parent-']" ).on( "click", function() {
 		var child = ".child-" + $(this).attr( "data-slide-to" );
-		$( "#galerie-thumb-child span[class*='child-']" ).not($(this)).hide().parent().show();
+		$( "div[class*='child-']" ).not($(this)).hide().parent().show();
 		$( child ).show();
 	});
 
 	$( ".trigger-expand" ).on( "click", "a", function(e){
 		e.preventDefault();
-		if ( typeof childOpened === "undefined" ) {
-			// on page load
-			$( "#galerie-filmstrip #galerie-thumb-child .galerie-thumb-scroll" ).show();
-			childOpened = $( "#galerie-thumb-child span.child-0" );
-			$( "#galerie-thumb-bro .parent-0" ).addClass( "active" );
-		}
-		else {
-			// we have a visible child because a parent was clicked
-			childOpened = $( "#galerie-thumb-child span[class*='child-']:visible" );
-		}
-		childOpened.toggle();
 		// animate effect to show/hide the expand collapse
 		$(this).find( "span" )
 			.toggleClass( "glyphicon-chevron-down" )

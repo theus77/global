@@ -146,7 +146,36 @@ function cmpLocation($a, $b) {
 // 					$this->Html->image(
 // 					($version['_source']['uuid']).'/thumb',
 // 					array('class' => 'img-responsive', 'escape' => false));
-				?></a>
+
+				?>
+					<span class="arrow-down"></span>
+				</a>
+
+
+							<div class="children-photos child-<?php echo $idx; ?>">
+								<?php foreach ($version['_source']['Stack'] as $stack) : ?>
+								<?php
+
+									echo $this->Html->link(
+											$this->element('image', array(
+													'lazy' => true,
+													'alt' => isset($version['_source']['label'])?$version['_source']['label']:$version['_source']['name'],
+													'imageUuid' => $stack,
+													'route' => 'preview.jpg',
+													'class' => 'img-responsive'
+											)),
+											'#',
+											array(
+												'class' => 	'child-photo thumbnail',
+												'onclick' => 'javascript: return loadStackImage(this);',
+												'escape' => false,
+												'data-stack-uuid' => $this->Html->url('/img/'.Configure::read('Config.language').'/'.$stack.'/image.jpg'),
+											));
+
+								?>
+								<?php endforeach;?>
+								</div>
+					
 				<?php endforeach;?>
 			</div>
 			<div class="trigger-expand top">
@@ -157,7 +186,7 @@ function cmpLocation($a, $b) {
 		</div>
 
 		</div> <!-- / row -->
-		<div class="galerie-carousel groupToMatch">
+		<div class="galerie-carousel groupToMatch fill">
 			<!-- Carousel
 			================================================== -->
 			<div id="GalerieCarousel" class="carousel slide" data-ride="carousel">
@@ -195,8 +224,7 @@ function cmpLocation($a, $b) {
 										'ext' => 'json',
 									))
 								)
-														);
-						} // end foreach
+														); } // end foreach
 					?>
 				</div>
 				<a class="left carousel-control" href="#GalerieCarousel" role="button" data-slide="prev">
@@ -210,36 +238,6 @@ function cmpLocation($a, $b) {
 				</div><!-- /.carousel -->
 				</div> <!-- /.gallerie-carousel -->
 				<div id="galerie-thumb-child">
-					<div class="col-md-12 galerie-thumb">
-						<div class="galerie-thumb-scroll groupToMatch">
-							<?php foreach ($versions['hits']['hits'] as $idx => $version) : ?>
-								<span class="child-<?php echo $idx; ?>">
-								<?php foreach ($version['_source']['Stack'] as $stack) : ?>
-								<?php
-
-									echo $this->Html->link(
-											$this->element('image', array(
-													'lazy' => true,
-													'alt' => isset($version['_source']['label'])?$version['_source']['label']:$version['_source']['name'],
-													'imageUuid' => $stack,
-													'route' => 'preview.jpg',
-													'class' => 'img-responsive'
-											)),
-											'#',
-											array(
-												'class' => 	'thumbnail',
-												'onclick' => 'javascript: return loadStackImage(this);',
-												'escape' => false,
-												'data-stack-uuid' => $this->Html->url('/img/'.Configure::read('Config.language').'/'.$stack.'/image.jpg'),
-											));
-
-								?>
-								<?php endforeach;?>
-								</span>
-							<?php endforeach;?>
-						</div>
-					</div>
-					</div> <!-- / row -->
 					<!-- infos -->
 					<div id="toggle-sidebar">
 						<a href="#">
