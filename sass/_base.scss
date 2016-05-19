@@ -25,6 +25,7 @@ input[type=checkbox],
 input[type=radio] {
   margin: 8px 0 0;
 }
+.black {background-color: $color1 !important;}
 
 .table-striped > tbody > tr {
   background-color:lighten($color1, 45%);

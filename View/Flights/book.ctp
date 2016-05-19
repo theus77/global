@@ -184,6 +184,12 @@
 						<div class="col-md-7" id="map-ctp">
 							<p>
 							<?php echo $this->I18n->w('book.enter-your-markers'); ?>
+							<a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseHelp" aria-expanded="false" aria-controls="collapseHelp">
+  								<?php echo __('Besoin d\'aide ?');?>
+							</a>
+							<div class="collapse" id="collapseHelp">
+									<?php echo $this->I18n->w('book.enter-your-markers.help'); ?>
+							</div>
 							</p>
 							<div class="outer">
 	   							<div class="inner" id="map-canvas">

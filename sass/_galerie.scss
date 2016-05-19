@@ -286,12 +286,6 @@ a[class*='parent-'] {position:relative;}
 	}
 }
 a.active .arrow-down {display:block;}
-.carousel-inner > .item > img {
-	max-height:600px !important;
-	@include MQ(XLplus) {
-		max-height:700px !important;
-	}
-}
 .carousel-control.right {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
 }
@@ -303,3 +297,5 @@ a.active .arrow-down {display:block;}
     height: 50px;
     width: 50px;
 }
+
+.carousel-inner > .item > img, .carousel-inner > .item > a > img {width:100%;}
