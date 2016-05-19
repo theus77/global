@@ -32,9 +32,9 @@ $(window).load(function() {
 
 	$( "a[class^='collapse'], a[class^='technics']" ).on( "click", function() {
 		var collapseToOpen = $(this).attr('class');
-		$( ".panel-heading h4 a").removeClass( "in" ).attr( "aria-expanded",  "false" );
+		$( ".panel-heading h4 a").removeClass( "in" ).attr( "aria-expanded",  "false" ).addClass( "collapsed" );
 		$( "div.panel-collapse").removeClass( "in" ).attr( "aria-expanded",  "false" );
-		$( "#" +  collapseToOpen).prev( "div" ).find( "a" ).attr( "aria-expanded",  "true" );
+		$( "#" +  collapseToOpen).prev( "div" ).find( "a" ).attr( "aria-expanded",  "true" ).removeClass( "collapsed" );
 		$( "#" +  collapseToOpen).addClass( "in" ).attr( "aria-expanded",  "true" );
 	}); 
 
@@ -81,15 +81,6 @@ $(window).load(function() {
 		cursorfixedheight: "100",
 		background: "transparent"
 	});
-
-	// Replace the h2 at the good place for design.
-	var boxeTitle = $( ".groupToMatch" ).find( "h2" ); 
-	boxeTitle.each( function() {
-		var groupToMatch = $(this).parent( ".groupToMatch" );
-		groupToMatch.find( ".text-wrapper p:first-child" ).wrap( "<div class='heading-wrapper' />");
-		groupToMatch.find( ".heading-wrapper" ).prepend( $(this) );
-	});
-
 
 	function split( val ) {
 	 	return val.split( /,\s*/ );
@@ -149,6 +140,7 @@ $(window).load(function() {
 	// Search animation
 	$( ".search-trigger" ).on( "click", function() {
 		$( ".search-form" ).slideToggle();
+		$( "nav.navbar-inverse.navbar-fixed-top" ).toggleClass( "black" );
 	});
 
 	
@@ -237,29 +229,6 @@ $(window).load(function() {
 			$('body').delay(350).css({'overflow':'visible'});
 		})
 
-		// BANNER CAROUSEL	
-		
-	/*
-		if($('#slider').length > 0){	
-			var owl = $("#slider");
-		 
-			owl.owlCarousel({			 
-				autoplay: true,
-    			autoplayHoverPause: true,
-    			items: 1,
-    			loop: true,
-				pagination : true
-			});
-		  
-			// Custom Navigation Events
-			$(".next").click(function(){
-				owl.trigger('owl.next');
-			})
-			$(".prev").click(function(){
-				owl.trigger('owl.prev');
-			})
-		}
-		*/
 
 		//	WOW
 	
@@ -283,40 +252,6 @@ $(window).load(function() {
 
 })(jQuery); // end anonymous function
 
-
-	
-	// PORTFOLIO FILTER
-	/*	
-	$(document).ready(function() {
-	  $('ul#filter a').click(function() {
-		$(this).css('outline','none');
-		$('ul#filter .current').removeClass('current');
-		$(this).parent().addClass('current');
-		
-		var filterVal = $(this).text().toLowerCase().replace(' ','-');
-		
-
-		
-		if(filterVal == 'all') {
-		  $('ul#portfolio-filter li.hidden').fadeIn('slow').removeClass('hidden');
-		} else {
-		  $('ul#portfolio-filter li').each(function() {
-							
-			if(!$(this).hasClass(filterVal)) {
-			  $(this).fadeOut('normal').addClass('hidden');
-
-				
-			} else {
-			$(this).fadeIn('slow').removeClass('hidden');
-
-			}
-		  });
-		}
-		
-		return false;
-	  });
-	});
-	*/
 
 
 	
