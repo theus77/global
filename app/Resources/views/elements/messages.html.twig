@@ -1,0 +1,41 @@
+{% trans_default_domain domain %}
+<div id="flashbags">
+	{% set notice = app.session.flashbag.get('notice') %}
+	{% if notice %}
+		<div class="alert alert-info alert-dismissible">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<h4>
+				<i class="icon fa fa-info"></i> {{ 'messages.info.title'|trans }}
+			</h4>
+			{% for flash_message in notice %}
+				<div class="flash-notice">{{ flash_message|trans }}</div>
+			{% endfor %}
+		</div>
+	{% endif %} 
+	
+	{% set warning = app.session.flashbag.get('warning') %}
+	{% if warning %}
+		<div class="alert alert-warning alert-dismissible">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<h4>
+				<i class="icon fa fa-warning"></i> {{ 'messages.info.warning'|trans }}
+			</h4>
+			{% for flash_message in warning %}
+				<div class="flash-notice">{{ flash_message|trans }}</div>
+			{% endfor %}
+		</div>
+	{% endif %}
+	
+	{% set error = app.session.flashbag.get('error') %}
+	{% if error %}
+		<div class="alert alert-danger alert-dismissible">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<h4>
+				<i class="icon fa fa-ban"></i> {{ 'messages.info.error'|trans }}
+			</h4>
+			{% for flash_message in error %}
+				<div class="flash-notice">{{ flash_message|raw }}</div>
+			{% endfor %}
+		</div>
+	{% endif %}
+</div>

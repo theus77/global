@@ -1,0 +1,48 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    app.translation.elastic_loader:
+        class: AppBundle\Translation\ElasticLoader
+        arguments: ["@app.elasticsearch", "%translation_config%" ]
+        tags:
+            - { name: translation.loader, alias: bin }
+    app.global:
+        class: AppBundle\Service\GlobalService
+        arguments: ["@app.elasticsearch", "%prefix%", "%environment%", "%aperture_index%"]
+    app.search:
+        class: AppBundle\Service\SearchService
+        arguments: ["@app.elasticsearch", "%prefix%", "%environment%", "%aperture_index%"]
+    app.rest:
+        class: AppBundle\Service\RestService
+        arguments: ["@app.elasticsearch", "@circle.restclient", "%ems_api%", "%ems_api_key%"]
+    app.image:
+        class: AppBundle\Service\ImageService
+        arguments: ["@app.elasticsearch", "@app.s3", "%kernel.cache_dir%", '%kernel.root_dir%', "%aperture_index%"]
+    app.elasticsearch:
+        class: Elasticsearch\ClientBuilder
+        factory: [AppBundle\Factories\ElasticsearchClientBuilderFactory, build]
+        arguments: ["%elasticSearchServers%"]
+    app.s3:
+        class: Aws\S3\S3Client
+        arguments: ["%aws_credentials%"]
+    app.form.contact:
+        class: AppBundle\Form\ContactType
+        arguments: ["%environment%"]
+        tags:
+            - { name: form.type }
+    app.warming:
+        class: AppBundle\Service\WarmingService
+        arguments: ["@app.elasticsearch", "%prefix%", "%environment%", "%aperture_index%", "@app.image"]
+        tags:
+            - { name: kernel.cache_warmer }
+    app.command.authorize:
+        class: AppBundle\Command\AwsAuthorizeCommand
+        arguments: ['@app.elasticsearch', '%aws_credentials%', '%awsESDomainName%']
+        tags:
+            -  { name: console.command }

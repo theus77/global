@@ -1,0 +1,331 @@
+{% trans_default_domain domain %}
+{% extends 'base.html.twig' %}
+
+{% set finalTitle = title|trans({'%arg%': title_arg}) %}
+
+{% block title %} {{ finalTitle }}  {% endblock %}
+
+{% if pluralTitle is defined and  versions.hits.total > 1 %}
+	{% set finalTitle = pluralTitle|trans({'%arg%': title_arg}) %}
+{% endif %}
+
+{% block body %} 
+<div id="galerie-filmstrip">
+	<div class="container">
+		{% include 'elements/messages.html.twig' %}
+	</div>
+	{% if versions.hits.total > 0 %}
+		<div class="row">
+			<div class="col-md-12">
+				<h2>
+					{{ finalTitle }} 
+					
+					<span class="badge">
+						{{ versions.hits.total }}
+					</span>
+				</h2>
+			</div>
+		</div>
+		<div class="row" id="galerie-thumb-bro" style="margin:0;">
+			<div class="col-md-12 galerie-thumb">
+				<div class="galerie-thumb-scroll" id="thumb-scroll-container" style="overflow: hidden; outline: none; display: block;">
+					{% for i in 0..(versions.hits.total-1) %}
+						{% set original = asset('img/'~app.request.locale~'/loading/preview.jpg')~'?v=2' %}
+						{% set ouuid = null %}
+						{% set label = null %}
+						{% if attribute(versions.hits.hits, i-from) is defined %}
+							{% set original = url('previewImage', {ouuid:attribute(versions.hits.hits, i-from)._id }) %}
+							{% set ouuid = attribute(versions.hits.hits, i-from)._id %}
+							{% if attribute(versions.hits.hits, i-from)._source.label is defined %}
+								{% set label = attribute(versions.hits.hits, i-from)._source.label %}
+							{% else %}
+								{% set label = 'label.not_available'|trans({'%arg%': attribute(versions.hits.hits, i-from)._source.name}) %}
+							{% endif %}
+						{% endif %}
+						<a href="#" class="thumbnail{% if loop.first %} active{% endif %}" 
+							onclick="goTo({{ i }});"
+							data-index="{{ i }}">
+							<img id="thumb-{{ i }}" src="{{ asset('img/'~app.request.locale~'/loading/preview.jpg') }}"
+								data-original  =   "{{ original|e }}"
+								data-ouuid     ="{{ ouuid|e }}" 
+								data-index="{{ loop.index0 }}" 
+								alt="{{ label|e }}" 
+								class="lazy-in-scroll lazy" width="300" height="200" style="display: block;">
+						</a>			
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	
+	
+		<div class="carousel slide" 
+			id="carousel"
+			data-ride="carousel"  data-interval="false" style="background-color: black;"
+			data-count="{{ versions.hits.total|json_encode|raw }}" data-current="0">
+			<div class="carousel-inner" role="listbox">
+				{% for i in 0..1 %}
+					{% if attribute(versions.hits.hits, i) is defined %}
+						{% set version = attribute(versions.hits.hits, i) %}
+						<div class="item{% if loop.first %} active{% endif %}">
+							{% set first = loop.first %}
+							<div class="col-xs-2 left-panel" style="overflow-y: scroll; height: 200px;">
+								<div class="inner-stack">
+									{% for image in version._source.Stack %}
+										<a href="#" 
+											class="{% if image == version._id %} version-active{% endif %}">
+											<img 
+												alt="{% if version._source.label is defined %}{{ version._source.label|e }}{% else %}{{ 'label.not_available'|trans({'%arg%': version._source.name})|e }}{% endif %}"
+												src="{{ url('previewImage', {ouuid:image }) }}"
+												data-image="{{ url('imageImage', {ouuid:image }) }}" 
+												class="img-responsive lazy-in-left-pannel">
+											</a>
+									{% endfor %}
+								</div>
+							</div>
+							<div class="col-xs-8 middle-panel">
+								<img alt="{% if version._source.label is defined %}{{ version._source.label|e }}{% else %}{{ 'label.not_available'|trans({'%arg%': version._source.name})|e }}{% endif %}"
+									src="{{ url('imageImage', {ouuid:version._id }) }}" 
+									class="img-responsive lazy" width="1200" height="800">
+							</div>
+							<div class="col-xs-2 right-panel" style="overflow-y: scroll; height: 200px;">
+							<h2 class="versionTitle">{% if version._source.label is defined %}{{ version._source.label|e }}{% else %}{{ 'label.not_available'|trans({'%arg%': version._source.name})|e }}{% endif %}</h2>
+							<ul id="detailList">
+								<li class="data-artist">{% if version._source.artist is defined %}{{ version._source.artist|e }}{% else %}{{ 'artist.not_available'|trans|e }}{% endif %}</li>
+								<li class="data-date"><time datetime="{{ version._source.date|date("Y-m-d H:m:s") }}">{{ version._source.date|date("d/m/Y"|trans) }}</time></li>
+								<li class="data-pixel_size">{{ version._source.pixel_size }}</li>
+							</ul>
+							<div id="price-ask">
+								<form action="{{ url('ask_price') }}" method="get">
+									<input type="hidden" name="ouuid" id="ouuid_{{ loop.index0 }}" value="{{ version._id|e }}">
+									<input type="hidden" name="_route" id="ouuid_{{ loop.index0 }}" value="{{ app.request.requestUri|e }}">
+									<button 
+										role="button"
+										class="btn btn-default btn-primary hvr-underline-from-center">
+										{{ 'gallery.image.ask_price'|trans }}
+									</button>
+								</form>
+							</div>
+	
+							<div class="infos">
+								<h3>Mots clés</h3>
+								<div class="keywordList">
+									{% for Keyword in version._source.Keywords %}
+										<span class="label label-default">
+											<a href="{{ url('keyword', {key: Keyword.uuid}) }}">
+												{{ attribute(Keyword, 'name_'~app.request.locale) }}
+											</a>
+										</span> 
+									{% endfor %}
+									{% for location in version._source.locations %}
+										<span class="label label-default">
+											<a href="{{ url('place', {ouuid: location.uuid}) }}">
+												{{ attribute(location, 'name_'~app.request.locale) }}
+											</a>
+										</span> 
+									{% endfor %}		
+								</div>
+	
+							</div>
+					</div>
+				</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+			<a href="#carousel" class="left carousel-control" role="button" onclick="previous(event); return false;">
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a> 
+			<a href="#carousel" class="right carousel-control" role="button" onclick="next(event); return false;"> 
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+	{% else %}
+		<div class="row">
+			<div class="col-md-12">
+				<h2>
+					{{ 'gallery.no-result.title'|trans({'%arg%': title_arg}) }} 
+				</h2>
+			</div>
+		</div>
+		{% include 'elements/services.html.twig' %}
+	
+	{% endif %}
+</div>
+{% endblock %}
+
+{% block javascript %}
+	<script type="text/javascript">
+<!--
+
+//-->
+
+	var pageTreated = [];
+	var url =  {{ (url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_format: 'json'})))|json_encode|raw }};
+	var query = {{ app.request.query.all|json_encode|raw }} ;
+	if( (query.constructor == Array)){
+		query = {};
+	}
+
+
+	function previous(event){
+		event.stopPropagation();
+		var value = parseInt($('#carousel').attr('data-current'))-1;
+		if(value < 0) {
+			value = parseInt($('#carousel').attr('data-count'))-1;
+		}
+		goTo(value);
+	}
+	
+	function next(event){
+		event.stopPropagation();
+		var value = parseInt($('#carousel').attr('data-current'))+1;
+// 		console.log(next);
+		if(value >= parseInt($('#carousel').attr('data-count'))) {
+			value = 0;
+		}
+		goTo(value);
+	}
+	
+	function goTo(index){
+// 		console.log(index);
+
+		if($('#carousel').attr('data-current') != index){
+
+// 			console.log($('#thumb-'+index).attr('data-ouuid'));
+			if($('#thumb-'+index).attr('data-ouuid')){
+				
+				var item = $('#carousel .carousel-inner div.item:not(.active)');
+	
+				//clean all value
+				item.find('.versionTitle').html($('#thumb-'+index).attr('alt'));
+				item.find('.data-artist').html('');
+				item.find('.data-pixel_size').html('');
+				item.find('.data-date').html('');
+				item.find('.inner-stack').html('');		
+				item.find('.keywordList').html('');			
+				
+				
+				
+				item.find('.col-xs-8 img').on('load', function(){
+					$(this).unbind('load');
+	
+					$.ajax({
+						  url: "{{ url('info') }}",
+						  data: { ouuid: $('#thumb-'+index).attr('data-ouuid')}
+					}).done(function(data) {
+// 						console.log(data);
+						item.find('.col-xs-8 img').attr('src', data.url);
+						item.find('.data-artist').html(data.artist);
+						item.find('.data-pixel_size').html(data.pixel_size);
+						item.find('.data-date').html(data.date);
+						item.find('.inner-stack').html(data.stack);		
+						$('.alternative-image').on('click', function(event){
+							event.stopPropagation();
+							var url = $(this).find('img').attr('data-image');
+							$('#carousel  .active .col-xs-8 img').attr('src',url );
+						});
+						item.find('.keywordList').html(data.keywords);	
+					});
+					
+					if($('#carousel').attr('data-current') > index ){
+						$('#carousel').carousel('prev');
+					}
+					else{
+						$('#carousel').carousel('next');
+					}
+					
+					$('.galerie-thumb .thumbnail.active').removeClass('active');
+					$('#thumb-'+index).addClass('active');
+					
+					$('#carousel').attr('data-current', index);
+				});
+				item.find('.col-xs-8 img').attr('src', $('#thumb-'+index).attr('data-original'));
+				
+		
+			}
+			else{
+				  var page = Math.floor($('#thumb-'+index).data('index')/100);
+	// 			  console.log($.inArray( page, pageTreated ));
+				  if( $.inArray( page, pageTreated) == -1 ){
+					  pageTreated.push(page);
+					  var data = query;
+					  data.page = page;
+					  $.ajax({
+						  url: url,
+						  data: data
+					  }).done(function(data) {
+						$.each( data.items, function( index, value ){
+							$('#thumb-'+value.id).attr('data-ouuid', value.ouuid);
+							$('#thumb-'+value.id).attr('alt', value.label);
+							$('#thumb-'+value.id).attr('data-original', value.preview);
+							if($('#thumb-'+value.id).attr('src').match(/2$/)){
+								$('#thumb-'+value.id).attr('src', value.preview);
+							}
+						});
+						goTo(index);
+					  });
+					  
+	
+				  }
+			}
+		}
+		
+	}
+
+
+	$(function() {
+		
+		$("img.lazy-in-scroll").bind('load', function() {
+			if(!$(this).data('ouuid')){
+			  var page = Math.floor($(this).data('index')/100);
+// 			  console.log($.inArray( page, pageTreated ));
+			  if( $.inArray( page, pageTreated) == -1 ){
+				  pageTreated.push(page);
+				  var data = query;
+				  data.page = page;
+				  $.ajax({
+					  url: url,
+					  data: data
+				  }).done(function(data) {
+					$.each( data.items, function( index, value ){
+						$('#thumb-'+value.id).attr('data-ouuid', value.ouuid);
+						$('#thumb-'+value.id).attr('alt', value.label);
+						$('#thumb-'+value.id).attr('data-original', value.preview);
+						if($('#thumb-'+value.id).attr('src').match(/2$/)){
+							$('#thumb-'+value.id).attr('src', value.preview);
+						}
+					});
+				  });
+				  
+
+			  }
+			}
+		});
+		
+		$("img.lazy-in-scroll").lazyload({
+		     container: $("#thumb-scroll-container")
+		});
+
+
+		//todo improve this block
+		$('.left-panel').each(function(){
+			var height = $('.item.active .middle-panel').height()
+			if(height < 100){
+				height = '300px';
+			}
+			$( this ).height(height);
+		});
+		
+		//todo improve this block
+		$('.right-panel').each(function(){
+			var height = $('.item.active .middle-panel').height()
+			if(height < 100){
+				height = '300px';
+			}
+			$( this ).height(height);
+		});
+	});
+</script>
+	
+{% endblock %}

@@ -1,0 +1,23 @@
+{% trans_default_domain domain %}
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="default">
+	<!-- book -->
+	<section id="book" class="section wow fadeInUp active" style="visibility: visible; animation-name: fadeInUp;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="simple-box2">
+						<div class="content">
+							<h1>{{ 'usage.title'|trans }}</h1>
+							<div class="wysiwygContent">
+								{{ attribute(textes.body, 'body_'~app.request.locale)|raw }}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+{% endblock %} 

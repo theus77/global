@@ -1,0 +1,28 @@
+imports:
+    - { resource: config.yml }
+
+parameters:
+    calbe_alias: calbe_staging
+
+framework:
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: true
+    profiler: { only_exceptions: false }
+
+monolog:
+    handlers:
+        main:
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+            channels: [!event]
+        console:
+            type:   console
+            bubble: false
+            channels: [!event, !doctrine]
+
+# Twig Configuration
+twig:
+    globals:
+        title_prefix: "!!!STAGING!!!"
