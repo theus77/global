@@ -134,6 +134,15 @@
 		            		'#' => 'contact',
 							'language' => Configure::read('Config.language')),
 							array('class' => 'menu-contact', 'data-scroll'=>$scroll)));?>	
+				
+						<?php echo $this->Html->tag('li', $this->Html->link(__('<span class="fa fa-search"></span>'), array(
+							'controller' => 'pages',
+							'action' => 'home',
+		            		'#' => 'services',
+							'language' => Configure::read('Config.language')),
+							array('class' => 'menu-services',
+							'escape'=> false)));?>	
+				
 							<li class="search-trigger hidden-xs hidden-sm"><span class="fa fa-search"></span><a href="#" class="sr-only"><?php echo __('Recherche'); ?></a>
 						</li>				
 				  	</ul>
