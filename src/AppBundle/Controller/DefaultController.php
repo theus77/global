@@ -52,34 +52,31 @@ class DefaultController extends Controller
 		if($request->getMethod() == Request::METHOD_POST){
 			$data = $request->request->all()['data']['PricingRequest'];
 			$data['locale'] = $_locale;
-			dump($data);
 			
-
-			
-// 			try {
-// 				$date = new \DateTime();
+			try {
+				$date = new \DateTime();
 		
-// 				$data['date'] = $date->format('Y/m/d');
+				$data['date'] = $date->format('Y/m/d');
 		
-// 				$response = $this->rest()->createObject($data, 'price_request');
+				$response = $this->rest()->createObject($data, 'price_request');
 		
-// 				if($response->getStatusCode() != Response::HTTP_CREATED && $response->getStatusCode() != Response::HTTP_OK){
-// 					$this->addFlash('warning', 'form.error.askprive_not_send');
-// 				}
-// 				else {
-// 					$this->addFlash('notice', 'form.askprive_send');
-// 				}
-// 			}
-// 			catch (\Exception $e) {
-// 				$this->addFlash('warning', 'form.error.askprive_not_send');
-// 			}
+				if($response->getStatusCode() != Response::HTTP_CREATED && $response->getStatusCode() != Response::HTTP_OK){
+					$this->addFlash('warning', 'form.error.askprive_not_send');
+				}
+				else {
+					$this->addFlash('notice', 'form.askprive_send');
+				}
+			}
+			catch (\Exception $e) {
+				$this->addFlash('warning', 'form.error.askprive_not_send');
+			}
 			
-// 			$route = $request->query->get('_route', null);
-// 			if(!empty($route)){
-// 				return $this->redirect($route);
-// 			}
+			$route = $request->query->get('_route', null);
+			if(!empty($route)){
+				return $this->redirect($route);
+			}
 			
-// 			return $this->redirectToRoute('homepage');
+			return $this->redirectToRoute('homepage');
 		}
 
 		$ouuid = $request->query->get('ouuid', null);
@@ -245,8 +242,7 @@ class DefaultController extends Controller
 	    		$message['language'] = $request->getLocale();
 	    		$message['flight'] = 'flight:'.$id;
 // 	    		unset($message['targets']);
-	    		 
-	    		dump($message);
+
 	    		$response = $this->rest()->createObject($message, 'booking');
 	    		 
 	    		if($response->getStatusCode() != Response::HTTP_CREATED && $response->getStatusCode() != Response::HTTP_OK){
@@ -317,7 +313,7 @@ class DefaultController extends Controller
     	$versions = $this->search()->placeSearch($ouuid, $p);
     	$level = 0;
     	if(!empty($versions['hits']['hits'])) {
-    		dump($versions['hits']['hits'][0]);
+//     		dump($versions['hits']['hits'][0]);
     		foreach ($versions['hits']['hits'][0]['_source']['locations'] as $place){
     			if($place['uuid'] == $ouuid){
     				$title_arg = $place['name_'.$_locale];
@@ -349,7 +345,7 @@ class DefaultController extends Controller
 		$title_arg = 'not found';
     	$versions = $this->search()->keywordSearch($key, $p);
     	if(!empty($versions['hits']['hits'])) {
-    		dump($versions['hits']['hits'][0]);
+//     		dump($versions['hits']['hits'][0]);
     		foreach ($versions['hits']['hits'][0]['_source']['Keywords'] as $keyword){
     			if($keyword['uuid'] == $key){
     				$title_arg = $keyword['name_'.$_locale];

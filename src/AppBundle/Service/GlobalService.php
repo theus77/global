@@ -84,7 +84,7 @@ class GlobalService {
 			   }
 			}');
 		
-		dump($searchQuery['body']);
+// 		dump($searchQuery['body']);
 			
 		$retDoc = $this->client->search($searchQuery);
 
