@@ -1,17 +1,31 @@
-/Plugin/
-/composer.lock
-/Vendor/*
-/.sass-cache/
-/Config/core.php
-/Config/database.php
-/Config/bootstrap.php
-/.buildpath
+/app/config/parameters.yml
+/build/
+/phpunit.xml
+/var/*
+!/var/cache
+/var/cache/*
+!var/cache/.gitkeep
+!/var/logs
+/var/logs/*
+!var/logs/.gitkeep
+!/var/sessions
+/var/sessions/*
+!var/sessions/.gitkeep
+!var/SymfonyRequirements.php
+/vendor/
+/web/bundles/
+/web/bower/
+/web/migrate/
+
+# eclipse files
 /.settings/
-/scripts/
-/webroot/img/cache/*.*
 /.project
-/.vagrant/
-/Vendor/
+/.buildpath
+/.sass-cache/
+/npm-debug.log
+
+# composer files
+/composer.lock
+
+#OS X files
 .DS_Store
-/apdb/
-/result.xml

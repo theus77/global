@@ -10,7 +10,7 @@
 	h2 {
 		color: lighten($color1, 80%);
 		font-size:em(22px);
-		margin-top:em(60px, 22px);
+		margin-top: 1em;
 		@include MQ(Sneg) {
 			font-size:em(14px);
 			padding:0 em(15px);
@@ -127,7 +127,8 @@
 	}
 	#galerie-thumb-bro {
 		@include MQ(Splus) {			
-			position:fixed; 
+/* 			position:fixed;  */
+    		min-height: 160px;
 			width:100%;
 			z-index:1000;
 		}
@@ -145,7 +146,7 @@
 		overflow:auto;
 		white-space:nowrap;
 		position:relative;		
-		min-height:250px;
+		min-height:160px;
 		@include MQ(Mneg) {			
 			min-height:180px;
 		}
