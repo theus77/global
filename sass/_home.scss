@@ -44,6 +44,12 @@
 			@include transition(all 0.5s ease-in-out);
 			}
 	}
+	
+	a {
+		background: rgba(0, 0, 0, 0);
+		border: 0;
+		white-space: initial;
+	}
 }
 }
 /*========================================
