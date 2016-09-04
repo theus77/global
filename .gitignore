@@ -4,6 +4,8 @@
 /var/*
 !/var/cache
 /var/cache/*
+!/var/images
+/var/images/*
 !var/cache/.gitkeep
 !/var/logs
 /var/logs/*
@@ -16,6 +18,7 @@
 /web/bundles/
 /web/bower/
 /web/migrate/
+/web/js/bower
 
 # eclipse files
 /.settings/
@@ -29,3 +32,4 @@
 
 #OS X files
 .DS_Store
+/.vagrant/

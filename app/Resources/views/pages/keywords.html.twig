@@ -1,0 +1,45 @@
+{% trans_default_domain domain %} {% extends 'base.html.twig' %}
+{% block body %}
+<div class="default">
+	<!-- gallery -->
+	<section id="gallery" class="section wow fadeInUp active"
+		style="visibility: visible; animation-name: fadeInUp;">
+		<div class="container">
+
+			<div class="section-heading">
+				<h2>{{ 'keywords.title'|trans }}</h2>
+
+			</div>
+
+			<div class="row">
+			
+				{% set alreadyUsed = [] %}
+				{% for keyword in keywords.keyword_name.buckets %}
+					{% set imageUuid = 0 %}
+					{% set found = 0 %}
+					{% for topHit in keyword.by_uuid.buckets[0].keyword_to_version.top_uuid_hits.hits.hits if found == 0 %}
+						{% set imageUuid = topHit._id %}
+						{% if imageUuid not in alreadyUsed %}
+							{% set alreadyUsed = alreadyUsed|merge([imageUuid]) %}
+							{% set found =  1 %}
+						{% endif %}
+					{% endfor %}
+					
+					<div class="col-md-4 col-sm-4 thumb col-lg-3 col-xs-6">
+						{% include 'elements/image-box.html.twig' with {
+							'name': keyword.key,
+							'counter': keyword.doc_count,
+							'ouuid': imageUuid,
+							'url': url('keyword', { key: keyword.by_uuid.buckets.0.key })
+						} only %}
+					</div>
+
+				{% endfor %}
+			</div>
+			<!-- ./row -->
+
+		</div>
+	</section>
+	<!-- ./gallery -->
+</div>
+{% endblock %}

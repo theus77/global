@@ -1,0 +1,264 @@
+{% trans_default_domain domain %}
+{% extends 'base.html.twig' %}
+{% block body %}
+<!-- book -->	
+<section id="book" class="section wow fadeInUp">
+	<div class="container">	
+		<input id="pac-input" class="controls" type="text" placeholder="{{ 'book.search_field' }}">
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=drawing,places&key={{ googleApiKey }}">
+		</script>
+		<script type="text/javascript">
+
+			var polygons = [];
+			var markers = [];
+
+			function removeMarker(index){
+				polygon = polygons[index];
+				polygon.setMap(null);
+			}
+
+			function initialize() {
+		     	 var north = {{ place._source.geometry.bounds.northeast.lat|json_encode|raw }};
+		    	 var south = {{ place._source.geometry.bounds.southwest.lat|json_encode|raw }};
+		     	 var west = {{ place._source.geometry.bounds.southwest.lng|json_encode|raw }};
+		    	 var east = {{ place._source.geometry.bounds.northeast.lng|json_encode|raw }};
+		       	 var southwest = new google.maps.LatLng(south, west);
+				 var northeast = new google.maps.LatLng(north, east);
+
+		    	 var bounds = new google.maps.LatLngBounds(southwest, northeast);
+
+				var mapOptions = {
+		          center: {lng: parseFloat({{ place._source.geometry.location.lng|json_encode|raw }}), lat: parseFloat({{ place._source.geometry.location.lat|json_encode|raw }})},
+		          maxZoom: 19,
+		          minZoom: 7,
+		          zoom: 9,
+		          tilt: 0,
+		          mapTypeId: google.maps.MapTypeId.HYBRID
+		        };
+		        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+		        var input = /** @type {HTMLInputElement} */(
+		        	      document.getElementById('pac-input'));
+
+				map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+				 var searchBox = new google.maps.places.SearchBox(
+						    /** @type {HTMLInputElement} */(input));
+
+						  // Listen for the event fired when the user selects an item from the
+						  // pick list. Retrieve the matching places for that item.
+						  google.maps.event.addListener(searchBox, 'places_changed', function() {
+						    var places = searchBox.getPlaces();
+
+						    if (places.length == 0) {
+						      return;
+						    }
+						    for (var i = 0, marker; marker = markers[i]; i++) {
+						      marker.setMap(null);
+						    }
+
+						    // For each place, get the icon, place name, and location.
+						    markers = [];
+						    var bounds = new google.maps.LatLngBounds();
+						    for (var i = 0, place; place = places[i]; i++) {
+						      var image = {
+						        url: place.icon,
+						        size: new google.maps.Size(71, 71),
+						        origin: new google.maps.Point(0, 0),
+						        anchor: new google.maps.Point(17, 34),
+						        scaledSize: new google.maps.Size(25, 25)
+						      };
+
+						      // Create a marker for each place.
+						      var marker = new google.maps.Marker({
+						        map: map,
+						        icon: image,
+						        title: place.name,
+						        position: place.geometry.location
+						      });
+
+						      markers.push(marker);
+
+						      bounds.extend(place.geometry.location);
+						    }
+
+						    map.fitBounds(bounds);
+						  });
+
+		        var drawingManager = new google.maps.drawing.DrawingManager({
+		            drawingMode: google.maps.drawing.OverlayType.POLYGON,
+		            drawingControl: true,
+		            drawingControlOptions: {
+		//               position: google.maps.ControlPosition.TOP_CENTER,
+		              drawingModes: [
+		//                 google.maps.drawing.OverlayType.MARKER,
+		//                 google.maps.drawing.OverlayType.CIRCLE,
+		                google.maps.drawing.OverlayType.POLYGON,
+		//                 google.maps.drawing.OverlayType.POLYLINE,
+		//                 google.maps.drawing.OverlayType.RECTANGLE
+		              ]
+		            },
+		//             markerOptions: {
+		//               icon: 'images/beachflag.png'
+		//             },
+		//             circleOptions: {
+		//               fillColor: '#ffff00',
+		//               fillOpacity: 1,
+		//               strokeWeight: 5,
+		//               clickable: false,
+		//               editable: true,
+		//               zIndex: 1
+		// 			}
+				});
+
+		        var counter = 0;
+
+		        google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
+
+					polygons[counter] = polygon;
+
+					var infowindow = new google.maps.InfoWindow({
+						content: '<label class="control-label" for="target-'+counter+'">{{ 'book.about_target'|trans }}</label>'
+						+'<textarea data-target="input[name=\'data[Booking][target]['+counter+'][comment]\']" onChange="$(this.dataset.target).attr(\'value\', this.value);" class="form-control polygon-info" id="target-'+counter+'"></textarea>'+
+						'<a href="#" data-target="'+counter+'"  onclick="removeMarker('+counter+'); '+
+						'$(\'input[name=\\\'data[Booking][target]['+counter+'][comment]\\\']\').detach(); '+
+						'$(\'input[name=\\\'data[Booking][target]['+counter+'][polygon]\\\']\').detach(); '+
+						'return false;">{{ 'book.erase_mark'|trans }}</a>'
+					});
+
+					$('form#BookingBookForm').append('<input name="data[Booking][target]['+counter+'][comment]" type="hidden" value="empty"/>');
+
+					$('form#BookingBookForm').append('<input name="data[Booking][target]['+counter+'][polygon]" type="hidden" value="'+encodeURIComponent(JSON.stringify(polygon.getPath().getArray()))+'"/>');
+
+					drawingManager.setDrawingMode(null);
+					polygon.getPath().getAt(0);
+					infowindow.setPosition(polygon.getPath().getAt(0));
+
+		        	google.maps.event.addDomListener(polygon, 'click', function(event) {
+		        		infowindow.open(map,polygon);
+		        	});
+		        	counter += 1;
+		        });
+
+		        drawingManager.setMap(map);
+
+				/****
+				google.maps.event.addDomListener(map, 'click', function(event) {
+
+					var marker = new google.maps.Marker({
+					    position: event.latLng,
+					    map: map,
+					    draggable:true,
+					    title:"Drag me!"
+					});
+					markers[counter] = marker;
+
+					var infowindow = new google.maps.InfoWindow({
+						content: '<label class="control-label" for="target-'+counter+'"><?php echo __('Informations à propos de la cible'); ?></label><textarea class="form-control" id="target-'+counter+'"></textarea><a href="#" onclick="removeMarker('+counter+'); return false;"><?php echo __('Effacer ce repère');?></a>'
+					});
+
+					++counter;
+
+					google.maps.event.addListener(marker, 'click', function() {
+						infowindow.open(map,marker);
+					});
+
+				}); ***/
+
+				map.setCenter(bounds.getCenter()); //or use custom center
+				map.fitBounds(bounds);
+				//map.setZoom(map.getZoom()+1);
+
+				// Bias the SearchBox results towards places that are within the bounds of the
+				  // current map's viewport.
+			  google.maps.event.addListener(map, 'bounds_changed', function() {
+			    var bounds = map.getBounds();
+			    searchBox.setBounds(bounds);
+			  });
+			}
+		    google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="simple-box2">
+					<div class="content">
+						<div class="col-md-7" id="map-ctp">
+							<p>
+								{{ attribute(textes.steps, 'body_'~app.request.locale)|raw }}
+							<a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseHelp" aria-expanded="false" aria-controls="collapseHelp">
+  								{{ 'book.needhelp.title'|trans }}
+							</a>
+							<div class="collapse" id="collapseHelp">
+								{{ attribute(textes.help, 'body_'~app.request.locale)|raw }}
+							</div>
+							<div class="outer">
+	   							<div class="inner" id="map-canvas">
+	        						{{ 'map.connecting'|trans }}
+	    						</div>
+	    						<img src="data:image/gif;base64,R0lGODlhEAAJAIAAAP///wAAACH5BAEAAAAALAAAAAAQAAkAAAIKhI+py+0Po5yUFQA7" class="scaling-image" /> <!-- don't specify height and width so browser resizes it appropriately -->
+							</div>
+						</div>
+						<div  class="col-md-5">
+							<h3>{{ 'book.form_title'|trans }}</h3>
+							<form action="" class="form-horizontal"
+								id="BookingBookForm" method="post" accept-charset="utf-8">
+								<div style="display: none;">
+									<input type="hidden" name="_method" value="POST">
+								</div>
+								<div class="form-group">
+									<label class="col-md-4 control-label" for="name">{{ 'book.name.field'|trans }}</label>
+									<div class="col-md-8">
+										<div class="input text required">
+											<input name="data[Booking][name]"
+												class="form-control input-md" required="required"
+												maxlength="1024" type="text" id="BookingName">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-4 control-label" for="email">{{ 'book.email.field'|trans }}</label>
+									<div class="col-md-8">
+										<div class="input email required">
+											<input name="data[Booking][email]"
+												class="form-control input-md" required="required"
+												maxlength="200" type="email" id="BookingEmail">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-4 control-label" for="phone">{{ 'book.phone.field'|trans }}</label>
+									<div class="col-md-8">
+										<div class="input tel">
+											<input name="data[Booking][phone]"
+												class="form-control input-md" maxlength="200" type="tel"
+												id="BookingPhone">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-4 control-label" for="comment">{{ 'book.remark.field'|trans }}</label>
+									<div class="col-md-8">
+										<div class="input textarea">
+											<textarea name="data[Booking][comment]"
+												class="form-control input-md" cols="30" rows="6"
+												id="BookingComment"></textarea>
+										</div>
+									</div>
+								</div>
+								<!-- Button -->
+								<div class="form-group">
+									<div class="col-md-offset-4 col-md-8">
+										<button id="send" name="send" class="btn btn-primary">{{ 'book.submit.button'|trans }}</button>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="clearfix"></div>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %} 

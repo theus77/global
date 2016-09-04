@@ -1,0 +1,127 @@
+{% trans_default_domain domain %}
+<nav class="navbar navbar-inverse navbar-fixed-top navbar-scroll">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#collapse-navbar"
+				aria-expanded="false">
+				<span class="sr-only">{{ 'navbar.skip'|trans }}</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a href="{{ url('homepage') }}" class="navbar-brand"><img src="{{ asset('img/logo.png')|trans|raw }}"
+				alt="{{ 'navbar.back_to_homepage'|trans }}" /></a>
+			<!-- lang switcher -->
+			<ul class="nav navbar-nav lang pull-left visible-md visible-lg">
+			    {% if app.request.locale != 'fr' %}
+					{% if translateArgs is defined and translateArgs.fr %}
+			        	<li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'fr'})|merge(translateArgs.fr)) }}"><abbr title="{{ 'navbar.fr_version'|trans }}" lang="fr"role="presentation">{{ 'fr'|trans }}</abbr></a></li>
+					{% else %}
+			        	<li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'fr'})) }}"><abbr title="{{ 'navbar.fr_version'|trans }}" lang="fr"role="presentation">{{ 'fr'|trans }}</abbr></a></li>
+			        {% endif %}
+				{% endif %}
+			    {% if app.request.locale != 'nl' %}
+					{% if translateArgs is defined and translateArgs.fr %}
+			          <li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'nl'})|merge(translateArgs.nl)) }}"><abbr title="{{ 'navbar.nl_version'|trans }}" lang="nl"role="presentation">{{ 'nl'|trans }}</abbr></a></li>
+					{% else %}
+			          <li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'nl'})) }}"><abbr title="{{ 'navbar.nl_version'|trans }}" lang="nl"role="presentation">{{ 'nl'|trans }}</abbr></a></li>
+			        {% endif %}
+				{% endif %}
+			    {% if app.request.locale != 'en' %}
+					{% if translateArgs is defined and translateArgs.fr %}
+			          <li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'en'})|merge(translateArgs.en)) }}"><abbr title="{{ 'navbar.en_version'|trans }}" lang="en"role="presentation">{{ 'en'|trans }}</abbr></a></li>
+					{% else %}
+			          <li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'en'})) }}"><abbr title="{{ 'navbar.en_version'|trans }}" lang="en"role="presentation">{{ 'en'|trans }}</abbr></a></li>
+			        {% endif %}
+				{% endif %}
+			</ul>
+			<!-- / lang switcher -->
+		</div>
+		<div class="collapse navbar-collapse" id="collapse-navbar">
+			<!-- menu nav -->
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="{{ url('homepage') }}#flights" class="menu-flights" data-scroll="1">{{ 'navbar.vols'|trans }}</a></li>
+				<li class="dropdown"><a aria-expanded="false" aria-haspopup="true"
+					role="button" data-toggle="dropdown" class="dropdown-toggle"
+					href="#">{{ 'navbar.phototheque'|trans }}<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="{{ url('map') }}" class="menu-map">{{ 'navbar.map.title'|trans }}</a></li>
+						<li><a href="{{ url('keywords') }}" class="menu-library">{{ 'navbar.themas.title'|trans }}</a></li>
+						<li><a href="{{ url('homepage') }}#services" class="menu-services">{{ 'navbar.free_search.title'|trans }}</a></li>
+					</ul></li>
+				<li class="dropdown"><a aria-expanded="false" aria-haspopup="true"
+					role="button" data-toggle="dropdown"
+					class="dropdown-toggle menu-technics" data="data-sroll" href="#">{{ 'navbar.technics.title'|trans }}<span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="{{ url('homepage') }}#technics" class="technicsOne">{{ 'navbar.photographer.title'|trans }}</a></li>
+						<li><a href="{{ url('homepage') }}#technics" class="technicsTwo">{{ 'navbar.helico.title'|trans }}</a></li>
+						<li><a href="{{ url('homepage') }}#technics" class="technicsThree" data-scroll="1">{{ 'navbar.weather.title'|trans }}</a></li>
+						<li><a href="/#technics" class="technicsFour" data-scroll="1">{{ 'navbar.delays.title'|trans }}</a></li>
+						<li><a href="/#technics" class="technicsFive" data-scroll="1">{{ 'navbar.video.title'|trans }}</a></li>
+					</ul></li>
+				<li class="dropdown"><a aria-expanded="false" aria-haspopup="true"
+					role="button" data-toggle="dropdown"
+					class="dropdown-toggle menu-prices" data="data-sroll" href="#">{{ 'navbar.prices.title'|trans }}<span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="{{ url('homepage') }}#pricing" class="collapseOne" data-scroll="1">{{ 'navbar.mission.title'|trans }}</a></li>
+						<li><a href="{{ url('homepage') }}#pricing" class="collapseTwo" data-scroll="1">{{ 'navbar.existingphoto.title'|trans }}</a></li>
+						<li><a href="{{ url('homepage') }}#pricing" class="collapseThree" data-scroll="1">{{ 'navbar.rights.title'|trans }}</a></li>
+					</ul></li>
+				<li><a href="{{ url('homepage') }}#contact" class="menu-contact" data-scroll="1">{{ 'navbar.contact.title'|trans }}</a></li>
+				{% if app.request.attributes.get('_route') != 'homepage' %}
+					<li class="search-trigger hidden-xs hidden-sm"><span
+						class="fa fa-search"></span><a href="#" class="sr-only">{{ 'navbar.search.title' }}</a>
+					</li>
+				{% else %}
+					<li><a href="{{ url('homepage') }}#services" class="menu-contact hidden-xs hidden-sm"" data-scroll="1">{{ 'navbar.services.title'|trans|raw }}</a></li>
+				{% endif %}
+			</ul>
+			<!-- /menu nav -->
+			<!-- lang desktop -->
+			<ul class="nav navbar-nav visible-xs visible-sm">
+			      {% if app.request.locale != 'fr' %}
+			          <li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'fr'})) }}"><abbr title="{{ 'navbar.fr_version'|trans }}" lang="fr"role="presentation">{{ 'fr'|trans }}</abbr></a></li>
+				  {% endif %}
+			      {% if app.request.locale != 'nl' %}
+			          <li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'nl'})) }}"><abbr title="{{ 'navbar.nl_version'|trans }}" lang="nl"role="presentation">{{ 'nl'|trans }}</abbr></a></li>
+				  {% endif %}
+			      {% if app.request.locale != 'en' %}
+			          <li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'en'})) }}"><abbr title="{{ 'navbar.en_version'|trans }}" lang="en"role="presentation">{{ 'en'|trans }}</abbr></a></li>
+				  {% endif %}
+			</ul>
+			<!-- /lang desktop -->
+			<!-- search mobile -->
+			<div class="visible-xs-block visible-sm-block">
+				<form action="{{ url('search') }}" class="navbar-form" method="GET">
+					<div class="form-group search-toggle">
+						<input type="text" class="form-control QuickSearchInput"
+							placeholder="{{ 'navbar.search.placeholder'|trans }}" name="q"
+							data-search-url="{{ url('search', { _format: 'json' }) }}">
+					</div>
+					<button type="submit" class="btn btn-default">
+						<span class="glyphicon glyphicon-search"></span>
+					</button>
+				</form>
+			</div>
+			<!-- /search mobile -->
+		</div>
+		<!-- search mobile -->
+		<div class="search-form hidden-xs-block">
+			<form action="{{ url('search') }}" class="navbar-form" method="GET">
+				<div class="form-group search-toggle">
+					<input type="text" class="form-control QuickSearchInput"
+						placeholder="{{ 'navbar.search.placeholder'|trans }}" name="q"
+						data-search-url="{{ url('search', { _format: 'json' }) }}">
+				</div>
+				<button type="submit" class="btn btn-default">
+					<span class="fa fa-search"></span>
+				</button>
+			</form>
+		</div>
+		<!-- /search mobile -->
+	</div>
+	<!-- /.container -->
+</nav>

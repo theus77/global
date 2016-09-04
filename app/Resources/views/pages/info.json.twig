@@ -1,0 +1,26 @@
+{
+	"artist": "{% if info._source.artist is defined %}{{ info._source.artist }}{% else %}{{ 'image.artist' }}{% endif %}",
+	"pixel_size": "{{ info._source.pixel_size }}",
+	"url": "{{ url('imageImage', {ouuid:info._id}) }}",
+	"date": "{{ info._source.date }}",
+	{% set stack = '' %}
+	{% for item in info._source.Stack %}
+		{% set stack = stack~('<a href="#" class="alternative-image"><img src="'~url('previewImage', {ouuid: item})~'" data-image="'~url('imageImage', {ouuid: item})~'" class="img-responsive"></a>') %}
+	{% endfor %}
+	"stack": {{ stack|json_encode|raw }},
+	{% set out = '' %}
+
+	{% for Keyword in info._source.Keywords %}
+		{% set out = out~'<span class="label label-default">' %}
+		{% set out = out~'<a href="'~url('keyword', {key: Keyword.uuid}) ~'">' %}
+		{% set out = out~attribute(Keyword, 'name_'~app.request.locale) %}
+		{% set out = out~'</a></span> ' %}
+	{% endfor %}
+	{% for location in info._source.locations %}
+		{% set out = out~'<span class="label label-default">' %}
+		{% set out = out~'<a href="'~ url('place', {ouuid: location.uuid}) ~'">' %}
+		{% set out = out~attribute(location, 'name_'~app.request.locale) %}
+		{% set out = out~'</a></span> ' %}
+	{% endfor %}	
+	"keywords": {{ out|json_encode|raw }}
+}

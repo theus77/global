@@ -1,0 +1,16 @@
+
+<div class="image-box">
+	<a href="{{ url|raw }}">
+		<figure>
+			<noscript>
+				<img src="{{ url('thumbImage', { ouuid: ouuid } ) }}"
+					alt="{{ name }}" />
+			</noscript>
+			<img src="{{ asset('img/'~app.request.locale~'/loading/thumb.jpg') }}" alt="{{ name }}"
+				data-original="{{ url('thumbImage', { ouuid: ouuid } ) }}"
+				class="img-responsive lazy" width="320" height="320" />
+		</figure>
+	</a>
+	<div class="caption">{{ name }} <span class="badge">{{ counter }}</span>
+	</div>
+</div>

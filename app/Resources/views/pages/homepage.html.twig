@@ -1,0 +1,310 @@
+{% trans_default_domain domain %}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<!-- vols -->
+	<section id="flights" class="section wow fadeInUp">
+		<div class="container">
+			{% include 'elements/messages.html.twig' %}
+		</div>
+		<div class="container">
+			<div class="section-heading">
+				<h1>{{ 'homepage.aerial-photo'|trans }}</h1>
+				<h2 id="next_flight">
+					{{ 'homepage.teaser'|trans|raw }}
+				</h2>
+				<h3> {{ 'homepage.flights.title'|trans }} </h3>
+				{% for flight in flights.hits.hits %}
+					<div class="col-md-4 ">
+						<div class="box">
+							<div class="groupToMatch clearfix">
+								<a href="{{ url('book', {id: flight._id }) }}" class="btn btn-custom btn-lg" role="button">
+								<h3>{{ attribute(flight._source, 'label_'~app.request.locale) }} </h3>
+									<div class="text-wrapper">
+										<p>
+											<img src="{{ asset('img/'~flight._source.map) }}" />
+										</p>
+									</div>
+									<div class="form-group">
+										{{ 'homepage.price_from'|trans({ starting_price: flight._source.price} ) }}
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+				<div class="col-md-4 ">
+					<div class="box">
+						<div class="groupToMatch clearfix">
+							{{ attribute(textes.about_flights, 'body_'~app.request.locale)|raw }}
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		
+	</section>
+
+	{% include 'elements/services.html.twig' %}
+
+
+	<!-- gallery -->
+	<section id="gallery" class="section wow fadeInUp">
+		<div class="container">
+
+			<div class="section-heading">
+				<h2>{{ 'homepage.gallery.on_top'|trans }}</h2>
+			</div>
+			<div class="row">
+				{% for gallery in galleries.hits.hits %}
+					{% if gallery._source.version %}
+						<div class="col-md-4 col-sm-4 thumb col-lg-3 col-xs-6">
+							{% include 'elements/image-box.html.twig' with {
+								'name': attribute(gallery._source, 'label_'~app.request.locale),
+								'counter': gallery._counter,
+								'ouuid': gallery._source.version|split(':').1,
+								'url': url('gallery', {slug:attribute(gallery._source, 'slug_'~app.request.locale)})
+							} only %}
+
+						</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+			<!-- ./row -->
+		</div>
+	</section>
+	<!-- ./gallery -->
+
+	<!-- technics -->
+	<section id="technics" class="section wow fadeInUp">
+		<div class="container">
+			<div class="section-heading">
+				<h2>{{ 'homepage.technic.title'|trans }}</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel-group" id="accordion" role="tablist"
+						aria-multiselectable="true">
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingOne">
+								<h4 class="panel-title">
+									<a class="collapsed" role="button" data-toggle="collapse"
+										data-parent="#accordion" href="#technicsOne"
+										aria-expanded="false" aria-controls="technicsOne"> {{ 'homepage.technic.photografer'|trans }} </a>
+								</h4>
+							</div>
+							<div id="technicsOne" class="panel-collapse collapse"
+								role="tabpanel" aria-labelledby="headingOne">
+								<div class="panel-body">
+									<div class="wysiwygContent">
+										{{ attribute(textes.technics, 'body_'~app.request.locale)|raw }}
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingTwo">
+								<h4 class="panel-title">
+									<a class="collapsed" role="button" data-toggle="collapse"
+										data-parent="#accordion" href="#technicsTwo"
+										aria-expanded="false" aria-controls="technicsTwo">
+										{{ 'homepage.technic.helico'|trans }} </a>
+								</h4>
+							</div>
+							<div id="technicsTwo" class="panel-collapse collapse"
+								role="tabpanel" aria-labelledby="headingTwo">
+								<div class="panel-body">
+									<div class="wysiwygContent">
+										{{ attribute(textes.helico, 'body_'~app.request.locale)|raw }}
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingThree">
+								<h4 class="panel-title">
+									<a class="collapsed" role="button" data-toggle="collapse"
+										data-parent="#accordion" href="#technicsThree"
+										aria-expanded="false" aria-controls="technicsThree"> {{ 'homepage.technic.weather'|trans }}
+									</a>
+								</h4>
+							</div>
+							<div id="technicsThree" class="panel-collapse collapse"
+								role="tabpanel" aria-labelledby="headingThree">
+								<div class="panel-body">
+									<div class="wysiwygContent">
+										{{ attribute(textes.weather, 'body_'~app.request.locale)|raw }}
+										
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingThree">
+								<h4 class="panel-title">
+									<a class="collapsed" role="button" data-toggle="collapse"
+										data-parent="#accordion" href="#technicsFour"
+										aria-expanded="false" aria-controls="technicsFour"> {{ 'homepage.technic.delay'|trans }}
+									</a>
+								</h4>
+							</div>
+							<div id="technicsFour" class="panel-collapse collapse"
+								role="tabpanel" aria-labelledby="headingThree">
+								<div class="panel-body">
+									<div class="wysiwygContent">
+										{{ attribute(textes.delay, 'body_'~app.request.locale)|raw }}
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingThree">
+								<h4 class="panel-title">
+									<a class="collapsed" role="button" data-toggle="collapse"
+										data-parent="#accordion" href="#technicsFive"
+										aria-expanded="false" aria-controls="technicsFive"> {{ 'homepage.technic.video'|trans }} </a>
+								</h4>
+							</div>
+							<div id="technicsFive" class="panel-collapse collapse"
+								role="tabpanel" aria-labelledby="headingThree">
+								<div class="panel-body">
+									<div class="wysiwygContent">
+										{{ attribute(textes.video, 'body_'~app.request.locale)|raw }}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<!-- ./row -->
+
+		</div>
+
+	</section>
+	<!-- ./pricing -->
+
+	<!-- pricing -->
+	<section id="pricing" class="section wow fadeInUp">
+		<div class="container">
+			<div class="section-heading">
+				<h2>{{ 'homepage.price.title'|trans }}</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel-group" id="accordion" role="tablist"
+						aria-multiselectable="true">
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="priceOne">
+								<h4 class="panel-title">
+									<a class="collapsed" role="button" data-toggle="collapse"
+										data-parent="#accordion" href="#collapseOne"
+										aria-expanded="false" aria-controls="collapseOne">{{ 'homepage.price.on_demand'|trans }} </a>
+								</h4>
+							</div>
+							<div id="collapseOne" class="panel-collapse collapse"
+								role="tabpanel" aria-labelledby="priceOne">
+								<div class="panel-body">
+									<div class="wysiwygContent">
+										{{ attribute(textes.price, 'body_'~app.request.locale)|raw }}
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="priceTwo">
+								<h4 class="panel-title">
+									<a class="collapsed" role="button" data-toggle="collapse"
+										data-parent="#accordion" href="#collapseTwo"
+										aria-expanded="false" aria-controls="collapseTwo"> {{ 'homepage.price.buy_existing'|trans }} </a>
+								</h4>
+							</div>
+							<div id="collapseTwo" class="panel-collapse collapse"
+								role="tabpanel" aria-labelledby="priceTwo">
+								<div class="panel-body">
+									<div class="wysiwygContent">
+										{{ attribute(textes.buy_existing, 'body_'~app.request.locale)|raw }}
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="priceThree">
+								<h4 class="panel-title">
+									<a class="collapsed" role="button" data-toggle="collapse"
+										data-parent="#accordion" href="#collapseThree"
+										aria-expanded="false" aria-controls="collapseThree"> {{ 'homepage.price.rights'|trans }} </a>
+								</h4>
+							</div>
+							<div id="collapseThree" class="panel-collapse collapse"
+								role="tabpanel" aria-labelledby="priceThree">
+								<div class="panel-body">
+									<div class="wysiwygContent">
+										{{ attribute(textes.rights, 'body_'~app.request.locale)|raw }}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<!-- ./row -->
+
+		</div>
+
+	</section>
+	<!-- ./pricing -->
+
+	<!-- contact -->
+	<section id="contact" class="section wow fadeInUp">
+		<div class="container">
+
+			<div class="section-heading">
+				<h2>{{ 'homepage.contact.title'|trans }}</h2>
+
+			</div>
+
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					{{ form_start(form) }}
+						<div class="form-group">
+							{{ form_label(form.name) }}
+							<div class="col-md-8">
+								{{ form_widget(form.name) }}
+							</div>
+						</div>
+						<div class="form-group">
+							{{ form_label(form.email) }}
+							<div class="col-md-8">
+								{{ form_widget(form.email) }}
+							</div>
+						</div>
+						<div class="form-group">
+							{{ form_label(form.phone) }}
+							<div class="col-md-8">
+								{{ form_widget(form.phone) }}
+							</div>
+						</div>
+						<div class="form-group">
+							{{ form_label(form.remarks) }}
+							<div class="col-md-8">
+								{{ form_widget(form.remarks) }}
+							</div>
+						</div>
+						<!-- Button -->
+						<div class="form-group">
+							<div class="col-md-offset-4 col-md-8">
+								{{ form_widget(form.submit) }}
+							</div>
+						</div>
+					{{ form_end(form) }}
+
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- ./contact -->
+{% endblock %} 

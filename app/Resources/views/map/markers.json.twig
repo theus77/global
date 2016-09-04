@@ -1,0 +1,59 @@
+{
+	"markers": [ 
+	{% for marker in markers.by_level.by_coordinate.by_location.buckets  %}
+		{
+		 	"type": "place",
+			"uuid": {{ marker.key|json_encode|raw }},
+			"counter": {{ marker.doc_count|json_encode|raw }},
+			"imageUuid": {{ marker.top_version.hits.hits.0._id|json_encode|raw }},
+			"lat": {{ marker.top_version.hits.hits.0._source.location.lat|json_encode|raw }},
+			"lon": {{ marker.top_version.hits.hits.0._source.location.lon|json_encode|raw }},
+			"label": {{ attribute(marker.top_version.hits.hits.0._source, 'name_'~app.request.locale)|json_encode|raw }},
+			"content": {{ ('<div class="col-md-4 col-sm-4 thumb col-lg-3 col-xs-6">
+								<div class="image-box">
+									<a href="'~url('place', {'ouuid': marker.key})~'">
+										<figure>
+											<img src="'~url('thumbImage', {'ouuid': marker.top_version.hits.hits.0._id})~'" alt="'~(attribute(marker.top_version.hits.hits.0._source, 'name_'~app.request.locale)|e)~'" data-original="'~url('thumbImage', {'ouuid': marker.top_version.hits.hits.0._id})~'" class="img-responsive" width="320" height="320"></figure>
+									</a>
+									<div class="caption">
+										'~(attribute(marker.top_version.hits.hits.0._source, 'name_'~app.request.locale)|e)~' <span class="badge">'~(marker.doc_count)~'</span>
+									</div>	
+								</div>
+							</div>')|json_encode|raw }}
+						
+			
+			
+		} {% if not loop.last or (aggregated|length > 0 and aggregated.zoom1.buckets|length > 0)  %},{% endif %}
+	{% endfor %}
+	{% if aggregated|length > 0 %}
+		{% for marker in aggregated.zoom1.buckets %}
+		 	{
+		 		{% if marker.icon.hits.hits.0._source.label is defined %}
+		 			{% set label = marker.icon.hits.hits.0._source.label %}
+		 		{% else %}
+		 			{% set label = marker.icon.hits.hits.0._source.name %}
+		 		{% endif %}
+		 		
+		 		"type": "geohash",
+				"uuid": {{ marker.key|json_encode|raw }},
+				"counter": {{ marker.doc_count|json_encode|raw }},
+				"imageUuid": {{ marker.icon.hits.hits.0._id|json_encode|raw }},
+				"lat": {{ marker.icon.hits.hits.0._source.location.lat|json_encode|raw }},
+				"lon": {{ marker.icon.hits.hits.0._source.location.lon|json_encode|raw }},
+				"label": {{ label|json_encode|raw }},
+				"content": {{ ('<div class="col-md-4 col-sm-4 thumb col-lg-3 col-xs-6">
+									<div class="image-box">
+										<a href="'~url('geohash', {'hash': marker.key})~'">
+											<figure>
+												<img src="'~url('thumbImage', {'ouuid': marker.icon.hits.hits.0._id})~'" alt="'~(label|e)~'" data-original="'~url('thumbImage', {'ouuid': marker.icon.hits.hits.0._id })~'" class="img-responsive" width="320" height="320"></figure>
+										</a>
+										<div class="caption">
+											'~(label|e)~' <span class="badge">'~(marker.doc_count)~'</span>
+										</div>	
+									</div>
+								</div>')|json_encode|raw }}
+			}{% if not loop.last %},{% endif %} 
+		{% endfor %}
+	{% endif %}
+	]
+}

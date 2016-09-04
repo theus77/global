@@ -1,0 +1,238 @@
+{% trans_default_domain domain %}
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="default">
+	<div class="container">
+		<div id="price-ctp">
+			<h1>{{ 'askprice.title'|trans }}</h1>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="wysiwygContent">
+						{{ attribute(textes.askprice, 'body_'~app.request.locale)|raw }}
+					</div>
+					<div class="panel-group" id="accordion" role="tablist"
+						aria-multiselectable="true">
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingOne">
+								<h4 class="panel-title">
+									<a role="button" class="collapsed" data-toggle="collapse"
+										data-parent="#accordion" href="#collapseOne"
+										aria-expanded="false" aria-controls="collapseOne"> {{ 'askprice.deco.title'|trans }} </a>
+								</h4>
+							</div>
+							<div id="collapseOne" class="panel-collapse collapse"
+								role="tabpanel" aria-labelledby="headingOne">
+								<div class="panel-body">
+									<div class="wysiwygContent">
+										{{ attribute(textes.decoration, 'body_'~app.request.locale)|raw }}
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingTwo">
+								<h4 class="panel-title">
+									<a class="collapsed" role="button" data-toggle="collapse"
+										data-parent="#accordion" href="#collapseTwo"
+										aria-expanded="false" aria-controls="collapseTwo"> {{ 'askprice.free.title'|trans }} </a>
+								</h4>
+							</div>
+							<div id="collapseTwo" class="panel-collapse collapse"
+								role="tabpanel" aria-labelledby="headingTwo">
+								<div class="panel-body">
+									<div class="wysiwygContent">
+										{{ attribute(textes.free, 'body_'~app.request.locale)|raw }}
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingThree">
+								<h4 class="panel-title">
+									<a class="collapsed" role="button" data-toggle="collapse"
+										data-parent="#accordion" href="#collapseThree"
+										aria-expanded="false" aria-controls="collapseThree"> {{ 'askprice.managed.title'|trans }} </a>
+								</h4>
+							</div>
+							<div id="collapseThree" class="panel-collapse collapse"
+								role="tabpanel" aria-labelledby="headingThree">
+								<div class="panel-body">
+									<div class="wysiwygContent">
+										{{ attribute(textes.generated, 'body_'~app.request.locale)|raw }}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+
+			</div>
+		</div>
+
+		<!-- Form Name -->
+
+		<form
+			class="form-horizontal" id="PricingRequestPriceForm" method="post"
+			accept-charset="utf-8">
+			<input type="hidden"
+				name="data[PricingRequest][version]"
+				id="data[PricingRequest][version]"
+				value="version:{{ source._id|e }}"> 
+			<div style="display: none;">
+				<input type="hidden" name="_method" value="POST">
+			</div>
+			<!-- Text input-->
+			<div class="form-group">
+				<div class="col-md-5">
+					<div class="btn-group" data-toggle="buttons">
+						{% for imageOuuid in source._source.Stack %}
+							<label class="col-md-6 col-lg-3"> 
+							<input type="radio"
+								name="data[PricingRequest][bestUuid]"
+								id="data[PricingRequest][bestUuid]" autocomplete="off"
+								value="{{ imageOuuid|e }}"> 
+								<img
+									src="{{ asset('img/'~app.request.locale~'/loading/thumb.jpg') }}"
+									alt="{{ imageOuuid|e }}"
+									data-original="{{ url('thumbImage', {ouuid: imageOuuid }) }}"
+									class="img-responsive lazy" width="320" height="320">
+							</label> 
+						{% endfor %}
+						
+					</div>
+				</div>
+				<div class="col-md-7">
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="name">{{ 'askprice.form.name.label'|trans }}</label>
+						<div class="col-md-8">
+							<div class="input text required">
+								<input name="data[PricingRequest][name]"
+									class="form-control input-md" placeholder="{{ 'askprice.form.name.placeholder'|trans|e }}"
+									required="required" maxlength="1024" type="text"
+									id="PricingRequestName">
+							</div>
+						</div>
+					</div>
+					<!-- Prepended checkbox -->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="vat">{{ 'askprice.form.tva.label'|trans }}</label>
+						<div class="col-md-8">
+							<div class="input-group">
+								<span class="input-group-addon"> <input name="data[PricingRequest][with_vat]" type="checkbox">
+								</span>
+								<div class="input text">
+									<input name="data[PricingRequest][vat]" class="form-control"
+										placeholder="{{ 'askprice.form.tva.placeholder'|trans|e }}" maxlength="200" type="text"
+										id="PricingRequestVat">
+								</div>
+							</div>
+							<p class="help-block">{{ 'askprice.form.tva.help'|trans }}</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="email">{{ 'askprice.email.title'|trans }}</label>
+						<div class="col-md-8">
+							<div class="input email required">
+								<input name="data[PricingRequest][email]"
+									class="form-control input-md" placeholder="{{ 'askprice.form.email.placeholder'|trans|e }}"
+									required="required" maxlength="200" type="email"
+									id="PricingRequestEmail">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="phone">{{ 'askprice.phone.title'|trans }}</label>
+						<div class="col-md-8">
+							<div class="input tel">
+								<input name="data[PricingRequest][phone]"
+									class="form-control input-md" placeholder="{{ 'askprice.form.phone.placeholder'|trans|e }}"
+									maxlength="200" type="tel" id="PricingRequestPhone">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="media">{{ 'askprice.support.title'|trans }}</label>
+						<div class="col-md-8">
+							<div class="input text">
+								<input name="data[PricingRequest][media]"
+									class="form-control input-md"
+									placeholder="{{ 'askprice.form.support.placeholder'|trans|e }}"
+									maxlength="200" type="text" id="PricingRequestMedia">
+							</div>
+							<p class="help-block">{{ 'askprice.form.support.help'|trans }}</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="printRun">{{ 'askprice.tirage.title'|trans }}</label>
+						<div class="col-md-8">
+							<div class="input text">
+								<input name="data[PricingRequest][printRun]"
+									class="form-control input-md"
+									placeholder="{{ 'askprice.form.tirage.placeholder'|trans|e }}" maxlength="200"
+									type="text" id="PricingRequestPrintRun">
+							</div>
+							<p class="help-block">{{ 'askprice.form.tirage.help'|trans }}</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="maxFormat">{{ 'askprice.form.max.title'|trans }}</label>
+						<div class="col-md-8">
+							<div class="input text">
+								<input name="data[PricingRequest][maxFormat]"
+									class="form-control input-md"
+									placeholder="{{ 'askprice.form.max.placeholder'|trans|e }}" maxlength="200"
+									type="text" id="PricingRequestMaxFormat">
+							</div>
+							<p class="help-block">{{ 'askprice.form.max.help'|trans }}</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="duration">{{ 'askprice.form.duration.title'|trans }}</label>
+						<div class="col-md-8">
+							<div class="input text">
+								<input name="data[PricingRequest][duration]"
+									class="form-control input-md"
+									placeholder="{{ 'askprice.form.duration.placeholder'|trans|e }}"
+									maxlength="200" type="text" id="PricingRequestDuration">
+							</div>
+							<p class="help-block">{{ 'askprice.form.duration.help'|trans }}</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="special">{{ 'askprice.special.title'|trans }}</label>
+						<div class="col-md-8">
+							<div class="input text">
+								<input name="data[PricingRequest][special]"
+									class="form-control input-md"
+									placeholder="{{ 'askprice.form.special.placeholder'|trans|e }}"
+									maxlength="200" type="text" id="PricingRequestSpecial">
+							</div>
+							<p class="help-block">{{ 'askprice.form.special.help'|trans }}</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="comment">{{ 'askprice.remark.title'|trans }}</label>
+						<div class="col-md-8">
+							<div class="input textarea">
+								<textarea name="data[PricingRequest][comment]"
+									class="form-control input-md"
+									placeholder="{{ 'askprice.form.remark.placeholder'|trans|e }}" cols="30"
+									rows="6" id="PricingRequestComment"></textarea>
+							</div>
+						</div>
+					</div>
+					<!-- Button -->
+					<div class="form-group">
+						<div class="col-md-offset-4 col-md-8">
+							<button id="send" name="send" class="btn btn-primary">{{ 'askprice.form.submit'|trans }}</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>
+{% endblock %} 

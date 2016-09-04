@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- créé par LinkChecker à 2016-01-25 21:09:56+002 -->
+<!-- Récupérez la dernière version sur http://wummel.github.io/linkchecker/ -->
+<!-- Écrivez des commentaires et rapports de bogue à https://github.com/wummel/linkchecker/issues -->
+<!-- Support this project at http://wummel.github.io/linkchecker/donations.html -->
+
+<linkchecker created="2016-01-25 21:09:56+002">
+  <urldata>
+    <url>overlays/02.png</url>
+    <parent line="19" column="32">http://global.theus.be/css/vegas.css</parent>
+    <realurl>http://global.theus.be/css/overlays/02.png</realurl>
+    <extern>0</extern>
+    <dlsize>6999</dlsize>
+    <checktime>1.804211</checktime>
+    <level>2</level>
+    <valid result="404 Not Found">0</valid>
+  </urldata>
+  <urldata>
+    <url>images/ui-bg_glass_75_dadada_1x400.png</url>
+    <parent line="9257" column="26">http://global.theus.be/css/styles.css</parent>
+    <realurl>http://global.theus.be/css/images/ui-bg_glass_75_dadada_1x400.png</realurl>
+    <extern>0</extern>
+    <dlsize>7114</dlsize>
+    <checktime>1.445481</checktime>
+    <level>2</level>
+    <valid result="404 Not Found">0</valid>
+  </urldata>
+  <urldata>
+    <url>/galleries/search?page=-1</url>
+    <name>&lt;</name>
+    <parent line="71" column="75">http://global.theus.be/fr/galleries/search</parent>
+    <realurl>http://global.theus.be/galleries/search?page=-1</realurl>
+    <extern>0</extern>
+    <dlsize>8760</dlsize>
+    <checktime>1.507186</checktime>
+    <level>2</level>
+    <valid result="400 Bad Request">0</valid>
+  </urldata>
+  <urldata>
+    <url>/galleries/search?page=-1</url>
+    <name>&lt;</name>
+    <parent line="71" column="75">http://global.theus.be/en/galleries/search</parent>
+    <realurl>http://global.theus.be/galleries/search?page=-1</realurl>
+    <extern>0</extern>
+    <dlsize>8760</dlsize>
+    <checktime>1.507186</checktime>
+    <level>3</level>
+    <valid result="400 Bad Request">0</valid>
+  </urldata>
+  <urldata>
+    <url>/galleries/search?page=-1</url>
+    <name>&lt;</name>
+    <parent line="71" column="75">http://global.theus.be/nl/galleries/search</parent>
+    <realurl>http://global.theus.be/galleries/search?page=-1</realurl>
+    <extern>0</extern>
+    <dlsize>8760</dlsize>
+    <checktime>1.507186</checktime>
+    <level>3</level>
+    <valid result="400 Bad Request">0</valid>
+  </urldata>
+</linkchecker>
+<!-- Stopped checking at 2016-01-25 21:12:05+002 (2 minutes, 9 secondes) -->

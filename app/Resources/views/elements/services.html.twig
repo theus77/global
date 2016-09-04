@@ -1,0 +1,66 @@
+{% trans_default_domain domain %}
+	<!-- services -->
+	<section id="services" class="section wow fadeInUp">
+		<div class="container">
+			<div class="section-heading">
+				<h2>{{ 'homepage.phototheque.title'|trans }}</h2>
+
+				<p>{{ 'homepage.phototheque.stat'|trans({
+						nombre_photo: stats.aggregations.counter.value,
+						nombre_serie: stats.hits.total
+					}) }}</p>
+
+			</div>
+
+			<div class="row">
+				<div class="col-md-4 col-sm-4">
+					<div class="services style2">
+						<div class="fa fa-map-marker">
+							<a href="{{ url('map') }}"><i class="sr-only">{{ 'homepage.search.geo.title'|trans }}</i></a>
+						</div>
+						<h4>
+							<a href="{{ url('map') }}">{{ 'homepage.search.geo.title'|trans }}</a>
+						</h4>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<div class="services style2">
+						<div class="fa fa-search">
+							<a role="button" data-toggle="collapse" href="#searchCollapse"
+								aria-expanded="false" aria-controls="searchCollapse"><i
+								class="sr-only">{{ 'homepage.search.quick.title'|trans }}</i></a>
+						</div>
+						<h4>
+							<a role="button" data-toggle="collapse" href="#searchCollapse"
+								aria-expanded="false" aria-controls="searchCollapse">{{ 'homepage.search.free'|trans }}</a>
+							<div class="collapse" id="searchCollapse">
+								<form action="{{ url('search') }}" class="navbar-form"
+									role="search" method="GET">
+									<div class="form-group">
+										<input type="text" class="form-control QuickSearchInput"
+											placeholder="{{ 'homepage.search.placeholder'|trans }}" name="q">
+									</div>
+									<button type="submit" class="btn btn-default">
+										<span class="fa fa-search"></span>
+									</button>
+								</form>
+							</div>
+					
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<div class="services style2">
+						<div class="fa fa-tags">
+							<a href="{{ url('keywords') }}"><i class="sr-only">{{ 'homepage.search.themas'|trans }}</i></a>
+						</div>
+						<h4>
+							<a href="{{ url('keywords') }}">{{ 'homepage.search.themas'|trans }}</a>
+						</h4>
+					</div>
+				</div>
+			</div>
+			<!-- /.row -->
+
+		</div>
+	</section>
+	<!-- ./services -->
