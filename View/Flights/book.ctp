@@ -190,7 +190,6 @@
 							<div class="collapse" id="collapseHelp">
 									<?php echo $this->I18n->w('book.enter-your-markers.help'); ?>
 							</div>
-							</p>
 							<div class="outer">
 	   							<div class="inner" id="map-canvas">
 	        						<?php echo __('Connection à Google Map en cours ...'); ?>

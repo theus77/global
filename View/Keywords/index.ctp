@@ -9,7 +9,7 @@
 			<div class="container">	
 			
 				<div class="section-heading">
-					<h2><?php echo __('Liste des mots clés')?></h2>
+					<h2><?php echo __('Thèmes et mots clés')?></h2>
 						
 				</div>
 				

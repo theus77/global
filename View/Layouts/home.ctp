@@ -49,10 +49,18 @@
 		<section id="flights" class="section wow fadeInUp">
 			<div class="container">	
 				<div class="section-heading">
+					<h1><?php echo __('Photographie aérienne'); ?></h1>
 					<h2><?php echo __('Les avantages de <a href="#technics">l\'hélico</a>, le <a href="#pricing">tarif</a> du drone.'); ?></h2>
+					<h3><?php echo __('Nos prochains vols en commandes groupées'); ?> </h3>
 						<?php
 						foreach($flights as $idx => $flight):{
-							echo '<div class="col-md-4 "><div class="box">';
+							echo '<div class="col-md-4 "><a href="'.$this->Html->url(array(
+															'controller' => 'flights',
+															'action' => 'book',
+															'language' => Configure::read('Config.language'),
+															$flight['Flight']['id']
+
+													)).'"><div class="box">';
 									$content = $this->Html->tag(
 											'h3',					
 											$flight['Flight']['name']);
@@ -65,7 +73,7 @@
 									$content .= $this->Html->tag(
 											'div',
 											$this->Html->link(__(
-													'A partir de %s',
+													'<i class="fa fa-plus"></i> d\'Info',
 													$this->Number->currency($flight['Flight']['cost'], __('EUR'))),
 													array(
 															'controller' => 'flights',
@@ -73,7 +81,7 @@
 															'language' => Configure::read('Config.language'),
 															$flight['Flight']['id']
 
-													), array('class' => 'btn btn-custom btn-lg', 'role'=>'button')),
+													), array('class' => 'btn btn-custom btn-lg', 'role'=>'button', 'escape' => false)),
 											array('class'=>'form-group'));
 
 
@@ -156,7 +164,7 @@
 
 									echo $this->Html->tag('div', $content, $divOptions);
 								}
-								echo '</div></div>';
+								echo '</div></a></div>';
 							endforeach;
 							?>
 							<?php echo $this->Session->flash(); ?>
@@ -170,7 +178,7 @@
 		<section id="services" class="section wow fadeInUp">
 			<div class="container">	
 				<div class="section-heading">
-					<h2><?php echo __('Banque d\'images online. Des dizaines de milliers de photos depuis 2003'); ?></h2>
+					<h2><?php echo __('Photothèque online. Des dizaines de milliers de photos depuis 2003'); ?></h2>
 
 					<p>
 					<?php echo __('Actuellement,  %s photos réparties dans %s séries', $this->Number->format($photoCount, [
