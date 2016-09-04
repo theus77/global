@@ -11,7 +11,7 @@ parameters:
     labelType: label
     #employerAlias: giib_preview
     employerPageType: employer_page
-    elasticSearchServers: ['http://127.0.0.1:9200']
+    elasticSearchServers: ['http://127.0.0.1:9200', 'http://127.0.0.1:9201']
 
 framework:
     #esi:             ~
