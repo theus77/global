@@ -57,6 +57,8 @@ DirectoryIndex app.php
     RewriteRule ^ %{ENV:BASE}/app_dev.php [L]
     RewriteCond %{HTTP_HOST} ^staging.socsec.local$
     RewriteRule ^ %{ENV:BASE}/app_staging.php [L]
+    RewriteCond %{HTTP_HOST} ^global-preview.theus.be$
+    RewriteRule ^ %{ENV:BASE}/app_preview.php [L]
 
     # Rewrite all other queries to the front controller.
     RewriteRule ^ %{ENV:BASE}/app.php [L]

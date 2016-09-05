@@ -31,5 +31,5 @@ monolog:
 # Twig Configuration
 twig:
     globals:
-        title_prefix: ""
-        domain: "live"
+        title_prefix: "!!!PREVIEW!!!"
+        domain: "preview"
