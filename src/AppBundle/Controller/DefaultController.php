@@ -45,7 +45,32 @@ class DefaultController extends Controller
 	private function search(){
 		return $this->get('app.search');
 	}
-	
+
+
+	/**
+	 * @Route("/n/bl/",
+	 *   defaults={"_locale": "fr"},
+	 *   name="unregister_email")
+	 */
+	public function unregisterEmailAction($_locale, Request $request)
+	{
+		//?e=email&c=nomduvol
+		$data = [
+			'email' => $request->query->get('e', null),
+			'flight' => $request->query->get('e', null),
+		];
+		
+		if(!empty($data['email'])){
+			$response = $this->rest()->createObject($data, 'unregister');
+			$this->addFlash('notice', 'unregister.sucessfull');
+			
+		}
+		else{
+			$this->addFlash('notice', 'unregister.failed');			
+		}
+
+		return $this->redirectToRoute('homepage');
+	}
 
 	/**
 	 * @Route("/{_locale}/ask_price",
