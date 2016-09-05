@@ -32,4 +32,3 @@ monolog:
 twig:
     globals:
         title_prefix: ""
-        domain: "preview"
