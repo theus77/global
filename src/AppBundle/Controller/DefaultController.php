@@ -13,6 +13,11 @@ use Elasticsearch\Client;
 use AppBundle\Service\SearchService;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use function GuzzleHttp\json_decode;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\NullOutput;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Filesystem\Filesystem;
 
 class DefaultController extends Controller
 {
@@ -102,6 +107,20 @@ class DefaultController extends Controller
 				'source' => $source,
 				'body_id' => 'default',
 		]);
+	}
+	
+	
+
+	/**
+	 * @Route("/{_locale}/cc",
+	 *   defaults={"_locale": "fr"},
+	 *   name="clearcache")
+	 */
+	public function clearCacheeAction(Request $request) {
+		$fs = new Filesystem();
+		$fs->remove($this->container->getParameter('kernel.cache_dir'));
+		$this->addFlash('notice', 'kernel.cache.clear');
+		return $this->redirectToRoute('homepage');
 	}
 	
 	
