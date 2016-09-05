@@ -8,7 +8,7 @@
 <meta name="description"
 	content="{% block meta %}{{ 'homepage.meta.description'|trans }}{% endblock %} " />
 <link href="{{ asset('favicon.ico')|trans|raw }}" type="image/x-icon" rel="shortcut icon" />
-<title>{% block title %}{{ 'homepage.title'|trans }}{% endblock %} </title>
+<title>{{ title_prefix }} {% block title %}{{ 'homepage.title'|trans }}{% endblock %} </title>
 <!-- fontawesome css -->
 <link rel="stylesheet" type="text/css"
 	href="{{ asset('js/bower/components-font-awesome/css/font-awesome.min.css')|trans|raw }}" />
