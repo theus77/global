@@ -47,7 +47,7 @@ twig:
         - "form/fields.html.twig"
     globals:
         title_prefix: "!!!UNDEFINED!!!"
-        domain: preview
+        domain: "%environment%"
         googleApiKey: "%googleApiKey%"
 
 # Doctrine Configuration
