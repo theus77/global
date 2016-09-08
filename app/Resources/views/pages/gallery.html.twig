@@ -248,6 +248,7 @@
 							event.stopPropagation();
 							var url = $(this).find('img').attr('data-image');
 							$('#carousel  .active .col-xs-8 img').attr('src',url );
+							return false;
 						});
 						item.find('.keywordList').html(data.keywords);	
 					});
@@ -379,6 +380,7 @@
 			event.stopPropagation();
 			var url = $(this).find('img').attr('data-image');
 			$('#carousel  .active .col-xs-8 img').attr('src',url );
+			return false;
 		});
 
 		
