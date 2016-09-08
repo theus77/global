@@ -3,6 +3,8 @@
 	"pixel_size": "{{ info._source.pixel_size }}",
 	"url": "{{ url('imageImage', {ouuid:info._id}) }}",
 	"date": "{{ info._source.date }}",
+	"lat": "{{ info._source.location.lat }}",
+	"lng": "{{ info._source.location.lon }}",
 	{% set stack = '' %}
 	{% for item in info._source.Stack %}
 		{% set stack = stack~('<a href="#" class="alternative-image"><img src="'~url('previewImage', {ouuid: item})~'" data-image="'~url('imageImage', {ouuid: item})~'" class="img-responsive"></a>') %}

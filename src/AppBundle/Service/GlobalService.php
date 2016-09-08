@@ -322,7 +322,7 @@ class GlobalService {
 	public function nextFlights() {
 		$param = [
 				'from' => 0,
-				'size' => 2,
+				'size' => 3,
 				'index' => $this->prefix.$this->environment,
 				'type' => 'flight',
 				'body' => [
