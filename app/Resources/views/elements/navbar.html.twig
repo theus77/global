@@ -14,27 +14,27 @@
 				alt="{{ 'navbar.back_to_homepage'|trans }}" /></a>
 			<!-- lang switcher -->
 			<ul class="nav navbar-nav lang pull-left visible-md visible-lg">
-			    {% if app.request.locale != 'fr' %}
-					{% if translateArgs is defined and translateArgs.fr %}
-			        	<li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'fr'})|merge(translateArgs.fr)) }}"><abbr title="{{ 'navbar.fr_version'|trans }}" lang="fr"role="presentation">{{ 'fr'|trans }}</abbr></a></li>
-					{% else %}
-			        	<li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'fr'})) }}"><abbr title="{{ 'navbar.fr_version'|trans }}" lang="fr"role="presentation">{{ 'fr'|trans }}</abbr></a></li>
-			        {% endif %}
-				{% endif %}
-			    {% if app.request.locale != 'nl' %}
-					{% if translateArgs is defined and translateArgs.fr %}
-			          <li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'nl'})|merge(translateArgs.nl)) }}"><abbr title="{{ 'navbar.nl_version'|trans }}" lang="nl"role="presentation">{{ 'nl'|trans }}</abbr></a></li>
-					{% else %}
-			          <li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'nl'})) }}"><abbr title="{{ 'navbar.nl_version'|trans }}" lang="nl"role="presentation">{{ 'nl'|trans }}</abbr></a></li>
-			        {% endif %}
-				{% endif %}
-			    {% if app.request.locale != 'en' %}
-					{% if translateArgs is defined and translateArgs.fr %}
-			          <li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'en'})|merge(translateArgs.en)) }}"><abbr title="{{ 'navbar.en_version'|trans }}" lang="en"role="presentation">{{ 'en'|trans }}</abbr></a></li>
-					{% else %}
-			          <li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'en'})) }}"><abbr title="{{ 'navbar.en_version'|trans }}" lang="en"role="presentation">{{ 'en'|trans }}</abbr></a></li>
-			        {% endif %}
-				{% endif %}
+{# 			    {% if app.request.locale != 'fr' %}#}
+{# 					{% if translateArgs is defined and translateArgs.fr %}#}
+{# 			        	<li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'fr'})|merge(translateArgs.fr)) }}"><abbr title="{{ 'navbar.fr_version'|trans }}" lang="fr"role="presentation">{{ 'fr'|trans }}</abbr></a></li>#}
+{# 					{% else %}#}
+{# 			        	<li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'fr'})) }}"><abbr title="{{ 'navbar.fr_version'|trans }}" lang="fr"role="presentation">{{ 'fr'|trans }}</abbr></a></li>#}
+{# 			        {% endif %}#}
+{# 				{% endif %}#}
+{# 			    {% if app.request.locale != 'nl' %}#}
+{# 					{% if translateArgs is defined and translateArgs.fr %}#}
+{# 			          <li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'nl'})|merge(translateArgs.nl)) }}"><abbr title="{{ 'navbar.nl_version'|trans }}" lang="nl"role="presentation">{{ 'nl'|trans }}</abbr></a></li>#}
+{# 					{% else %}#}
+{# 			          <li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'nl'})) }}"><abbr title="{{ 'navbar.nl_version'|trans }}" lang="nl"role="presentation">{{ 'nl'|trans }}</abbr></a></li>#}
+{# 			        {% endif %}#}
+{# 				{% endif %}#}
+{# 			    {% if app.request.locale != 'en' %}#}
+{# 					{% if translateArgs is defined and translateArgs.fr %}#}
+{# 			          <li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'en'})|merge(translateArgs.en)) }}"><abbr title="{{ 'navbar.en_version'|trans }}" lang="en"role="presentation">{{ 'en'|trans }}</abbr></a></li>#}
+{# 					{% else %}#}
+{# 			          <li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'en'})) }}"><abbr title="{{ 'navbar.en_version'|trans }}" lang="en"role="presentation">{{ 'en'|trans }}</abbr></a></li>#}
+{# 			        {% endif %}#}
+{# 				{% endif %}#}
 			</ul>
 			<!-- / lang switcher -->
 		</div>

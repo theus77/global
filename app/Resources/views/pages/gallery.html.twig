@@ -72,7 +72,7 @@
 								<div class="inner-stack">
 									{% for image in version._source.Stack %}
 										<a href="#" 
-											class="{% if image == version._id %} version-active{% endif %}">
+											class="{% if image == version._id %} version-active{% endif %} alternative-image">
 											<img 
 												alt="{% if version._source.label is defined %}{{ version._source.label|e }}{% else %}{{ 'label.not_available'|trans({'%arg%': version._source.name})|e }}{% endif %}"
 												src="{{ url('previewImage', {ouuid:image }) }}"
@@ -105,8 +105,24 @@
 									</button>
 								</form>
 							</div>
+
+					<div id="map-ctp">
+						<div class="outer">
+							<div class="inner map-div" id="map-canvas-{{ loop.index0 }}"
+								data-lat="{{ version._source.location.lat|e }}"
+								data-lng="{{ version._source.location.lon|e }}"
+								style="height: 180px;">
 	
-							<div class="infos">
+	        						{{ 'map.connecting'|trans }}
+	        				</div>
+							<img
+								src="data:image/gif;base64,R0lGODlhEAAJAIAAAP///wAAACH5BAEAAAAALAAAAAAQAAkAAAIKhI+py+0Po5yUFQA7"
+								class="scaling-image" />
+							<!-- don't specify height and width so browser resizes it appropriately -->
+						</div>
+					</div>
+
+					<div class="infos">
 								<h3>Mots clés</h3>
 								<div class="keywordList">
 									{% for Keyword in version._source.Keywords %}
@@ -155,6 +171,9 @@
 {% endblock %}
 
 {% block javascript %}
+
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=drawing,places&key={{ googleApiKey }}"></script>
+		
 	<script type="text/javascript">
 <!--
 
@@ -217,6 +236,11 @@
 // 						console.log(data);
 						item.find('.col-xs-8 img').attr('src', data.url);
 						item.find('.data-artist').html(data.artist);
+// 						console.log(item.find('.map-div'));
+						item.find('.map-div').each(function(){
+							addGMap(this, data.lat, data.lng);
+						});
+						
 						item.find('.data-pixel_size').html(data.pixel_size);
 						item.find('.data-date').html(data.date);
 						item.find('.inner-stack').html(data.stack);		
@@ -274,6 +298,23 @@
 	}
 
 
+	function addGMap(div, lat, lon){
+		myLatlngmap = new google.maps.LatLng(lat, lon);
+		//console.log(myLatlngmap);
+		mapOptions = {
+				center: myLatlngmap,
+				maxZoom: 16,
+				minZoom: 7,
+				zoom: 12
+		};
+		map = new google.maps.Map(div, mapOptions);
+		new google.maps.Marker({
+			position: myLatlngmap,
+			map: map
+		});	
+	}
+
+
 	$(function() {
 		
 		$("img.lazy-in-scroll").bind('load', function() {
@@ -302,7 +343,9 @@
 			  }
 			}
 		});
-		
+
+
+
 		$("img.lazy-in-scroll").lazyload({
 		     container: $("#thumb-scroll-container")
 		});
@@ -325,7 +368,25 @@
 			}
 			$( this ).height(height);
 		});
+
+
+		$('.map-div').each(function(){
+			addGMap(this, $(this).attr('data-lat'), $(this).attr('data-lng'));			
+
+		});
+
+		$('.alternative-image').on('click', function(event){
+			event.stopPropagation();
+			var url = $(this).find('img').attr('data-image');
+			$('#carousel  .active .col-xs-8 img').attr('src',url );
+		});
+
+		
 	});
+
+
+
+	
 </script>
 	
 {% endblock %}
