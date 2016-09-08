@@ -3,6 +3,7 @@ imports:
 
 parameters:
     calbe_alias: calbe_live
+    environment: live
 #framework:
 #    validation:
 #        cache: validator.mapping.cache.doctrine.apc
@@ -32,4 +33,3 @@ monolog:
 twig:
     globals:
         title_prefix: ""
-        domain: "live"
