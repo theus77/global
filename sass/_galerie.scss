@@ -211,18 +211,18 @@
 	.thumbnail {margin-bottom:0;}
 	.image-box {margin:0;}
 	.caption {
-		max-width:em(120px);
+		max-width:em(180px);
 		padding:0;
 		line-height:1.5em;
 	}
 	img {
-		max-width:em(120px);
+		max-width:em(180px);
 		@include MQ(Sneg){
 			max-width:em(60px);
 		}
 	}
 	.thumb-link {
-		max-width:em(120px, 11px);
+		max-width:em(180px, 11px);
 		font-size:em(11px);	
 		.badge {
 			padding:0 0 0 em(5px, 11px);
