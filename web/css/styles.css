@@ -1,9 +1,9 @@
-/*!
+/*
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+/* normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /* line 9, ../js/bower/bootstrap-sass/assets/stylesheets/bootstrap/_normalize.scss */
 html {
   font-family: sans-serif;
@@ -261,7 +261,7 @@ th {
   padding: 0;
 }
 
-/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+/* Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
 @media print {
   /* line 9, ../js/bower/bootstrap-sass/assets/stylesheets/bootstrap/_print.scss */
   *,
@@ -364,11 +364,14 @@ th {
     border: 1px solid #ddd !important;
   }
 }
-@font-face {
-  font-family: 'Glyphicons Halflings';
-  src: url("../js/bower/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.eot");
-  src: url("../js/bower/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../js/bower/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.woff2") format("woff2"), url("../js/bower/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("../js/bower/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("../js/bower/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
+@at-root {
+  @font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url("../js/bower/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.eot");
+    src: url("../js/bower/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../js/bower/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.woff2") format("woff2"), url("../js/bower/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("../js/bower/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("../js/bower/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
 }
+}
+
 /* line 24, ../js/bower/bootstrap-sass/assets/stylesheets/bootstrap/_glyphicons.scss */
 .glyphicon {
   position: relative;
@@ -1711,7 +1714,7 @@ th {
 /* line 22, ../js/bower/bootstrap-sass/assets/stylesheets/bootstrap/_scaffolding.scss */
 html {
   font-size: 10px;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 /* line 27, ../js/bower/bootstrap-sass/assets/stylesheets/bootstrap/_scaffolding.scss */
@@ -6767,6 +6770,7 @@ a.thumbnail.active {
     background-position: 0 0;
   }
 }
+
 @keyframes progress-bar-stripes {
   /* line 17, ../js/bower/bootstrap-sass/assets/stylesheets/bootstrap/_progress-bars.scss */
   from {
@@ -6778,6 +6782,7 @@ a.thumbnail.active {
     background-position: 0 0;
   }
 }
+
 /* line 26, ../js/bower/bootstrap-sass/assets/stylesheets/bootstrap/_progress-bars.scss */
 .progress {
   overflow: hidden;
@@ -6811,7 +6816,7 @@ a.thumbnail.active {
 .progress-bar-striped {
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-size: 40px 40px;
 }
 
@@ -6831,7 +6836,7 @@ a.thumbnail.active {
 .progress-striped .progress-bar-success {
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
 }
 
 /* line 77, ../js/bower/bootstrap-sass/assets/stylesheets/bootstrap/_progress-bars.scss */
@@ -6842,7 +6847,7 @@ a.thumbnail.active {
 .progress-striped .progress-bar-info {
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
 }
 
 /* line 81, ../js/bower/bootstrap-sass/assets/stylesheets/bootstrap/_progress-bars.scss */
@@ -6853,7 +6858,7 @@ a.thumbnail.active {
 .progress-striped .progress-bar-warning {
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
 }
 
 /* line 85, ../js/bower/bootstrap-sass/assets/stylesheets/bootstrap/_progress-bars.scss */
@@ -6864,7 +6869,7 @@ a.thumbnail.active {
 .progress-striped .progress-bar-danger {
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
 }
 
 /* line 1, ../js/bower/bootstrap-sass/assets/stylesheets/bootstrap/_media.scss */
@@ -8278,7 +8283,7 @@ button.close {
   color: black;
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0);
 }
 /* line 109, ../js/bower/bootstrap-sass/assets/stylesheets/bootstrap/_carousel.scss */
 .carousel-control.left {
@@ -8369,7 +8374,7 @@ button.close {
   border-radius: 10px;
   cursor: pointer;
   background-color: #000 \9;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0);
 }
 /* line 207, ../js/bower/bootstrap-sass/assets/stylesheets/bootstrap/_carousel.scss */
 .carousel-indicators .active {
@@ -8492,9 +8497,12 @@ button.close {
   position: fixed;
 }
 
-@-ms-viewport {
-  width: device-width;
+@at-root {
+  @-ms-viewport {
+    width: device-width;
 }
+}
+
 /* line 18, ../js/bower/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_responsive-visibility.scss */
 .visible-xs {
   display: none !important;
@@ -8828,7 +8836,7 @@ button.close {
 /* line 24, ../../sass/_home.scss */
 #flights .box {
   margin: 0.71429em 0;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.7);
   padding: 1.07143em;
 }
 /* line 28, ../../sass/_home.scss */
@@ -8843,6 +8851,7 @@ button.close {
 /* line 35, ../../sass/_home.scss */
 #flights .box img {
   -webkit-filter: grayscale(0);
+  -moz-filter: grayscale(0);
   filter: grayscale(0);
   -webkit-transition: all 0.5s ease-in-out;
   -o-transition: all 0.5s ease-in-out;
@@ -8852,6 +8861,7 @@ button.close {
 #flights .box:hover img {
   margin: 0;
   -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
   filter: grayscale(100%);
   -webkit-transition: all 0.5s ease-in-out;
   -o-transition: all 0.5s ease-in-out;
@@ -8859,7 +8869,7 @@ button.close {
 }
 /* line 48, ../../sass/_home.scss */
 #flights .box a {
-  background: transparent;
+  background: rgba(0, 0, 0, 0);
   border: 0;
   white-space: initial;
 }
@@ -8962,7 +8972,7 @@ button.close {
   margin: 0;
   font-size: 3.57143em;
   letter-spacing: -1px;
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7);
 }
 /* line 131, ../../sass/_home.scss */
 .section-heading .separator {
@@ -9094,7 +9104,7 @@ h6 {
 .form-control {
   color: #fff;
   height: 45px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -9188,7 +9198,7 @@ pre {
 
 /* line 76, ../../sass/_base.scss */
 #bg_pattern {
-  background-image: url('../img/bg_pattern.png?1461615226');
+  background-image: url('../img/bg_pattern.png?1473614459');
   position: fixed;
   opacity: 0.8;
   left: 0px;
@@ -9225,9 +9235,10 @@ pre {
 header .search-trigger span {
   color: white;
   cursor: pointer;
+  -webkit-transform: translate(50%, 70%);
   -moz-transform: translate(50%, 70%);
   -ms-transform: translate(50%, 70%);
-  -webkit-transform: translate(50%, 70%);
+  -o-transform: translate(50%, 70%);
   transform: translate(50%, 70%);
 }
 /* line 8, ../../sass/_header.scss */
@@ -9307,7 +9318,7 @@ header .dropdown-menu {
   }
   /* line 60, ../../sass/_header.scss */
   .navbar-inverse .navbar-nav li a:hover {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.3);
     color: #f3a224;
   }
 
@@ -9514,9 +9525,10 @@ abbr[title], abbr[data-original-title] {
   position: absolute;
   z-index: 101;
   left: 50%;
+  -webkit-transform: translate(-50%, 0);
   -moz-transform: translate(-50%, 0);
   -ms-transform: translate(-50%, 0);
-  -webkit-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
   transform: translate(-50%, 0);
   background: rgba(0, 0, 0, 0.7);
 }
@@ -9619,16 +9631,18 @@ abbr[title], abbr[data-original-title] {
 }
 /* line 120, ../../sass/_galerie.scss */
 #galerie-filmstrip #galerie-info a.close-sidebar:before {
+  -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 /* line 121, ../../sass/_galerie.scss */
 #galerie-filmstrip #galerie-info a.close-sidebar:after {
+  -webkit-transform: rotate(-45deg);
   -moz-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
 /* line 124, ../../sass/_galerie.scss */
@@ -9763,13 +9777,13 @@ abbr[title], abbr[data-original-title] {
 }
 /* line 213, ../../sass/_galerie.scss */
 .gm-style-iw .col-sm-4 .caption {
-  max-width: 8.57143em;
+  max-width: 12.85714em;
   padding: 0;
   line-height: 1.5em;
 }
 /* line 218, ../../sass/_galerie.scss */
 .gm-style-iw .col-sm-4 img {
-  max-width: 8.57143em;
+  max-width: 12.85714em;
 }
 @media only screen and (max-width: 480px) {
   /* line 218, ../../sass/_galerie.scss */
@@ -9779,7 +9793,7 @@ abbr[title], abbr[data-original-title] {
 }
 /* line 224, ../../sass/_galerie.scss */
 .gm-style-iw .col-sm-4 .thumb-link {
-  max-width: 10.90909em;
+  max-width: 16.36364em;
   font-size: 0.78571em;
 }
 /* line 227, ../../sass/_galerie.scss */
@@ -9810,9 +9824,10 @@ abbr[title], abbr[data-original-title] {
 }
 /* line 247, ../../sass/_galerie.scss */
 .image-box figure:hover img {
+  -webkit-transform: scale(1.1);
   -moz-transform: scale(1.1);
   -ms-transform: scale(1.1);
-  -webkit-transform: scale(1.1);
+  -o-transform: scale(1.1);
   transform: scale(1.1);
 }
 /* line 251, ../../sass/_galerie.scss */
@@ -10069,8 +10084,10 @@ a.link:after:hover:after {
   background: rgba(0, 0, 0, 0.1);
   color: white;
   padding: 1.42857em;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
 }
 /* line 146, ../../sass/_modules.scss */
@@ -10129,8 +10146,10 @@ a.link:after:hover:after {
 }
 /* line 189, ../../sass/_modules.scss */
 .panel-group .panel {
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
   background: transparent;
   border: 2px solid #000;
@@ -10139,8 +10158,10 @@ a.link:after:hover:after {
 .panel-group .panel-heading {
   position: relative;
   padding: 0;
-  -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
   border-radius: 3px;
   color: white;
   background: rgba(0, 0, 0, 0.7);
@@ -10174,7 +10195,7 @@ a.link:after:hover:after {
 }
 /* line 225, ../../sass/_modules.scss */
 .panel-group .panel-body {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
 }
 
 /* ==================================================
@@ -10198,7 +10219,7 @@ a.link:after:hover:after {
   position: absolute;
   left: 50%;
   top: 50%;
-  background-image: url('../img/loading.gif?1467833043');
+  background-image: url('../img/loading.gif?1473614460');
   background-repeat: no-repeat;
   background-position: center;
   margin: -7.14286em 0 0 -7.14286em;
@@ -10225,15 +10246,18 @@ a.link:after:hover:after {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1000;
   -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
   -ms-transform: translateZ(0);
-  -webkit-transform: translateZ(0);
+  -o-transform: translateZ(0);
   transform: translateZ(0);
   -webkit-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
-  -moz-border-radius: 3.57143em;
   -webkit-border-radius: 3.57143em;
+  -moz-border-radius: 3.57143em;
+  -ms-border-radius: 3.57143em;
+  -o-border-radius: 3.57143em;
   border-radius: 3.57143em;
 }
 /* line 276, ../../sass/_modules.scss */
