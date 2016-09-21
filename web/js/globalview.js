@@ -73,14 +73,20 @@ $(window).load(function() {
 
  	// Nicescroll : https://github.com/inuyaksa/jquery.nicescroll
 	// add scrolling to the photos galeries
-	$( ".galerie-thumb-scroll" ).niceScroll({
+	var niceScrollConfig = {
 		cursorcolor:"#7C7B7B",
 		cursorborderradius:0,
 		cursorwidth: "15",
 		cursorborder: "1px solid #ddd",
 		cursorfixedheight: "100",
 		background: "transparent"
-	});
+    };
+
+
+	$( ".galerie-thumb-scroll" ).niceScroll(niceScrollConfig);
+	$( ".carousel-inner .left-panel" ).niceScroll(niceScrollConfig);
+	$( ".carousel-inner .right-panel" ).niceScroll(niceScrollConfig);
+
 
 	function split( val ) {
 	 	return val.split( /,\s*/ );
@@ -128,6 +134,7 @@ $(window).load(function() {
 	 });
 
 	 /* simple sidebar */
+	 /*
 	$( "#galerie-info" ).simplerSidebar({
 	    opener: '#toggle-sidebar',
 	    sidebar: {
@@ -136,6 +143,7 @@ $(window).load(function() {
 	      closingLinks: '.close-sidebar' // If you ignore this option, the plugin will look for all links and this can be buggy. Choose a class for every object inside the sidebar that once clicked will close the sidebar.
 	    }
   	});
+  	*/
 
 	// Search animation
 	$( ".search-trigger" ).on( "click", function() {
@@ -143,7 +151,16 @@ $(window).load(function() {
 		$( "nav.navbar-inverse.navbar-fixed-top" ).toggleClass( "black" );
 	});
 
-	
+	// same height for left-panel, right-panel and middle-panel
+	if ( $( ".carousel-inner").length >= 1) {
+		var imgSize = $( ".carousel-inner .middle-panel img" ).height();
+		$( ".carousel-inner .item div[class*='col-xs-']").height(imgSize);
+		$(window).resize(function(){
+			imgSize = $( ".carousel-inner .middle-panel img" ).height();
+			$( ".carousel-inner .item div[class*='col-xs-']").height(imgSize);
+		});
+	}
+
 	$( ".image-box" ).matchHeight();
 	$( "#flights .col-md-4 .box" ).matchHeight();
 

@@ -6,17 +6,18 @@
 #galerie-filmstrip {
 	position:relative;
 	height: 100%;
-  	overflow: auto;
+  	overflow: hidden;
 	h2 {
 		color: lighten($color1, 80%);
-		font-size:em(22px);
-		margin-top: 1em;
+		font-size:em(18px);
+		margin-top: 0;
 		@include MQ(Sneg) {
-			font-size:em(14px);
+			font-size:em(12px);
 			padding:0 em(15px);
 			margin-top:em(60px, 14px);
 		}
 	}
+	h3 {font-size:em(16px);}
 	#toggle-sidebar {
 		position:fixed;
 		top :em(250px);
@@ -96,6 +97,7 @@
     		position: relative;
 			}
 		#map-ctp, #map-canvas-0 {min-height:em(200px);}
+		#map-ctp {margin-top:em(10px);}
 		.label {font-weight:normal;}
 		.label-default {background-color:$color2;}
 		a.close-sidebar { 
@@ -211,18 +213,18 @@
 	.thumbnail {margin-bottom:0;}
 	.image-box {margin:0;}
 	.caption {
-		max-width:em(120px);
+		max-width:em(180px);
 		padding:0;
 		line-height:1.5em;
 	}
 	img {
-		max-width:em(120px);
+		max-width:em(180px);
 		@include MQ(Sneg){
 			max-width:em(60px);
 		}
 	}
 	.thumb-link {
-		max-width:em(120px, 11px);
+		max-width:em(180px, 11px);
 		font-size:em(11px);	
 		.badge {
 			padding:0 0 0 em(5px, 11px);
@@ -300,3 +302,14 @@ a.active .arrow-down {display:block;}
 }
 
 .carousel-inner > .item > img, .carousel-inner > .item > a > img {width:100%;}
+.carousel-inner {
+	.item {
+		.right-panel {
+			font-size:em(13px);
+			.label {display:inline-block;font-size:em(14px);}
+			li {
+				line-height:1.2em;
+			}
+		}
+	}
+}

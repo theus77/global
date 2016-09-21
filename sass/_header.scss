@@ -58,7 +58,7 @@ header {
     .navbar-nav li a {
       color: lighten($color1, 100%);
       &:hover {
-        background: rgba($color1, 0.5);
+        background: rgba($color1, 0.3);
         color:$color2;
       }
     }
