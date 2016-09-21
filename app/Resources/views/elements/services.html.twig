@@ -6,8 +6,8 @@
 				<h2>{{ 'homepage.phototheque.title'|trans }}</h2>
 
 				<p>{{ 'homepage.phototheque.stat'|trans({
-						nombre_photo: stats.aggregations.counter.value,
-						nombre_serie: stats.hits.total
+						nombre_photo: stats.aggregations.counter.value|number_format(0, ',', '.'),
+						nombre_serie: stats.hits.total|number_format(0, ',', '.')
 					}) }}</p>
 
 			</div>
