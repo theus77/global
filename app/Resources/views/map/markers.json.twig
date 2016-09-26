@@ -1,5 +1,6 @@
 {
 	"markers": [ 
+	{% set homepageUrl = url('homepage') %}
 	{% for marker in markers.by_level.by_coordinate.by_location.buckets  %}
 		{
 		 	"type": "place",
@@ -13,7 +14,7 @@
 								<div class="image-box">
 									<a href="'~url('place', {'ouuid': marker.key})~'">
 										<figure>
-											<img src="'~url('thumbImage', {'ouuid': marker.top_version.hits.hits.0._id})~'" alt="'~(attribute(marker.top_version.hits.hits.0._source, 'name_'~app.request.locale)|e)~'" data-original="'~url('thumbImage', {'ouuid': marker.top_version.hits.hits.0._id})~'" class="img-responsive" width="320" height="320"></figure>
+											<img src="'~(url('thumbImage', {'ouuid': marker.top_version.hits.hits.0._id})|replace({(homepageUrl): imageServer}))~'" alt="'~(attribute(marker.top_version.hits.hits.0._source, 'name_'~app.request.locale)|e)~'" data-original="'~url('thumbImage', {'ouuid': marker.top_version.hits.hits.0._id})~'" class="img-responsive" width="320" height="320"></figure>
 									</a>
 									<div class="caption">
 										'~(attribute(marker.top_version.hits.hits.0._source, 'name_'~app.request.locale)|e)~' <span class="badge">'~(marker.doc_count)~'</span>

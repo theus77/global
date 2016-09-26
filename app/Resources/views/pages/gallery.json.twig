@@ -1,10 +1,11 @@
 {
 	"items": [
+		{% set homepageUrl = url('homepage') %}
 		{% for version in versions.hits.hits %}
 		{
 			"id":      {{ from+loop.index0 }},
 			"ouuid":   {{ version._id|json_encode|raw }},
-			"preview": {{ url('previewImage', {ouuid: version._id})|json_encode|raw }},
+			"preview": {{ url('previewImage', {ouuid: version._id})|replace({(homepageUrl): imageServer})|json_encode|raw }},
 			"label":   {% if version._source.label is defined %}{{ version._source.label|json_encode|raw }}{% else %}{{ 'label.not_available'|trans({'%arg%': version._source.name})|json_encode|raw }}{% endif %}
 
 		}{% if not loop.last %},{% endif %}

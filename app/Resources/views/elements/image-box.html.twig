@@ -1,4 +1,3 @@
-
 <div class="image-box">
 	<a href="{{ url|raw }}">
 		<figure>
@@ -6,8 +5,11 @@
 				<img src="{{ url('thumbImage', { ouuid: ouuid } ) }}"
 					alt="{{ name }}" />
 			</noscript>
+
+			{% set homepageUrl = url('homepage') %}
+			
 			<img src="{{ asset('img/'~app.request.locale~'/loading/thumb.jpg') }}" alt="{{ name }}"
-				data-original="{{ url('thumbImage', { ouuid: ouuid } ) }}"
+				data-original="{{url('thumbImage', { ouuid: ouuid })|replace({(homepageUrl): imageServer}) }}"
 				class="img-responsive lazy" width="320" height="320" />
 		</figure>
 	</a>
