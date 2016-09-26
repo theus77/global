@@ -10,6 +10,8 @@
 {% endif %}
 
 {% block body %} 
+
+{% set homepageUrl = url('homepage') %}
 <div id="galerie-filmstrip">
 	<div class="container">
 		{% include 'elements/messages.html.twig' %}
@@ -34,7 +36,7 @@
 						{% set ouuid = null %}
 						{% set label = null %}
 						{% if attribute(versions.hits.hits, i-from) is defined %}
-							{% set original = url('previewImage', {ouuid:attribute(versions.hits.hits, i-from)._id }) %}
+							{% set original = url('previewImage', {ouuid:attribute(versions.hits.hits, i-from)._id })|replace({(homepageUrl): imageServer}) %}
 							{% set ouuid = attribute(versions.hits.hits, i-from)._id %}
 							{% if attribute(versions.hits.hits, i-from)._source.label is defined %}
 								{% set label = attribute(versions.hits.hits, i-from)._source.label %}
@@ -75,8 +77,8 @@
 											class="{% if image == version._id %} version-active{% endif %} alternative-image">
 											<img 
 												alt="{% if version._source.label is defined %}{{ version._source.label|e }}{% else %}{{ 'label.not_available'|trans({'%arg%': version._source.name})|e }}{% endif %}"
-												src="{{ url('previewImage', {ouuid:image }) }}"
-												data-image="{{ url('imageImage', {ouuid:image }) }}" 
+												src="{{ url('previewImage', {ouuid:image })|replace({(homepageUrl): imageServer}) }}"
+												data-image="{{ url('imageImage', {ouuid:image })|replace({(homepageUrl): imageServer}) }}" 
 												class="img-responsive lazy-in-left-pannel">
 											</a>
 									{% endfor %}
@@ -92,7 +94,7 @@
 									<span class="sr-only">Next</span>
 								</a>
 								<img alt="{% if version._source.label is defined %}{{ version._source.label|e }}{% else %}{{ 'label.not_available'|trans({'%arg%': version._source.name})|e }}{% endif %}"
-									src="{{ url('imageImage', {ouuid:version._id }) }}" 
+									src="{{ url('imageImage', {ouuid:version._id })|replace({(homepageUrl): imageServer}) }}" 
 									class="img-responsive lazy" width="1200" height="800">
 							</div>
 							<div class="col-xs-2 right-panel" style="overflow-y: scroll;">

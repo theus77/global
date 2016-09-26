@@ -50,6 +50,7 @@ twig:
         title_prefix: "!!!UNDEFINED!!!"
         domain: "%environment%"
         googleApiKey: "%googleApiKey%"
+        imageServer: "%imageServer%"
 
 # Doctrine Configuration
 doctrine:
