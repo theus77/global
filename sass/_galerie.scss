@@ -4,20 +4,27 @@
 ********************************************/
 
 #galerie-filmstrip {
+	padding-top:em(100px);
 	position:relative;
 	height: 100%;
   	overflow: hidden;
+  	background: rgba($color1, 0.7);
+  	@include MQ(Sneg) {
+  		padding-top:em(50px);
+  	}
+  	h1 {
+  		font-size:em(24px);
+  		margin-top:em(15px, 24px);
+  	}
 	h2 {
 		color: lighten($color1, 80%);
 		font-size:em(18px);
 		margin-top: 0;
 		@include MQ(Sneg) {
-			font-size:em(12px);
-			padding:0 em(15px);
-			margin-top:em(60px, 14px);
+			margin-top:em(15px, 18px);
 		}
 	}
-	h3 {font-size:em(16px);}
+	h3 {font-size:em(16px);margin-top:0;font-weight:normal;}
 	#toggle-sidebar {
 		position:fixed;
 		top :em(250px);
@@ -45,91 +52,17 @@
 			top :em(280px);
     	}
 	}
-	&.container-fluid {
-		padding-left: 0;
-		padding-right: 0;
-		.row {padding-left: 15px;}
-	}
 	.galerie-thumb {
-		position: absolute;
-		width:100%;
-		z-index: 100;
-		height: auto !important;
-		background: rgba($color1, 0.7);
-		.trigger-expand {
-			position: absolute;
-		    z-index: 101;
-		    left: 50%;
-		    @include transform(translate(-50%, 0));			
-			background: rgba($color1, 0.7);	
-			&.top {
-				bottom: -47px;
-				@include border-bottom-radius(5px);
-			}    		
-			a { color: lighten($color1, 100%); }
-			span {padding: em(15px) em(25px);}
-			@include MQ(Sneg) {
-				display:none;
-    		}
-    	}
-    	@include MQ(Sneg) {
-			position:relative;
-    	}
+		padding-top:em(5px);
 	}
-	.galerie-thumb {
-    	@include MQ(Sneg) {
-    		padding-left:0;
-    		padding-right:0;
-			min-height:auto !important;
-    	}		
-	}
-	#galerie-info {		
-		font-size:em(13px);
-		color:lighten($color1, 100%);
-		background-color: $color1;
-		h2 {padding:0;font-size : em(17px);} 
-		h3 {font-size : em(15px);}	
-		ul {padding-left:0;}
-		.groupToMatch {
-			padding: em(15px, 13px);
-			height: 100%;
-    		overflow-y: auto;
-    		position: relative;
-			}
-		#map-ctp, #map-canvas-0 {min-height:em(200px);}
-		#map-ctp {margin-top:em(10px);}
-		.label {font-weight:normal;}
-		.label-default {background-color:$color2;}
-		a.close-sidebar { 
-		  display:inline-block;
-		  position: absolute;
-		  z-index:10;
-		  right: 0;
-		  top: 0;
-		  width: em(32px);
-		  height: em(32px);
-		  opacity: 0.6;
-		  color:lighten($color1, 20%);
-		  &:hover{opacity: 1;}
-		  &:before, &:after {
-		  	position: absolute;
-		  	left: em(15px);
-		  	content: ' ';
-		  	height: em(33px);
-		  	width: em(2px);
-		  	background-color: lighten($color1, 80%);
-		  }
-		  &:before {@include transform(rotate(45deg));}
-		  &:after {@include transform(rotate(-45deg));}
-		}
-	}
+
+	#map-ctp {margin:em(10px) 0;}
 	#price-ask a{
 		font-size:em(14px);
 		margin-top:em(10px, 14px);
 	}
 	#galerie-thumb-bro {
 		@include MQ(Splus) {			
-/* 			position:fixed;  */
     		min-height: 160px;
 			width:100%;
 			z-index:1000;
@@ -139,7 +72,6 @@
 		display:none;
 		@include MQ(Sneg) {			
 			display:block;
-			padding: em(5px);
 		}
 	}
 	div.galerie-thumb-scroll {  			
@@ -149,11 +81,8 @@
 		white-space:nowrap;
 		position:relative;		
 		min-height:160px;
-		@include MQ(Mneg) {			
-			min-height:180px;
-		}
 		@include MQ(Sneg) {			
-			min-height:150px;
+			min-height:100px;
 		}
   	}
   	.thumbnail { 
@@ -162,7 +91,21 @@
   		background-color: transparent;
   		border:0;
   		padding: em(15px) em(7.5px);
-  		&.active img, &:hover img, &:focus img {outline:5px solid $color2;}
+  		img {
+			filter: grayscale(100%); /* Standard CSS */
+			-webkit-filter: grayscale(100%); /* CSS for Webkit Browsers */
+			filter: image-url("grayscale.svg#desaturate"); /* Firefox 4-34 */
+			filter: gray;  /* Internet Explorer IE6-9 */
+			-webkit-filter: grayscale(1); /* Old WebKit Browsers */
+			opacity:.6;
+		}
+  		&.active img, &:hover img, &:focus img {
+  			outline:5px solid $color2;
+  								filter: grayscale(0%);
+    				filter: none;
+    				opacity:1;
+    				-webkit-filter: grayscale(0); /* Old WebKit */
+  		}
   		img {
   			@include MQ(Mneg) {
   				max-width: em(100px);
@@ -175,7 +118,7 @@
   			padding:em(5px) em(2.5px);
   		}
   		@include MQ(Sneg) {
-  			padding:0;
+  			padding:em(5px);
   		}
   	}	
 }
@@ -300,15 +243,57 @@ a.active .arrow-down {display:block;}
     height: 50px;
     width: 50px;
 }
+#carousel {		
+	padding-top:em(15px);
 
+	}
 .carousel-inner > .item > img, .carousel-inner > .item > a > img {width:100%;}
 .carousel-inner {
+	.middle-wrapper {position:relative;}
 	.item {
+		.left-panel {
+			.alternative-image {
+				display:inline-block;
+				img {
+					filter: grayscale(100%); /* Standard CSS */
+    				-webkit-filter: grayscale(100%); /* CSS for Webkit Browsers */
+    				filter: image-url("grayscale.svg#desaturate"); /* Firefox 4-34 */
+    				filter: gray;  /* Internet Explorer IE6-9 */
+    				-webkit-filter: grayscale(1); /* Old WebKit Browsers */
+    				opacity:.6;
+				}
+				margin-bottom:em(5px);
+				&.active img, &:hover img, &:focus img {
+					filter: grayscale(0%);
+    				filter: none;
+    				opacity:1;
+    				-webkit-filter: grayscale(0); /* Old WebKit */
+				}
+			}
+		}
 		.right-panel {
 			font-size:em(13px);
-			.label {display:inline-block;font-size:em(14px);}
+			background: $color1;
+			.label {
+				display:inline-block;
+				font-size:em(14px);
+				font-weight:normal;
+				&:hover {background-color:lighten($color1, 30%);}
+			}
 			li {
 				line-height:1.2em;
+			}
+			padding-top:em(15px);
+			padding-bottom:(15px);
+			#detailList {padding-left:em(15px);}
+			.btn.btn-primary {
+				background-color:$color2;
+				color:$color1;
+				&:hover {background-color:darken($color2, 10%);}
+			}
+			@include MQ(Mneg) {
+				overflow: visible !important;
+				height:auto !important;
 			}
 		}
 	}

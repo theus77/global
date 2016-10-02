@@ -42,10 +42,10 @@ $(window).load(function() {
 	 	e.preventDefault();
 	 });
 
- 		// Open thumb in galerie page.
+ 	// Open thumb in galerie page.
 	var childOpened;
 	//var oldChildOpened;
-	$( "div[class*='child-']" ).hide();
+/*	$( "div[class*='child-']" ).hide();
 	$( "div.child-0" ).show();
 	$( "#galerie-thumb-bro .parent-0" ).addClass( "active" );
 	$( "a[class*='parent-']" ).on( "click", function() {
@@ -64,12 +64,14 @@ $(window).load(function() {
   			height: "toggle",
   			opacity: "toggle"
 		});
-	});
+	});*/
 
 	// thumbnail add active class
-	$( ".thumbnail" ).on( "click", function() {
+/*	$( ".thumbnail, .alternative-image" ).on( "click", function() {
 		$(this).addClass( "active" ).siblings().removeClass( "active");
-	});	
+	});	*/
+
+
 
  	// Nicescroll : https://github.com/inuyaksa/jquery.nicescroll
 	// add scrolling to the photos galeries
