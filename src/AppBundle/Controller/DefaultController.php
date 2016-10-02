@@ -320,7 +320,7 @@ class DefaultController extends Controller
 	{
 		return $this->render('pages/gallery.html.twig', [
 				'textes' => $this->service()->getTexts('gallery'),
-				'body_id' => 'default',
+				'body_id' => 'gallery',
 		]);
 	}
     
@@ -403,7 +403,7 @@ class DefaultController extends Controller
 				'versions' => $versions,
 				'title' => 'gallery.keyword.title',
 				'title_arg' => $title_arg,
-				'body_id' => 'default',
+				'body_id' => 'gallery',
         		'from' => $p*100,
         ]);
     }
@@ -458,7 +458,7 @@ class DefaultController extends Controller
         				'nl' => ['slug' => $result['hits']['hits'][0]['_source']['slug_nl']],
         				'en' => ['slug' => $result['hits']['hits'][0]['_source']['slug_en']],
         		],
-				'body_id' => 'default',
+				'body_id' => 'gallery',
         		'from' => $p*100,
         ]);
     }

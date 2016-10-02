@@ -12,23 +12,23 @@
 {% block body %} 
 
 {% set homepageUrl = url('homepage') %}
-<div id="galerie-filmstrip">
-	<div class="container">
+<div class="container">
 		{% include 'elements/messages.html.twig' %}
 	</div>
+<div id="galerie-filmstrip" class="container-fluid">
 	{% if versions.hits.total > 0 %}
 		<div class="row">
 			<div class="col-md-12">
-				<h2>
+				<h1>
 					{{ finalTitle }} 
 					
 					<span class="badge">
 						{{ versions.hits.total }}
 					</span>
-				</h2>
+				</h1>
 			</div>
 		</div>
-		<div class="row" id="galerie-thumb-bro" style="margin:0;">
+		<div class="row" id="galerie-thumb-bro">
 			<div class="col-md-12 galerie-thumb">
 				<div class="galerie-thumb-scroll" id="thumb-scroll-container" style="overflow: hidden; outline: none; display: block;">
 					{% for i in 0..(versions.hits.total-1) %}
@@ -60,9 +60,9 @@
 		</div>
 	
 	
-		<div class="carousel slide" 
+		<div class="carousel slide row" 
 			id="carousel"
-			data-ride="carousel"  data-interval="false" style="background-color: black;"
+			data-ride="carousel"  data-interval="false"
 			data-count="{{ versions.hits.total|json_encode|raw }}" data-current="0">
 			<div class="carousel-inner" role="listbox">
 				{% for i in 0..1 %}
@@ -70,7 +70,7 @@
 						{% set version = attribute(versions.hits.hits, i) %}
 						<div class="item{% if loop.first %} active{% endif %}">
 							{% set first = loop.first %}
-							<div class="col-xs-2 left-panel" style="overflow-y: scroll;">
+							<div class="col-xs-4 col-md-2 left-panel" style="overflow-y: scroll;">
 								<div class="inner-stack">
 									{% for image in version._source.Stack %}
 										<a href="#" 
@@ -84,20 +84,23 @@
 									{% endfor %}
 								</div>
 							</div>
-							<div class="col-xs-8 middle-panel">
+							<div class="col-xs-8 col-md-8 middle-panel">
+							<div class="middle-wrapper">
 								<a href="#carousel" class="left carousel-control" role="button" onclick="previous(event); return false;">
 									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 									<span class="sr-only">Previous</span>
 								</a> 
+								
+								<img alt="{% if version._source.label is defined %}{{ version._source.label|e }}{% else %}{{ 'label.not_available'|trans({'%arg%': version._source.name})|e }}{% endif %}"
+									src="{{ url('imageImage', {ouuid:version._id })|replace({(homepageUrl): imageServer}) }}" 
+									class="img-responsive lazy" width="1200" height="800">
 								<a href="#carousel" class="right carousel-control" role="button" onclick="next(event); return false;"> 
 									<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 									<span class="sr-only">Next</span>
 								</a>
-								<img alt="{% if version._source.label is defined %}{{ version._source.label|e }}{% else %}{{ 'label.not_available'|trans({'%arg%': version._source.name})|e }}{% endif %}"
-									src="{{ url('imageImage', {ouuid:version._id })|replace({(homepageUrl): imageServer}) }}" 
-									class="img-responsive lazy" width="1200" height="800">
+								</div>
 							</div>
-							<div class="col-xs-2 right-panel" style="overflow-y: scroll;">
+							<div class="col-xs-12 col-md-2 right-panel" style="overflow-y: scroll;">
 							<h2 class="versionTitle">{% if version._source.label is defined %}{{ version._source.label|e }}{% else %}{{ 'label.not_available'|trans({'%arg%': version._source.name})|e }}{% endif %}</h2>
 							<ul id="detailList">
 								<li class="data-artist">{% if version._source.artist is defined %}{{ version._source.artist|e }}{% else %}{{ 'artist.not_available'|trans|e }}{% endif %}</li>
