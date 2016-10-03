@@ -373,7 +373,7 @@ class DefaultController extends Controller
 				'versions' => $this->search()->placeSearch($ouuid, $p),
 				'title' => 'gallery.place.'.$level.'.title',
 				'title_arg' => $title_arg,
-				'body_id' => 'default',
+				'body_id' => 'gallery',
         		'from' => $p*100,
         ]);
     }

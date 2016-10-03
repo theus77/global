@@ -16,3 +16,33 @@
 	border: 0;
 	&:hover {background-color: $color1;}
 }
+%gradient-gray {
+	position:relative;
+	&:after {
+	  position: absolute;
+	  content: "";
+	  left: 0;
+	  bottom: 0;
+	  height: 10%;
+	  width: 100%;
+	  background: linear-gradient(transparent, $color1);
+	}
+}
+
+%gray-img {
+	img {
+		filter: grayscale(100%); /* Standard CSS */
+		-webkit-filter: grayscale(100%); /* CSS for Webkit Browsers */
+		filter: image-url("grayscale.svg#desaturate"); /* Firefox 4-34 */
+		filter: gray;  /* Internet Explorer IE6-9 */
+		-webkit-filter: grayscale(1); /* Old WebKit Browsers */
+		opacity:.6;
+	}
+	&.active img, &:hover img, &:focus img {
+		outline:1px solid $color2;
+		filter: grayscale(0%);
+		filter: none;
+		opacity:1;
+		-webkit-filter: grayscale(0); /* Old WebKit */
+	}
+}

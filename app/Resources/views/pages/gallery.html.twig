@@ -60,17 +60,17 @@
 		</div>
 	
 	
-		<div class="carousel slide row" 
+		<div class="carousel slide" 
 			id="carousel"
 			data-ride="carousel"  data-interval="false"
 			data-count="{{ versions.hits.total|json_encode|raw }}" data-current="0">
-			<div class="carousel-inner" role="listbox">
+			<div class="carousel-inner row" role="listbox">
 				{% for i in 0..1 %}
 					{% if attribute(versions.hits.hits, i) is defined %}
 						{% set version = attribute(versions.hits.hits, i) %}
 						<div class="item{% if loop.first %} active{% endif %}">
 							{% set first = loop.first %}
-							<div class="col-xs-4 col-md-2 left-panel" style="overflow-y: scroll;">
+							<div class="col-xs-3 col-md-2 left-panel" style="overflow-y: scroll;">
 								<div class="inner-stack">
 									{% for image in version._source.Stack %}
 										<a href="#" 
@@ -84,7 +84,7 @@
 									{% endfor %}
 								</div>
 							</div>
-							<div class="col-xs-8 col-md-8 middle-panel">
+							<div class="col-xs-9 col-md-7 middle-panel">
 							<div class="middle-wrapper">
 								<a href="#carousel" class="left carousel-control" role="button" onclick="previous(event); return false;">
 									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -100,7 +100,7 @@
 								</a>
 								</div>
 							</div>
-							<div class="col-xs-12 col-md-2 right-panel" style="overflow-y: scroll;">
+							<div class="col-xs-12 col-md-3 right-panel" style="overflow-y: scroll;">
 							<h2 class="versionTitle">{% if version._source.label is defined %}{{ version._source.label|e }}{% else %}{{ 'label.not_available'|trans({'%arg%': version._source.name})|e }}{% endif %}</h2>
 							<ul id="detailList">
 								<li class="data-artist">{% if version._source.artist is defined %}{{ version._source.artist|e }}{% else %}{{ 'artist.not_available'|trans|e }}{% endif %}</li>
@@ -232,7 +232,7 @@
 				
 				
 				
-				item.find('.col-xs-8 img').on('load', function(){
+				item.find('.col-xs-9 img').on('load', function(){
 					$(this).unbind('load');
 	
 					$.ajax({
@@ -240,7 +240,7 @@
 						  data: { ouuid: $('#thumb-'+index).attr('data-ouuid')}
 					}).done(function(data) {
 // 						console.log(data);
-						item.find('.col-xs-8 img').attr('src', data.url);
+						item.find('.col-xs-9 img').attr('src', data.url);
 						item.find('.data-artist').html(data.artist);
 // 						console.log(item.find('.map-div'));
 						item.find('.map-div').each(function(){
@@ -253,7 +253,7 @@
 						$('.alternative-image').on('click', function(event){
 							event.stopPropagation();
 							var url = $(this).find('img').attr('data-image');
-							$('#carousel  .active .col-xs-8 img').attr('src',url );
+							$('#carousel  .active .col-xs-9 img').attr('src',url );
 							return false;
 						});
 						item.find('.keywordList').html(data.keywords);	
@@ -267,11 +267,11 @@
 					}
 					
 					$('.galerie-thumb .thumbnail.active').removeClass('active');
-					$('#thumb-'+index).addClass('active');
+					$('#thumb-'+index).parent().addClass('active');
 					
 					$('#carousel').attr('data-current', index);
 				});
-				item.find('.col-xs-8 img').attr('src', $('#thumb-'+index).attr('data-original'));
+				item.find('.col-xs-9 img').attr('src', $('#thumb-'+index).attr('data-original'));
 				
 		
 			}
