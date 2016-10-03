@@ -43,7 +43,7 @@ $(window).load(function() {
 	 });
 
  	// Open thumb in galerie page.
-	var childOpened;
+	//var childOpened;
 	//var oldChildOpened;
 /*	$( "div[class*='child-']" ).hide();
 	$( "div.child-0" ).show();
@@ -78,9 +78,9 @@ $(window).load(function() {
 	var niceScrollConfig = {
 		cursorcolor:"#7C7B7B",
 		cursorborderradius:0,
-		cursorwidth: "15",
-		cursorborder: "1px solid #ddd",
-		cursorfixedheight: "100",
+		cursorwidth: "7",
+		cursorborder: "1px solid #eee",
+		cursorfixedheight: "30",
 		background: "transparent"
     };
 
