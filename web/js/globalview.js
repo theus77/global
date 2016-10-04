@@ -38,50 +38,20 @@ $(window).load(function() {
 		$( "#" +  collapseToOpen).addClass( "in" ).attr( "aria-expanded",  "true" );
 	}); 
 
- 	$( "#toggle-sidebar, .close-side" ).on( "click", "a",  function (e) {
-	 	e.preventDefault();
-	 });
-
- 	// Open thumb in galerie page.
-	//var childOpened;
-	//var oldChildOpened;
-/*	$( "div[class*='child-']" ).hide();
-	$( "div.child-0" ).show();
-	$( "#galerie-thumb-bro .parent-0" ).addClass( "active" );
-	$( "a[class*='parent-']" ).on( "click", function() {
-		var child = ".child-" + $(this).attr( "data-slide-to" );
-		$( "div[class*='child-']" ).not($(this)).hide().parent().show();
-		$( child ).show();
-	});
-
-	$( ".trigger-expand" ).on( "click", "a", function(e){
-		e.preventDefault();
-		// animate effect to show/hide the expand collapse
-		$(this).find( "span" )
-			.toggleClass( "glyphicon-chevron-down" )
-			.toggleClass( "glyphicon-chevron-up" );
-		$(this).parent().prev().animate({
-  			height: "toggle",
-  			opacity: "toggle"
-		});
-	});*/
-
-	// thumbnail add active class
-/*	$( ".thumbnail, .alternative-image" ).on( "click", function() {
-		$(this).addClass( "active" ).siblings().removeClass( "active");
-	});	*/
-
-
 
  	// Nicescroll : https://github.com/inuyaksa/jquery.nicescroll
 	// add scrolling to the photos galeries
 	var niceScrollConfig = {
 		cursorcolor:"#7C7B7B",
-		cursorborderradius:0,
-		cursorwidth: "7",
+		cursorborderradius:5,
+		cursorminheight: 32,
+		spacebarenabled: true,
+		railpadding: { top: 0, right: 0, left: 0, bottom: 0 },
+		background: "#000",
+		cursorwidth: "15",
 		cursorborder: "1px solid #eee",
-		cursorfixedheight: "30",
-		background: "transparent"
+		cursorfixedheight: "50",
+		zindex: 10000
     };
 
 
