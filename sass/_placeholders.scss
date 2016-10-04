@@ -18,14 +18,15 @@
 }
 %gradient-gray {
 	position:relative;
-	&:after {
+	&:before {
 	  position: absolute;
 	  content: "";
 	  left: 0;
 	  bottom: 0;
-	  height: 10%;
+	  height: em(30px);
 	  width: 100%;
 	  background: linear-gradient(transparent, $color1);
+	  z-index:1000;
 	}
 }
 
@@ -39,7 +40,6 @@
 		opacity:.6;
 	}
 	&.active img, &:hover img, &:focus img {
-		outline:1px solid $color2;
 		filter: grayscale(0%);
 		filter: none;
 		opacity:1;

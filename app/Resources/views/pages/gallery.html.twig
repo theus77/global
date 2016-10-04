@@ -74,7 +74,7 @@
 								<div class="inner-stack">
 									{% for image in version._source.Stack %}
 										<a href="#" 
-											class="{% if image == version._id %} version-active{% endif %} alternative-image">
+											class="{% if image == version._id %} version-active{% endif %} alternative-image pull-left">
 											<img 
 												alt="{% if version._source.label is defined %}{{ version._source.label|e }}{% else %}{{ 'label.not_available'|trans({'%arg%': version._source.name})|e }}{% endif %}"
 												src="{{ url('previewImage', {ouuid:image })|replace({(homepageUrl): imageServer}) }}"
@@ -100,7 +100,8 @@
 								</a>
 								</div>
 							</div>
-							<div class="col-xs-12 col-md-3 right-panel" style="overflow-y: scroll;">
+							<div class="col-xs-12 col-md-3 right-panel">
+							<div class="wrapper-right-panel">
 							<h2 class="versionTitle">{% if version._source.label is defined %}{{ version._source.label|e }}{% else %}{{ 'label.not_available'|trans({'%arg%': version._source.name})|e }}{% endif %}</h2>
 							<ul id="detailList">
 								<li class="data-artist">{% if version._source.artist is defined %}{{ version._source.artist|e }}{% else %}{{ 'artist.not_available'|trans|e }}{% endif %}</li>
@@ -155,6 +156,7 @@
 								</div>
 	
 							</div>
+					</div>
 					</div>
 				</div>
 					{% endif %}
@@ -385,7 +387,9 @@
 		$('.alternative-image').on('click', function(event){
 			event.stopPropagation();
 			var url = $(this).find('img').attr('data-image');
-			$('#carousel  .active .col-xs-8 img').attr('src',url );
+			$('#carousel  .active .col-xs-9 img').attr('src',url );
+			$('.alternative-image').removeClass('active');
+			$(this).addClass('active');
 			return false;
 		});
 
