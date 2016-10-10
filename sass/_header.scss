@@ -39,7 +39,7 @@ header {
 }
 .navbar-inverse {
   @include transition(all 0.5s ease-in-out);
-  background: rgba($color1, 0.7);
+  background: rgba($color1, 0.9);
   .navbar-nav > li {
     &.active > a {background-color:transparent; color:$color2;}
     a {
@@ -147,5 +147,30 @@ header {
     
 	}
 }
+.visible-xs-block .navbar-form {
+    .form-group.search-toggle {
+      input {width:100%;}
+      display:inline-block;
+      @include MQ(Lneg) {
+          width: calc(100% - 60px);
+      }
+    }
+    .btn {
+      padding:em(10px) em(15px);
+            @include MQ(XS) {
+                margin-left:em(5px);
+                margin-top:em(-45px);
+            }
+    }
+    @include MQ(Lneg) {
+      padding-left:0;
+      padding-right:0;
+    }
+    @include MQ(XS) {
+      padding-left:15px;
+      padding-right:15px;
+    }
+  }
+
 .navbar-nav.lang > li > a {padding:em(15px) em(5px); font-size:em(12px); }
 abbr[title], abbr[data-original-title] {border:0;}
