@@ -72,6 +72,9 @@ pre {
   position: relative;
   min-height: 100%;
   padding: 100px 0 100px;
+  @include MQ(Mneg) {
+    padding:em(50px) 0 em(50px);
+  }
 }
 #bg_pattern {
   background-image: image-url("bg_pattern.png");

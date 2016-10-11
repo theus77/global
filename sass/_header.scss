@@ -28,6 +28,10 @@ header {
           border-radius: 0;
           box-shadow: none;
       }
+    & > li > a:hover, & > li > a:focus {
+      background-color: transparent;
+      color: $color2;
+    }
 	}
 }
 
@@ -37,9 +41,17 @@ header {
 	  width: 175px;
 	}
 }
+.navbar-fixed-top {
+  .navbar-collapse {
+    max-height:100%;
+  }
+  @include MQ(Sneg) {
+    //position: relative;
+  }
+}
 .navbar-inverse {
   @include transition(all 0.5s ease-in-out);
-  background: rgba($color1, 0.9);
+  background: rgba($color1, 0.9) !important;
   .navbar-nav > li {
     &.active > a {background-color:transparent; color:$color2;}
     a {
@@ -148,23 +160,18 @@ header {
 	}
 }
 .visible-xs-block .navbar-form {
+    margin-left:-15px;
+    margin-right:-15px;
     .form-group.search-toggle {
       input {width:100%;}
-      display:inline-block;
+      float:left;
       @include MQ(Lneg) {
           width: calc(100% - 60px);
       }
     }
     .btn {
       padding:em(10px) em(15px);
-            @include MQ(XS) {
-                margin-left:em(5px);
-                margin-top:em(-45px);
-            }
-    }
-    @include MQ(Lneg) {
-      padding-left:0;
-      padding-right:0;
+      margin-left:em(5px);
     }
     @include MQ(XS) {
       padding-left:15px;
