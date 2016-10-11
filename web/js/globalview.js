@@ -26,27 +26,9 @@ $(document).ready(function() {
     	smoothscroll: true,
 		cursorfixedheight: "50"
     };
-    var niceScrollConfigTop = {
-		cursorcolor:"#7C7B7B",
-		cursorborderradius:0,
-		cursorminheight: 32,
-		spacebarenabled: true,
-		railpadding: { top: 0, right: 0, left: 0, bottom: 0 },
-		background: "#000",
-		cursorwidth: "15",
-		cursorborder: "0",
-		touchbehavior: false, // enable cursor-drag scrolling like touch devices in desktop computer
-    	hwacceleration: true,
-    	grabcursorenabled: true,
-    	enabletranslate3d: true,
-    	autohidemode: "scroll",
-    	smoothscroll: true,
-		cursorfixedheight: "50",
-		oneaxismousemode: true
-    };
 
 
-	$( ".galerie-thumb-scroll" ).niceScroll(niceScrollConfigTop);
+	$( ".galerie-thumb-scroll" ).niceScroll(niceScrollConfig);
 	$( ".carousel-inner .left-panel" ).niceScroll(niceScrollConfig);
 	$( ".carousel-inner .right-panel" ).niceScroll(niceScrollConfig);
 	
@@ -150,6 +132,7 @@ $(document).ready(function() {
 
 	// same height for left-panel, right-panel and middle-panel
 	if ( $( ".carousel-inner").length >= 1) {
+		
 		var imgSize = $( ".carousel-inner .middle-panel img" ).height();
 		$( ".carousel-inner .item div[class*='col-xs-']").height(imgSize);
 		$(window).resize(function(){

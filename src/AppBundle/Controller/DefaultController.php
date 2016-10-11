@@ -130,7 +130,7 @@ class DefaultController extends Controller
 		return $this->render('pages/askprice.html.twig', [
 				'textes' => $this->service()->getTexts('ask_price'),
 				'source' => $source,
-				'body_id' => 'default',
+				'body_id' => 'hompepage',
 		]);
 	}
 	
