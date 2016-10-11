@@ -136,3 +136,11 @@
     display: inline-block;
   }
 }
+#contact {
+	.form-horizontal .control-label {
+		line-height:em(15px);
+		@include MQ(Mneg) {
+			text-align:left;
+		}
+	}
+}

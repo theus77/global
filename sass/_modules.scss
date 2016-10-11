@@ -196,7 +196,7 @@ a.link {
     padding: 0;
     @include border-radius(3px);
     color: lighten($color1, 100%);
-    background: rgba($color1, 0.7);
+    background: rgba($color1, 0.85);
     border-color: $color1;
     a {
       position: relative;
@@ -223,7 +223,7 @@ a.link {
     }
   }
   .panel-body {
-    background: rgba($color1, 0.7);
+    background: rgba($color1, 0.85);
   }
 }
 
