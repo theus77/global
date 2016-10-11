@@ -38,4 +38,4 @@ parameters:
           secret: ffffffffffffffff
     googleApiKey: ffffff
     awsESDomainName: ffff
-    imageServerUrl: http://global.theus.be/
+    imageServer: http://global.theus.be/
