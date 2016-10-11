@@ -6,6 +6,35 @@ $(window).load(function() {
 	});
 });
 
+$(document).ready(function() {
+ 	// Nicescroll : https://github.com/inuyaksa/jquery.nicescroll
+	// add scrolling to the photos galeries
+	var niceScrollConfig = {
+		cursorcolor:"#7C7B7B",
+		cursorborderradius:0,
+		cursorminheight: 32,
+		spacebarenabled: true,
+		railpadding: { top: 0, right: 0, left: 0, bottom: 0 },
+		background: "#000",
+		cursorwidth: "15",
+		cursorborder: "0",
+		touchbehavior: false, // enable cursor-drag scrolling like touch devices in desktop computer
+    	hwacceleration: true,
+    	grabcursorenabled: true,
+    	enabletranslate3d: true,
+    	autohidemode: "scroll",
+    	smoothscroll: true,
+		cursorfixedheight: "50"
+    };
+
+
+	$( ".galerie-thumb-scroll" ).niceScroll(niceScrollConfig);
+	$( ".carousel-inner .left-panel" ).niceScroll(niceScrollConfig);
+	$( ".carousel-inner .right-panel" ).niceScroll(niceScrollConfig);
+	
+});
+
+
 (function($){
   var
     $win 			= $(window),
@@ -37,28 +66,6 @@ $(window).load(function() {
 		$( "#" +  collapseToOpen).prev( "div" ).find( "a" ).attr( "aria-expanded",  "true" ).removeClass( "collapsed" );
 		$( "#" +  collapseToOpen).addClass( "in" ).attr( "aria-expanded",  "true" );
 	}); 
-
-
- 	// Nicescroll : https://github.com/inuyaksa/jquery.nicescroll
-	// add scrolling to the photos galeries
-	var niceScrollConfig = {
-		cursorcolor:"#7C7B7B",
-		cursorborderradius:5,
-		cursorminheight: 32,
-		spacebarenabled: true,
-		railpadding: { top: 0, right: 0, left: 0, bottom: 0 },
-		background: "#000",
-		cursorwidth: "15",
-		cursorborder: "1px solid #eee",
-		cursorfixedheight: "50",
-		zindex: 10000
-    };
-
-
-	$( ".galerie-thumb-scroll" ).niceScroll(niceScrollConfig);
-	$( ".carousel-inner .left-panel" ).niceScroll(niceScrollConfig);
-	$( ".carousel-inner .right-panel" ).niceScroll(niceScrollConfig);
-
 
 	function split( val ) {
 	 	return val.split( /,\s*/ );
@@ -125,6 +132,7 @@ $(window).load(function() {
 
 	// same height for left-panel, right-panel and middle-panel
 	if ( $( ".carousel-inner").length >= 1) {
+		
 		var imgSize = $( ".carousel-inner .middle-panel img" ).height();
 		$( ".carousel-inner .item div[class*='col-xs-']").height(imgSize);
 		$(window).resize(function(){

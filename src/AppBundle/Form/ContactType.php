@@ -27,14 +27,14 @@ class ContactType extends AbstractType
     	$builder->add('name', TextType::class, [
 					'translation_domain' => $this->domain,
     				'label_attr' => [
-    						'class' => 'col-md-4'
+    						'class' => 'col-md-4 col-xs-12 col-sm-12'
     				],
 					'label' => 'form.search.name',
 			])
 			->add('email', TextType::class, [
 					'translation_domain' => $this->domain,
     				'label_attr' => [
-    						'class' => 'col-md-4'
+    						'class' => 'col-md-4 col-xs-12 col-sm-12'
     				],
 					'label' => 'form.search.email',
 			])
@@ -42,7 +42,7 @@ class ContactType extends AbstractType
 					'required' => false,
 					'translation_domain' => $this->domain,
     				'label_attr' => [
-    						'class' => 'col-md-4'
+    						'class' => 'col-md-4 col-xs-12 col-sm-12'
     				],
 					'label' => 'form.search.phone',
 			])
@@ -50,7 +50,7 @@ class ContactType extends AbstractType
 					'required' => false,
 					'translation_domain' => $this->domain,
     				'label_attr' => [
-    						'class' => 'col-md-4'
+    						'class' => 'col-md-4 col-xs-12 col-sm-12'
     				],
 					'attr' => [
 							'rows' => 6,

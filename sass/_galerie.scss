@@ -6,7 +6,11 @@
 #galerie-filmstrip {
 	padding-top:em(100px);
   	background: rgba($color1, 0.7);
-  	&.container-fluid{padding-left:0;padding-right:0;}
+  	max-width:em(1920px);
+  	&.container-fluid{
+  		padding-left:0;
+  		padding-right:0;
+  	}
   	.row {margin-left:0;margin-right:0;}
   	[class*='col-'] {padding-left:0; padding-right:0;}
   	@include MQ(Sneg) {
@@ -45,16 +49,17 @@
 		white-space:nowrap;	
   	}
   	.thumbnail { 
-  		display: inline-block; 
+  		display: inline-block;
   		margin-bottom: 0;
+  		height:100% !important;
   		margin-right:-4px; // remove gaps with inline-block
   		padding:0;
   		background-color: transparent;
   		border:0;
 		@extend %gray-img;
 		&.active img, &:hover img, &:focus img {
-			outline:3px solid $color2;
-			outline-offset: -3px;
+			border:3px solid $color2;
+			//outline-offset: -3px;
 		}
   		img {
   			@include MQ(Mneg) {
@@ -149,33 +154,6 @@
 		}
 	}
 }
-/* new css show children photo's galerie under parent photo */
-.children-photos {
-	position:absolute; bottom:0; width:100%;
-	.child-photo img {
-		width:em(100px); 
-		height:auto;
-		@include MQ(Mneg) {			
-			width:60px;
-		}
-	}
-}
-a[class*='parent-'] {position:relative;}
-.arrow-down {
-	display:none;
-	width: 0; 
-	height: 0; 
-	border-left: em(20px) solid transparent;
-	border-right: em(20px) solid transparent;	
-	border-top: em(20px) solid $color2;
-	position:absolute;
-	z-index:100;
-	left:40%;
-	@include MQ(Sneg) {
-		left:30%;
-	}
-}
-a.active .arrow-down {display:block;}
 .carousel-control.right {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
 }
@@ -239,7 +217,7 @@ a.active .arrow-down {display:block;}
 				color:$color1;
 				&:hover {background-color:darken($color2, 10%);}
 			}
-			@include MQ(Mneg) {
+			@include MQ(Lneg) {
 				overflow: visible !important;
 				height:auto !important;
 				margin-top:em(20px);
