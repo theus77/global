@@ -136,7 +136,7 @@ class GlobalService {
 				$getImages = 8;
 			}
 		}
-		else if($config['zoom'] > 9){ //commune
+		else if($config['zoom'] > 8){ //commune
 			$levelRange = [
 					'gte' => 16,
 					'lte' => 20,
