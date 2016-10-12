@@ -48,8 +48,8 @@
 							onclick="goTo({{ i }});"
 							data-index="{{ i }}">
 							<img id="thumb-{{ i }}" src="{{ asset('img/'~app.request.locale~'/loading/preview.jpg') }}"
-								data-original  =   "{{ original|e }}"
-								data-ouuid     ="{{ ouuid|e }}" 
+								data-original="{{ original|e }}"
+								data-ouuid="{{ ouuid|e }}" 
 								data-index="{{ loop.index0 }}" 
 								alt="{{ label|e('html_attr') }}" 
 								class="lazy-in-scroll lazy" width="300" height="200" style="display: block;">
