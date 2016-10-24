@@ -49,6 +49,8 @@
 		var northeast = new google.maps.LatLng(north, est);
     	 
     	 var bounds = new google.maps.LatLngBounds(southwest, northeast);
+
+    	 var infowindow;
          
 
 
@@ -113,11 +115,15 @@
 							  //console.log(val);
 							
 							  						
-							var infowindow = new google.maps.InfoWindow({
-								content: val['content']
-							  });
+							 
 							 google.maps.event.addListener(marker, 'click', function() {
-								    infowindow.open(map,marker);
+								 if(infowindow){
+									 infowindow.close();
+								 }
+								 infowindow = new google.maps.InfoWindow({
+										content: val['content']
+								  });
+								 infowindow.open(map,marker);
 							 });
 							 markers.push(marker);
 						});
