@@ -309,3 +309,19 @@
 	</section>
 	<!-- ./contact -->
 {% endblock %} 
+
+{% block javascript %}
+<script type="text/javascript">
+$(function() {
+	$("a.search_button").click(function(e){
+		e.preventDefault();
+		$('#searchCollapse').collapse('show');
+		$('#quickSearchInput').focus();
+		$(window).scrollTop($("#services").offset().top);
+		$('#quickSearchInput').focus();
+		return false;
+	});
+});
+</script>
+
+{% endblock %} 
