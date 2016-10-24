@@ -6,6 +6,7 @@
 	"date": "{{ info._source.date }}",
 	"lat": "{{ info._source.location.lat }}",
 	"lng": "{{ info._source.location.lon }}",
+	"ouuid": "{{ info._source.uuid }}",
 	{% set stack = '' %}
 	{% for item in info._source.Stack %}
 		{% set stack = stack~('<a href="#" class="alternative-image"><img src="'~(url('previewImage', {ouuid: item})|replace({(homepageUrl): imageServer}))~'" data-image="'~(url('imageImage', {ouuid: item})|replace({(homepageUrl): imageServer}))~'" class="img-responsive"></a>') %}
