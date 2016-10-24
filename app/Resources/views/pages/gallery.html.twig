@@ -110,7 +110,7 @@
 							</ul>
 							<div id="price-ask">
 								<form action="{{ url('ask_price') }}" method="get">
-									<input type="hidden" name="ouuid" id="ouuid_{{ loop.index0 }}" value="{{ version._id|e }}">
+									<input type="hidden" name="ouuid" id="ouuid_{{ loop.index0 }}" value="{{ version._id|e }}" class="hidden_ouuid">
 									<input type="hidden" name="_route" id="ouuid_{{ loop.index0 }}" value="{{ app.request.requestUri|e }}">
 									<button 
 										role="button"
@@ -245,6 +245,8 @@
 						item.find('.col-xs-9 img').attr('src', data.url);
 						item.find('.data-artist').html(data.artist);
 // 						console.log(item.find('.map-div'));
+						item.find('input.hidden_ouuid').val($('#thumb-'+index).attr('data-ouuid'));
+
 						item.find('.map-div').each(function(){
 							addGMap(this, data.lat, data.lng);
 						});
