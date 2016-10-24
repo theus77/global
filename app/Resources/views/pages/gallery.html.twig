@@ -245,7 +245,7 @@
 						item.find('.col-xs-9 img').attr('src', data.url);
 						item.find('.data-artist').html(data.artist);
 // 						console.log(item.find('.map-div'));
-						item.find('input.hidden_ouuid').val($('#thumb-'+index).attr('data-ouuid'));
+						item.find('input.hidden_ouuid').val(data.uuid);
 
 						item.find('.map-div').each(function(){
 							addGMap(this, data.lat, data.lng);
