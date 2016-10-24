@@ -48,7 +48,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="{{ url('map') }}" class="menu-map">{{ 'navbar.map.title'|trans }}</a></li>
 						<li><a href="{{ url('keywords') }}" class="menu-library">{{ 'navbar.themas.title'|trans }}</a></li>
-						<li><a href="{{ url('homepage') }}#services" class="menu-services">{{ 'navbar.free_search.title'|trans }}</a></li>
+						<li><a href="{{ url('homepage') }}#services" class="menu-services search_button">{{ 'navbar.free_search.title'|trans }}</a></li>
 					</ul></li>
 				<li class="dropdown"><a aria-expanded="false" aria-haspopup="true"
 					role="button" data-toggle="dropdown"
@@ -76,7 +76,7 @@
 						class="fa fa-search"></span><a href="#" class="sr-only">{{ 'navbar.search.title' }}</a>
 					</li>
 				{% else %}
-					<li><a href="{{ url('homepage') }}#services" class="menu-contact hidden-xs hidden-sm"" data-scroll="1">{{ 'navbar.services.title'|trans|raw }}</a></li>
+					<li><a href="{{ url('homepage') }}#services" class="menu-contact hidden-xs hidden-sm search_button" data-scroll="1">{{ 'navbar.services.title'|trans|raw }}</a></li>
 				{% endif %}
 			</ul>
 			<!-- /menu nav -->
