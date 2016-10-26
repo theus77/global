@@ -59,13 +59,27 @@ $(document).ready(function() {
 		$(this).next( "form" ).toggle();
 	});
 
-	$( "a[class^='collapse'], a[class^='technics']" ).on( "click", function() {
+	$( "a[class^='technics']" ).on( "click", function() {
+		
 		var collapseToOpen = $(this).attr('class');
 		$( ".panel-heading h4 a").removeClass( "in" ).attr( "aria-expanded",  "false" ).addClass( "collapsed" );
 		$( "div.panel-collapse").removeClass( "in" ).attr( "aria-expanded",  "false" );
 		$( "#" +  collapseToOpen).prev( "div" ).find( "a" ).attr( "aria-expanded",  "true" ).removeClass( "collapsed" );
 		$( "#" +  collapseToOpen).addClass( "in" ).attr( "aria-expanded",  "true" );
+		
 	}); 
+
+
+	// scrollto opened accordion after collapse is fired
+	$('#accordion').on('shown.bs.collapse', function () {
+
+	  var panel = $(this).find('.in');
+	  $('html, body').animate({
+	        scrollTop: panel.offset().top + (-200)
+	  }, 500);
+	});
+
+
 
 	function split( val ) {
 	 	return val.split( /,\s*/ );
