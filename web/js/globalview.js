@@ -132,14 +132,20 @@ $(document).ready(function() {
 
 	// same height for left-panel, right-panel and middle-panel
 	if ( $( ".carousel-inner").length >= 1) {
+		$( ".carousel-inner .middle-panel img" ).on('load', function() {
+    		var imgSize = $( ".carousel-inner .middle-panel img" ).height();
+			$( ".carousel-inner .item div[class*='col-xs-']").height(imgSize);
+		});
 		
-		var imgSize = $( ".carousel-inner .middle-panel img" ).height();
-		$( ".carousel-inner .item div[class*='col-xs-']").height(imgSize);
 		$(window).resize(function(){
 			imgSize = $( ".carousel-inner .middle-panel img" ).height();
 			$( ".carousel-inner .item div[class*='col-xs-']").height(imgSize);
 		});
 	}
+
+	$("label img").on("click", function() {
+        $(this).prev( "input" ).prop( "checked", true);
+    });
 
 	$( ".image-box" ).matchHeight();
 	$( "#flights .col-md-4 .box" ).matchHeight();
