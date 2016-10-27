@@ -213,11 +213,16 @@ $(document).ready(function() {
 		//	SLIDER BACKGROUND  (BACKSTRETCH)
 		if($('.slider-background').length > 0){
 			 $.backstretch([
-				  "/img/bg1.jpg"
-				, "/img/bg2.jpg"
-				, "/img/bg3.jpg"
-				, "/img/bg4.jpg"
-				, "/img/bg5.jpg"
+				  "/img/bg_01.jpg"
+				, "/img/bg_02.jpg"
+				, "/img/bg_03.jpg"
+				, "/img/bg_04.jpg"
+				, "/img/bg_05.jpg"
+				, "/img/bg_06.jpg"
+				, "/img/bg_07.jpg"
+				, "/img/bg_08.jpg"
+				, "/img/bg_09.jpg"
+				, "/img/bg_10.jpg"
 			  ], {duration: 4000, fade: 1000});
 		}
 		// menu toggle
