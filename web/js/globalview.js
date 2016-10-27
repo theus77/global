@@ -146,15 +146,18 @@ $(document).ready(function() {
 
 	// same height for left-panel, right-panel and middle-panel
 	if ( $( ".carousel-inner").length >= 1) {
-		$( ".carousel-inner .middle-panel img" ).on('load', function() {
-    		var imgSize = $( ".carousel-inner .middle-panel img" ).height();
-			$( ".carousel-inner .item div[class*='col-xs-']").height(imgSize);
-		});
+
+    	$( ".carousel-inner .item.active div[class*='col-xs-']").height($( ".carousel-inner .item.active .middle-panel img" ).height());
 		
 		$(window).resize(function(){
-			imgSize = $( ".carousel-inner .middle-panel img" ).height();
-			$( ".carousel-inner .item div[class*='col-xs-']").height(imgSize);
+			$( ".carousel-inner .item.active div[class*='col-xs-']").height($( ".carousel-inner .item.active .middle-panel img" ).height());
 		});
+
+		$(document).ajaxComplete(function() {
+			console.log('ajax' + $( ".carousel-inner .item.active .middle-panel img" ).height() );
+			$( ".carousel-inner .item.active div[class*='col-xs-']").height($( ".carousel-inner .item.active .middle-panel img" ).height());
+		});
+
 	}
 
 	$("label img").on("click", function() {
