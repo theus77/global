@@ -215,9 +215,10 @@ $(document).ready(function() {
 			 $.backstretch([
 				  "/img/bg_01.jpg"
 				, "/img/bg_02.jpg"
-				, "/img/bg_03.jpg"
+				, "/img/bg_11.jpg"
 				, "/img/bg_04.jpg"
 				, "/img/bg_05.jpg"
+				, "/img/bg_12.jpg"
 				, "/img/bg_06.jpg"
 				, "/img/bg_07.jpg"
 				, "/img/bg_08.jpg"
