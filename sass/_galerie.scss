@@ -57,13 +57,11 @@
   		padding:0 0 30px 0;
   		background-color: transparent;
   		border:0;
+  		margin-left:em(10px);
   		@include MQ(Sneg) {
   			padding:0 0 10px 0;
-  			&:first-child {
-  				margin-left:em(10px);
-  			}
   		}
-		@extend %gray-img;
+		//@extend %gray-img;
 		&.active:after {
 			z-index:10;
 			content:'';
@@ -205,6 +203,7 @@
 .carousel-inner {
 	width:auto;
 	position:relative;
+	padding-bottom:em(15px);
 	.middle-wrapper {position:relative;}
 	@extend %gradient-gray;
 	.item {
@@ -222,7 +221,7 @@
 		.left-panel {
 			.alternative-image {
 				display:block;
-				background-color:$color1;
+				//background-color:$color1;
 				@extend %gray-img;
 				max-width:calc(100% - 30px);
 				margin:em(15px) auto;
@@ -258,7 +257,7 @@
 				background-color:$color1;
 				color:ligthen($color1, 100%);
 				border:none;
-				&:hover {background-color:lighten($color1, 50%);}
+				&:hover {background-color:lighten($color1, 15%);}
 			}
 			@include MQ(Lneg) {
 				overflow: visible !important;
