@@ -109,7 +109,7 @@
 								<li class="data-pixel_size">{{ version._source.pixel_size }}</li>
 							</ul>
 							<div id="price-ask">
-								<form action="{{ url('ask_price') }}" method="get">
+								<form action="{{ url('ask_price', {ouuid:version._id }) }}" method="get">
 									<input type="hidden" name="ouuid" id="ouuid_{{ loop.index0 }}" value="{{ version._id|e }}" class="hidden_ouuid">
 									<input type="hidden" name="_route" id="ouuid_{{ loop.index0 }}" value="{{ app.request.requestUri|e }}">
 									<button 
