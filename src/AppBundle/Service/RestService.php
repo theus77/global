@@ -27,7 +27,7 @@ class RestService {
 	 * @return Response
 	 */
 	public function createObject($data, $type) {
-		dump(json_encode($data));
+		//dump(json_encode($data));
 		return $this->rest->post($this->emsRestEndPoint.'/'.$type.'/draft?apikey='.$this->apiKey, json_encode($data));	
 	}
 	
