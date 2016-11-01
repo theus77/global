@@ -74,7 +74,7 @@
 								<div class="inner-stack">
 									{% for image in version._source.Stack %}
 										<a href="#" 
-											class="{% if image == version._id %} version-active{% endif %} alternative-image pull-left">
+											class="{% if image == version._id %} version-active{% endif %} alternative-image">
 											<img 
 												alt="{% if version._source.label is defined %}{{ version._source.label|e }}{% else %}{{ 'label.not_available'|trans({'%arg%': version._source.name})|e }}{% endif %}"
 												src="{{ url('previewImage', {ouuid:image })|replace({(homepageUrl): imageServer}) }}"
