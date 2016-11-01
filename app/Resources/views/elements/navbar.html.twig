@@ -81,17 +81,17 @@
 			</ul>
 			<!-- /menu nav -->
 			<!-- lang desktop -->
-			<ul class="nav navbar-nav visible-xs visible-sm">
-			      {% if app.request.locale != 'fr' %}
-			          <li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'fr'})) }}"><abbr title="{{ 'navbar.fr_version'|trans }}" lang="fr" role="presentation">{{ 'fr'|trans }}</abbr></a></li>
-				  {% endif %}
-			      {% if app.request.locale != 'nl' %}
-			          <li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'nl'})) }}"><abbr title="{{ 'navbar.nl_version'|trans }}" lang="nl" role="presentation">{{ 'nl'|trans }}</abbr></a></li>
-				  {% endif %}
-			      {% if app.request.locale != 'en' %}
-			          <li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'en'})) }}"><abbr title="{{ 'navbar.en_version'|trans }}" lang="en" role="presentation">{{ 'en'|trans }}</abbr></a></li>
-				  {% endif %}
-			</ul>
+{# 			<ul class="nav navbar-nav visible-xs visible-sm">#}
+{# 			      {% if app.request.locale != 'fr' %}#}
+{# 			          <li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'fr'})) }}"><abbr title="{{ 'navbar.fr_version'|trans }}" lang="fr" role="presentation">{{ 'fr'|trans }}</abbr></a></li>#}
+{# 				  {% endif %}#}
+{# 			      {% if app.request.locale != 'nl' %}#}
+{# 			          <li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'nl'})) }}"><abbr title="{{ 'navbar.nl_version'|trans }}" lang="nl" role="presentation">{{ 'nl'|trans }}</abbr></a></li>#}
+{# 				  {% endif %}#}
+{# 			      {% if app.request.locale != 'en' %}#}
+{# 			          <li><a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_locale: 'en'})) }}"><abbr title="{{ 'navbar.en_version'|trans }}" lang="en" role="presentation">{{ 'en'|trans }}</abbr></a></li>#}
+{# 				  {% endif %}#}
+{# 			</ul>#}
 			<!-- /lang desktop -->
 			<!-- search mobile -->
 			<div class="visible-xs-block visible-sm-block">
