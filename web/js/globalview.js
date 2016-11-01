@@ -59,13 +59,27 @@ $(document).ready(function() {
 		$(this).next( "form" ).toggle();
 	});
 
-	$( "a[class^='collapse'], a[class^='technics']" ).on( "click", function() {
+	$( "a[class^='technics']" ).on( "click", function() {
+		
 		var collapseToOpen = $(this).attr('class');
 		$( ".panel-heading h4 a").removeClass( "in" ).attr( "aria-expanded",  "false" ).addClass( "collapsed" );
 		$( "div.panel-collapse").removeClass( "in" ).attr( "aria-expanded",  "false" );
 		$( "#" +  collapseToOpen).prev( "div" ).find( "a" ).attr( "aria-expanded",  "true" ).removeClass( "collapsed" );
 		$( "#" +  collapseToOpen).addClass( "in" ).attr( "aria-expanded",  "true" );
+		
 	}); 
+
+
+	// scrollto opened accordion after collapse is fired
+	$('#accordion').on('shown.bs.collapse', function () {
+
+	  var panel = $(this).find('.in');
+	  $('html, body').animate({
+	        scrollTop: panel.offset().top + (-200)
+	  }, 500);
+	});
+
+
 
 	function split( val ) {
 	 	return val.split( /,\s*/ );
@@ -132,14 +146,23 @@ $(document).ready(function() {
 
 	// same height for left-panel, right-panel and middle-panel
 	if ( $( ".carousel-inner").length >= 1) {
+
+    	$( ".carousel-inner .item.active div[class*='col-xs-']").height($( ".carousel-inner .item.active .middle-panel img" ).height());
 		
-		var imgSize = $( ".carousel-inner .middle-panel img" ).height();
-		$( ".carousel-inner .item div[class*='col-xs-']").height(imgSize);
 		$(window).resize(function(){
-			imgSize = $( ".carousel-inner .middle-panel img" ).height();
-			$( ".carousel-inner .item div[class*='col-xs-']").height(imgSize);
+			$( ".carousel-inner .item.active div[class*='col-xs-']").height($( ".carousel-inner .item.active .middle-panel img" ).height());
 		});
+
+		$(document).ajaxComplete(function() {
+			console.log('ajax' + $( ".carousel-inner .item.active .middle-panel img" ).height() );
+			$( ".carousel-inner .item.active div[class*='col-xs-']").height($( ".carousel-inner .item.active .middle-panel img" ).height());
+		});
+
 	}
+
+	$("label img").on("click", function() {
+        $(this).prev( "input" ).prop( "checked", true);
+    });
 
 	$( ".image-box" ).matchHeight();
 	$( "#flights .col-md-4 .box" ).matchHeight();
@@ -190,11 +213,17 @@ $(document).ready(function() {
 		//	SLIDER BACKGROUND  (BACKSTRETCH)
 		if($('.slider-background').length > 0){
 			 $.backstretch([
-				  "/img/bg1.jpg"
-				, "/img/bg2.jpg"
-				, "/img/bg3.jpg"
-				, "/img/bg4.jpg"
-				, "/img/bg5.jpg"
+				  "/img/bg_01.jpg"
+				, "/img/bg_02.jpg"
+				, "/img/bg_11.jpg"
+				, "/img/bg_04.jpg"
+				, "/img/bg_05.jpg"
+				, "/img/bg_12.jpg"
+				, "/img/bg_06.jpg"
+				, "/img/bg_07.jpg"
+				, "/img/bg_08.jpg"
+				, "/img/bg_09.jpg"
+				, "/img/bg_10.jpg"
 			  ], {duration: 4000, fade: 1000});
 		}
 		// menu toggle
