@@ -38,6 +38,14 @@ class ContactType extends AbstractType
     				],
 					'label' => 'form.search.email',
 			])
+			->add('honeypot', TextType::class, [
+					'translation_domain' => $this->domain,
+					'required' => false,
+    				'label_attr' => [
+    						'class' => 'col-md-4 col-xs-12 col-sm-12'
+    				],
+					'label' => 'form.honeypot',
+			])
 			->add('phone', TextType::class, [
 					'required' => false,
 					'translation_domain' => $this->domain,

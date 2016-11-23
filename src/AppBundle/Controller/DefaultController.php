@@ -168,19 +168,26 @@ class DefaultController extends Controller
     	if($form->isSubmitted()){
     		$message = $form->getData();
     		try {
-	    		$date = new \DateTime();
-	    		
-	    		$message['date'] = $date->format('Y/m/d');
-	    		$message['language'] = $request->getLocale();
-	    		
-	    		$response = $this->rest()->createObject($message, 'contact');
-	    		
-	    		if($response->getStatusCode() != Response::HTTP_CREATED && $response->getStatusCode() != Response::HTTP_OK){
-    				$this->addFlash('warning', 'form.error.contact_not_send');
-	    		}
-	    		else {
-    				$this->addFlash('notice', 'form.contact_send');
-	    		}
+    			
+    			if(empty($message['honeypot'])){
+		    		$date = new \DateTime();
+		    		
+		    		$message['date'] = $date->format('Y/m/d');
+		    		$message['language'] = $request->getLocale();
+		    		
+		    		$response = $this->rest()->createObject($message, 'contact');
+		    		
+		    		if($response->getStatusCode() != Response::HTTP_CREATED && $response->getStatusCode() != Response::HTTP_OK){
+	    				$this->addFlash('warning', 'form.error.contact_not_send');
+		    		}
+		    		else {
+	    				$this->addFlash('notice', 'form.contact_send');
+		    		}    				
+    			}
+    			else {
+
+    				$this->addFlash('notice', 'form.honeypot.detected');
+    			}
     		}
     		catch (\Exception $e) {
     			$this->addFlash('warning', 'form.error.contact_not_send');
