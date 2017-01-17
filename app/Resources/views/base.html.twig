@@ -26,7 +26,7 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 <!-- Bootstrap core CSS -->
-<link rel="stylesheet" type="text/css" href="/css/styles.css" />
+<link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css')|trans|raw }}" />
 </head>
 
 <body id="{{ body_id }}" class="slider-background">
@@ -70,7 +70,9 @@
 	</footer>
 	<!-- ./footer -->
 
-
+	<script type="text/javascript">
+		var BASE_URL = '{{ asset('')|e('js') }}';
+	</script>
 
 	<script type="text/javascript"
 		src="{{ asset('js/bower/jquery/jquery.min.js')|trans|raw }}"></script>

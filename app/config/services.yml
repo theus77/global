@@ -20,7 +20,7 @@ services:
         arguments: ["@app.elasticsearch", "%prefix%", "%environment%", "%aperture_index%"]
     app.rest:
         class: AppBundle\Service\RestService
-        arguments: ["@app.elasticsearch", "@circle.restclient", "%ems_api%", "%ems_api_key%"]
+        arguments: ["@app.elasticsearch", "@circle.restclient", "@mailer", "@templating", "%ems_api%", "%ems_login%", "%ems_user%", "%ems_pwd%"]
     app.image:
         class: AppBundle\Service\ImageService
         arguments: ["@app.elasticsearch", "@app.s3", "%kernel.cache_dir%", '%kernel.root_dir%', "%aperture_index%"]

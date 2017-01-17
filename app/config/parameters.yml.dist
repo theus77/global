@@ -14,6 +14,7 @@ parameters:
     mailer_host:       127.0.0.1
     mailer_user:       ~
     mailer_password:   ~
+    mailer_port: 25
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
@@ -28,8 +29,11 @@ parameters:
             type: traduction
             alias: global_live
     aperture_index: aperture
-    ems_api: http://global-admin.local/api
-    ems_api_key: fffffffffffffff
+    ems_baseurl: 'http://localhost/global-admin/web/app_dev.php/'
+    ems_api: 'http://localhost/global-admin/web/app_dev.php/api'
+    ems_login: 'http://localhost/global-admin/web/app_dev.php/auth-token'
+    ems_pwd: website
+    ems_user: website
     aws_credentials:
       version: latest
       region: eu-central-1
