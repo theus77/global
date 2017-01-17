@@ -283,7 +283,7 @@ class DefaultController extends Controller
     public function bookPageAction($id, Request $request)
     {
     	$flight = $this->service()->getFlight($id);
-    	$place = $this->service()->getPlace(split(':', $flight['_source']['place'])[1]);
+    	$place = $this->service()->getPlace(explode(':', $flight['_source']['place'])[1]);
     	
     	if($request->getMethod() === Request::METHOD_POST ){
 	    	$message = $request->request->get('data')['Booking'];
