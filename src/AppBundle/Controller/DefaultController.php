@@ -169,7 +169,7 @@ class DefaultController extends Controller
     	
     	if($form->isSubmitted()){
     		$message = $form->getData();
-    		try {
+//     		try {
     			
     			if(empty($message['honeypot'])){
 		    		$date = new \DateTime();
@@ -190,10 +190,10 @@ class DefaultController extends Controller
 
     				$this->addFlash('notice', 'form.honeypot.detected');
     			}
-    		}
-    		catch (\Exception $e) {
-    			$this->addFlash('warning', 'form.error.contact_not_send');
-    		}
+//     		}
+//     		catch (\Exception $e) {
+//     			$this->addFlash('warning', 'form.error.contact_not_send');
+//     		}
     		return $this->redirectToRoute('homepage');
     	}
     	
