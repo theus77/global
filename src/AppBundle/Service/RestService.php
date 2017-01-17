@@ -57,7 +57,7 @@ class RestService {
 		
 		$message = \Swift_Message::newInstance()
 		->setSubject('New '.$type.' on globalview')
-		->setFrom('elasticms@example.com')
+		->setFrom('simon.globalview@gmail.com')
 		->setTo('simon@globalview.be')
 		->setBody(
 				$this->templating->render(
