@@ -11,14 +11,24 @@ class RestService {
 	private $client;
 	/**@var RestClient $rest*/
 	private $rest;
-	private $emsRestEndPoint;
-	private $apiKey;
+	private $mailer;
+	private $templating;
 	
-	public function __construct(Client $client, RestClient $rest, $emsRestEndPoint, $apiKey){
+	private $emsApi;
+	private $emsLogin;
+	private $emsUser;
+	private $emsPwd;
+	
+	public function __construct(Client $client, RestClient $rest, $mailer, $templating, $emsApi, $emsLogin, $emsUser, $emsPwd){
 		$this->client = $client;
 		$this->rest = $rest;
-		$this->emsRestEndPoint = $emsRestEndPoint;
-		$this->apiKey = $apiKey;
+		$this->mailer = $mailer;
+		$this->templating = $templating;
+
+		$this->emsApi = $emsApi;
+		$this->emsLogin = $emsLogin;
+		$this->emsUser = $emsUser;
+		$this->emsPwd = $emsPwd;
 	}
 	
 	/**
@@ -27,8 +37,50 @@ class RestService {
 	 * @return Response
 	 */
 	public function createObject($data, $type) {
-		//dump(json_encode($data));
-		return $this->rest->post($this->emsRestEndPoint.'/'.$type.'/draft?apikey='.$this->apiKey, json_encode($data));	
+		
+		/**@var Response $authKey*/
+		$authKey = $this->rest->post($this->emsLogin, json_encode([
+			'username' => $this->emsUser,
+			'password' => $this->emsPwd,
+		]));
+			
+		$authKey = json_decode($authKey->getContent(), true)['authToken'];
+
+		$out = $this->rest->post($this->emsApi.'/'.$type.'/draft', json_encode($data), [
+				CURLOPT_HTTPHEADER => array('Content-type: text/plain', 'X-Auth-Token: '.$authKey),
+		]);
+		$revision_id = json_decode($out->getContent(), true)['revision_id'];
+		$out = $this->rest->post($this->emsApi.'/'.$type.'/finalize/'.$revision_id, '', [
+			CURLOPT_HTTPHEADER => array('Content-type: text/plain', 'X-Auth-Token: '.$authKey),
+		]);
+		$response = json_decode($out->getContent(), true);
+		
+		$message = \Swift_Message::newInstance()
+		->setSubject('New '.$type.' on globalview')
+		->setFrom('elasticms@example.com')
+		->setTo('simon@globalview.be')
+		->setBody(
+				$this->templating->render(
+						// app/Resources/views/Emails/registration.html.twig
+						'emails/'.$type.'.html.twig',
+						array('data' => $data, 'response' => $response)
+						),
+				'text/html'
+				)
+				/*
+				 * If you also want to include a plaintext version of the message
+		->addPart(
+				$this->renderView(
+						'Emails/registration.txt.twig',
+						array('name' => $name)
+						),
+				'text/plain'
+				)
+		*/
+		;
+		$this->mailer->send($message);
+		
+		return $out;
 	}
 	
 

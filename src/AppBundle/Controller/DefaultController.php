@@ -87,6 +87,8 @@ class DefaultController extends Controller
 				$date = new \DateTime();
 		
 				$data['date'] = $date->format('Y/m/d');
+				
+				$data['bestUuid'] = array_values($data['bestUuid']);
 		
 				$response = $this->rest()->createObject($data, 'price_request');
 		
@@ -292,7 +294,6 @@ class DefaultController extends Controller
 	    		$message['date'] = $date->format('Y/m/d');
 	    		$message['language'] = $request->getLocale();
 	    		$message['flight'] = 'flight:'.$id;
-// 	    		unset($message['targets']);
 
 	    		$response = $this->rest()->createObject($message, 'booking');
 	    		 
