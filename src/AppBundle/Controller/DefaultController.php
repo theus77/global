@@ -18,6 +18,8 @@ use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class DefaultController extends Controller
 {
@@ -169,9 +171,10 @@ class DefaultController extends Controller
     	
     	if($form->isSubmitted()){
     		$message = $form->getData();
-//     		try {
+    		
+    		try {
     			
-    			if(empty($message['honeypot'])){
+    			if(empty($message['honeypot']) && !empty($request->request->get('g-recaptcha-response')) && $this->rest()->reCaptcha($request->request->get('g-recaptcha-response'))){
 		    		$date = new \DateTime();
 		    		
 		    		$message['date'] = $date->format('Y/m/d');
@@ -188,12 +191,12 @@ class DefaultController extends Controller
     			}
     			else {
 
-    				$this->addFlash('notice', 'form.honeypot.detected');
+    				$this->addFlash('warning', 'form.honeypot.detected');
     			}
-//     		}
-//     		catch (\Exception $e) {
-//     			$this->addFlash('warning', 'form.error.contact_not_send');
-//     		}
+    		}
+    		catch (\Exception $e) {
+    			$this->addFlash('warning', 'form.error.contact_not_send');
+    		}
     		return $this->redirectToRoute('homepage');
     	}
     	
@@ -206,6 +209,33 @@ class DefaultController extends Controller
 				'stats' => $this->service()->getStats(),
         		'body_id' => 'homepage',
         ]);
+    }
+	
+	
+    
+    /**
+     * @Route("/{_locale}/downloads/{id}", name="download")
+     */
+    public function downloadAction($_locale, $id, Request $request) {
+//         try{
+            $result = $this->service()->getAsset($id);
+            if($result['found']){
+                $sha1 = $result['_source']['file']['sha1'];
+                $path = $this->getParameter('storage_path').'/'.substr($sha1, 0, 3).'/'.$sha1;
+                $response = new BinaryFileResponse($path);
+                $response->headers->set('Content-Type', $result['_source']['file']['mimetype']);
+                $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $result['_source']['file']['filename']);
+        
+                return $response;
+            }
+            else{
+                throw new NotFoundHttpException('File not found');
+            }
+//         }
+//         catch(\Exception $e){
+//             echo $e->getMessage();
+//             throw new NotFoundHttpException('File not found');
+//         }
     }
 	
 	

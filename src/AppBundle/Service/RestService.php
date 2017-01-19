@@ -18,8 +18,9 @@ class RestService {
 	private $emsLogin;
 	private $emsUser;
 	private $emsPwd;
+	private $secret;
 	
-	public function __construct(Client $client, RestClient $rest, $mailer, $templating, $emsApi, $emsLogin, $emsUser, $emsPwd){
+	public function __construct(Client $client, RestClient $rest, $mailer, $templating, $emsApi, $emsLogin, $emsUser, $emsPwd, $secret){
 		$this->client = $client;
 		$this->rest = $rest;
 		$this->mailer = $mailer;
@@ -29,6 +30,21 @@ class RestService {
 		$this->emsLogin = $emsLogin;
 		$this->emsUser = $emsUser;
 		$this->emsPwd = $emsPwd;
+		$this->secret = $secret;
+	}
+	
+	
+	public function reCaptcha($response){
+
+		/**@var Response $response*/
+		$response = $this->rest->post('https://www.google.com/recaptcha/api/siteverify?'.http_build_query([
+				'secret' => $this->secret,
+				'response' => $response,
+		]), '');
+		
+		$content = json_decode($response->getContent(), true);
+		
+		return $content['success'];
 	}
 	
 	/**

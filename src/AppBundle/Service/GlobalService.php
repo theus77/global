@@ -18,6 +18,14 @@ class GlobalService {
 		$this->prefix = $prefix;
 		$this->apertureIndex = $apertureIndex;
 	}
+
+	public function getAsset($id){
+		return $this->client->get([
+				'index' => $this->prefix.$this->environment,
+				'type' => 'fichier',
+				'id' => $id,
+		]);
+	}
 	
 	public function getKeywords($language){
 		$searchQuery = [

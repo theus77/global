@@ -29,7 +29,8 @@
         "elasticsearch/elasticsearch": "~2.0",
         "incenteev/composer-parameter-handler": "^2.0",
         "ci/restclientbundle": "^2.0",
-        "aws/aws-sdk-php": "^3.19"
+        "aws/aws-sdk-php": "^3.19",
+        "excelwebzone/recaptcha-bundle": "^1.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

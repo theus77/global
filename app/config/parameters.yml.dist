@@ -44,3 +44,6 @@ parameters:
     googleApiKey: ffffff
     awsESDomainName: ffff
     imageServer: http://global.theus.be/
+    public_key:  'google_recaptcha_public_key'
+    private_key: 'google_recaptcha_private_key'
+    storage_path: '../var/assets'
