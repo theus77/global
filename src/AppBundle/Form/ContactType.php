@@ -8,6 +8,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
+use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\IsTrue;
 
 class ContactType extends AbstractType
 {
@@ -65,6 +67,9 @@ class ContactType extends AbstractType
 					],
 					'label' => 'form.search.remarks',
 			])
+    		->add('recaptcha', EWZRecaptchaType::class, [
+
+    		])
 			->add ( 'submit', SubmitType::class, [ 
 					'attr' => [ 
 							'class' => 'btn btn-primary' 

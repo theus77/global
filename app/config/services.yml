@@ -20,7 +20,7 @@ services:
         arguments: ["@app.elasticsearch", "%prefix%", "%environment%", "%aperture_index%"]
     app.rest:
         class: AppBundle\Service\RestService
-        arguments: ["@app.elasticsearch", "@circle.restclient", "@mailer", "@templating", "%ems_api%", "%ems_login%", "%ems_user%", "%ems_pwd%"]
+        arguments: ["@app.elasticsearch", "@circle.restclient", "@mailer", "@templating", "%ems_api%", "%ems_login%", "%ems_user%", "%ems_pwd%", "%private_key%"]
     app.image:
         class: AppBundle\Service\ImageService
         arguments: ["@app.elasticsearch", "@app.s3", "%kernel.cache_dir%", '%kernel.root_dir%', "%aperture_index%"]
@@ -46,3 +46,8 @@ services:
         arguments: ['@app.elasticsearch', '%aws_credentials%', '%awsESDomainName%']
         tags:
             -  { name: console.command }
+    app.twig_extension:
+        class: AppBundle\Twig\AppExtension
+        arguments: ['@app.elasticsearch', '@router', '@twig', "%prefix%", "%environment%"]
+        tags:
+            - { name: twig.extension, priority: -2000 }

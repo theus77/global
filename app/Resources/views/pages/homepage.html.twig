@@ -37,7 +37,7 @@
 				<div class="col-md-12 ">
 					<div class="box">
 						<div class="groupToMatch clearfix">
-							{{ attribute(textes.about_flights, 'body_'~app.request.locale)|raw }}
+							{{ attribute(textes.about_flights, 'body_'~app.request.locale)|internal_links(app.request.locale)|raw }}
 						</div>
 					</div>
 				</div>
@@ -299,6 +299,11 @@
 							{{ form_label(form.honeypot) }}
 							<div class="col-md-8">
 								{{ form_widget(form.honeypot) }}
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-8 col-md-offset-4">
+								{{ form_widget(form.recaptcha) }}
 							</div>
 						</div>
 						<!-- Button -->

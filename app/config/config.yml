@@ -88,3 +88,7 @@ circle_rest_client:
       defaults:
         CURLOPT_HTTPHEADER:     [ 'Content-Type: application/json' ]
         CURLOPT_FOLLOWLOCATION: true
+ewz_recaptcha:
+    public_key:  %public_key%
+    private_key: %private_key%
+    locale_key:  %kernel.default_locale%
