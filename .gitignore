@@ -27,9 +27,6 @@
 /.sass-cache/
 /npm-debug.log
 
-# composer files
-/composer.lock
-
 #OS X files
 .DS_Store
 /.vagrant/
