@@ -11,7 +11,7 @@
 						<div class="content">
 							<h1>{{ 'usage.title'|trans }}</h1>
 							<div class="wysiwygContent">
-								{{ attribute(textes.body, 'body_'~app.request.locale)|raw }}
+								{{ attribute(textes.body, 'body_'~app.request.locale)|internal_links(app.request.locale)|raw }}
 							</div>
 						</div>
 					</div>
