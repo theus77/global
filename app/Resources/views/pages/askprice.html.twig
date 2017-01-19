@@ -8,7 +8,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="wysiwygContent">
-						{{ attribute(textes.askprice, 'body_'~app.request.locale)|raw }}
+						{{ attribute(textes.askprice, 'body_'~app.request.locale)|internal_links(app.request.locale)|raw }}
 					</div>
 					<div class="panel-group" id="accordion" role="tablist"
 						aria-multiselectable="true">
@@ -24,7 +24,7 @@
 								role="tabpanel" aria-labelledby="headingOne">
 								<div class="panel-body">
 									<div class="wysiwygContent">
-										{{ attribute(textes.decoration, 'body_'~app.request.locale)|raw }}
+										{{ attribute(textes.decoration, 'body_'~app.request.locale)|internal_links(app.request.locale)|raw }}
 									</div>
 								</div>
 							</div>
@@ -58,7 +58,7 @@
 								role="tabpanel" aria-labelledby="headingThree">
 								<div class="panel-body">
 									<div class="wysiwygContent">
-										{{ attribute(textes.generated, 'body_'~app.request.locale)|raw }}
+										{{ attribute(textes.generated, 'body_'~app.request.locale)|internal_links(app.request.locale)|raw }}
 									</div>
 								</div>
 							</div>

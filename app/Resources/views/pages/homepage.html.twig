@@ -37,7 +37,7 @@
 				<div class="col-md-12 ">
 					<div class="box">
 						<div class="groupToMatch clearfix">
-							{{ attribute(textes.about_flights, 'body_'~app.request.locale)|internal_links(app.request.locale)|raw }}
+							{{ attribute(textes.about_flights, 'body_'~app.request.locale)|internal_links(app.request.locale)|internal_links(app.request.locale)|raw }}
 						</div>
 					</div>
 				</div>
@@ -99,7 +99,7 @@
 								role="tabpanel" aria-labelledby="headingOne">
 								<div class="panel-body">
 									<div class="wysiwygContent">
-										{{ attribute(textes.technics, 'body_'~app.request.locale)|raw }}
+										{{ attribute(textes.technics, 'body_'~app.request.locale)|internal_links(app.request.locale)|raw }}
 									</div>
 								</div>
 							</div>
@@ -117,7 +117,7 @@
 								role="tabpanel" aria-labelledby="headingTwo">
 								<div class="panel-body">
 									<div class="wysiwygContent">
-										{{ attribute(textes.helico, 'body_'~app.request.locale)|raw }}
+										{{ attribute(textes.helico, 'body_'~app.request.locale)|internal_links(app.request.locale)|raw }}
 									</div>
 								</div>
 							</div>
@@ -135,7 +135,7 @@
 								role="tabpanel" aria-labelledby="headingThree">
 								<div class="panel-body">
 									<div class="wysiwygContent">
-										{{ attribute(textes.weather, 'body_'~app.request.locale)|raw }}
+										{{ attribute(textes.weather, 'body_'~app.request.locale)|internal_links(app.request.locale)|raw }}
 										
 									</div>
 								</div>
@@ -154,7 +154,7 @@
 								role="tabpanel" aria-labelledby="headingThree">
 								<div class="panel-body">
 									<div class="wysiwygContent">
-										{{ attribute(textes.delay, 'body_'~app.request.locale)|raw }}
+										{{ attribute(textes.delay, 'body_'~app.request.locale)|internal_links(app.request.locale)|raw }}
 									</div>
 								</div>
 							</div>
@@ -171,7 +171,7 @@
 								role="tabpanel" aria-labelledby="headingThree">
 								<div class="panel-body">
 									<div class="wysiwygContent">
-										{{ attribute(textes.video, 'body_'~app.request.locale)|raw }}
+										{{ attribute(textes.video, 'body_'~app.request.locale)|internal_links(app.request.locale)|raw }}
 									</div>
 								</div>
 							</div>
@@ -209,7 +209,7 @@
 								role="tabpanel" aria-labelledby="priceOne">
 								<div class="panel-body">
 									<div class="wysiwygContent">
-										{{ attribute(textes.price, 'body_'~app.request.locale)|raw }}
+										{{ attribute(textes.price, 'body_'~app.request.locale)|internal_links(app.request.locale)|raw }}
 									</div>
 								</div>
 							</div>
@@ -226,7 +226,7 @@
 								role="tabpanel" aria-labelledby="priceTwo">
 								<div class="panel-body">
 									<div class="wysiwygContent">
-										{{ attribute(textes.buy_existing, 'body_'~app.request.locale)|raw }}
+										{{ attribute(textes.buy_existing, 'body_'~app.request.locale)|internal_links(app.request.locale)|raw }}
 									</div>
 								</div>
 							</div>
@@ -243,7 +243,7 @@
 								role="tabpanel" aria-labelledby="priceThree">
 								<div class="panel-body">
 									<div class="wysiwygContent">
-										{{ attribute(textes.rights, 'body_'~app.request.locale)|raw }}
+										{{ attribute(textes.rights, 'body_'~app.request.locale)|internal_links(app.request.locale)|raw }}
 									</div>
 								</div>
 							</div>

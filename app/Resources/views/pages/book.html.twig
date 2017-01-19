@@ -185,12 +185,12 @@
 					<div class="content">
 						<div class="col-md-7" id="map-ctp">
 							<p>
-								{{ attribute(textes.steps, 'body_'~app.request.locale)|raw }}
+								{{ attribute(textes.steps, 'body_'~app.request.locale)|internal_links(app.request.locale)|raw }}
 							<a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseHelp" aria-expanded="false" aria-controls="collapseHelp">
   								{{ 'book.needhelp.title'|trans }}
 							</a>
 							<div class="collapse" id="collapseHelp">
-								{{ attribute(textes.help, 'body_'~app.request.locale)|raw }}
+								{{ attribute(textes.help, 'body_'~app.request.locale)|internal_links(app.request.locale)|raw }}
 							</div>
 							<div class="outer">
 	   							<div class="inner" id="map-canvas">
