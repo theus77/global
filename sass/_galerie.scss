@@ -221,17 +221,21 @@
 		.left-panel {
 			.alternative-image {
 				display:block;
-				//background-color:$color1;
 				@extend %gray-img;
-				max-width:calc(100% - 30px);
+				width:calc(100% - 30px);
+				max-width: em(200px);
 				margin:em(15px) auto;
 				&:first-child {
 					margin-top:0;
 				}
+				@include MQ(Mneg) {
+  					max-width: em(100px);
+	  			}
 				@include MQ(Sneg) {
 					max-width:calc(100% - 10px);
 					margin:em(5px) auto;
 				}
+
 			}
 		}
 		.right-panel {
