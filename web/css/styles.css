@@ -8816,7 +8816,7 @@ button.close {
   /* Standard CSS */
   -webkit-filter: grayscale(100%);
   /* CSS for Webkit Browsers */
-  filter: url('../img/grayscale.svg?1475518727#desaturate');
+  filter: url('../img/grayscale.svg?1487777210#desaturate');
   /* Firefox 4-34 */
   filter: gray;
   /* Internet Explorer IE6-9 */
@@ -9239,7 +9239,7 @@ pre {
 
 /* line 79, ../../sass/_base.scss */
 #bg_pattern {
-  background-image: url('../img/bg_pattern.png?1475518726');
+  background-image: url('../img/bg_pattern.png?1487777210');
   position: fixed;
   opacity: 0.8;
   left: 0px;
@@ -9852,12 +9852,19 @@ abbr[title], abbr[data-original-title] {
 /* line 222, ../../sass/_galerie.scss */
 .carousel-inner .item .left-panel .alternative-image {
   display: block;
-  max-width: calc(100% - 30px);
+  width: calc(100% - 30px);
+  max-width: 14.28571em;
   margin: 1.07143em auto;
 }
 /* line 228, ../../sass/_galerie.scss */
 .carousel-inner .item .left-panel .alternative-image:first-child {
   margin-top: 0;
+}
+@media only screen and (max-width: 768px) {
+  /* line 222, ../../sass/_galerie.scss */
+  .carousel-inner .item .left-panel .alternative-image {
+    max-width: 7.14286em;
+  }
 }
 @media only screen and (max-width: 480px) {
   /* line 222, ../../sass/_galerie.scss */
@@ -9866,46 +9873,46 @@ abbr[title], abbr[data-original-title] {
     margin: 0.35714em auto;
   }
 }
-/* line 237, ../../sass/_galerie.scss */
+/* line 241, ../../sass/_galerie.scss */
 .carousel-inner .item .right-panel {
   font-size: 0.92857em;
   position: relative;
 }
-/* line 241, ../../sass/_galerie.scss */
+/* line 245, ../../sass/_galerie.scss */
 .carousel-inner .item .right-panel .wrapper-right-panel {
   padding: 0 1.07143em 2.85714em 1.07143em;
 }
-/* line 244, ../../sass/_galerie.scss */
+/* line 248, ../../sass/_galerie.scss */
 .carousel-inner .item .right-panel .label {
   display: inline-block;
   font-size: 1em;
   font-weight: normal;
   background-color: #774b07;
 }
-/* line 249, ../../sass/_galerie.scss */
+/* line 253, ../../sass/_galerie.scss */
 .carousel-inner .item .right-panel .label:hover {
   background-color: #170e01;
 }
-/* line 251, ../../sass/_galerie.scss */
+/* line 255, ../../sass/_galerie.scss */
 .carousel-inner .item .right-panel li {
   line-height: 1.2em;
 }
-/* line 255, ../../sass/_galerie.scss */
+/* line 259, ../../sass/_galerie.scss */
 .carousel-inner .item .right-panel #detailList {
   padding-left: 1.07143em;
 }
-/* line 256, ../../sass/_galerie.scss */
+/* line 260, ../../sass/_galerie.scss */
 .carousel-inner .item .right-panel .btn.btn-primary {
   background-color: #000;
   color: ligthen(#000, 100%);
   border: none;
 }
-/* line 260, ../../sass/_galerie.scss */
+/* line 264, ../../sass/_galerie.scss */
 .carousel-inner .item .right-panel .btn.btn-primary:hover {
   background-color: #262626;
 }
 @media only screen and (max-width: 992px) {
-  /* line 237, ../../sass/_galerie.scss */
+  /* line 241, ../../sass/_galerie.scss */
   .carousel-inner .item .right-panel {
     overflow: visible !important;
     height: auto !important;
@@ -10213,7 +10220,7 @@ a.link:after:hover:after {
   position: absolute;
   left: 50%;
   top: 50%;
-  background-image: url('../img/loading.gif?1475518727');
+  background-image: url('../img/loading.gif?1487777210');
   background-repeat: no-repeat;
   background-position: center;
   margin: -7.14286em 0 0 -7.14286em;
