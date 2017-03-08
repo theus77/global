@@ -22,7 +22,7 @@
 			
 			
 			
-			console.log($(e.relatedTarget).index());
+			//console.log($(e.relatedTarget).index());
 			$('#infoCarousel').carousel( $(e.relatedTarget).index() );
 			
 			
