@@ -90,7 +90,12 @@ class DefaultController extends Controller
 		
 				$data['date'] = $date->format('Y/m/d');
 				
-				$data['bestUuid'] = array_values($data['bestUuid']);
+				if(isset($data['bestUuid'])){
+					$data['bestUuid'] = array_values($data['bestUuid']);					
+				}
+				else {
+					$data['bestUuid'] = null;
+				}
 		
 				$response = $this->rest()->createObject($data, 'price_request');
 		

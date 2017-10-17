@@ -62,11 +62,11 @@ class RestService {
 			
 		$authKey = json_decode($authKey->getContent(), true)['authToken'];
 
-		$out = $this->rest->post($this->emsApi.'/'.$type.'/draft', json_encode($data), [
+		$out = $this->rest->post($this->emsApi.'/data/'.$type.'/draft', json_encode($data), [
 				CURLOPT_HTTPHEADER => array('Content-type: text/plain', 'X-Auth-Token: '.$authKey),
 		]);
 		$revision_id = json_decode($out->getContent(), true)['revision_id'];
-		$out = $this->rest->post($this->emsApi.'/'.$type.'/finalize/'.$revision_id, '', [
+		$out = $this->rest->post($this->emsApi.'/data/'.$type.'/finalize/'.$revision_id, '', [
 			CURLOPT_HTTPHEADER => array('Content-type: text/plain', 'X-Auth-Token: '.$authKey),
 		]);
 		$response = json_decode($out->getContent(), true);
