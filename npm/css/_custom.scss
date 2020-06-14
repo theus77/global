@@ -1,0 +1,16 @@
+@import "~sass-text-stroke";
+
+.banner-bg {
+  /* The image used */
+  background-image: url("../img/banner.jpg");
+
+  /* Half height */
+  height: 50%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @include text-stroke(2, #252525);
+}
