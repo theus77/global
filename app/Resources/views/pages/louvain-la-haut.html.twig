@@ -1,0 +1,85 @@
+{% trans_default_domain domain %}
+
+
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="{{ asset('louvain-la-haut/css/index.css') }}">
+
+	<title>Livre: Louvain-là-haut</title>
+</head>
+<body>
+
+<div class="jumbotron jumbotron-fluid banner-bg">
+	<div class="container text-right text-white">
+		<div class="col-md-8 col-sm-10 col-xs-11" id="jumbo-title">
+			<h1 class="display-1">Louvain-<span class="sr-only">là haut</span></h1>
+			<p class="lead display-3">là-haut</p>
+		</div>
+	</div>
+</div>
+<div class="container mb-3">
+	<div class="row">
+		<div class="col-md-8 offset-md-2">
+			<div class="row">
+				<div class="col-md-5">
+					<h2 class="text-uppercase">Un livre de photographe</h2>
+					<hr>
+					<p>Louvain-la-Neuve vue
+						du ciel, photographies aériennes de Simon Schmitt, textes de Dominique Costermans et Philippe Piette, mise en page
+						Michel De Backer.
+					</p>
+					<p>Sortie septembre 2020.
+						tarif de précommande jusqu’au 30 juin : 40€ (livraison primeur offerte sur la belgique dès parution)</p>
+				</div>
+				<div class="col-md-7 text-right">
+					<img src="{{ asset('louvain-la-haut/img/Louvain-la-haut.png') }}" class="img-fluid" alt="Aperçu de la couverture du livre">
+					<p class="" style="margin-top: -20px;">
+						<strong>description</strong><br>
+						- couverture cartonnée<br> - format 28 x 28 cm<br> - 160 pages<br> - plus de 200 photos<br>
+					</p>
+					<button type="button" class="btn btn-primary btn-lg btn-block text-uppercase">Je désire commander <i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<img src="{{ asset('louvain-la-haut/img/LLH-histoire.jpg') }}" class="img-fluid" alt="Louvain-La-Neuve au fil du temps">
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="{{ asset('louvain-la-haut/js/index.js') }}"></script>
+</body>
+</html>
+
+
+
+{#{% extends 'base.html.twig' %}#}
+{#{% block body %}#}
+{#<div class="default">#}
+{#	<!-- book -->#}
+{#	<section id="book" class="section wow fadeInUp active" style="visibility: visible; animation-name: fadeInUp;">#}
+{#		<div class="container">#}
+{#			<div class="row">#}
+{#				<div class="col-md-12">#}
+{#					<div class="simple-box2">#}
+{#						<div class="content">#}
+{#							<h1>{{ 'louvain-la-haut.title'|trans }}</h1>#}
+{#							<div class="wysiwygContent">#}
+{#								{{ attribute(textes.body, 'body_'~app.request.locale)|internal_links(app.request.locale)|raw }}#}
+{#							</div>#}
+{#						</div>#}
+{#					</div>#}
+{#				</div>#}
+{#			</div>#}
+{#		</div>#}
+{#	</section>#}
+{#</div>#}
+{#{% endblock %}#}
