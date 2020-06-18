@@ -1,3 +1,12 @@
+louvain_la_haut_homepage:
+    path:     /
+    host:     "{subdomain}.louvain-la-haut.be"
+    defaults: { _controller: AppBundle:Default:louvainLaHaut, _locale: "fr" }
+
+louvain_la_haut:
+    path:     /louvain-la-haut
+    defaults: { _controller: AppBundle:Default:louvainLaHaut, _locale: "fr" }
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
