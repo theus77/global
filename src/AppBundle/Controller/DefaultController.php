@@ -49,6 +49,15 @@ class DefaultController extends Controller
 	}
 
 
+
+    public function louvainLaHautAction(Request $request)
+    {
+        return $this->render('pages/louvain-la-haut.html.twig', [
+            'textes' => $this->service()->getTexts('louvain-la-haut'),
+            'body_id' => 'default',
+        ]);
+    }
+
 	/**
 	 * @Route("/n/bl/",
 	 *   defaults={"_locale": "fr"},
@@ -254,20 +263,6 @@ class DefaultController extends Controller
         return $this->render('pages/usage.html.twig', [
         		'textes' => $this->service()->getTexts('usage'),
         		'body_id' => 'default',
-        ]);
-    }
-
-
-    /**
-     * @Route("/{_locale}/louvain-la-haut",
-     *   defaults={"_locale": "fr"},
-     *   name="louvain_la_haut")
-     */
-    public function louvaiHaHautAction(Request $request)
-    {
-        return $this->render('pages/louvain-la-haut.html.twig', [
-            'textes' => $this->service()->getTexts('louvain-la-haut'),
-            'body_id' => 'default',
         ]);
     }
 	
