@@ -1,5 +1,10 @@
 louvain_la_haut_homepage:
     path:     /
+    host:     "louvain-la-haut.be"
+    defaults: { _controller: AppBundle:Default:louvainLaHaut, _locale: "fr" }
+
+louvain_la_haut_homepage_withsub:
+    path:     /
     host:     "{subdomain}.louvain-la-haut.be"
     defaults: { _controller: AppBundle:Default:louvainLaHaut, _locale: "fr" }
 
