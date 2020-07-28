@@ -45,6 +45,16 @@ class ImgController extends Controller
 	public function downloadImageAction($ouuid, Request $request)  {
 		return $this->service()->downloadImageAction($ouuid, $request);
     }
+
+
+	/**
+	 * @Route("/{_locale}/ori-simon-209836/{ouuid}/original.jpg",
+     *   defaults={"_locale": "fr"},
+	 *   name="viewOriginal")
+	 */
+	public function viewOriginalAction($ouuid, Request $request)  {
+		return $this->service()->originalImageAction($ouuid, $request);
+    }
 	
 	
 	/**
