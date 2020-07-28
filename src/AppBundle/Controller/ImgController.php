@@ -52,8 +52,8 @@ class ImgController extends Controller
      *   defaults={"_locale": "fr"},
 	 *   name="viewOriginal")
 	 */
-	public function viewOriginalAction($ouuid, Request $request)  {
-		return $this->service()->originalImageAction($ouuid, $request);
+	public function viewOriginalAction($ouuid)  {
+		return $this->service()->getOriginal($ouuid);
     }
 	
 	

@@ -280,6 +280,24 @@ class ImageService {
 		//imagedestroy($image);
 		return $temp;
 	}
+
+	public function getOriginal($uuid)
+    {
+        $result = $this->s3->getObject([
+            'Bucket' => 'global-previews',
+            'Key'    => $uuid
+        ]);
+        $response = new Response();
+        $filename = 'image.jpg';
+
+//        $response->headers->set('Cache-Control', 'private');
+        $response->headers->set('Content-type', 'image/jpeg' );
+//        $response->headers->set('Content-Disposition', 'attachment; filename="image.jpg";');
+        $response->headers->set('Content-length',  strlen($result['Body']));
+
+        $response->setContent( $result['Body'] );
+        return $response;
+    }
 	
 	private function generateImage($uuid, $path){
 	
@@ -447,17 +465,6 @@ class ImageService {
 				'quality' => 75,
 				'background' => '000000'
 		]);
-	}
-
-
-	/**
-	 * @Route("/{_locale}/ori-simon-209836/{ouuid}/image.jpg",
-	 *   defaults={"_locale": "fr"},
-	 *   name="imageImage")
-	 */
-	public function originalImageAction($ouuid, Request $request = null)  {
-
-		return $this->getImage($ouuid, $request);
 	}
 	
 	
