@@ -448,6 +448,17 @@ class ImageService {
 				'background' => '000000'
 		]);
 	}
+
+
+	/**
+	 * @Route("/{_locale}/ori-simon-209836/{ouuid}/image.jpg",
+	 *   defaults={"_locale": "fr"},
+	 *   name="imageImage")
+	 */
+	public function originalImageAction($ouuid, Request $request = null)  {
+
+		return $this->getImage($ouuid, $request);
+	}
 	
 	
 	/**
