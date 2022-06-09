@@ -27,6 +27,7 @@ Debug::enable();
 $kernel = new AppKernel('dev', true);
 $kernel->loadClassCache();
 $request = Request::createFromGlobals();
+Request::setTrustedProxies(array('127.0.0.1', $request->server->get('REMOTE_ADDR')));
 $response = $kernel->handle($request);
 $response->send();
 $kernel->terminate($request, $response);
