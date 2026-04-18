@@ -1,0 +1,16 @@
+{%- set emsId = url.emsId -%}
+
+{%- set preferredLocales = [locale]|merge(emschLocales|filter(v => v != locale)) -%}
+
+{%- set linkLocale = preferredLocales|filter((l) => showDocs.(l).(emsId) is defined)|first -%}
+{%- set showDoc = showDocs.(linkLocale).(emsId)|default(false) -%}
+
+{%- if showDoc and showDoc.slug is defined -%}
+    {%- if linkLocale == locale -%}
+        {{ path('news', { '_locale': linkLocale, 'slug': showDoc.slug }) }}
+    {%- else -%}
+        {{ path('missing', { 'type': 'news', 'ouuid': url.ouuid } ) }}
+    {%- endif -%}
+{%- else -%}
+    {{- '/not-found' -}}
+{%- endif -%}

@@ -1,0 +1,20 @@
+{
+    "class": "EMS\\CoreBundle\\Entity\\WysiwygStylesSet",
+    "arguments": [],
+    "properties": {
+        "name": "bootstrap",
+        "config": "[\r\n  {\r\n    \"name\": \"Lead\",\r\n    \"element\": \"p\",\r\n    \"attributes\": {\r\n      \"class\": \"lead\"\r\n    }\r\n  },\r\n  {\r\n    \"name\": \"Outline link\",\r\n    \"element\": \"a\",\r\n    \"attributes\": {\r\n      \"class\": \"btn btn-outline-primary text-uppercase\"\r\n    }\r\n  },\r\n  {\r\n    \"name\": \"Alert info\",\r\n    \"element\": \"div\",\r\n    \"attributes\": {\r\n      \"class\": \"alert alert-info\"\r\n    }\r\n  },\r\n  {\r\n    \"name\": \"Alert warning\",\r\n    \"element\": \"div\",\r\n    \"attributes\": {\r\n      \"class\": \"alert alert-warning\"\r\n    }\r\n  },\r\n  {\r\n    \"name\": \"Alert danger\",\r\n    \"element\": \"div\",\r\n    \"attributes\": {\r\n      \"class\": \"alert alert-danger\"\r\n    }\r\n  },\r\n  {\r\n    \"name\": \"Table striped rows\",\r\n    \"element\": \"table\",\r\n    \"attributes\": {\r\n      \"class\": \"table table-striped\"\r\n    }\r\n  }\r\n]",
+        "orderKey": 1,
+        "formatTags": "p;div;h2;h3;h4",
+        "tableDefaultCss": "table table-bordered",
+        "contentCss": "css/admin.css",
+        "contentJs": "js/admin.js",
+        "assets": {
+            "sha1": "e02c0b15748ec52d71b60bb4342d9e8b28d839db",
+            "mimetype": "application/json",
+            "filename": "bundle.json"
+        },
+        "saveDir": null
+    },
+    "replaced": []
+}

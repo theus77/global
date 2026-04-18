@@ -1,0 +1,30 @@
+{%- block emailEndpoint -%}
+    {{- "no-reply@elasticms.eu" -}}
+{%- endblock emailEndpoint -%}
+
+{%- block emailMessage -%}
+    {% set body %}
+        ----------- REQUEST INFORMATION -----------
+        Subject: {{ data.subject|raw }}
+
+        Message:
+        {{ data.message|raw }}
+
+        ----------- CONTACT -----------
+        LANG: {{ config.locale }}
+        Lastname: {{ data.name|raw }}
+        Firstname:  {{ data.firstname|raw }}
+        Email: {{ data.email|raw }}
+        {% if data.project_phone|default %}Phone: {{ data.phone|raw }}
+        {% endif %}
+    {% endset %}
+
+    {%- set mail = {
+        'from': "no-reply@ems_standard.be",
+        'subject': "Form submission from ems standard contact",
+        'body': body|nl2br
+    } -%}
+
+    {{- mail|json_encode|raw -}}
+{%- endblock emailMessage -%}
+

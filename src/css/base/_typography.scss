@@ -1,0 +1,22 @@
+p:last-child {
+  margin-bottom: 0;
+}
+
+h1 {
+  margin-bottom: rem(45);
+  @include media-breakpoint-down(lg) {
+    margin-bottom: rem(24);
+    font-size: rem(36);
+  }
+}
+h2,
+h3 {
+  color: $primary;
+}
+h2 {
+  margin-bottom: rem(24);
+}
+
+h3 {
+  margin-bottom: 1rem;
+}

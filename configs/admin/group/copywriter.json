@@ -1,0 +1,17 @@
+{
+    "class": "EMS\\CoreBundle\\Entity\\Group",
+    "arguments": [],
+    "properties": {
+        "name": "copywriter",
+        "label": "Copywriter",
+        "roles": [
+            "ROLE_USER",
+            "ROLE_AUTHOR",
+            "ROLE_WEBMASTER",
+            "ROLE_USER_MANAGEMENT",
+            "ROLE_COPY_PASTE",
+            "ROLE_ALLOW_ALIGN"
+        ]
+    },
+    "replaced": []
+}

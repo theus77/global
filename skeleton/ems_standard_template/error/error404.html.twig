@@ -1,0 +1,7 @@
+{% extends '@EMSCH/ems_standard_template/error/error.html.twig' %}
+{% trans_default_domain trans_default_domain %}
+
+{% block title %}{{ 'error.404.title'|trans(locale: 'nl') }} - {{ 'error.404.title'|trans(locale: 'fr') }}{% endblock title %}
+
+{% set error_title = error_title|default('error.404.title') %}
+{% set error_description = error_description|default('error.404.description') %}

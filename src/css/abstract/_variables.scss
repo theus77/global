@@ -1,0 +1,96 @@
+// Assets
+$fonts-path: "../static/fonts" !default;
+$icons-path: "../static/icons" !default;
+$fa-font-path: '@fortawesome/fontawesome-free/webfonts';
+
+$prefix: 'bs-';
+
+// Colors
+$primary:     #005696;
+$secondary:   #d11f87;
+
+// Body font-size
+$browser-context: 16;
+
+$header-height: 80px;
+$header-height-lg: 90px;
+
+// Icons link
+$icon-link: (
+  pdf: \f1c1,
+  doc: \f1c2,
+  docx: \f1c2,
+  xls: \f1c3,
+  pptx: \f1c4,
+  zip: \f1c6
+);
+
+// Custom variables
+$back2top-selector: '.back2top';
+$admin-menu-font-color: var(--bs-btn-active-color);
+// ---
+
+// Bootstrap variables
+// ---
+$enable-shadows: false;
+
+// Colors
+$red: #c6111e;
+$pink: #f9e6de;
+$orange:  #ffc782;
+$danger: $red;
+
+// Typography
+$font-size-base: 1rem;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+$headings-font-weight: 400;
+$h1-font-size: rem(46);
+$h2-font-size: rem(33);
+$h3-font-size: rem(28);
+$h4-font-size: rem(22);
+$h5-font-size: rem(20);
+$h6-font-size: rem(18);
+
+$font-sizes: (
+  1: $h1-font-size,
+  2: $h2-font-size,
+  3: $h3-font-size,
+  4: $h4-font-size,
+  5: $h5-font-size,
+  6: $h6-font-size,
+  7: rem(16),
+  8: rem(14),
+  9: rem(12)
+);
+
+$display-font-sizes: (
+  1: 8rem,
+  2: 4.5rem,
+  3: 4rem,
+  4: 3.5rem,
+  5: 3rem,
+  6: 2.5rem
+);
+
+// Accordion
+$accordion-border-radius: 0;
+$accordion-inner-border-radius: 0;
+
+$accordion-button-padding-x: 0;
+$accordion-button-active-bg: var(--#{$prefix}accordion-bg);
+$accordion-button-active-color: var(--#{$prefix}body-color);
+
+// Alerts
+$alert-margin-bottom:           0;
+$alert-border-radius:           0;
+$alert-border-width:            0;
+
+// Grid containers
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1150px
+) !default;

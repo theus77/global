@@ -1,0 +1,36 @@
+{# @var view \EMS\CoreBundle\Entity\View #}
+{# @var contentType \EMS\CoreBundle\Entity\ContentType #}
+{# @var environment \EMS\CoreBundle\Entity\Environment #}
+{# @var dataLinks \EMS\CoreBundle\Core\Document\DataLinks #}
+
+{%- block template -%}
+    {%- set searchValue = dataLinks.pattern -%}
+
+    {%- set locales = emschLocales -%}
+    {%- set userLanguage = app.user.language -%}
+    {%- if userLanguage in locales -%}
+        {%- set locales = [userLanguage]|merge(locales|filter(v => v != userLanguage)) -%}
+    {%- endif -%}
+
+    {%- set must = [{"term": { "_contenttype": {"value": (contentType.name )} } }] -%}
+
+    {%- if searchValue|length > 0 -%}
+        {% set must = must|merge([ {
+            "query_string": { "query": "#{searchValue}*" ,"default_operator":"AND","boost":"1.0"}
+        } ]) %}
+    {%- endif -%}
+
+    {%- set search = {
+        "index": environment.alias,
+        "size": 500,
+        "body": {
+            "_source": emschLocales|map((l) => "#{l}.title"),
+            "query": { "bool": { "must": (must) } }
+        }
+    }|emsco_search_query -%}
+
+    {%- for hit in search.hits.hits -%}
+        {%- set label = locales|map(l => hit._source.(l).title|default(false))|filter(v => v != false)|join(' / ') -%}
+        {%- do dataLinks.add("#{contentType.name}:#{hit._id}", label) -%}
+    {%- endfor -%}
+{%- endblock template -%}

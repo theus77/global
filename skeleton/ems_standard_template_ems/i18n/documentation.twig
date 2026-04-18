@@ -1,0 +1,44 @@
+{%- block body -%}
+    <div class="box">
+        <div class="box-body" style="display: block;">
+            {{ emsco_datatable(['default'|emsco_get_environment.name],['ems_standard_media'], {
+                "empty_query": {
+                    "bool": {
+                        "must": [ { "term": { "media_folder": "/Manuals/" } } ]
+                    }
+                },
+                "query": {
+                    "bool": {
+                        "must": [
+                            { "term": { "media_folder": "/Manuals/" } },
+                            {
+                                "multi_match": {
+                                    "fields": [
+                                        "live_search",
+                                        "live_search._2gram",
+                                        "live_search._3gram"
+                                    ],
+                                    "query": "%query%",
+                                    "operator": "and",
+                                    "type": "bool_prefix"
+                                }
+                            }
+                        ]
+                    }
+                },
+                "columns": [
+                    {
+                        "label": "Name",
+                        "template": '<a href="{{ ems_asset_path(data.source.media_file) }}">{{ data.source.media_file.filename|default("N/A") }}</a>',
+                        "orderField": "media_path"
+                    },
+                    {
+                        "label": "Size",
+                        "template": '{{ data.source.media_file.filesize|ems_format_bytes }}',
+                        "orderField": "media_file.filesize"
+                    }
+                ]
+            }) }}
+        </div>
+    </div>
+{%- endblock body -%}

@@ -1,0 +1,95 @@
+app:
+    company: Institution
+    copyright: '© %company% %year%'
+    language_selection: 'Language selection'
+    locale: Français
+    search_page: Recherche
+    title: 'EMS Standard'
+aria:
+    skip_to_content: 'Passer au contenu principal'
+    toggle_navigation: 'Ouvrir/fermer la navigation'
+    toggle_search: 'Ouvrir/fermer la recherche'
+back2top:
+    label: 'Retour en haut'
+console:
+    warning_message: 'Si vous utilisez cette console, des personnes malveillantes peuvent usurper votre identité et voler vos données via une attaque appelée Self-XSS.Vous ne devez pas saisir ni coller de code que vous ne comprenez pas.'
+    warning_title: AVERTISSEMENT
+cookies_banner:
+    accept: "J'accepte"
+    intro: 'Nous utilisons des cookies sur ce site pour améliorer votre expérience utilisateur.'
+    more_info: "Plus d'informations"
+ems:
+    back_to_ems: 'Retour à eMS'
+error:
+    404:
+        description: "Nous n'avons pas trouvé la page que vous désirez. N'oubliez pas d'adapter vos favoris."
+        title: 'Oups! Page non trouvée.'
+    back_to_home: "Retour à la page d'accueil"
+    description: "Nous allons travailler sur la correction de cela tout de suite. En attendant, vous pouvez essayer d'utiliser le formulaire de recherche."
+    title: 'Oups! Quelque chose a mal tourné.'
+form:
+    error: 'Le formulaire a rencontré un problème : %message%'
+    error_try_later: 'Le formulaire a rencontré un problème, veuillez réessayer plus tard.'
+    file_selected: '1 fichier selectionné'
+    files_selected: '%count% fichiers selectionnés'
+    format_not_supported: 'Erreur: Format incorrect.'
+    iframe_title: Form
+    incorrect_format: 'Format incorrect'
+    loading: 'en cours de chargement...'
+    max_size_reached: 'Les fichiers sont trop volumineux. La taille maximale autorisée est de %fileSize%.'
+    processed: 'Votre message a été envoyé.'
+    remove: Supprimer
+    remove_all: 'Supprimer tout'
+    required_field: '(*) Champ obligatoire'
+    saved: 'Votre message a été envoyé.'
+key:
+    home: Accueil
+    new_window: "S'ouvre dans une nouvelle fenêtre"
+meta:
+    description_news_overview: 'Tous les articles'
+missing:
+    description: 'Le document que vous avez demandé n’est actuellement disponible qu’en %languages%'
+    show: 'Voir la version en %language%'
+    title: 'Ce document n’est pas disponible en %language%'
+month:
+    April: avril
+    August: août
+    December: décembre
+    February: février
+    January: janvier
+    July: juillet
+    June: juin
+    March: mars
+    May: mai
+    November: novembre
+    October: octobre
+    September: septembre
+nav:
+    current: Actuelle
+    next: Suivant
+    previous: Précédent
+news:
+    back_to: 'Retour vers toutes les actualités'
+    published_date: 'Publié le %date%'
+    slideshow: "Carrousel d'actualités"
+    title: Nouveautés
+    title.demo: Actualités
+    view_all: 'Toutes les actualités'
+search:
+    action: Rechercher
+    for_query: 'pour "%query%"'
+    paging_info: 'Résultats de %from% à %to% sur %total%'
+    placeholder: 'Entrez un ou plusieurs mots-clés'
+    results: '{0} Aucun résultat trouvé|{1} 1 résultat trouvé|]1,Inf[%count% résultats trouvés'
+    select_size: Résultats
+socials:
+    facebook:
+        alt: Facebook
+        url: 'https://www.facebook.com/globalview.be'
+    instagram:
+        alt: Instagram
+        url: 'https://www.instagram.com/simon.globalview/'
+    linkedin:
+        alt: LinkedIn
+        url: 'https://www.linkedin.com/company/global-view-sprl/'
+    title: 'Suivez-nous sur les réseaux sociaux'

@@ -1,0 +1,40 @@
+.search-group {
+  .form-control {
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-radius: 0;
+    background-color: transparent;
+    border-color: $gray-400;
+    font-size: rem(20);
+    padding: .563rem 1.25rem;
+    height: auto;
+    padding-left: 0;
+  }
+  button {
+    font-weight: bold;
+    border: 0;
+    border-bottom: 1px solid $gray-400;
+    border-radius: 0;
+    padding-right: 0;
+    color: $primary;
+    font-size: rem(20);
+    background-color: transparent;
+    &:hover {
+      background-color: transparent;
+      color: rgba($primary, .7);
+      border-bottom-color: $gray-400;
+    }
+  }
+}
+.search-bar {
+  /* Override autofill form browser */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-text-fill-color: white !important;
+    box-shadow: 0 0 0 1000px $primary inset !important;
+    transition: background-color 5000s ease-in-out 0s !important;
+  }
+}
+

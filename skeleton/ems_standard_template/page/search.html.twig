@@ -1,0 +1,41 @@
+{%- extends "@EMSCH/ems_standard_template/page/base.html.twig" -%}
+
+{%- block request %}
+    {%- set searchTemplate = '@EMSCH/ems_standard_template/page/include/search.twig' -%}
+    {%- import searchTemplate as macro -%}
+    {%- set search = macro.search({
+        'locale': locale,
+        'domain': trans_default_domain
+    })|ems_json_decode -%}
+    {{ parent() }}
+{%- endblock request -%}
+
+{%- block title -%}{{ block('search_title', searchTemplate) }}{%- endblock title -%}
+
+{%- block meta -%}
+    <meta name="description" content="{{- block('search_title', searchTemplate) -}}">
+    {{ parent() }}
+{%- endblock meta -%}
+
+{%- block body -%}
+    {%- set languageUrls = emschLocales|reduce(
+        (carry, l) => carry|default([])|merge({ (l): path('search', { '_locale': l}) })
+    ) -%}
+    {{ parent() }}
+{%- endblock body -%}
+
+{%- block content -%}
+    <div class="container">
+        <form id="form-search" action="{{ path('search') }}" data-ajax-search-form="{{ path('search', { _format: 'json' }) }}">
+            {{ block('search_filter', searchTemplate) }}
+            <div class="mt-5 col-lg-8 offset-lg-2">
+                {{ block('search_results', searchTemplate) }}
+                <div class="form-group d-flex align-items-center justify-content-between gap-3 mt-5 {{form_classes|default('')}}" role="group" id="length">
+                    {{ block('search_size_label', searchTemplate) }}
+                    {{ block('search_pagination', searchTemplate) }}
+                    {{ block('search_size', searchTemplate) }}
+                </div>
+            </div>
+        </form>
+    </div>
+{%- endblock content -%}

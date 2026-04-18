@@ -1,0 +1,20 @@
+{%- block field_label_post_processing -%}
+    {{- _source.name|default('')|json_encode|raw -}}
+{%- endblock field_label_post_processing -%}
+
+{%- block validation_label_post_processing -%}
+    {{- _source.classname
+        |replace({'EMS\\FormBundle\\Components\\Validation\\': '', 'App\\Form\\Components\\Validation\\': ''})
+        |default('')
+        |json_encode
+        |raw
+    -}}
+{%- endblock validation_label_post_processing -%}
+
+{%- block submission_label_post_processing -%}
+    {{- (_source.name|default('') ~ ' (' ~ _source.type ~ ')')
+        |replace({'EMS\\SubmissionBundle\\Handler\\': ''})
+        |json_encode
+        |raw
+    -}}
+{%- endblock submission_label_post_processing -%}

@@ -1,0 +1,22 @@
+{
+    "class": "EMS\\CoreBundle\\Entity\\Dashboard",
+    "arguments": [],
+    "properties": {
+        "name": "structure",
+        "icon": "fa fa-sitemap",
+        "label": "Structure",
+        "sidebarMenu": true,
+        "notificationMenu": false,
+        "definition": null,
+        "type": "ems_core.dashboard.template",
+        "role": "ROLE_USER",
+        "color": "aqua",
+        "options": {
+            "body": "{{ block('body', '@EMSCH/ems_standard_template_ems/dashboard/structure/structure.twig') }}",
+            "header": "{{ block('header', '@EMSCH/ems_standard_template_ems/dashboard/structure/structure.twig') }}",
+            "footer": "{{ block('footer', '@EMSCH/ems_standard_template_ems/dashboard/structure/structure.twig') }}"
+        },
+        "orderKey": 1
+    },
+    "replaced": []
+}

@@ -1,0 +1,44 @@
+{%- block source_post_processing -%}
+    {%- if _source.translate|default(false) -%}
+        {%- set copyFromLocale = emschLocales|filter(l => _source.(l).title is defined)|first -%}
+        {%- for copyToLocale in emschLocales|filter(l => l != copyFromLocale) -%}
+            {%- set _source = _source|merge({
+                (copyToLocale): _source.(copyToLocale)|default({})|merge(_source.(copyFromLocale)|filter((v, k) => k != 'show'))
+            }) -%}
+        {%- endfor -%}
+        {%- set _source = _source|merge({ 'translate': false }) -%}
+    {%- endif -%}
+
+    {%- if finalize %}
+        {%- for l in emschLocales|filter(l => _source.(l).show|default(false) == true and (_source.(l).title|default('')|trim == '' or _source.(l).body|default('')|trim == '')) -%}
+            {{ emsco_cant_be_finalized("Show #{l|upper} is enabled, title and body is required.") }}
+        {%- endfor -%}
+    {%- endif -%}
+{%- endblock source_post_processing -%}
+
+{%- block label_post_processing -%}
+    {%- set titles = [] -%}
+    {%- set locales = emschLocales -%}
+    {%- for l in locales|filter((l) => _source.(l).title is defined) -%}
+        {%- set titles = titles|merge([ _source.(l).title ]) -%}
+    {%- endfor -%}
+    {{- titles|join(' / ')|json_encode|raw -}}
+{%- endblock label_post_processing -%}
+
+{%- block date_news_post_processing -%}
+    {% if finalize and _source.date_news|default(null) is null -%}
+        {{- 'now'|date('Y/m/d')|json_encode|raw -}}
+    {%- endif -%}
+{%- endblock date_news_post_processing -%}
+
+{%- block slug_value_template -%}
+    {%- if _source.slug|default(false) -%}
+        {{- _source.slug|json_encode|raw -}}
+    {%- endif -%}
+{%- endblock slug_value_template -%}
+
+{%- block slug_post_processing -%}
+    {%- if finalize and _source.title is defined %}
+        {{- _source.title|ems_slug|json_encode|raw -}}
+    {%- endif -%}
+{%- endblock slug_post_processing -%}

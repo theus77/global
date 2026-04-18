@@ -1,0 +1,14 @@
+{
+    "class": "EMS\\CoreBundle\\Entity\\I18n",
+    "arguments": [],
+    "properties": {
+        "identifier": "config",
+        "content": [
+            {
+                "locale": "en",
+                "text": "{\"prefix\":{\"page\":{\"nl\":\"pagina\",\"fr\":\"page\",\"de\":\"seite\",\"en\":\"page\"},\"news\":{\"nl\":\"nieuws\",\"fr\":\"actualites\",\"de\":\"nachrichten\",\"en\":\"news\"}}}"
+            }
+        ]
+    },
+    "replaced": []
+}

@@ -1,33 +1,3 @@
-/app/config/parameters.yml
-/build/
-/phpunit.xml
-/var/*
-!/var/cache
-/var/cache/*
-!/var/images
-/var/images/*
-!var/cache/.gitkeep
-!/var/logs
-/var/logs/*
-!var/logs/.gitkeep
-!/var/sessions
-/var/sessions/*
-!var/sessions/.gitkeep
-!var/SymfonyRequirements.php
-/vendor/
-/web/bundles/
-/web/bower/
-/web/migrate/
-/web/js/bower
-
-# eclipse files
-/.settings/
-/.project
-/.buildpath
-/.sass-cache/
-/npm-debug.log
-
-#OS X files
-.DS_Store
-/.vagrant/
 /node_modules/
+/dist/
+/.env.local

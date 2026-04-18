@@ -1,0 +1,15 @@
+{%- extends '@EMSCH/ems_standard_template_ems/content_type/base_overview.twig' -%}
+
+{%- block template -%}
+    {%- set defaultColumns = true -%}
+    {%- set columns = [
+        { 'label': 'Name', 'template': (block('column_name')), 'orderField': 'name'}
+    ] -%}
+    {{ parent() }}
+{%- endblock template -%}
+
+{%- block column_name -%}
+{%- verbatim -%}
+    <a href="{{path('data.revisions', {ouuid: data.id, type: data.contentType} ) }}">{{ data.source.name }}</a>
+{%- endverbatim -%}
+{%- endblock column_name -%}

@@ -1,0 +1,125 @@
+{%- extends '@EMSCH/ems_standard_template/base/base.html.twig' -%}
+
+{%- block pre_request -%}
+    {%- set searchStructures = emsch_search('ems_standard_structure', {}) -%}
+    {%- set searchShow = emsch_search(['ems_standard_page','ems_standard_news'], {
+        '_source': (['structure_item']
+            |merge(emschLocales|map(l => "#{l}.show"))
+            |merge(emschLocales|map(l => "#{l}.slug"))
+        ),
+        'size': 5000,
+        'query': { 'bool': {
+            'minimum_should_match': 1,
+            'should': (emschLocales|map(l => { 'term': { ("#{l}.show"): true } } ))
+        } }
+    }) -%}
+
+    {%- set hitsShow = searchShow.hits.hits|default([])|reduce((carry, h) => carry|default([])|merge({
+        ("#{h._source._contenttype}:#{h._id}"): h._source
+    })) -%}
+    {%- set hitsStructures = searchStructures.hits.hits|default([]) -%}
+    {%- set linkHomepage = hitsStructures
+        |filter(h => h._source.link_homepage is defined)
+        |first._source.link_homepage|default(false) -%}
+
+    {%- set pathsStructure = [] -%}
+    {%- for h in hitsStructures -%}
+        {%- for l in emschLocales -%}
+            {%- set showPagesStructure = hitsShow
+                |filter(s => s.(l).show|default(false) == true and s.structure_item is defined)
+                |map(s => s.structure_item)
+            -%}
+
+            {%- set localePaths = h._source.(l).paths
+                |default([])
+                |filter(p => p.uid in showPagesStructure)
+                |reduce((carry, p) => carry|default([])|merge({ (p.uid): path('structure', { '_locale': l, 'path': p.path }) }))
+            -%}
+
+            {%- if linkHomepage and showPagesStructure.(linkHomepage) is defined -%}
+                {%- set homepageStructureItem = showPagesStructure.(linkHomepage) -%}
+                {%- set localePaths = localePaths|default([])|merge({ (homepageStructureItem): path('homepage', { '_locale': l }) }) -%}
+            {%- endif -%}
+
+            {%- set pathsStructure = pathsStructure|merge({ (l): pathsStructure.(l)|default([])|merge(localePaths|default([])) }) -%}
+        {%- endfor -%}
+    {%- endfor -%}
+
+    {%- set pathStructure = pathsStructure.(locale) -%}
+
+    {%- set structure = hitsStructures|map(h => {
+        'id': h._source.name,
+        'type': 'structure',
+        'children': h._source.structure|default('{}')|ems_json_decode
+    })|json_encode|ems_json_menu_nested_decode -%}
+    {%- for item in structure|filter(i => i.type == 'page' and pathStructure.(i.id) is not defined) -%}
+        {%- do item.parent.setChildren(item.parent.children|filter(c => c.id != item.id)) -%}
+    {%- endfor -%}
+
+    {%- set contentType = source._contenttype|default(false) -%}
+    {%- if route == 'homepage' -%}
+        {%- set homepage = linkHomepage ? linkHomepage|emsch_get.raw : false -%}
+        {%- if homepage == false -%}{%- do emsch_http_error('404', 'Homepage not defined') -%}{%- endif -%}
+        {%- set document = homepage -%}
+        {%- set source = homepage._source -%}
+    {%- elseif contentType == 'ems_standard_structure' -%}
+        {%- set hitStructure = document.inner_hits.hitPath.hits.hits|first._source -%}
+        {%- if pathStructure.(hitStructure.uid) is not defined -%}
+            {%- do emsch_http_error('404', 'Attached page not found or show is false') -%}
+        {%- endif -%}
+
+        {%- set document = emsch_search('ems_standard_page', {
+            'query': { 'bool': { 'must': [
+                { 'term': { 'structure_item': hitStructure.uid } },
+                { 'term': { ("#{locale}.show"): true } }
+            ] } }
+        }).hits.hits|first -%}
+        {%- set source = document._source -%}
+    {%- endif -%}
+
+    {%- if document is defined and source is defined -%}
+        {%- set emsLink = "#{document._source._contenttype}:#{document._id}"|ems_link -%}
+        {%- if source.structure_item is defined and structure.getItemById(source.structure_item) is not null -%}
+            {%- set activeItem = structure.getItemById(source.structure_item) -%}
+        {%- endif -%}
+        {%- set alerts = emsch_search('ems_standard_alert', {
+            '_source': ["#{locale}.*"],
+            'query': { 'bool': { 'must': [
+                { 'term': { ("#{locale}.show"): true } },
+                { 'range': { 'from': { 'lte': 'now' } } },
+                { 'range': { 'to': { 'gte': 'now' } } },
+                { 'bool': {
+                    'minimum_should_match': 1,
+                    'should': [
+                        { 'terms': { 'alert_pages': [emsLink.emsId] } },
+                        { 'bool': { 'must_not': [ { 'exists': { 'field': 'alert_pages' } } ] } }
+                    ]
+                } }
+            ] } },
+            'sort': [ { 'from': { 'order': 'desc' } } ]
+        }) -%}
+        {%- set alerts = alerts.hits.hits|map(hit => {
+            'id': hit._source.(locale).title|slug,
+            'title': hit._source.(locale).title,
+            'content': hit._source.(locale).body
+        }) -%}
+    {%- endif -%}
+
+    {%- set showDocs = emschLocales|reduce((carry, l) => carry|default([])|merge({
+        (l) : hitsShow
+            |filter(s => s.(l).show|default(false) == true and s.(l).slug is defined)
+            |map(v => { 'item': v.structure_item|default(false), 'slug': v.(l).slug })
+    })) -%}
+
+    {%- set isHomepage = route == 'homepage' or linkHomepage == emsLink.emsId|default(null) -%}
+
+    {%- set emsch_routing_config = {
+        'dynamic_types': ['ems_standard_page','ems_standard_news'],
+        'context': {
+            'pathsStructure': pathsStructure,
+            'showDocs': showDocs
+        }
+    } -%}
+
+    {{ parent() }}
+{%- endblock pre_request -%}

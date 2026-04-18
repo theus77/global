@@ -1,0 +1,25 @@
+{%- extends "@EMSCH/ems_standard_template/base/base.html.twig" -%}
+{% trans_default_domain trans_default_domain %}
+{% block title %}{{ emschLocales|map(l =>  'error.title'|trans(locale: l))|join(' - ')  }}{% endblock title %}
+
+{% set error_title = error_title|default('error.title') %}
+{% set error_description = error_description|default('error.description') %}
+
+{%- block body -%}
+    <div class="min-vh-100 d-flex align-items-center py-5">
+        <div class="container">
+            <h1 class="text-center display-1 mt-0 mb-5">{{ status_code }}</h1>
+            <div class="row row-gap-5">
+                {% for l in emschLocales %}
+                    <div class="col-lg-{{ min(12, 24/emschLocales|length) }} col-xl-{{ min(12, 12/emschLocales|length) }}">
+                        <div class="text-center text-md-start">
+                            <h2 class="display-6 text-body">{{ error_title|trans(locale: l) }}</h2>
+                            <p>{{ error_description|trans(locale: l) }}</p>
+                            <a lang="{{ l }}" href="{{ path('homepage', { _locale: l }) }}" class="btn btn-outline-primary">{{ 'error.back_to_home'|trans(locale: l) }}</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{%- endblock body -%}

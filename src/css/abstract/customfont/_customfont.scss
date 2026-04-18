@@ -1,0 +1,15 @@
+/*
+ * ICONFONT
+ *
+ */
+
+@font-face {
+  font-family: '#{$cf-font-family}';
+  src:
+    url('#{$cf-font-path}/#{$cf-font-family}.ttf?p2lxja') format('truetype'),
+    url('#{$cf-font-path}/#{$cf-font-family}.woff?p2lxja') format('woff'),
+    url('#{$cf-font-path}/#{$cf-font-family}.svg?p2lxja##{$cf-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}

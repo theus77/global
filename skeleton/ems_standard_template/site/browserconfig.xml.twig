@@ -1,0 +1,13 @@
+{%- extends '@EMSCH/ems_standard_template/variables.twig' -%}
+
+{%- block request -%}
+<?xml version="1.0" encoding="utf-8"?>
+<browserconfig>
+    <msapplication>
+        <tile>
+            <square150x150logo src="{{ path('site_icon', {name: 'mstile', width: 150, height: 150}) }}"/>
+            <TileColor>#ffffff</TileColor>
+        </tile>
+    </msapplication>
+</browserconfig>
+{%- endblock request -%}

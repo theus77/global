@@ -1,0 +1,63 @@
+$back2top-selector: '.back2top';
+$back2top-text: $white;
+$back2top-background: $secondary;
+
+#{$back2top-selector} {
+  color: $back2top-text;
+  background: rgba($back2top-background, .9);
+  width: 4.5em;
+  height: 4.5em;
+  border-radius: 50%;
+  overflow: hidden;
+  position: fixed;
+  right: 1rem;
+  bottom: 3rem;
+  z-index: $zindex-fixed;
+  font-size: .75em;
+  line-height: 1.1;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.35s;
+  display: block;
+  border: 0;
+
+  @include media-breakpoint-down(md) {
+    display: none !important;
+  }
+
+  > * {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.35s;
+  }
+
+  > :first-child {
+    display: none;
+    margin-top: -4.5em;
+    @include media-breakpoint-up(lg) {
+      display: block;
+    }
+  }
+
+  > :last-child {
+    font-size: 1.35rem !important;
+    display: block;
+  }
+
+  &:hover {
+    background: rgba($back2top-background, 1);
+    text-decoration: none;
+
+    > :first-child {
+      margin-top: 0;
+    }
+
+    > :last-child {
+      @include media-breakpoint-up(lg) {
+        margin-top: 4.5em;
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+@import "abstract/functions";
+@import "abstract/mixins";
+@import "abstract/customfont";
+@import "abstract/variables";
+
+@import "vendor/bootstrap";
+@import "vendor/fontawesome";
+@import "vendor/swiper";
+
+@import "utilities/columns";
+@import "utilities/grid";
+
+@import "base/links";
+@import "base/root";
+@import "base/typography";
+
+@import "components/accordion";
+@import "components/alerts";
+@import "components/back2top";
+@import "components/card";
+@import "components/collapse";
+@import "components/form";
+@import "components/hero";
+@import "components/hr";
+@import "components/navbar";
+@import "components/search";
+@import "components/table";
+@import "snippets/modal";
+
+@import "layout/header";
+@import "pages/home";
+@import "layout/wysiwyg-content";
+
+//@import "pages/...";
+
+
+@import "@elasticms/admin-menu/css/style";
+
+.emsform-summaries {
+  display: none
+}
+
+.alerts p { margin-bottom: 0; }

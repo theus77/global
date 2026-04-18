@@ -1,0 +1,36 @@
+.accordion {
+  .accordion-item {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    &:last-child {
+      border: 0;
+    }
+  }
+}
+
+.accordion-button {
+  align-items: start;
+  box-shadow: none !important;
+  font-size: rem(22);
+  > span {
+    order: 2;
+    margin-left: 1rem;
+  }
+
+  &::after {
+    order: 1;
+    margin-left: 0;
+    margin-top: .3rem;
+  }
+
+  &:hover {
+    span {
+      text-decoration: underline;
+    }
+  }
+}
+
+.accordion-body {
+  padding: 0 0 var(--bs-accordion-body-padding-y) 2.3rem;
+}

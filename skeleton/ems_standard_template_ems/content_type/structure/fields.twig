@@ -1,0 +1,80 @@
+{%- block source_post_processing -%}
+    {%- if finalize and _source.link_homepage is defined -%}
+        {%- set searchExistingLinkHomage = {
+            'index': index,
+            'body': {
+                '_source': false,
+                'query': {
+                    'bool': {
+                        'must_not': [{ 'term': { '_id': { 'value': (_id) } } } ],
+                        'must': [
+                            { 'term': { '_contenttype': { 'value': (_type) } } },
+                            { 'exists': { 'field': 'link_homepage' } }
+                        ]
+                    }
+                }
+            }
+        }|emsco_search_query -%}
+        {%- if searchExistingLinkHomage.hits.total.value|default(0) >= 1 -%}
+            {%- do emsco_cant_be_finalized('The link to the homepage is already defined in another structure.') -%}
+        {%- endif -%}
+    {%- endif -%}
+{%- endblock source_post_processing -%}
+
+{%- block page_label_post_processing -%}
+    {{ block('label_post_processing') }}
+{%- endblock page_label_post_processing -%}
+
+{%- block folder_label_post_processing -%}
+    {{ block('label_post_processing') }}
+{%- endblock folder_label_post_processing -%}
+
+{%- block label_post_processing -%}
+    {%- set label = [] -%}
+    {%- for locale in emschLocales|filter((l) => _source.(l).label is defined) -%}
+        {%- set label = label|merge([_source.(locale).label]) -%}
+    {%- endfor -%}
+    {{- label|join(' / ')|json_encode|raw -}}
+{%- endblock label_post_processing -%}
+
+{%- block paths_value_template -%}
+    {%- if _source.paths|default(false) -%}
+        {{- _source.paths|json_encode|raw -}}
+    {%- endif -%}
+{%- endblock paths_value_template -%}
+
+{%- block paths_display_template -%}
+    {%- set locale = dataField.formOptions.locale -%}
+    <ul>
+        {%- for i in data -%}
+            <li>
+                <a href="{{- path('emsco_dashboard', {'name': 'structure', 'activeItemId': i.uid, 'locale': locale }) }}">
+                    {{- i.path -}}
+                </a>
+            </li>
+        {%- endfor -%}
+    </ul>
+{%- endblock paths_display_template -%}
+
+{%- block paths_post_processing -%}
+    {%- if finalize -%}
+        {%- set paths = [] -%}
+        {%- set locale = form.parent.name -%}
+        {%- set structure = rootObject.structure|default('{}')|ems_json_menu_nested_decode -%}
+
+        {%- for item in structure|filter(i => i.type == 'page') -%}
+            {%- set itemPath = item.path -%}
+            {%- set pathSize = itemPath|length -%}
+            {%- set localePath = itemPath|filter(i => i.object.(locale).label is defined) -%}
+
+            {%- if localePath|length == pathSize -%}
+                {%- set paths = paths|merge([{
+                    'uid': item.id,
+                    'type': item.type,
+                    'path': localePath|map(i => i.object.(locale).label|ems_slug(locale))|join('/')
+                }]) -%}
+            {%- endif -%}
+        {%- endfor -%}
+        {{- paths|default([])|json_encode|raw -}}
+    {%- endif -%}
+{%- endblock paths_post_processing -%}

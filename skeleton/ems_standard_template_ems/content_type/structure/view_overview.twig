@@ -1,0 +1,35 @@
+{%- extends '@EMSCH/ems_standard_template_ems/content_type/base_overview.twig' -%}
+
+{%- block template -%}
+    {%- set prependColumns = [
+        { 'label': '#', 'template': (block('column_order')), 'orderField': 'order'},
+        { 'label': 'Name', 'template': (block('column_name')),  'orderField': 'name'},
+    ] -%}
+    {%- set languageColumnProperty = 'title' -%}
+    {%- set columns = [
+        { "label": "Link homepage", "template": (block('column_homepage')) },
+        { "label": "Last Author", "template": (block('column_last_update_by')), "orderField": "_finalized_by" },
+        { "label": "Last Update", "template": (block('column_last_update')), "orderField": "_finalization_datetime" },
+        { "label": "Action", "template": (block('column_action_default')) }
+    ] -%}
+
+    {{ parent() }}
+{%- endblock template -%}
+
+{%- block column_order -%}
+    {%- verbatim -%}
+    {{- data.source.order|default(999) -}}
+{%- endverbatim -%}
+{%- endblock column_order -%}
+
+{%- block column_name -%}
+{%- verbatim -%}
+    <a href="{{path('data.revisions', {ouuid: data.id, type: data.contentType} ) }}">{{ data.source.name }}</a>
+{%- endverbatim -%}
+{%- endblock column_name -%}
+
+{%- block column_homepage -%}
+{%- verbatim -%}
+    {{ data.source.link_homepage is defined ? data.source.link_homepage|emsco_data_link : '' }}
+{%- endverbatim -%}
+{%- endblock column_homepage -%}

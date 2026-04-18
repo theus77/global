@@ -1,0 +1,70 @@
+{%- block show_fr -%}
+    {%- set showLocale = 'fr' -%}
+    {{ block('show') }}
+{%- endblock show_fr -%}
+
+{%- block show_nl -%}
+    {%- set showLocale = 'nl' -%}
+    {{ block('show') }}
+{%- endblock show_nl -%}
+
+{%- block show_de -%}
+    {%- set showLocale = 'de' -%}
+    {{ block('show') }}
+{%- endblock show_de -%}
+
+{%- block show_en -%}
+    {%- set showLocale = 'en' -%}
+    {{ block('show') }}
+{%- endblock show_en -%}
+
+{%- block show -%}
+    {%- set config = 'config'|emsco_i18n('en')|ems_json_decode -%}
+    {%- if source.(showLocale).show|default(false) -%}
+        {%- set path = [] -%}
+        {%- set channel = "/channel/#{environment.name}" -%}
+        {%- if source.structure_item is defined -%}
+            {%- set searchPath = {
+                'index': 'default'|emsco_get_environment.alias,
+                '_source': false,
+                'body': {
+                    'query': {
+                        'bool': {
+                            'must': [
+                                {
+                                    'nested': {
+                                        'path': ("#{showLocale}.paths"),
+                                        'query': {
+                                            'bool': {
+                                                'must': [
+                                                    { 'term': { ("#{showLocale}.paths.uid"): { 'value': (source.structure_item) } } }
+                                                ]
+                                            }
+                                        },
+                                        'inner_hits': { 'name': 'hitPath', '_source': [ '*' ], 'size': 1 }
+                                    }
+                                },
+                                { 'term': { '_contenttype': { 'value': 'ems_standard_structure' } } }
+                            ]
+                        }
+                    }
+                }
+            }|emsco_search_query -%}
+
+            {%- set firstHit = searchPath.hits.hits|first|default([]) -%}
+            {%- if firstHit -%}
+                {%- set firstHitPath = firstHit.inner_hits.hitPath.hits.hits|first|default([]) -%}
+                {%- set path = [channel, showLocale, firstHitPath._source.path|default(false)] -%}
+            {%- endif -%}
+        {%- elseif source.(showLocale).slug is defined -%}
+            {%- set path = [channel, showLocale, config.prefix.page.(showLocale)|default('page'), source.(showLocale).slug] -%}
+        {%- endif -%}
+
+        {%- if path|length > 0 -%}
+            <a href='{{ path|join('/') }}' target='_blank'>
+                <i class='fa fa-eye'></i>&nbsp;{{ "Show #{showLocale|upper}" }}
+            </a>
+        {%- endif -%}
+    {%- endif -%}
+{%- endblock show -%}
+

@@ -1,0 +1,57 @@
+{%- block media_file_post_processing -%}
+    {%- set data = [] -%}
+
+    {%- if finalize and _source.media_file is defined-%}
+        {%- set filename = _source.media_file._name|default(_source.media_file.filename)|default(false) -%}
+
+        {%- set currentExtension = _source.media_extension|default(null) -%}
+        {%- set newExtension = filename|split('.')|last -%}
+        {%- if currentExtension and currentExtension != newExtension -%}
+            {{ emsco_cant_be_finalized("Oops! You uploaded a .%s file, but this document only accepts .%s files. You can replace the file, but you cannot change its type. Please try again."|format(
+                newExtension,
+                currentExtension
+            )) }}
+        {%- endif -%}
+
+        {%- if _source.media_file.filesize|default(0) < 3145728 -%}
+            {%- set meta = _source.media_file.sha1|emsco_asset_meta|default(false) -%}
+            {%- if meta -%}
+                {%- set content = meta.content|default(false) -%}
+                {%- if content -%}
+                    {%- set content = content|ems_replace_regex('!\\s+!', ' ')|u.trim.slice(0, 5120) -%}
+                {%- endif -%}
+
+                {%- set data = data|merge({
+                    '_author': meta.author|default(false),
+                    '_content': content,
+                    '_date': meta.date|default(false),
+                    '_language': meta.language|default(false),
+                    '_title': meta.title|default(false),
+                }) -%}
+            {%- endif -%}
+        {%- endif -%}
+    {%- endif -%}
+    {%- if data|length > 0 -%}
+        {{ _source.media_file|merge(data)|filter(v => v != false)|json_encode|raw }}
+    {%- endif -%}
+{%- endblock media_file_post_processing -%}
+
+{%- block date_creation_post_processing -%}
+    {%- if _source.('date_creation') is not defined -%}
+        {{ 'now'|date(constant('DateTime::ATOM'))|json_encode|raw }}
+    {%- endif -%}
+{%- endblock date_creation_post_processing -%}
+
+{%- block media_extension_post_processing -%}
+    {%- set filename = _source.media_file._name|default(_source.media_file.filename)|default(false) -%}
+    {%- if filename -%}
+        {{- filename|split('.')|last|json_encode|raw -}}
+    {%- endif -%}
+{%- endblock media_extension_post_processing -%}
+
+{%- block media_extension_value_template -%}
+    {%- if _source.media_extension|default(false) -%}
+        {{- _source.media_extension|json_encode|raw -}}
+    {%- endif -%}
+{%- endblock media_extension_value_template -%}
+

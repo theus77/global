@@ -1,0 +1,6 @@
+// Links
+@mixin icon-link($doc, $icon) {
+  &[href*='.#{$doc}']:after {
+    @include faw-icon($icon,16,400);
+  }
+}

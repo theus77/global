@@ -1,0 +1,18 @@
+// FontAwesome
+@mixin faw-icon($fa-icon,$size:16,$weigth: 900) {
+  font-family: 'Font Awesome 6 Free';
+  content: fa-content($fa-icon);
+  @include fa-icon;
+  font-size: rem($size);
+  font-weight: $weigth;
+}
+
+// Fonts
+@mixin fontfaceWoff($name, $file, $weight: normal, $style: normal){
+  @font-face {
+    font-family: "#{$name}";
+    src: url('#{$file}.woff') format('woff'),url('#{$file}.woff2') format('woff2'),;
+    font-weight: $weight;
+    font-style: $style;
+  }
+}
