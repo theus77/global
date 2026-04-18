@@ -1,0 +1,9 @@
+{
+  "es_version": 8,
+  "template_web": [
+    "ems_standard_template"
+  ],
+  "template_admin": [
+    "ems_standard_template_ems"
+  ]
+}

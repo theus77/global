@@ -1,0 +1,22 @@
+services:
+    skeleton-acc:
+        extends:
+            file: docker-skeleton.yml
+            service: skeleton
+        environment:
+            - 'ES_CLUSTER_CONFIG=[{"transport":"https","host":"wcmtech-es-8-proxy.acc.ext.ssbcloud.be","username":"${EMS_CLUSTER_USER}","password":"${EMS_CLUSTER_PASS}","port":443,"curl":{"64":false}}]'
+            - 'APP_BACKEND_PROXY_URL=https://standard-admin.acc.ext.ssbcloud.be'
+        labels:
+            - traefik.enable=true
+            - 'traefik.http.routers.standard-acc.rule=HostRegexp(`^acc\-([a-z0-9\-_\.]+)\.standard\.localhost$$`)'
+            - traefik.http.routers.standard-acc.entrypoints=web
+            - traefik.http.routers.standard-acc.service=standard-acc-apache
+            - 'traefik.http.routers.standard-acc-tls.rule=HostRegexp(`^acc\-([a-z0-9\-_\.]+)\.standard\.localhost$$`)'
+            - traefik.http.routers.standard-acc-tls.entrypoints=websecure
+            - traefik.http.routers.standard-acc-tls.tls=true
+            - traefik.http.routers.standard-acc-tls.service=standard-acc-apache
+            - traefik.http.services.standard-acc-apache.loadbalancer.server.port=9000
+networks:
+    default:
+        name: skeleton
+        external: true

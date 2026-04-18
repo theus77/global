@@ -1,0 +1,17 @@
+{%- block source_post_processing -%}
+    {%- if finalize -%}
+        {%- for l in emschLocales|filter(l => _source.(l).show|default(false) == true and (_source.(l).title|default('')|trim == '' or _source.(l).body|default('')|trim == '')) -%}
+            {{ emsco_cant_be_finalized("Show #{l|upper} is enabled, title and body is required.") }}
+        {%- endfor -%}
+    {%- endif -%}
+{%- endblock source_post_processing -%}
+
+{%- block label_post_processing -%}
+    {%- set titles = [] -%}
+    {%- set locales = emschLocales -%}
+    {%- for l in locales|filter((l) => _source.(l).title is defined) -%}
+        {%- set titles = titles|merge([ _source.(l).title ]) -%}
+    {%- endfor -%}
+    {{- titles|join(' / ')|json_encode|raw -}}
+{%- endblock label_post_processing -%}
+

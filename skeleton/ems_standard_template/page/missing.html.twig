@@ -1,0 +1,40 @@
+{%- extends "@EMSCH/ems_standard_template/page/base.html.twig" -%}
+{% trans_default_domain trans_default_domain %}
+
+{%- block title -%}
+    {{ 'missing.title'|trans({ '%language%': locale|language_name }) }}
+{%- endblock title -%}
+
+{%- block body -%}
+    {%- set languageUrls = [] -%}
+    {%- for l in emschLocales -%}
+        {%- if source.(l).show|default(false) == true -%}
+            {%- set languageUrls = languageUrls|merge({
+                (l): emsLink|emsch_routing_config(emsch_routing_config|merge({ 'locale': (l) }))
+            }) -%}
+        {%- else -%}
+            {%- set languageUrls = languageUrls|merge({ (l): path(route, routeParams|merge({ '_locale': l })) }) -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {{ parent() }}
+{%- endblock body -%}
+
+{%- block content -%}
+    {%- set availableLocales = emschLocales|filter(l => source.(l).show|default(false) == true) %}
+    {%- set availableLanguages = availableLocales|map(l => l|language_name) -%}
+    <div class="container">
+        <h1>{{ block('title') }}</h1>
+        {%- if availableLocales|length > 0 -%}
+            <p>{{ 'missing.description'|trans({ '%languages%': availableLanguages|join(', ') }) }}</p>
+            <ul>
+                {%- for l in availableLocales -%}
+                    <li>
+                        <a href="{{ emsLink|emsch_routing_config(emsch_routing_config|merge({ 'locale': (l) })) }}">
+                            {{ 'missing.show'|trans({ '%language%': l|language_name }) }}
+                        </a>
+                    </li>
+                {%- endfor -%}
+            </ul>
+        {%- endif -%}
+    </div>
+{%- endblock content -%}

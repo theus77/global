@@ -1,0 +1,76 @@
+{%-  block body -%}
+    {%- set route = app.request.attributes.get('_route') -%}
+    {%- set routeParams = app.request.attributes.get('_route_params') -%}
+
+    {%- set locales = emschLocales -%}
+    {%- set userLanguage = app.user.language -%}
+    {%- if userLanguage in locales -%}
+        {%- set locales = [userLanguage]|merge(locales|filter(v => v != userLanguage)) -%}
+    {%- endif -%}
+    {%- set locale = app.request.query.get('locale', locales|first) -%}
+
+    {%- set searchStructures = {
+        'index': 'default'|emsco_get_environment.alias,
+        'size': 10,
+        'body': {
+            '_source': ['name', 'structure',"#{locale}.paths", "#{locale}.title"],
+            'query': { 'bool': { 'must': [ { 'term': { '_contenttype': 'ems_standard_structure' } } ] } },
+            "sort": [{ "order": { "order": "asc" } } ]
+        }
+    }|emsco_search_query -%}
+    {%- set structureHits = searchStructures.hits.hits -%}
+
+    <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs">
+            {%- for l in locales -%}
+                <li class="{{ html_classes({ 'active': l == locale }) }}">
+                    <a href="{{ path(route, routeParams|merge({ 'locale': l }) ) }}">{{ l|language_name }}</a>
+                </li>
+            {%- endfor -%}
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane p-2 active" id="tab-{{ locale }}">
+                {{- block('overview') -}}
+            </div>
+        </div>
+    </div>
+{%-  endblock body -%}
+
+{%- block overview -%}
+    {%- for structureHit in structureHits -%}
+        {{ component('json_menu_nested', {
+            'id': "structure-#{structureHit._id}",
+            'ems_link': "ems://object:#{structureHit._source._contenttype}:#{structureHit._id}",
+            'field_path': '[structure]',
+            'template': "@EMSCH/ems_standard_template_ems/dashboard/structure/template.twig",
+            'context_block': 'build_context',
+            'active_item_id': app.request.get('activeItemId')|default(null),
+            'locale': locale,
+            'context': {
+                'structureId': structureHit._id,
+                'structureTitle': structureHit._source.(locale).title|default(structureHit._source.name),
+                'locale': locale,
+                'locales': locales,
+                'route': route,
+                'routeParams': routeParams
+            },
+            'columns': [
+                { 'name': 'content', 'width': 150 },
+                { 'name': 'status', 'width': 200 },
+                { 'name': 'structure' },
+            ],
+        }) }}
+    {%- endfor -%}
+{%- endblock overview -%}
+
+{%- block header -%}
+    <style>
+        .jmn-column-status { flex-wrap: wrap; }
+        .jmn-column-status > div:first-child { width: 100%; padding-bottom: 10px; }
+        .jmn-column-status > div:not(:first-child) { flex: 1; }
+    </style>
+{%- endblock header -%}
+
+{%- block footer -%}
+    <script type="application/javascript">{{ source("@EMSCH/ems_standard_template_ems/dashboard/structure/structure.js") }}</script>
+{%- endblock footer -%}

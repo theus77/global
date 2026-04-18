@@ -1,0 +1,20 @@
+{
+    "class": "EMS\\CoreBundle\\Entity\\Group",
+    "arguments": [],
+    "properties": {
+        "name": "web_integrator",
+        "label": "Web integrator",
+        "roles": [
+            "ROLE_USER",
+            "ROLE_AUTHOR",
+            "ROLE_PUBLISHER",
+            "ROLE_WEBMASTER",
+            "ROLE_USER_MANAGEMENT",
+            "ROLE_COPY_PASTE",
+            "ROLE_ALLOW_ALIGN",
+            "ROLE_API",
+            "ROLE_SUPER"
+        ]
+    },
+    "replaced": []
+}

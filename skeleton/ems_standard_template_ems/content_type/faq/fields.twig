@@ -1,0 +1,45 @@
+{%- block source_post_processing -%}
+    {%- if finalize %}
+        {%- for l in emschLocales|filter(l => _source.(l).show|default(false) == true and (
+            _source.(l).question|default('')|trim == '' or _source.(l).answer|default('')|trim == ''
+        ) ) -%}
+            {{ emsco_cant_be_finalized("Show #{l|upper} is enabled, question and answer is required.") }}
+        {%- endfor -%}
+
+        {%- set shouldQuestions = emschLocales
+            |map(l => { 'locale': (l), 'value': _source.(l).question|default('') })
+            |filter(v => v != '')
+            |reduce((carry, v) => carry|default([])|merge([
+                { 'term': { ("#{v.locale}.question.raw"): { 'value': v.value } }}
+            ])) -%}
+
+        {%- if shouldQuestions|length > 0 -%}
+            {%- set boolQuery = {'minimum_should_match': 1,'should': shouldQuestions} -%}
+            {%- if _id is not null -%}
+                {%- set boolQuery = boolQuery|merge({ 'must_not': [{ 'term': { '_id': { 'value': (_id) } } }] }) %}
+            {%- endif -%}
+            {%- set searchExisting = {
+                'index': index,
+                '_source': ["*.question"],
+                'body': { 'query': { 'bool': boolQuery } }
+            }|emsco_search_query -%}
+            {%- set existingHits = searchExisting.hits.hits|map(h => h._source) -%}
+            {%- for exists in existingHits -%}
+                {%- for l in emschLocales -%}
+                    {%- if _source.(l).question is defined and _source.(l).question == exists.(l).question|default(false) -%}
+                        {{ emsco_cant_be_finalized("Question already exists in #{l|language_name}") }}
+                    {%- endif -%}
+                {%- endfor -%}
+            {%- endfor -%}
+        {%- endif -%}
+    {%- endif -%}
+{%- endblock source_post_processing -%}
+
+{%- block label_post_processing -%}
+    {%- set questions = [] -%}
+    {%- set locales = emschLocales -%}
+    {%- for l in locales|filter((l) => _source.(l).question is defined) -%}
+        {%- set questions = questions|merge([ _source.(l).question ]) -%}
+    {%- endfor -%}
+    {{- questions|join(' / ')|json_encode|raw -}}
+{%- endblock label_post_processing -%}

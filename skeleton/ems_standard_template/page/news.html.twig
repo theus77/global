@@ -1,0 +1,65 @@
+{%- extends "@EMSCH/ems_standard_template/page/base.html.twig" -%}
+
+{% import '@EMSCH/ems_standard_template/macros/wysiwyg.twig' as wysiwyg %}
+
+{% block title %}
+    {{ parent() }} - {{ source.date_news|date(date_format) }}
+{% endblock title %}
+
+{%- block body -%}
+    {%- set languageUrls = emschLocales
+        |filter(l => source.(l).show|default == true and source.(l).slug is defined)
+        |reduce((carry, l) => carry|default([])|merge({
+            (l): path('news', { '_locale': l, 'slug': source.(l).slug })
+        }))
+    -%}
+    {{ parent() }}
+{%- endblock body -%}
+
+{%- block breadcrumb -%}
+    {% trans_default_domain trans_default_domain %}
+    {%- set breadcrumb = [
+        {'url': path('news_overview'), 'label': 'news.title'|trans },
+        {'label': source.(locale).title }
+    ] -%}
+    <div class="d-none d-md-block">
+        {{ parent() }}
+    </div>
+    <div class="d-md-none">
+        <div class="container mb-5">
+            <a href="{{ path('news_overview') }}"><span class="fas fa-angle-left me-2 align-middle" aria-hidden="true" role="img"></span>{{ 'news.back_to'|trans }}</a>
+        </div>
+    </div>
+{%- endblock breadcrumb -%}
+
+{%- block content -%}
+    {% trans_default_domain trans_default_domain %}
+    <div class="container">
+        <div class="news-summary bg-light rounded p-3 mb-5">
+            <h1 {{ emsch_admin_menu(emsLink|format) }} class="mt-0 mb-lg-2 text-primary">
+                {{ source.(locale).title }}
+            </h1>
+            {% if source.(locale).summary is defined %}
+                <div class="fs-4 mb-4">
+                    {{ source.(locale).summary|emsch_routing_config(emsch_routing_config) }}
+                </div>
+            {% endif %}
+            <p class="text-primary fs-8 mb-2">{{ 'news.published_date'|trans({ '%date%': source.date_news|date(date_format_full)|replace(monthsTrans|default({})) }) }}</p>
+            {%- if source.image_news is defined -%}
+                <img src="{{ ems_asset_path(source.image_news, {
+                    _config_type: 'image',
+                    _image_format: 'webp',
+                    _quality: 80,
+                    _resize: 'smartCrop',
+                    _width: 1800,
+                    _height: 600
+                }) }}" alt="{{ source.(locale).alt_image|default(source.(locale).title) }}" class="img-fluid rounded w-100">
+            {%- endif -%}
+        </div>
+        <div class="wysiwyg-content row justify-content-center">
+            <div class="col-lg-8 ">
+                {{ wysiwyg.transform(source.(locale).body|emsch_routing_config(emsch_routing_config)) }}
+            </div>
+        </div>
+    </div>
+{%- endblock content -%}

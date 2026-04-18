@@ -1,0 +1,50 @@
+{
+    "de": {
+        "blocks": "[]",
+        "seo_no_index": false,
+        "show": false,
+        "slug": "kontaktformular",
+        "title": "Kontaktformular"
+    },
+    "en": {
+        "blocks": "[]",
+        "seo_no_index": false,
+        "show": false,
+        "slug": "contact-form",
+        "title": "Contact form"
+    },
+    "faqs": "[]",
+    "fr": {
+        "blocks": "[{\"id\":\"2881c41c-9bae-49bb-8d5c-1ab51a2183ac\",\"label\":\"Paragraph\",\"type\":\"paragraph\",\"object\":{\"label\":\"Paragraph\",\"body\":\"<p>Vous avez une question d&#39;ordre technique ou qui concerne notre site ?</p>\\r\\n\\r\\n<p>Contactez-nous par t&eacute;l&eacute;phone ou via notre formulaire de contact.</p>\\r\\n\\r\\n<h2>T&eacute;l&eacute;phone</h2>\\r\\n\\r\\n<p>02 xx xx xx</p>\\r\\n\\r\\n<p>Lundi-vendredi&nbsp;: 8.00 - 17.00</p>\\r\\n\\r\\n<p>En dehors de ces heures, vous pouvez nous laisser un message avec votre question et nous vous recontacterons au plus vite.</p>\\r\\n\\r\\n<h2>Formulaire de contact</h2>\"},\"children\":[]},{\"id\":\"81db5936-3b38-4b02-960d-da96ad6b2a7d\",\"label\":\"Formulaire de contact\",\"type\":\"form\",\"object\":{\"label\":\"Formulaire de contact\",\"form\":\"ems_standard_form:9dcc7518-fe47-42f5-b579-7fababf08a5c\"},\"children\":[]}]",
+        "seo_no_index": false,
+        "seo_title": "Contact",
+        "show": true,
+        "slug": "formulaire-de-contact",
+        "title": "Formulaire de contact"
+    },
+    "label": "Contactformulier / Formulaire de contact / Kontaktformular / Contact form",
+    "nl": {
+        "blocks": "[{\"id\":\"2aa754af-6ca3-4000-9849-f97322cf1f32\",\"label\":\"Paragraph\",\"type\":\"paragraph\",\"object\":{\"label\":\"Paragraph\",\"body\":\"<p>Heeft u een vraag over deze website of een technisch probleem?</p>\\r\\n\\r\\n<p>Neem dan contact met ons op per telefoon of via het contactformulier hieronder.</p>\\r\\n\\r\\n<h2>Telefoon</h2>\\r\\n\\r\\n<p>02 xx xx xx</p>\\r\\n\\r\\n<p>Maandag - vrijdag&nbsp;: 8.00 - 17.00</p>\\r\\n\\r\\n<p>Buiten deze uren kunt u een boodschap achterlaten. We nemen dan zo snel mogelijk contact met u op.</p>\\r\\n\\r\\n<h2>Het contactformulier</h2>\"},\"children\":[]},{\"id\":\"b461a2d9-89ec-438a-acdb-099549aaa79e\",\"label\":\"Het contactformulier\",\"type\":\"form\",\"object\":{\"label\":\"Het contactformulier\",\"form\":\"ems_standard_form:9dcc7518-fe47-42f5-b579-7fababf08a5c\"},\"children\":[]}]",
+        "seo_no_index": false,
+        "seo_title": "Contactformulier",
+        "show": true,
+        "slug": "contactformulier",
+        "title": "Contactformulier"
+    },
+    "search_fr": [
+        "Formulaire de contact",
+        "formulaire-de-contact",
+        "Contact",
+        "Vous avez une question d'ordre technique ou qui concerne notre site ?\r\n\r\nContactez-nous par t\u00e9l\u00e9phone ou via notre formulaire de contact.\r\n\r\nT\u00e9l\u00e9phone\r\n\r\n02 xx xx xx\r\n\r\nLundi-vendredi\u00a0: 8.00 - 17.00\r\n\r\nEn dehors de ces heures, vous pouvez nous laisser un message avec votre question et nous vous recontacterons au plus vite.\r\n\r\nFormulaire de contact"
+    ],
+    "search_nl": [
+        "Contactformulier",
+        "contactformulier",
+        "Contactformulier",
+        "Heeft u een vraag over deze website of een technisch probleem?\r\n\r\nNeem dan contact met ons op per telefoon of via het contactformulier hieronder.\r\n\r\nTelefoon\r\n\r\n02 xx xx xx\r\n\r\nMaandag - vrijdag\u00a0: 8.00 - 17.00\r\n\r\nBuiten deze uren kunt u een boodschap achterlaten. We nemen dan zo snel mogelijk contact met u op.\r\n\r\nHet contactformulier"
+    ],
+    "search_title_fr": "Formulaire de contact",
+    "search_title_nl": "Contactformulier",
+    "structure_item": "3206dd8e-dbbe-4fb3-94df-f6080c53eb05",
+    "translate": false
+}

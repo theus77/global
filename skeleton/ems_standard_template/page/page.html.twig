@@ -1,0 +1,20 @@
+{%- extends "@EMSCH/ems_standard_template/page/base.html.twig" -%}
+
+{%- block body -%}
+    {%- set languageUrls = emschLocales
+        |filter(l => source.(l).show|default == true and source.(l).slug is defined)
+        |reduce((carry, l) => carry|default([])|merge({
+            (l): path('page', { '_locale': l, 'slug': source.(l).slug })
+        }))
+    -%}
+    {{ parent() }}
+{%- endblock body -%}
+
+{%- block content -%}
+    <div class="container">
+        <h1 {{ emsch_admin_menu(emsLink|format) }}>
+            {{ source.(locale).title }}
+        </h1>
+    </div>
+    {{ block('render_blocks') }}
+{%- endblock content -%}

@@ -1,0 +1,172 @@
+{%- macro search(config) -%}
+    {%- set locale = config.locale -%}
+    {%- set sizes = [ 10, 25, 50 ] -%}
+    {%- set searchTypes = ['ems_standard_page','ems_standard_news'] -%}
+
+    {%- set requestQuery = app.request.query.get('q') -%}
+    {%- set requestPage = app.request.query.get('p', 0)|ems_int -%}
+    {%- set requestSize = app.request.query.get('l', 10)|ems_int -%}
+    {%- if requestSize not in sizes -%}{%- set requestSize = sizes|first -%}{%- endif -%}
+
+    {%- set must = [
+        { 'term': { ("#{locale}.show"): { 'value': true } } },
+        { 'bool': {
+            'minimum_should_match': 1,
+            'should': [
+                { 'bool': { 'must_not': [ { 'exists': { 'field': "#{locale}.seo_no_index" } } ] } },
+                { 'term': { ("#{locale}.seo_no_index"): { 'value': false } } }
+            ]
+        } }
+    ] -%}
+
+    {%- if requestQuery -%}
+        {%- set must = must|merge([{ 'bool': {
+            'minimum_should_match': 1,
+            'should': [
+                { 'query_string': { 'default_field': "search_title_#{locale}", 'query': (requestQuery) } },
+                { 'query_string': { 'default_field': "search_#{locale}", 'query': (requestQuery) } }
+            ]
+        } } ]) -%}
+    {%- endif -%}
+
+    {%- set searchCount = emsch_search(searchTypes, { 'size': 0, 'query': { 'bool': { 'must': must } } }) -%}
+    {%- set total = searchCount.hits.total.value -%}
+
+    {%- set lastPage = ((total / requestSize) |round(0, 'ceil'))|ems_int -%}
+    {%- if requestPage > lastPage -%}{%- set requestPage = lastPage %}{%- endif -%}
+
+    {%- set resultsSearchBody = {
+        '_source': ["#{locale}.*", "date_news", "question", "answer"],
+        'query': { 'bool': { 'must': must } },
+        'size': requestSize,
+        'from': (requestPage * requestSize),
+        'sort': [ { '_published_datetime': { 'order': 'asc' } } ]
+    } -%}
+
+    {%- set search = emsch_search(searchTypes, resultsSearchBody) -%}
+
+    {{- {
+        'total': total,
+        'query': requestQuery,
+        'lastPage': ((total / requestSize) |round(0, 'ceil') -1),
+        'page': requestPage,
+        'size': requestSize,
+        'sizes': sizes,
+        'results': search.hits.hits,
+    }|json_encode|raw -}}
+{%- endmacro -%}
+
+{%- block search_title -%}
+    {% autoescape false %}
+        {%- trans_default_domain trans_default_domain -%}
+        {%- set title = ['search.results'|trans({'%count%': search.total})|raw] -%}
+        {%- if search.query -%}
+            {%- set title = title|merge([ 'search.for_query'|trans({
+                '%query%': (search.query|length > 20? search.query|slice(0, 20)~'...':search.query)|raw
+            }) ]) -%}
+        {%- endif -%}
+        {{- title|join(' ') -}}
+    {% endautoescape %}
+{%- endblock search_title -%}
+
+{%- block search_filter -%}
+    {%- trans_default_domain trans_default_domain -%}
+    <div id="search-filter" aria-live="polite" role="status">
+        <h1 id="results" class="text-primary">{{ 'app.search_page'|trans }}</h1>
+        <div class="bg-body-secondary p-4 d-flex flex-row justify-content-between rounded search-group">
+            <input name="q" value="{{ app.request.get('q') }}" class="form-control" type="search" placeholder="{{ 'search.placeholder'|trans }}" aria-label="{{ 'search.action'|trans }}">
+            <button class="btn btn-primary" type="submit">{{ 'search.action'|trans }}</button>
+        </div>
+        <div class="mt-2">
+            {{ block('search_title', searchTemplate) }}
+        </div>
+    </div>
+{%- endblock search_filter -%}
+
+{%- block search_results_size -%}
+    {%- trans_default_domain trans_default_domain -%}
+
+    {{- 'search.results'|trans({'%count%': search.total}) -}}
+{%- endblock search_results_size -%}
+
+{%- block search_size_label -%}
+    {%- trans_default_domain trans_default_domain -%}
+
+    <div id="search-size-label" aria-live="polite" role="status">
+        {%- if search.total == 0 -%}
+            {{- 'search.results'|trans({'%count%': 0}) -}}
+        {%- else -%}
+            {{- 'search.paging_info'|trans({
+                '%total%': search.total,
+                '%from%': (search.page * search.size + 1) ,
+                '%to%' : search.page < search.lastPage ? (search.page * search.size + search.size) : search.total
+            }) -}}
+        {%- endif -%}
+    </div>
+{%- endblock search_size_label -%}
+
+{%- block search_size -%}
+    {%- trans_default_domain trans_default_domain -%}
+    <div class="d-flex align-items-center gap-2">
+        <p class="m-0">{{ 'search.select_size'|trans }}</p>
+        <div id="search-sizes" aria-live="polite" role="status" class="d-flex align-items-center gap-3">
+            <label class="{{label_classes|default('')}} sr-only" for="select_size">{{ 'search.select_size'|trans }}</label>
+            <select class="w-auto form-select rounded-5" name="l" id="select_size">
+                {% for value in search.sizes %}
+                    <option {% if search.size == value %}selected="selected"{% endif %} value="{{ value }}">{{ value }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+{%- endblock search_size -%}
+
+{%- block search_pagination -%}
+    <div id="search-pagination" aria-live="polite" role="status">
+        {% include('@EMSCH/ems_standard_template/page/include/pagination.html.twig') with {
+            anchor: 'results',
+            searchRoute: 'search',
+            currentFilters: app.request.query,
+            currentPage: search.page,
+            pageParameter: 'p',
+            extremePagesLimit: 1,
+            nearbyPagesLimit: 3,
+            lastPage: search.lastPage > 1000 ? 1000 : search.lastPage,
+        } %}
+    </div>
+{%- endblock search_pagination -%}
+
+{%- block search_results -%}
+    <div id="search-hits" aria-live="polite">
+        {% for hit in search.results %}
+            {%- set searchHit = {
+                'emsId': "#{hit._source._contenttype}:#{hit._id}",
+                'source': hit._source
+            } -%}
+            {{ block("search_hit_#{hit._source._contenttype}") }}
+
+            {% if not loop.last %}
+                <hr>
+            {% endif %}
+        {% endfor %}
+    </div>
+{%- endblock search_results -%}
+
+{%- block search_hit_ems_standard_page -%}
+    <a href="{{ "ems://object:#{searchHit.emsId}"|emsch_routing_config(emsch_routing_config) }}">
+        <h5 {{ emsch_admin_menu(searchHit.emsId) }}>{{ searchHit.source.(locale).title }}</h5>
+    </a>
+    {%- if searchHit.source.(locale).seo_body is defined -%}
+        {{ searchHit.source.(locale).seo_body }}
+    {%- endif -%}
+{%- endblock search_hit_ems_standard_page -%}
+
+{%- block search_hit_ems_standard_news -%}
+    {%- trans_default_domain trans_default_domain -%}
+    <a href="{{ path('news', { 'slug': searchHit.source.(locale).slug }) }}">
+        <h5 {{ emsch_admin_menu(searchHit.emsId) }} class="mb-1">{{ searchHit.source.(locale).title }}</h5>
+    </a>
+    <p class="text-muted mb-1"><small>{{ 'news.published_date'|trans({ '%date%': searchHit.source.date_news|date(date_format_full)|replace(monthsTrans|default({})) }) }}</small></p>
+    {%- if searchHit.source.(locale).seo_body is defined -%}
+        {{ searchHit.source.(locale).seo_body }}
+    {%- endif -%}
+{%- endblock search_hit_ems_standard_news -%}

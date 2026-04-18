@@ -1,0 +1,10 @@
+/*
+ * ICONFONT : Icons
+ *
+ */
+
+.#{$cf-css-prefix}-example {
+  &:before {
+    content: $cf-example; 
+  }
+}

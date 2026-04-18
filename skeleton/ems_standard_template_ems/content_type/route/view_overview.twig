@@ -1,0 +1,39 @@
+{%- extends '@EMSCH/ems_standard_template_ems/content_type/base_overview.twig' -%}
+
+{%- block template -%}
+    {%- set defaultColumns = true -%}
+    {%- set columns = [
+        { 'label': '#', 'template': (block('column_order')), 'orderField': 'order'},
+        { 'label': 'Name', 'template': (block('column_name')),  'orderField': 'name'},
+        { 'label': 'Path', 'template': ((block('column_path')))},
+    ] -%}
+    {{ parent() }}
+{%- endblock template -%}
+
+{%- block column_order -%}
+{%- verbatim -%}
+    {{- data.source.order|default(999) -}}
+{%- endverbatim -%}
+{%- endblock column_order -%}
+
+{%- block column_name -%}
+{%- verbatim -%}
+    <a href="{{path('data.revisions', {ouuid: data.id, type: data.contentType} ) }}">{{ data.source.name }}</a>
+{%- endverbatim -%}
+{%- endblock column_name -%}
+
+{% block column_path %}
+{% verbatim %}
+    {% set config = data.source.config|default({})|ems_json_decode %}
+    {% set path = config.('path')|default(false) %}
+    {% if path is iterable %}
+        <ul>
+            {% for l, item in path %}
+                <li>{{ l }} : {{ item }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <span class="{% if false == path %}text-gray{% endif %}">{{ path|default('N/A') }}</span>
+    {% endif %}
+{% endverbatim %}
+{% endblock column_path %}

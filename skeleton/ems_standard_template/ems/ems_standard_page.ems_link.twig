@@ -1,0 +1,17 @@
+{%- set emsId = url.emsId -%}
+{%- set preferredLocales = [locale]|merge(emschLocales|filter(v => v != locale)) -%}
+
+{%- set linkLocale = preferredLocales|filter((l) => showDocs.(l).(emsId) is defined)|first -%}
+{%- set showDoc = showDocs.(linkLocale).(emsId)|default(false) -%}
+
+{%- if showDoc and showDoc.item -%}
+    {%- if linkLocale == locale -%}
+        {{ pathsStructure.(linkLocale).(showDoc.item) }}
+    {%- else -%}
+        {{ path('missing', { 'type': 'page', 'ouuid': url.ouuid } ) }}
+    {%- endif -%}
+{%- elseif showDoc and showDoc.slug is defined -%}
+    {{ path('page', { '_locale': linkLocale, 'slug': showDoc.slug }) }}
+{%- else -%}
+    {{- '/not-found' -}}
+{%- endif -%}

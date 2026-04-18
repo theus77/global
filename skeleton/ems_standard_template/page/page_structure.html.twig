@@ -1,0 +1,18 @@
+{%- extends "@EMSCH/ems_standard_template/page/base.html.twig" -%}
+
+{%- block body -%}
+    {%- set languageUrls = emschLocales
+        |filter(l => pathsStructure.(l).(source.structure_item) is defined)
+        |reduce((carry, l) => carry|default([])|merge({ (l): pathsStructure.(l).(source.structure_item) }))
+    -%}
+    {{ parent() }}
+{%- endblock body -%}
+
+{%- block content -%}
+    <div class="container">
+        <h1 {{ emsch_admin_menu(emsLink|format) }} class="{{ html_classes('text-primary', { 'visually-hidden': isHomepage }) }}" >
+            {{ source.(locale).title }}
+        </h1>
+    </div>
+    {{ block('render_blocks') }}
+{%- endblock content -%}

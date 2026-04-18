@@ -1,0 +1,85 @@
+{
+    "de": {
+        "paths": [
+            {
+                "path": "bedingungen-fuer-die-wiederverwendung",
+                "type": "page",
+                "uid": "f6d97642-abb6-48b0-9fd6-c45a558205bf"
+            },
+            {
+                "path": "cookierichtlinie",
+                "type": "page",
+                "uid": "7f546236-0b73-4865-972c-6818a608574d"
+            },
+            {
+                "path": "erklaerung-zur-barrierefreiheit",
+                "type": "page",
+                "uid": "af5ef3df-0af7-4d9a-9cf6-1a0c3c26ad48"
+            }
+        ],
+        "title": "Footer"
+    },
+    "en": {
+        "paths": [
+            {
+                "path": "conditions-for-reuse",
+                "type": "page",
+                "uid": "f6d97642-abb6-48b0-9fd6-c45a558205bf"
+            },
+            {
+                "path": "cookies",
+                "type": "page",
+                "uid": "7f546236-0b73-4865-972c-6818a608574d"
+            },
+            {
+                "path": "accessibility-statement",
+                "type": "page",
+                "uid": "af5ef3df-0af7-4d9a-9cf6-1a0c3c26ad48"
+            }
+        ],
+        "title": "Footer"
+    },
+    "fr": {
+        "paths": [
+            {
+                "path": "conditions-de-reutilisation",
+                "type": "page",
+                "uid": "f6d97642-abb6-48b0-9fd6-c45a558205bf"
+            },
+            {
+                "path": "politique-d-utilisation-des-cookies",
+                "type": "page",
+                "uid": "7f546236-0b73-4865-972c-6818a608574d"
+            },
+            {
+                "path": "declaration-d-accessibilite",
+                "type": "page",
+                "uid": "af5ef3df-0af7-4d9a-9cf6-1a0c3c26ad48"
+            }
+        ],
+        "title": "Footer"
+    },
+    "name": "footer",
+    "nl": {
+        "paths": [
+            {
+                "path": "voorwaarden-voor-het-hergebruik",
+                "type": "page",
+                "uid": "f6d97642-abb6-48b0-9fd6-c45a558205bf"
+            },
+            {
+                "path": "cookiebeleid",
+                "type": "page",
+                "uid": "7f546236-0b73-4865-972c-6818a608574d"
+            },
+            {
+                "path": "toegankelijkheidsverklaring",
+                "type": "page",
+                "uid": "af5ef3df-0af7-4d9a-9cf6-1a0c3c26ad48"
+            }
+        ],
+        "title": "Footer"
+    },
+    "order": 2,
+    "structure": "[{\"id\":\"f6d97642-abb6-48b0-9fd6-c45a558205bf\",\"label\":\"Voorwaarden voor het hergebruik \\/ Conditions de r\\u00e9utilisation \\/ Bedingungen f\\u00fcr die Wiederverwendung \\/ Conditions for reuse\",\"type\":\"page\",\"object\":{\"nl\":{\"label\":\"Voorwaarden voor het hergebruik\"},\"fr\":{\"label\":\"Conditions de r\\u00e9utilisation\"},\"de\":{\"label\":\"Bedingungen f\\u00fcr die Wiederverwendung\"},\"en\":{\"label\":\"Conditions for reuse\"},\"label\":\"Voorwaarden voor het hergebruik \\/ Conditions de r\\u00e9utilisation \\/ Bedingungen f\\u00fcr die Wiederverwendung \\/ Conditions for reuse\"},\"children\":[]},{\"id\":\"7f546236-0b73-4865-972c-6818a608574d\",\"label\":\"Cookiebeleid \\/ Politique d'utilisation des cookies \\/ Cookierichtlinie \\/ Cookies\",\"type\":\"page\",\"object\":{\"nl\":{\"label\":\"Cookiebeleid\"},\"fr\":{\"label\":\"Politique d'utilisation des cookies\"},\"de\":{\"label\":\"Cookierichtlinie\"},\"en\":{\"label\":\"Cookies\"},\"label\":\"Cookiebeleid \\/ Politique d'utilisation des cookies \\/ Cookierichtlinie \\/ Cookies\"},\"children\":[]},{\"id\":\"af5ef3df-0af7-4d9a-9cf6-1a0c3c26ad48\",\"label\":\"Toegankelijkheidsverklaring \\/ D\\u00e9claration d\\u2019accessibilit\\u00e9 \\/ Erkl\\u00e4rung zur Barrierefreiheit \\/ Accessibility statement\",\"type\":\"page\",\"object\":{\"label\":\"Toegankelijkheidsverklaring \\/ D\\u00e9claration d\\u2019accessibilit\\u00e9 \\/ Erkl\\u00e4rung zur Barrierefreiheit \\/ Accessibility statement\",\"nl\":{\"label\":\"Toegankelijkheidsverklaring\"},\"fr\":{\"label\":\"D\\u00e9claration d\\u2019accessibilit\\u00e9\"},\"de\":{\"label\":\"Erkl\\u00e4rung zur Barrierefreiheit\"},\"en\":{\"label\":\"Accessibility statement\"}},\"children\":[]}]"
+}

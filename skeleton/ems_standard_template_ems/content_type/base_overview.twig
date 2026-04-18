@@ -1,0 +1,287 @@
+{%- block template -%}
+    {%- set allColumns = prependColumns|default([]) -%}
+
+    {%- set locales = emschLocales -%}
+    {%- if languageColumnProperty|default(false) -%}
+        {%- set userLanguage = app.user.language -%}
+        {%- if userLanguage in locales -%}
+            {%- set locales = [userLanguage]|merge(locales|filter(v => v != userLanguage)) -%}
+        {%- endif -%}
+
+        {%- for locale in locales -%}
+            {%- if '%locale%' in languageColumnProperty -%}
+                {%- set langColumn = languageColumnProperty|replace({ '%locale%': (locale) }) -%}
+                {%- set langColumnOrder = "#{langColumn}.alpha_order" -%}
+            {%- else -%}
+                {%- set langColumn = languageColumnProperty -%}
+                {%- set langColumnOrder = "#{locale}.#{languageColumnProperty}.alpha_order" -%}
+            {%- endif -%}
+
+            {%- set allColumns = allColumns|merge([{
+                'label': (locale|language_name),
+                'template': "
+                    <a href=\"{{ path('data.revisions', { ouuid: data.id, type: data.contentType }) }}\">
+                        {{ data.source.('#{locale}').('#{langColumn}')|default(data.source.('#{langColumn}')|default('')) }}
+                    </a>
+                ",
+                'orderField': (langColumnOrder)
+            }]) -%}
+        {%- endfor -%}
+    {%- endif -%}
+
+    {%- set allColumns = allColumns|merge(columns|default([])) -%}
+
+    {%- if defaultColumns|default(false) -%}
+        {%- set allColumns = allColumns|merge([
+            { "label": "Last Author", "template": (block('column_last_update_by')), "orderField": "_finalized_by" },
+            { "label": "Last Update", "template": (block('column_last_update')), "orderField": "_finalization_datetime" },
+            { "label": "Preview", "template": (block('column_preview')) },
+            { "label": "Live", "template": (block('column_live')) },
+            { "label": "Action", "template": (block('column_action')) }
+        ]) -%}
+    {%- endif -%}
+
+    {%- set envs = {
+        'preview': 'preview'|emsco_get_environment.id,
+        'live': 'live'|emsco_get_environment.id,
+    }|json_encode -%}
+
+    {%- set env = contentType.environment -%}
+    {%- set rowContext = "{%- set docInfo = [line.data.contentType, line.data.id]|join(':')|emsco_document_info -%}{%- set revisionId = emsco_get_revision_id(line.data.id, line.data.contentType) -%}{%- set viewId = #{view.id} -%}{%- set liveId = 'live'|emsco_get_environment.id -%}{%- set previewId = 'preview'|emsco_get_environment.id -%}{%- set defaultId = 'default'|emsco_get_environment.id -%}" -%}
+
+    {{ block('render_datatable') }}
+{%- endblock template -%}
+
+{%- block render_datatable -%}
+    {%- set requestQuery = app.request.query -%}
+    {%- set filterTerms = [] -%}
+
+    {%- for filterName, f in filters|default([]) -%}
+        {%- set field = f.field|default(filterName) -%}
+        {%- set fieldValue = requestQuery.all(filterName)|default(f.defaultValue|default([])) -%}
+
+        {%- set current = filterTerms.(field)|default([]) -%}
+        {%- if fieldValue|length > 0 -%}
+            {%- set filterTerms = filterTerms|merge({ (field) : (current|merge(fieldValue)) }) -%}
+        {%- endif -%}
+    {%- endfor -%}
+
+    {%- set emptyMust = [] -%}
+    {%- for field, terms in filterTerms|default([]) -%}
+        {%- set emptyMust = emptyMust|merge([{ 'terms': { (field) : (terms) } }]) -%}
+    {%- endfor -%}
+
+    {%- set queryMust = emptyMust|merge([ {
+        'multi_match': {
+            'fields': ['live_search', 'live_search._2gram', 'live_search._3gram'],
+            'query': '%query%',
+            'operator': 'and',
+            'type': 'bool_prefix'
+        }
+    }]) -%}
+
+    {%- with { 'filters' : filters|default([]), 'filterTerms': filterTerms } -%}
+        {{ block('filters') }}
+    {%- endwith -%}
+
+    {%- set orderColumn = allColumns|filter((c) => c.label == 'Last Update')|default([])|keys|first -%}
+
+    {{ emsco_datatable([env.name],[contentType.name], {
+        'frontendOptions': {
+            'pageLength': 100,
+            'order': (orderColumn ? [[orderColumn, 'desc']] : [])
+        },
+        'query': { 'bool': { 'must': queryMust } },
+        'empty_query': {'bool': { 'must': emptyMust } },
+        'row_context': rowContext,
+        'columns': allColumns
+    }|merge(dataTableOptions|default({}))) }}
+{%- endblock render_datatable -%}
+
+{%- block header -%}
+<style>
+    div#container-filters { display: flex; gap: 10px; justify-content: flex-start; margin-bottom: 25px; }
+</style>
+{%- endblock header -%}
+
+{%- block footer -%}
+<script type="text/javascript">
+    window.addEventListener('emsReady', function () {
+        let filterForm = document.getElementById('form-filters');
+
+        if (document.body.contains(filterForm)) {
+            filterForm.addEventListener('change', function () { filterForm.submit(); });
+            $('#filter-columns').on('change', function () { filterForm.submit(); });
+        }
+
+        $('#DataTables_Table_0').on( 'draw.dt', function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    });
+</script>
+{%- endblock footer -%}
+
+{%- block filters -%}
+    {# handle search filters #}
+    {%- for filterName, f in filters|filter(v => v.type|default(false) == 'search') -%}
+        {%- set query = {
+            'index': env.alias,
+            'size': 500,
+            '_source': [f.search_field],
+            'body': { 'query': { 'term': { '_contenttype': { 'value': (f.search_contentType) } } } } ,
+        } -%}
+        {%- if f.search_sort is defined -%}{%- set query = query|merge({ 'sort': [ { (f.search_sort) :{'order':'asc'} } ] }) -%}{%- endif -%}
+
+        {%- set search = query|emsco_search_query.hits.hits -%}
+        {%- set options = {} -%}
+        {%- for h in search -%}
+            {%- set options = options|merge({ (h._source.(f.search_field)): ("#{h._source._contenttype}:#{h._id}") })  -%}
+        {%- endfor -%}
+
+        {%- set filters = filters|merge({ (filterName) : (f|merge({'options': options })) }) -%}
+    {%- endfor -%}
+
+    {# handle aggs filters #}
+    {%- for filterName, f in filters|filter(v => v.agg is defined) -%}
+        {%- set field = f.field|default(filterName) -%}
+        {%- set aggsMust = filterMust|default([])|merge([{ 'term': {  '_contenttype': { 'value': (contentType.name) } } }]) -%}
+
+        {%- for field, terms in filterTerms|filter((v,k) => k != field) -%}
+            {%- set aggsMust = aggsMust|merge([{ 'terms': { (field) : (terms) } }]) -%}
+        {%- endfor -%}
+
+        {%- set aggOrder = f.agg_sort is defined ? { '_key': (f.agg_sort|default('asc')) } : { '_count': 'desc' } -%}
+
+        {%- set aggSearch = {
+            'index': env.alias,
+            'size': 0,
+            'body': {
+                'query': {  'bool': { 'must' : (aggsMust) } },
+                'aggs': {  'count': { 'terms': { 'field': (f.agg), 'size': 500, 'order': (aggOrder) } } }
+            }
+        }|emsco_search_query.aggregations.count.buckets|default([]) -%}
+
+        {%- set aggOptions = {} -%}
+
+        {%- if f.search_sort is defined -%}
+            {%- for optionLabel, optionValue in f.options -%}
+                {%- set b = aggSearch|filter(v => v.key == optionValue)|first -%}
+                {%- if b -%}
+                    {%- set aggOptions = aggOptions|merge({ ("#{optionLabel} (#{b.doc_count})"): (b.key) })  -%}
+                {%- endif -%}
+            {%- endfor -%}
+        {%- else -%}
+            {%- for b in aggSearch -%}
+                {%- set bucketKey = b.key_as_string|default(b.key) -%}
+                {%- set optionLabel = f.options|default([])|filter(v => v == bucketKey)|keys|first|default(bucketKey) -%}
+                {%- set aggOptions = aggOptions|merge({ ("#{optionLabel} (#{b.doc_count})"): (b.key_as_string|default(bucketKey)) })  -%}
+            {%- endfor -%}
+        {%- endif -%}
+
+        {%- set filters = filters|merge({ (filterName) : (f|merge({'options': aggOptions })) }) -%}
+    {%- endfor -%}
+
+    <form method="GET" id="form-filters">
+        {%- if currentTab|default(false) != false -%}
+            <input type="hidden" name="tab" value="{{ currentTab.name }}" />
+        {%- endif -%}
+        <div class="row">
+            {%- set selectedLocales = ['nl'] -%}
+            {%- for filterName, f in filters -%}
+                {%- set field = f.field|default(filterName) -%}
+                {%- set filterSelection = filterTerms.(field)|default([]) -%}
+                <div class="form-group col-md-2">
+                    <select name="{{ filterName }}[]" title="{{ f.label|default(filterName|capitalize) }}" id="filter-{{ filterName }}" class="selectpicker form-control input-sm" {{ f.multiple|default(true) ? 'multiple' }}>
+                        {%- for optionsLabel,optionValue in f.options|default([]) -%}
+                            <option value="{{ optionValue }}" {{ optionValue in filterSelection ? 'selected' }}>{{ optionsLabel }}</option>
+                        {%- endfor -%}
+                    </select>
+                </div>
+            {%- endfor -%}
+        </div>
+    </form>
+{%- endblock filters -%}
+
+{%- block column_last_update_by -%}
+{%- verbatim -%}
+    {{ data.source._finalized_by|default ? data.source._finalized_by|emsco_display_name : '' }}
+{%- endverbatim -%}
+{%- endblock column_last_update_by -%}
+
+{%- block column_last_update -%}
+{%- verbatim -%}
+<div style="width: 150px;" data-toggle="tooltip" data-placement="top" aria-hidden="true" title="By {{ data.source._finalized_by }}" >
+    {{ data.source._finalization_datetime|default ? data.source._finalization_datetime|date(date_time_format) : "N.A." }}
+</div>
+{%- endverbatim -%}
+{%- endblock column_last_update -%}
+
+{%- block column_preview -%}
+{%- verbatim -%}
+    {%- if docInfo.draft -%}
+        <span class="label label-warning">Draft</span>
+    {%- else -%}
+        <span class="label label-success">Published</span>
+    {%- endif -%}
+{%- endverbatim -%}
+{%- endblock column_preview -%}
+
+{%- block column_live -%}
+{%- verbatim -%}
+    {%- if docInfo.published('live') and docInfo.aligned('live') -%}
+        <span class="label label-success">Published</span>
+    {%- elseif docInfo.published('live') -%}
+        <span class="label label-warning">Outdated</span>
+    {%- else -%}
+        <span class="label label-default">Unavailable</span>
+    {%- endif -%}
+{%- endverbatim -%}
+{%- endblock column_live -%}
+
+{%- block column_action -%}
+{%- verbatim -%}
+<div class="btn-group btn-group-sm" style="width: 130px;">
+    <a href="{{ docInfo.draft ? path("ems_revision_edit", {revisionId: revisionId}) : docInfo.aligned("live") ? path("revision.new-draft", {type: data.contentType, ouuid: data.id }) : path("revision.publish_to", {revisionId: revisionId, envId: liveId, redirectToUrl: path("data.customindexview", {viewId: viewId})}) }}" class="btn btn-default" style="width: 100px;">
+        {{ docInfo.draft ? "Edit draft" : docInfo.aligned("live") ? "Edit" : "Publish in live" }}
+    </a>
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        <li>
+            <a href="{{ path("data.revisions", {ouuid: data.id, type: data.contentType} ) }}">Revision</a>
+        </li>
+        {%- if docInfo.draft -%}
+            <li><a href="{{ path("revision.publish_to", {revisionId: revisionId, envId: previewId}) }}">Publish in preview</a></li>
+        {%- elseif not docInfo.aligned('live') -%}
+            <li><a href="{{ path("revision.new-draft", {type: data.contentType, ouuid: data.id }) }}">Edit</a></li>
+        {%- endif -%}
+    </ul>
+</div>
+{%- endverbatim -%}
+{%- endblock column_action -%}
+
+{%- block column_action_default -%}
+{%- verbatim -%}
+<div class="btn-group btn-group-sm" style="width: 130px;">
+    <a href="{{ docInfo.draft ? path("ems_revision_edit", {revisionId: revisionId}) : path("revision.new-draft", {type: data.contentType, ouuid: data.id }) }}" class="btn btn-default" style="width: 100px;">
+        {{ docInfo.draft ? "Edit draft" : "Edit" }}
+    </a>
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        <li>
+            <a href="{{ path("data.revisions", {ouuid: data.id, type: data.contentType} ) }}">Revision</a>
+        </li>
+        {%- if docInfo.draft -%}
+            <li><a href="{{ path("revision.publish_to", {revisionId: revisionId, envId: defaultId}) }}">Publish</a></li>
+        {%- elseif not docInfo.aligned('live') -%}
+            <li><a href="{{ path("revision.new-draft", {type: data.contentType, ouuid: data.id }) }}">Edit</a></li>
+        {%- endif -%}
+    </ul>
+</div>
+{%- endverbatim -%}
+{%- endblock column_action_default -%}

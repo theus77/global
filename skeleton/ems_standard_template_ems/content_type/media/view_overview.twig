@@ -1,0 +1,25 @@
+{%- extends '@EMSCH/ems_standard_template_ems/content_type/base_overview.twig' -%}
+
+{%- block template -%}
+    {%- set columns = [
+        { 'label': 'Path', 'template': (block('column_path')), 'orderField': 'media_path'},
+        { 'label': 'Folder', 'template': "{{ data.source.media_folder }}", 'orderField': 'media_folder'},
+        { "label": "Created", "template": (block('column_date_creation')), "orderField": "_finalization_datetime"},
+        { "label": "Last Author", "template": (block('column_last_update_by')), "orderField": "_finalized_by" },
+        { "label": "Last Update", "template": (block('column_last_update')), "orderField": "_finalization_datetime" },
+        { "label": "Action", "template": (block('column_action_default')) }
+    ] -%}
+    {{ parent() }}
+{%- endblock template -%}
+
+{%- block column_path -%}
+{%- verbatim -%}
+    <a href="{{path('data.revisions', {ouuid: data.id, type: data.contentType} ) }}">{{ data.source.media_path }}</a>
+{%- endverbatim -%}
+{%- endblock column_path -%}
+
+{%- block column_date_creation -%}
+{%- verbatim -%}
+     {{ data.source.date_creation|date(date_time_format) }}
+{%- endverbatim -%}
+{%- endblock column_date_creation -%}

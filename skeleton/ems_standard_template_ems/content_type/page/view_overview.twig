@@ -1,0 +1,7 @@
+{%- extends '@EMSCH/ems_standard_template_ems/content_type/base_overview.twig' -%}
+
+{%- block template -%}
+    {%- set languageColumnProperty = 'title' -%}
+    {%- set defaultColumns = true -%}
+    {{ parent() }}
+{%- endblock template -%}

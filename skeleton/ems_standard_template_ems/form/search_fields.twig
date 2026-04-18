@@ -1,0 +1,44 @@
+{%- block search_title_value_template -%}
+    {%- set locale = form.name|u.trimPrefix('search_title_')|format -%}
+    {%- if _source.("search_title_#{locale}") is defined -%}
+        {{- _source.("search_title_#{locale}")|json_encode|raw -}}
+    {%- endif -%}
+{%- endblock search_title_value_template -%}
+
+{%- block search_title_post_processing -%}
+    {%- set locale = form.name|u.trimPrefix('search_title_')|format -%}
+    {%- if _source.(locale).title is defined -%}
+        {{ _source.(locale).title|json_encode|raw }}
+    {%- elseif _type == 'ems_standard_faq' and _source.(locale).question is defined  -%}
+        {{ _source.(locale).question|json_encode|raw }}
+    {%- endif -%}
+{%- endblock search_title_post_processing -%}
+
+{%- block search_value_template -%}
+    {%- set locale = form.name|u.trimPrefix('search_')|format -%}
+    {%- if _source.("search_#{locale}") is defined -%}
+        {{- _source.("search_#{locale}")|json_encode|raw -}}
+    {%- endif -%}
+{%- endblock search_value_template -%}
+
+{%- block search_post_processing -%}
+    {%- set result = [] -%}
+    {%- set locale = form.name|u.trimPrefix('search_')|format -%}
+    {%- set searchFields = ['title', 'slug', 'seo_title', 'seo_body', 'blocks', 'body', 'summary', 'question', 'answer'] -%}
+
+    {%- for field in searchFields|filter(f => _source.(locale).(f) is defined) -%}
+        {%- set fieldContent = _source.(locale).(field) -%}
+        {%- if field == 'blocks' -%}
+            {%- set blocks = fieldContent|ems_json_menu_nested_decode -%}
+            {%- for paragraph in blocks|filter(i => i.type == 'paragraph')|map(i => i.object.body) -%}
+                {%- set result = result|merge([ paragraph ]) -%}
+            {%- endfor -%}
+        {%- else -%}
+            {%- set result = result|merge([ fieldContent ]) -%}
+        {%- endif -%}
+    {%- endfor -%}
+
+    {%- if result|length > 0 -%}
+        {{- result|map(r => r|striptags|ems_html_decode|trim)|json_encode|raw -}}
+    {%- endif -%}
+{%- endblock search_post_processing -%}

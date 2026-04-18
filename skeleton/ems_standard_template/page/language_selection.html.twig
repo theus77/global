@@ -1,0 +1,23 @@
+{%- extends "@EMSCH/ems_standard_template/base/base.html.twig" -%}
+{% trans_default_domain trans_default_domain %}
+
+{% block title %}{{ emschLocales|map(l =>  'app.language_selection'|trans(locale: l))|join(' - ')  }}{% endblock title %}
+
+{%- block body -%}
+    <div class="min-vh-100 d-flex align-items-center py-5">
+        <div class="container">
+            <div class="row justify-content-evenly">
+                <div class="col-12">
+                    <h1 class="text-center mt-0 mb-5"><img src="{{ asset('img/logo/logo-full-long.svg', 'emsch') }}" alt="{{ emschLocales|map(l =>  'app.title'|trans(locale: l))|join(' - ')  }}" height="50"></h1>
+                </div>
+                <div class="col-12 d-flex justify-content-center gap-5 flex-column flex-md-row">
+                    {% for l in emschLocales %}
+                        <div class="text-center d-flex flex-column">
+                            <a lang="{{ l }}" href="{{ path('homepage', { _locale: l }) }}" class="btn btn-primary">{{ 'app.locale'|trans(locale: l) }}</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{%- endblock body -%}

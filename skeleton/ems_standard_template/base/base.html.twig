@@ -1,0 +1,39 @@
+{%- extends '@EMSCH/ems_standard_template/variables.twig' -%}
+
+{%- block request %}
+{%- trans_default_domain trans_default_domain -%}
+<!DOCTYPE html>
+<html {% block lang %}lang="{{ locale|e('html_attr') }}"{% endblock lang %}>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        {%- block meta -%}{%- endblock meta -%}
+        <link rel="icon" type="image/png" sizes="48x48" href="{{ path('site_favicon') }}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ path('site_apple_touch_icon') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ path('site_icon', {name: 'favicon', width: 32, height: 32}) }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ path('site_icon', {name: 'favicon', width: 16, height: 16}) }}">
+        {%- if isChannel == false -%}
+            <link rel="manifest" href="{{ path('site_manifest') }}">
+        {%- endif -%}
+        {%- block stylesheet -%}
+            {%- if vite.isDevServerRunning is same as(false) -%}
+                <link media="screen" href="{{ asset('src/js/app.js.css', 'emsch') }}" rel="stylesheet">
+            {%- endif -%}
+        {%- endblock stylesheet -%}
+        <title>{% block title %}{% endblock title %} | {{ 'app.title'|trans }}</title>
+    </head>
+    <body {% block bodyAttributes -%}{%- endblock bodyAttributes -%}>
+        {%- block body -%}{%- endblock body -%}
+        {%- if vite.isDevServerRunning -%}<script type="module" src="{{- vite.devServerClient -}}"></script>{%- endif -%}
+        {%- block javascript -%}
+            <script src="{{ path('js_translations') }}"></script>
+            <script type="module" src="{{ asset('src/js/app.js', 'emsch') }}"></script>
+        {%- endblock javascript -%}
+        {% if 'preview' in trans_default_domain and 'localhost' not in app.request.host %}
+            <script type="module" src="{{ asset('src/js/accessibility_cloud.js', 'emsch') }}"></script>
+        {% endif %}
+    </body>
+</html>
+{%- endblock request %}

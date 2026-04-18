@@ -1,0 +1,20 @@
+{%- extends '@EMSCH/ems_standard_template/page/block/abstract-block.html.twig' -%}
+
+{%- block row -%}
+    <section class="my-5">
+        <div class="container wysiwyg-content">
+            {{ block('widget') }}
+        </div>
+    </section>
+{%- endblock row -%}
+
+{%- block widget -%}
+    {% import '@EMSCH/ems_standard_template/macros/wysiwyg.twig' as wysiwyg %}
+
+    {%- if block.object.title is defined -%}
+        <h2>{{ block.object.title|replace(replacements)|raw }}</h2>
+    {%- endif -%}
+    {%- if block.object.body is defined -%}
+        {{ wysiwyg.transform(block.object.body|emsch_routing_config(emsch_routing_config), trans_default_domain) }}
+    {%- endif -%}
+{%- endblock widget -%}

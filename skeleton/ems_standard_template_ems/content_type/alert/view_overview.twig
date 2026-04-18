@@ -1,0 +1,38 @@
+{%- extends '@EMSCH/ems_standard_template_ems/content_type/base_overview.twig' -%}
+
+{%- block template -%}
+    {%- set languageColumnProperty = 'title' -%}
+    {%- set defaultColumns = true -%}
+    {%- set columns = [
+        { 'label': 'From', 'template': (block('column_dates_from')), 'orderField': 'from'},
+        { 'label': 'To', 'template': (block('column_dates_to')), 'orderField': 'to'},
+        { 'label': 'Status', 'template': (block('column_status'))},
+    ] -%}
+    {{ parent() }}
+{%- endblock template -%}
+
+{%- block column_dates_from -%}
+{% verbatim %}
+{{ data.source.from|date(date_time_format) }}
+{% endverbatim %}
+{%- endblock column_dates_from -%}
+
+{%- block column_dates_to -%}
+{% verbatim %}
+{{ data.source.to|date(date_time_format) }}
+{% endverbatim %}
+{%- endblock column_dates_to -%}
+
+{%- block column_status -%}
+{% verbatim %}
+{%- set dateFrom = data.source.from|date('U') -%}
+{%- set dateTo = data.source.to|date('U') -%}
+{%- set now = "now"|date('U') -%}
+
+{%- if now >= dateFrom and now <= dateTo -%}
+    <span class="label label-success">Active</span>
+{%- else -%}
+    <span class="label label-default">Inactive</span>
+{%- endif -%}
+{% endverbatim %}
+{%- endblock column_status -%}
