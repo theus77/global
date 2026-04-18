@@ -11,10 +11,6 @@ aria:
     toggle_search: 'Zoeken openen/sluiten'
 back2top:
     label: 'Terug naar boven'
-be_logo:
-    alt: 'Belgische Federale Overheidsdiensten'
-    label: 'Officiële informatie en diensten'
-    url: 'https://www.belgium.be/nl'
 console:
     warning_message: 'Als je deze console gebruikt, kunnen kwaadwillende mensen jouw identiteit nabootsen en je gegevens stelen via een aanval die Self-XSS wordt genoemd.Je moet geen code opgeven of plakken die je niet begrijpt.'
     warning_title: WAARSCHUWING
@@ -88,11 +84,11 @@ search:
 socials:
     facebook:
         alt: Facebook
-        url: 'https://www.facebook.com/Smals.ICT.for.Society'
+        url: 'https://www.facebook.com/globalview.be'
     instagram:
         alt: Instagram
-        url: 'https://www.instagram.com/smals.be/'
+        url: 'https://www.instagram.com/simon.globalview/'
     linkedin:
         alt: LinkedIn
-        url: 'https://www.linkedin.com/company/smals'
+        url: 'https://www.linkedin.com/company/global-view-sprl/'
     title: 'Volg ons op social media'

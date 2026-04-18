@@ -79,10 +79,6 @@
                         {% endfor %}
                     </div>
                 </div>
-                <div class="ms-auto">
-                    <span class="d-none d-lg-inline">{{ 'be_logo.label'|trans }}:</span> <a
-                        href="https://www.belgium.be/{{locale}}" target="_blank" class="no-icon"><span class="d-none d-lg-inline">belgium.be</span><img src="{{ asset("img/icon/be-logo.svg", 'emsch') }}" alt="{{ 'be_logo.alt'|trans }}" height="25" class="ms-2"></a>
-                </div>
             </div>
         </div>
     </nav>
@@ -277,9 +273,6 @@
                 </a>
             {%- endfor -%}
         </div>
-        <a href="{{ 'be_logo.url'|trans }}" target="_blank" class="no-icon">
-            <img src="{{ asset("img/icon/be-logo-white.svg", 'emsch') }}" alt="{{ 'be_logo.alt'|trans }}" height="25">
-        </a>
     </div>
 {%- endblock footer_social -%}
 
