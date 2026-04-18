@@ -4,18 +4,18 @@ services:
             file: docker-skeleton.yml
             service: skeleton
         environment:
-            - 'ES_CLUSTER_CONFIG=[{"transport":"https","host":"wcmtech-es-8-proxy.acc.ext.ssbcloud.be","username":"${EMS_CLUSTER_USER}","password":"${EMS_CLUSTER_PASS}","port":443,"curl":{"64":false}}]'
-            - 'APP_BACKEND_PROXY_URL=https://standard-admin.acc.ext.ssbcloud.be'
+            - 'ES_CLUSTER_CONFIG=[{"transport":"https","host":"${ACC_ES_HOST}","username":"${ES_CLUSTER_USER}","password":"${ES_CLUSTER_PASS}","port":443}]'
+            - 'APP_BACKEND_PROXY_URL=${ACC_BACKEND_PROXY_URL}'
         labels:
             - traefik.enable=true
-            - 'traefik.http.routers.standard-acc.rule=HostRegexp(`^acc\-([a-z0-9\-_\.]+)\.standard\.localhost$$`)'
-            - traefik.http.routers.standard-acc.entrypoints=web
-            - traefik.http.routers.standard-acc.service=standard-acc-apache
-            - 'traefik.http.routers.standard-acc-tls.rule=HostRegexp(`^acc\-([a-z0-9\-_\.]+)\.standard\.localhost$$`)'
-            - traefik.http.routers.standard-acc-tls.entrypoints=websecure
-            - traefik.http.routers.standard-acc-tls.tls=true
-            - traefik.http.routers.standard-acc-tls.service=standard-acc-apache
-            - traefik.http.services.standard-acc-apache.loadbalancer.server.port=9000
+            - 'traefik.http.routers.globalview-acc.rule=HostRegexp(`^acc\-([a-z0-9\-_\.]+)\.globalview\.localhost$$`)'
+            - traefik.http.routers.globalview-acc.entrypoints=web
+            - traefik.http.routers.globalview-acc.service=globalview-acc-apache
+            - 'traefik.http.routers.globalview-acc-tls.rule=HostRegexp(`^acc\-([a-z0-9\-_\.]+)\.globalview\.localhost$$`)'
+            - traefik.http.routers.globalview-acc-tls.entrypoints=websecure
+            - traefik.http.routers.globalview-acc-tls.tls=true
+            - traefik.http.routers.globalview-acc-tls.service=globalview-acc-apache
+            - traefik.http.services.globalview-acc-apache.loadbalancer.server.port=9000
 networks:
     default:
         name: skeleton
