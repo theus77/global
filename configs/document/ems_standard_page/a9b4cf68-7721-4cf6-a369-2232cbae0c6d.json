@@ -1,0 +1,54 @@
+{
+    "de": {
+        "blocks": "[]",
+        "seo_no_index": false,
+        "show": false,
+        "slug": "haufig-gestellte-fragen",
+        "title": "H\u00e4ufig gestellte Fragen"
+    },
+    "en": {
+        "blocks": "[]",
+        "seo_no_index": false,
+        "show": false,
+        "slug": "frequently-asked-questions",
+        "title": "Frequently asked questions"
+    },
+    "faqs": "[{\"id\":\"5548ead6-ceea-43e9-9d3f-cd9f1a48ecfa\",\"label\":\"Vraag 1 / Question 1\",\"type\":\"faq\",\"object\":{\"faq_link\":\"ems_standard_faq:e4b4297b-311c-47ef-a7b2-9b64c3f4e80c\",\"label\":\"Vraag 1 / Question 1\"},\"children\":[]},{\"id\":\"82016a18-1de8-42ff-83ec-6435a68579aa\",\"label\":\"Vraag 2 / Question 2\",\"type\":\"faq\",\"object\":{\"faq_link\":\"ems_standard_faq:d66a2711-4fef-4386-88d5-2098aaf666dd\",\"label\":\"Vraag 2 / Question 2\"},\"children\":[]},{\"id\":\"2af198a1-0861-410b-8056-c6894d3de4f5\",\"label\":\"Vraag 3 / Question 3\",\"type\":\"faq\",\"object\":{\"faq_link\":\"ems_standard_faq:db1df89a-6af7-45e7-ace4-819515f01d61\",\"label\":\"Vraag 3 / Question 3\"},\"children\":[]},{\"id\":\"69294ce9-2eb5-4d4d-a7f0-5d180fa0c413\",\"label\":\"Vraag 4 / Question 4\",\"type\":\"faq\",\"object\":{\"faq_link\":\"ems_standard_faq:c0baa1fa-05f4-4d3b-ba30-63bbf295a811\",\"label\":\"Vraag 4 / Question 4\"},\"children\":[]},{\"id\":\"28c8bf90-781c-46ee-9da0-ac611d2daea0\",\"label\":\"Vraag 5 / Question 5\",\"type\":\"faq\",\"object\":{\"faq_link\":\"ems_standard_faq:695db172-96ef-44d3-9025-90bb79afadf1\",\"label\":\"Vraag 5 / Question 5\"},\"children\":[]}]",
+    "fr": {
+        "blocks": "[{\"id\":\"75fb5e22-c146-460a-ba77-0b537be3ae07\",\"label\":\"Paragraph\",\"type\":\"paragraph\",\"object\":{\"label\":\"Paragraph\",\"body\":\"<p>Consultez nos questions r&eacute;ponses</p>\"},\"children\":[]},{\"id\":\"95c64b78-355b-4a68-bf55-471ad1ab51f6\",\"label\":\"FAQ's\",\"type\":\"faqs\",\"object\":{\"label\":\"FAQ's\"},\"children\":[]}]",
+        "seo_body": "Foire aux questions",
+        "seo_no_index": false,
+        "seo_title": "Foire aux questions",
+        "show": true,
+        "slug": "foire-aux-questions",
+        "title": "Foire aux questions"
+    },
+    "label": "Veelgestelde vragen / Foire aux questions / H\u00e4ufig gestellte Fragen / Frequently asked questions",
+    "nl": {
+        "blocks": "[{\"id\":\"d7e92660-a4fa-4da6-bfbc-981a2db429ef\",\"label\":\"FAQ's\",\"type\":\"faqs\",\"object\":{\"label\":\"FAQ's\"},\"children\":[]},{\"id\":\"e6e2911e-6cf6-486c-9294-272347334882\",\"label\":\"Paragraph\",\"type\":\"paragraph\",\"object\":{\"label\":\"Paragraph\",\"body\":\"<p>Bekijk onze veelgestelde vragen</p>\"},\"children\":[]}]",
+        "seo_body": "Veelgestelde vragen",
+        "seo_no_index": false,
+        "seo_title": "Veelgestelde vragen",
+        "show": true,
+        "slug": "veelgestelde-vragen",
+        "title": "Veelgestelde vragen"
+    },
+    "search_fr": [
+        "Foire aux questions",
+        "foire-aux-questions",
+        "Foire aux questions",
+        "Foire aux questions",
+        "Consultez nos questions r\u00e9ponses"
+    ],
+    "search_nl": [
+        "Veelgestelde vragen",
+        "veelgestelde-vragen",
+        "Veelgestelde vragen",
+        "Veelgestelde vragen",
+        "Bekijk onze veelgestelde vragen"
+    ],
+    "search_title_fr": "Foire aux questions",
+    "search_title_nl": "Veelgestelde vragen",
+    "structure_item": "88d1adc5-50be-49fd-926a-646872e1dd11",
+    "translate": false
+}

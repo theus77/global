@@ -1,0 +1,23 @@
+{% extends '@EMSCH/ems_standard_template/base/base_structure.twig' %}
+
+{%- block request -%}
+    {%- trans_default_domain trans_default_domain -%}
+    {%- set searchTemplate = '@EMSCH/ems_standard_template/page/include/search.twig' -%}
+    {%- import searchTemplate as macro -%}
+
+    {%- set search = macro.search({
+        'locale': locale,
+        'domain': trans_default_domain
+     })|ems_json_decode -%}
+
+    {{- {
+        'page': search.page,
+        'size': search.size,
+        'title': block('search_title', searchTemplate) ~ ' | ' ~ 'app.title'|trans,
+        'html_filter': block('search_filter', searchTemplate),
+        'html_results': block('search_results',searchTemplate),
+        'html_size': block('search_size', searchTemplate),
+        'html_pagination': block('search_pagination', searchTemplate),
+        'html_size_label': block('search_size_label', searchTemplate)
+    }|json_encode|raw -}}
+{%- endblock request -%}

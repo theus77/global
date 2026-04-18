@@ -1,0 +1,24 @@
+{
+    "name": "ems-standard",
+    "version": "1.0.0",
+    "description": "skeleton ems-standard",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "prod": "vite build",
+        "watch": "vite build --watch"
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.4.20",
+        "sass-embedded": "1.77.5",
+        "vite": "^6.1.0",
+        "vite-plugin-live-reload": "^3.0.4"
+    },
+    "dependencies": {
+        "@elasticms/admin-menu": "^1.0.1",
+        "@fortawesome/fontawesome-free": "^6",
+        "bootstrap": "^5.3.3",
+        "swiper": "^11.2.10"
+    }
+}

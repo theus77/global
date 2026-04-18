@@ -1,0 +1,23 @@
+/*
+ * MIXINS - GRID
+ *
+ */
+
+@mixin matchHeight-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      @for $i from 1 through $grid-row-columns {
+        .grid-cols#{$infix}-#{$i} {
+          @if ($i == 1){
+            grid-auto-rows: auto;
+            grid-template-columns: repeat($i, auto);
+          } @else{
+            grid-auto-rows: 1fr;
+            grid-template-columns: repeat($i, 1fr);
+          }
+        }
+      }
+    }
+  }
+}

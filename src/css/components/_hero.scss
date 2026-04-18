@@ -1,0 +1,136 @@
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  .swiper-container {
+    overflow: hidden;
+  }
+
+  .swiper-slide {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden;
+
+    &:not(.is-youtube):before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba($gray-700, 0.1);
+      z-index: 1;
+    }
+
+    .slide-text {
+      position: relative;
+      z-index: 2;
+    }
+  }
+
+  .hero-swiper-pagination {
+    width: auto;
+  }
+
+  .swiper-pagination-bullet {
+    background: white;
+    width: 12px;
+    height: 12px;
+    opacity: 1;
+    margin-right: 0.5rem;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: white;
+    position: relative;
+
+    &:before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: $primary;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+  }
+}
+
+.hero-title {
+  font-size: rem(18);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.hero-description {
+  font-size: rem(32);
+  font-weight: 700;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.hero-box {
+  width: calc(100% - 16px);
+  background: $primary;
+  border-radius: 20px 0 0 20px;
+  padding: 1.75rem 1rem 1.5rem 2rem;
+  position: relative;
+  top: -32px;
+  z-index: $zindex-dropdown;
+}
+
+@include media-breakpoint-down(sm) {
+  .hero-slide {
+    background-image: none !important;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .hero {
+    height: calc(100vh - 200px - 64px);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  .hero-title {
+    font-size: rem(20);
+  }
+
+  .hero-visual {
+    img {
+      display: none;
+    }
+  }
+
+  .hero-box {
+    position: absolute;
+    width: 60%;
+    top: auto;
+    right: 0;
+    bottom: -32px;
+    padding-right: 0;
+  }
+
+  .hero-box__container {
+    max-width: calc((720px / 100) * 60);
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .hero-box__container {
+    max-width: calc((960px / 100) * 60);
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .hero-box__container {
+    max-width: calc((1140px / 100) * 60);
+  }
+}

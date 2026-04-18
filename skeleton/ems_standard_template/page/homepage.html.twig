@@ -1,0 +1,26 @@
+{%- extends "@EMSCH/ems_standard_template/page/base.html.twig" -%}
+
+{%- block body -%}
+    {%- set languageUrls = emschLocales|reduce((carry, l) => carry|default([])|merge({
+        (l): path('homepage', { '_locale': l })
+    })) -%}
+    {{ parent() }}
+{%- endblock body -%}
+
+{%- block content -%}
+    <div class="container">
+        <h1 {{ emsch_admin_menu(emsLink|format) }} class="sr-only">
+            {{ source.(locale).title }}
+        </h1>
+    </div>
+    {{ block('render_blocks') }}
+{%- endblock content -%}
+
+{%- block render_blocks -%}
+    {%- with {
+        'blocks': source.(locale).blocks|default('[]')|ems_json_decode,
+        'trans_default_domain': trans_default_domain,
+    } -%}
+        {{- block("render", "@EMSCH/ems_standard_template/page/block/abstract-block.html.twig") -}}
+    {%- endwith -%}
+{%- endblock render_blocks -%}

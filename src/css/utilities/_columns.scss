@@ -1,0 +1,39 @@
+@use 'sass:math' as math;
+
+// Columns
+[class*="column-"]{
+  column-gap:30px;
+}
+
+@for $i from 2 through 4{
+  .column-#{$i}{
+    column-count:$i;
+    > li {
+      display: inline-block;
+      width: 100%;
+    }
+  }
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    @for $i from 2 through 4{
+      .column#{$infix}-#{$i}{
+        column-count: $i;
+        column-width: math.div(100%, $i);
+        > li {
+          display: inline-block;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+*[class*="column"]{
+  > *{
+    break-inside:avoid;
+  }
+}

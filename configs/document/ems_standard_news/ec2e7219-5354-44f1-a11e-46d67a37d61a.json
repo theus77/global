@@ -1,0 +1,76 @@
+{
+    "date_news": "2025/11/04",
+    "dates_news_slideshow": {
+        "from": "2025-10-27T00:00:00+01:00",
+        "to": "2025-11-28T23:59:59+01:00"
+    },
+    "de": {
+        "seo_no_index": false,
+        "show": false,
+        "slug": "actualite-1",
+        "summary": "<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>"
+    },
+    "en": {
+        "seo_no_index": false,
+        "show": false,
+        "slug": "actualite-1"
+    },
+    "fr": {
+        "alt_image": "Alt fr",
+        "alt_slideshow": "Soins de sant\u00e9",
+        "body": "<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>",
+        "seo_no_index": false,
+        "show": true,
+        "slug": "actualite-1",
+        "summary": "<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>",
+        "title": "Actualit\u00e9 1"
+    },
+    "image_news": {
+        "_algo": "sha1",
+        "_hash": "10df6504445b955d94c16fa2fa434af464655042",
+        "_name": "Sante.jpg",
+        "_size": 140516,
+        "_type": "image/jpeg",
+        "filename": "Sante.jpg",
+        "filesize": 504720,
+        "mimetype": "image/jpeg",
+        "sha1": "10df6504445b955d94c16fa2fa434af464655042"
+    },
+    "image_news_slideshow": {
+        "_algo": "sha1",
+        "_hash": "10df6504445b955d94c16fa2fa434af464655042",
+        "_name": "Sante.jpg",
+        "_size": 95595,
+        "_type": "image/jpeg",
+        "filename": "Sante.jpg",
+        "filesize": 504720,
+        "mimetype": "image/jpeg",
+        "sha1": "10df6504445b955d94c16fa2fa434af464655042"
+    },
+    "label": "Nieuws 1 / Actualit\u00e9 1",
+    "nl": {
+        "alt_image": "Alt nl",
+        "alt_slideshow": "Gezondheidszorg",
+        "body": "<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>",
+        "seo_no_index": false,
+        "show": true,
+        "slug": "nieuws-1",
+        "summary": "<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>",
+        "title": "Nieuws 1"
+    },
+    "search_fr": [
+        "Actualit\u00e9 1",
+        "actualite-1",
+        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+    ],
+    "search_nl": [
+        "Nieuws 1",
+        "nieuws-1",
+        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+    ],
+    "search_title_fr": "Actualit\u00e9 1",
+    "search_title_nl": "Nieuws 1",
+    "translate": false
+}

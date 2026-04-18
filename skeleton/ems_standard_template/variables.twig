@@ -1,0 +1,35 @@
+{% trans_default_domain trans_default_domain %}
+
+{%- set siteHashAssets = emsch_assets_version(include('@EMSCH/ems_standard_template/asset_hash.twig')|trim, null) -%}
+
+{%- set locale = app.request.locale|default('fr') -%}
+{%- set route = app.request.get('_route') -%}
+{%- set routeParams = app.request.get('_route_params') -%}
+{%- set date_format = 'd/m/Y' -%}
+{%- set date_format_full = 'j %F% Y' -%}
+{%- set emsch_routing_config = {} %}
+{%- set isChannel = (app.request.server.all['EMSCO_INSTANCE_ID']|default(false) ? true : false) -%}
+
+{%- set replacements = {
+    '%bb%': '<strong class="font-weight-bold">',
+    '%eb%': '</strong>'
+} -%}
+
+{% set monthsTrans = {
+    '%January%': 'month.January'|trans,
+    '%February%': 'month.February'|trans,
+    '%March%': 'month.March'|trans,
+    '%April%': 'month.April'|trans,
+    '%May%': 'month.May'|trans,
+    '%June%': 'month.June'|trans,
+    '%July%': 'month.July'|trans,
+    '%August%': 'month.August'|trans,
+    '%September%': 'month.September'|trans,
+    '%October%': 'month.October'|trans,
+    '%November%': 'month.November'|trans,
+    '%December%': 'month.December'|trans
+} %}
+
+{%- block pre_request -%}
+    {%- block request -%}{%- endblock request -%}
+{%- endblock pre_request -%}

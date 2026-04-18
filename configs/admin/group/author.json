@@ -1,0 +1,14 @@
+{
+    "class": "EMS\\CoreBundle\\Entity\\Group",
+    "arguments": [],
+    "properties": {
+        "name": "author",
+        "label": "Author",
+        "roles": [
+            "ROLE_USER",
+            "ROLE_AUTHOR",
+            "ROLE_COPY_PASTE"
+        ]
+    },
+    "replaced": []
+}

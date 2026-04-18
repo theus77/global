@@ -1,0 +1,23 @@
+{%- block render -%}
+    {%- set childrenHaveBeenGenerated = false -%}
+    {%- set currentBlockLevel = 1 -%}
+    {%- for block in blocks -%}
+        {%- set blockTemplate = "@EMSCH/ems_standard_template/page/block/#{block.type}.html.twig" -%}
+        {%- with {
+            'block': block,
+            'currentBlockLevel': currentBlockLevel,
+            'trans_default_domain': trans_default_domain,
+            'locale': locale,
+            'date_format': date_format,
+            'emsch_routing_config': emsch_routing_config
+        } -%}
+            {{ block('row', blockTemplate) }}
+        {%- endwith -%}
+    {%-  endfor -%}
+{%- endblock render -%}
+
+{%- block row -%}
+    {{ block('widget', blockTemplate) }}
+{%- endblock row -%}
+
+{%- block widget -%}{%- endblock widget -%}

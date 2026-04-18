@@ -1,0 +1,44 @@
+{%- extends "@EMSCH/ems_standard_template/layout/default.html.twig" -%}
+
+{% block title %}{{ source.(locale).seo_title|default(source.(locale).title) }}{% endblock title %}
+
+{%- block meta -%}
+    {%- if source.(locale).seo_no_index is defined -%}<meta name="robots" content="noindex">{%- endif -%}
+    {%- if source.(locale).seo_body is defined -%}
+        <meta name="description" content="{{ source.(locale).seo_body|default(source.(locale).title) }}">
+    {%- endif -%}
+    {%- if activeItem is defined and pathStructure.(activeItem.id) is defined and app.request.pathInfo != pathStructure.(activeItem.id) -%}
+        {%- set canonical = absolute_url(pathStructure.(activeItem.id)) -%}
+    {%- elseif linkHomepage == emsLink.emsId|default(false) and app.request.pathInfo != path('homepage') -%}
+        {%- set canonical = url('homepage') -%}
+    {%- else -%}
+        {%- set canonical = absolute_url(app.request.pathInfo) -%}
+    {%- endif -%}
+    <link rel="canonical" href="{{ canonical }}" />
+{%- endblock meta -%}
+
+{%- block breadcrumb -%}
+    {%- if activeItem is defined and isHomepage == false -%}
+        {%- set breadcrumb = activeItem.path
+            |filter(item => item.type != 'structure')
+            |map(item => {
+            'url': pathStructure.(item.id)|default(null),
+            'label': item.object.(locale).label|default(null)
+        }) -%}
+    {%- endif -%}
+    {{ parent() }}
+{%- endblock breadcrumb -%}
+
+{%- block javascript -%}
+<script src="{{ asset('form.js', 'emsform') }}"></script>
+{{ parent() }}
+{%- endblock javascript -%}
+
+{%- block render_blocks -%}
+    {%- with {
+        'blocks': source.(locale).blocks|default('[]')|ems_json_decode,
+        'trans_default_domain': trans_default_domain,
+    } -%}
+        {{- block("render", "@EMSCH/ems_standard_template/page/block/abstract-block.html.twig") -}}
+    {%- endwith -%}
+{%- endblock render_blocks -%}

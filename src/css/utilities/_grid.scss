@@ -1,0 +1,8 @@
+.grid{
+  &[class*="grid-col"]{
+    display:grid;
+    grid-gap: $grid-gutter-width;
+  }
+}
+
+@include matchHeight-grid-columns();

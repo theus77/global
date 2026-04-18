@@ -1,0 +1,54 @@
+#searchModal {
+  &.modal {
+    position: absolute;
+    overflow: hidden;
+    .modal-dialog {
+      max-width: none;
+      height: 100%;
+      .modal-content {
+        min-height: 100%;
+      }
+    }
+  }
+  @include media-breakpoint-up(lg) {
+    padding-right: 0 !important;
+    z-index: 1025;
+  }
+
+  .modal-content {
+    padding: 70px 0;
+    @include media-breakpoint-up(lg) {
+      .logo {
+        width: 100px;
+      }
+    }
+
+    .modal-body {
+      padding: 50px 0 30px;
+
+      .search-bar {
+        .input-group {
+          border-bottom: 1px solid $border-color;
+
+          input,
+          button {
+            font-size: 20px;
+            background-color: transparent;
+            border: 0;
+            color: $white;
+            padding-left: 0;
+
+            &::placeholder {
+              color: $white;
+            }
+          }
+
+          button {
+            font-size: 30px;
+            padding-right: 0;
+          }
+        }
+      }
+    }
+  }
+}

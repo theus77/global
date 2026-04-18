@@ -1,0 +1,14 @@
+{
+    "class": "EMS\\CoreBundle\\Entity\\I18n",
+    "arguments": [],
+    "properties": {
+        "identifier": "ems.documentation.body",
+        "content": [
+            {
+                "locale": "en",
+                "text": "{{ block('body', '@EMSCH/ems_standard_template_ems/i18n/documentation.twig') }}"
+            }
+        ]
+    },
+    "replaced": []
+}

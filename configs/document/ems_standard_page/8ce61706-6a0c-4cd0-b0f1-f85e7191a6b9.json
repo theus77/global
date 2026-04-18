@@ -1,0 +1,50 @@
+{
+    "de": {
+        "blocks": "[{\"id\":\"0c441085-14cd-46d5-93ff-59527ed04a2f\",\"label\":\"News slideshow\",\"type\":\"news_slideshow\",\"object\":{\"label\":\"News slideshow\"},\"children\":[]},{\"id\":\"d897d987-9d64-45b7-94ac-310d9acfacc0\",\"label\":\"News list\",\"type\":\"news_list\",\"object\":{\"label\":\"News list\"},\"children\":[]}]",
+        "seo_no_index": false,
+        "seo_title": "Startseite",
+        "show": false,
+        "slug": "startseite",
+        "title": "Startseite"
+    },
+    "en": {
+        "blocks": "[{\"id\":\"4549b9f1-9db8-4179-be0e-b2407a0fe966\",\"label\":\"News slideshow\",\"type\":\"news_slideshow\",\"object\":{\"label\":\"News slideshow\"},\"children\":[]},{\"id\":\"4871ff43-a2ee-44df-807f-2897ee61ca5e\",\"label\":\"News list\",\"type\":\"news_list\",\"object\":{\"label\":\"News list\"},\"children\":[]}]",
+        "seo_no_index": false,
+        "seo_title": "Homepage",
+        "show": false,
+        "slug": "homepage",
+        "title": "Homepage"
+    },
+    "faqs": "[]",
+    "fr": {
+        "blocks": "[{\"id\":\"1cd86808-4ac3-474b-83b6-fc8f9dd8a782\",\"label\":\"News slideshow\",\"type\":\"news_slideshow\",\"object\":{\"label\":\"News slideshow\"},\"children\":[]},{\"id\":\"73d47407-c812-44b6-96b6-65501bf78ec3\",\"label\":\"News list\",\"type\":\"news_list\",\"object\":{\"label\":\"News list\"},\"children\":[]}]",
+        "seo_no_index": true,
+        "seo_title": "Nom du site",
+        "show": true,
+        "slug": "page-d-accueil",
+        "title": "Page d'accueil"
+    },
+    "label": "Homepagina / Page d'accueil / Startseite / Homepage",
+    "nl": {
+        "blocks": "[{\"id\":\"ad1146f5-cdbb-4444-9964-09e3c020ff05\",\"label\":\"News slideshow\",\"type\":\"news_slideshow\",\"object\":{\"label\":\"News slideshow\"},\"children\":[]},{\"id\":\"f3b20bb9-15c8-4655-b078-de6ecd2dae3d\",\"label\":\"News list\",\"type\":\"news_list\",\"object\":{\"label\":\"News list\"},\"children\":[]}]",
+        "seo_no_index": false,
+        "seo_title": "Naam van de website",
+        "show": true,
+        "slug": "homepagina",
+        "title": "Homepagina"
+    },
+    "search_fr": [
+        "Page d'accueil",
+        "page-d-accueil",
+        "Nom du site"
+    ],
+    "search_nl": [
+        "Homepagina",
+        "homepagina",
+        "Naam van de website"
+    ],
+    "search_title_fr": "Page d'accueil",
+    "search_title_nl": "Homepagina",
+    "structure_item": "04a36823-1242-4372-8187-ba8f024cc45e",
+    "translate": false
+}

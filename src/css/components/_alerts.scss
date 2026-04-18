@@ -1,0 +1,30 @@
+@each $state, $color in $theme-colors {
+  .alert-#{$state} {
+    --#{$prefix}alert-color: #{color-contrast($color)};
+    --#{$prefix}alert-bg: var(--#{$prefix}#{$state});
+    --#{$prefix}alert-border-color: var(--#{$prefix}#{$state}-border-subtle);
+    --#{$prefix}alert-link-color: #{color-contrast($color)};
+
+    @if $state == danger {
+      --#{$prefix}alert-color: #{$danger};
+      --#{$prefix}alert-bg: #{$pink};
+      --#{$prefix}alert-border-color: #{$danger};
+      --#{$prefix}alert-link-color: #{$danger};
+    }
+
+  }
+}
+
+.alert {
+  a {
+    color: inherit;
+  }
+
+  .alert-content > * {
+    display: inline;
+  }
+
+  .collapse, .collapsing {
+    padding-left: 3.4rem;
+  }
+}

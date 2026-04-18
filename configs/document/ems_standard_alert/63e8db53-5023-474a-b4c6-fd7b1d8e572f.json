@@ -1,0 +1,21 @@
+{
+    "de": {
+        "show": false
+    },
+    "en": {
+        "show": false
+    },
+    "fr": {
+        "body": "<p>Exemple d&rsquo;alerte pour toutes les pages</p>",
+        "show": true,
+        "title": "29/10/2025 - Exemple de notification 1"
+    },
+    "from": "2025-10-29T00:00:00+01:00",
+    "label": "29/10/2025 - Voorbeeldmelding 1 / 29/10/2025 - Exemple de notification 1",
+    "nl": {
+        "body": "<p>Voorbeeldmelding voor alle pagina&#39;s</p>",
+        "show": true,
+        "title": "29/10/2025 - Voorbeeldmelding 1"
+    },
+    "to": "2025-12-31T00:00:00+01:00"
+}

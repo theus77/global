@@ -1,0 +1,29 @@
+{
+    "de": {
+        "show": false
+    },
+    "en": {
+        "show": false
+    },
+    "fr": {
+        "answer": "<p>R&eacute;ponse</p>",
+        "question": "Question 5",
+        "show": true
+    },
+    "label": "Vraag 5 / Question 5",
+    "nl": {
+        "answer": "<p>Antwoord</p>",
+        "question": "Vraag 5",
+        "show": true
+    },
+    "search_fr": [
+        "Question 5",
+        "R\u00e9ponse"
+    ],
+    "search_nl": [
+        "Vraag 5",
+        "Antwoord"
+    ],
+    "search_title_fr": "Question 5",
+    "search_title_nl": "Vraag 5"
+}

@@ -1,0 +1,15 @@
+{
+    "class": "EMS\\CoreBundle\\Entity\\Group",
+    "arguments": [],
+    "properties": {
+        "name": "administrator",
+        "label": "Administrator",
+        "roles": [
+            "ROLE_USER",
+            "ROLE_ADMIN",
+            "ROLE_COPY_PASTE",
+            "ROLE_ALLOW_ALIGN"
+        ]
+    },
+    "replaced": []
+}

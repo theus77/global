@@ -1,0 +1,49 @@
+{%- extends '@EMSCH/ems_standard_template/page/block/abstract-block.html.twig' -%}
+
+{%- block row -%}
+    {%- trans_default_domain trans_default_domain -%}
+    {% set searchNewsItems = emsch_search('ems_standard_news', {
+        'size': 3,
+        '_source': ['date_news', "#{locale}.title", "#{locale}.slug", "#{locale}.summary", 'image_news_slideshow'],
+        'sort': [ { 'date_news': { 'order': 'desc' } } ],
+        'query': { 'bool': {
+            'must': [ { 'term': { ("#{locale}.show"): { 'value': true } } } ],
+            'must_not': [ { 'nested': { 'path': 'image_news_slideshow', 'query': { 'exists': { 'field': 'image_news_slideshow' } } } } ]
+        } }
+    })  %}
+
+    {% set newsItems = searchNewsItems.hits.hits|reduce((carry, h) => carry|default([])|merge([{
+        'emsId': "#{h._source._contenttype}:#{h._id}",
+        'date': h._source.date_news,
+        'title': h._source.(locale).title,
+        'url': path('news', { 'slug': h._source.(locale).slug }),
+        'summary': h._source.(locale).summary|default('')
+    }]))  %}
+
+    {%- if newsItems|length > 0 -%}
+        <section class="my-3 py-4 my-lg-5 py-lg-5 news">
+            <div class="container">
+                <div class="d-flex justify-content-between mb-4">
+                    <h2 class="text-primary">{{ 'news.title'|trans }}</h2>
+                    <a href="{{ path('news_overview') }}">{{ 'news.view_all'|trans }}<i class="fa-solid fa-chevron-right ms-2" aria-hidden="true" role="img"></i></a>
+                </div>
+                {{ block('widget') }}
+            </div>
+        </section>
+    {%- endif -%}
+{%- endblock row -%}
+
+{%- block widget -%}
+    {%- trans_default_domain trans_default_domain -%}
+    {%- for newsItem in newsItems -%}
+        <p class="mb-1">{{ newsItem.date|date(date_format) }}</p>
+        <h3 {{ emsch_admin_menu(newsItem.emsId) }}>
+            <a href="{{ newsItem.url }}" >
+                {{ newsItem.title }}<span class="fa-solid fa-chevron-right h5 ms-2" aria-hidden="true" role="img"></span>
+            </a>
+        </h3>
+        {% if not loop.last %}
+            <hr class="my-3 my-lg-4">
+        {% endif %}
+    {%- endfor -%}
+{%- endblock widget -%}

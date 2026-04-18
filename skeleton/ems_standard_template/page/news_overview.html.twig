@@ -1,0 +1,92 @@
+{%- extends "@EMSCH/ems_standard_template/page/base.html.twig" -%}
+{% trans_default_domain trans_default_domain %}
+
+{% block title %}{{ 'news.title'|trans }}{% endblock title %}
+
+{%- block body -%}
+    {%- set languageUrls = emschLocales|reduce((carry, l) => carry|default([])|merge({
+        (l): path('news_overview', { '_locale': l })
+    })) -%}
+    {{ parent() }}
+{%- endblock body -%}
+
+{%- block meta -%}
+    <meta name="description" content="{{ 'meta.description_news_overview'|trans }}">
+    {{ parent() }}
+{%- endblock meta -%}
+
+{%- block breadcrumb -%}
+    {% trans_default_domain trans_default_domain %}
+    {%- set breadcrumb = [{'url': path('news_overview'), 'label': 'news.title'|trans }] -%}
+    {{ parent() }}
+{%- endblock breadcrumb -%}
+
+{%- block content -%}
+    {%- set pagingSize = 9 -%}
+    {%- set page = app.request.get('p', 0) -%}
+    {%- set anchor = 'news' -%}
+
+    {%- set searchNewsItems = emsch_search('ems_standard_news', {
+        'size': pagingSize,
+        'from': (page * pagingSize),
+        '_source': ['date_news', "#{locale}.*", 'image_news'],
+        'sort': [ { 'date_news': { 'order': 'desc' } } ],
+        'query': { 'term': { ("#{locale}.show"): { 'value': true } } }
+    }) -%}
+
+    {%- set newsItems = searchNewsItems.hits.hits|reduce((carry, h) => carry|default([])|merge([{
+        'emsId': "#{h._source._contenttype}:#{h._id}",
+        'url': path('news', { 'slug': h._source.(locale).slug }),
+        'title': h._source.(locale).title,
+        'alt': h._source.(locale).alt_image|default(h._source.(locale).title),
+        'date': h._source.date_news,
+        'summary': h._source.(locale).summary,
+        'image': h._source.image_news|default(false),
+    }]))  -%}
+    <div class="container">
+    <h1 id="{{ anchor }}" class="text-primary">{{ 'news.title'|trans }}</h1>
+    {% if newsItems|length > 0 %}
+        <div class="row">
+            {%- for newsItem in newsItems -%}
+                {{ block('news_item') }}
+                {% if not loop.last %}
+                    <div class="col-12 {{ loop.index % 3 == 0 ? (loop.index % 2 == 0 ? '' : 'd-block d-md-none d-lg-block') : (loop.index % 2 == 0 ? 'd-lg-none' : 'd-md-none') }}">
+                        <hr class="my-4">
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-12">
+                {%- set lastPage = (searchNewsItems.hits.total.value / pagingSize)|round(0, 'ceil') -1 -%}
+                {%- include '@EMSCH/ems_standard_template/page/include/pagination.html.twig' with {
+                    anchor: anchor,
+                    searchRoute: app.request.get('_route'),
+                    currentFilters: app.request.query,
+                    currentPage: page,
+                    pageParameter: 'p',
+                    extremePagesLimit: 3,
+                    nearbyPagesLimit: 3,
+                    lastPage: lastPage > 1000 ? 1000 : lastPage,
+                } -%}
+            </div>
+        </div>
+    {% endif %}
+    </div>
+{%- endblock content -%}
+
+{%- block news_item -%}
+    <div class="col-md-6 col-lg-4">
+        <div class="card border-0">
+            <div class="card-body">
+                <p class="card-date text-muted">{{ newsItem.date|date(date_format) }}</p>
+                <a href="{{ newsItem.url }}">
+                    <h5 class="card-title mb-lg-4" {{ emsch_admin_menu(newsItem.emsId) }}>
+                        {{ newsItem.title }} <i class="fa-solid fa-chevron-right h5"></i>
+                    </h5>
+                </a>
+                {{ newsItem.summary|emsch_routing_config(emsch_routing_config) }}
+            </div>
+        </div>
+    </div>
+{%- endblock news_item -%}

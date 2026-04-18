@@ -1,0 +1,101 @@
+language_selection:
+    config:
+        path: /
+    template_static: ems_standard_template/page/language_selection.html.twig
+homepage:
+    config:
+        path: '/{_locale}'
+        requirements: { _locale: nl|fr|de|en }
+    template_static: ems_standard_template/page/homepage.html.twig
+page:
+    config:
+        path: { nl: '/{_locale}/pagina/{slug}', fr: '/{_locale}/page/{slug}', de: '/{_locale}/seite/{slug}', en: '/{_locale}/page/{slug}' }
+        requirements: { _locale: nl|fr|de|en, slug: '[^.]+' }
+    query: '{"query":{"bool":{"must":[{"term":{"_contenttype":"ems_standard_page"}},{"term":{"%_locale%.slug":"%slug%"}},{"term":{"%_locale%.show":true}}]}},"size":1}'
+    template_static: ems_standard_template/page/page.html.twig
+news_overview:
+    config:
+        path: { nl: '/{_locale}/nieuws', fr: '/{_locale}/actualites', de: '/{_locale}/nachrichten', en: '/{_locale}/news' }
+        requirements: { _locale: nl|fr|de|en }
+    template_static: ems_standard_template/page/news_overview.html.twig
+news:
+    config:
+        path: { nl: '/{_locale}/nieuws/{slug}', fr: '/{_locale}/actualites/{slug}', de: '/{_locale}/nachrichten/{slug}', en: '/{_locale}/news/{slug}' }
+        requirements: { _locale: nl|fr|de|en, slug: '[^.]+' }
+    query: '{"query":{"bool":{"must":[{"term":{"_contenttype":"ems_standard_news"}},{"term":{"%_locale%.slug":"%slug%"}},{"term":{"%_locale%.show":true}}]}},"size":1}'
+    template_static: ems_standard_template/page/news.html.twig
+search:
+    config:
+        path: { nl: '/{_locale}/zoeken.{_format}', fr: '/{_locale}/chercher.{_format}', de: '/{_locale}/suchen.{_format}', en: '/{_locale}/search.{_format}' }
+        defaults: { _format: html, l: 10 }
+        requirements: { _format: html|json }
+    template_static: ems_standard_template/page/search.%_format%.twig
+missing:
+    config:
+        path: { nl: '/{_locale}/niet-beschikbaar/{type}/{ouuid}', fr: '/{_locale}/non-disponible/{type}/{ouuid}', de: '/{_locale}/missing/{type}/{ouuid}', en: '/{_locale}/missing/{type}/{ouuid}' }
+        requirements: { type: page|news, ouuid: '[^.]+' }
+    query: '{"query":{"bool":{"must":[{"term":{"_contenttype":"ems_standard_%type%"}},{"term":{"_id":"%ouuid%"}}]}}}'
+    template_static: ems_standard_template/page/missing.html.twig
+structure:
+    config:
+        path: '/{_locale}/{path}'
+        requirements: { _locale: nl|fr|de|en, path: '[^.]+' }
+    query: '{"_source":false,"query":{"bool":{"must":[{"nested":{"path":"%_locale%.paths","query":{"bool":{"must":[{"term":{"%_locale%.paths.path":{"value":"%path%"}}}]}},"inner_hits":{"name":"hitPath","_source":["*"],"size":1}}},{"term":{"_contenttype":{"value":"ems_standard_structure"}}}]}}}'
+    template_static: ems_standard_template/page/page_structure.html.twig
+media_file:
+    config:
+        path: '/media{path}'
+        requirements: { path: .+ }
+        controller: 'emsch.controller.router::redirect'
+    query: '{"query":{"bool":{"must":[{"terms":{"_contenttype":["ems_standard_media"]}},{"terms":{"media_path":["%path%"]}}]}},"size":1,"_source":{"excludes":["media_file._content","media_file._language","media_file._author","media_file._title","media_file._date"],"includes":["_contenttype","media_file.*","after","before","username","password","disposition"]}}'
+    template_static: ems_standard_template/site/media_file.json.twig
+js_translations:
+    config:
+        path: '/translations/{_locale}.js'
+        requirements: { _locale: nl|fr|de|en }
+        defaults: { _format: js, _locale: nl }
+    template_static: ems_standard_template/site/translations.js.twig
+site_robots:
+    config:
+        path: robots.txt
+        defaults: { _format: txt }
+    template_static: ems_standard_template/site/robots.txt.twig
+site_bing_site_auth:
+    config:
+        path: /BingSiteAuth.xml
+    template_static: ems_standard_template/site/BingSiteAuth.xml
+site_google:
+    config:
+        path: /google278a17f7ce40a3d0.html
+    template_static: ems_standard_template/site/google278a17f7ce40a3d0.html
+site_favicon:
+    config:
+        path: favicon.ico
+        controller: 'emsch.controller.router::redirect'
+    template_static: ems_standard_template/site/favicon.json.twig
+site_apple_touch_icon:
+    config:
+        path: apple-touch-icon.png
+        controller: 'emsch.controller.router::redirect'
+    template_static: ems_standard_template/site/apple-touch-icon.json.twig
+site_icon:
+    config:
+        path: '{name}-{width}x{height}.png'
+        controller: 'emsch.controller.router::redirect'
+        requirements: { name: android-chrome|favicon|mstile, width: 16|32|70|144|150|310|192|512, height: 16|32|70|144|150|310|192|512 }
+    template_static: ems_standard_template/site/favicon.json.twig
+site_manifest:
+    config:
+        path: /site.webmanifest
+        defaults: { _format: txt }
+    template_static: ems_standard_template/site/site.webmanifest.twig
+site_browser_config:
+    config:
+        path: /browserconfig.xml
+        defaults: { _format: xml }
+    template_static: ems_standard_template/site/browserconfig.xml.twig
+_emsch_error:
+    config:
+        path: '/_error/{statusCode}'
+        controller: 'emsch.controller.router::errorPreview'
+        defaults: { statusCode: 500 }

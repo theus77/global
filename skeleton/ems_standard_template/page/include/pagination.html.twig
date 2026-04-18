@@ -1,0 +1,33 @@
+{%- trans_default_domain trans_default_domain -%}
+{%- if lastPage > 0 -%}
+    <nav class="my-4">
+        <ul class="pagination list-inline justify-content-center">
+            {%- if currentPage > 0 -%}
+                <li class="page-item">
+                    <a href="{{ path(searchRoute, currentFilters|merge({(pageParameter): currentPage-1})) }}#{{ anchor }}" class="page-link">«  <span class="sr-only">({{ 'nav.previous'|trans }})</span></a>
+                </li>
+
+                {%- for i in range(0, extremePagesLimit)|filter(i => i < currentPage - nearbyPagesLimit) -%}
+                    <li class="page-item"><a class="page-link" href="{{ path(searchRoute, currentFilters|merge({(pageParameter): i})) }}#{{ anchor }}">{{ i+1 }}</a></li>
+                {%- endfor -%}
+
+                {%- if extremePagesLimit + 1 < currentPage - nearbyPagesLimit -%}
+                    <li class="page-item"><span class="sep-dots">...</span></li>
+                {%- endif -%}
+
+                {%- for i in range(currentPage-nearbyPagesLimit, currentPage-1)|filter(i => i >= 0)-%}
+                    <li class="page-item"><a class="page-link" href="{{ path(searchRoute, currentFilters|merge({(pageParameter): i})) }}#{{ anchor }}">{{ i+1 }}</a></li>
+                {%- endfor -%}
+            {%- endif -%}
+            <li class="page-item active">
+                <a class="page-link" href="{{ path(searchRoute, currentFilters|merge({ (pageParameter): currentPage })) }}#{{ anchor }}">{{ currentPage+1 }} <span class="sr-only">({{ 'nav.current'|trans }})</span></a>
+            </li>
+            {%- for i in range(currentPage+1, currentPage + nearbyPagesLimit)|filter(i => i <= lastPage) -%}
+                <li class="page-item"><a class="page-link" href="{{ path(searchRoute, currentFilters|merge({(pageParameter): i})) }}#{{ anchor }}">{{ i+1 }}</a></li>
+            {%- endfor -%}
+            {%- if currentPage < lastPage -%}
+                <li class="page-item"><a class="page-link" href="{{ path(searchRoute, currentFilters|merge({(pageParameter): currentPage+1})) }}#{{ anchor }}">»  <span class="sr-only">({{ 'nav.next'|trans }})</span></a></li>
+            {%- endif -%}
+        </ul>
+    </nav>
+{%- endif -%}

@@ -1,0 +1,12 @@
+{% if app.request.server.all['APP_IS_PROD_LIVE']|default(false)|lower in ['true', '1', 'yes', 'y', 'live'] %}
+User-agent: *
+Allow: /
+Disallow: /_emsch/
+Disallow: /_emsf/
+{% else %}
+User-agent: Screaming Frog SEO Spider
+Allow: /
+
+User-agent: *
+Disallow: /
+{% endif %}

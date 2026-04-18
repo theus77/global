@@ -1,0 +1,17 @@
+.alert [data-bs-toggle="collapse"] {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  gap: map-get($spacers, 2);
+
+  &::before {
+    @include faw-icon($fa-var-angle-down);
+    transform: rotate(0);
+  }
+
+  &[aria-expanded="true"] {
+    &::before {
+      transform: rotate(180deg);
+    }
+  }
+}

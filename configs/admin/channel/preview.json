@@ -1,0 +1,18 @@
+{
+    "class": "EMS\\CoreBundle\\Entity\\Channel",
+    "arguments": [],
+    "properties": {
+        "name": "preview",
+        "alias": "ems_standard_ma_preview",
+        "public": false,
+        "label": "Preview",
+        "options": {
+            "prefix_instance_id": false,
+            "searchConfig": "[]",
+            "entryPath": "./",
+            "attributes": "{\r\n    \"_backend\": \"/.\",\r\n    \"_locale\": \"fr\"\r\n}"
+        },
+        "orderKey": 1
+    },
+    "replaced": []
+}

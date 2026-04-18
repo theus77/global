@@ -1,0 +1,16 @@
+{%- extends '@EMSCH/ems_standard_template_ems/content_type/base_overview.twig' -%}
+
+{%- block template -%}
+    {%- set languageColumnProperty = 'title' -%}
+    {%- set defaultColumns = true -%}
+    {%- set prependColumns = [
+        { 'label': 'Date', 'template': (block('column_date_news')), 'orderField': 'date_news'},
+    ] -%}
+    {{ parent() }}
+{%- endblock template -%}
+
+{%- block column_date_news -%}
+{%- verbatim -%}
+{{ data.source.date_news|date(date_format) }}
+{%- endverbatim -%}
+{%- endblock column_date_news -%}

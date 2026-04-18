@@ -1,0 +1,99 @@
+app:
+    company: Institution
+    copyright: '© %company% %year%'
+    language_selection: Sprachauswahl
+    locale: Deutsch
+    search_page: Suche
+    title: 'EMS Standard'
+aria:
+    skip_to_content: 'Zum Hauptinhalt springen'
+    toggle_navigation: 'Navigation öffnen/schließen'
+    toggle_search: 'Suche öffnen/schließen'
+back2top:
+    label: 'Nach oben'
+be_logo:
+    alt: 'Belgische Bundesbehörden'
+    label: 'Offizielle Informationen und Dienstleistungen'
+    url: 'https://www.belgium.be/de'
+console:
+    warning_message: 'Wenn Sie diese Konsole verwenden, können böswillige Personen Ihre Identität stehlen und Ihre Daten über einen Angriff namens Self-XSS entwenden. Sie sollten keinen Code eingeben oder einfügen, den Sie nicht verstehen.'
+    warning_title: WARNUNG
+cookies_banner:
+    accept: 'Ich akzeptiere'
+    intro: 'Wir verwenden Cookies auf dieser Website, um Ihre Benutzererfahrung zu verbessern.'
+    more_info: 'Weitere Informationen'
+ems:
+    back_to_ems: 'Zurück zu eMS'
+error:
+    404:
+        description: 'Wir konnten die von Ihnen gewünschte Seite nicht finden. Denken Sie daran, Ihre Lesezeichen zu aktualisieren.'
+        title: 'Ups! Seite nicht gefunden.'
+    back_to_home: 'Zur Startseite zurück'
+    description: 'Wir arbeiten sofort an einer Lösung. In der Zwischenzeit können Sie versuchen, das Suchformular zu verwenden.'
+    title: 'Ups! Etwas ist schiefgelaufen.'
+form:
+    error: 'Das Formular hat ein Problem festgestellt: %message%'
+    error_try_later: 'Das Formular hat ein Problem festgestellt, bitte versuchen Sie es später erneut.'
+    file_selected: '1 Datei ausgewählt'
+    files_selected: '%count% Dateien ausgewählt'
+    format_not_supported: 'Fehler: Falsches Format.'
+    iframe_title: Formular
+    incorrect_format: 'Falsches Format'
+    loading: 'wird geladen...'
+    max_size_reached: 'Die Dateien sind zu groß. Die maximal zulässige Größe beträgt %fileSize%.'
+    processed: 'Ihre Nachricht wurde gesendet.'
+    remove: Entfernen
+    remove_all: 'Alles entfernen'
+    required_field: '(*) Pflichtfeld'
+    saved: 'Ihre Nachricht wurde gesendet.'
+key:
+    home: Startseite
+    new_window: 'Öffnet sich in einem neuen Fenster'
+meta:
+    description_news_overview: 'Alle Artikel'
+missing:
+    description: 'Das von Ihnen angeforderte Dokument ist derzeit nur in %languages% verfügbar'
+    show: 'Version in %language% anzeigen'
+    title: 'Dieses Dokument ist nicht in %language% verfügbar'
+month:
+    April: April
+    August: August
+    December: Dezember
+    February: Februar
+    January: Januar
+    July: Juli
+    June: Juni
+    March: März
+    May: Mai
+    November: November
+    October: Oktober
+    September: September
+nav:
+    current: Aktuell
+    next: Nächste
+    previous: Vorherige
+news:
+    back_to: 'Zurück zu allen Nachrichten'
+    published_date: 'Veröffentlicht am %date%'
+    slideshow: Nachrichten-Karussell
+    title: Nachrichten
+    title.demo: Actualités
+    view_all: 'Alle Nachrichten'
+search:
+    action: Suchen
+    for_query: 'für "%query%"'
+    paging_info: 'Ergebnisse %from% bis %to% von %total%'
+    placeholder: 'Geben Sie ein oder mehrere Schlüsselwörter ein'
+    results: '{0} Keine Ergebnisse gefunden|{1} 1 Ergebnis gefunden|]1,Inf[%count% Ergebnisse gefunden'
+    select_size: Ergebnisse
+socials:
+    facebook:
+        alt: Facebook
+        url: 'https://www.facebook.com/Smals.ICT.for.Society'
+    instagram:
+        alt: Instagram
+        url: 'https://www.instagram.com/smals.be/'
+    linkedin:
+        alt: LinkedIn
+        url: 'https://www.linkedin.com/company/smals'
+    title: 'Folgen Sie uns in den sozialen Medien'

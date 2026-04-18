@@ -1,0 +1,17 @@
+{%- extends '@EMSCH/ems_standard_template_ems/content_type/base_overview.twig' -%}
+
+{%- block template -%}
+    {%- set defaultColumns = true -%}
+    {%- set languageColumnProperty = 'label_%locale%' -%}
+    {%- set prependColumns = [
+        { 'label': 'Key', 'template': (block('column_key')), 'orderField': 'key'}
+    ] -%}
+
+    {{ parent() }}
+{%- endblock template -%}
+
+{%- block column_key -%}
+{%- verbatim -%}
+    <a href="{{ path('data.revisions', {ouuid: data.id, type: data.contentType} ) }}">{{ data.source.key }}</a>
+{%- endverbatim -%}
+{%- endblock column_key -%}

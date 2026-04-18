@@ -1,0 +1,100 @@
+{%- block source_post_processing -%}
+    {%- if _source.translate|default(false) -%}
+        {%- set copyFromLocale = emschLocales|filter(l => _source.(l).title is defined)|first -%}
+        {%- for copyToLocale in emschLocales|filter(l => l != copyFromLocale) -%}
+            {%- set _source = _source|merge({
+                (copyToLocale): _source.(copyToLocale)|default({})|merge(_source.(copyFromLocale)|filter((v, k) => k != 'show'))
+            }) -%}
+        {%- endfor -%}
+        {%- set _source = _source|merge({ 'translate': false }) -%}
+    {%- endif -%}
+
+    {%- if finalize -%}
+        {%- for l in emschLocales|filter(l => _source.(l).show|default(false) == true and _source.(l).title|default('')|trim == '') -%}
+            {{ emsco_cant_be_finalized("Show #{l|upper} is enabled, title is required.") }}
+        {%- endfor -%}
+    {%- endif -%}
+{%- endblock source_post_processing -%}
+
+{%- block label_post_processing -%}
+    {%- set titles = [] -%}
+    {%- set locales = emschLocales -%}
+    {%- for l in locales|filter((l) => _source.(l).title is defined) -%}
+        {%- set titles = titles|merge([ _source.(l).title ]) -%}
+    {%- endfor -%}
+    {{- titles|join(' / ')|json_encode|raw -}}
+{%- endblock label_post_processing -%}
+
+{%- block faq_label_post_processing -%}
+    {{- _source.faq_link|emsco_get.source.label|json_encode|raw -}}
+{%- endblock faq_label_post_processing -%}
+
+{%- block paragraph_label_post_processing -%}
+    {{- _source.title|default('Paragraph')|replace({'%bb%': '', '%eb%': ''})|json_encode|raw -}}
+{%- endblock paragraph_label_post_processing -%}
+
+{%- block paragraph_body_post_processing -%}
+    {%- set regex = {
+        "style_tag": "/<style\\b[^>]*>(.*?)<\\/style>/s",
+        "style_attribute": '/style="[^"]*"/',
+        "script_tag": "/<script\\b[^>]*>(.*?)<\\/script>/s"
+    } -%}
+
+    {%- if _source.body is defined -%}
+        {%- set body = _source.body|ems_replace_regex(regex.style_tag, '') -%}
+        {%- set body = body|ems_replace_regex(regex.style_attribute, '') -%}
+        {%- set body = body|ems_replace_regex(regex.script_tag, '') -%}
+        {{- body|json_encode|raw -}}
+    {%- endif -%}
+{%- endblock paragraph_body_post_processing -%}
+
+{%- block slug_value_template -%}
+    {%- if _source.slug|default(false) -%}
+        {{- _source.slug|json_encode|raw -}}
+    {%- endif -%}
+{%- endblock slug_value_template -%}
+
+{%- block slug_post_processing -%}
+    {%- if finalize and _source.title is defined %}
+        {{- _source.title|ems_slug|json_encode|raw -}}
+    {%- endif -%}
+{%- endblock slug_post_processing -%}
+
+{%- block structure_item_choice_template -%}
+    {%- set choices = [] -%}
+    {%- for item in items -%}
+        {%- set itemLabel = item.path[1:]|map(i => i.object.(app.user.language|default('fr')).label|default(i.label))|join(' > ')  -%}
+        {%- set choices = choices|merge({ (itemLabel) : (item.id) }) -%}
+    {%- endfor -%}
+    {{ choices|json_encode|raw }}
+{%- endblock structure_item_choice_template -%}
+
+{%- block structure_item_display_template -%}
+    {%- set displayLocale = app.user.language in emschLocales ? app.user.language : emschLocales|first -%}
+    {%- for item in items -%}
+        <div>
+            <a href="{{ path('emsco_dashboard', {'name': 'structure', 'activeItemId': item.id }) }}">
+                {{ item.path[1:]|map(i => i.object.(displayLocale).label|default(i.label))|join(' > ') }}
+            </a>
+        </div>
+    {%- endfor -%}
+{%- endblock structure_item_display_template -%}
+
+{%- block structure_item_post_processing -%}
+    {%- if finalize and _source.menu|default(false) -%}
+        {%- set found = {
+            "index": 'preview'|emsco_get_environment.alias,
+            "body": {
+                "query": {
+                    "bool": {
+                        "must": [ { "terms": { "structure_item": [_source.menu]} } ],
+                        "must_not": [ { "term": { "_id": (_id) } } ]
+                    }
+                }
+            },
+        }|emsco_search_query.hits.hits|default([]) -%}
+        {%- if found|length > 0 -%}
+            {{ emsco_cant_be_finalized('Another page has been already created for this entry. Please delete this draft.') }}
+        {%- endif -%}
+    {%- endif -%}
+{%- endblock structure_item_post_processing -%}

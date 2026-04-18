@@ -1,0 +1,24 @@
+{
+    "alert_pages": [
+        "ems_standard_page:9ccb89a0-9bcb-4a53-bf7a-e72c2340e102"
+    ],
+    "de": {
+        "show": false
+    },
+    "en": {
+        "show": false
+    },
+    "fr": {
+        "body": "<p>Exemple d&rsquo;alerte pour contact page</p>",
+        "show": true,
+        "title": "11/09/2025 - Exemple de notification 2"
+    },
+    "from": "2025-09-01T00:00:00+02:00",
+    "label": "11/09/2025 - Voorbeeldmelding 2 / 11/09/2025 - Exemple de notification 2",
+    "nl": {
+        "body": "<p>Voorbeeldmelding voor contact pagina</p>",
+        "show": true,
+        "title": "11/09/2025 - Voorbeeldmelding 2"
+    },
+    "to": "2025-12-31T00:00:00+01:00"
+}

@@ -1,0 +1,123 @@
+{% extends 'bootstrap_5_layout.html.twig' %}
+
+{% block form_row -%}
+    {% if ems_meta.rules|default([])|length > 0 %}
+        {% set row_attr = row_attr|merge({
+            'data-rules': ems_meta.rules|json_encode,
+            'data-show-hide': ems_meta.show_hide|default('show'),
+            'data-all-any': ems_meta.all_any|default('any'),
+            'class': row_attr.class|default('') ~ ' form-group',
+        }) %}
+    {% endif %}
+    {{ parent() }}
+{% endblock  %}
+
+{% block checkbox_row -%}
+    {% if ems_meta.rules|default([])|length > 0 %}
+        {% set row_attr = row_attr|merge({
+            'data-rules': ems_meta.rules|json_encode,
+            'data-show-hide': ems_meta.show_hide|default('show'),
+            'data-all-any': ems_meta.all_any|default('any'),
+        }) %}
+    {%  endif %}
+    {%- if compound is defined and compound -%}
+        {%- set element = 'fieldset' -%}
+    {%- endif -%}
+    {%- set widget_attr = {} -%}
+    {%- if help is not empty -%}
+        {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
+    {%- endif -%}
+    <{{ element|default('div') }}{% with {attr: row_attr|merge({class: (row_attr.class|default('') ~ ' form-group')|trim})} %}{{ block('attributes') }}{% endwith %}>
+    {{- form_label(form) -}}
+    {{- form_widget(form, widget_attr) -}}
+    {{- form_help(form) -}}
+    </{{ element|default('div') }}>
+{% endblock  %}
+
+{% block button_row -%}
+    {% if ems_meta.rules|default([])|length > 0 %}
+        {% set row_attr = row_attr|merge({
+            'data-rules': ems_meta.rules|json_encode,
+            'data-show-hide': ems_meta.show_hide|default('show'),
+            'data-all-any': ems_meta.all_any|default('any'),
+        }) %}
+    {%  endif %}
+    {{ parent() }}
+{%- endblock button_row %}
+
+{% block ems_markup_row -%}
+    {% set attr = attr|merge({
+        'class': 'form-group',
+    }) %}
+    {% if config.meta.rules|default([])|length > 0 %}
+        {% set attr = attr|merge({
+            'data-rules': config.meta.rules|json_encode,
+            'data-show-hide': config.meta.show_hide|default('show'),
+            'data-all-any': config.meta.all_any|default('any'),
+        }) %}
+    {%  endif %}
+    <div {{ block('attributes') }}>
+        {{ form.vars.config.markup|emsch_routing }}
+    </div>
+{%- endblock ems_markup_row %}
+
+{% block ems_file_row %}
+    {%- trans_default_domain form.vars.ems_translation_domain -%}
+    {% if ems_meta.rules|default([])|length > 0 %}
+        {% set row_attr = row_attr|merge({
+            'data-rules': ems_meta.rules|json_encode,
+            'data-show-hide': ems_meta.show_hide|default('show'),
+            'data-all-any': ems_meta.all_any|default('any'),
+        }) %}
+    {%  endif %}
+
+    <div {% with {attr: row_attr|merge({class: (row_attr.class|default('') ~ ' form-group')|trim})} %}{{ block('attributes') }}{% endwith %}>
+        <div class="files-upload form-control">
+            <p class="files-upload-error text-danger d-none"></p>
+            {%- set browseLabel = "#{name}_browse"|trans -%}
+            {%- if "#{name}_browse" == browseLabel -%}
+                {%- set browseLabel = "ems_file_browse"|trans -%}
+            {%- endif -%}
+            {%- set label_attr = {
+                'data-browse': browseLabel,
+                'placeholder': label_attr.placeholder|default(form.vars.label|default(none)),
+                'id': id ~ '_label'
+            } -%}
+            <div class="files-upload-head" role="button" aria-labelledby="{{ id ~ '_label' }}">
+                {{- form_widget(form, {label_attr: label_attr}) -}}
+                {{- form_help(form) -}}
+            </div>
+            <ul class="file-list list-unstyled mb-0"></ul>
+        </div>
+    </div>
+{% endblock ems_file_row %}
+
+{% block file_widget -%}
+    <{{ element|default('div') }} class="custom-file">
+    {%- set type = type|default('file') -%}
+    {%- set input_lang = 'en' -%}
+    {% if app is defined and app.request is defined %}{%- set input_lang = app.request.locale -%}{%- endif -%}
+    {%- set class = attr.class ~ ' d-none'-%}
+    {%- set attr = attr|merge({lang: input_lang, class: class}) -%}
+    {{- block('form_widget_simple') -}}
+    {%- set label_attr = label_attr|merge({ class: (label_attr.class|default('') ~ ' custom-file-label')|trim }) -%}
+    {% set label_attr = label_attr|merge({
+        'class': html_classes(label_attr.class|default(''), ems_meta.class|default('')),
+    }) %}
+    <label for="{{ form.vars.id }}" {% with { attr: label_attr } %}{{ block('attributes') }}{% endwith %}>
+       <span>{{ label|raw }}</span>
+    </label>
+    </{{ element|default('div') }}>
+{% endblock file_widget -%}
+
+{% block repeated_row -%}
+    {% if ems_meta.rules|default([])|length > 0 %}
+        {% set row_attr = row_attr|merge({
+            'data-rules': ems_meta.rules|json_encode,
+            'data-show-hide': ems_meta.show_hide|default('show'),
+            'data-all-any': ems_meta.all_any|default('any'),
+        }) %}
+    {% endif %}
+    {{ form_row(form.first, { 'attr': {'class': ems_meta.class|default('')}, row_attr: row_attr  }) }}
+    {{ form_row(form.second, { 'attr': {'class': ems_meta.class|default('')}, row_attr: row_attr  }) }}
+{% endblock repeated_row -%}

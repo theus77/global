@@ -1,0 +1,98 @@
+app:
+    company: Instelling
+    copyright: '© %company% %year%'
+    language_selection: 'Language selection'
+    locale: Nederlands
+    search_page: Zoeken
+    title: 'EMS Standard'
+aria:
+    skip_to_content: 'Ga naar hoofdinhoud'
+    toggle_navigation: 'Navigatie openen/sluiten'
+    toggle_search: 'Zoeken openen/sluiten'
+back2top:
+    label: 'Terug naar boven'
+be_logo:
+    alt: 'Belgische Federale Overheidsdiensten'
+    label: 'Officiële informatie en diensten'
+    url: 'https://www.belgium.be/nl'
+console:
+    warning_message: 'Als je deze console gebruikt, kunnen kwaadwillende mensen jouw identiteit nabootsen en je gegevens stelen via een aanval die Self-XSS wordt genoemd.Je moet geen code opgeven of plakken die je niet begrijpt.'
+    warning_title: WAARSCHUWING
+cookies_banner:
+    accept: 'Ik begrijp het!'
+    intro: 'Wij gebruiken cookies op deze site om uw gebruikerservaring te verbeteren.'
+    more_info: 'Meer weten'
+ems:
+    back_to_ems: 'Terug naar eMS'
+error:
+    404:
+        description: 'We kunnen de pagina die u zoekt helaas niet vinden. Vergeet niet om uw favorieten bij te werken.'
+        title: 'Oeps! Pagina niet gevonden.'
+    back_to_home: 'Terug naar de startpagina'
+    description: 'We zullen eraan werken om dat meteen op te lossen. Ondertussen kunt u proberen het zoekformulier te gebruiken.'
+    title: 'Oeps! Er is een fout opgetreden.'
+form:
+    error: 'Het formulier is op een probleem gestoten : %message%'
+    error_try_later: 'Het formulier is op een probleem gestoten, probeer het later opnieuw.'
+    file_selected: '1 bestand geselecteerd'
+    files_selected: '%count% geselecteerde bestanden'
+    format_not_supported: 'Fout: Onjuist formaat.'
+    iframe_title: Form
+    incorrect_format: 'Onjuist formaat'
+    loading: 'bezig met laden...'
+    max_size_reached: 'De bestanden zijn te groot. Toegestane maximum grootte is %fileSize%.'
+    processed: 'Uw bericht is verzonden.'
+    remove: Verwijderen
+    remove_all: 'Alles verwijderen'
+    saved: 'Uw bericht is verzonden.'
+key:
+    home: Homepagina
+    new_window: 'Opent in een nieuw venster'
+meta:
+    description_news_overview: 'Alle nieuwsberichten'
+missing:
+    description: 'Het door u opgevraagde document is momenteel enkel beschikbaar in het %languages%.'
+    show: 'Bekijk de versie in het %language%'
+    title: 'Dit document is niet beschikbaar in het %language%'
+month:
+    April: april
+    August: augustus
+    December: december
+    February: februari
+    January: januari
+    July: juli
+    June: juni
+    March: maart
+    May: mei
+    November: november
+    October: oktober
+    September: september
+nav:
+    current: Huidige
+    next: Volgende
+    previous: Vorige
+news:
+    back_to: 'Terug naar alle nieuwsberichten'
+    published_date: 'Gepubliceerd op %date%'
+    slideshow: Nieuwscarousel
+    title: Nieuws
+    title.demo: Actualités
+    view_all: 'Alle nieuwsberichten'
+search:
+    action: Zoeken
+    for_query: 'voor "%query%"'
+    paging_info: 'Resultaten van %from% tot %to% op %total%'
+    placeholder: 'Geef een of meer zoektermen in'
+    results: '{0} Geen resultaten gevonden|{1} 1 resultaat gevonden|]1,Inf[%count% resultaten gevonden'
+    select_size: Resultaten
+socials:
+    facebook:
+        alt: Facebook
+        url: 'https://www.facebook.com/Smals.ICT.for.Society'
+    instagram:
+        alt: Instagram
+        url: 'https://www.instagram.com/smals.be/'
+    linkedin:
+        alt: LinkedIn
+        url: 'https://www.linkedin.com/company/smals'
+    title: 'Volg ons op social media'

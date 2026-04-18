@@ -1,0 +1,52 @@
+{
+    "de": {
+        "blocks": "[{\"id\":\"d63cf3b7-3fa2-4ca0-9ffc-f34c11f930eb\",\"label\":\"Paragraph\",\"type\":\"paragraph\",\"object\":{\"label\":\"Paragraph\",\"body\":\"<ul>\\r\\n\\t<li>Wenn nicht etwas anderes angegeben wird, sind die Informationen auf dieser Website frei von Urheberrechten und k&ouml;nnen bedingungslos f&uuml;r private, assoziative, wissenschaftliche und kommerzielle Zwecke genutzt werden. Die f&ouml;deralen Beh&ouml;rden empfehlen allerdings, die Quelle und das Datum der genutzten Informationen anzugeben.</li>\\r\\n\\t<li>Wenn eine vorhergehende Zustimmung erforderlich ist oder wenn besondere Bedingungen notwendig sind, werden die Nutzungsbeschr&auml;nkungen ausdr&uuml;cklich aufgef&uuml;hrt. Die Nutzung von Multimedienmaterial (Fotos, Abbildungen, Tonaufnahmen, Videos usw.), einschlie&szlig;lich des Inhalts von herunterladbaren Dateien (Brosch&uuml;ren usw.), unterliegt immer einer vorhergehenden Genehmigung.</li>\\r\\n\\t<li>Die f&ouml;deralen Beh&ouml;rden tun alles, um daf&uuml;r zu sorgen, dass diese Website korrekt und aktuell ist. Wird trotzdem ein Fehler festgestellt, verpflichten sie sich dazu, so schnell wie m&ouml;glich die erforderlichen Korrekturen vorzunehmen.</li>\\r\\n</ul>\\r\\n\\r\\n<p>Nhere Ausknfte ber den Zugang zu behrdlichen Informationen und deren Nutzung erhalten Sie unter&nbsp;<a href=\\\"https://data.gov.be/de/documentatie/wettelijk-kader-en-adviezen\\\" target=\\\"_blank\\\">Data.Gov.be&nbsp;Neues Fenster</a>.</p>\"},\"children\":[]}]",
+        "seo_body": "Sofern nicht anders angegeben, sind die Informationen auf dieser Website frei von Rechten. Sie k\u00f6nnen uneingeschr\u00e4nkt wiederverwendet werden.",
+        "seo_no_index": false,
+        "show": true,
+        "slug": "bedingungen-fur-die-nutzung",
+        "title": "Bedingungen f\u00fcr die Nutzung"
+    },
+    "en": {
+        "blocks": "[{\"id\":\"9b9a8c00-7b74-45c0-a45b-4a17689e9567\",\"label\":\"Paragraph\",\"type\":\"paragraph\",\"object\":{\"body\":\"<ul>\\r\\n\\t<li>Unless otherwise stated, the information on this website is free of rights and may be used for private, association, scientific and commercial purposes. The federal government does, however, recommend stating the source and date of the information that is reused.</li>\\r\\n\\t<li>Where prior authorisation is required, or where specific conditions are necessary, re-use restrictions are explicitly mentioned. The re-use of multimedia content (photographs, images, sound, videos, etc.), including the content contained in downloadable documents (brochures, etc.), is always subject to prior approval.</li>\\r\\n\\t<li>The federal government makes every effort to ensure that this website is correct and up to date. Should an error be detected, it undertakes to make the necessary corrections as soon as possible.</li>\\r\\n</ul>\\r\\n\\r\\n<p>More information on access to and re-use of government information can be found at&nbsp;<a href=\\\"https://data.gov.be/en/documentation/legal-framework\\\" target=\\\"_blank\\\">Data.gov.be</a>.</p>\",\"label\":\"Paragraph\"},\"children\":[]}]",
+        "seo_body": "The information published on this website is free of copyright, unless otherwise stated. It may be reused without restriction.",
+        "seo_no_index": false,
+        "show": true,
+        "slug": "conditions-for-reuse",
+        "title": "Conditions for reuse"
+    },
+    "faqs": "[]",
+    "fr": {
+        "blocks": "[{\"id\":\"1b4f98fe-12ef-4978-84e8-526faed063ec\",\"label\":\"Paragraph\",\"type\":\"paragraph\",\"object\":{\"label\":\"Paragraph\",\"body\":\"<ul>\\r\\n\\t<li>Les informations publi&eacute;es sur ce site internet sont libres de droits, sauf mention contraire. Elles peuvent &ecirc;tre r&eacute;utilis&eacute;es sans condition &agrave; des fins priv&eacute;es, associatives, scientifiques et commerciales. Toutefois, les autorit&eacute;s f&eacute;d&eacute;rales recommandent de mentionner la source et la date des informations r&eacute;utilis&eacute;es.</li>\\r\\n\\t<li>Lorsqu&rsquo;une autorisation pr&eacute;alable est requise ou lorsque des conditions sp&eacute;cifiques sont n&eacute;cessaires, les limites de la r&eacute;utilisation sont explicitement mentionn&eacute;es. La r&eacute;utilisation du mat&eacute;riel multim&eacute;dia (photos, images, sons, vid&eacute;os&hellip;), y compris celui se trouvant dans les documents t&eacute;l&eacute;chargeables (brochures&hellip;), est toujours soumise &agrave; une approbation pr&eacute;alable.</li>\\r\\n\\t<li>Les autorit&eacute;s f&eacute;d&eacute;rales mettent tout en &oelig;uvre pour que ce site soit exact et &agrave; jour. Toutefois, si une erreur est constat&eacute;e, elles s&rsquo;engagent &agrave; faire les corrections n&eacute;cessaires dans les meilleurs d&eacute;lais.</li>\\r\\n</ul>\\r\\n\\r\\n<p>Pour plus d&rsquo;information sur l&rsquo;acc&egrave;s et la r&eacute;utilisation des informations du secteur public, consultez le site&nbsp;<a href=\\\"https://data.gov.be/fr/aspects-legaux\\\" target=\\\"_blank\\\">Data.gov.be</a>.</p>\"},\"children\":[]}]",
+        "seo_body": "Les informations publi\u00e9es sur ce site internet sont libres de droits, sauf mention contraire. Elles peuvent \u00eatre r\u00e9utilis\u00e9es sans condition.",
+        "seo_no_index": false,
+        "show": true,
+        "slug": "conditions-de-reutilisation",
+        "title": "Conditions de r\u00e9utilisation"
+    },
+    "label": "Voorwaarden voor het hergebruik / Conditions de r\u00e9utilisation / Bedingungen f\u00fcr die Nutzung / Conditions for reuse",
+    "nl": {
+        "blocks": "[{\"id\":\"84e31d93-3f6d-4286-a643-5dce6c3e7b83\",\"label\":\"Paragraph\",\"type\":\"paragraph\",\"object\":{\"label\":\"Paragraph\",\"body\":\"<ul>\\r\\n\\t<li>Tenzij anders vermeld, is de informatie op deze website vrij van rechten. Ze kan onvoorwaardelijk worden hergebruikt voor priv&eacute;-, verenigings-, wetenschappelijke en commerci&euml;le doeleinden. De federale overheid raadt wel aan om de bron en datum van de hergebruikte informatie te vermelden.</li>\\r\\n\\t<li>Wanneer voorafgaande toestemming vereist is, of wanneer specifieke voorwaarden noodzakelijk zijn, worden de beperkingen voor hergebruik uitdrukkelijk vermeld. Het hergebruik van multimediamateriaal (foto&#39; s, afbeeldingen, geluid, video&#39; s enz.), met inbegrip van de inhoud die in downloadbare documenten staat (brochures, enz.), is altijd onderworpen aan voorafgaande goedkeuring.</li>\\r\\n\\t<li>De federale overheid stelt alles in het werk om ervoor te zorgen dat deze website correct en actueel is. Wordt er toch een fout vastgesteld, dan verbindt ze zich ertoe om zo spoedig mogelijk de nodige correcties aan te brengen.</li>\\r\\n</ul>\\r\\n\\r\\n<p>Meer informatie over toegang tot en hergebruik van overheidsinformatie vindt u op website&nbsp;<a href=\\\"https://data.gov.be/nl/wettelijk-kader\\\" target=\\\"_blank\\\">Data.gov.be</a>.</p>\"},\"children\":[]}]",
+        "seo_body": "Tenzij anders vermeld, is de informatie op deze website vrij van rechten. Ze kan onvoorwaardelijk worden hergebruikt.",
+        "seo_no_index": false,
+        "show": true,
+        "slug": "voorwaarden-voor-het-hergebruik",
+        "title": "Voorwaarden voor het hergebruik"
+    },
+    "search_fr": [
+        "Conditions de r\u00e9utilisation",
+        "conditions-de-reutilisation",
+        "Les informations publi\u00e9es sur ce site internet sont libres de droits, sauf mention contraire. Elles peuvent \u00eatre r\u00e9utilis\u00e9es sans condition.",
+        "Les informations publi\u00e9es sur ce site internet sont libres de droits, sauf mention contraire. Elles peuvent \u00eatre r\u00e9utilis\u00e9es sans condition \u00e0 des fins priv\u00e9es, associatives, scientifiques et commerciales. Toutefois, les autorit\u00e9s f\u00e9d\u00e9rales recommandent de mentionner la source et la date des informations r\u00e9utilis\u00e9es.\r\n\tLorsqu\u2019une autorisation pr\u00e9alable est requise ou lorsque des conditions sp\u00e9cifiques sont n\u00e9cessaires, les limites de la r\u00e9utilisation sont explicitement mentionn\u00e9es. La r\u00e9utilisation du mat\u00e9riel multim\u00e9dia (photos, images, sons, vid\u00e9os\u2026), y compris celui se trouvant dans les documents t\u00e9l\u00e9chargeables (brochures\u2026), est toujours soumise \u00e0 une approbation pr\u00e9alable.\r\n\tLes autorit\u00e9s f\u00e9d\u00e9rales mettent tout en \u0153uvre pour que ce site soit exact et \u00e0 jour. Toutefois, si une erreur est constat\u00e9e, elles s\u2019engagent \u00e0 faire les corrections n\u00e9cessaires dans les meilleurs d\u00e9lais.\r\n\r\n\r\nPour plus d\u2019information sur l\u2019acc\u00e8s et la r\u00e9utilisation des informations du secteur public, consultez le site\u00a0Data.gov.be."
+    ],
+    "search_nl": [
+        "Voorwaarden voor het hergebruik",
+        "voorwaarden-voor-het-hergebruik",
+        "Tenzij anders vermeld, is de informatie op deze website vrij van rechten. Ze kan onvoorwaardelijk worden hergebruikt.",
+        "Tenzij anders vermeld, is de informatie op deze website vrij van rechten. Ze kan onvoorwaardelijk worden hergebruikt voor priv\u00e9-, verenigings-, wetenschappelijke en commerci\u00eble doeleinden. De federale overheid raadt wel aan om de bron en datum van de hergebruikte informatie te vermelden.\r\n\tWanneer voorafgaande toestemming vereist is, of wanneer specifieke voorwaarden noodzakelijk zijn, worden de beperkingen voor hergebruik uitdrukkelijk vermeld. Het hergebruik van multimediamateriaal (foto' s, afbeeldingen, geluid, video' s enz.), met inbegrip van de inhoud die in downloadbare documenten staat (brochures, enz.), is altijd onderworpen aan voorafgaande goedkeuring.\r\n\tDe federale overheid stelt alles in het werk om ervoor te zorgen dat deze website correct en actueel is. Wordt er toch een fout vastgesteld, dan verbindt ze zich ertoe om zo spoedig mogelijk de nodige correcties aan te brengen.\r\n\r\n\r\nMeer informatie over toegang tot en hergebruik van overheidsinformatie vindt u op website\u00a0Data.gov.be."
+    ],
+    "search_title_fr": "Conditions de r\u00e9utilisation",
+    "search_title_nl": "Voorwaarden voor het hergebruik",
+    "structure_item": "f6d97642-abb6-48b0-9fd6-c45a558205bf",
+    "translate": false
+}

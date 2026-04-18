@@ -1,0 +1,38 @@
+services:
+    skeleton:
+        image: 'gcloud-docker-release.repo.gcloud.belgium.be/smalswebtech/elasticms-skeleton:${SKELETON_VERSION}'
+        user: '1000'
+        dns:
+            - 10.4.65.16
+        extra_hosts:
+            - 'vite.internal:host-gateway'
+        environment:
+            - APP_CACHE=file_system
+            - APP_ENV=dev
+            - 'APP_INSTANCE_ID=${INSTANCE_ID}'
+            - APP_IS_PROD_LIVE=false
+            - 'APP_TRUSTED_HOSTS=localhost,*.localhost'
+            - 'APP_TRUSTED_PROXIES=127.0.0.1,REMOTE_ADDR'
+            - CONTAINER_HEAP_PERCENT=0.8
+            - EMSCH_ASSET_LOCAL_FOLDER=skeleton
+            - 'EMS_VITE_DEV_SERVER=http://vite.internal:5174'
+            - HTTP_CUSTOM_FORWARDED_FOR=HTTP_X_SMALS_FORWARDED_FOR
+            - HTTP_CUSTOM_FORWARDED_HOST=HTTP_X_SMALS_FORWARDED_HOST
+            - HTTP_CUSTOM_FORWARDED_PORT=HTTP_X_SMALS_FORWARDED_PORT
+            - HTTP_CUSTOM_FORWARDED_PROTO=HTTP_X_SMALS_FORWARDED_PROTO
+            - 'MAILER_URL=smtp://mailhog:1025'
+            - METRICS_ENABLED=false
+            - PGID=1000
+            - PHP_FPM_MAX_CHILDREN=8
+            - PHP_FPM_REQUEST_MAX_MEMORY_IN_MEGABYTES=256
+            - PUID=1000
+            - TZ=Europe/Brussels
+        env_file:
+            - './configs/openshift/${OC_DEPLOY}-s3-credentials.env'
+        volumes:
+            - './configs/admin:/app/src/elasticms/admin'
+            - './configs/document:/app/src/elasticms/document'
+            - './configs/skeleton:/app/config/elasticms'
+            - './dist:/app/src/elasticms/public/skeleton:ro'
+            - './skeleton:/app/src/elasticms/local/${INSTANCE_ID}live'
+            - './skeleton:/app/src/elasticms/local/${INSTANCE_ID}preview'
