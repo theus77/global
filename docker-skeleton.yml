@@ -11,6 +11,8 @@ services:
                     - live.globalview.docker
                     - www.globalview.be
         environment:
+            - EMS_FROM_EMAIL_ADDRESS=globaleview@example.com
+            - EMS_FROM_EMAIL_NAME=globaleview
             - APP_CACHE=file_system
             - APP_ENV=dev
             - 'APP_INSTANCE_ID=${INSTANCE_ID}'
@@ -27,10 +29,16 @@ services:
             - PHP_FPM_REQUEST_MAX_MEMORY_IN_MEGABYTES=256
             - PUID=1000
             - TZ=Europe/Brussels
+        tmpfs:
+            - /opt/sbin:rw,exec,size=8m,mode=1777
+            - /opt/etc:rw,noexec,size=8m,mode=1777
+            - /app/var:rw,exec,size=512m,mode=1777
+            - /app/tmp:rw,noexec,size=64m,mode=1777
         volumes:
-            - './configs/admin:/app/src/elasticms/admin'
-            - './configs/document:/app/src/elasticms/document'
-            - './configs/skeleton:/app/config/elasticms'
-            - './dist:/app/src/elasticms/public/skeleton:ro'
-            - './skeleton:/app/src/elasticms/local/${INSTANCE_ID}live'
+            - ./configs/admin:/app/src/elasticms/admin
+            - ./configs/document:/app/src/elasticms/document
+            - ./configs/skeleton:/opt/config/elasticms
             - './skeleton:/app/src/elasticms/local/${INSTANCE_ID}preview'
+            - './skeleton:/app/src/elasticms/local/${INSTANCE_ID}live'
+            - ./skeleton:/app/src/elasticms/local/skeleton
+            - ./dist:/app/src/elasticms/public/skeleton:ro

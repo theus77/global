@@ -16,7 +16,7 @@
 
     {%- set hitsShow = searchShow.hits.hits|default([])|reduce((carry, h) => carry|default([])|merge({
         ("#{h._source._contenttype}:#{h._id}"): h._source
-    })) -%}
+    }), []) -%}
     {%- set hitsStructures = searchStructures.hits.hits|default([]) -%}
     {%- set linkHomepage = hitsStructures
         |filter(h => h._source.link_homepage is defined)
