@@ -20,3 +20,7 @@ make npm-watch
 make npm-prod
 ```
 
+Create symlink for assets
+```
+ln -s /Users/theus/Workspace/global/dist /Users/theus/Workspace/ems7/elasticms-admin/public/bundles/globalview
+```
