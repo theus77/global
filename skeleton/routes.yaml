@@ -28,7 +28,7 @@ search:
     config:
         path: { nl: '/{_locale}/zoeken.{_format}', fr: '/{_locale}/chercher.{_format}', de: '/{_locale}/suchen.{_format}', en: '/{_locale}/search.{_format}' }
         defaults: { _format: html, l: 10 }
-        requirements: { _format: html|json }
+        requirements: { _locale: nl|fr|de|en, _format: html|json }
     template_static: ems_standard_template/page/search.%_format%.twig
 missing:
     config:
