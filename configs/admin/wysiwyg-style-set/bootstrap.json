@@ -13,8 +13,7 @@
             "sha1": "e02c0b15748ec52d71b60bb4342d9e8b28d839db",
             "mimetype": "application/json",
             "filename": "bundle.json"
-        },
-        "saveDir": null
+        }
     },
     "replaced": []
 }
