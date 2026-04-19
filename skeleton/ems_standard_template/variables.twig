@@ -3,8 +3,8 @@
 {%- set siteHashAssets = emsch_assets_version(include('@EMSCH/ems_standard_template/asset_hash.twig')|trim, null) -%}
 
 {%- set locale = app.request.locale|default('fr') -%}
-{%- set route = app.request.get('_route') -%}
-{%- set routeParams = app.request.get('_route_params') -%}
+{%- set route = app.request.attributes.get('_route') -%}
+{%- set routeParams = app.request.attributes.get('_route_params') -%}
 {%- set date_format = 'd/m/Y' -%}
 {%- set date_format_full = 'j %F% Y' -%}
 {%- set emsch_routing_config = {} %}
