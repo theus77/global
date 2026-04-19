@@ -1,15 +1,15 @@
 include .env
-export $(grep -v '^#' .env | xargs)
+#export $(grep -v '^#' .env | xargs)
 
-TOOLS_DIR ?= ~/dev/tools/skeleton-dev-tools/
-DOCKER_USER ?= $UID
+TOOLS_DIR ?= ../elasticms/
+DOCKER_USER ?= UID
 PWD = $(shell pwd)
 
 DOCKER = docker
 DOCKER_COMP = docker compose
 
-NPM_CMD = "npm $*"
-RUN_NPM = docker run --rm -it -u ${DOCKER_USER} -p 5174:5174 -v ${PWD}:/opt/src --workdir /opt/src elasticms/base-php-cli-dev sh -c ${NPM_CMD}
+NPM_CMD="npm $*"
+RUN_NPM = echo ${DOCKER_USER} && docker run --rm -it -u ${DOCKER_USER} -p 5174:5174 -v ${PWD}:/opt/src --workdir /opt/src elasticms/base-php-cli-dev sh -c ${NPM_CMD}
 
 .PHONY: help
 .DEFAULT_GOAL := help
@@ -20,8 +20,8 @@ help: ## help
 	@echo VERSION: ${SKELETON_VERSION}
 	@echo INSTANCE: ${INSTANCE_ID}
 	@echo TOOLS: ${TOOLS_DIR}
-	@echo Traefik: http://localhost:8888
-	@echo Mailhog: http://mailhog.localhost
+	@echo Reverse proxy: http://localhost:8888
+	@echo Mailserver: http://mailserver.localhost/
 	@echo "---------------------------"
 	@echo ""
 	@echo "Usage: make [target]"
@@ -54,6 +54,8 @@ emsch-pull/%: ## emsch-pull/(acc|prd)
 	@$(MAKE) -s $*/"emsch:local:pull"
 emsch-push/%: ## emsch-push/(acc|prd)
 	@$(MAKE) -s $*/"emsch:local:push"
+emsch-force-push/%: ## emsch-force-push/(acc|prd)
+	@$(MAKE) -s $*/"emsch:local:push --force"
 emsch-assets/%: ## emsch-assets/(acc|prd)
 	@$(MAKE) -s $*/"emsch:local:upload-assets --filename=/app/src/elasticms/local/${INSTANCE_ID}preview/ems_standard_template/asset_hash.twig --as-style-set-assets"
 backup-documents/%: ## backup-documents/(acc|prd)
@@ -87,9 +89,9 @@ npm-dev: ## npm run dev
 
 ## —— TOOLS ————————————————————————————————————————————————————————————————————————————————————————————————————————————
 tools-up: ## Start Traefik and MailHog
-	cd $(TOOLS_DIR) && $(DOCKER_COMP) up -d
+	cd $(TOOLS_DIR) && $(DOCKER_COMP) --project-directory=docker --profile=ems up -d
 tools-down: ## Stop Traefik and MailHog
-	cd $(TOOLS_DIR) && $(DOCKER_COMP) down --remove-orphans
+	cd $(TOOLS_DIR) && $(DOCKER_COMP) --project-directory=docker --profile=ems down ---profile=ems -remove-orphans
 tools-create-network: ## Create tools network
 	@$(DOCKER) network rm skeleton -f
 	@$(DOCKER) network create skeleton
