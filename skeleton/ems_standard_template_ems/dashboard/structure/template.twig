@@ -191,7 +191,7 @@
         {
             "label": ("#{locale|language_name}"),
             "template": "
-                <a href=\"{{ path('data.revisions', { ouuid: data.id, type: data.contentType }) }}\">
+                <a href=\"{{ path('emsco_view_revisions', { ouuid: data.id, type: data.contentType }) }}\">
                     {{ data.source.('#{locale}').title|default('???') }}
                 </a>
             ",
