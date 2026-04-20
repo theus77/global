@@ -5,5 +5,3 @@ services:
 
     App\:
         resource: '../src/'
-        exclude:
-            - '../src/PhpStorm/'
