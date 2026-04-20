@@ -28,7 +28,7 @@ ln -s /Users/theus/Workspace/global/dist /Users/theus/Workspace/ems7/elasticms-a
 ## Start codex in a container 
 
 ```bash
-docker run --rm -it \
+docker run -it \
 -u ${DOCKER_USER:-1000} \
 -v "$PWD":/workspace \
 --tmpfs /home/default:rw,exec,size=500m,mode=1777 \
