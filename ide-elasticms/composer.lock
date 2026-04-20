@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f9227699a0b586c621e2886c8444240c",
+    "content-hash": "2cb41a5872bb33f71a04b5e1e39ea621",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -62,16 +62,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.379.2",
+            "version": "3.379.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "45c385619d43e54ede8daca211960c345d3ff3b7"
+                "reference": "54a7dbb04489a8b330db64ec07c1f658c9262433"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/45c385619d43e54ede8daca211960c345d3ff3b7",
-                "reference": "45c385619d43e54ede8daca211960c345d3ff3b7",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/54a7dbb04489a8b330db64ec07c1f658c9262433",
+                "reference": "54a7dbb04489a8b330db64ec07c1f658c9262433",
                 "shasum": ""
             },
             "require": {
@@ -153,9 +153,9 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.379.2"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.379.3"
             },
-            "time": "2026-04-17T18:05:27+00:00"
+            "time": "2026-04-20T18:13:51+00:00"
         },
         {
             "name": "brick/math",
@@ -585,12 +585,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "748125cc3afee13f425d8a736f7fb180af5fa72c"
+                "reference": "f41aaae0bf0ac30f72b899519fdd8c42c72301c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/748125cc3afee13f425d8a736f7fb180af5fa72c",
-                "reference": "748125cc3afee13f425d8a736f7fb180af5fa72c",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/f41aaae0bf0ac30f72b899519fdd8c42c72301c2",
+                "reference": "f41aaae0bf0ac30f72b899519fdd8c42c72301c2",
                 "shasum": ""
             },
             "require": {
@@ -683,7 +683,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-03-19T16:59:56+00:00"
+            "time": "2026-04-20T12:57:42+00:00"
         },
         {
             "name": "doctrine/deprecations",
@@ -739,12 +739,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineBundle.git",
-                "reference": "e87ac5fed71c43a29895d0219f0ffb270b070e4f"
+                "reference": "4644baf7c01b66c1605f117d3d638e06b825885b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/e87ac5fed71c43a29895d0219f0ffb270b070e4f",
-                "reference": "e87ac5fed71c43a29895d0219f0ffb270b070e4f",
+                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/4644baf7c01b66c1605f117d3d638e06b825885b",
+                "reference": "4644baf7c01b66c1605f117d3d638e06b825885b",
                 "shasum": ""
             },
             "require": {
@@ -847,7 +847,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-04-11T18:54:42+00:00"
+            "time": "2026-04-20T15:31:59+00:00"
         },
         {
             "name": "doctrine/doctrine-migrations-bundle",
@@ -5824,12 +5824,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/MyIntervals/PHP-CSS-Parser.git",
-                "reference": "797090e23444a4d260088ef20eb18bdd954120a8"
+                "reference": "d6bf39b3f3e5049931c196de130af1f4d55f4087"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MyIntervals/PHP-CSS-Parser/zipball/797090e23444a4d260088ef20eb18bdd954120a8",
-                "reference": "797090e23444a4d260088ef20eb18bdd954120a8",
+                "url": "https://api.github.com/repos/MyIntervals/PHP-CSS-Parser/zipball/d6bf39b3f3e5049931c196de130af1f4d55f4087",
+                "reference": "d6bf39b3f3e5049931c196de130af1f4d55f4087",
                 "shasum": ""
             },
             "require": {
@@ -5897,7 +5897,7 @@
                 "issues": "https://github.com/MyIntervals/PHP-CSS-Parser/issues",
                 "source": "https://github.com/MyIntervals/PHP-CSS-Parser/tree/main"
             },
-            "time": "2026-04-19T18:21:30+00:00"
+            "time": "2026-04-20T16:58:50+00:00"
         },
         {
             "name": "scssphp/scssphp",
@@ -13211,26 +13211,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.5",
-        "ext-ctype": "*",
-        "ext-curl": "*",
-        "ext-dom": "*",
-        "ext-exif": "*",
-        "ext-fileinfo": "*",
-        "ext-gd": "*",
-        "ext-iconv": "*",
-        "ext-intl": "*",
-        "ext-json": "*",
-        "ext-libxml": "*",
-        "ext-mbstring": "*",
-        "ext-openssl": "*",
-        "ext-opentelemetry": "*",
-        "ext-redis": "*",
-        "ext-simplexml": "*",
-        "ext-soap": "*",
-        "ext-sqlite3": "*",
-        "ext-tidy": "*",
-        "ext-zip": "*"
+        "php": "^8.5"
     },
     "platform-dev": {},
     "plugin-api-version": "2.9.0"

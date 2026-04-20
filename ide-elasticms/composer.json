@@ -18,6 +18,11 @@
             "App\\": "src/"
         }
     },
+    "scripts": {
+        "post-install-cmd": "@php tools/generate-phpstorm-twig-extension.php",
+        "post-update-cmd": "@php tools/generate-phpstorm-twig-extension.php",
+        "phpstorm-twig": "@php tools/generate-phpstorm-twig-extension.php"
+    },
     "minimum-stability": "dev",
     "config": {
         "allow-plugins": {

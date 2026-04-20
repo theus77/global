@@ -3,3 +3,4 @@
 /.env
 /ide-elasticms/vendor/
 /ide-elasticms/var/
+/ide-elasticms/src/PhpStorm/
