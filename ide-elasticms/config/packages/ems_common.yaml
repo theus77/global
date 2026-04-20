@@ -1,0 +1,5 @@
+ems_common:
+    metric:
+        enabled: true
+        host: '127.0.0.1'
+        port: 0

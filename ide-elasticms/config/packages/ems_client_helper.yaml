@@ -1,0 +1,8 @@
+ems_client_helper:
+    request_environments: []
+    locales: ['fr']
+    bind_locale: false
+    etag_hash_algo: 'sha1'
+    elasticms:
+        default:
+            hosts: ['http://localhost:9200']

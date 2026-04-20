@@ -1,0 +1,27 @@
+{
+    "name": "dockerce/ide-elasticms",
+    "authors": [
+        {
+            "name": "Mathieu De Keyzer",
+            "email": "me@theus.be"
+        }
+    ],
+    "require": {
+        "php": "^8.5",
+        "symfony/framework-bundle": "7.4.*",
+        "symfony/twig-bundle": "7.4.*",
+        "twig/twig": "^3.8",
+        "elasticms/core-bundle": "^7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": false
+        }
+    }
+}

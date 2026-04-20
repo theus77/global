@@ -1,0 +1,6 @@
+mercure:
+    hubs:
+        default:
+            url: 'http://localhost/.well-known/mercure'
+            jwt:
+                value: 'fake'
