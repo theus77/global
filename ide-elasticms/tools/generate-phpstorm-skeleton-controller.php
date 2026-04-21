@@ -2,9 +2,40 @@
 
 declare(strict_types=1);
 
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Config\Loader\LoaderResolver;
+use Symfony\Component\Routing\Loader\PhpFileLoader;
+use Symfony\Component\Routing\Loader\XmlFileLoader;
+use Symfony\Component\Routing\Route;
+use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Yaml\Yaml;
 
 require __DIR__.'/../vendor/autoload.php';
+
+final class BundleAwareFileLocator extends FileLocator
+{
+    /**
+     * @param array<string, string> $bundlePaths
+     */
+    public function __construct(private readonly array $bundlePaths)
+    {
+        parent::__construct();
+    }
+
+    public function locate(string $name, ?string $currentPath = null, bool $first = true): string|array
+    {
+        if (\str_starts_with($name, '@')) {
+            [$bundleName, $resource] = \explode('/', \substr($name, 1), 2);
+            if (!isset($this->bundlePaths[$bundleName])) {
+                throw new RuntimeException(\sprintf('Unknown bundle resource: %s', $name));
+            }
+
+            return parent::locate($this->bundlePaths[$bundleName].'/'.$resource, $currentPath, $first);
+        }
+
+        return parent::locate($name, $currentPath, $first);
+    }
+}
 
 $skeletonDir = '/workspace/skeleton';
 $routesFile = $skeletonDir.'/routes.yaml';
@@ -15,7 +46,9 @@ if (!\is_file($routesFile)) {
 }
 
 /** @var array<string, array{config?: array<string, mixed>}> $routes */
-$routes = Yaml::parseFile($routesFile);
+\is_array($skeletonRoutes = Yaml::parseFile($routesFile)) || throw new RuntimeException(\sprintf('Invalid routes structure in %s', $routesFile));
+$routes = $skeletonRoutes;
+$routes = \array_replace($routes, bundleRoutes());
 \ksort($routes);
 
 \is_dir(\dirname($target)) || \mkdir(\dirname($target), 0777, true);
@@ -24,11 +57,130 @@ $routes = Yaml::parseFile($routesFile);
 echo \sprintf("Generated %s\n", $target);
 
 /**
+ * @return array<string, array{config: array<string, mixed>}>
+ */
+function bundleRoutes(): array
+{
+    $bundlePaths = bundlePaths();
+    $resources = [
+        'EMSClientHelperBundle' => [
+            'config/routing/core_bridge.php',
+            'config/routing/user_api.php',
+        ],
+        'EMSCommonBundle' => [
+            'config/routing/assets.php',
+            'config/routing/file.php',
+            'config/routing/probe.php',
+        ],
+        'EMSCoreBundle' => [
+            'config/routing/all.php',
+        ],
+        'EMSFormBundle' => [
+            'config/routing/debug.php',
+            'config/routing/form.php',
+        ],
+        'EMSSubmissionBundle' => [],
+    ];
+
+    $locator = new BundleAwareFileLocator($bundlePaths);
+    $phpLoader = new PhpFileLoader($locator);
+    $xmlLoader = new XmlFileLoader($locator);
+    $resolver = new LoaderResolver([$phpLoader, $xmlLoader]);
+    $phpLoader->setResolver($resolver);
+    $xmlLoader->setResolver($resolver);
+
+    $routes = [];
+    foreach ($resources as $bundleName => $files) {
+        foreach ($files as $file) {
+            if (!isset($bundlePaths[$bundleName])) {
+                continue;
+            }
+
+            $collection = $phpLoader->load('@'.$bundleName.'/'.$file);
+            foreach ($collection->all() as $name => $route) {
+                $routes[$name] = [
+                    'config' => routeConfig($route),
+                ];
+            }
+        }
+    }
+
+    return $routes;
+}
+
+/**
+ * @return array<string, string>
+ */
+function bundlePaths(): array
+{
+    $classes = [
+        EMS\ClientHelperBundle\EMSClientHelperBundle::class,
+        EMS\CommonBundle\EMSCommonBundle::class,
+        EMS\CoreBundle\EMSCoreBundle::class,
+        EMS\FormBundle\EMSFormBundle::class,
+        EMS\SubmissionBundle\EMSSubmissionBundle::class,
+    ];
+
+    $paths = [];
+    foreach ($classes as $class) {
+        if (!\class_exists($class)) {
+            continue;
+        }
+
+        $reflection = new ReflectionClass($class);
+        $paths[$reflection->getShortName()] = \dirname($reflection->getFileName(), 2);
+    }
+
+    return $paths;
+}
+
+/**
+ * @return array<string, mixed>
+ */
+function routeConfig(Route $route): array
+{
+    $config = [
+        'path' => $route->getPath(),
+    ];
+
+    if ([] !== $defaults = \array_diff_key($route->getDefaults(), ['_controller' => true])) {
+        $config['defaults'] = $defaults;
+    }
+    if ([] !== $requirements = $route->getRequirements()) {
+        $config['requirements'] = $requirements;
+    }
+    if ('' !== $host = $route->getHost()) {
+        $config['host'] = $host;
+    }
+    if ([] !== $schemes = $route->getSchemes()) {
+        $config['schemes'] = $schemes;
+    }
+    if ([] !== $methods = $route->getMethods()) {
+        $config['methods'] = $methods;
+    }
+    if (null !== $condition = $route->getCondition()) {
+        $config['condition'] = $condition;
+    }
+    if (null !== $format = $route->getDefault('_format')) {
+        $config['format'] = $format;
+    }
+    if ($route->hasOption('utf8')) {
+        $config['utf8'] = $route->getOption('utf8');
+    }
+    if ($route->hasOption('compiler_class')) {
+        unset($config['compiler_class']);
+    }
+
+    return $config;
+}
+
+/**
  * @param array<string, array{config?: array<string, mixed>}> $routes
  */
 function renderController(array $routes): string
 {
     $methods = [];
+    $usedMethodNames = [];
 
     foreach ($routes as $name => $route) {
         $config = $route['config'] ?? [];
@@ -36,7 +188,7 @@ function renderController(array $routes): string
             continue;
         }
 
-        $methods[] = renderMethod($name, $config);
+        $methods[] = renderMethod($name, $config, uniqueMethodName($name, $usedMethodNames));
     }
 
     $methodsBlock = \implode("\n\n", $methods);
@@ -65,7 +217,7 @@ PHP;
 /**
  * @param array<string, mixed> $config
  */
-function renderMethod(string $name, array $config): string
+function renderMethod(string $name, array $config, string $methodName): string
 {
     $arguments = ["name: ".exportValue($name)];
 
@@ -80,7 +232,6 @@ function renderMethod(string $name, array $config): string
         $parameters[] = renderParameter($parameter);
     }
 
-    $methodName = methodName($name);
     $signature = [] === $parameters ? '' : \implode(', ', $parameters);
     $attribute = '#[Route('.\implode(', ', $arguments).')]';
 
@@ -102,6 +253,25 @@ function methodName(string $routeName): string
     if (\is_numeric($name[0])) {
         $name = 'route'.$name;
     }
+
+    return $name;
+}
+
+/**
+ * @param array<string, true> $usedMethodNames
+ */
+function uniqueMethodName(string $routeName, array &$usedMethodNames): string
+{
+    $baseName = methodName($routeName);
+    $name = $baseName;
+    $suffix = 2;
+
+    while (isset($usedMethodNames[$name])) {
+        $name = $baseName.$suffix;
+        ++$suffix;
+    }
+
+    $usedMethodNames[$name] = true;
 
     return $name;
 }
