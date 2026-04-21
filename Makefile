@@ -88,6 +88,8 @@ npm-dev: ## npm run dev
 	@$(MAKE) npm/"run dev"
 
 ## —— TOOLS ————————————————————————————————————————————————————————————————————————————————————————————————————————————
+ide-generate: ## Generate IDE helpers in the fake Symfony project
+	cd ide-elasticms && php tools/generate-phpstorm-skeleton-controller.php && php tools/generate-phpstorm-twig-extension.php
 tools-up: ## Start Traefik and MailHog
 	cd $(TOOLS_DIR) && $(DOCKER_COMP) --project-directory=docker --profile=ems up -d
 tools-down: ## Stop Traefik and MailHog
