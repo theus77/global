@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Symfony2PluginSettings">
+    <option name="pluginEnabled" value="true" />
+    <option name="directoryToApp" value="ide-elasticms/config" />
+    <option name="directoryToWeb" value="ide-elasticms" />
+    <option name="pathToTranslation" value="ide-elasticms/var/cache/dev/translations" />
+    <option name="containerFiles">
+      <list>
+        <container_file path="ide-elasticms/var/cache/dev/App_KernelDevDebugContainer.xml" />
+      </list>
+    </option>
+  </component>
+</project>
