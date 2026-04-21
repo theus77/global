@@ -8,7 +8,7 @@ require __DIR__.'/../vendor/autoload.php';
 
 $skeletonDir = '/workspace/skeleton';
 $routesFile = $skeletonDir.'/routes.yaml';
-$target = '/workspace/src/PhpStorm/GeneratedSkeletonController.php';
+$target = __DIR__.'/../src/PhpStorm/GeneratedSkeletonController.php';
 
 if (!\is_file($routesFile)) {
     throw new RuntimeException(\sprintf('Routes file not found: %s', $routesFile));
