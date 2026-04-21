@@ -7,7 +7,6 @@ use Symfony\Component\Config\Loader\LoaderResolver;
 use Symfony\Component\Routing\Loader\PhpFileLoader;
 use Symfony\Component\Routing\Loader\XmlFileLoader;
 use Symfony\Component\Routing\Route;
-use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Yaml\Yaml;
 
 require __DIR__.'/../vendor/autoload.php';
