@@ -36,7 +36,7 @@ final class BundleAwareFileLocator extends FileLocator
     }
 }
 
-$skeletonDir = '/workspace/skeleton';
+$skeletonDir = __DIR__.'/../../skeleton';
 $routesFile = $skeletonDir.'/routes.yaml';
 $target = __DIR__.'/../src/PhpStorm/GeneratedSkeletonController.php';
 
