@@ -19,9 +19,16 @@
         }
     },
     "scripts": {
-        "post-install-cmd": "@php tools/generate-phpstorm-twig-extension.php",
-        "post-update-cmd": "@php tools/generate-phpstorm-twig-extension.php",
-        "phpstorm-twig": "@php tools/generate-phpstorm-twig-extension.php"
+        "post-install-cmd": [
+            "@php tools/generate-phpstorm-twig-extension.php",
+            "@php tools/generate-phpstorm-skeleton-controller.php"
+        ],
+        "post-update-cmd": [
+            "@php tools/generate-phpstorm-twig-extension.php",
+            "@php tools/generate-phpstorm-skeleton-controller.php"
+        ],
+        "phpstorm-twig": "@php tools/generate-phpstorm-twig-extension.php",
+        "phpstorm-skeleton-routes": "@php tools/generate-phpstorm-skeleton-controller.php"
     },
     "minimum-stability": "dev",
     "config": {
