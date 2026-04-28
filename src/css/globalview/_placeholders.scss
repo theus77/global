@@ -34,7 +34,7 @@
 	img {
 		filter: grayscale(100%); /* Standard CSS */
 		-webkit-filter: grayscale(100%); /* CSS for Webkit Browsers */
-		filter: image-url("grayscale.svg#desaturate"); /* Firefox 4-34 */
+		filter: image-url("website/grayscale.svg#desaturate"); /* Firefox 4-34 */
 		filter: gray;  /* Internet Explorer IE6-9 */
 		-webkit-filter: grayscale(1); /* Old WebKit Browsers */
 		opacity:.6;
