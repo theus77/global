@@ -250,7 +250,7 @@
     {%- for item in footerItems -%}
         {%- if item.type == 'page' -%}
             <li class="list-inline-item">
-                <a href="{{ pathStructure.(item.id) }}"><i class="fa fa-camera"></i> {{ item.object.(locale).label|lower }}</a>
+                <a href="{{ pathStructure.(item.id) }}"><i class="fa fa-camera"></i> {{ item.object.(locale).label }}</a>
             </li>
         {%- endif -%}
     {%- endfor -%}
