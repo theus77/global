@@ -32,6 +32,7 @@ help: ## help
 up/%: ## up/(acc|prd)
 	@$(MAKE) -s tools-up
 	@$(DOCKER_COMP) up skeleton-$* -d
+	@$(DOCKER_COMP) up sandbox -d
 restart/%: ## restart/(acc|prd)
 	@$(DOCKER_COMP) up skeleton-$* -d --force-recreate
 logs/%: ## logs/(acc|prd)
@@ -97,6 +98,8 @@ tools-down: ## Stop Traefik and MailHog
 tools-create-network: ## Create tools network
 	@$(DOCKER) network rm skeleton -f
 	@$(DOCKER) network create skeleton
+sandbox:
+	@$(DOCKER_COMP) exec sandbox bash
 
 ## —— EXTRA ————————————————————————————————————————————————————————————————————————————————————————————————————————————
 find-crlf: ## Find files with CRLF line endings
