@@ -82,23 +82,22 @@
                         </div>
                     </form>
                 </div>
-
-{#                <div class="search-form d-none d-lg-block">#}
-{#                    <form action="{{ path('search') }}" class="navbar-form" method="GET">#}
-{#                        <div class="form-group search-toggle">#}
-{#                            <input type="text"#}
-{#                                   class="form-control QuickSearchInput"#}
-{#                                   placeholder="{{ 'navbar.search.placeholder'|trans }}"#}
-{#                                   aria-label="{{ 'navbar.search.title'|trans }}"#}
-{#                                   name="q"#}
-{#                                   data-search-url="{{ path('search', { _format: 'json' }) }}">#}
-{#                        </div>#}
-{#                        <button type="submit" class="btn btn-default">#}
-{#                            <span class="fa-solid fa-magnifying-glass" aria-hidden="true"></span>#}
-{#                            <span class="visually-hidden">{{ 'navbar.search.title'|trans }}</span>#}
-{#                        </button>#}
-{#                    </form>#}
-{#                </div>#}
+                <div class="search-form">
+                    <form action="{{ path('search') }}" class="navbar-form" method="GET">
+                        <div class="form-group search-toggle">
+                            <input type="text"
+                                   class="form-control QuickSearchInput"
+                                   placeholder="{{ 'navbar.search.placeholder'|trans }}"
+                                   aria-label="{{ 'navbar.search.title'|trans }}"
+                                   name="q"
+                                   data-search-url="{{ path('search', { _format: 'json' }) }}">
+                        </div>
+                        <button type="submit" class="btn btn-default">
+                            <span class="fa-solid fa-magnifying-glass" aria-hidden="true"></span>
+                            <span class="visually-hidden">{{ 'navbar.search.title'|trans }}</span>
+                        </button>
+                    </form>
+                </div>
             </div>
         </nav>
     </header>
@@ -249,8 +248,9 @@
     {%- set footerItems = footerStructure.children|filter(c => c.object.(locale) is defined)|default([]) -%}
     {%- for item in footerItems -%}
         {%- if item.type == 'page' -%}
+            {% set icon = 'cookie' in item.object.(locale).label|lower ? 'fas fa-cookie' : 'fa fa-camera'%}
             <li class="list-inline-item">
-                <a href="{{ pathStructure.(item.id) }}"><i class="fa fa-camera"></i> {{ item.object.(locale).label }}</a>
+                <a href="{{ pathStructure.(item.id) }}"><i class="{{ icon }}"></i> {{ item.object.(locale).label }}</a>
             </li>
         {%- endif -%}
     {%- endfor -%}

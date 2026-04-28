@@ -59,6 +59,18 @@ header {
 .navbar-inverse {
   @include transition(all 0.5s ease-in-out);
   background: rgba($color1, 0.9);
+  > .container {
+    flex-wrap: wrap;
+  }
+  .navbar-brand {
+    order: 1;
+  }
+  .navbar-toggler {
+    order: 2;
+  }
+  .navbar-collapse {
+    order: 2;
+  }
   .navbar-nav > li {
     &.active > a {background-color:transparent; color:$color2;}
     a {
@@ -131,6 +143,9 @@ header {
 .search-form {
 	display:none;
 	width:100%;
+	flex: 0 0 100%;
+	order: 3;
+	clear: both;
 	top:em(60px);
 	text-align:center;
 	.navbar-form {

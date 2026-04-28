@@ -99,7 +99,8 @@ function setupLegacyInteractions() {
         }
     });
 
-    $('.search-trigger').on('click', function toggleSearch() {
+    $('.search-trigger, .search_button').on('click', function toggleSearch(e) {
+        e.preventDefault();
         $('.search-form').slideToggle();
         $('nav.navbar-inverse.navbar-fixed-top').toggleClass('black');
     });
