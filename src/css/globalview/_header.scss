@@ -28,12 +28,19 @@ header {
           border-radius: 0;
           box-shadow: none;
       }
-    & > li > a:hover, & > li > a:focus {
-      background-color: transparent;
-      color: $color2;
-    }
+	    & > li > a:hover, & > li > a:focus {
+	      background-color: transparent;
+	      color: $color2;
+	    }
+	    .dropdown-item:hover,
+	    .dropdown-item:focus,
+	    .dropdown-item:active,
+	    .dropdown-item.active {
+	      background-color: transparent;
+	      color: $color2;
+	    }
+		}
 	}
-}
 
 .navbar-brand {
 	padding-top: em(2px);

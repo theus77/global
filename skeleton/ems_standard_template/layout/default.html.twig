@@ -144,7 +144,7 @@
                             <ul class="d-flex flex-column flex-lg-row list-unstyled container-lg justify-content-start align-items-stretch flex-wrap">
                                 {%- for folderItem in item.children|filter(c => c.object.(locale) is defined) -%}
                                     <li class="{{ html_classes('dropdown-item', { 'active': activeItem is defined and folderItem.id in activeItem.id, 'mb-3 mb-lg-0': loop.last }) }}">
-                                        <a href="{{ pathStructure.(folderItem.id) }}" class="d-inline-block py-lg-2">
+                                        <a href="{{ pathStructure.(folderItem.id) }}" class="d-inline-block">
                                             {{- folderItem.object.(locale).label -}}
                                         </a>
                                     </li>
