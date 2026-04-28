@@ -6,3 +6,4 @@
 /ide-elasticms/src/PhpStorm/
 /.sandbox/*
 !/.sandbox/.gitignore
+/ide-elasticms/
