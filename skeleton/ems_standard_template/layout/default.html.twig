@@ -47,14 +47,59 @@
 {%- endblock alerts -%}
 
 {%- block header -%}
-    <header id="page-header" class="navbar navbar-expand-lg pt-3 pb-0">
-        <div class="container-lg d-block">
-            <nav class="d-lg-flex flex-lg-column mt-3 mt-lg-0">
-                <div class="collapse navbar-collapse" id="main-nav">
+    <header class="masthead header header--fixed">
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-inverse navbar-fixed-top fixed-top navbar-scroll" {% if title_prefix|default(false) %}style="background-color: red;"{% endif %}>
+            <div class="container">
+                <a href="{{ path('homepage') }}" class="navbar-brand">
+                    <img src="{{ asset('img/logo.png', 'emsch') }}" alt="{{ 'navbar.back_to_homepage'|trans }}">
+                </a>
+
+                <button type="button"
+                        class="navbar-toggler"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapse-navbar"
+                        aria-controls="collapse-navbar"
+                        aria-expanded="false"
+                        aria-label="{{ 'aria.toggle_navigation'|trans }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="collapse-navbar">
                     {{ block('header_structure') }}
+                    <form action="{{ path('search') }}" class="navbar-form d-lg-none mt-3" method="GET">
+                        <div class="input-group">
+                            <input type="text"
+                                   class="form-control QuickSearchInput"
+                                   placeholder="{{ 'navbar.search.placeholder'|trans }}"
+                                   aria-label="{{ 'navbar.search.title'|trans }}"
+                                   name="q"
+                                   data-search-url="{{ path('search', { _format: 'json' }) }}">
+                            <button type="submit" class="btn btn-outline-light">
+                                <span class="fa-solid fa-magnifying-glass" aria-hidden="true"></span>
+                                <span class="visually-hidden">{{ 'navbar.search.title'|trans }}</span>
+                            </button>
+                        </div>
+                    </form>
                 </div>
-            </nav>
-        </div>
+
+{#                <div class="search-form d-none d-lg-block">#}
+{#                    <form action="{{ path('search') }}" class="navbar-form" method="GET">#}
+{#                        <div class="form-group search-toggle">#}
+{#                            <input type="text"#}
+{#                                   class="form-control QuickSearchInput"#}
+{#                                   placeholder="{{ 'navbar.search.placeholder'|trans }}"#}
+{#                                   aria-label="{{ 'navbar.search.title'|trans }}"#}
+{#                                   name="q"#}
+{#                                   data-search-url="{{ path('search', { _format: 'json' }) }}">#}
+{#                        </div>#}
+{#                        <button type="submit" class="btn btn-default">#}
+{#                            <span class="fa-solid fa-magnifying-glass" aria-hidden="true"></span>#}
+{#                            <span class="visually-hidden">{{ 'navbar.search.title'|trans }}</span>#}
+{#                        </button>#}
+{#                    </form>#}
+{#                </div>#}
+            </div>
+        </nav>
     </header>
 {%- endblock header -%}
 
@@ -74,7 +119,7 @@
     {%- set headerStructure = structure.getItemById('menu') -%}
     {%- set headerItems = headerStructure.children|filter(c => c.object.(locale) is defined) -%}
     {%- if headerStructure and headerItems|length > 0 -%}
-        <ul class="main-nav navbar-nav mt-lg-3 justify-content-lg-between justify-content-xl-end">
+        <ul class="navbar-nav ms-lg-auto">
             {%- for item in headerItems -%}
                 {%- if item.type == 'page' -%}
                     <li class="nav-item">
@@ -109,6 +154,9 @@
                     </li>
                 {%- endif -%}
             {%- endfor -%}
+            <li class="nav-item">
+                <a href="#" class="nav-link search_button" data-scroll="1"><span class="fa-solid fa-magnifying-glass" aria-hidden="true"></span></a>
+            </li>
         </ul>
     {%- endif -%}
 {%- endblock header_structure -%}

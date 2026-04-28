@@ -68,6 +68,13 @@ nav:
     current: Actuelle
     next: Suivant
     previous: Précédent
+navbar:
+    back_to_homepage: "Retour à la page d'accueil"
+    free_search:
+        title: 'Recherche libre'
+    search:
+        placeholder: 'Entrez un ou plusieurs mots-clés'
+        title: Rechercher
 news:
     back_to: 'Retour vers toutes les actualités'
     published_date: 'Publié le %date%'
