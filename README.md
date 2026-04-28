@@ -4,7 +4,7 @@
 
 ## Make
 
-The project contains a Makefile for all commands
+The project contains a Makefile for all commands.
 
 ```bash
 make up/acc
@@ -18,29 +18,15 @@ make stop/acc
 make npm-install
 make npm-watch
 make npm-prod
+
+make sandbox
+make fake-ide
 ```
 
-Create symlink for assets
-```
-ln -s /Users/theus/Workspace/global/dist /Users/theus/Workspace/ems7/elasticms-admin/public/bundles/globalview
-```
 
-## Start codex in a container 
-
-```bash
-docker run -it \
--u ${DOCKER_USER:-1000} \
--v "$PWD":/workspace \
---tmpfs /home/default:rw,exec,size=500m,mode=1777 \
--v /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt \
--v "$HOME/.codex_global":/home/app/.codex \
--w /workspace \
-docker.io/smalswebtech/base-php:8.5-cli-dev \
-bash
-```
+## Start codex in a sandbox container
 
 ```bash
-npm config set strict-ssl=false
-npm i --save-dev @openai/codex
-npx codex
+make sandbox
+npm i -g @openai/codex && codex
 ```

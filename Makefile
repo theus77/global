@@ -98,7 +98,13 @@ tools-down: ## Stop Traefik and MailHog
 tools-create-network: ## Create tools network
 	@$(DOCKER) network rm skeleton -f
 	@$(DOCKER) network create skeleton
-sandbox:
+cli: ## Start a CLI bash
+	@$(DOCKER_COMP) exec cli bash
+cli/%: ## cli/"command"
+	@$(DOCKER_COMP) exec cli elasticms $*
+fake-ide: ## Generate and update the fake ide-elasticms project
+	@$(MAKE) -s cli/"emscli:dev:fake /workspace/ide-elasticms --force"
+sandbox: ## Start a sandbox bash
 	@$(DOCKER_COMP) exec sandbox bash
 
 ## —— EXTRA ————————————————————————————————————————————————————————————————————————————————————————————————————————————
