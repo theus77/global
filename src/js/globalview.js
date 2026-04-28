@@ -2,11 +2,8 @@ import '../css/globalview.scss';
 import $ from 'jquery';
 import * as bootstrap from 'bootstrap';
 import SmoothScroll from 'smooth-scroll';
-import 'wowjs';
 
 window.$ = window.jQuery = $;
-
-const WOW = window.WOW;
 
 function registerBootstrapJQueryBridge() {
     $.fn.carousel = function carousel(option) {
@@ -164,16 +161,45 @@ function setupLegacyInteractions() {
         $('body').delay(350).css({ overflow: 'visible' });
     });
 
-    if (WOW) {
-        new WOW({
-            boxClass: 'wow',
-            animateClass: 'animated',
-            offset: 100,
-            mobile: true,
-            live: true,
-            scrollContainer: null
-        }).init();
+    setupWowAnimations();
+}
+
+function setupWowAnimations() {
+    const elements = document.querySelectorAll('.wow');
+
+    if (elements.length === 0) {
+        return;
     }
+
+    const reveal = (element) => {
+        element.style.visibility = 'visible';
+        element.classList.add('animated');
+    };
+
+    elements.forEach((element) => {
+        element.style.visibility = 'hidden';
+    });
+
+    if (!('IntersectionObserver' in window)) {
+        elements.forEach(reveal);
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+                return;
+            }
+
+            reveal(entry.target);
+            observer.unobserve(entry.target);
+        });
+    }, {
+        rootMargin: '0px 0px -100px 0px',
+        threshold: 0
+    });
+
+    elements.forEach((element) => observer.observe(element));
 }
 
 function setupGallery() {
