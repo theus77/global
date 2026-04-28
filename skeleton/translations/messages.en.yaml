@@ -1,0 +1,86 @@
+app:
+    company: Institution
+    copyright: '© %company% %year%'
+    language_selection: 'Language selection'
+    locale: English
+    search_page: Search
+    title: 'EMS Standard'
+aria:
+    skip_to_content: 'Skip to main content'
+    toggle_navigation: 'Open/close navigation'
+    toggle_search: 'Open/close search'
+back2top:
+    label: 'Back to top'
+console:
+    warning_message: 'If you use this console, malicious people can impersonate you and steal your data via an attack called Self-XSS. You should not enter or paste code you do not understand.'
+    warning_title: WARNING
+cookies_banner:
+    accept: 'I accept'
+    intro: 'We use cookies on this site to improve your user experience.'
+    more_info: 'More information'
+ems:
+    back_to_ems: 'Back to eMS'
+error:
+    404:
+        description: 'We could not find the page you requested. Remember to update your bookmarks.'
+        title: 'Oops! Page not found.'
+    back_to_home: 'Back to homepage'
+    description: 'We are working on fixing this immediately. In the meantime, you can try using the search form.'
+    title: 'Oops! Something went wrong.'
+footer:
+    follow_us: 'Follow us'
+form:
+    error: 'The form encountered a problem: %message%'
+    error_try_later: 'The form encountered a problem, please try again later.'
+    file_selected: '1 file selected'
+    files_selected: '%count% files selected'
+    format_not_supported: 'Error: Incorrect format.'
+    iframe_title: Form
+    incorrect_format: 'Incorrect format'
+    loading: loading...
+    max_size_reached: 'The files are too large. Maximum allowed size is %fileSize%.'
+    processed: 'Your message has been sent.'
+    remove: Remove
+    remove_all: 'Remove all'
+    required_field: '(*) Required field'
+    saved: 'Your message has been sent.'
+key:
+    home: Home
+    new_window: 'Opens in a new window'
+meta:
+    description_news_overview: 'All articles'
+missing:
+    description: 'The document you requested is currently only available in %languages%'
+    show: 'View the version in %language%'
+    title: 'This document is not available in %language%'
+month:
+    April: April
+    August: August
+    December: December
+    February: February
+    January: January
+    July: July
+    June: June
+    March: March
+    May: May
+    November: November
+    October: October
+    September: September
+nav:
+    current: Current
+    next: Next
+    previous: Previous
+news:
+    back_to: 'Back to all news'
+    published_date: 'Published on %date%'
+    slideshow: 'News carousel'
+    title: News
+    title.demo: Actualités
+    view_all: 'All news'
+search:
+    action: Search
+    for_query: 'for "%query%"'
+    paging_info: 'Results %from% to %to% of %total%'
+    placeholder: 'Enter one or more keywords'
+    results: '{0} No results found|{1} 1 result found|]1,Inf[%count% results found'
+    select_size: Results

@@ -27,6 +27,8 @@ error:
     back_to_home: "Retour à la page d'accueil"
     description: "Nous allons travailler sur la correction de cela tout de suite. En attendant, vous pouvez essayer d'utiliser le formulaire de recherche."
     title: 'Oups! Quelque chose a mal tourné.'
+footer:
+    follow_us: 'Follow us'
 form:
     error: 'Le formulaire a rencontré un problème : %message%'
     error_try_later: 'Le formulaire a rencontré un problème, veuillez réessayer plus tard.'
@@ -89,5 +91,3 @@ search:
     placeholder: 'Entrez un ou plusieurs mots-clés'
     results: '{0} Aucun résultat trouvé|{1} 1 résultat trouvé|]1,Inf[%count% résultats trouvés'
     select_size: Résultats
-footer:
-    follow_us: 'Follow us'
