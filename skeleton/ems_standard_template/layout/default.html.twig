@@ -218,14 +218,15 @@
     <footer id="footer">
         <div class="container">
             <ul class="list-inline">
-                <li><a href="{{ 'site.phone.href'|trans|raw }}"><i class="fa fa-phone"></i>
-                        {{ 'site.phone.label'|trans }} </a></li>
-                <li><a href="https://www.facebook.com/globalview.be"><i
-                            class="fa fa-facebook"></i> {{ 'site.follow_us'|trans }}</a></li>
-                <li><a href="{{ 'mailto:simon@globalview.be'|trans|raw }}"><i class="fa fa-envelope-o"></i>
-                        {{ 'simon@globalview.be'|trans }}
-                    </a></li>
-                <li><a href="{{ url('usage') }}"><i class="fa fa-camera"></i> {{ 'site.usage'|trans }}</a></li>
+                <li class="list-inline-item">
+                    <a href="tel:+32472800900"><i class="fa fa-phone"></i> +32/472.800.900</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="https://www.facebook.com/globalview.be"><i class="fab fa-facebook-f"></i> {{ 'footer.follow_us'|trans }}</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="mailto:simon@globalview.be"><i class="far fa-envelope"></i> simon@globalview.be</a>
+                </li>
             </ul>
         </div>
     </footer>
