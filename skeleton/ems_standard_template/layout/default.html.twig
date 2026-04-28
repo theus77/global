@@ -47,10 +47,8 @@
 {%- endblock alerts -%}
 
 {%- block header -%}
-    {{ block('header_top') }}
     <header id="page-header" class="navbar navbar-expand-lg pt-3 pb-0">
         <div class="container-lg d-block">
-            {{ block('header_banner') }}
             <nav class="d-lg-flex flex-lg-column mt-3 mt-lg-0">
                 <div class="collapse navbar-collapse" id="main-nav">
                     {{ block('header_structure') }}
@@ -59,51 +57,6 @@
         </div>
     </header>
 {%- endblock header -%}
-
-{%- block header_top -%}
-    <nav class="header-top border-bottom">
-        <div class="container-lg">
-            <div class="d-flex flex-wrap align-items-center">
-                <ul class="nav language-nav d-none d-lg-flex">
-                    {%- for l, url in languageUrls|default([]) -%}
-                        {%- if l == locale -%}
-                            <li class="nav-item"><span lang="{{ l }}" class="nav-link text-body px-0 me-2 {{ not loop.first ? 'ms-2' }} active">{{ l|upper }}</span></li>
-                        {%- else -%}
-                            <li class="nav-item"><a href="{{ url }}" lang="{{ l }}" class="nav-link text-body px-0 me-2 {{ not loop.first ? 'ms-2' }}" title="{{ l|language_name }}">{{ l|upper }}</a></li>
-                        {%- endif -%}
-                    {%- endfor -%}
-                </ul>
-                <div class="d-lg-none dropdown">
-                    <a href="#" role="button" class="btn btn-link dropdown-toggle" lang="{{ locale }}" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" >{{ locale|upper }}</a>
-                    <div class="language-nav dropdown-menu rounded-0 p-md-0">
-                        {%- for l, url in languageUrls|default([]) -%}
-                            {%- if l != locale -%}
-                                <a href="{{ url }}" lang="{{ l }}" class="dropdown-item">{{ l|upper }}</a>
-                            {%- endif -%}
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-{%- endblock header_top -%}
-
-{%- block header_banner -%}
-    <div class="d-flex flex-row align-items-center justify-content-between my-lg-2">
-        <a href="{{ path('homepage') }}" class="navbar-brand me-auto"> <img src="{{ asset("img/logo/logo-full-long-#{locale}.svg", 'emsch') }}" alt="{{ 'app.title'|trans }}" height="50"> </a>
-        <div class="d-flex ms-auto gap-2">
-            <a href="#searchModal" class="search-btn | btn btn-primary rounded-circle" data-bs-toggle="modal" aria-label="{{ 'aria.toggle_search'|trans  }}"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-label="{{ 'aria.toggle_navigation'|trans }}">
-              <span class="navbar-toggler-icon">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-              </span>
-            </button>
-        </div>
-    </div>
-{%- endblock header_banner -%}
 
 {%- block search_form -%}
     <form action="{{ path('search') }}" method="GET">
