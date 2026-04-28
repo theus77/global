@@ -1,4 +1,0 @@
-ems_core:
-    # IDE-only project: avoid warming the local Tika jar, which is not shipped
-    # with this lightweight skeleton.
-    tika_server: 'http://127.0.0.1:9998'

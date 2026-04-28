@@ -1,5 +1,0 @@
-doctrine:
-    dbal:
-        url: 'sqlite:///%kernel.cache_dir%/ide-elasticms.sqlite'
-    orm:
-        mappings: []
