@@ -3,11 +3,11 @@
     "arguments": [],
     "properties": {
         "name": "preview",
-        "alias": "globalview_ma_preview",
+        "alias": "ma_preview",
         "public": false,
         "label": "Preview",
         "options": {
-            "prefix_instance_id": false,
+            "prefix_instance_id": true,
             "inline_editor": false,
             "searchConfig": "[]",
             "entryPath": "./",
