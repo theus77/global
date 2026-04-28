@@ -215,19 +215,18 @@
 {%- endblock cookies -%}
 
 {%- block footer -%}
-    <footer class="bg-dark py-4 mt-auto">
-        <div class="container text-white">
-            <div class="row">
-                {{ block('footer_structure') }}
-                {{ block('footer_social') }}
-            </div>
-            <hr />
-            <div class="d-flex justify-content-between align-items-center gap-3">
-                <img src="{{ asset("img/logo/logo-white-#{locale}.svg", 'emsch') }}" alt="{{ 'app.company'|trans }}" width="50">
-                <div>
-                    {{ 'app.copyright'|trans({'%year%': 'now'|date('Y'), '%company%': ('app.company'|trans) }) }}
-                </div>
-            </div>
+    <footer id="footer">
+        <div class="container">
+            <ul class="list-inline">
+                <li><a href="{{ 'site.phone.href'|trans|raw }}"><i class="fa fa-phone"></i>
+                        {{ 'site.phone.label'|trans }} </a></li>
+                <li><a href="https://www.facebook.com/globalview.be"><i
+                            class="fa fa-facebook"></i> {{ 'site.follow_us'|trans }}</a></li>
+                <li><a href="{{ 'mailto:simon@globalview.be'|trans|raw }}"><i class="fa fa-envelope-o"></i>
+                        {{ 'simon@globalview.be'|trans }}
+                    </a></li>
+                <li><a href="{{ url('usage') }}"><i class="fa fa-camera"></i> {{ 'site.usage'|trans }}</a></li>
+            </ul>
         </div>
     </footer>
 {%- endblock footer -%}
