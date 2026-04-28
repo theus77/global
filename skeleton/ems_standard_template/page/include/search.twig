@@ -72,7 +72,7 @@
 {%- block search_filter -%}
     {%- trans_default_domain trans_default_domain -%}
     <div id="search-filter" aria-live="polite" role="status">
-        <h1 id="results" class="text-primary">{{ 'app.search_page'|trans }}</h1>
+        <h1 id="results" class="">{{ 'app.search_page'|trans }}</h1>
         <div class="bg-body-secondary p-4 d-flex flex-row justify-content-between rounded search-group">
             <input name="q" value="{{ app.request.get('q') }}" class="form-control" type="search" placeholder="{{ 'search.placeholder'|trans }}" aria-label="{{ 'search.action'|trans }}">
             <button class="btn btn-primary" type="submit">{{ 'search.action'|trans }}</button>

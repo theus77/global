@@ -6,6 +6,7 @@
     <a id="skip-to-content" class="visually-hidden-focusable" href="#wrapper">{{ 'aria.skip_to_content'|trans }}</a>
     <div id="preloader"></div>
     <div id="bg_pattern"></div>
+    {{ block('backtotop') }}
 
     {{ block('alerts') }}
     {{ block('header') }}
@@ -162,10 +163,18 @@
 {%- endblock header_structure -%}
 
 {%- block main -%}
-    <main class="border-top {% if isHomepage|default(false) == false %}pt-5{% endif %} pb-5" id="wrapper">
-        {{ block('breadcrumb') }}
-        {%- block content -%}{%- endblock content -%}
-        {{ block('backtotop') }}
+    <main class="" id="wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="simple-box2">
+                        <div class="content">
+                            {%- block content -%}{%- endblock content -%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 {%- endblock main -%}
 

@@ -14,7 +14,7 @@
         {%- set form = block.object.form|emsch_get -%}
         {%- set iframeUrl = absolute_url(path('emsf_iframe', { ouuid: form.id, _locale: locale })) -%}
         <div id="ems-form-{{ block.id }}" class="mb-5 ems-form-custom col-lg-8">
-            <p class="text-primary">{{ 'form.loading'|trans|raw }}</p>
+            <p class="">{{ 'form.loading'|trans|raw }}</p>
         </div>
         <iframe id="ems-form-iframe-{{ block.id }}"
                 src="{{ iframeUrl }}"
