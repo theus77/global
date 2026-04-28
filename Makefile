@@ -104,6 +104,7 @@ cli/%: ## cli/"command"
 	@$(DOCKER_COMP) exec cli elasticms $*
 fake-ide: ## Generate and update the fake ide-elasticms project
 	@$(MAKE) -s cli/"emscli:dev:fake /workspace/ide-elasticms --force"
+	cd ide-elasticms && composer update
 sandbox: ## Start a sandbox bash
 	@$(DOCKER_COMP) exec sandbox bash
 
