@@ -2,6 +2,8 @@ import { defineConfig } from 'vite';
 import path from 'path';
 import liveReload from 'vite-plugin-live-reload'
 
+const devOrigin = process.env.VITE_DEV_ORIGIN || 'http://localhost:5174';
+
 export default defineConfig({
     base: './',
     build: {
@@ -49,7 +51,7 @@ export default defineConfig({
     },
     server: {
         host: '0.0.0.0',
-        origin: 'http://vite.internal:5174',
+        origin: devOrigin,
         port: 5174,
         strictPort: true,
         hmr: true,
