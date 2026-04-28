@@ -9,7 +9,7 @@ DOCKER = docker
 DOCKER_COMP = docker compose
 
 NPM_CMD="npm $*"
-RUN_NPM = echo ${DOCKER_USER} && docker run --rm -it -u ${DOCKER_USER} -p 5174:5174 -v ${PWD}:/opt/src --workdir /opt/src elasticms/base-php-cli-dev sh -c ${NPM_CMD}
+RUN_NPM = echo ${DOCKER_USER} && docker run --rm -it -u ${DOCKER_USER} -p 5174:5174 -v ${PWD}:/opt/src --workdir /opt/src docker.io/smalswebtech/base-php:8.5-cli-dev sh -c ${NPM_CMD}
 
 .PHONY: help
 .DEFAULT_GOAL := help
