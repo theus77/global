@@ -4,6 +4,8 @@
 
 {%- block body -%}
     <a id="skip-to-content" class="visually-hidden-focusable" href="#wrapper">{{ 'aria.skip_to_content'|trans }}</a>
+    <div id="preloader"></div>
+    <div id="bg_pattern"></div>
 
     {{ block('alerts') }}
     {{ block('header') }}
@@ -12,6 +14,8 @@
     {{ block('footer') }}
     {{ block('modal_search') -}}
 {%- endblock body -%}
+
+{% block bodyAttributes -%}class="slider-background"{%- endblock bodyAttributes -%}
 
 {%- block alerts -%}
     {%- if alerts|default([])|length > 0 -%}
