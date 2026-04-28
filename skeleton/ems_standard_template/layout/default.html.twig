@@ -231,6 +231,7 @@
                 <li class="list-inline-item">
                     <a href="mailto:simon@globalview.be"><i class="far fa-envelope"></i> simon@globalview.be</a>
                 </li>
+                {{ block('footer_structure') }}
             </ul>
         </div>
     </footer>
@@ -239,46 +240,14 @@
 {%- block footer_structure -%}
     {%- set footerStructure = structure.getItemById('footer') -%}
     {%- set footerItems = footerStructure.children|filter(c => c.object.(locale) is defined)|default([]) -%}
-    {%- if footerItems|length > 0 -%}
-        <div class="col-lg-8">
-            <div class="row">
-                {%- for item in footerItems -%}
-                    {%- if item.type == 'page' -%}
-                        <div class="col-12 col-sm-6 col-md-4 mb-3">
-                            <a href="{{ pathStructure.(item.id) }}"
-                               class="{{ html_classes('text-white text-decoration-none', { 'active': activeItem is defined and item.id == activeItem.id }) }}">
-                                <i class="fa-solid fa-angle-right me-2"></i>{{ item.object.(locale).label }}
-                            </a>
-                        </div>
-                    {%- elseif item.type == 'folder' and item.children|filter(c => c.object.(locale) is defined)|length > 0 -%}
-                        <div class="col-12 col-sm-6 col-md-4 mb-3">
-                            <div class="fw-bold">{{ item.object.(locale).label }}</div>
-                            {%- for folderItem in item.children|filter(c => c.object.(locale) is defined) -%}
-                                <a href="{{ pathStructure.(folderItem.id) }}"
-                                   class="{{ html_classes('text-white text-decoration-none', { 'active': activeItem is defined and folderItem.id == activeItem.id }) }}">
-                                    <i class="fa-solid fa-angle-right me-2"></i>{{ folderItem.object.(locale).label }}
-                                </a>
-                            {%- endfor -%}
-                        </div>
-                    {%- endif -%}
-                {%- endfor -%}
-            </div>
-        </div>
-    {%- endif -%}
+    {%- for item in footerItems -%}
+        {%- if item.type == 'page' -%}
+            <li class="list-inline-item">
+                <a href="{{ pathStructure.(item.id) }}"><i class="fa fa-camera"></i> {{ item.object.(locale).label|lower }}</a>
+            </li>
+        {%- endif -%}
+    {%- endfor -%}
 {%- endblock footer_structure -%}
-
-{%- block footer_social -%}
-    <div class="col-lg-4 mt-4 mt-lg-0 d-flex flex-column">
-        <div class="mb-4">
-            <p>{{ 'socials.title'|trans }}</p>
-            {%- for social in ['facebook', 'instagram', 'linkedin'] -%}
-                <a href="{{ "socials.#{social}.url"|trans }}" rel="noopener, noreferrer" target="_blank" class="mr-2 text-decoration-none no-icon">
-                    <img src="{{ asset("img/icon/#{social}-white.svg", 'emsch') }}" alt="{{ "socials.#{social}.alt"|trans }}" width="32" height="24">
-                </a>
-            {%- endfor -%}
-        </div>
-    </div>
-{%- endblock footer_social -%}
 
 {%- block modal_search -%}
     <div class="modal fade" id="searchModal" tabindex="-1" data-bs-backdrop="false" aria-hidden="true" style="display: none;">
