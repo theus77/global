@@ -266,6 +266,7 @@ function setupGallery() {
 }
 
 async function init() {
+    registerJQueryLegacyHelpers();
     registerBootstrapJQueryBridge();
     await Promise.all([
         import('jquery-lazyload/jquery.lazyload.js'),
