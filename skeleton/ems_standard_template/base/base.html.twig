@@ -1,5 +1,4 @@
 {%- extends '@EMSCH/ems_standard_template/variables.twig' -%}
-
 {%- block request %}
 {%- trans_default_domain trans_default_domain -%}
 <!DOCTYPE html>
@@ -19,7 +18,7 @@
         {%- endif -%}
         {%- block stylesheet -%}
             {%- if vite.isDevServerRunning is same as(false) -%}
-                <link media="screen" href="{{ asset('src/js/app.js.css', 'emsch') }}" rel="stylesheet">
+                <link media="screen" href="{{ asset('src/js/globalview.js.css', 'emsch') }}" rel="stylesheet">
             {%- endif -%}
         {%- endblock stylesheet -%}
         <title>{% block title %}{% endblock title %} | {{ 'app.title'|trans }}</title>
@@ -29,7 +28,7 @@
         {%- if vite.isDevServerRunning -%}<script type="module" src="{{- vite.devServerClient -}}"></script>{%- endif -%}
         {%- block javascript -%}
             <script src="{{ path('js_translations') }}"></script>
-            <script type="module" src="{{ asset('src/js/app.js', 'emsch') }}"></script>
+            <script type="module" src="{{ asset('src/js/globalview.js', 'emsch') }}"></script>
         {%- endblock javascript -%}
         {% if 'preview' in trans_default_domain and 'localhost' not in app.request.host %}
             <script type="module" src="{{ asset('src/js/accessibility_cloud.js', 'emsch') }}"></script>
