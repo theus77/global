@@ -30,9 +30,9 @@
             <script src="{{ path('js_translations') }}"></script>
             <script type="module" src="{{ asset('src/js/globalview.js', 'emsch') }}"></script>
         {%- endblock javascript -%}
-        {% if 'preview' in trans_default_domain and 'localhost' not in app.request.host %}
-            <script type="module" src="{{ asset('src/js/accessibility_cloud.js', 'emsch') }}"></script>
-        {% endif %}
+{#        {% if 'preview' in trans_default_domain and 'localhost' not in app.request.host %}#}
+{#            <script type="module" src="{{ asset('src/js/accessibility_cloud.js', 'emsch') }}"></script>#}
+{#        {% endif %}#}
     </body>
 </html>
 {%- endblock request %}
