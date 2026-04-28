@@ -16,6 +16,8 @@ export default defineConfig({
                 app: path.resolve(__dirname, 'src/js/app.js'),
                 admin: path.resolve(__dirname, 'src/js/admin.js'),
                 accessibility_cloud: path.resolve(__dirname, 'src/js/accessibility_cloud.js'),
+                globalview: path.resolve(__dirname, 'src/js/globalview.js'),
+                globalview_admin: path.resolve(__dirname, 'src/js/globalview-admin.js'),
             },
             output: {
                 entryFileNames: 'js/[name].js',

@@ -1,0 +1,20 @@
+/*
+* Footer design
+***********************/
+footer { 
+	color: lighten($color1, 100%);
+	padding: em(30px, 13px) em(15px, 13px) em(40px, 13px) em(15px, 13px);
+	font-size: em(13px);
+	font-weight: normal;
+	a, a:hover { 
+		color: lighten($color1, 100%); 
+		font-size:1.1em;
+	}
+	@include MQ(Sneg) {
+		font-size: em(11px);
+		padding: em(10px, 11px) em(15px, 11px) em(10px, 11px) em(15px, 11px);
+	}
+}
+.admin-menu {
+	a {color: lighten($color1, 100%);}
+}
