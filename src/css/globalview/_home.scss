@@ -9,22 +9,11 @@
 ======================================================*/
 
 #flights {
-	h2 {
-		font-size: em(50px);
-	    font-weight: bold;
-	    margin-bottom: em(30px, 60px);
-	    a {
-	    	color:$color2;
-	    	&:hover {
-	    		text-decoration:underline;
-	    	}
-	    }
-	}
 	.section-heading {padding-top:0;}
 	.box {
 	margin:em(10px) 0;
 	background: rgba($color1,0.7);
-    padding: em(15px);	
+    padding: em(15px);
 	h3 {
 		margin: em(20px, 20px) 0;
 		font-size:em(20px);
@@ -32,7 +21,7 @@
 	span {
 		font-size:em(13px);
 	}
-	img {		
+	img {
 		@include filter(grayscale(0));
 		@include transition(all 0.5s ease-in-out);
 		}
@@ -44,7 +33,7 @@
 			@include transition(all 0.5s ease-in-out);
 			}
 	}
-	
+
 	a {
 		background: rgba(0, 0, 0, 0);
 		border: 0;
@@ -114,6 +103,13 @@
 	}
 	& >.fa-search {background:$color9;}
 	.fa-tags {background:$color10;}
+}
+
+
+h1 {
+  font-size: em(50px);
+  font-weight: bold;
+  margin-bottom: em(30px, 60px);
 }
 
 /* ==================================================

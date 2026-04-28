@@ -19,7 +19,7 @@ news_overview:
     template_static: ems_standard_template/page/news_overview.html.twig
 news:
     config:
-        path: { nl: '/{_locale}/nieuws/{slug}', fr: '/{_locale}/actualites/{slug}', de: '/{_locale}/nachrichten/{slug}', en: '/{_locale}/news/{slug}' }
+        path: { nl: '/{_locale}/vluchten/{slug}', fr: '/{_locale}/vols/{slug}', de: '/{_locale}/fluege/{slug}', en: '/{_locale}/flights/{slug}' }
         requirements: { _locale: nl|fr|de|en, slug: '[^.]+' }
         defaults: { _locale: fr }
     query: '{"query":{"bool":{"must":[{"term":{"_contenttype":"ems_standard_news"}},{"term":{"%_locale%.slug":"%slug%"}},{"term":{"%_locale%.show":true}}]}},"size":1}'

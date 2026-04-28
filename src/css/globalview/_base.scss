@@ -71,7 +71,7 @@ pre {
 .section {
   position: relative;
   min-height: 100%;
-  padding: 100px 0 100px;
+  padding: 50px 0 50px;
   @include MQ(Mneg) {
     padding:em(50px) 0 em(50px);
   }
@@ -80,8 +80,8 @@ pre {
   background-image: image-url("website/bg_pattern.png");
   position: fixed;
   opacity: 0.8;
-  left: 0px;
-  top: 0px;
+  left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
   z-index: -1;

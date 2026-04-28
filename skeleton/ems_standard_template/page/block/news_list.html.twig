@@ -22,31 +22,31 @@
     }]))  %}
 
     {%- if newsItems|length > 0 -%}
-        <div class="section-heading">
-            <h2 id="next_flight">{{ block.label }}</h2>
-            {{ block('widget') }}
-            <div class="clearfix"></div>
-        </div>
+        <section id="flights" class="section wow fadeInUp">
+            <div class="text-center">
+                <h2 id="next_flight" class="h3">{{ block.label }}</h2>
+                {{ block('widget') }}
+            </div>
+        </section>
     {%- endif -%}
 {%- endblock row -%}
 
 {%- block widget -%}
     {%- trans_default_domain trans_default_domain -%}
-    {%- for newsItem in newsItems -%}
-        <div class="col-md-4 ">
-            <div class="box" style="height: 371px;">
-                <div class="groupToMatch clearfix">
-                    <a href="{{ newsItem.url }}" class="btn btn-custom btn-lg" role="button">
-                        <h3>{{ newsItem.title }}</h3>
-                        <div class="text-wrapper">
-                            {% dump(newsItem.image) %}
-                            <p>
-                                <img src="{{ newsItem.image ? ems_asset_path(newsItem.image) : '' }}">
-                            </p>
-                        </div>
+    <div class="row g-4">
+        {%- for newsItem in newsItems -%}
+            <div class="col-md-4">
+                <div class="box h-100">
+                    <a href="{{ newsItem.url }}" class="btn btn-custom btn-lg d-flex flex-column justify-content-center w-100 h-100">
+                        <h3 {{ emsch_admin_menu(newsItem.emsId) }}>{{ newsItem.title }}</h3>
+                        {%- if newsItem.image -%}
+                            <span class="text-wrapper mt-3">
+                                <img src="{{ ems_asset_path(newsItem.image) }}" class="img-fluid" alt="">
+                            </span>
+                        {%- endif -%}
                     </a>
                 </div>
             </div>
-        </div>
-    {%- endfor -%}
+        {%- endfor -%}
+    </div>
 {%- endblock widget -%}
