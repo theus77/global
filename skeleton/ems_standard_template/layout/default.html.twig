@@ -82,7 +82,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="search-form">
+                <div class="search-form" id="navbar-search-form">
                     <form action="{{ path('search') }}" class="navbar-form" method="GET">
                         <div class="form-group search-toggle">
                             <input type="text"
@@ -154,8 +154,10 @@
                     </li>
                 {%- endif -%}
             {%- endfor -%}
-            <li class="nav-item">
-                <a href="#" class="nav-link search_button" data-scroll="1"><span class="fa-solid fa-magnifying-glass" aria-hidden="true"></span></a>
+            <li class="nav-item d-none d-lg-block">
+                <button type="button" class="nav-link search_button border-0 bg-transparent" aria-controls="navbar-search-form" aria-expanded="false" aria-label="{{ 'navbar.search.title'|trans }}">
+                    <span class="fa-solid fa-magnifying-glass" aria-hidden="true"></span>
+                </button>
             </li>
         </ul>
     {%- endif -%}

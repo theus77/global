@@ -72,8 +72,8 @@ header {
     order: 2;
   }
   .navbar-nav > li {
-    &.active > a {background-color:transparent; color:$color2;}
-    a {
+    &.active > .nav-link {background-color:transparent; color:$color2;}
+    .nav-link {
       color: lighten($color1, 100%);
       font-size:em(16px);
       &.active {background: transparent;}
@@ -86,7 +86,7 @@ header {
     border: none;
     padding: 20px 0;
     background: rgba($color1, 0.3);
-    .navbar-nav li a {
+    .navbar-nav li .nav-link {
       color: lighten($color1, 100%);
       &:hover {
         background: rgba($color1, 0.3);

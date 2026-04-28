@@ -101,7 +101,9 @@ function setupLegacyInteractions() {
 
     $('.search-trigger, .search_button').on('click', function toggleSearch(e) {
         e.preventDefault();
-        $('.search-form').slideToggle();
+        $('.search-form').slideToggle(() => {
+            $('.search_button').attr('aria-expanded', $('.search-form').is(':visible') ? 'true' : 'false');
+        });
         $('nav.navbar-inverse.navbar-fixed-top').toggleClass('black');
     });
 
