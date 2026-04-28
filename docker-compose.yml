@@ -7,6 +7,7 @@ services:
             - 'ES_CLUSTER_CONFIG=${ELASTICSEARCH_CONFIG}'
             - 'APP_BACKEND_PROXY_URL=${ACC_BACKEND_PROXY_URL}'
             - 'EMS_STORAGES=${EMS_STORAGES}'
+            - 'APP_SECRET=${APP_SECRET}'
         labels:
             - traefik.enable=true
             - 'traefik.http.routers.globalview-acc.rule=HostRegexp(`^acc\-([a-z0-9\-_\.]+)\.globalview\.localhost$$`)'
