@@ -18,6 +18,24 @@ services:
             - traefik.http.routers.globalview-acc-tls.service=globalview-acc-apache
             - traefik.http.services.globalview-acc-apache.loadbalancer.server.port=9000
 
+    cli:
+        image: 'elasticms/cli:${SKELETON_VERSION}'
+        user: ${DOCKER_USER-1000}
+        volumes:
+            - ./:/workspace:rw
+        working_dir: /workspace
+        command:
+            - bash
+            - -lc
+            - |
+                mkdir -p /home/default/.local/bin
+                export PATH="/home/default/.local/bin:$$PATH"
+                grep -qxF 'export PATH="/home/default/.local/bin:$$PATH"' /home/default/.bashrc || echo 'export PATH="/home/default/.local/bin:$$PATH"' >> /home/default/.bashrc
+                grep -qxF "alias elasticms='php /app/src/elasticms/bin/console'" /home/default/.bashrc || echo "alias elasticms='php /app/src/elasticms/bin/console'" >> /home/default/.bashrc
+                exec "$${SHELL:-bash}"
+        stdin_open: true
+        tty: true
+
     sandbox:
         image: docker.io/smalswebtech/base-php:8.5-cli-dev
         user: ${DOCKER_USER-1000}

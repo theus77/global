@@ -32,7 +32,7 @@ help: ## help
 up/%: ## up/(acc|prd)
 	@$(MAKE) -s tools-up
 	@$(DOCKER_COMP) up skeleton-$* -d
-	@$(DOCKER_COMP) up sandbox -d
+	@$(DOCKER_COMP) up sandbox cli -d
 restart/%: ## restart/(acc|prd)
 	@$(DOCKER_COMP) up skeleton-$* -d --force-recreate
 logs/%: ## logs/(acc|prd)
