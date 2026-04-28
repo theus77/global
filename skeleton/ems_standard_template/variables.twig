@@ -15,7 +15,7 @@
     '%eb%': '</strong>'
 } -%}
 
-{% set monthsTrans = {
+{%- set monthsTrans = {
     '%January%': 'month.January'|trans,
     '%February%': 'month.February'|trans,
     '%March%': 'month.March'|trans,
@@ -28,7 +28,21 @@
     '%October%': 'month.October'|trans,
     '%November%': 'month.November'|trans,
     '%December%': 'month.December'|trans
-} %}
+} -%}
+
+{%-  set sliderImages = [
+    asset('img/bg_01.jpg', 'emsch'),
+    asset('img/bg_02.jpg', 'emsch'),
+    asset('img/bg_11.jpg', 'emsch'),
+    asset('img/bg_04.jpg', 'emsch'),
+    asset('img/bg_05.jpg', 'emsch'),
+    asset('img/bg_12.jpg', 'emsch'),
+    asset('img/bg_06.jpg', 'emsch'),
+    asset('img/bg_07.jpg', 'emsch'),
+    asset('img/bg_08.jpg', 'emsch'),
+    asset('img/bg_09.jpg', 'emsch'),
+    asset('img/bg_10.jpg', 'emsch'),
+] -%}
 
 {%- block pre_request -%}
     {%- block request -%}{%- endblock request -%}

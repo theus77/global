@@ -5,6 +5,11 @@ import SmoothScroll from 'smooth-scroll';
 
 window.$ = window.jQuery = $;
 
+function registerJQueryLegacyHelpers() {
+    $.isArray = $.isArray || Array.isArray;
+    $.isFunction = $.isFunction || ((value) => typeof value === 'function');
+}
+
 function registerBootstrapJQueryBridge() {
     $.fn.carousel = function carousel(option) {
         return this.each(function initCarousel() {
@@ -130,20 +135,8 @@ function setupLegacyInteractions() {
     });
 
     if ($('.slider-background').length > 0) {
-        const baseUrl = window.BASE_URL || '/';
-        $.backstretch([
-            `${baseUrl}img/bg_01.jpg`,
-            `${baseUrl}img/bg_02.jpg`,
-            `${baseUrl}img/bg_11.jpg`,
-            `${baseUrl}img/bg_04.jpg`,
-            `${baseUrl}img/bg_05.jpg`,
-            `${baseUrl}img/bg_12.jpg`,
-            `${baseUrl}img/bg_06.jpg`,
-            `${baseUrl}img/bg_07.jpg`,
-            `${baseUrl}img/bg_08.jpg`,
-            `${baseUrl}img/bg_09.jpg`,
-            `${baseUrl}img/bg_10.jpg`
-        ], { duration: 4000, fade: 1000 });
+        const images = JSON.parse(document.body.attributes.getNamedItem('data-slider-images').value);
+        $.backstretch(images, { duration: 4000, fade: 1000 });
     }
 
     $('.menu-toggle').on('click', function toggleMenu() {

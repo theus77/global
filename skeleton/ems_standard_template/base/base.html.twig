@@ -23,7 +23,7 @@
         {%- endblock stylesheet -%}
         <title>{% block title %}{% endblock title %} | {{ 'app.title'|trans }}</title>
     </head>
-    <body {% block bodyAttributes -%}{%- endblock bodyAttributes -%}>
+    <body {% block bodyAttributes -%}{%- endblock bodyAttributes -%} data-slider-images="{{ sliderImages|json_encode|e("html_attr") }}">
         {%- block body -%}{%- endblock body -%}
         {%- if vite.isDevServerRunning -%}<script type="module" src="{{- vite.devServerClient -}}"></script>{%- endif -%}
         {%- block javascript -%}
