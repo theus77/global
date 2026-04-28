@@ -38,8 +38,8 @@ input[type=radio] {
 }
 .lang-i18n table tfoot .pagination-status {color:lighten($color1, 100%);}
 .help-block {color:lighten($color1, 100%);}
-body#default {
-  margin-top:em(80px);
+body.default {
+  margin-top:em(90px);
   #BookingBookForm {
     label{
       font-weight:normal;
