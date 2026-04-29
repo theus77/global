@@ -29,6 +29,10 @@
     {{ block('label_post_processing') }}
 {%- endblock folder_label_post_processing -%}
 
+{%- block link_label_post_processing -%}
+    {{ block('label_post_processing') }}
+{%- endblock link_label_post_processing -%}
+
 {%- block label_post_processing -%}
     {%- set label = [] -%}
     {%- for locale in emschLocales|filter((l) => _source.(l).label is defined) -%}
