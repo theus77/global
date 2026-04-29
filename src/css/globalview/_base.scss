@@ -20,6 +20,10 @@ h6 {
   height: 45px;
   background-color: rgba(0, 0, 0, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  &:focus {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
 }
 input[type=checkbox],
 input[type=radio] {
@@ -97,4 +101,3 @@ pre {
   .list-group-item > a {color:$color1;margin-right:em(10px);}
 }
 .flashMessage {padding: em(10px);}
-
