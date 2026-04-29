@@ -1,7 +1,7 @@
 {%- extends '@EMSCH/ems_standard_template/page/block/abstract-block.html.twig' -%}
 
 {%- block row -%}
-    <section class="my-5">
+    <section {% if block.object.anchor is defined %}id="{{ block.object.anchor }}" {% endif%}class="my-5">
         <div class="container">
             {{ block('widget') }}
         </div>
