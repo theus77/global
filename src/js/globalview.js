@@ -2,8 +2,11 @@ import '../css/globalview.scss';
 import $ from 'jquery';
 import * as bootstrap from 'bootstrap';
 import SmoothScroll from 'smooth-scroll';
+import form from "./module/form/form.js";
 
 window.$ = window.jQuery = $;
+
+form();
 
 function registerJQueryLegacyHelpers() {
     $.isArray = $.isArray || Array.isArray;
