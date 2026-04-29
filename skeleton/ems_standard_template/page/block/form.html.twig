@@ -10,6 +10,11 @@
 
 {%- block widget -%}
     {%- trans_default_domain trans_default_domain -%}
+    {%- if block.object.label is defined -%}
+        <div class="mb-4 text-center">
+            <h2>{{ block.object.label|replace(replacements)|raw }}</h2>
+        </div>
+    {%- endif -%}
     {%- if block.object.form is defined -%}
         {%- set form = block.object.form|emsch_get -%}
         {%- set iframeUrl = absolute_url(path('emsf_iframe', { ouuid: form.id, _locale: locale })) -%}
