@@ -12,7 +12,8 @@
 
 {%- set replacements = {
     '%bb%': '<strong class="font-weight-bold">',
-    '%eb%': '</strong>'
+    '%eb%': '</strong>',
+    '%base%': path('homepage')|trim('/', 'right'),
 } -%}
 
 {%- set monthsTrans = {
