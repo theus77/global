@@ -28,9 +28,14 @@ header {
           border-radius: 0;
           box-shadow: none;
       }
+	    .dropdown-item,
+	    .dropdown-item > a {
+	      text-decoration: none;
+	    }
 	    & > li > a:hover, & > li > a:focus {
 	      background-color: transparent;
 	      color: $color2;
+	      text-decoration: none;
 	    }
 	    .dropdown-item:hover,
 	    .dropdown-item:focus,
@@ -38,6 +43,14 @@ header {
 	    .dropdown-item.active {
 	      background-color: transparent;
 	      color: $color2;
+	      text-decoration: none;
+	    }
+	    .dropdown-item:hover > a,
+	    .dropdown-item:focus > a,
+	    .dropdown-item:active > a,
+	    .dropdown-item.active > a {
+	      color: $color2;
+	      text-decoration: none;
 	    }
 		}
 	}
