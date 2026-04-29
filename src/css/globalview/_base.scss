@@ -104,3 +104,13 @@ pre {
   .list-group-item > a {color:$color1;margin-right:em(10px);}
 }
 .flashMessage {padding: em(10px);}
+
+.btn-primary {
+  color: #fff;
+  background-color: #343434;
+  border-color: #272727;
+  &:hover {
+    background-color: #1b1b1b;
+    border-color: #090909;
+  }
+}
