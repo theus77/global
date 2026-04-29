@@ -45,6 +45,11 @@
     {{ parent() }}
 {%- endblock button_row %}
 
+{% block textarea_widget -%}
+    {% set attr = attr|merge({ rows: 6 }) %}
+    {{ parent() }}
+{%- endblock textarea_widget %}
+
 {% block ems_markup_row -%}
     {% set attr = attr|merge({
         'class': 'form-group',

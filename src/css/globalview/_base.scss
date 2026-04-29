@@ -25,6 +25,9 @@ h6 {
     background-color: rgba(0, 0, 0, 0.7);
   }
 }
+textarea.form-control {
+  height: auto;
+}
 input[type=checkbox],
 input[type=radio] {
   margin: 8px 0 0;
