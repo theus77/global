@@ -45,6 +45,14 @@
     {{ parent() }}
 {%- endblock button_row %}
 
+{% block form_label_class -%}
+    col-sm-4 text-sm-end
+{%- endblock form_label_class %}
+
+{% block form_group_class -%}
+    col-sm-8
+{%- endblock form_group_class %}
+
 {% block textarea_widget -%}
     {% set attr = attr|merge({ rows: 6 }) %}
     {{ parent() }}
