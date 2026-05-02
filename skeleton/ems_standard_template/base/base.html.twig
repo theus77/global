@@ -14,7 +14,7 @@
         <link rel="icon" type="image/png" sizes="32x32" href="{{ path('site_icon', {name: 'favicon', width: 32, height: 32}) }}">
         <link rel="icon" type="image/png" sizes="16x16" href="{{ path('site_icon', {name: 'favicon', width: 16, height: 16}) }}">
         {%- if isChannel == false -%}
-            <link rel="manifest" href="{{ path('site_manifest') }}">
+            <link rel="manifest" href="{{ path('site_manifest') }}" crossorigin="use-credentials">
         {%- endif -%}
         {%- block stylesheet -%}
             {%- if vite.isDevServerRunning is same as(false) -%}
