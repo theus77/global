@@ -3,7 +3,8 @@
 {% import '@EMSCH/ems_standard_template/macros/wysiwyg.twig' as wysiwyg %}
 
 {% block title %}
-    {{ parent() }} - {{ source.date_news|date(date_format) }}
+    {%- trans_default_domain trans_default_domain -%}
+    {{- 'page.news.title_prefix'|trans }} {{ parent() -}}
 {% endblock title %}
 
 {%- block body -%}
@@ -15,22 +16,6 @@
     -%}
     {{ parent() }}
 {%- endblock body -%}
-
-{%- block breadcrumb -%}
-    {% trans_default_domain trans_default_domain %}
-    {%- set breadcrumb = [
-        {'url': path('news_overview'), 'label': 'news.title'|trans },
-        {'label': source.(locale).title }
-    ] -%}
-    <div class="d-none d-md-block">
-        {{ parent() }}
-    </div>
-    <div class="d-md-none">
-        <div class="container mb-5">
-            <a href="{{ path('news_overview') }}"><span class="fas fa-angle-left me-2 align-middle" aria-hidden="true" role="img"></span>{{ 'news.back_to'|trans }}</a>
-        </div>
-    </div>
-{%- endblock breadcrumb -%}
 
 {%- block content -%}
     {% trans_default_domain trans_default_domain %}
