@@ -139,7 +139,7 @@ a.link {
   .content {
     position: relative;
     margin-left: em(90px);
-    background: rgba($color1, 0.1);
+    background: rgba($color1, 0.5);
     color: lighten($color1,100%);
     padding: em(20px);
     @include border-radius(4px);
