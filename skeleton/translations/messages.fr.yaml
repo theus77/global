@@ -10,7 +10,7 @@ app:
     language_selection: 'Language selection'
     locale: Français
     search_page: Recherche
-    title: 'GlobalView reportage aérien'
+    title: 'GlobalView.be'
 aria:
     skip_to_content: 'Passer au contenu principal'
     toggle_navigation: 'Ouvrir/fermer la navigation'
