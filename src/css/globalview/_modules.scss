@@ -226,6 +226,27 @@ a.link {
   .accordion-body {
     color: lighten($color1, 100%);
     background: transparent;
+
+    img, iframe {
+      float: left;
+      max-width: 45%;
+      height: auto;
+      margin: 0 em(30px) em(20px) 0;
+    }
+
+    .wysiwygContent::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .section .accordion .accordion-body img {
+    float: none;
+    max-width: 100%;
+    margin: 0 0 em(20px);
   }
 }
 
