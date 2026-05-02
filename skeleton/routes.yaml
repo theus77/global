@@ -4,6 +4,10 @@ homepage:
         requirements: { _locale: nl|fr|de|en }
         defaults: { _locale: fr }
     template_static: ems_standard_template/page/homepage.html.twig
+well-known-security:
+    config:
+        path: '.well-known/security.txt'
+    template_static: ems_standard_template/well-known/security.txt.twig
 page:
     config:
         path: { nl: '/{_locale}/pagina/{slug}', fr: '/{_locale}/page/{slug}', de: '/{_locale}/seite/{slug}', en: '/{_locale}/page/{slug}' }
