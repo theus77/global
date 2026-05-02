@@ -5,15 +5,13 @@
 {%- block emailMessage -%}
     {% set body %}
         ----------- REQUEST INFORMATION -----------
-        Subject: {{ data.subject|raw }}
+        Subject: Demande de contact
 
         Message:
         {{ data.message|raw }}
 
         ----------- CONTACT -----------
-        LANG: {{ config.locale }}
         Lastname: {{ data.name|raw }}
-        Firstname:  {{ data.firstname|raw }}
         Email: {{ data.email|raw }}
         {% if data.project_phone|default %}Phone: {{ data.phone|raw }}
         {% endif %}
