@@ -74,6 +74,59 @@ function hidePreloader() {
     $('body').delay(350).css({ overflow: 'visible' });
 }
 
+function getIdFromHash(hash) {
+    if (!hash || hash === '#') {
+        return null;
+    }
+
+    try {
+        return decodeURIComponent(hash.slice(1));
+    } catch (e) {
+        return hash.slice(1);
+    }
+}
+
+function openAccordionPanelFromHash(hash, scrollIfOpen = false) {
+    const id = getIdFromHash(hash);
+    const header = id ? document.getElementById(id) : null;
+
+    if (!header || !header.classList.contains('accordion-header')) {
+        return false;
+    }
+
+    const collapse = header.nextElementSibling;
+    if (!collapse || !collapse.classList.contains('accordion-collapse')) {
+        return false;
+    }
+
+    const wasOpen = collapse.classList.contains('show');
+    bootstrap.Collapse.getOrCreateInstance(collapse, { toggle: false }).show();
+
+    if (wasOpen && scrollIfOpen) {
+        $('html, body').animate({ scrollTop: $(header).offset().top - 200 }, 500);
+    }
+
+    return true;
+}
+
+function setupAccordionHashLinks() {
+    setTimeout(() => openAccordionPanelFromHash(window.location.hash), 0);
+
+    $(window).on('hashchange', function openHashAccordion() {
+        openAccordionPanelFromHash(window.location.hash, true);
+    });
+
+    $(document).on('click', 'a[href*="#"]', function openLinkedAccordion() {
+        const url = new URL(this.href, window.location.href);
+
+        if (url.origin !== window.location.origin || url.pathname !== window.location.pathname || url.search !== window.location.search) {
+            return;
+        }
+
+        setTimeout(() => openAccordionPanelFromHash(url.hash, true), 0);
+    });
+}
+
 function setupLegacyInteractions() {
     const url = location.pathname + window.location.hash;
     if (url !== '/') {
@@ -95,8 +148,8 @@ function setupLegacyInteractions() {
         $(`#${collapseToOpen}`).addClass('in show').attr('aria-expanded', 'true');
     });
 
-    $('#accordion').on('shown.bs.collapse', function scrollToPanel() {
-        const panel = $(this).find('.show, .in').first();
+    $('#accordion').on('shown.bs.collapse', function scrollToPanel(e) {
+        const panel = $(e.target);
         if (panel.length) {
             $('html, body').animate({ scrollTop: panel.offset().top - 200 }, 500);
         }
@@ -122,6 +175,7 @@ function setupLegacyInteractions() {
     });
 
     new SmoothScroll('a[href*="#"]', { offset: 55 });
+    setupAccordionHashLinks();
 
     $(window).on('scroll', function updateScrollState() {
         const scroll = $(window).scrollTop();
