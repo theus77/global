@@ -38,10 +38,16 @@
                     <section class="next-flight-card" aria-labelledby="next-flight-title">
                         {%- if flightImage -%}
                             <figure class="next-flight-map mb-4">
-                                <img src="{{ ems_asset_path(flightImage) }}"
+                                <img src="{{ ems_asset_path(flightImage, {
+                                    _config_type: 'image',
+                                    _width: 176,
+                                    _height: 176,
+                                    _quality: 80,
+                                    _image_format:'webp',
+                                }) }}"
                                      alt=""
                                      class="img-fluid"
-                                     loading="lazy">
+                                     loading="lazy" width="176" height="176">
                             </figure>
                         {%- endif -%}
 

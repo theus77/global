@@ -29,7 +29,13 @@
             <article class="photo-book photo-book-featured">
                 {% if item.image is defined %}
                     <figure class="photo-book-cover m-2">
-                        <img src="{{ ems_asset_path(item.image) }}" alt="{{ item.name|default('') }}" class="img-fluid">
+                        <img src="{{ ems_asset_path(item.image, {
+                            _config_type: 'image',
+                            _width: 800,
+                            _height: 800,
+                            _quality: 80,
+                            _image_format:'webp',
+                        }) }}" alt="{{ item.name|default('') }}" class="img-fluid" width="400" height="400">
                     </figure>
                 {% endif %}
                 {% if item.body is defined %}

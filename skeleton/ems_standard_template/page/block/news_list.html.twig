@@ -41,7 +41,13 @@
                         <h3 class="mt-0" {{ emsch_admin_menu(newsItem.emsId) }}>{{ newsItem.title }}</h3>
                         {%- if newsItem.image -%}
                             <span class="text-wrapper mt-3">
-                                <img src="{{ ems_asset_path(newsItem.image) }}" class="img-fluid" alt="">
+                                <img src="{{ ems_asset_path(newsItem.image, {
+                                    _config_type: 'image',
+                                    _width: 176,
+                                    _height: 176,
+                                    _quality: 80,
+                                    _image_format:'webp',
+                                }) }}" class="img-fluid" alt="" width="176" height="176">
                             </span>
                         {%- endif -%}
                     </a>
