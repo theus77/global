@@ -635,8 +635,7 @@
                                             "mappingOptions": [],
                                             "restrictionOptions": {
                                                 "minimum_role": null,
-                                                "json_nested_deny": [
-                                                ],
+                                                "json_nested_deny": [],
                                                 "json_nested_is_leaf": true
                                             },
                                             "extraOptions": {
@@ -646,7 +645,7 @@
                                             },
                                             "raw_data": []
                                         },
-                                        "orderKey": 1,
+                                        "orderKey": 2,
                                         "children": [
                                             {
                                                 "class": "EMS\\CoreBundle\\Entity\\FieldType",
@@ -679,7 +678,7 @@
                                                         "extraOptions": {
                                                             "extra": null,
                                                             "clear_on_copy": false,
-                                                            "postProcessing": "{{ block('folder_label_post_processing', '@EMSCH/ems_standard_template_ems/content_type/structure/fields.twig') }}"
+                                                            "postProcessing": "{{ block('link_label_post_processing', '@EMSCH/ems_standard_template_ems/content_type/structure/fields.twig') }}"
                                                         },
                                                         "raw_data": [],
                                                         "migrationOptions": {
@@ -708,7 +707,7 @@
                                                             "helptext": null,
                                                             "values": null,
                                                             "labels": null,
-                                                            "localePreferredFirst": false,
+                                                            "localePreferredFirst": true,
                                                             "withLocalesVariable": true,
                                                             "icon": "fa fa-language"
                                                         },
@@ -747,7 +746,7 @@
                                                                     },
                                                                     "mappingOptions": [],
                                                                     "restrictionOptions": {
-                                                                        "mandatory": true,
+                                                                        "mandatory": false,
                                                                         "mandatory_if": null,
                                                                         "minimum_role": null
                                                                     },
@@ -762,6 +761,49 @@
                                                                     }
                                                                 },
                                                                 "orderKey": 0,
+                                                                "children": []
+                                                            },
+                                                            "replaced": []
+                                                        },
+                                                        {
+                                                            "class": "EMS\\CoreBundle\\Entity\\FieldType",
+                                                            "arguments": [],
+                                                            "properties": {
+                                                                "type": "EMS\\CoreBundle\\Form\\DataField\\TextStringFieldType",
+                                                                "name": "link",
+                                                                "contentType": null,
+                                                                "deleted": false,
+                                                                "description": null,
+                                                                "options": {
+                                                                    "displayOptions": {
+                                                                        "label": "Link",
+                                                                        "class": "col-md-12",
+                                                                        "lastOfRow": false,
+                                                                        "helptext": "Use %base% for relative links and anchors",
+                                                                        "prefixIcon": null,
+                                                                        "prefixText": null,
+                                                                        "suffixIcon": null,
+                                                                        "suffixText": null,
+                                                                        "placeholder": null,
+                                                                        "icon": null
+                                                                    },
+                                                                    "mappingOptions": [],
+                                                                    "restrictionOptions": {
+                                                                        "mandatory": false,
+                                                                        "mandatory_if": null,
+                                                                        "minimum_role": null
+                                                                    },
+                                                                    "extraOptions": {
+                                                                        "extra": null,
+                                                                        "clear_on_copy": false,
+                                                                        "postProcessing": null
+                                                                    },
+                                                                    "raw_data": [],
+                                                                    "migrationOptions": {
+                                                                        "protected": false
+                                                                    }
+                                                                },
+                                                                "orderKey": 1,
                                                                 "children": []
                                                             },
                                                             "replaced": []
@@ -948,7 +990,9 @@
         "settings": {
             "tasks_enabled": false,
             "tasks_titles": [],
-            "hide_revision_sidebar": false
+            "tasks_helptexts": [],
+            "hide_revision_sidebar": false,
+            "recompute_on_publish": false
         }
     },
     "replaced": []
