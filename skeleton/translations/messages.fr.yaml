@@ -91,3 +91,5 @@ search:
     placeholder: 'Entrez un ou plusieurs mots-clés'
     results: '{0} Aucun résultat trouvé|{1} 1 résultat trouvé|]1,Inf[%count% résultats trouvés'
     select_size: Résultats
+actions:
+    buy_book: 'Acheter le livre'
