@@ -68,6 +68,7 @@ Keep translation keys stable and consistent across languages. Prefer reusing exi
 The frontend is an npm/Vite project:
 
 - Source: `src/`
+- Website Vite entry: `src/js/globalview.js`
 - Build output: `dist/`
 - Config: `vite.config.js`
 - Package manifest: `package.json`
