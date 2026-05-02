@@ -19,32 +19,69 @@
 
 {%- block content -%}
     {% trans_default_domain trans_default_domain %}
-    <div class="container">
-        <div class="news-summary bg-light rounded p-3 mb-5">
-            <h1 {{ emsch_admin_menu(emsLink|format) }} class="mt-0 mb-lg-2">
-                {{ source.(locale).title }}
-            </h1>
-            {% if source.(locale).summary is defined %}
-                <div class="fs-4 mb-4">
-                    {{ source.(locale).summary|emsch_routing_config(emsch_routing_config) }}
+
+    {%- set flightTitle = source.(locale).title|default('') -%}
+    {%- set flightBody = source.(locale).body|default('') -%}
+    {%- set flightImage = source.image_news|default(false) -%}
+    {%- set flightForm = 'ems_standard_form:9dcc7518-fe47-42f5-b579-7fababf08a5c' -%}
+
+    <article class="section next-flight-detail">
+        <div class="container">
+            <header class="section-heading pt-0">
+                <h1 id="next-flight-title" {{ emsch_admin_menu(emsLink|format) }}>
+                    {{ flightTitle }}
+                </h1>
+            </header>
+
+            <div class="row g-4 g-lg-5 align-items-start">
+                <div class="col-lg-7">
+                    <section class="next-flight-card" aria-labelledby="next-flight-title">
+                        {%- if flightImage -%}
+                            <figure class="next-flight-map mb-4">
+                                <img src="{{ ems_asset_path(flightImage) }}"
+                                     alt=""
+                                     class="img-fluid"
+                                     loading="lazy">
+                            </figure>
+                        {%- endif -%}
+
+                        {%- if flightBody -%}
+                            <div class="next-flight-body wysiwyg">
+                                {{ wysiwyg.transform(flightBody|emsch_routing_config(emsch_routing_config), trans_default_domain) }}
+                            </div>
+                        {%- endif -%}
+                    </section>
                 </div>
-            {% endif %}
-            <p class="fs-8 mb-2">{{ 'news.published_date'|trans({ '%date%': source.date_news|date(date_format_full)|replace(monthsTrans|default({})) }) }}</p>
-            {%- if source.image_news is defined -%}
-                <img src="{{ ems_asset_path(source.image_news, {
-                    _config_type: 'image',
-                    _image_format: 'webp',
-                    _quality: 80,
-                    _resize: 'smartCrop',
-                    _width: 1800,
-                    _height: 600
-                }) }}" alt="{{ source.(locale).alt_image|default(source.(locale).title) }}" class="img-fluid rounded w-100">
-            {%- endif -%}
-        </div>
-        <div class="wysiwyg-content row justify-content-center">
-            <div class="col-lg-8 ">
-                {{ wysiwyg.transform(source.(locale).body|emsch_routing_config(emsch_routing_config)) }}
+
+                {%- if flightForm -%}
+                    <div class="col-lg-5">
+                        <aside class="next-flight-contact"
+                               aria-labelledby="next-flight-contact-title">
+                            <h2 id="next-flight-contact-title" class="h3">
+                                {{ 'flight.contact.title'|trans }}
+                            </h2>
+
+                            {%- set form = flightForm|emsch_get -%}
+                            {%- set iframeUrl = absolute_url(path('emsf_iframe', { ouuid: form.id, _locale: locale })) -%}
+
+                            <div id="ems-form-next-flight" class="ems-form-custom">
+                                <p>{{ 'form.loading'|trans|raw }}</p>
+                            </div>
+
+                            <iframe id="ems-form-iframe-next-flight"
+                                    src="{{ iframeUrl }}"
+                                    style="display:none;"
+                                    title="{{ 'form.iframe_title'|trans }}"
+                                    data-form-id="ems-form-next-flight"
+                                    data-message-id="ems-message-next-flight"
+                                    data-default-data="{{ {flight: flightTitle}|json_encode|e('html_attr') }}">
+                            </iframe>
+
+                            <div id="ems-message-next-flight"></div>
+                        </aside>
+                    </div>
+                {%- endif -%}
             </div>
         </div>
-    </div>
+    </article>
 {%- endblock content -%}

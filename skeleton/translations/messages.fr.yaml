@@ -1,3 +1,6 @@
+flight:
+    contact:
+        title: 'Contactez-nous'
 page:
     news:
         title_prefix: 'Prochain vol : '
