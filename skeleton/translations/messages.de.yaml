@@ -4,7 +4,7 @@ app:
     language_selection: Sprachauswahl
     locale: Deutsch
     search_page: Suche
-    title: 'EMS Standard'
+    title: 'GlobalView reportage aérien sur mesure'
 aria:
     skip_to_content: 'Zum Hauptinhalt springen'
     toggle_navigation: 'Navigation öffnen/schließen'

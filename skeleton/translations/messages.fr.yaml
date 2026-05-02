@@ -1,10 +1,13 @@
+page:
+    news:
+        title_prefix: 'Prochain vol : '
 app:
     company: Institution
     copyright: '© %company% %year%'
     language_selection: 'Language selection'
     locale: Français
     search_page: Recherche
-    title: 'EMS Standard'
+    title: 'GlobalView reportage aérien sur mesure'
 aria:
     skip_to_content: 'Passer au contenu principal'
     toggle_navigation: 'Ouvrir/fermer la navigation'
