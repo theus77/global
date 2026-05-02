@@ -46,7 +46,7 @@ services:
             NPM_CONFIG_PREFIX: /home/default/.local/npm
         volumes:
             - ./.sandbox:/home/default:rw
-            - ../:/workspace:rw
+            - ./:/workspace:rw
         working_dir: /workspace
         command:
             - bash
