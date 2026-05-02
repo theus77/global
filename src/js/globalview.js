@@ -121,7 +121,7 @@ function setupLegacyInteractions() {
         e.preventDefault();
     });
 
-    new SmoothScroll('a[href*="#"]', { offset: 0 });
+    new SmoothScroll('a[href*="#"]', { offset: 55 });
 
     $(window).on('scroll', function updateScrollState() {
         const scroll = $(window).scrollTop();
