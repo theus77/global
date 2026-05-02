@@ -4,7 +4,7 @@ Guidance for coding agents working in this migration repository.
 
 ## Project Overview
 
-This repository migrates an existing Symfony website from `archive/` to an ElasticMS skeleton project.
+This repository migrates an existing Symfony website from `archive/` to an ElasticMS skeleton project. The source project uses Bootstrap 3 conventions, while the migrated skeleton targets Bootstrap 5.
 
 Key areas:
 
@@ -90,6 +90,8 @@ npm run prod
 ```
 
 Only update generated build output in `dist/` when the task requires built assets. Avoid unrelated dependency or lockfile churn.
+
+When porting frontend markup or styles from `archive/`, translate Bootstrap 3 classes, grid patterns, components, and JavaScript data attributes to their Bootstrap 5 equivalents instead of copying them verbatim.
 
 ## Common ElasticMS Commands
 
