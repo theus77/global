@@ -58,6 +58,11 @@
     {{ parent() }}
 {%- endblock textarea_widget %}
 
+{% block _form_name_widget -%}
+    {% set attr = attr|merge({ autocomplete: 'name' }) %}
+    {{ block('form_widget_simple') }}
+{%- endblock _form_name_widget %}
+
 {% block ems_markup_row -%}
     {% set attr = attr|merge({
         'class': 'form-group',

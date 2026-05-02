@@ -31,6 +31,11 @@ h6 {
     color: #fff;
     background-color: rgba(0, 0, 0, 0.7);
   }
+  &:disabled {
+    background-color: #888888;
+    opacity: 0.6;
+    color: #dcdcdc;
+  }
 }
 textarea.form-control {
   height: auto;
@@ -120,6 +125,14 @@ pre {
     background-color: #1b1b1b;
     border-color: #090909;
   }
+}
+
+.btn:disabled,
+.btn.disabled,
+fieldset:disabled .btn {
+  color: var(--bs-btn-disabled-color);
+  pointer-events: none;
+  opacity: var(--bs-btn-disabled-opacity);
 }
 
 .emsform-summaries {
