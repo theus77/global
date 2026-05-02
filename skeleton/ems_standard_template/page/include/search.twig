@@ -110,7 +110,7 @@
     <div class="d-flex align-items-center gap-2">
         <p class="m-0">{{ 'search.select_size'|trans }}</p>
         <div id="search-sizes" aria-live="polite" role="status" class="d-flex align-items-center gap-3">
-            <label class="{{label_classes|default('')}} sr-only" for="select_size">{{ 'search.select_size'|trans }}</label>
+            <label class="{{label_classes|default('')}} visually-hidden" for="select_size">{{ 'search.select_size'|trans }}</label>
             <select class="w-auto form-select rounded-5" name="l" id="select_size">
                 {% for value in search.sizes %}
                     <option {% if search.size == value %}selected="selected"{% endif %} value="{{ value }}">{{ value }}</option>

@@ -38,7 +38,7 @@
             <div class="col-md-4">
                 <div class="box h-100">
                     <a href="{{ newsItem.url }}" class="btn btn-custom btn-lg d-flex flex-column justify-content-center w-100 h-100">
-                        <h3 {{ emsch_admin_menu(newsItem.emsId) }}>{{ newsItem.title }}</h3>
+                        <h3 class="mt-0" {{ emsch_admin_menu(newsItem.emsId) }}>{{ newsItem.title }}</h3>
                         {%- if newsItem.image -%}
                             <span class="text-wrapper mt-3">
                                 <img src="{{ ems_asset_path(newsItem.image) }}" class="img-fluid" alt="">
