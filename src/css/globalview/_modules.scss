@@ -268,6 +268,20 @@ a.link {
   }
 }
 
+.news-list-link {
+  overflow: hidden;
+
+  img {
+    @include transition(all 0.4s ease-in-out);
+  }
+
+  &:hover img,
+  &:focus img,
+  &:focus-visible img {
+    @include transform(scale(1.05));
+  }
+}
+
 /* ==================================================
   8. accordion
 ====================================================*/
