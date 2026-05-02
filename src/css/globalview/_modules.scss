@@ -192,8 +192,9 @@ a.link {
 
   .accordion-item {
     @include border-radius(4px);
-    background: transparent;
+    background: rgba($color1, 0.85);
     border: 2px solid #000;
+    overflow: hidden;
   }
 
   .accordion-header {
@@ -201,7 +202,7 @@ a.link {
     padding: 0;
     @include border-radius(3px);
     color: lighten($color1, 100%);
-    background: rgba($color1, 0.85);
+    background: transparent;
     border-color: $color1;
   }
 
@@ -210,6 +211,12 @@ a.link {
     background: transparent;
     box-shadow: none;
 
+    &::after {
+      --bs-accordion-btn-icon: #{escape-svg($accordion-button-icon)};
+      --bs-accordion-btn-active-icon: #{escape-svg($accordion-button-active-icon)};
+      filter: brightness(0) invert(1);
+    }
+
     &:not(.collapsed) {
       color: inherit;
       background: transparent;
@@ -217,7 +224,8 @@ a.link {
   }
 
   .accordion-body {
-    background: rgba($color1, 0.85);
+    color: lighten($color1, 100%);
+    background: transparent;
   }
 }
 
