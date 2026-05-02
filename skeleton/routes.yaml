@@ -7,7 +7,13 @@ homepage:
 well-known-security:
     config:
         path: '.well-known/security.txt'
+        defaults: { _format: txt }
     template_static: ems_standard_template/well-known/security.txt.twig
+sitemap-xml:
+    config:
+        path: 'sitemap.xml'
+        defaults: { _format: xml }
+    template_static: ems_standard_template/seo/sitemap.xml.twig
 page:
     config:
         path: { nl: '/{_locale}/pagina/{slug}', fr: '/{_locale}/page/{slug}', de: '/{_locale}/seite/{slug}', en: '/{_locale}/page/{slug}' }
