@@ -234,6 +234,11 @@ a.link {
       margin: 0 em(30px) em(20px) 0;
     }
 
+    > .wysiwygContent img,
+    > .wysiwygContent iframe {
+      border: 2px solid #fff;
+    }
+
     .wysiwygContent::after {
       content: "";
       display: table;
