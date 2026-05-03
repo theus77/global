@@ -82,7 +82,7 @@
                                     "protected": false
                                 }
                             },
-                            "orderKey": 2,
+                            "orderKey": 0,
                             "children": [
                                 {
                                     "class": "EMS\\CoreBundle\\Entity\\FieldType",
@@ -148,7 +148,7 @@
                                     "protected": false
                                 }
                             },
-                            "orderKey": 5,
+                            "orderKey": 1,
                             "children": []
                         },
                         "replaced": []
@@ -187,7 +187,7 @@
                                     "protected": false
                                 }
                             },
-                            "orderKey": 7,
+                            "orderKey": 2,
                             "children": []
                         },
                         "replaced": []
@@ -226,7 +226,7 @@
                                     "protected": false
                                 }
                             },
-                            "orderKey": 9,
+                            "orderKey": 3,
                             "children": []
                         },
                         "replaced": []
@@ -267,7 +267,7 @@
                                     "protected": false
                                 }
                             },
-                            "orderKey": 11,
+                            "orderKey": 4,
                             "children": []
                         },
                         "replaced": []
@@ -308,7 +308,7 @@
                                     "protected": false
                                 }
                             },
-                            "orderKey": 13,
+                            "orderKey": 5,
                             "children": []
                         },
                         "replaced": []
@@ -344,7 +344,7 @@
                                 },
                                 "raw_data": []
                             },
-                            "orderKey": 14,
+                            "orderKey": 6,
                             "children": []
                         },
                         "replaced": []
@@ -390,7 +390,7 @@
                                     "protected": false
                                 }
                             },
-                            "orderKey": 16,
+                            "orderKey": 7,
                             "children": []
                         },
                         "replaced": []
@@ -436,7 +436,7 @@
                                     "protected": false
                                 }
                             },
-                            "orderKey": 17,
+                            "orderKey": 8,
                             "children": []
                         },
                         "replaced": []
@@ -482,7 +482,7 @@
                                     "protected": false
                                 }
                             },
-                            "orderKey": 18,
+                            "orderKey": 9,
                             "children": []
                         },
                         "replaced": []
@@ -528,7 +528,7 @@
                                     "protected": false
                                 }
                             },
-                            "orderKey": 19,
+                            "orderKey": 10,
                             "children": [
                                 {
                                     "class": "EMS\\CoreBundle\\Entity\\FieldType",
@@ -601,7 +601,7 @@
                                     "protected": false
                                 }
                             },
-                            "orderKey": 20,
+                            "orderKey": 11,
                             "children": []
                         },
                         "replaced": []
@@ -647,7 +647,7 @@
                                     "protected": false
                                 }
                             },
-                            "orderKey": 21,
+                            "orderKey": 12,
                             "children": []
                         },
                         "replaced": []
@@ -693,7 +693,7 @@
                                     "protected": false
                                 }
                             },
-                            "orderKey": 22,
+                            "orderKey": 13,
                             "children": []
                         },
                         "replaced": []
@@ -739,7 +739,7 @@
                                     "protected": false
                                 }
                             },
-                            "orderKey": 23,
+                            "orderKey": 14,
                             "children": []
                         },
                         "replaced": []
@@ -785,7 +785,7 @@
                                     "protected": false
                                 }
                             },
-                            "orderKey": 24,
+                            "orderKey": 15,
                             "children": []
                         },
                         "replaced": []
@@ -831,7 +831,7 @@
                                     "protected": false
                                 }
                             },
-                            "orderKey": 25,
+                            "orderKey": 16,
                             "children": []
                         },
                         "replaced": []
@@ -877,7 +877,7 @@
                                     "protected": false
                                 }
                             },
-                            "orderKey": 26,
+                            "orderKey": 17,
                             "children": []
                         },
                         "replaced": []
@@ -923,7 +923,7 @@
                                     "protected": false
                                 }
                             },
-                            "orderKey": 27,
+                            "orderKey": 18,
                             "children": []
                         },
                         "replaced": []
@@ -969,7 +969,7 @@
                                     "protected": false
                                 }
                             },
-                            "orderKey": 28,
+                            "orderKey": 19,
                             "children": []
                         },
                         "replaced": []
@@ -1014,7 +1014,7 @@
                                     "protected": false
                                 }
                             },
-                            "orderKey": 29,
+                            "orderKey": 20,
                             "children": [
                                 {
                                     "class": "EMS\\CoreBundle\\Entity\\FieldType",
@@ -1399,7 +1399,7 @@
                                             },
                                             "raw_data": []
                                         },
-                                        "orderKey": 7,
+                                        "orderKey": 6,
                                         "children": []
                                     },
                                     "replaced": []
@@ -1435,7 +1435,7 @@
                                             },
                                             "raw_data": []
                                         },
-                                        "orderKey": 8,
+                                        "orderKey": 7,
                                         "children": []
                                     },
                                     "replaced": []
@@ -1484,7 +1484,7 @@
                                     "protected": false
                                 }
                             },
-                            "orderKey": 30,
+                            "orderKey": 21,
                             "children": [
                                 {
                                     "class": "EMS\\CoreBundle\\Entity\\FieldType",
@@ -1818,12 +1818,12 @@
                                     "class": "col-md-12",
                                     "lastOfRow": false,
                                     "helptext": null,
-                                    "icon": null,
                                     "prefixIcon": null,
                                     "prefixText": null,
                                     "suffixIcon": null,
                                     "suffixText": null,
-                                    "placeholder": null
+                                    "placeholder": null,
+                                    "icon": null
                                 },
                                 "mappingOptions": {
                                     "analyzer": "keyword",
@@ -1844,7 +1844,47 @@
                                     "protected": false
                                 }
                             },
-                            "orderKey": 31,
+                            "orderKey": 22,
+                            "children": []
+                        },
+                        "replaced": []
+                    },
+                    {
+                        "class": "EMS\\CoreBundle\\Entity\\FieldType",
+                        "arguments": [],
+                        "properties": {
+                            "type": "EMS\\CoreBundle\\Form\\DataField\\AssetFieldType",
+                            "name": "stack",
+                            "contentType": null,
+                            "deleted": false,
+                            "description": null,
+                            "options": {
+                                "displayOptions": {
+                                    "label": "Stack",
+                                    "class": "col-md-12",
+                                    "lastOfRow": false,
+                                    "helptext": null,
+                                    "multiple": true,
+                                    "icon": null,
+                                    "imageAssetConfigIdentifier": null
+                                },
+                                "mappingOptions": [],
+                                "restrictionOptions": {
+                                    "mandatory": false,
+                                    "mandatory_if": null,
+                                    "minimum_role": null
+                                },
+                                "extraOptions": {
+                                    "extra": null,
+                                    "clear_on_copy": false,
+                                    "postProcessing": null
+                                },
+                                "raw_data": [],
+                                "migrationOptions": {
+                                    "protected": false
+                                }
+                            },
+                            "orderKey": 23,
                             "children": []
                         },
                         "replaced": []
