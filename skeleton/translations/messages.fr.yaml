@@ -1,16 +1,12 @@
-flight:
-    contact:
-        title: 'Contactez-nous'
-page:
-    news:
-        title_prefix: 'Prochain vol : '
+actions:
+    buy_book: 'Acheter le livre'
 app:
     company: Institution
     copyright: '© %company% %year%'
     language_selection: 'Language selection'
     locale: Français
     search_page: Recherche
-    title: 'GlobalView.be'
+    title: GlobalView.be
 aria:
     skip_to_content: 'Passer au contenu principal'
     toggle_navigation: 'Ouvrir/fermer la navigation'
@@ -33,6 +29,9 @@ error:
     back_to_home: "Retour à la page d'accueil"
     description: "Nous allons travailler sur la correction de cela tout de suite. En attendant, vous pouvez essayer d'utiliser le formulaire de recherche."
     title: 'Oups! Quelque chose a mal tourné.'
+flight:
+    contact:
+        title: Contactez-nous
 footer:
     follow_us: 'Follow us'
 form:
@@ -90,6 +89,9 @@ news:
     title: Nouveautés
     title.demo: Actualités
     view_all: 'Toutes les actualités'
+page:
+    news:
+        title_prefix: 'Prochain vol : '
 search:
     action: Rechercher
     for_query: 'pour "%query%"'
@@ -97,5 +99,3 @@ search:
     placeholder: 'Entrez un ou plusieurs mots-clés'
     results: '{0} Aucun résultat trouvé|{1} 1 résultat trouvé|]1,Inf[%count% résultats trouvés'
     select_size: Résultats
-actions:
-    buy_book: 'Acheter le livre'
