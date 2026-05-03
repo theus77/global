@@ -229,7 +229,7 @@
                         "class": "EMS\\CoreBundle\\Entity\\FieldType",
                         "arguments": [],
                         "properties": {
-                            "type": "EMS\\CoreBundle\\Form\\DataField\\IntegerFieldType",
+                            "type": "EMS\\CoreBundle\\Form\\DataField\\TextStringFieldType",
                             "name": "model_id",
                             "contentType": null,
                             "deleted": false,
@@ -242,6 +242,7 @@
                                     "helptext": null
                                 },
                                 "mappingOptions": {
+                                    "analyzer": "keyword",
                                     "copy_to": null
                                 },
                                 "restrictionOptions": {
@@ -314,7 +315,7 @@
                         "class": "EMS\\CoreBundle\\Entity\\FieldType",
                         "arguments": [],
                         "properties": {
-                            "type": "EMS\\CoreBundle\\Form\\DataField\\IntegerFieldType",
+                            "type": "EMS\\CoreBundle\\Form\\DataField\\TextStringFieldType",
                             "name": "level",
                             "contentType": null,
                             "deleted": false,
@@ -327,6 +328,7 @@
                                     "helptext": null
                                 },
                                 "mappingOptions": {
+                                    "analyzer": "keyword",
                                     "copy_to": null
                                 },
                                 "restrictionOptions": {
@@ -425,7 +427,7 @@
                         "class": "EMS\\CoreBundle\\Entity\\FieldType",
                         "arguments": [],
                         "properties": {
-                            "type": "EMS\\CoreBundle\\Form\\DataField\\IntegerFieldType",
+                            "type": "EMS\\CoreBundle\\Form\\DataField\\TextStringFieldType",
                             "name": "zoom_level",
                             "contentType": null,
                             "deleted": false,
@@ -438,6 +440,7 @@
                                     "helptext": null
                                 },
                                 "mappingOptions": {
+                                    "analyzer": "keyword",
                                     "copy_to": null
                                 },
                                 "restrictionOptions": {
