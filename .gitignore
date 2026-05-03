@@ -8,3 +8,6 @@
 !/.sandbox/.gitignore
 /ide-elasticms/
 /es-dump/
+/configs/document/globalview_place/
+/configs/document/globalview_keyword/
+/configs/document/globalview_version/
