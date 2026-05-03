@@ -348,6 +348,117 @@
                             "children": []
                         },
                         "replaced": []
+                    },
+                    {
+                        "class": "EMS\\CoreBundle\\Entity\\FieldType",
+                        "arguments": [],
+                        "properties": {
+                            "type": "EMS\\CoreBundle\\Form\\DataField\\ComputedFieldType",
+                            "name": "geometry",
+                            "contentType": null,
+                            "deleted": false,
+                            "description": null,
+                            "options": {
+                                "displayOptions": {
+                                    "label": "Geometry",
+                                    "class": "col-md-12",
+                                    "lastOfRow": false,
+                                    "helptext": null,
+                                    "valueTemplate": "{{ block('save_geometry', '@EMSCH/ems_standard_template_ems/content_type/helpers/geo.twig') }}",
+                                    "json": true,
+                                    "displayTemplate": "{{ block('show_geometry', '@EMSCH/ems_standard_template_ems/content_type/helpers/geo.twig') }}"
+                                },
+                                "mappingOptions": {
+                                    "mappingOptions": "{\r\n    \"type\": \"geo_shape\"\r\n}",
+                                    "copy_to": null
+                                },
+                                "restrictionOptions": [],
+                                "extraOptions": {
+                                    "extra": null,
+                                    "clear_on_copy": false,
+                                    "postProcessing": null
+                                },
+                                "raw_data": []
+                            },
+                            "orderKey": 7,
+                            "children": []
+                        },
+                        "replaced": []
+                    },
+                    {
+                        "class": "EMS\\CoreBundle\\Entity\\FieldType",
+                        "arguments": [],
+                        "properties": {
+                            "type": "EMS\\CoreBundle\\Form\\DataField\\ComputedFieldType",
+                            "name": "location",
+                            "contentType": null,
+                            "deleted": false,
+                            "description": null,
+                            "options": {
+                                "displayOptions": {
+                                    "label": "Location",
+                                    "class": "col-md-12",
+                                    "lastOfRow": false,
+                                    "helptext": null,
+                                    "valueTemplate": "{{ block('save_location', '@EMSCH/ems_standard_template_ems/content_type/helpers/geo.twig') }}",
+                                    "json": true,
+                                    "displayTemplate": "{{ block('show_location', '@EMSCH/ems_standard_template_ems/content_type/helpers/geo.twig') }}"
+                                },
+                                "mappingOptions": {
+                                    "mappingOptions": "{\r\n    \"type\": \"geo_point\"\r\n}",
+                                    "copy_to": null
+                                },
+                                "restrictionOptions": [],
+                                "extraOptions": {
+                                    "extra": null,
+                                    "clear_on_copy": false,
+                                    "postProcessing": null
+                                },
+                                "raw_data": []
+                            },
+                            "orderKey": 8,
+                            "children": []
+                        },
+                        "replaced": []
+                    },
+                    {
+                        "class": "EMS\\CoreBundle\\Entity\\FieldType",
+                        "arguments": [],
+                        "properties": {
+                            "type": "EMS\\CoreBundle\\Form\\DataField\\IntegerFieldType",
+                            "name": "zoom_level",
+                            "contentType": null,
+                            "deleted": false,
+                            "description": null,
+                            "options": {
+                                "displayOptions": {
+                                    "label": "Zoom Level",
+                                    "class": "col-md-12",
+                                    "lastOfRow": false,
+                                    "helptext": null
+                                },
+                                "mappingOptions": {
+                                    "copy_to": null
+                                },
+                                "restrictionOptions": {
+                                    "mandatory": false,
+                                    "mandatory_if": null,
+                                    "minimum_role": null
+                                },
+                                "extraOptions": {
+                                    "extra": null,
+                                    "clear_on_copy": false,
+                                    "postProcessing": null
+                                },
+                                "raw_data": [],
+                                "migrationOptions": {
+                                    "protected": false
+                                }
+                            },
+                            "orderKey": 9,
+                            "children": []
+                        },
+                        "replaced": []
                     }
                 ]
             },
@@ -378,7 +489,7 @@
         "roles": {
             "view": "ROLE_AUTHOR",
             "create": "ROLE_ADMIN",
-            "edit": "not-defined",
+            "edit": "ROLE_ADMIN",
             "publish": "not-defined",
             "delete": "not-defined",
             "trash": "not-defined",
