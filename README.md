@@ -30,3 +30,22 @@ make fake-ide
 make sandbox
 npm i -g @openai/codex && codex
 ```
+
+How to backup old 2.4.0 indexes:
+
+````shell
+docker run --rm -it \
+  -v "$PWD/es-dump:/dump" \
+  --add-host=host.docker.internal:host-gateway \
+  taskrabbit/elasticsearch-dump \
+  --input=http://host.docker.internal:9222/aperture_v1 \
+  --output=/dump/aperture_v1_mapping.json \
+  --type=mapping
+docker run --rm -it \
+  -v "$PWD/es-dump:/dump" \
+  --add-host=host.docker.internal:host-gateway \
+  taskrabbit/elasticsearch-dump \
+  --input=http://host.docker.internal:9222/aperture_v1 \
+  --output=/dump/aperture_v1_data.json \
+  --type=data
+````
