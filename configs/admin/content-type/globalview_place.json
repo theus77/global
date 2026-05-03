@@ -2,7 +2,7 @@
     "class": "EMS\\CoreBundle\\Entity\\ContentType",
     "arguments": [],
     "properties": {
-        "name": "place",
+        "name": "globalview_place",
         "pluralName": "Places",
         "singularName": "Place",
         "icon": "glyphicon glyphicon-pushpin",
