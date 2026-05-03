@@ -7,3 +7,4 @@
 /.sandbox/*
 !/.sandbox/.gitignore
 /ide-elasticms/
+/es-dump/
