@@ -45,7 +45,7 @@
                         {{ wysiwyg.transform(item.body|emsch_routing_config(emsch_routing_config), trans_default_domain) }}
                         {% if item.url is defined %}
                             <a href="{{ item.url }}" target="_blank" class="btn btn-primary text-uppercase">
-                                {{ 'actions.buy_book'|trans }}
+                                {{ item.cta ? item.cta : 'actions.buy_book'|trans }}
                                 <span class="visually-hidden"> {{ item.name }}</span>
                             </a>
                         {% endif %}
