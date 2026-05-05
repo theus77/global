@@ -63,9 +63,14 @@ function setupScrollPanels() {
 }
 
 function setGalerieHeight() {
-    const height = $('.carousel-inner .carousel-item.active .middle-panel img, .carousel-inner .item.active .middle-panel img').height();
-    $('.carousel-inner .carousel-item.active .left-panel, .carousel-inner .item.active .left-panel').css('max-height', `${height}px`);
-    $('.carousel-inner .carousel-item.active .right-panel, .carousel-inner .item.active .right-panel').css('max-height', `${height}px`);
+    const height = $('.carousel-inner .carousel-item.active .middle-panel img').height();
+
+    if (!height) {
+        return;
+    }
+
+    $('.carousel-inner .carousel-item.active .left-panel').css('max-height', `${height}px`);
+    $('.carousel-inner .carousel-item.active .right-panel').css('max-height', `${height}px`);
 }
 
 function hidePreloader() {
@@ -261,6 +266,238 @@ function setupWowAnimations() {
     elements.forEach((element) => observer.observe(element));
 }
 
+function addGalleryMap(element, lat, lng) {
+    if (!window.google || !element || !lat || !lng) {
+        return;
+    }
+
+    const position = new window.google.maps.LatLng(lat, lng);
+    const map = new window.google.maps.Map(element, {
+        center: position,
+        maxZoom: 16,
+        minZoom: 7,
+        zoom: 12
+    });
+
+    new window.google.maps.Marker({ position, map });
+    $(element).attr('data-map-set', true);
+}
+
+function normalizeLegacyGalleryHtml(html) {
+    return String(html || '')
+        .replaceAll('class="img-responsive"', 'class="img-fluid"')
+        .replaceAll('class="label label-default"', 'class="badge text-bg-secondary"');
+}
+
+function setupLegacyFilmstripGallery() {
+    const $carousel = $('#carousel');
+    const $thumbs = $('#thumb-scroll-container');
+
+    if (!$carousel.length || !$thumbs.length) {
+        return;
+    }
+
+    const carousel = bootstrap.Carousel.getOrCreateInstance($carousel[0], {
+        interval: false,
+        ride: false,
+        pause: true,
+        wrap: true
+    });
+    const pageTreated = [];
+    const pageUrl = $carousel.data('pageUrl');
+    const infoUrl = $carousel.data('infoUrl');
+    let query = {};
+
+    try {
+        query = $carousel.data('query') || {};
+    } catch (e) {
+        query = {};
+    }
+
+    function getCurrentIndex() {
+        return Number.parseInt($carousel.attr('data-current') || '0', 10);
+    }
+
+    function getCount() {
+        return Number.parseInt($carousel.attr('data-count') || '0', 10);
+    }
+
+    function getInactiveItem() {
+        return $carousel.find('.carousel-inner > .carousel-item:not(.active)').first();
+    }
+
+    function activateThumb(index) {
+        $('.galerie-thumb .gallery-thumbnail.active').removeClass('active');
+        $(`#thumb-${index}`).parent().addClass('active');
+        $carousel.attr('data-current', index);
+    }
+
+    function bindAlternativeImages(scope = document) {
+        $(scope).find('.alternative-image').off('click.globalviewGallery').on('click.globalviewGallery', function showAlternativeImage(event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const imageUrl = $(this).find('img').attr('data-image');
+            if (!imageUrl) {
+                return false;
+            }
+
+            $carousel.find('.carousel-item.active .middle-panel img').attr('src', imageUrl);
+            $carousel.find('.alternative-image.active').removeClass('active');
+            $(this).addClass('active');
+            return false;
+        });
+    }
+
+    function updateItemFromInfo(item, data) {
+        item.find('.middle-panel img').attr('src', data.url || item.find('.middle-panel img').attr('src'));
+        item.find('.data-artist').html(data.artist || '');
+        item.find('.data-pixel_size').html(data.pixel_size || '');
+        item.find('.data-date').html(data.date || '');
+        item.find('input.hidden_ouuid').val(data.ouuid || '');
+        item.find('.inner-stack').html(normalizeLegacyGalleryHtml(data.stack));
+        item.find('.keywordList').html(normalizeLegacyGalleryHtml(data.keywords));
+
+        item.find('.map-div').each(function refreshMap() {
+            $(this).attr({
+                'data-lat': data.lat || '',
+                'data-lng': data.lng || '',
+                'data-map-set': null
+            });
+            addGalleryMap(this, data.lat, data.lng);
+        });
+
+        bindAlternativeImages(item);
+        setGalerieHeight();
+    }
+
+    function fetchThumbPage(index) {
+        if (!pageUrl) {
+            return;
+        }
+
+        const page = Math.floor(Number($(`#thumb-${index}`).data('index')) / 100);
+        if (pageTreated.includes(page)) {
+            return;
+        }
+
+        pageTreated.push(page);
+        $.ajax({
+            url: pageUrl,
+            data: { ...query, page }
+        }).done((data) => {
+            $.each(data.items || [], function updateThumb(_index, value) {
+                $(`#thumb-${value.id}`).attr({
+                    'data-ouuid': value.ouuid,
+                    alt: value.label,
+                    'data-original': value.preview
+                });
+
+                if (($(`#thumb-${value.id}`).attr('src') || '').match(/2$/)) {
+                    $(`#thumb-${value.id}`).attr('src', value.preview);
+                }
+            });
+        });
+    }
+
+    function goTo(index) {
+        const targetIndex = Number.parseInt(index, 10);
+        const $thumb = $(`#thumb-${targetIndex}`);
+
+        if (!$thumb.length || getCurrentIndex() === targetIndex) {
+            return;
+        }
+
+        if (!$thumb.attr('data-ouuid')) {
+            fetchThumbPage(targetIndex);
+            return;
+        }
+
+        const item = getInactiveItem();
+        if (!item.length) {
+            return;
+        }
+
+        const image = item.find('.middle-panel img');
+        const previewUrl = $thumb.attr('data-original') || $thumb.attr('src');
+
+        item.find('.versionTitle').html($thumb.attr('alt') || '');
+        item.find('.data-artist, .data-pixel_size, .data-date, .keywordList, .inner-stack').html('');
+
+        image.one('load.globalviewGallery', function onPreviewLoaded() {
+            if (infoUrl) {
+                $.ajax({
+                    url: infoUrl,
+                    data: { ouuid: $thumb.attr('data-ouuid') }
+                }).done((data) => updateItemFromInfo(item, data));
+            }
+
+            if (getCurrentIndex() > targetIndex) {
+                carousel.prev();
+            } else {
+                carousel.next();
+            }
+
+            activateThumb(targetIndex);
+            setGalerieHeight();
+        });
+
+        image.attr('src', previewUrl);
+        if (image[0]?.complete) {
+            image.triggerHandler('load');
+        }
+    }
+
+    window.goTo = goTo;
+    window.previous = function previous(event) {
+        event?.stopPropagation();
+        const count = getCount();
+        let value = getCurrentIndex() - 1;
+        if (value < 0) {
+            value = count - 1;
+        }
+        goTo(value);
+    };
+    window.next = function next(event) {
+        event?.stopPropagation();
+        const count = getCount();
+        let value = getCurrentIndex() + 1;
+        if (value >= count) {
+            value = 0;
+        }
+        goTo(value);
+    };
+
+    $thumbs.on('click', '.gallery-thumbnail', function onThumbClick(event) {
+        event.preventDefault();
+        goTo($(this).data('index'));
+    });
+
+    $carousel.on('click', '.carousel-control-prev', function onPreviousClick(event) {
+        event.preventDefault();
+        window.previous(event);
+    });
+
+    $carousel.on('click', '.carousel-control-next', function onNextClick(event) {
+        event.preventDefault();
+        window.next(event);
+    });
+
+    $('img.lazy-in-scroll').on('load.globalviewGallery', function onLazyThumbLoad() {
+        if (!$(this).data('ouuid')) {
+            fetchThumbPage($(this).data('index'));
+        }
+    }).lazyload({
+        container: $thumbs
+    });
+
+    $('.map-div').each(function initMap() {
+        addGalleryMap(this, $(this).attr('data-lat'), $(this).attr('data-lng'));
+    });
+
+    bindAlternativeImages();
+}
+
 function setupGallery() {
     $('#GalerieCarousel').carousel({
         pause: true,
@@ -329,6 +566,8 @@ function setupGallery() {
         $('#GalerieCarousel div.active img, #GalerieCarousel div.carousel-item.active img').attr('src', $(elem).attr('data-stack-uuid'));
         return false;
     };
+
+    setupLegacyFilmstripGallery();
 }
 
 async function init() {

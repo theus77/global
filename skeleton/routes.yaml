@@ -27,6 +27,12 @@ news_overview:
         requirements: { _locale: nl|fr|de|en }
         defaults: { _locale: fr }
     template_static: ems_standard_template/page/news_overview.html.twig
+gallery:
+    config:
+        path: { nl: '/{_locale}/galerij', fr: '/{_locale}/galerie', de: '/{_locale}/galerie', en: '/{_locale}/gallery' }
+        requirements: { _locale: nl|fr|de|en }
+        defaults: { _locale: fr }
+    template_static: ems_standard_template/page/gallery.html.twig
 news:
     config:
         path: { nl: '/{_locale}/vluchten/{slug}', fr: '/{_locale}/vols/{slug}', de: '/{_locale}/fluege/{slug}', en: '/{_locale}/flights/{slug}' }
