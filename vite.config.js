@@ -2,6 +2,8 @@ import { defineConfig } from 'vite';
 import path from 'path';
 import liveReload from 'vite-plugin-live-reload'
 
+const devOrigin = process.env.VITE_DEV_ORIGIN || 'http://localhost:5174';
+
 export default defineConfig({
     base: './',
     build: {
@@ -16,6 +18,8 @@ export default defineConfig({
                 app: path.resolve(__dirname, 'src/js/app.js'),
                 admin: path.resolve(__dirname, 'src/js/admin.js'),
                 accessibility_cloud: path.resolve(__dirname, 'src/js/accessibility_cloud.js'),
+                globalview: path.resolve(__dirname, 'src/js/globalview.js'),
+                globalview_admin: path.resolve(__dirname, 'src/js/globalview-admin.js'),
             },
             output: {
                 entryFileNames: 'js/[name].js',
@@ -47,7 +51,7 @@ export default defineConfig({
     },
     server: {
         host: '0.0.0.0',
-        origin: 'http://vite.internal:5174',
+        origin: devOrigin,
         port: 5174,
         strictPort: true,
         hmr: true,

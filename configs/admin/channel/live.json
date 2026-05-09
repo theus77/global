@@ -3,14 +3,15 @@
     "arguments": [],
     "properties": {
         "name": "live",
-        "alias": "ems_standard_ma_live",
+        "alias": "globalview_ma_live",
         "public": false,
         "label": "Live",
         "options": {
             "prefix_instance_id": false,
+            "inline_editor": false,
             "searchConfig": "[]",
             "entryPath": "./",
-            "attributes": "{\r\n    \"_backend\": \"\\/.\",\r\n    \"_locale\": \"fr\"\r\n}"
+            "attributes": "{\r\n    \"_backend\": \"/.\",\r\n    \"_locale\": \"fr\"\r\n}"
         },
         "orderKey": 2
     },

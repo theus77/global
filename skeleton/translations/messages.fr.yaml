@@ -1,10 +1,12 @@
+actions:
+    buy_book: 'Acheter le livre'
 app:
     company: Institution
     copyright: '© %company% %year%'
     language_selection: 'Language selection'
     locale: Français
     search_page: Recherche
-    title: 'EMS Standard'
+    title: GlobalView.be
 aria:
     skip_to_content: 'Passer au contenu principal'
     toggle_navigation: 'Ouvrir/fermer la navigation'
@@ -27,6 +29,11 @@ error:
     back_to_home: "Retour à la page d'accueil"
     description: "Nous allons travailler sur la correction de cela tout de suite. En attendant, vous pouvez essayer d'utiliser le formulaire de recherche."
     title: 'Oups! Quelque chose a mal tourné.'
+flight:
+    contact:
+        title: Contactez-nous
+footer:
+    follow_us: 'Follow us'
 form:
     error: 'Le formulaire a rencontré un problème : %message%'
     error_try_later: 'Le formulaire a rencontré un problème, veuillez réessayer plus tard.'
@@ -68,6 +75,13 @@ nav:
     current: Actuelle
     next: Suivant
     previous: Précédent
+navbar:
+    back_to_homepage: "Retour à la page d'accueil"
+    free_search:
+        title: 'Recherche libre'
+    search:
+        placeholder: 'Entrez un ou plusieurs mots-clés'
+        title: Rechercher
 news:
     back_to: 'Retour vers toutes les actualités'
     published_date: 'Publié le %date%'
@@ -75,6 +89,9 @@ news:
     title: Nouveautés
     title.demo: Actualités
     view_all: 'Toutes les actualités'
+page:
+    news:
+        title_prefix: 'Prochain vol : '
 search:
     action: Rechercher
     for_query: 'pour "%query%"'
@@ -82,14 +99,3 @@ search:
     placeholder: 'Entrez un ou plusieurs mots-clés'
     results: '{0} Aucun résultat trouvé|{1} 1 résultat trouvé|]1,Inf[%count% résultats trouvés'
     select_size: Résultats
-socials:
-    facebook:
-        alt: Facebook
-        url: 'https://www.facebook.com/globalview.be'
-    instagram:
-        alt: Instagram
-        url: 'https://www.instagram.com/simon.globalview/'
-    linkedin:
-        alt: LinkedIn
-        url: 'https://www.linkedin.com/company/global-view-sprl/'
-    title: 'Suivez-nous sur les réseaux sociaux'

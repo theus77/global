@@ -1,0 +1,280 @@
+/*
+* Specific design for gallery page
+*
+********************************************/
+
+#galerie-filmstrip {
+	padding-top:em(100px);
+  	background: rgba($color1, 0.7);
+  	max-width:em(1920px);
+  	&.container-fluid{
+  		padding-left:0;
+  		padding-right:0;
+  	}
+  	.row {margin-left:0;margin-right:0;}
+  	[class*='col-'] {padding-left:0; padding-right:0;}
+  	@include MQ(Sneg) {
+  		padding-top:em(50px);
+  	}
+  	h1 {
+  		font-size:em(24px);
+  		margin:em(15px, 24px) em(15px, 24px);
+  	}
+	h2 {
+		color: $color1;
+		font-size:em(18px);
+		margin-top: 0;
+		@include MQ(Sneg) {
+			margin-top:em(15px, 18px);
+		}
+	}
+	h3 {font-size:em(16px);margin-top:0;font-weight:normal;}
+
+	#map-ctp {margin:em(10px) 0;}
+	#price-ask a{
+		font-size:em(14px);
+		margin-top:em(10px, 14px);
+	}
+	.galerie-thumb {line-height:0;}
+	#galerie-thumb-bro .galerie-thumb-scroll {
+		display:none;
+		@include MQ(Sneg) {
+			display:block;
+		}
+	}
+	div.galerie-thumb-scroll {
+		width: 100%;
+		height: auto;
+		overflow:auto;
+		white-space:nowrap;
+  	}
+  	.gallery-thumbnail {
+  		display: inline-block;
+  		position:relative;
+  		margin-bottom: 0;
+  		height:100% !important;
+  		margin-right:em(10px); // remove gaps with inline-block
+  		padding:0 0 30px 0;
+  		background-color: transparent;
+  		border:0;
+  		margin-left:em(10px);
+  		@include MQ(Sneg) {
+  			padding:0 0 10px 0;
+  		}
+		//@extend %gray-img;
+		&.active:after {
+			z-index:10;
+			content:'';
+			position:absolute;
+			bottom:3px;
+			left:calc(50% - 27px);
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: em(27px) em(27px) 0 em(27px);
+			border-color: $color2 transparent transparent transparent;
+			-webkit-transform:rotate(360deg);
+			@include MQ(Sneg) {
+				bottom:0;
+				left:calc(50% - 10px);
+				border-width: em(10px) em(10px) 0 em(10px);
+			}
+		}
+		&.active img, &:hover img, &:focus img {
+			border:5px solid $color2;
+			@include MQ(Sneg) {
+				border:2px solid $color2;
+			}
+		}
+  		img {
+  			@include MQ(Mneg) {
+  				max-width: em(100px);
+  			}
+  			@include MQ(Mplus) {
+  				max-width: em(200px);
+  			}
+  		}
+  	}
+}
+
+.carousel-indicators {
+	@include MQ(Sneg) {
+		bottom: em(10px);
+	}
+}
+.admin-galery-wrapper {
+	.admin-galery {
+		margin: em(10px) 0;
+		h2 {
+			cursor: pointer;
+			width:100% !important;
+			font-size: em(20px) !important;
+			background-color: lighten($color1, 90%)!important;
+			padding: em(10px, 20px) !important;
+		}
+		background-color: lighten($color1, 100%);
+		form {display:none; padding:em(10px);}
+	}
+}
+.thumb {
+	.thumb-link {
+		@include MQ(Sneg) {
+			font-size:em(12px);
+		}
+	}
+}
+/* thumbnail on map page */
+.gm-style-iw .col-sm-4 {
+	width:100%;
+	padding:0;
+	.gallery-thumbnail {margin-bottom:0;}
+	.image-box {margin:0;}
+	.caption {
+		max-width:em(180px);
+		padding:0;
+		line-height:1.5em;
+	}
+	img {
+		max-width:em(180px);
+		@include MQ(Sneg){
+			max-width:em(60px);
+		}
+	}
+	.thumb-link {
+		max-width:em(180px, 11px);
+		font-size:em(11px);
+		.badge {
+			padding:0 0 0 em(5px, 11px);
+			display:inline;
+			float:none;
+		}
+	}
+}
+
+/* ==================================================
+  gallery
+====================================================*/
+.image-box {
+	border: 2px solid lighten($color1, 100%);
+	background: lighten($color1, 100%);
+	margin: em(15px) 0;
+	img {
+	  @include transition(all 0.4s ease-in-out);
+	}
+	figure {
+		overflow: hidden;
+		&:hover img {
+			@include transform(scale(1.1));
+		}
+	}
+	.caption {
+		color:$color1;
+		text-align: center;
+		padding: em(10px) 0;
+	}
+	a {
+		text-decoration: none;
+		&:hover h4 {
+			color: $color6;
+		}
+	}
+}
+#carousel {
+	padding-top:em(15px);
+	background-color:rgba($color2, .7);
+}
+.carousel-control-next {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+}
+.carousel-control-prev {
+	background-image: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+	background-size: 100% 100%;
+	height: 50px;
+	width: 50px;
+	@include MQ(Mneg) {
+		height: 30px;
+		width: 30px;
+	}
+}
+.carousel-inner > .carousel-item > img, .carousel-inner > .carousel-item > a > img {width:100%;}
+.carousel-inner {
+	width:auto;
+	position:relative;
+	padding-bottom:em(15px);
+	.middle-wrapper {position:relative;}
+	@extend %gradient-gray;
+	.carousel-item {
+		&.active {
+			display:flex;
+		}
+		.left-panel, .right-panel, .middle-panel {
+			@include MQ(Splus) {
+				min-height:em(400px) !important;
+			}
+			@include MQ(S) {
+				min-height:em(300px) !important;
+			}
+		}
+		.inner-stack {
+			height:100%;
+		}
+		.left-panel {
+			.alternative-image {
+				display:block;
+				@extend %gray-img;
+				width:calc(100% - 30px);
+				max-width: em(200px);
+				margin:em(15px) auto;
+				&:first-child {
+					margin-top:0;
+				}
+				@include MQ(Mneg) {
+  					max-width: em(100px);
+	  			}
+				@include MQ(Sneg) {
+					max-width:calc(100% - 10px);
+					margin:em(5px) auto;
+				}
+
+			}
+		}
+		.right-panel {
+			font-size:em(13px);
+			position:relative;
+
+			.wrapper-right-panel {
+				padding:0 em(15px) em(40px) em(15px);
+			}
+			.badge {
+				display:inline-block;
+				font-size:em(14px);
+				font-weight:normal;
+				background-color:darken($color2, 30%);
+				&:hover {background-color:darken($color2, 50%);}
+				a {
+					color: inherit;
+					text-decoration: none;
+				}
+			}
+			li {
+				line-height:1.2em;
+			}
+
+			#detailList {padding-left:em(15px);}
+			.btn.btn-primary {
+				background-color:$color1;
+				color:lighten($color1, 100%);
+				border:none;
+				&:hover {background-color:lighten($color1, 15%);}
+			}
+			@include MQ(Lneg) {
+				overflow: visible !important;
+				height:auto !important;
+				margin-top:em(20px);
+			}
+		}
+	}
+}

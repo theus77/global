@@ -7,6 +7,7 @@ services:
             - 'ES_CLUSTER_CONFIG=${ELASTICSEARCH_CONFIG}'
             - 'APP_BACKEND_PROXY_URL=${ACC_BACKEND_PROXY_URL}'
             - 'EMS_STORAGES=${EMS_STORAGES}'
+            - 'APP_SECRET=${APP_SECRET}'
         labels:
             - traefik.enable=true
             - 'traefik.http.routers.globalview-acc.rule=HostRegexp(`^acc\-([a-z0-9\-_\.]+)\.globalview\.localhost$$`)'
@@ -17,6 +18,66 @@ services:
             - traefik.http.routers.globalview-acc-tls.tls=true
             - traefik.http.routers.globalview-acc-tls.service=globalview-acc-apache
             - traefik.http.services.globalview-acc-apache.loadbalancer.server.port=9000
+
+    cli:
+        image: 'elasticms/cli:${SKELETON_VERSION}'
+        user: ${DOCKER_USER-1000}
+        volumes:
+            - ./:/workspace:rw
+        working_dir: /workspace
+        command:
+            - bash
+            - -lc
+            - |
+                mkdir -p /home/default/.local/bin
+                export PATH="/home/default/.local/bin:$$PATH"
+                grep -qxF 'export PATH="/home/default/.local/bin:$$PATH"' /home/default/.bashrc || echo 'export PATH="/home/default/.local/bin:$$PATH"' >> /home/default/.bashrc
+                grep -qxF "alias elasticms='php /app/src/elasticms/bin/console'" /home/default/.bashrc || echo "alias elasticms='php /app/src/elasticms/bin/console'" >> /home/default/.bashrc
+                exec "$${SHELL:-bash}"
+        stdin_open: true
+        tty: true
+
+    sandbox:
+        image: docker.io/smalswebtech/base-php:8.5-cli-dev
+        user: ${DOCKER_USER-1000}
+        env_file:
+            -   ./sandbox.env
+        environment:
+            NPM_CONFIG_PREFIX: /home/default/.local/npm
+        volumes:
+            - ./.sandbox:/home/default:rw
+            - ./:/workspace:rw
+        working_dir: /workspace
+        command:
+            - bash
+            - -lc
+            - |
+                mkdir -p /home/default/.local/bin /home/default/.local/npm/bin /home/default/.config
+                export PATH="/home/default/.local/bin:/home/default/.local/npm/bin:$$PATH"
+                grep -qxF 'export PATH="/home/default/.local/bin:/home/default/.local/npm/bin:$$PATH"' /home/default/.bashrc || echo 'export PATH="/home/default/.local/bin:/home/default/.local/npm/bin:$$PATH"' >> /home/default/.bashrc
+                grep -qxF "alias pbc='php bin/console'" /home/default/.bashrc || echo "alias pbc='php bin/console'" >> /home/default/.bashrc
+                npm config set prefix /home/default/.local/npm
+                if ! command -v symfony >/dev/null 2>&1; then
+                    curl -sS https://get.symfony.com/cli/installer | bash
+                fi
+                if [ -d /home/default/.symfony5 ]; then
+                    if [ ! -e /home/default/.config/symfony-cli ]; then
+                        mv /home/default/.symfony5 /home/default/.config/symfony-cli
+                    elif [ -z "$$(find /home/default/.config/symfony-cli -mindepth 1 -maxdepth 1 -print -quit)" ]; then
+                        rmdir /home/default/.config/symfony-cli
+                        mv /home/default/.symfony5 /home/default/.config/symfony-cli
+                    fi
+                fi
+                if [ -L /home/default/.local/bin/symfony ] && [ "$$(readlink /home/default/.local/bin/symfony)" = "/home/default/.symfony5/bin/symfony" ]; then
+                    rm /home/default/.local/bin/symfony
+                fi
+                if [ ! -e /home/default/.local/bin/symfony ] && [ -x /home/default/.config/symfony-cli/bin/symfony ]; then
+                    ln -s /home/default/.config/symfony-cli/bin/symfony /home/default/.local/bin/symfony
+                fi
+                exec "$${SHELL:-bash}"
+        stdin_open: true
+        tty: true
+
 networks:
     default:
         name: skeleton

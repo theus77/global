@@ -1,0 +1,413 @@
+/*
+* 1. map design
+* 2. search
+* 3. social
+* 4. buttons
+* 5. box
+* 6. footer
+* 7. accordion
+* 8. preloader
+* 9. scrolltotop
+**/
+
+/*===================================
+  1. Map design
+========================================*/
+#map {
+  background-color:lighten($color1, 20%);
+  nav.navbar-inverse.navbar-fixed-top {
+    background: rgba(0, 0, 0, 0.7) none repeat scroll 0 0;
+    padding:0;
+  }
+  #map-ctp {
+    min-height:100vh;
+    .outer {
+        position: relative;
+      .scaling-image {
+          position: relative;
+          visibility: hidden; /* make sure it's hidden */
+          width: 100%;
+          min-width: 100%;
+          height: 100%;
+      }
+
+      .inner {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          overflow:hidden;
+      }
+    }
+  }
+  #map-canvas {
+    min-height:100vh;
+  }
+  #map-canvas .thumbnail {border:0;}
+}
+
+  #map-canvas {
+    /* book a flight */
+    min-height:em(400px);
+  }
+
+
+/*=========================================
+ 2. search
+============================================*/
+#sortableGallery {
+	margin: em(20px) 0;
+}
+
+/* ==================================================
+  3. social
+====================================================*/
+.social {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  li {
+    display:inline-block;
+    a {
+      width: em(28px);
+      height: em(28px);
+      display: inline-block;
+      text-align: center;
+      font-size: em(14px);
+      background: lighten($color1, 100%);
+      line-height: em(28px);
+      margin-right: em(5px);
+      &:hover {
+        background: lighten($color1, 90%);
+        i {
+          color: lighten($color1, 100%);
+        }
+      }
+      i {
+          color: $color5;
+          text-shadow: none;
+      }
+    }
+  }
+}
+/* ==================================================
+  4. buttons
+====================================================*/
+a.link {
+  color: lighten($color1, 100%);
+  position: relative;
+  &:after {
+    top: -3px;
+    right: -20px;
+    font-size: 12px;
+    content: "\f18e";
+    font-weight: normal;
+    display: inline-block;
+    font-family: FontAwesome;
+    position: absolute;
+    color: lighten($color1, 100%);
+  }
+  &:hover:after {
+    right: -35px;
+    @include transition(all 0.2s ease-in-out);
+  }
+}
+.btn-custom {
+  display: inline-block;
+  font-size: em(15px);
+  color: #fff;
+  border: 2px solid #fff;
+  text-transform: uppercase;
+  margin: em(5px) em(2px) em(5px) 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: lighten($color1, 100%);
+  }
+}
+
+
+/* ==================================================
+  5. box
+====================================================*/
+.simple-box2 {
+  @include transition(all 0.5s ease-in-out);
+  margin: em(40px) 0;
+  .content {
+    position: relative;
+    margin-left: em(90px);
+    background: rgba($color1, 0.5);
+    color: lighten($color1,100%);
+    padding: em(20px);
+    @include border-radius(4px);
+    span {
+      font-weight: bold;
+      display: block;
+    }
+    i{
+      margin: 0 em(5px);
+    }
+    .arrow-left {
+      width: 0;
+      height: 0;
+      border-top: em(10px) solid transparent;
+      border-bottom: em(10px) solid transparent;
+      border-right: em(10px) solid rgba($color1, 0.1);
+      position: absolute;
+      top: em(29px);
+      left: -10px;
+      @include transition(all 0.5s ease-in-out);
+    }
+    &:hover .content {
+      background: rgba($color1, 0.3);
+      @include transition(all 0.5s ease-in-out);
+    }
+    &:hover .arrow-left {
+      border-right: em(10px) solid rgba(0, 0, 0, 0.3);
+      @include transition(all 0.5s ease-in-out);
+    }
+  }
+}
+
+/* ==================================================
+  6. footer
+====================================================*/
+#footer {
+  text-align: center;
+  padding: em(20px) 0;
+}
+
+/* ==================================================
+  7. photo books
+====================================================*/
+.photo-books {
+  background: rgba($color1, 0.72);
+
+  .photo-books-intro {
+    max-width: em(760px);
+    margin: em(-20px) auto em(36px);
+    text-align: center;
+    color: lighten($color1, 100%);
+    font-size: em(17px);
+  }
+
+  .photo-book {
+    height: 100%;
+    background: rgba($color1, 0.78);
+    border: 2px solid rgba(255, 255, 255, 0.75);
+    @include border-radius(4px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    @include transition(all 0.3s ease-in-out);
+
+    &:hover,
+    &:focus-within {
+      border-color: lighten($color1, 100%);
+      background: rgba($color1, 0.9);
+      @include transform(translateY(-4px));
+    }
+  }
+
+  .photo-book-featured:hover {
+    border-color: $color2;
+  }
+
+  .photo-book-cover {
+    margin: 0;
+    background: $color1;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      @include transition(all 0.4s ease-in-out);
+    }
+  }
+
+  .photo-book:hover .photo-book-cover img,
+  .photo-book:focus-within .photo-book-cover img {
+    @include transform(scale(1.05));
+  }
+
+  .photo-book-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: em(20px);
+  }
+
+  h3 {
+    margin: 0 0 em(12px, 22px);
+    font-size: em(22px);
+    text-transform: uppercase;
+  }
+
+  p {
+    flex: 1;
+    margin-bottom: em(20px);
+  }
+
+  .btn {
+    align-self: flex-start;
+  }
+
+  .photo-book-note {
+    color: lighten($color1, 100%);
+    border: 2px solid rgba(255, 255, 255, 0.75);
+    padding: em(9px) em(13px);
+    text-transform: uppercase;
+    font-size: em(13px);
+    font-weight: bold;
+    align-self: flex-start;
+  }
+}
+
+.news-list-link {
+  overflow: hidden;
+
+  img {
+    @include transition(all 0.4s ease-in-out);
+  }
+
+  &:hover img,
+  &:focus img,
+  &:focus-visible img {
+    @include transform(scale(1.05));
+  }
+}
+
+/* ==================================================
+  8. accordion
+====================================================*/
+.section .accordion {
+  --bs-accordion-btn-padding-x: 0.6rem;
+  --bs-accordion-btn-padding-y: 0.6rem;
+
+  margin: em(40px) 0;
+
+  .accordion-item {
+    @include border-radius(4px);
+    background: rgba($color1, 0.85);
+    border: 2px solid #000;
+    overflow: hidden;
+  }
+
+  .accordion-header {
+    position: relative;
+    padding: 0;
+    @include border-radius(3px);
+    color: lighten($color1, 100%);
+    background: transparent;
+    border-color: $color1;
+  }
+
+  .accordion-button {
+    color: inherit;
+    background: transparent;
+    box-shadow: none;
+
+    &::after {
+      --bs-accordion-btn-icon: #{escape-svg($accordion-button-icon)};
+      --bs-accordion-btn-active-icon: #{escape-svg($accordion-button-active-icon)};
+      filter: brightness(0) invert(1);
+    }
+
+    &:not(.collapsed) {
+      color: inherit;
+      background: transparent;
+    }
+  }
+
+  .accordion-body {
+    color: lighten($color1, 100%);
+    background: transparent;
+
+    img, iframe {
+      float: left;
+      max-width: 45%;
+      height: auto;
+      margin: 0 em(30px) em(20px) 0;
+    }
+
+    > .wysiwygContent img,
+    > .wysiwygContent iframe {
+      border: 2px solid #fff;
+    }
+
+    .wysiwygContent::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .section .accordion .accordion-body img {
+    float: none;
+    max-width: 100%;
+    margin: 0 0 em(20px);
+  }
+}
+
+/* ==================================================
+  9. preloader
+====================================================*/
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: lighten($color1, 80%);
+  z-index: 1040;
+}
+#status {
+  width: em(200px);
+  height: em(200px);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background-image: image-url("website/loading.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: em(-100px) 0 0 em(-100px);
+}
+/* ==================================================
+  10. scrollToTop
+==================================================== */
+.scrollToTop {
+  width: em(42px);
+  height: em(42px);
+  padding-top: em(10px);
+  text-align: center;
+  font-weight: bold;
+  color: lighten($color1, 100%);
+  text-decoration: none;
+  position: fixed;
+  bottom: em(10px);
+  right: em(10px);
+  display: none;
+  cursor: pointer;
+  border: none;
+  background-color: rgba($color1, 0.5);
+  z-index: 1000;
+  -webkit-backface-visibility: hidden;
+  @include transform(translateZ(0));
+  @include transition(all 0.2s ease-in-out);
+  @include border-radius(em(50px));
+  &:hover,
+  &:visited,
+  &:focus {
+    text-decoration: none;
+    background-color: $color1;
+    color: lighten($color1, 100%);
+  }
+  i {line-height: em(10px);}
+}

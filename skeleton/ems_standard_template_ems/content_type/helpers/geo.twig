@@ -1,0 +1,23 @@
+{%- block save_location -%}
+    {%- if _source.location|default(false) -%}
+        {{- _source.location|json_encode|raw -}}
+    {%- endif -%}
+{%- endblock save_location -%}
+
+{%- block show_location -%}
+    {%- if data.lat|default(false) -%}
+        <a href="https://www.google.com/maps/search/?api=1&query={{ data.lat }},{{ data.lon }}" target="_blank">Lat: {{ data.lat }}/Long: {{ data.lon }}</a>
+    {%- endif -%}
+{%- endblock show_location -%}
+
+{%- block save_geometry -%}
+    {%- if _source.geometry|default(false) -%}
+        {{- _source.geometry|json_encode|raw -}}
+    {%- endif -%}
+{%- endblock save_geometry -%}
+
+{%- block show_geometry -%}
+    <pre>
+        {{- data|json_encode -}}
+    </pre>
+{%- endblock show_geometry -%}

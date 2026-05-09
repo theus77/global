@@ -4,6 +4,9 @@
 
 {%- block body -%}
     <a id="skip-to-content" class="visually-hidden-focusable" href="#wrapper">{{ 'aria.skip_to_content'|trans }}</a>
+    <div id="preloader"></div>
+    <div id="bg_pattern"></div>
+    {{ block('backtotop') }}
 
     {{ block('alerts') }}
     {{ block('header') }}
@@ -12,6 +15,8 @@
     {{ block('footer') }}
     {{ block('modal_search') -}}
 {%- endblock body -%}
+
+{% block bodyAttributes -%}class="slider-background default"{%- endblock bodyAttributes -%}
 
 {%- block alerts -%}
     {%- if alerts|default([])|length > 0 -%}
@@ -43,63 +48,60 @@
 {%- endblock alerts -%}
 
 {%- block header -%}
-    {{ block('header_top') }}
-    <header id="page-header" class="navbar navbar-expand-lg pt-3 pb-0">
-        <div class="container-lg d-block">
-            {{ block('header_banner') }}
-            <nav class="d-lg-flex flex-lg-column mt-3 mt-lg-0">
-                <div class="collapse navbar-collapse" id="main-nav">
-                    {{ block('header_structure') }}
-                </div>
-            </nav>
-        </div>
-    </header>
-{%- endblock header -%}
+    <header class="masthead header header--fixed">
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-inverse navbar-fixed-top fixed-top navbar-scroll" {% if title_prefix|default(false) %}style="background-color: red;"{% endif %}>
+            <div class="container">
+                <a href="{{ path('homepage') }}" class="navbar-brand">
+                    <img src="{{ asset('img/logo/logo.webp', 'emsch') }}" alt="{{ 'navbar.back_to_homepage'|trans }}">
+                </a>
 
-{%- block header_top -%}
-    <nav class="header-top border-bottom">
-        <div class="container-lg">
-            <div class="d-flex flex-wrap align-items-center">
-                <ul class="nav language-nav d-none d-lg-flex">
-                    {%- for l, url in languageUrls|default([]) -%}
-                        {%- if l == locale -%}
-                            <li class="nav-item"><span lang="{{ l }}" class="nav-link text-body px-0 me-2 {{ not loop.first ? 'ms-2' }} active">{{ l|upper }}</span></li>
-                        {%- else -%}
-                            <li class="nav-item"><a href="{{ url }}" lang="{{ l }}" class="nav-link text-body px-0 me-2 {{ not loop.first ? 'ms-2' }}" title="{{ l|language_name }}">{{ l|upper }}</a></li>
-                        {%- endif -%}
-                    {%- endfor -%}
-                </ul>
-                <div class="d-lg-none dropdown">
-                    <a href="#" role="button" class="btn btn-link dropdown-toggle" lang="{{ locale }}" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" >{{ locale|upper }}</a>
-                    <div class="language-nav dropdown-menu rounded-0 p-md-0">
-                        {%- for l, url in languageUrls|default([]) -%}
-                            {%- if l != locale -%}
-                                <a href="{{ url }}" lang="{{ l }}" class="dropdown-item">{{ l|upper }}</a>
-                            {%- endif -%}
-                        {% endfor %}
-                    </div>
+                <button type="button"
+                        class="navbar-toggler"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapse-navbar"
+                        aria-controls="collapse-navbar"
+                        aria-expanded="false"
+                        aria-label="{{ 'aria.toggle_navigation'|trans }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="collapse-navbar">
+                    {{ block('header_structure') }}
+                    <form action="{{ path('search') }}" class="navbar-form d-lg-none mt-3" method="GET">
+                        <div class="input-group">
+                            <input type="text"
+                                   class="form-control QuickSearchInput"
+                                   placeholder="{{ 'navbar.search.placeholder'|trans }}"
+                                   aria-label="{{ 'navbar.search.title'|trans }}"
+                                   name="q"
+                                   data-search-url="{{ path('search', { _format: 'json' }) }}">
+                            <button type="submit" class="btn btn-outline-light">
+                                <span class="fa-solid fa-magnifying-glass" aria-hidden="true"></span>
+                                <span class="visually-hidden">{{ 'navbar.search.title'|trans }}</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="search-form" id="navbar-search-form">
+                    <form action="{{ path('search') }}" class="navbar-form" method="GET">
+                        <div class="form-group search-toggle">
+                            <input type="text"
+                                   class="form-control QuickSearchInput"
+                                   placeholder="{{ 'navbar.search.placeholder'|trans }}"
+                                   aria-label="{{ 'navbar.search.title'|trans }}"
+                                   name="q"
+                                   data-search-url="{{ path('search', { _format: 'json' }) }}">
+                        </div>
+                        <button type="submit" class="btn btn-default">
+                            <span class="fa-solid fa-magnifying-glass" aria-hidden="true"></span>
+                            <span class="visually-hidden">{{ 'navbar.search.title'|trans }}</span>
+                        </button>
+                    </form>
                 </div>
             </div>
-        </div>
-    </nav>
-{%- endblock header_top -%}
-
-{%- block header_banner -%}
-    <div class="d-flex flex-row align-items-center justify-content-between my-lg-2">
-        <a href="{{ path('homepage') }}" class="navbar-brand me-auto"> <img src="{{ asset("img/logo/logo-full-long-#{locale}.svg", 'emsch') }}" alt="{{ 'app.title'|trans }}" height="50"> </a>
-        <div class="d-flex ms-auto gap-2">
-            <a href="#searchModal" class="search-btn | btn btn-primary rounded-circle" data-bs-toggle="modal" aria-label="{{ 'aria.toggle_search'|trans  }}"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-label="{{ 'aria.toggle_navigation'|trans }}">
-              <span class="navbar-toggler-icon">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-              </span>
-            </button>
-        </div>
-    </div>
-{%- endblock header_banner -%}
+        </nav>
+    </header>
+{%- endblock header -%}
 
 {%- block search_form -%}
     <form action="{{ path('search') }}" method="GET">
@@ -107,7 +109,7 @@
             <input type="text" name="q" class="form-control border-end-0" placeholder="{{ 'search.placeholder'|trans }}" aria-label="{{ 'search.action'|trans }}">
             <button class="btn rounded-end-pill border-start-0" type="submit">
                 <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                <span class="sr-only">{{ 'search.action'|trans }}</span>
+                <span>{{ 'search.action'|trans }}</span>
             </button>
         </div>
     </form>
@@ -117,7 +119,7 @@
     {%- set headerStructure = structure.getItemById('menu') -%}
     {%- set headerItems = headerStructure.children|filter(c => c.object.(locale) is defined) -%}
     {%- if headerStructure and headerItems|length > 0 -%}
-        <ul class="main-nav navbar-nav mt-lg-3 justify-content-lg-between justify-content-xl-end">
+        <ul class="navbar-nav ms-lg-auto">
             {%- for item in headerItems -%}
                 {%- if item.type == 'page' -%}
                     <li class="nav-item">
@@ -127,6 +129,15 @@
                             {{ item.object.(locale).label }}
                         </a>
                     </li>
+                {%- elseif item.type == 'link' -%}
+                    {% if item.object.(locale) and item.object.(locale).link and item.object.(locale).label %}
+                        <li class="nav-item">
+                            <a href="{{ item.object.(locale).link|replace(replacements) }}"
+                               class="nav-link">
+                                {{ item.object.(locale).label }}
+                            </a>
+                        </li>
+                    {% endif %}
                 {%- elseif item.type == 'folder' and item.children|filter(c => c.object.(locale) is defined)|length > 0 -%}
                     {%- set folderId = "nav-#{item.label|ems_slug}" -%}
                     <li class="nav-item dropdown">
@@ -142,9 +153,15 @@
                             <ul class="d-flex flex-column flex-lg-row list-unstyled container-lg justify-content-start align-items-stretch flex-wrap">
                                 {%- for folderItem in item.children|filter(c => c.object.(locale) is defined) -%}
                                     <li class="{{ html_classes('dropdown-item', { 'active': activeItem is defined and folderItem.id in activeItem.id, 'mb-3 mb-lg-0': loop.last }) }}">
-                                        <a href="{{ pathStructure.(folderItem.id) }}" class="d-inline-block py-lg-2">
-                                            {{- folderItem.object.(locale).label -}}
-                                        </a>
+                                        {%- if folderItem.type == 'page' -%}
+                                            <a href="{{ pathStructure.(folderItem.id) }}" class="d-inline-block">
+                                                {{- folderItem.object.(locale).label -}}
+                                            </a>
+                                        {%- elseif folderItem.type == 'link' and folderItem.object.(locale).link and folderItem.object.(locale).label %}
+                                            <a href="{{ folderItem.object.(locale).link|replace(replacements) }}" class="d-inline-block">
+                                                {{- folderItem.object.(locale).label -}}
+                                            </a>
+                                        {%- endif -%}
                                     </li>
                                 {%- endfor -%}
                             </ul>
@@ -152,15 +169,28 @@
                     </li>
                 {%- endif -%}
             {%- endfor -%}
+            <li class="nav-item d-none d-lg-block">
+                <button type="button" class="nav-link search_button border-0 bg-transparent" aria-controls="navbar-search-form" aria-expanded="false" aria-label="{{ 'navbar.search.title'|trans }}">
+                    <span class="fa-solid fa-magnifying-glass" aria-hidden="true"></span>
+                </button>
+            </li>
         </ul>
     {%- endif -%}
 {%- endblock header_structure -%}
 
 {%- block main -%}
-    <main class="border-top {% if isHomepage|default(false) == false %}pt-5{% endif %} pb-5" id="wrapper">
-        {{ block('breadcrumb') }}
-        {%- block content -%}{%- endblock content -%}
-        {{ block('backtotop') }}
+    <main class="" id="wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="simple-box2">
+                        <div class="content">
+                            {%- block content -%}{%- endblock content -%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 {%- endblock main -%}
 
@@ -192,10 +222,7 @@
 {%- endblock breadcrumb -%}
 
 {%- block backtotop -%}
-    <button class="back2top" data-target="alerts">
-        <span>{{ "back2top.label"|trans }}</span>
-        <i class="fas fa-arrow-up" aria-hidden="true" role="img"></i>
-    </button>
+    <a href="#wrapper" class="scrollToTop" title="{{ 'back2top.label'|trans }}" aria-label="{{ 'back2top.label'|trans }}"><i class="fa-solid fa-angle-up fa-2x" aria-hidden="true"></i></a>
 {%- endblock backtotop -%}
 
 {%- block cookies -%}
@@ -215,19 +242,20 @@
 {%- endblock cookies -%}
 
 {%- block footer -%}
-    <footer class="bg-dark py-4 mt-auto">
-        <div class="container text-white">
-            <div class="row">
+    <footer id="footer">
+        <div class="container">
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a href="tel:+32472800900" target="_blank"><i class="fa fa-phone"></i> +32/472.800.900</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="https://www.facebook.com/globalview.be" target="_blank"><i class="fab fa-facebook-f"></i> {{ 'footer.follow_us'|trans }}</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="mailto:simon@globalview.be" target="_blank"><i class="far fa-envelope"></i> simon@globalview.be</a>
+                </li>
                 {{ block('footer_structure') }}
-                {{ block('footer_social') }}
-            </div>
-            <hr />
-            <div class="d-flex justify-content-between align-items-center gap-3">
-                <img src="{{ asset("img/logo/logo-white-#{locale}.svg", 'emsch') }}" alt="{{ 'app.company'|trans }}" width="50">
-                <div>
-                    {{ 'app.copyright'|trans({'%year%': 'now'|date('Y'), '%company%': ('app.company'|trans) }) }}
-                </div>
-            </div>
+            </ul>
         </div>
     </footer>
 {%- endblock footer -%}
@@ -235,46 +263,15 @@
 {%- block footer_structure -%}
     {%- set footerStructure = structure.getItemById('footer') -%}
     {%- set footerItems = footerStructure.children|filter(c => c.object.(locale) is defined)|default([]) -%}
-    {%- if footerItems|length > 0 -%}
-        <div class="col-lg-8">
-            <div class="row">
-                {%- for item in footerItems -%}
-                    {%- if item.type == 'page' -%}
-                        <div class="col-12 col-sm-6 col-md-4 mb-3">
-                            <a href="{{ pathStructure.(item.id) }}"
-                               class="{{ html_classes('text-white text-decoration-none', { 'active': activeItem is defined and item.id == activeItem.id }) }}">
-                                <i class="fa-solid fa-angle-right me-2"></i>{{ item.object.(locale).label }}
-                            </a>
-                        </div>
-                    {%- elseif item.type == 'folder' and item.children|filter(c => c.object.(locale) is defined)|length > 0 -%}
-                        <div class="col-12 col-sm-6 col-md-4 mb-3">
-                            <div class="fw-bold">{{ item.object.(locale).label }}</div>
-                            {%- for folderItem in item.children|filter(c => c.object.(locale) is defined) -%}
-                                <a href="{{ pathStructure.(folderItem.id) }}"
-                                   class="{{ html_classes('text-white text-decoration-none', { 'active': activeItem is defined and folderItem.id == activeItem.id }) }}">
-                                    <i class="fa-solid fa-angle-right me-2"></i>{{ folderItem.object.(locale).label }}
-                                </a>
-                            {%- endfor -%}
-                        </div>
-                    {%- endif -%}
-                {%- endfor -%}
-            </div>
-        </div>
-    {%- endif -%}
+    {%- for item in footerItems -%}
+        {%- if item.type == 'page' -%}
+            {% set icon = 'cookie' in item.object.(locale).label|lower ? 'fas fa-cookie' : 'fa fa-camera'%}
+            <li class="list-inline-item">
+                <a href="{{ pathStructure.(item.id) }}"><i class="{{ icon }}"></i> {{ item.object.(locale).label }}</a>
+            </li>
+        {%- endif -%}
+    {%- endfor -%}
 {%- endblock footer_structure -%}
-
-{%- block footer_social -%}
-    <div class="col-lg-4 mt-4 mt-lg-0 d-flex flex-column">
-        <div class="mb-4">
-            <p>{{ 'socials.title'|trans }}</p>
-            {%- for social in ['facebook', 'instagram', 'linkedin'] -%}
-                <a href="{{ "socials.#{social}.url"|trans }}" rel="noopener, noreferrer" target="_blank" class="mr-2 text-decoration-none no-icon">
-                    <img src="{{ asset("img/icon/#{social}-white.svg", 'emsch') }}" alt="{{ "socials.#{social}.alt"|trans }}" width="32" height="24">
-                </a>
-            {%- endfor -%}
-        </div>
-    </div>
-{%- endblock footer_social -%}
 
 {%- block modal_search -%}
     <div class="modal fade" id="searchModal" tabindex="-1" data-bs-backdrop="false" aria-hidden="true" style="display: none;">
@@ -283,7 +280,6 @@
                 <div class="modal-header border-0">
                     <div class="container-xl">
                         <div class="d-flex align-items-center justify-content-between">
-                            <img src="{{ asset("img/logo/logo-white-#{locale}.svg", 'emsch') }}" alt="{{ 'app.title'|trans }}" height="50">
                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                     </div>

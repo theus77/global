@@ -3,9 +3,9 @@
     "arguments": [],
     "properties": {
         "name": "ems_standard_news",
-        "pluralName": "News",
-        "singularName": "News",
-        "icon": "fa fa-newspaper-o",
+        "pluralName": "Vols",
+        "singularName": "Vol",
+        "icon": "fa fa-plane",
         "description": null,
         "indexTwig": null,
         "extra": null,

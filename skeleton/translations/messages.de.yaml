@@ -4,7 +4,7 @@ app:
     language_selection: Sprachauswahl
     locale: Deutsch
     search_page: Suche
-    title: 'EMS Standard'
+    title: 'GlobalView reportage aérien sur mesure'
 aria:
     skip_to_content: 'Zum Hauptinhalt springen'
     toggle_navigation: 'Navigation öffnen/schließen'
@@ -27,6 +27,8 @@ error:
     back_to_home: 'Zur Startseite zurück'
     description: 'Wir arbeiten sofort an einer Lösung. In der Zwischenzeit können Sie versuchen, das Suchformular zu verwenden.'
     title: 'Ups! Etwas ist schiefgelaufen.'
+footer:
+    follow_us: 'Follow us'
 form:
     error: 'Das Formular hat ein Problem festgestellt: %message%'
     error_try_later: 'Das Formular hat ein Problem festgestellt, bitte versuchen Sie es später erneut.'
@@ -82,14 +84,3 @@ search:
     placeholder: 'Geben Sie ein oder mehrere Schlüsselwörter ein'
     results: '{0} Keine Ergebnisse gefunden|{1} 1 Ergebnis gefunden|]1,Inf[%count% Ergebnisse gefunden'
     select_size: Ergebnisse
-socials:
-    facebook:
-        alt: Facebook
-        url: 'https://www.facebook.com/globalview.be'
-    instagram:
-        alt: Instagram
-        url: 'https://www.instagram.com/simon.globalview/'
-    linkedin:
-        alt: LinkedIn
-        url: 'https://www.linkedin.com/company/global-view-sprl/'
-    title: 'Folgen Sie uns in den sozialen Medien'

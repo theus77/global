@@ -1,0 +1,142 @@
+/*
+* 1. vols
+* 2. services
+* 3. section heading
+**/
+
+/* ==================================================
+ 1. vols
+======================================================*/
+
+#flights {
+	.section-heading {padding-top:0;}
+	.box {
+	margin:em(10px) 0;
+	background: rgba($color1,0.7);
+    padding: em(15px);
+	h3 {
+		margin: em(20px, 20px) 0;
+		font-size:em(20px);
+	}
+	span {
+		font-size:em(13px);
+	}
+	img {
+		@include filter(grayscale(0));
+		@include transition(all 0.5s ease-in-out);
+		}
+
+	&:hover {
+		img {
+			margin:0;
+			@include filter(grayscale(100%));
+			@include transition(all 0.5s ease-in-out);
+			}
+	}
+
+	a {
+		background: rgba(0, 0, 0, 0);
+		border: 0;
+		white-space: initial;
+	}
+}
+}
+/*========================================
+	2. services
+===========================================*/
+.services {
+	padding: em(40px) em(20px);
+	text-align: center;
+	img {
+	  	margin: 0 auto;
+	  	margin-bottom: em(20px);
+	 }
+
+	.style2 {
+		i {
+			min-width: em(80px, 36px);
+			font-size: em(36px);
+			padding: em(20px, 36px);
+			margin-bottom: em(10px, 36px);
+			border: 2px solid lighten($color1, 100%);
+			background: rgba(lighten($color1, 100%), 0.2);
+			display: inline-block;
+			text-align: center;
+		}
+		&:hover i{background: rgba($color1, 0.5);}
+		@include MQ(Lneg) {
+			padding: 20px 0;
+		}
+		@include MQ(Mneg) {
+			padding: 20px 40px;
+		}
+	}
+
+	i {
+		color: lighten($color1, 100%);
+		@include transition(all 0.5s ease-in-out);
+	}
+
+    & > .fa {
+    	position:relative;
+		font-size:em(85px);
+		width:em(150px, 85px);
+		height:em(150px, 85px);
+		border-radius:50%;
+		color:lighten($color1, 100%);
+		line-height:em(150px, 85px);
+		text-align:center;
+		background:$color8;
+		margin-bottom:em(30px,85px);
+		@include transition(all 0.3s ease-in-out);
+		&:hover {
+			font-size:em(90px);
+		}
+		a {
+		    display: inline-block;
+		    height: 100%;
+		    left: 0;
+		    position: absolute;
+		    top: 0;
+		    width: 100%;
+		}
+	}
+	& >.fa-search {background:$color9;}
+	.fa-tags {background:$color10;}
+}
+
+
+h1 {
+  font-size: em(50px);
+  font-weight: bold;
+  margin-bottom: em(30px, 60px);
+}
+
+/* ==================================================
+  3. section-heading
+====================================================*/
+.section-heading {
+  text-align: center;
+  padding: em(40px) 0;
+  h2 {
+    margin: 0;
+    font-size: em(50px);
+    letter-spacing: -1px;
+    @include text-shadow(2px 2px 2px rgba($color1, 0.7));
+  }
+  .separator {
+    width: em(30px);
+    height: em(4px);
+    background: lighten($color1, 100%);
+    text-align: center;
+    display: inline-block;
+  }
+}
+#contact {
+	.form-horizontal .control-label {
+		line-height:em(15px);
+		@include MQ(Mneg) {
+			text-align:left;
+		}
+	}
+}

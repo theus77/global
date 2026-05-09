@@ -1,0 +1,46 @@
+{
+    "date_news": "2026/04/28",
+    "dates_news_slideshow": {
+        "from": "2026-04-28T00:00:00+02:00",
+        "to": "2026-06-28T23:59:59+02:00"
+    },
+    "de": {
+        "seo_no_index": false,
+        "show": false
+    },
+    "en": {
+        "seo_no_index": false,
+        "show": false
+    },
+    "fr": {
+        "alt_image": "Charleroi/Mons - Printemps 2026",
+        "body": "<p>Vol pr&eacute;vu dans le Hainaut dans le courrant du printemps 2026.</p>",
+        "seo_no_index": false,
+        "show": true,
+        "slug": "charleroi-mons-printemps-2026",
+        "title": "Charleroi/Mons - Printemps 2026"
+    },
+    "image_news": {
+        "_algo": "sha1",
+        "_hash": "59a309d6677cf0f9cba3a115d7da20d3795aa496",
+        "_name": "map-hainaut.png",
+        "_size": 47104,
+        "_type": "image/png",
+        "filename": "map-hainaut.png",
+        "filesize": 47104,
+        "mimetype": "image/png",
+        "sha1": "59a309d6677cf0f9cba3a115d7da20d3795aa496"
+    },
+    "label": "Charleroi/Mons - Printemps 2026",
+    "nl": {
+        "seo_no_index": false,
+        "show": false
+    },
+    "search_fr": [
+        "Charleroi/Mons - Printemps 2026",
+        "charleroi-mons-printemps-2026",
+        "Vol pr\u00e9vu dans le Hainaut dans le courrant du printemps 2026."
+    ],
+    "search_title_fr": "Charleroi/Mons - Printemps 2026",
+    "translate": false
+}

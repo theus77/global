@@ -9,7 +9,7 @@ DOCKER = docker
 DOCKER_COMP = docker compose
 
 NPM_CMD="npm $*"
-RUN_NPM = echo ${DOCKER_USER} && docker run --rm -it -u ${DOCKER_USER} -p 5174:5174 -v ${PWD}:/opt/src --workdir /opt/src elasticms/base-php-cli-dev sh -c ${NPM_CMD}
+RUN_NPM = docker run --rm -it -u ${DOCKER_USER} -p 5174:5174 -v ${PWD}:/opt/src --workdir /opt/src docker.io/smalswebtech/base-php:8.5-cli-dev sh -c ${NPM_CMD}
 
 .PHONY: help
 .DEFAULT_GOAL := help
@@ -32,6 +32,7 @@ help: ## help
 up/%: ## up/(acc|prd)
 	@$(MAKE) -s tools-up
 	@$(DOCKER_COMP) up skeleton-$* -d
+	@$(DOCKER_COMP) up sandbox cli -d
 restart/%: ## restart/(acc|prd)
 	@$(DOCKER_COMP) up skeleton-$* -d --force-recreate
 logs/%: ## logs/(acc|prd)
@@ -88,6 +89,8 @@ npm-dev: ## npm run dev
 	@$(MAKE) npm/"run dev"
 
 ## —— TOOLS ————————————————————————————————————————————————————————————————————————————————————————————————————————————
+ide-generate: ## Generate IDE helpers in the fake Symfony project
+	cd ide-elasticms && php tools/generate-phpstorm-skeleton-controller.php && php tools/generate-phpstorm-twig-extension.php
 tools-up: ## Start Traefik and MailHog
 	cd $(TOOLS_DIR) && $(DOCKER_COMP) --project-directory=docker --profile=ems up -d
 tools-down: ## Stop Traefik and MailHog
@@ -95,6 +98,15 @@ tools-down: ## Stop Traefik and MailHog
 tools-create-network: ## Create tools network
 	@$(DOCKER) network rm skeleton -f
 	@$(DOCKER) network create skeleton
+cli: ## Start a CLI bash
+	@$(DOCKER_COMP) exec cli bash
+cli/%: ## cli/"command"
+	@$(DOCKER_COMP) exec cli elasticms $*
+fake-ide: ## Generate and update the fake ide-elasticms project
+	@$(MAKE) -s cli/"emscli:dev:fake /workspace/ide-elasticms --force"
+	cd ide-elasticms && composer update
+sandbox: ## Start a sandbox bash
+	@$(DOCKER_COMP) exec sandbox bash
 
 ## —— EXTRA ————————————————————————————————————————————————————————————————————————————————————————————————————————————
 find-crlf: ## Find files with CRLF line endings

@@ -14,7 +14,7 @@
 
 {%- block column_path -%}
 {%- verbatim -%}
-    <a href="{{path('data.revisions', {ouuid: data.id, type: data.contentType} ) }}">{{ data.source.media_path }}</a>
+    <a href="{{path('emsco_view_revisions', {ouuid: data.id, type: data.contentType} ) }}">{{ data.source.media_path }}</a>
 {%- endverbatim -%}
 {%- endblock column_path -%}
 

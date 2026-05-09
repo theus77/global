@@ -1,34 +1,50 @@
-language_selection:
-    config:
-        path: /
-    template_static: ems_standard_template/page/language_selection.html.twig
 homepage:
     config:
         path: '/{_locale}'
         requirements: { _locale: nl|fr|de|en }
+        defaults: { _locale: fr }
     template_static: ems_standard_template/page/homepage.html.twig
+well-known-security:
+    config:
+        path: .well-known/security.txt
+        defaults: { _format: txt }
+    template_static: ems_standard_template/well-known/security.txt.twig
+sitemap-xml:
+    config:
+        path: sitemap.xml
+        defaults: { _format: xml }
+    template_static: ems_standard_template/seo/sitemap.xml.twig
 page:
     config:
         path: { nl: '/{_locale}/pagina/{slug}', fr: '/{_locale}/page/{slug}', de: '/{_locale}/seite/{slug}', en: '/{_locale}/page/{slug}' }
         requirements: { _locale: nl|fr|de|en, slug: '[^.]+' }
+        defaults: { _locale: fr }
     query: '{"query":{"bool":{"must":[{"term":{"_contenttype":"ems_standard_page"}},{"term":{"%_locale%.slug":"%slug%"}},{"term":{"%_locale%.show":true}}]}},"size":1}'
     template_static: ems_standard_template/page/page.html.twig
 news_overview:
     config:
         path: { nl: '/{_locale}/nieuws', fr: '/{_locale}/actualites', de: '/{_locale}/nachrichten', en: '/{_locale}/news' }
         requirements: { _locale: nl|fr|de|en }
+        defaults: { _locale: fr }
     template_static: ems_standard_template/page/news_overview.html.twig
+gallery:
+    config:
+        path: { nl: '/{_locale}/galerij', fr: '/{_locale}/galerie', de: '/{_locale}/galerie', en: '/{_locale}/gallery' }
+        requirements: { _locale: nl|fr|de|en }
+        defaults: { _locale: fr }
+    template_static: ems_standard_template/page/gallery.html.twig
 news:
     config:
-        path: { nl: '/{_locale}/nieuws/{slug}', fr: '/{_locale}/actualites/{slug}', de: '/{_locale}/nachrichten/{slug}', en: '/{_locale}/news/{slug}' }
+        path: { nl: '/{_locale}/vluchten/{slug}', fr: '/{_locale}/vols/{slug}', de: '/{_locale}/fluege/{slug}', en: '/{_locale}/flights/{slug}' }
         requirements: { _locale: nl|fr|de|en, slug: '[^.]+' }
+        defaults: { _locale: fr }
     query: '{"query":{"bool":{"must":[{"term":{"_contenttype":"ems_standard_news"}},{"term":{"%_locale%.slug":"%slug%"}},{"term":{"%_locale%.show":true}}]}},"size":1}'
     template_static: ems_standard_template/page/news.html.twig
 search:
     config:
         path: { nl: '/{_locale}/zoeken.{_format}', fr: '/{_locale}/chercher.{_format}', de: '/{_locale}/suchen.{_format}', en: '/{_locale}/search.{_format}' }
-        defaults: { _format: html, l: 10 }
-        requirements: { _format: html|json }
+        defaults: { _locale: fr, _format: html, l: 10 }
+        requirements: { _locale: nl|fr|de|en, _format: html|json }
     template_static: ems_standard_template/page/search.%_format%.twig
 missing:
     config:
@@ -40,6 +56,7 @@ structure:
     config:
         path: '/{_locale}/{path}'
         requirements: { _locale: nl|fr|de|en, path: '[^.]+' }
+        defaults: { _locale: fr }
     query: '{"_source":false,"query":{"bool":{"must":[{"nested":{"path":"%_locale%.paths","query":{"bool":{"must":[{"term":{"%_locale%.paths.path":{"value":"%path%"}}}]}},"inner_hits":{"name":"hitPath","_source":["*"],"size":1}}},{"term":{"_contenttype":{"value":"ems_standard_structure"}}}]}}}'
     template_static: ems_standard_template/page/page_structure.html.twig
 media_file:
@@ -53,7 +70,7 @@ js_translations:
     config:
         path: '/translations/{_locale}.js'
         requirements: { _locale: nl|fr|de|en }
-        defaults: { _format: js, _locale: nl }
+        defaults: { _format: js, _locale: fr }
     template_static: ems_standard_template/site/translations.js.twig
 site_robots:
     config:

@@ -64,7 +64,7 @@
                                     "protected": false
                                 }
                             },
-                            "orderKey": 0,
+                            "orderKey": 1,
                             "children": [
                                 {
                                     "class": "EMS\\CoreBundle\\Entity\\FieldType",
@@ -97,7 +97,7 @@
                                             },
                                             "raw_data": []
                                         },
-                                        "orderKey": 0,
+                                        "orderKey": 1,
                                         "children": [
                                             {
                                                 "class": "EMS\\CoreBundle\\Entity\\FieldType",
@@ -135,7 +135,7 @@
                                                             "postProcessing": "{{ block('paragraph_label_post_processing', '@EMSCH/ems_standard_template_ems/content_type/page/fields.twig') }}"
                                                         }
                                                     },
-                                                    "orderKey": 0,
+                                                    "orderKey": 1,
                                                     "children": []
                                                 },
                                                 "replaced": []
@@ -178,7 +178,7 @@
                                                             "protected": false
                                                         }
                                                     },
-                                                    "orderKey": 1,
+                                                    "orderKey": 2,
                                                     "children": []
                                                 },
                                                 "replaced": []
@@ -222,7 +222,50 @@
                                                             "transformers": []
                                                         }
                                                     },
-                                                    "orderKey": 2,
+                                                    "orderKey": 3,
+                                                    "children": []
+                                                },
+                                                "replaced": []
+                                            },
+                                            {
+                                                "class": "EMS\\CoreBundle\\Entity\\FieldType",
+                                                "arguments": [],
+                                                "properties": {
+                                                    "type": "EMS\\CoreBundle\\Form\\DataField\\TextStringFieldType",
+                                                    "name": "anchor",
+                                                    "contentType": null,
+                                                    "deleted": false,
+                                                    "description": null,
+                                                    "options": {
+                                                        "displayOptions": {
+                                                            "label": "Anchor",
+                                                            "class": "col-md-12",
+                                                            "lastOfRow": false,
+                                                            "helptext": null,
+                                                            "prefixIcon": null,
+                                                            "prefixText": null,
+                                                            "suffixIcon": null,
+                                                            "suffixText": null,
+                                                            "placeholder": null,
+                                                            "icon": null
+                                                        },
+                                                        "mappingOptions": [],
+                                                        "restrictionOptions": {
+                                                            "mandatory": false,
+                                                            "mandatory_if": null,
+                                                            "minimum_role": null
+                                                        },
+                                                        "extraOptions": {
+                                                            "extra": null,
+                                                            "clear_on_copy": false,
+                                                            "postProcessing": null
+                                                        },
+                                                        "raw_data": [],
+                                                        "migrationOptions": {
+                                                            "protected": false
+                                                        }
+                                                    },
+                                                    "orderKey": 4,
                                                     "children": []
                                                 },
                                                 "replaced": []
@@ -300,7 +343,7 @@
                                                             "postProcessing": null
                                                         }
                                                     },
-                                                    "orderKey": 0,
+                                                    "orderKey": 1,
                                                     "children": []
                                                 },
                                                 "replaced": []
@@ -378,7 +421,7 @@
                                                             "postProcessing": null
                                                         }
                                                     },
-                                                    "orderKey": 0,
+                                                    "orderKey": 1,
                                                     "children": []
                                                 },
                                                 "replaced": []
@@ -456,7 +499,7 @@
                                                             "postProcessing": null
                                                         }
                                                     },
-                                                    "orderKey": 0,
+                                                    "orderKey": 1,
                                                     "children": []
                                                 },
                                                 "replaced": []
@@ -503,7 +546,50 @@
                                                             "protected": false
                                                         }
                                                     },
-                                                    "orderKey": 1,
+                                                    "orderKey": 2,
+                                                    "children": []
+                                                },
+                                                "replaced": []
+                                            },
+                                            {
+                                                "class": "EMS\\CoreBundle\\Entity\\FieldType",
+                                                "arguments": [],
+                                                "properties": {
+                                                    "type": "EMS\\CoreBundle\\Form\\DataField\\TextStringFieldType",
+                                                    "name": "anchor",
+                                                    "contentType": null,
+                                                    "deleted": false,
+                                                    "description": null,
+                                                    "options": {
+                                                        "displayOptions": {
+                                                            "label": "Anchor",
+                                                            "class": "col-md-12",
+                                                            "lastOfRow": false,
+                                                            "helptext": null,
+                                                            "prefixIcon": null,
+                                                            "prefixText": null,
+                                                            "suffixIcon": null,
+                                                            "suffixText": null,
+                                                            "placeholder": null,
+                                                            "icon": null
+                                                        },
+                                                        "mappingOptions": [],
+                                                        "restrictionOptions": {
+                                                            "mandatory": false,
+                                                            "mandatory_if": null,
+                                                            "minimum_role": null
+                                                        },
+                                                        "extraOptions": {
+                                                            "extra": null,
+                                                            "clear_on_copy": false,
+                                                            "postProcessing": null
+                                                        },
+                                                        "raw_data": [],
+                                                        "migrationOptions": {
+                                                            "protected": false
+                                                        }
+                                                    },
+                                                    "orderKey": 3,
                                                     "children": []
                                                 },
                                                 "replaced": []
@@ -581,8 +667,434 @@
                                                             "postProcessing": null
                                                         }
                                                     },
-                                                    "orderKey": 0,
+                                                    "orderKey": 1,
                                                     "children": []
+                                                },
+                                                "replaced": []
+                                            }
+                                        ]
+                                    },
+                                    "replaced": []
+                                },
+                                {
+                                    "class": "EMS\\CoreBundle\\Entity\\FieldType",
+                                    "arguments": [],
+                                    "properties": {
+                                        "type": "EMS\\CoreBundle\\Form\\DataField\\ContainerFieldType",
+                                        "name": "section",
+                                        "contentType": null,
+                                        "deleted": false,
+                                        "description": null,
+                                        "options": {
+                                            "displayOptions": {
+                                                "label": "Section",
+                                                "class": "col-md-12",
+                                                "lastOfRow": false,
+                                                "helptext": null,
+                                                "icon": "fa fa-cubes",
+                                                "language": null
+                                            },
+                                            "mappingOptions": [],
+                                            "restrictionOptions": {
+                                                "minimum_role": null,
+                                                "json_nested_deny": [
+                                                    "faqs",
+                                                    "news_list",
+                                                    "form",
+                                                    "news_slideshow",
+                                                    "section"
+                                                ],
+                                                "json_nested_is_leaf": false
+                                            },
+                                            "extraOptions": {
+                                                "extra": null,
+                                                "clear_on_copy": false,
+                                                "postProcessing": null
+                                            },
+                                            "raw_data": []
+                                        },
+                                        "orderKey": 6,
+                                        "children": [
+                                            {
+                                                "class": "EMS\\CoreBundle\\Entity\\FieldType",
+                                                "arguments": [],
+                                                "properties": {
+                                                    "type": "EMS\\CoreBundle\\Form\\DataField\\TextStringFieldType",
+                                                    "name": "label",
+                                                    "contentType": null,
+                                                    "deleted": false,
+                                                    "description": null,
+                                                    "options": {
+                                                        "displayOptions": {
+                                                            "label": "Label",
+                                                            "class": "col-md-12",
+                                                            "lastOfRow": false,
+                                                            "helptext": null,
+                                                            "prefixIcon": null,
+                                                            "prefixText": null,
+                                                            "suffixIcon": null,
+                                                            "suffixText": null,
+                                                            "placeholder": null,
+                                                            "icon": null
+                                                        },
+                                                        "mappingOptions": [],
+                                                        "restrictionOptions": {
+                                                            "mandatory": true,
+                                                            "mandatory_if": null,
+                                                            "minimum_role": null
+                                                        },
+                                                        "extraOptions": {
+                                                            "extra": null,
+                                                            "clear_on_copy": false,
+                                                            "postProcessing": null
+                                                        },
+                                                        "raw_data": [],
+                                                        "migrationOptions": {
+                                                            "protected": false
+                                                        }
+                                                    },
+                                                    "orderKey": 1,
+                                                    "children": []
+                                                },
+                                                "replaced": []
+                                            },
+                                            {
+                                                "class": "EMS\\CoreBundle\\Entity\\FieldType",
+                                                "arguments": [],
+                                                "properties": {
+                                                    "type": "EMS\\CoreBundle\\Form\\DataField\\TextStringFieldType",
+                                                    "name": "anchor",
+                                                    "contentType": null,
+                                                    "deleted": false,
+                                                    "description": null,
+                                                    "options": {
+                                                        "displayOptions": {
+                                                            "label": "Anchor",
+                                                            "class": "col-md-12",
+                                                            "lastOfRow": false,
+                                                            "helptext": null,
+                                                            "prefixIcon": null,
+                                                            "prefixText": null,
+                                                            "suffixIcon": null,
+                                                            "suffixText": null,
+                                                            "placeholder": null,
+                                                            "icon": null
+                                                        },
+                                                        "mappingOptions": [],
+                                                        "restrictionOptions": {
+                                                            "mandatory": false,
+                                                            "mandatory_if": null,
+                                                            "minimum_role": null
+                                                        },
+                                                        "extraOptions": {
+                                                            "extra": null,
+                                                            "clear_on_copy": false,
+                                                            "postProcessing": null
+                                                        },
+                                                        "raw_data": [],
+                                                        "migrationOptions": {
+                                                            "protected": false
+                                                        }
+                                                    },
+                                                    "orderKey": 2,
+                                                    "children": []
+                                                },
+                                                "replaced": []
+                                            }
+                                        ]
+                                    },
+                                    "replaced": []
+                                },
+                                {
+                                    "class": "EMS\\CoreBundle\\Entity\\FieldType",
+                                    "arguments": [],
+                                    "properties": {
+                                        "type": "EMS\\CoreBundle\\Form\\DataField\\ContainerFieldType",
+                                        "name": "galery",
+                                        "contentType": null,
+                                        "deleted": false,
+                                        "description": null,
+                                        "options": {
+                                            "displayOptions": {
+                                                "label": "Galery",
+                                                "class": "col-md-12",
+                                                "lastOfRow": false,
+                                                "helptext": null,
+                                                "icon": "fa fa-file-photo-o",
+                                                "language": null
+                                            },
+                                            "mappingOptions": [],
+                                            "restrictionOptions": {
+                                                "minimum_role": null,
+                                                "json_nested_deny": [],
+                                                "json_nested_is_leaf": false
+                                            },
+                                            "extraOptions": {
+                                                "extra": null,
+                                                "clear_on_copy": false,
+                                                "postProcessing": null
+                                            },
+                                            "raw_data": []
+                                        },
+                                        "orderKey": 7,
+                                        "children": [
+                                            {
+                                                "class": "EMS\\CoreBundle\\Entity\\FieldType",
+                                                "arguments": [],
+                                                "properties": {
+                                                    "type": "EMS\\CoreBundle\\Form\\DataField\\WysiwygFieldType",
+                                                    "name": "body",
+                                                    "contentType": null,
+                                                    "deleted": false,
+                                                    "description": null,
+                                                    "options": {
+                                                        "displayOptions": {
+                                                            "label": "Body",
+                                                            "class": "col-md-12",
+                                                            "height": 200,
+                                                            "format_tags": null,
+                                                            "styles_set": null,
+                                                            "content_css": null,
+                                                            "lastOfRow": false,
+                                                            "helptext": null,
+                                                            "language": null,
+                                                            "styles_set_preview": false
+                                                        },
+                                                        "mappingOptions": [],
+                                                        "restrictionOptions": {
+                                                            "mandatory": false,
+                                                            "mandatory_if": null,
+                                                            "minimum_role": null
+                                                        },
+                                                        "extraOptions": {
+                                                            "extra": null,
+                                                            "clear_on_copy": false,
+                                                            "postProcessing": null
+                                                        },
+                                                        "raw_data": [],
+                                                        "migrationOptions": {
+                                                            "protected": false,
+                                                            "transformers": []
+                                                        }
+                                                    },
+                                                    "orderKey": 1,
+                                                    "children": []
+                                                },
+                                                "replaced": []
+                                            },
+                                            {
+                                                "class": "EMS\\CoreBundle\\Entity\\FieldType",
+                                                "arguments": [],
+                                                "properties": {
+                                                    "type": "EMS\\CoreBundle\\Form\\DataField\\CollectionFieldType",
+                                                    "name": "items",
+                                                    "contentType": null,
+                                                    "deleted": false,
+                                                    "description": null,
+                                                    "options": {
+                                                        "displayOptions": {
+                                                            "label": "Items",
+                                                            "class": "col-md-12",
+                                                            "lastOfRow": false,
+                                                            "helptext": null,
+                                                            "singularLabel": null,
+                                                            "itemBootstrapClass": null,
+                                                            "labelField": null,
+                                                            "icon": null,
+                                                            "collapsible": false,
+                                                            "sortable": false
+                                                        },
+                                                        "mappingOptions": {
+                                                            "renumbering": true
+                                                        },
+                                                        "restrictionOptions": {
+                                                            "minimum_role": null,
+                                                            "min": null,
+                                                            "max": null
+                                                        },
+                                                        "extraOptions": {
+                                                            "extra": null,
+                                                            "clear_on_copy": false,
+                                                            "postProcessing": null
+                                                        },
+                                                        "raw_data": [],
+                                                        "migrationOptions": {
+                                                            "protected": false
+                                                        }
+                                                    },
+                                                    "orderKey": 2,
+                                                    "children": [
+                                                        {
+                                                            "class": "EMS\\CoreBundle\\Entity\\FieldType",
+                                                            "arguments": [],
+                                                            "properties": {
+                                                                "type": "EMS\\CoreBundle\\Form\\DataField\\AssetFieldType",
+                                                                "name": "image",
+                                                                "contentType": null,
+                                                                "deleted": false,
+                                                                "description": null,
+                                                                "options": {
+                                                                    "displayOptions": {
+                                                                        "label": "Image",
+                                                                        "class": "col-md-12",
+                                                                        "lastOfRow": false,
+                                                                        "helptext": null,
+                                                                        "multiple": false,
+                                                                        "icon": null,
+                                                                        "imageAssetConfigIdentifier": null
+                                                                    },
+                                                                    "mappingOptions": [],
+                                                                    "restrictionOptions": {
+                                                                        "mandatory": false,
+                                                                        "mandatory_if": null,
+                                                                        "minimum_role": null
+                                                                    },
+                                                                    "extraOptions": {
+                                                                        "extra": null,
+                                                                        "clear_on_copy": false,
+                                                                        "postProcessing": null
+                                                                    },
+                                                                    "raw_data": [],
+                                                                    "migrationOptions": {
+                                                                        "protected": false
+                                                                    }
+                                                                },
+                                                                "orderKey": 1,
+                                                                "children": []
+                                                            },
+                                                            "replaced": []
+                                                        },
+                                                        {
+                                                            "class": "EMS\\CoreBundle\\Entity\\FieldType",
+                                                            "arguments": [],
+                                                            "properties": {
+                                                                "type": "EMS\\CoreBundle\\Form\\DataField\\TextStringFieldType",
+                                                                "name": "name",
+                                                                "contentType": null,
+                                                                "deleted": false,
+                                                                "description": null,
+                                                                "options": {
+                                                                    "displayOptions": {
+                                                                        "label": "Name",
+                                                                        "class": "col-md-12",
+                                                                        "lastOfRow": false,
+                                                                        "helptext": null,
+                                                                        "prefixIcon": null,
+                                                                        "prefixText": null,
+                                                                        "suffixIcon": null,
+                                                                        "suffixText": null,
+                                                                        "placeholder": null,
+                                                                        "icon": null
+                                                                    },
+                                                                    "mappingOptions": [],
+                                                                    "restrictionOptions": {
+                                                                        "mandatory": false,
+                                                                        "mandatory_if": null,
+                                                                        "minimum_role": null
+                                                                    },
+                                                                    "extraOptions": {
+                                                                        "extra": null,
+                                                                        "clear_on_copy": false,
+                                                                        "postProcessing": null
+                                                                    },
+                                                                    "raw_data": [],
+                                                                    "migrationOptions": {
+                                                                        "protected": false
+                                                                    }
+                                                                },
+                                                                "orderKey": 2,
+                                                                "children": []
+                                                            },
+                                                            "replaced": []
+                                                        },
+                                                        {
+                                                            "class": "EMS\\CoreBundle\\Entity\\FieldType",
+                                                            "arguments": [],
+                                                            "properties": {
+                                                                "type": "EMS\\CoreBundle\\Form\\DataField\\WysiwygFieldType",
+                                                                "name": "body",
+                                                                "contentType": null,
+                                                                "deleted": false,
+                                                                "description": null,
+                                                                "options": {
+                                                                    "displayOptions": {
+                                                                        "label": "Body",
+                                                                        "class": "col-md-12",
+                                                                        "height": 200,
+                                                                        "format_tags": null,
+                                                                        "styles_set": null,
+                                                                        "content_css": null,
+                                                                        "lastOfRow": false,
+                                                                        "helptext": null,
+                                                                        "language": null,
+                                                                        "styles_set_preview": false
+                                                                    },
+                                                                    "mappingOptions": [],
+                                                                    "restrictionOptions": {
+                                                                        "mandatory": false,
+                                                                        "mandatory_if": null,
+                                                                        "minimum_role": null
+                                                                    },
+                                                                    "extraOptions": {
+                                                                        "extra": null,
+                                                                        "clear_on_copy": false,
+                                                                        "postProcessing": null
+                                                                    },
+                                                                    "raw_data": [],
+                                                                    "migrationOptions": {
+                                                                        "protected": false,
+                                                                        "transformers": []
+                                                                    }
+                                                                },
+                                                                "orderKey": 3,
+                                                                "children": []
+                                                            },
+                                                            "replaced": []
+                                                        },
+                                                        {
+                                                            "class": "EMS\\CoreBundle\\Entity\\FieldType",
+                                                            "arguments": [],
+                                                            "properties": {
+                                                                "type": "EMS\\CoreBundle\\Form\\DataField\\TextStringFieldType",
+                                                                "name": "url",
+                                                                "contentType": null,
+                                                                "deleted": false,
+                                                                "description": null,
+                                                                "options": {
+                                                                    "displayOptions": {
+                                                                        "label": "Url",
+                                                                        "class": "col-md-12",
+                                                                        "lastOfRow": false,
+                                                                        "helptext": null,
+                                                                        "prefixIcon": null,
+                                                                        "prefixText": null,
+                                                                        "suffixIcon": null,
+                                                                        "suffixText": null,
+                                                                        "placeholder": null,
+                                                                        "icon": null
+                                                                    },
+                                                                    "mappingOptions": [],
+                                                                    "restrictionOptions": {
+                                                                        "mandatory": false,
+                                                                        "mandatory_if": null,
+                                                                        "minimum_role": null
+                                                                    },
+                                                                    "extraOptions": {
+                                                                        "extra": null,
+                                                                        "clear_on_copy": false,
+                                                                        "postProcessing": null
+                                                                    },
+                                                                    "raw_data": [],
+                                                                    "migrationOptions": {
+                                                                        "protected": false
+                                                                    }
+                                                                },
+                                                                "orderKey": 4,
+                                                                "children": []
+                                                            },
+                                                            "replaced": []
+                                                        }
+                                                    ]
                                                 },
                                                 "replaced": []
                                             }

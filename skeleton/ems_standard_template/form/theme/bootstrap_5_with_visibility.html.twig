@@ -1,4 +1,4 @@
-{% extends 'bootstrap_5_layout.html.twig' %}
+{% extends 'bootstrap_5_horizontal_layout.html.twig' %}
 
 {% block form_row -%}
     {% if ems_meta.rules|default([])|length > 0 %}
@@ -44,6 +44,24 @@
     {%  endif %}
     {{ parent() }}
 {%- endblock button_row %}
+
+{% block form_label_class -%}
+    col-sm-4 text-sm-end
+{%- endblock form_label_class %}
+
+{% block form_group_class -%}
+    col-sm-8
+{%- endblock form_group_class %}
+
+{% block textarea_widget -%}
+    {% set attr = attr|merge({ rows: 6 }) %}
+    {{ parent() }}
+{%- endblock textarea_widget %}
+
+{% block _form_name_widget -%}
+    {% set attr = attr|merge({ autocomplete: 'name' }) %}
+    {{ block('form_widget_simple') }}
+{%- endblock _form_name_widget %}
 
 {% block ems_markup_row -%}
     {% set attr = attr|merge({

@@ -1,8 +1,12 @@
 // FontAwesome
 @mixin faw-icon($fa-icon,$size:16,$weigth: 900) {
-  font-family: 'Font Awesome 6 Free';
-  content: fa-content($fa-icon);
-  @include fa-icon;
+  font-family: 'Font Awesome 7 Free';
+  content: unquote("\"#{$fa-icon}\"");
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-rendering: auto;
   font-size: rem($size);
   font-weight: $weigth;
 }

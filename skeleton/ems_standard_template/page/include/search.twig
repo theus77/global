@@ -72,7 +72,7 @@
 {%- block search_filter -%}
     {%- trans_default_domain trans_default_domain -%}
     <div id="search-filter" aria-live="polite" role="status">
-        <h1 id="results" class="text-primary">{{ 'app.search_page'|trans }}</h1>
+        <h1 id="results" class="">{{ 'app.search_page'|trans }}</h1>
         <div class="bg-body-secondary p-4 d-flex flex-row justify-content-between rounded search-group">
             <input name="q" value="{{ app.request.get('q') }}" class="form-control" type="search" placeholder="{{ 'search.placeholder'|trans }}" aria-label="{{ 'search.action'|trans }}">
             <button class="btn btn-primary" type="submit">{{ 'search.action'|trans }}</button>
@@ -110,7 +110,7 @@
     <div class="d-flex align-items-center gap-2">
         <p class="m-0">{{ 'search.select_size'|trans }}</p>
         <div id="search-sizes" aria-live="polite" role="status" class="d-flex align-items-center gap-3">
-            <label class="{{label_classes|default('')}} sr-only" for="select_size">{{ 'search.select_size'|trans }}</label>
+            <label class="{{label_classes|default('')}} visually-hidden" for="select_size">{{ 'search.select_size'|trans }}</label>
             <select class="w-auto form-select rounded-5" name="l" id="select_size">
                 {% for value in search.sizes %}
                     <option {% if search.size == value %}selected="selected"{% endif %} value="{{ value }}">{{ value }}</option>

@@ -5,7 +5,7 @@
   gap: map-get($spacers, 2);
 
   &::before {
-    @include faw-icon($fa-var-angle-down);
+    @include faw-icon(\f107);
     transform: rotate(0);
   }
 

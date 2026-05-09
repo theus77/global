@@ -10,7 +10,7 @@
 
 {%- block content -%}
     <div class="container">
-        <h1 {{ emsch_admin_menu(emsLink|format) }} class="{{ html_classes('text-primary', { 'visually-hidden': isHomepage }) }}" >
+        <h1 {{ emsch_admin_menu(emsLink|format) }} class="{{ html_classes({ 'visually-hidden': isHomepage }) }}" >
             {{ source.(locale).title }}
         </h1>
     </div>
