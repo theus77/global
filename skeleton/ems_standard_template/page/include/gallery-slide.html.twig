@@ -1,6 +1,6 @@
 {%- trans_default_domain trans_default_domain -%}
 {% set images = version.stack|default([]) %}
-{% set imageConfig = {_config_type: 'image', _image_format: 'webp', _width: 1600, _height: 1200, _quality: 90} %}
+{% set imageConfig = {_config_type: 'image', _image_format: 'webp', _width: 1600, _height: 1200, _quality: 90, _watermark_hash: '8fd9c7479c932fead585f83b866b920d5aabcfdb'} %}
 {% set previewConfig = {_config_type: 'image', _image_format: 'webp', _width: 300, _height: 200, _quality: 90, _resize: 'smartCrop'} %}
 {% set imageUrl = images is not empty ? ems_asset_path(images|first, imageConfig) : asset('img/website/missing.' ~ locale ~ '.jpg', 'emsch') %}
 <div class="{{ html_classes('carousel-item row g-0', {active: active|default(false)}) }}" data-index="{{ index }}">
