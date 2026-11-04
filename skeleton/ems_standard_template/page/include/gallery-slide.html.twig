@@ -31,7 +31,7 @@
     <div class="col-12 col-md-3 right-panel" tabindex="0">
         <div class="wrapper-right-panel">
             <h2 class="versionTitle">{{ version.label|default('') }}</h2>
-            <ul class="list-unstyled">
+            <ul>
                 {% if version.artist|default %}<li>{{ version.artist }}</li>{% endif %}
                 {% if version.date|default %}<li>{{ version.date|date('d/m/Y') }}</li>{% endif %}
                 {% if version.pixel_size|default %}<li>{{ version.pixel_size }}</li>{% endif %}
