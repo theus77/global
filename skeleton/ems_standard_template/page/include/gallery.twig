@@ -11,6 +11,7 @@
         {%- set from = requestPage*requestSize -%}
     {%- endif -%}
     {%- set resultsSearchBody = {
+        '_source': ['stack', 'label'],
         'sort': [ {"_score": { "order": "desc" } },{ 'date': { 'order': 'desc' } } ],
     } -%}
 
@@ -51,7 +52,11 @@
         'size': requestSize,
         'from': from,
         'total': total,
-        'results': search.hits.hits,
+        'results': search.hits.hits|map(hit => {
+            id: hit._id,
+            stack: hit._source.stack|default([]),
+            label: hit._source.label|default(null),
+        }|filter(v => null != v)),
         'query': {},
         'title': title,
     }|json_encode|raw -}}

@@ -56,7 +56,7 @@
                                 {% set hit = search.results[loop.index0 - search.from] %}
                                 {% set attrs = {
                                     src: previewUrl,
-                                    alt: hit._source.label|default,
+                                    alt: hit.label|default,
                                 }|filter(v => v) %}
                             {% else %}
                                 {% set attrs = {

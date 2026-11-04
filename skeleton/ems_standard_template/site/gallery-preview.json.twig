@@ -8,7 +8,7 @@
     'from': app.request.get('index'),
 })|ems_json_decode -%}
 
-{%- set image = search.results[0]._source.stack|default([])|first|default -%}
+{%- set image = search.results[0].stack|default([])|first|default -%}
 {%- set config = {
         _config_type: 'image',
         _image_format: 'webp',
