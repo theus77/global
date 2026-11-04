@@ -44,13 +44,13 @@
                 {% for keyword in version.keywords|default([]) %}
                     {% set label = attribute(keyword, 'name_' ~ locale)|default(keyword.name_fr|default('')) %}
                     {% if label %}
-                        <span class="badge"><a href="{{ path('gallery', {_locale: locale, keyword: keyword.keyword_id|split(':')|last }) }}">{{ label }}</a></span>
+                        <span class="badge"><a href="{{ path('search', {_locale: locale, keyword: keyword.keyword_id|split(':')|last }) }}">{{ label }}</a></span>
                     {% endif %}
                 {% endfor %}
                 {% for location in version.locations|default([]) %}
                     {% set label = attribute(location, 'name_' ~ locale)|default(location.name_fr|default('')) %}
                     {% if label %}
-                        <span class="badge"><a href="{{ path('gallery', {_locale: locale, location: location.place_id|split(':')|last}) }}">{{ label }}</a></span>
+                        <span class="badge"><a href="{{ path('search', {_locale: locale, location: location.place_id|split(':')|last}) }}">{{ label }}</a></span>
                     {% endif %}
                 {% endfor %}
             </div>

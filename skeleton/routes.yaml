@@ -27,12 +27,6 @@ news_overview:
         requirements: { _locale: nl|fr|de|en }
         defaults: { _locale: fr }
     template_static: ems_standard_template/page/news_overview.html.twig
-gallery:
-    config:
-        path: { nl: '/{_locale}/galerij', fr: '/{_locale}/galerie', de: '/{_locale}/galerie', en: '/{_locale}/gallery' }
-        requirements: { _locale: nl|fr|de|en }
-        defaults: { _locale: fr }
-    template_static: ems_standard_template/page/gallery.html.twig
 gallery_slide:
     config:
         path: '/{_locale}/gallery/slide'
@@ -56,7 +50,7 @@ search:
         path: { nl: '/{_locale}/zoeken.{_format}', fr: '/{_locale}/chercher.{_format}', de: '/{_locale}/suchen.{_format}', en: '/{_locale}/search.{_format}' }
         defaults: { _locale: fr, _format: html, l: 10 }
         requirements: { _locale: nl|fr|de|en, _format: html|json }
-    template_static: ems_standard_template/page/search.%_format%.twig
+    template_static: ems_standard_template/page/gallery.html.twig
 missing:
     config:
         path: { nl: '/{_locale}/niet-beschikbaar/{type}/{ouuid}', fr: '/{_locale}/non-disponible/{type}/{ouuid}', de: '/{_locale}/missing/{type}/{ouuid}', en: '/{_locale}/missing/{type}/{ouuid}' }
