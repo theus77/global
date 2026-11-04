@@ -12,11 +12,21 @@
 {%- endblock request -%}
 
 {%- block title -%}
-     {{ 'gallery.title.all'|trans }}
+     {{ search.title }}
 {%- endblock title -%}
 
 {%- block main -%}
-    {{ block('gallery') }}
+    {% if search.total > 0 %}
+        {{ block('gallery') }}
+    {% else %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ 'gallery.result.counter'|trans({'%count%': search.total}) }}</h1>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {%- endblock main -%}
 
 {% block gallery %}
@@ -31,67 +41,24 @@
         </div>
         <div class="row" id="galerie-thumb-bro">
             <div class="col-md-12 galerie-thumb">
-                <div class="galerie-thumb-scroll" id="thumb-scroll-container" style="overflow: hidden; outline: none; display: block;" tabindex="0">
-                    <a href="#" class="gallery-thumbnail active" data-index="0">
-                        <img id="thumb-0" src="https://www.globalview.be/fr/img/PWwGWyn3TCe3lFGdhdgvmA/preview.jpg" data-original="/fr/img/PWwGWyn3TCe3lFGdhdgvmA/preview.jpg" data-ouuid="PWwGWyn3TCe3lFGdhdgvmA" data-index="0" alt="Bois de Hal - Hallerbos" class="lazy-in-scroll lazy" width="300" height="200" style="display: block;">
-                    </a>
-                    <a href="#" class="gallery-thumbnail" data-index="1">
-                        <img id="thumb-1" src="https://www.globalview.be/fr/img/Nl4BrFxZTJSzP8gKRVX0_w/preview.jpg" data-original="/fr/img/Nl4BrFxZTJSzP8gKRVX0_w/preview.jpg" data-ouuid="Nl4BrFxZTJSzP8gKRVX0_w" data-index="1" alt="Château-Prison de Trois-Fontaines" class="lazy-in-scroll lazy" width="300" height="200" style="display: block;">
-                    </a>
-                    <a href="#" class="gallery-thumbnail" data-index="2">
-                        <img id="thumb-2" src="https://www.globalview.be/fr/img/XULJdB-0SPqTNlcJeH1-xA/preview.jpg" data-original="/fr/img/XULJdB-0SPqTNlcJeH1-xA/preview.jpg" data-ouuid="XULJdB-0SPqTNlcJeH1-xA" data-index="2" alt="Parc central et Jardin de la maison d'Erasme" class="lazy-in-scroll lazy" width="300" height="200" style="display: block;">
-                    </a>
-                    <a href="#" class="gallery-thumbnail" data-index="3">
-                        <img id="thumb-3" src="https://www.globalview.be/fr/img/iPLXDUTkSQS1eqBz_z4Ibw/preview.jpg" data-original="/fr/img/iPLXDUTkSQS1eqBz_z4Ibw/preview.jpg" data-ouuid="iPLXDUTkSQS1eqBz_z4Ibw" data-index="3" alt="Parc du Cinquantenaire" class="lazy-in-scroll lazy" width="300" height="200" style="display: block;">
-                    </a>
-                    <a href="#" class="gallery-thumbnail" data-index="4">
-                        <img id="thumb-4" src="https://www.globalview.be/fr/img/YYj27SEuRVGaxMhzrBWjhw/preview.jpg" data-original="/fr/img/YYj27SEuRVGaxMhzrBWjhw/preview.jpg" data-ouuid="YYj27SEuRVGaxMhzrBWjhw" data-index="4" alt="Belgacom TBR Tower - Quartier Nord de Bruxelles (Manhattan)" class="lazy-in-scroll lazy" width="300" height="200" style="display: block;">
-                    </a>
-                    <a href="#" class="gallery-thumbnail" data-index="5">
-                        <img id="thumb-5" src="https://www.globalview.be/fr/img/wRhofxeGSA-ww9XHyZBspg/preview.jpg" data-original="/fr/img/wRhofxeGSA-ww9XHyZBspg/preview.jpg" data-ouuid="wRhofxeGSA-ww9XHyZBspg" data-index="5" alt="Loge Royale de l'hippodrome de Groenendael" class="lazy-in-scroll lazy" width="300" height="200" style="display: block;">
-                    </a>
-                    <a href="#" class="gallery-thumbnail" data-index="6">
-                        <img id="thumb-6" src="https://www.globalview.be/fr/img/l6s06wwUS_KDw7b2XvQOwQ/preview.jpg" data-original="/fr/img/l6s06wwUS_KDw7b2XvQOwQ/preview.jpg" data-ouuid="l6s06wwUS_KDw7b2XvQOwQ" data-index="6" alt="Bois de la Cambre" class="lazy-in-scroll lazy" width="300" height="200" style="display: block;">
-                    </a>
-                    <a href="#" class="gallery-thumbnail" data-index="7">
-                        <img id="thumb-7" src="https://www.globalview.be/fr/img/2UDBklEkShyqwVEje-6LZA/preview.jpg" data-original="/fr/img/2UDBklEkShyqwVEje-6LZA/preview.jpg" data-ouuid="2UDBklEkShyqwVEje-6LZA" data-index="7" alt="cité de la Roue à Anderlecht" class="lazy-in-scroll lazy" width="300" height="200" style="display: block;">
-                    </a>
-                    <a href="#" class="gallery-thumbnail" data-index="8">
-                        <img id="thumb-8" src="https://www.globalview.be/fr/img/K_6B4ZG6TDWwQSok-BOyHA/preview.jpg" data-original="/fr/img/K_6B4ZG6TDWwQSok-BOyHA/preview.jpg" data-ouuid="K_6B4ZG6TDWwQSok-BOyHA" data-index="8" alt="Berchem-Sainte-Agathe : La Cité Moderne" class="lazy-in-scroll lazy" width="300" height="200" style="display: block;">
-                    </a>
-                    <a href="#" class="gallery-thumbnail" data-index="9">
-                        <img id="thumb-9" src="https://www.globalview.be/fr/img/r0b-zkyEQxCUeuOItmzQnA/preview.jpg" data-original="/fr/img/r0b-zkyEQxCUeuOItmzQnA/preview.jpg" data-ouuid="r0b-zkyEQxCUeuOItmzQnA" data-index="9" alt="Cité du Homborch - Uccle" class="lazy-in-scroll lazy" width="300" height="200" style="display: block;">
-                    </a>
-                    <a href="#" class="gallery-thumbnail" data-index="10">
-                        <img id="thumb-10" src="https://www.globalview.be/fr/img/1lr9X_k8Q7KVpaxHpUjqfw/preview.jpg" data-original="/fr/img/1lr9X_k8Q7KVpaxHpUjqfw/preview.jpg" data-ouuid="1lr9X_k8Q7KVpaxHpUjqfw" data-index="10" alt="Place Joséphine-Charlotte à Jambes" class="lazy-in-scroll lazy" width="300" height="200" style="display: block;">
-                    </a>
-                    <a href="#" class="gallery-thumbnail" data-index="11">
-                        <img id="thumb-11" src="https://www.globalview.be/fr/img/mdj-uYKYRcKijVxex3LdaQ/preview.jpg" data-original="/fr/img/mdj-uYKYRcKijVxex3LdaQ/preview.jpg" data-ouuid="mdj-uYKYRcKijVxex3LdaQ" data-index="11" alt="Rochers de Hotton" class="lazy-in-scroll lazy" width="300" height="200" style="display: block;">
-                    </a>
-                    <a href="#" class="gallery-thumbnail" data-index="12">
-                        <img id="thumb-12" src="https://www.globalview.be/fr/img/tctYF1ozSvKU9H6b6OvjZg/preview.jpg" data-original="/fr/img/tctYF1ozSvKU9H6b6OvjZg/preview.jpg" data-ouuid="tctYF1ozSvKU9H6b6OvjZg" data-index="12" alt="Projet &quot;Coulée Verte&quot;, Site de Tour &amp; Taxi" class="lazy-in-scroll lazy" width="300" height="200" style="display: block;">
-                    </a>
-                    <a href="#" class="gallery-thumbnail" data-index="13">
-                        <img id="thumb-13" src="https://www.globalview.be/fr/img/S7AKhicOQZeRTOaLpoYZEw/preview.jpg" data-original="/fr/img/S7AKhicOQZeRTOaLpoYZEw/preview.jpg" data-ouuid="S7AKhicOQZeRTOaLpoYZEw" data-index="13" alt="Méandres dans les environs de Mol" class="lazy-in-scroll lazy" width="300" height="200" style="display: block;">
-                    </a>
-                    <a href="#" class="gallery-thumbnail" data-index="14">
-                        <img id="thumb-14" src="https://www.globalview.be/fr/img/djv6zXmRQOqFzbMAkwhpyg/preview.jpg" data-original="/fr/img/djv6zXmRQOqFzbMAkwhpyg/preview.jpg" data-ouuid="djv6zXmRQOqFzbMAkwhpyg" data-index="14" alt="Parc de Wolvendael et Keyenbempt" class="lazy-in-scroll lazy" width="300" height="200" style="display: block;">
-                    </a>
-                    <a href="#" class="gallery-thumbnail" data-index="15">
-                        <img id="thumb-15" src="https://www.globalview.be/fr/img/sdA5zJZ1R0aOGJXOXZjj1A/preview.jpg" data-original="/fr/img/sdA5zJZ1R0aOGJXOXZjj1A/preview.jpg" data-ouuid="sdA5zJZ1R0aOGJXOXZjj1A" data-index="15" alt="Port du Bon Dieu - projet immobilier en bord de Meuse à Namur" class="lazy-in-scroll lazy" width="300" height="200" style="display: block;">
-                    </a>
-                    <a href="#" class="gallery-thumbnail" data-index="16">
-                        <img id="thumb-16" src="https://www.globalview.be/fr/img/yBaQO0OTSFOlvyWZFkYmNg/preview.jpg" data-original="/fr/img/yBaQO0OTSFOlvyWZFkYmNg/preview.jpg" data-ouuid="yBaQO0OTSFOlvyWZFkYmNg" data-index="16" alt="Parc de la Pede" class="lazy-in-scroll lazy" width="300" height="200" style="display: block;">
-                    </a>
-                    <a href="#" class="gallery-thumbnail" data-index="17">
-                        <img id="thumb-17" src="https://www.globalview.be/fr/img/XccAqOzDQSmT7dEWaXK7Dw/preview.jpg" data-original="/fr/img/XccAqOzDQSmT7dEWaXK7Dw/preview.jpg" data-ouuid="XccAqOzDQSmT7dEWaXK7Dw" data-index="17" alt="Château de Groenendael - Kasteel Groenendael" class="lazy-in-scroll lazy" width="300" height="200" style="display: block;">
-                    </a>
-                    <a href="#" class="gallery-thumbnail" data-index="18">
-                        <img id="thumb-18" src="https://www.globalview.be/fr/img/xbQF_8npQ4adkZdl2LeBjw/preview.jpg" data-original="/fr/img/xbQF_8npQ4adkZdl2LeBjw/preview.jpg" data-ouuid="xbQF_8npQ4adkZdl2LeBjw" data-index="18" alt="Ecluse de Seilles-Andenne" class="lazy-in-scroll lazy" width="300" height="200" style="display: block;">
-                    </a>
-                    <a href="#" class="gallery-thumbnail" data-index="19">
-                        <img id="thumb-19" src="https://www.globalview.be/fr/img/cUv2JZZQRNWIHfVsSmfkfw/preview.jpg" data-original="/fr/img/cUv2JZZQRNWIHfVsSmfkfw/preview.jpg" data-ouuid="cUv2JZZQRNWIHfVsSmfkfw" data-index="19" alt="Jardins du Roi" class="lazy-in-scroll lazy" width="300" height="200" style="display: block;">
-                    </a>
+                 <div class="galerie-thumb-scroll" id="thumb-scroll-container" tabindex="0">
+                    {% for count in 0..(search.total-1) %}
+                        <a href="#" class="gallery-thumbnail" data-index="{{ loop.index0 }}">
+                            {% set previewUrl = path('gallery_image_preview', search.query|merge({index: loop.index0})) %}
+                            {% if loop.index0 >= search.from and search.results|length > (loop.index0 - search.from) %}
+                                {% set hit = search.results[loop.index0 - search.from] %}
+                                {% set attrs = {
+                                    src: previewUrl,
+                                    alt: hit._source.label|default,
+                                }|filter(v => v) %}
+                            {% else %}
+                                {% set attrs = {
+                                    src: asset('img/website/loading.jpg', 'emsch'),
+                                } %}
+                            {% endif %}
+                            <img id="thumb-{{ loop.index0 }}" {% for attr, value in attrs %} {{ attr }}="{{ value|e('html_attr') }}"{% endfor %} data-index="{{ loop.index0 }}" class="lazy-in-scroll lazy" width="300" height="200">
+                        </a>
+                    {% endfor %}
                 </div>
             </div>
         </div>

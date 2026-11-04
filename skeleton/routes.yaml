@@ -33,6 +33,11 @@ gallery:
         requirements: { _locale: nl|fr|de|en }
         defaults: { _locale: fr }
     template_static: ems_standard_template/page/gallery.html.twig
+gallery_image_preview:
+    config:
+        path: '/gallery/preview/{index}.webp'
+        controller: 'emsch.controller.router::redirect'
+    template_static: ems_standard_template/site/gallery-preview.json.twig
 news:
     config:
         path: { nl: '/{_locale}/vluchten/{slug}', fr: '/{_locale}/vols/{slug}', de: '/{_locale}/fluege/{slug}', en: '/{_locale}/flights/{slug}' }

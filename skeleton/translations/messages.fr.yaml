@@ -104,3 +104,4 @@ gallery:
         counter: '{0} Aucune référence trouvée|{1} 1 référence|]1,Inf[%count% références'
     title:
         all: 'Galerie des clichés de GlobalView'
+        query: 'Galerie correspondant à la recherche "%query%"'
