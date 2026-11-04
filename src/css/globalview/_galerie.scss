@@ -221,7 +221,15 @@
 	width:auto;
 	position:relative;
 	padding-bottom:em(15px);
-	.middle-wrapper {position:relative;}
+	.middle-wrapper {
+		position:relative;
+		&:not(.image-loaded) {
+			.carousel-control-prev, .carousel-control-next {
+				visibility:hidden;
+				pointer-events:none;
+			}
+		}
+	}
 	@extend %gradient-gray;
 	&:before {
 		pointer-events:none;
@@ -231,12 +239,7 @@
 			display:flex;
 		}
 		.left-panel, .right-panel, .middle-panel {
-			@include MQ(Splus) {
-				min-height:em(400px) !important;
-			}
-			@include MQ(S) {
-				min-height:em(300px) !important;
-			}
+			min-height:0;
 		}
 		.inner-stack {
 			height:100%;

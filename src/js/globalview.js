@@ -114,16 +114,27 @@ function setupGalleryScrollPanels(scope = document) {
     $(scope).find('.carousel-item.active .left-panel, .carousel-item.active .right-panel').niceScroll(niceScrollConfig);
 }
 
-function setGalerieHeight() {
-    const height = $('.carousel-inner .carousel-item.active .middle-panel img').height();
+let galleryHeightFrame = null;
 
-    if (!height) {
+function setGalerieHeight() {
+    if (galleryHeightFrame !== null) {
         return;
     }
 
-    const panels = $('.carousel-inner .carousel-item.active .left-panel, .carousel-inner .carousel-item.active .right-panel');
-    panels.css('max-height', `${height}px`);
-    panels.getNiceScroll().resize();
+    galleryHeightFrame = window.requestAnimationFrame(() => {
+        galleryHeightFrame = null;
+        $('.carousel-inner > .carousel-item.active, .carousel-inner > .carousel-item-next, .carousel-inner > .carousel-item-prev').each(function resizeSlidePanels() {
+            const item = $(this);
+            const height = item.find('.middle-panel img').height();
+            if (!height) {
+                return;
+            }
+
+            const panels = item.find('.left-panel, .right-panel');
+            panels.css({ height: `${height}px`, 'max-height': `${height}px` });
+            panels.getNiceScroll().resize();
+        });
+    });
 }
 
 function hidePreloader() {
@@ -397,9 +408,18 @@ function setupLegacyFilmstripGallery() {
         });
     }
 
+    function updateImageControls(image) {
+        $(image).closest('.middle-wrapper').toggleClass('image-loaded', image.complete && image.naturalWidth > 0);
+        setGalerieHeight();
+    }
+
     function watchSlideImages(item) {
         item.find('img').on('load', setGalerieHeight);
         item.find('.middle-panel img').each(function watchImageSize() {
+            $(this).on('load error', function onImageLoadStateChange() {
+                updateImageControls(this);
+            });
+            updateImageControls(this);
             imageResizeObserver?.observe(this);
         });
         setGalerieHeight();
@@ -529,6 +549,8 @@ function setupLegacyFilmstripGallery() {
         $error.prop('hidden', false);
     }
 
+    $carousel.on('slide.bs.carousel', setGalerieHeight);
+
     $carousel.on('slid.bs.carousel', () => {
         transitioning = false;
         removeInactiveItems();
@@ -561,7 +583,10 @@ function setupLegacyFilmstripGallery() {
             return;
         }
         const item = $(this).closest('.carousel-item');
-        item.find('.middle-panel img').attr('src', imageUrl);
+        item.find('.middle-wrapper').removeClass('image-loaded');
+        item.find('.middle-panel img').attr('src', imageUrl).each(function updateAlternativeImageControls() {
+            updateImageControls(this);
+        });
         item.find('.alternative-image').removeClass('active');
         $(this).addClass('active');
     });
