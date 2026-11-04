@@ -54,6 +54,7 @@
                             {% else %}
                                 {% set attrs = {
                                     src: asset('img/website/loading.jpg', 'emsch'),
+                                    'data-src': previewUrl,
                                 } %}
                             {% endif %}
                             <img id="thumb-{{ loop.index0 }}" {% for attr, value in attrs %} {{ attr }}="{{ value|e('html_attr') }}"{% endfor %} data-index="{{ loop.index0 }}" class="lazy-in-scroll lazy" width="300" height="200">
