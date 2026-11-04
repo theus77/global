@@ -33,14 +33,18 @@
             <h2 class="versionTitle">{{ version.label|default('') }}</h2>
             <ul>
                 {% if version.artist|default %}<li>{{ version.artist }}</li>{% endif %}
-                {% if version.date|default %}<li>{{ version.date|date('d/m/Y') }}</li>{% endif %}
+                {% if version.date|default %}<li>{{ version.date|date('d/m/Y H:i') }}</li>{% endif %}
                 {% if version.pixel_size|default %}<li>{{ version.pixel_size }}</li>{% endif %}
             </ul>
+            {% set keywords = version.keywords|default([])|merge(version.locations|default([])) %}
+            {% if keywords is not empty %}
+                <h3>{{ 'gallery.keywords.title'|trans }}</h3>
+            {% endif %}
             <div class="keywordList">
-                {% for keyword in version.keywords|default([]) %}
+                {% for keyword in keywords %}
                     {% set label = attribute(keyword, 'name_' ~ locale)|default(keyword.name_fr|default('')) %}
                     {% if label %}
-                        <span class="badge text-bg-secondary"><a href="{{ path('gallery', {_locale: locale, q: label}) }}">{{ label }}</a></span>
+                        <span class="badge"><a href="{{ path('gallery', {_locale: locale, q: label}) }}">{{ label }}</a></span>
                     {% endif %}
                 {% endfor %}
             </div>

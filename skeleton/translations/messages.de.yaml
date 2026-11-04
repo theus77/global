@@ -84,3 +84,6 @@ search:
     placeholder: 'Geben Sie ein oder mehrere Schlüsselwörter ein'
     results: '{0} Keine Ergebnisse gefunden|{1} 1 Ergebnis gefunden|]1,Inf[%count% Ergebnisse gefunden'
     select_size: Ergebnisse
+gallery:
+    keywords:
+        title: 'Stichwörter'

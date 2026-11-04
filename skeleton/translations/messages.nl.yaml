@@ -83,3 +83,6 @@ search:
     placeholder: 'Geef een of meer zoektermen in'
     results: '{0} Geen resultaten gevonden|{1} 1 resultaat gevonden|]1,Inf[%count% resultaten gevonden'
     select_size: Resultaten
+gallery:
+    keywords:
+        title: 'Trefwoorden'
