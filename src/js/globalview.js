@@ -377,12 +377,27 @@ function setupLegacyFilmstripGallery() {
         setGalerieHeight();
     }
 
+    function scrollThumbIntoView(thumb) {
+        const panel = $thumbs[0];
+        const bounds = panel.getBoundingClientRect();
+        const thumbnail = thumb.getBoundingClientRect();
+        const left = bounds.left + panel.clientLeft;
+        const right = left + panel.clientWidth;
+
+        if (thumbnail.left < left) {
+            panel.scrollLeft += thumbnail.left - left;
+        } else if (thumbnail.right > right) {
+            panel.scrollLeft += Math.min(thumbnail.left - left, thumbnail.right - right);
+        }
+    }
+
     function activateThumb(index) {
         $thumbs.find('.gallery-thumbnail').each(function setThumbState() {
             const active = Number(this.dataset.index) === index;
             $(this).toggleClass('active', active);
             if (active) {
                 this.setAttribute('aria-current', 'true');
+                scrollThumbIntoView(this);
             } else {
                 this.removeAttribute('aria-current');
             }
