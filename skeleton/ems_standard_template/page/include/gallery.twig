@@ -32,6 +32,32 @@
         }) -%}
         {%- set title = 'gallery.title.query'|trans({'%query%': queryString}) -%}
         {%- set query = {q: queryString} -%}
+    {%- elseif app.request.query.get('keyword') -%}
+        {%- set keyword = app.request.query.get('keyword') -%}
+        {%- set resultsSearchBody = resultsSearchBody|merge({
+            query: {
+                bool: {
+                    must: [{
+                        nested: {
+                            path: 'keywords',
+                            query: {
+                                term: {
+                                    'keywords.keyword_id': {
+                                        value: "globalview_keyword:#{keyword}",
+                                    }
+                                }
+                            }
+                        }
+                    }]
+                }
+            }
+        }) -%}
+        {%- set keywordDoc = "globalview_keyword:#{keyword}"|emsch_get -%}
+        {%- if not keywordDoc -%}
+            {%- do emsch_http_error('404', 'Keyword not found') -%}
+        {%- endif -%}
+        {%- set title = 'gallery.title.keyword'|trans({'%keyword%': keywordDoc.source.("name_#{locale}")|default(keywordDoc.source.name_fr) }) -%}
+        {%- set query = {keyword: keyword} -%}
     {%- elseif app.request.query.get('location') -%}
         {%- set location = app.request.query.get('location') -%}
         {%- set resultsSearchBody = resultsSearchBody|merge({

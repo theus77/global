@@ -111,3 +111,4 @@ gallery:
         no_result_for: 'Pas de résultat pour la recherche "%query%"'
         no_result: 'Pas de résultat pour cette recherche'
         location: '{1} Pays "%location%"|{2} %location%|[16,20[ Commune "%location%"|[20,60[ Quartier "%location%"|]-Inf,Inf[ Emplacement "%location%"'
+        keyword: 'Mot clé "%keyword%"'
