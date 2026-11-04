@@ -1,6 +1,7 @@
 {%- macro search(config) -%}
     {%- set searchTypes = ['globalview_version'] -%}
     {%- set requestSize = config.size|default(20) -%}
+    {%- set locale = config.locale -%}
     {%- set from = config.from|default(false) -%}
     {%- trans_default_domain config.domain -%}
     {%- if from -%}
@@ -16,7 +17,7 @@
     } -%}
 
     {%- if '' != app.request.query.get('q', '') -%}
-        {% set queryString = app.request.query.get('q') %}
+        {%- set queryString = app.request.query.get('q') -%}
         {%- set resultsSearchBody = resultsSearchBody|merge({
             query: {
                 bool: {
@@ -29,11 +30,37 @@
                 }
             }
         }) -%}
-        {% set title = 'gallery.title.query'|trans({'%query%': queryString}) %}
-        {% set query = {q: queryString} %}
+        {%- set title = 'gallery.title.query'|trans({'%query%': queryString}) -%}
+        {%- set query = {q: queryString} -%}
+    {%- elseif app.request.query.get('location') -%}
+        {%- set location = app.request.query.get('location') -%}
+        {%- set resultsSearchBody = resultsSearchBody|merge({
+            query: {
+                bool: {
+                    must: [{
+                        nested: {
+                            path: 'locations',
+                            query: {
+                                term: {
+                                    'locations.place_id': {
+                                        value: "globalview_place:#{location}",
+                                    }
+                                }
+                            }
+                        }
+                    }]
+                }
+            }
+        }) -%}
+        {%- set locationDoc = "globalview_place:#{location}"|emsch_get -%}
+        {%- if not locationDoc -%}
+            {%- do emsch_http_error('404', 'Location not found') -%}
+        {%- endif -%}
+        {%- set title = 'gallery.title.location'|trans({'%location%': locationDoc.source.("name_#{locale}")|default(locationDoc.source.name_fr), '%level%': locationDoc.source.level, '%count%': locationDoc.source.level }) -%}
+        {%- set query = {location: location} -%}
     {%- else -%}
-        {% set title = 'gallery.title.all'|trans %}
-        {% set query = {} %}
+        {%- set title = 'gallery.title.all'|trans -%}
+        {%- set query = {} -%}
     {%- endif -%}
 
 
@@ -41,10 +68,10 @@
     {%- set search = emsch_search(searchTypes, resultsSearchBody, from, requestSize) -%}
     {%- set total = search.hits.total.value -%}
     {%- if total == 0 and '' != app.request.query.get('q', '') -%}
-        {% set queryString = app.request.query.get('q') %}
-        {% set title = 'gallery.title.no_result_for'|trans({'%query%': queryString}) %}
+        {%- set queryString = app.request.query.get('q') -%}
+        {%- set title = 'gallery.title.no_result_for'|trans({'%query%': queryString}) -%}
     {%- elseif total == 0 -%}
-        {% set title = 'gallery.title.no_result'|trans %}
+        {%- set title = 'gallery.title.no_result'|trans -%}
     {%- endif -%}
 
 

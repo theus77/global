@@ -48,6 +48,13 @@ docker run --rm -it \
   --input=http://host.docker.internal:9222/aperture_v1 \
   --output=/dump/aperture_v1_data.json \
   --type=data
+docker run --rm -it \
+  -v "$PWD/es-dump:/dump" \
+  --add-host=host.docker.internal:host-gateway \
+  taskrabbit/elasticsearch-dump \
+  --input=http://host.docker.internal:9222/global_live \
+  --output=/dump/globale_live_data.json \
+  --type=data
 ````
 
 How to migrate Aperture documents to the new eMS

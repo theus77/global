@@ -30,7 +30,7 @@
     </div>
     <div class="col-12 col-md-3 right-panel" tabindex="0">
         <div class="wrapper-right-panel">
-            <h2 class="versionTitle">{{ version.label|default('') }}</h2>
+            <h2 class="versionTitle">{{ version.label|default(version.name|default('')) }}</h2>
             <ul>
                 {% if version.artist|default %}<li>{{ version.artist }}</li>{% endif %}
                 {% if version.date|default %}<li>{{ version.date|date('d/m/Y H:i') }}</li>{% endif %}
@@ -41,10 +41,16 @@
                 <h3>{{ 'gallery.keywords.title'|trans }}</h3>
             {% endif %}
             <div class="keywordList">
-                {% for keyword in keywords %}
+                {% for keyword in version.keywords|default([]) %}
                     {% set label = attribute(keyword, 'name_' ~ locale)|default(keyword.name_fr|default('')) %}
                     {% if label %}
-                        <span class="badge"><a href="{{ path('gallery', {_locale: locale, q: label}) }}">{{ label }}</a></span>
+                        <span class="badge"><a href="{{ path('gallery', {_locale: locale, keyword: label}) }}">{{ label }}</a></span>
+                    {% endif %}
+                {% endfor %}
+                {% for location in version.locations|default([]) %}
+                    {% set label = attribute(location, 'name_' ~ locale)|default(location.name_fr|default('')) %}
+                    {% if label %}
+                        <span class="badge"><a href="{{ path('gallery', {_locale: locale, location: location.place_id|split(':')|last}) }}">{{ label }}</a></span>
                     {% endif %}
                 {% endfor %}
             </div>
