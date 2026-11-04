@@ -57,6 +57,7 @@
                                 {% set attrs = {
                                     src: previewUrl,
                                     alt: hit.label|default,
+                                    title: hit.label|default,
                                 }|filter(v => v) %}
                             {% else %}
                                 {% set attrs = {
