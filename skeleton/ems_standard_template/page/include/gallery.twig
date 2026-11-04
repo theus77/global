@@ -14,7 +14,7 @@
         'sort': [ {"_score": { "order": "desc" } },{ 'date': { 'order': 'desc' } } ],
     } -%}
 
-    {%- if app.request.query.get('q') -%}
+    {%- if '' != app.request.query.get('q', '') -%}
         {% set query = app.request.query.get('q') %}
         {%- set resultsSearchBody = resultsSearchBody|merge({
             query: {
@@ -37,6 +37,13 @@
 
     {%- set search = emsch_search(searchTypes, resultsSearchBody, from, requestSize) -%}
     {%- set total = search.hits.total.value -%}
+    {%- if total == 0 and '' != app.request.query.get('q', '') -%}
+        {% set query = app.request.query.get('q') %}
+        {% set title = 'gallery.title.no_result_for'|trans({'%query%': query}) %}
+    {%- elseif total == 0 -%}
+        {% set title = 'gallery.title.no_result'|trans %}
+    {%- endif -%}
+
 
     {{- {
         'lastPage': ((total / requestSize) |round(0, 'ceil') -1),

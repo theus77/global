@@ -105,3 +105,5 @@ gallery:
     title:
         all: 'Galerie des clichés de GlobalView'
         query: 'Galerie correspondant à la recherche "%query%"'
+        no_result_for: 'Pas de résultat pour la recherche "%query%"'
+        no_result: 'Pas de résultat pour cette recherche'
