@@ -16,22 +16,24 @@
     } -%}
 
     {%- if '' != app.request.query.get('q', '') -%}
-        {% set query = app.request.query.get('q') %}
+        {% set queryString = app.request.query.get('q') %}
         {%- set resultsSearchBody = resultsSearchBody|merge({
             query: {
                 bool: {
                     must: [{
                         query_string: {
-                            query: query,
+                            query: queryString,
                             default_operator: 'AND',
                         }
                     }]
                 }
             }
         }) -%}
-        {% set title = 'gallery.title.query'|trans({'%query%': query}) %}
+        {% set title = 'gallery.title.query'|trans({'%query%': queryString}) %}
+        {% set query = {q: queryString} %}
     {%- else -%}
         {% set title = 'gallery.title.all'|trans %}
+        {% set query = {} %}
     {%- endif -%}
 
 
@@ -39,8 +41,8 @@
     {%- set search = emsch_search(searchTypes, resultsSearchBody, from, requestSize) -%}
     {%- set total = search.hits.total.value -%}
     {%- if total == 0 and '' != app.request.query.get('q', '') -%}
-        {% set query = app.request.query.get('q') %}
-        {% set title = 'gallery.title.no_result_for'|trans({'%query%': query}) %}
+        {% set queryString = app.request.query.get('q') %}
+        {% set title = 'gallery.title.no_result_for'|trans({'%query%': queryString}) %}
     {%- elseif total == 0 -%}
         {% set title = 'gallery.title.no_result'|trans %}
     {%- endif -%}
@@ -57,7 +59,7 @@
             stack: hit._source.stack|default([]),
             label: hit._source.label|default(null),
         }|filter(v => null != v)),
-        'query': {},
+        'query': query,
         'title': title,
     }|json_encode|raw -}}
 {%- endmacro -%}
