@@ -40,7 +40,7 @@
         'query': { 'bool': { 'must': must } },
         'size': requestSize,
         'from': (requestPage * requestSize),
-        'sort': [ { '_published_datetime': { 'order': 'asc' } } ]
+        'sort': [ {"_score": { "order": "desc" }}, { '_published_datetime': { 'order': 'desc' } } ]
     } -%}
 
     {%- set search = emsch_search(searchTypes, resultsSearchBody) -%}
