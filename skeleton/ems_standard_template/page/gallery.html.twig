@@ -1,5 +1,15 @@
 {%- extends "@EMSCH/ems_standard_template/page/base.html.twig" -%}
+{%- trans_default_domain trans_default_domain -%}
 
+{%- block request %}
+    {%- set galleryTemplate = '@EMSCH/ems_standard_template/page/include/gallery.twig' -%}
+    {%- import galleryTemplate as macro -%}
+    {%- set search = macro.search({
+        'locale': locale,
+        'domain': trans_default_domain
+    })|ems_json_decode -%}
+    {{ parent() }}
+{%- endblock request -%}
 
 {%- block title -%}
      {{ 'gallery.title.all'|trans }}
