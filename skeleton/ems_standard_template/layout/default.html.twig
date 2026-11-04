@@ -104,10 +104,10 @@
 {%- endblock header -%}
 
 {%- block search_form -%}
-    <form action="{{ path('gallery') }}" method="GET">
+    <form action="{{ path('gallery') }}" method="GET" class="content-search-form">
         <div class="input-group">
-            <input type="text" name="q" class="form-control border-end-0" placeholder="{{ 'search.placeholder'|trans }}" aria-label="{{ 'search.action'|trans }}">
-            <button class="btn rounded-end-pill border-start-0" type="submit">
+            <input type="text" name="q" class="form-control" placeholder="{{ 'search.placeholder'|trans }}" aria-label="{{ 'search.action'|trans }}">
+            <button class="btn btn-primary" type="submit">
                 <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
                 <span>{{ 'search.action'|trans }}</span>
             </button>
