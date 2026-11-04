@@ -1,5 +1,6 @@
 map:
     connecting: 'Connection à Google Maps ...'
+    title: 'Recherche géographique'
 actions:
     buy_book: 'Acheter le livre'
 app:

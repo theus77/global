@@ -63,6 +63,11 @@ missing:
         requirements: { type: page|news, ouuid: '[^.]+' }
     query: '{"query":{"bool":{"must":[{"term":{"_contenttype":"ems_standard_%type%"}},{"term":{"_id":"%ouuid%"}}]}}}'
     template_static: ems_standard_template/page/missing.html.twig
+emsch_map:
+    config:
+        path: { fr: '/{_locale}/carte.{_format}', en: '/{_locale}/map.{_format}' }
+        defaults: { _locale: fr, _format: html, }
+    template_static: ems_standard_template/page/map.%_format%.twig
 structure:
     config:
         path: '/{_locale}/{path}'

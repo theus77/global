@@ -1,0 +1,8 @@
+{%- extends "@EMSCH/ems_standard_template/page/base.html.twig" -%}
+{%- trans_default_domain trans_default_domain -%}
+
+{% block title %}{{ 'map.title'|trans }}{% endblock title %}
+
+{%- block main -%}
+    <h1 class="visually-hidden">{{ block('title') }}</h1>
+{%- endblock main -%}
