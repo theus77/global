@@ -196,8 +196,12 @@ function setupLegacyInteractions() {
 
     $('.search-trigger, .search_button').on('click', function toggleSearch(e) {
         e.preventDefault();
-        $('.search-form').slideToggle(() => {
-            $('.search_button').attr('aria-expanded', $('.search-form').is(':visible') ? 'true' : 'false');
+        $('.search-form').slideToggle(function onSearchToggle() {
+            const isOpen = $(this).is(':visible');
+            $('.search_button').attr('aria-expanded', isOpen ? 'true' : 'false');
+            if (isOpen) {
+                this.querySelector('input.QuickSearchInput')?.focus({ preventScroll: true });
+            }
         });
         $('nav.navbar-inverse.navbar-fixed-top').toggleClass('black');
     });
