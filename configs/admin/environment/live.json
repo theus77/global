@@ -4,6 +4,7 @@
     "properties": {
         "name": "live",
         "label": null,
+        "description": null,
         "color": "green",
         "baseUrl": null,
         "managed": true,

@@ -4,6 +4,7 @@
     "properties": {
         "name": "preview",
         "label": null,
+        "description": null,
         "color": "blue",
         "baseUrl": null,
         "managed": true,

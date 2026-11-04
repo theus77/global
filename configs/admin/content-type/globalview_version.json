@@ -5,7 +5,7 @@
         "name": "globalview_version",
         "pluralName": "Versions",
         "singularName": "Version",
-        "icon": "glyphicon glyphicon-pushpin",
+        "icon": null,
         "description": null,
         "indexTwig": null,
         "extra": null,
@@ -36,7 +36,8 @@
                     "extraOptions": {
                         "extra": null,
                         "clear_on_copy": false,
-                        "postProcessing": null
+                        "postProcessing": null,
+                        "description": null
                     }
                 },
                 "orderKey": 0,
@@ -75,7 +76,8 @@
                                 "extraOptions": {
                                     "extra": null,
                                     "clear_on_copy": false,
-                                    "postProcessing": null
+                                    "postProcessing": null,
+                                    "description": null
                                 },
                                 "raw_data": [],
                                 "migrationOptions": {
@@ -141,7 +143,8 @@
                                 "extraOptions": {
                                     "extra": null,
                                     "clear_on_copy": false,
-                                    "postProcessing": null
+                                    "postProcessing": null,
+                                    "description": null
                                 },
                                 "raw_data": [],
                                 "migrationOptions": {
@@ -180,7 +183,8 @@
                                 "extraOptions": {
                                     "extra": null,
                                     "clear_on_copy": false,
-                                    "postProcessing": null
+                                    "postProcessing": null,
+                                    "description": null
                                 },
                                 "raw_data": [],
                                 "migrationOptions": {
@@ -219,7 +223,8 @@
                                 "extraOptions": {
                                     "extra": null,
                                     "clear_on_copy": false,
-                                    "postProcessing": null
+                                    "postProcessing": null,
+                                    "description": null
                                 },
                                 "raw_data": [],
                                 "migrationOptions": {
@@ -260,7 +265,8 @@
                                 "extraOptions": {
                                     "extra": null,
                                     "clear_on_copy": false,
-                                    "postProcessing": null
+                                    "postProcessing": null,
+                                    "description": null
                                 },
                                 "raw_data": [],
                                 "migrationOptions": {
@@ -301,7 +307,8 @@
                                 "extraOptions": {
                                     "extra": null,
                                     "clear_on_copy": false,
-                                    "postProcessing": null
+                                    "postProcessing": null,
+                                    "description": null
                                 },
                                 "raw_data": [],
                                 "migrationOptions": {
@@ -340,7 +347,9 @@
                                 "extraOptions": {
                                     "extra": null,
                                     "clear_on_copy": false,
-                                    "postProcessing": null
+                                    "postProcessing": null,
+                                    "description": null,
+                                    "mcpOutputSchema": null
                                 },
                                 "raw_data": []
                             },
@@ -383,7 +392,8 @@
                                 "extraOptions": {
                                     "extra": null,
                                     "clear_on_copy": false,
-                                    "postProcessing": null
+                                    "postProcessing": null,
+                                    "description": null
                                 },
                                 "raw_data": [],
                                 "migrationOptions": {
@@ -429,7 +439,8 @@
                                 "extraOptions": {
                                     "extra": null,
                                     "clear_on_copy": false,
-                                    "postProcessing": null
+                                    "postProcessing": null,
+                                    "description": null
                                 },
                                 "raw_data": [],
                                 "migrationOptions": {
@@ -475,7 +486,8 @@
                                 "extraOptions": {
                                     "extra": null,
                                     "clear_on_copy": false,
-                                    "postProcessing": null
+                                    "postProcessing": null,
+                                    "description": null
                                 },
                                 "raw_data": [],
                                 "migrationOptions": {
@@ -521,7 +533,8 @@
                                 "extraOptions": {
                                     "extra": null,
                                     "clear_on_copy": false,
-                                    "postProcessing": null
+                                    "postProcessing": null,
+                                    "description": null
                                 },
                                 "raw_data": [],
                                 "migrationOptions": {
@@ -594,7 +607,8 @@
                                 "extraOptions": {
                                     "extra": null,
                                     "clear_on_copy": false,
-                                    "postProcessing": null
+                                    "postProcessing": null,
+                                    "description": null
                                 },
                                 "raw_data": [],
                                 "migrationOptions": {
@@ -640,7 +654,8 @@
                                 "extraOptions": {
                                     "extra": null,
                                     "clear_on_copy": false,
-                                    "postProcessing": null
+                                    "postProcessing": null,
+                                    "description": null
                                 },
                                 "raw_data": [],
                                 "migrationOptions": {
@@ -686,7 +701,8 @@
                                 "extraOptions": {
                                     "extra": null,
                                     "clear_on_copy": false,
-                                    "postProcessing": null
+                                    "postProcessing": null,
+                                    "description": null
                                 },
                                 "raw_data": [],
                                 "migrationOptions": {
@@ -732,7 +748,8 @@
                                 "extraOptions": {
                                     "extra": null,
                                     "clear_on_copy": false,
-                                    "postProcessing": null
+                                    "postProcessing": null,
+                                    "description": null
                                 },
                                 "raw_data": [],
                                 "migrationOptions": {
@@ -778,7 +795,8 @@
                                 "extraOptions": {
                                     "extra": null,
                                     "clear_on_copy": false,
-                                    "postProcessing": null
+                                    "postProcessing": null,
+                                    "description": null
                                 },
                                 "raw_data": [],
                                 "migrationOptions": {
@@ -824,7 +842,8 @@
                                 "extraOptions": {
                                     "extra": null,
                                     "clear_on_copy": false,
-                                    "postProcessing": null
+                                    "postProcessing": null,
+                                    "description": null
                                 },
                                 "raw_data": [],
                                 "migrationOptions": {
@@ -870,7 +889,8 @@
                                 "extraOptions": {
                                     "extra": null,
                                     "clear_on_copy": false,
-                                    "postProcessing": null
+                                    "postProcessing": null,
+                                    "description": null
                                 },
                                 "raw_data": [],
                                 "migrationOptions": {
@@ -916,7 +936,8 @@
                                 "extraOptions": {
                                     "extra": null,
                                     "clear_on_copy": false,
-                                    "postProcessing": null
+                                    "postProcessing": null,
+                                    "description": null
                                 },
                                 "raw_data": [],
                                 "migrationOptions": {
@@ -962,7 +983,8 @@
                                 "extraOptions": {
                                     "extra": null,
                                     "clear_on_copy": false,
-                                    "postProcessing": null
+                                    "postProcessing": null,
+                                    "description": null
                                 },
                                 "raw_data": [],
                                 "migrationOptions": {
@@ -1007,7 +1029,8 @@
                                 "extraOptions": {
                                     "extra": null,
                                     "clear_on_copy": false,
-                                    "postProcessing": null
+                                    "postProcessing": null,
+                                    "description": null
                                 },
                                 "raw_data": [],
                                 "migrationOptions": {
@@ -1043,7 +1066,8 @@
                                             "extraOptions": {
                                                 "extra": null,
                                                 "clear_on_copy": false,
-                                                "postProcessing": null
+                                                "postProcessing": null,
+                                                "description": null
                                             },
                                             "raw_data": [],
                                             "migrationOptions": {
@@ -1089,7 +1113,8 @@
                                             "extraOptions": {
                                                 "extra": null,
                                                 "clear_on_copy": false,
-                                                "postProcessing": null
+                                                "postProcessing": null,
+                                                "description": null
                                             },
                                             "raw_data": [],
                                             "migrationOptions": {
@@ -1121,8 +1146,7 @@
                                                 "multiple": false,
                                                 "sortable": false,
                                                 "type": null,
-                                                "searchId": null,
-                                                "defaultValue": null
+                                                "searchId": null
                                             },
                                             "mappingOptions": {
                                                 "analyzer": "keyword",
@@ -1137,7 +1161,8 @@
                                                 "extra": null,
                                                 "clear_on_copy": false,
                                                 "postProcessing": null,
-                                                "updateReferersField": null
+                                                "updateReferersField": null,
+                                                "description": null
                                             },
                                             "raw_data": [],
                                             "migrationOptions": {
@@ -1183,7 +1208,8 @@
                                             "extraOptions": {
                                                 "extra": null,
                                                 "clear_on_copy": false,
-                                                "postProcessing": null
+                                                "postProcessing": null,
+                                                "description": null
                                             },
                                             "raw_data": [],
                                             "migrationOptions": {
@@ -1214,6 +1240,32 @@
                                                         }
                                                     },
                                                     "orderKey": 0,
+                                                    "children": []
+                                                },
+                                                "replaced": []
+                                            },
+                                            {
+                                                "class": "EMS\\CoreBundle\\Entity\\FieldType",
+                                                "arguments": [],
+                                                "properties": {
+                                                    "type": "EMS\\CoreBundle\\Form\\DataField\\SubfieldType",
+                                                    "name": "raw",
+                                                    "contentType": null,
+                                                    "deleted": false,
+                                                    "description": null,
+                                                    "options": {
+                                                        "displayOptions": [],
+                                                        "mappingOptions": {
+                                                            "analyzer": "keyword",
+                                                            "fielddata": false
+                                                        },
+                                                        "extraOptions": {
+                                                            "extra": null,
+                                                            "clear_on_copy": false,
+                                                            "postProcessing": null
+                                                        }
+                                                    },
+                                                    "orderKey": 1,
                                                     "children": []
                                                 },
                                                 "replaced": []
@@ -1256,7 +1308,8 @@
                                             "extraOptions": {
                                                 "extra": null,
                                                 "clear_on_copy": false,
-                                                "postProcessing": null
+                                                "postProcessing": null,
+                                                "description": null
                                             },
                                             "raw_data": [],
                                             "migrationOptions": {
@@ -1287,6 +1340,32 @@
                                                         }
                                                     },
                                                     "orderKey": 0,
+                                                    "children": []
+                                                },
+                                                "replaced": []
+                                            },
+                                            {
+                                                "class": "EMS\\CoreBundle\\Entity\\FieldType",
+                                                "arguments": [],
+                                                "properties": {
+                                                    "type": "EMS\\CoreBundle\\Form\\DataField\\SubfieldType",
+                                                    "name": "raw",
+                                                    "contentType": null,
+                                                    "deleted": false,
+                                                    "description": null,
+                                                    "options": {
+                                                        "displayOptions": [],
+                                                        "mappingOptions": {
+                                                            "analyzer": "keyword",
+                                                            "fielddata": false
+                                                        },
+                                                        "extraOptions": {
+                                                            "extra": null,
+                                                            "clear_on_copy": false,
+                                                            "postProcessing": null
+                                                        }
+                                                    },
+                                                    "orderKey": 1,
                                                     "children": []
                                                 },
                                                 "replaced": []
@@ -1329,7 +1408,8 @@
                                             "extraOptions": {
                                                 "extra": null,
                                                 "clear_on_copy": false,
-                                                "postProcessing": null
+                                                "postProcessing": null,
+                                                "description": null
                                             },
                                             "raw_data": [],
                                             "migrationOptions": {
@@ -1360,6 +1440,32 @@
                                                         }
                                                     },
                                                     "orderKey": 0,
+                                                    "children": []
+                                                },
+                                                "replaced": []
+                                            },
+                                            {
+                                                "class": "EMS\\CoreBundle\\Entity\\FieldType",
+                                                "arguments": [],
+                                                "properties": {
+                                                    "type": "EMS\\CoreBundle\\Form\\DataField\\SubfieldType",
+                                                    "name": "raw",
+                                                    "contentType": null,
+                                                    "deleted": false,
+                                                    "description": null,
+                                                    "options": {
+                                                        "displayOptions": [],
+                                                        "mappingOptions": {
+                                                            "analyzer": "keyword",
+                                                            "fielddata": false
+                                                        },
+                                                        "extraOptions": {
+                                                            "extra": null,
+                                                            "clear_on_copy": false,
+                                                            "postProcessing": null
+                                                        }
+                                                    },
+                                                    "orderKey": 1,
                                                     "children": []
                                                 },
                                                 "replaced": []
@@ -1395,7 +1501,9 @@
                                             "extraOptions": {
                                                 "extra": null,
                                                 "clear_on_copy": false,
-                                                "postProcessing": null
+                                                "postProcessing": null,
+                                                "description": null,
+                                                "mcpOutputSchema": null
                                             },
                                             "raw_data": []
                                         },
@@ -1431,7 +1539,9 @@
                                             "extraOptions": {
                                                 "extra": null,
                                                 "clear_on_copy": false,
-                                                "postProcessing": null
+                                                "postProcessing": null,
+                                                "description": null,
+                                                "mcpOutputSchema": null
                                             },
                                             "raw_data": []
                                         },
@@ -1477,7 +1587,8 @@
                                 "extraOptions": {
                                     "extra": null,
                                     "clear_on_copy": false,
-                                    "postProcessing": null
+                                    "postProcessing": null,
+                                    "description": null
                                 },
                                 "raw_data": [],
                                 "migrationOptions": {
@@ -1520,7 +1631,8 @@
                                             "extraOptions": {
                                                 "extra": null,
                                                 "clear_on_copy": false,
-                                                "postProcessing": null
+                                                "postProcessing": null,
+                                                "description": null
                                             },
                                             "raw_data": [],
                                             "migrationOptions": {
@@ -1552,8 +1664,7 @@
                                                 "multiple": false,
                                                 "sortable": false,
                                                 "type": null,
-                                                "searchId": null,
-                                                "defaultValue": null
+                                                "searchId": null
                                             },
                                             "mappingOptions": {
                                                 "analyzer": "keyword",
@@ -1568,7 +1679,8 @@
                                                 "extra": null,
                                                 "clear_on_copy": false,
                                                 "postProcessing": null,
-                                                "updateReferersField": null
+                                                "updateReferersField": null,
+                                                "description": null
                                             },
                                             "raw_data": [],
                                             "migrationOptions": {
@@ -1614,7 +1726,8 @@
                                             "extraOptions": {
                                                 "extra": null,
                                                 "clear_on_copy": false,
-                                                "postProcessing": null
+                                                "postProcessing": null,
+                                                "description": null
                                             },
                                             "raw_data": [],
                                             "migrationOptions": {
@@ -1645,6 +1758,32 @@
                                                         }
                                                     },
                                                     "orderKey": 0,
+                                                    "children": []
+                                                },
+                                                "replaced": []
+                                            },
+                                            {
+                                                "class": "EMS\\CoreBundle\\Entity\\FieldType",
+                                                "arguments": [],
+                                                "properties": {
+                                                    "type": "EMS\\CoreBundle\\Form\\DataField\\SubfieldType",
+                                                    "name": "raw",
+                                                    "contentType": null,
+                                                    "deleted": false,
+                                                    "description": null,
+                                                    "options": {
+                                                        "displayOptions": [],
+                                                        "mappingOptions": {
+                                                            "analyzer": "keyword",
+                                                            "fielddata": false
+                                                        },
+                                                        "extraOptions": {
+                                                            "extra": null,
+                                                            "clear_on_copy": false,
+                                                            "postProcessing": null
+                                                        }
+                                                    },
+                                                    "orderKey": 1,
                                                     "children": []
                                                 },
                                                 "replaced": []
@@ -1687,7 +1826,8 @@
                                             "extraOptions": {
                                                 "extra": null,
                                                 "clear_on_copy": false,
-                                                "postProcessing": null
+                                                "postProcessing": null,
+                                                "description": null
                                             },
                                             "raw_data": [],
                                             "migrationOptions": {
@@ -1718,6 +1858,32 @@
                                                         }
                                                     },
                                                     "orderKey": 0,
+                                                    "children": []
+                                                },
+                                                "replaced": []
+                                            },
+                                            {
+                                                "class": "EMS\\CoreBundle\\Entity\\FieldType",
+                                                "arguments": [],
+                                                "properties": {
+                                                    "type": "EMS\\CoreBundle\\Form\\DataField\\SubfieldType",
+                                                    "name": "raw",
+                                                    "contentType": null,
+                                                    "deleted": false,
+                                                    "description": null,
+                                                    "options": {
+                                                        "displayOptions": [],
+                                                        "mappingOptions": {
+                                                            "analyzer": "keyword",
+                                                            "fielddata": false
+                                                        },
+                                                        "extraOptions": {
+                                                            "extra": null,
+                                                            "clear_on_copy": false,
+                                                            "postProcessing": null
+                                                        }
+                                                    },
+                                                    "orderKey": 1,
                                                     "children": []
                                                 },
                                                 "replaced": []
@@ -1760,7 +1926,8 @@
                                             "extraOptions": {
                                                 "extra": null,
                                                 "clear_on_copy": false,
-                                                "postProcessing": null
+                                                "postProcessing": null,
+                                                "description": null
                                             },
                                             "raw_data": [],
                                             "migrationOptions": {
@@ -1791,6 +1958,32 @@
                                                         }
                                                     },
                                                     "orderKey": 0,
+                                                    "children": []
+                                                },
+                                                "replaced": []
+                                            },
+                                            {
+                                                "class": "EMS\\CoreBundle\\Entity\\FieldType",
+                                                "arguments": [],
+                                                "properties": {
+                                                    "type": "EMS\\CoreBundle\\Form\\DataField\\SubfieldType",
+                                                    "name": "raw",
+                                                    "contentType": null,
+                                                    "deleted": false,
+                                                    "description": null,
+                                                    "options": {
+                                                        "displayOptions": [],
+                                                        "mappingOptions": {
+                                                            "analyzer": "keyword",
+                                                            "fielddata": false
+                                                        },
+                                                        "extraOptions": {
+                                                            "extra": null,
+                                                            "clear_on_copy": false,
+                                                            "postProcessing": null
+                                                        }
+                                                    },
+                                                    "orderKey": 1,
                                                     "children": []
                                                 },
                                                 "replaced": []
@@ -1837,7 +2030,8 @@
                                 "extraOptions": {
                                     "extra": null,
                                     "clear_on_copy": false,
-                                    "postProcessing": null
+                                    "postProcessing": null,
+                                    "description": null
                                 },
                                 "raw_data": [],
                                 "migrationOptions": {
@@ -1877,7 +2071,8 @@
                                 "extraOptions": {
                                     "extra": null,
                                     "clear_on_copy": false,
-                                    "postProcessing": null
+                                    "postProcessing": null,
+                                    "description": null
                                 },
                                 "raw_data": [],
                                 "migrationOptions": {
@@ -1920,7 +2115,7 @@
             "create": "ROLE_ADMIN",
             "edit": "ROLE_ADMIN",
             "publish": "not-defined",
-            "delete": "not-defined",
+            "delete": "ROLE_ADMIN",
             "trash": "not-defined",
             "archive": "not-defined",
             "show_link_create": "not-defined",

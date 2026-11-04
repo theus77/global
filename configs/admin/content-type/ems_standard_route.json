@@ -108,8 +108,7 @@
                                     "sortable": false,
                                     "type": "template",
                                     "searchId": null,
-                                    "defaultValue": null,
-                                    "querySearch": null
+                                    "defaultValue": null
                                 },
                                 "mappingOptions": {
                                     "analyzer": "keyword",

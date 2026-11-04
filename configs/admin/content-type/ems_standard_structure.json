@@ -108,8 +108,7 @@
                                     "multiple": false,
                                     "sortable": false,
                                     "type": "ems_standard_page",
-                                    "searchId": null,
-                                    "defaultValue": null
+                                    "searchId": null
                                 },
                                 "mappingOptions": {
                                     "analyzer": "keyword",

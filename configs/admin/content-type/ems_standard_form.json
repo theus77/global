@@ -2300,6 +2300,7 @@
                     "extension": null,
                     "active": true,
                     "role": "ROLE_WEBMASTER",
+                    "environments": [],
                     "roleTo": "not-defined",
                     "roleCc": "not-defined",
                     "circlesTo": null,
@@ -2314,7 +2315,9 @@
                     "tag": null,
                     "allowedRemoteHosts": null
                 },
-                "replaced": []
+                "replaced": [
+                    "environments"
+                ]
             }
         ],
         "views": [
