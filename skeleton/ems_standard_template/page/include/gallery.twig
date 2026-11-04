@@ -3,7 +3,9 @@
     {%- set requestSize = 20 -%}
     {%- set requestPage = 0 -%}
     {%- set from = requestPage*requestSize -%}
-    {%- set resultsSearchBody = {} -%}
+    {%- set resultsSearchBody = {
+        'sort': [ { 'date': { 'order': 'desc' } } ]
+    } -%}
     {%- set search = emsch_search(searchTypes, resultsSearchBody, from, requestSize) -%}
     {%- set total = search.hits.total.value -%}
 
