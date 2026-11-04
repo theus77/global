@@ -224,16 +224,17 @@ function setupLegacyInteractions() {
         }
     });
 
-    $('.search-trigger, .search_button').on('click', function toggleSearch(e) {
+    $(document).on('click', '.search-trigger, .search_button, a[href="#search"]', function toggleSearch(e) {
         e.preventDefault();
-        $('.search-form').slideToggle(function onSearchToggle() {
+        const animation = this.matches('a[href="#search"]') ? 'slideDown' : 'slideToggle';
+        $('.search-form').stop(true, true)[animation](function onSearchToggle() {
             const isOpen = $(this).is(':visible');
             $('.search_button').attr('aria-expanded', isOpen ? 'true' : 'false');
+            $('nav.navbar-inverse.navbar-fixed-top').toggleClass('black', isOpen);
             if (isOpen) {
                 this.querySelector('input.QuickSearchInput')?.focus({ preventScroll: true });
             }
         });
-        $('nav.navbar-inverse.navbar-fixed-top').toggleClass('black');
     });
 
     $('label img').on('click', function checkImageInput() {
@@ -249,7 +250,7 @@ function setupLegacyInteractions() {
 
     new SmoothScroll('a[href*="#"]', {
         offset: 55,
-        ignore: '[data-scroll-ignore], .gallery-thumbnail, .carousel-control-prev, .carousel-control-next'
+        ignore: '[data-scroll-ignore], .gallery-thumbnail, .carousel-control-prev, .carousel-control-next, a[href="#search"]'
     });
     setupAccordionHashLinks();
 
