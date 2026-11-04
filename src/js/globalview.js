@@ -32,7 +32,29 @@ function registerBootstrapJQueryBridge() {
 }
 
 function lazyLoadImages() {
-    $('img.lazy').show().lazyload({
+    const images = document.querySelectorAll('img.lazy[data-src]');
+    const loadImage = (image) => {
+        const source = image.getAttribute('data-src');
+        if (source && image.getAttribute('src') !== source) {
+            image.setAttribute('src', source);
+        }
+    };
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    loadImage(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+        images.forEach((image) => observer.observe(image));
+    } else {
+        images.forEach(loadImage);
+    }
+
+    $('img.lazy:not([data-src])').show().lazyload({
         effect: 'fadeIn',
         threshold: 200
     });
@@ -592,7 +614,7 @@ async function init() {
         import('jquery-backstretch')
     ]);
 
-    $(window).on('load', lazyLoadImages);
+    $(lazyLoadImages);
     $(setupScrollPanels);
     $(setupLegacyInteractions);
     $(setupGallery);
