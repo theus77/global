@@ -221,7 +221,10 @@ function setupLegacyInteractions() {
         e.preventDefault();
     });
 
-    new SmoothScroll('a[href*="#"]', { offset: 55 });
+    new SmoothScroll('a[href*="#"]', {
+        offset: 55,
+        ignore: '[data-scroll-ignore], .gallery-thumbnail, .carousel-control-prev, .carousel-control-next'
+    });
     setupAccordionHashLinks();
 
     $(window).on('scroll', function updateScrollState() {
@@ -396,10 +399,31 @@ function setupLegacyFilmstripGallery() {
         carousel[direction]();
     }
 
-    function goTo(index) {
+    function updateGalleryUrl(index, replace = false) {
+        const hash = `#thumb-${index}`;
+        if (window.location.hash !== hash) {
+            window.history[replace ? 'replaceState' : 'pushState'](window.history.state, '', hash);
+        }
+    }
+
+    function restoreGalleryFromUrl() {
+        const hash = window.location.hash;
+        const match = /^#thumb-(\d+)$/.exec(hash);
+        if (match || !hash) {
+            goTo(match ? Number(match[1]) : 0, false);
+        }
+    }
+
+    function goTo(index, updateHistory = true) {
         const targetIndex = Number(index);
         const count = Number($carousel.attr('data-count'));
-        if (!Number.isInteger(targetIndex) || targetIndex < 0 || targetIndex >= count || targetIndex === selectedIndex) {
+        if (!Number.isInteger(targetIndex) || targetIndex < 0 || targetIndex >= count) {
+            return;
+        }
+        if (updateHistory) {
+            updateGalleryUrl(targetIndex);
+        }
+        if (targetIndex === selectedIndex) {
             return;
         }
 
@@ -442,6 +466,7 @@ function setupLegacyFilmstripGallery() {
     function onLoadFailure() {
         selectedIndex = Number($carousel.attr('data-current'));
         activateThumb(selectedIndex);
+        updateGalleryUrl(selectedIndex, true);
         $carousel.attr('aria-busy', 'false');
         $error.prop('hidden', false);
     }
@@ -484,6 +509,8 @@ function setupLegacyFilmstripGallery() {
 
     watchSlideImages($inner);
     activateThumb(selectedIndex);
+    $(window).on('popstate hashchange', restoreGalleryFromUrl);
+    restoreGalleryFromUrl();
 }
 
 function setupGallery() {
