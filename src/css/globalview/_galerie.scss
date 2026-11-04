@@ -37,24 +37,33 @@
 	}
 	.galerie-thumb {line-height:0;}
 	#galerie-thumb-bro .galerie-thumb-scroll {
-		display:none;
-		@include MQ(Sneg) {
-			display:block;
-		}
+		display:block;
 	}
 	div.galerie-thumb-scroll {
 		width: 100%;
 		height: auto;
-		overflow:auto;
+		overflow-x:auto;
+		overflow-y:hidden;
 		white-space:nowrap;
+		scrollbar-color: #7c7b7b rgba(0, 0, 0, 0.5);
+
+		&::-webkit-scrollbar {
+			height:15px;
+		}
+		&::-webkit-scrollbar-track {
+			background:rgba(0, 0, 0, 0.5);
+		}
+		&::-webkit-scrollbar-thumb {
+			background:#7c7b7b;
+			border-radius:0;
+		}
   	}
   	.gallery-thumbnail {
   		display: inline-block;
   		position:relative;
   		margin-bottom: 0;
-  		height:100% !important;
+  		height:auto;
   		margin-right:em(10px); // remove gaps with inline-block
-  		padding:0 0 30px 0;
   		background-color: transparent;
   		border:0;
   		margin-left:em(10px);
@@ -87,6 +96,10 @@
 			}
 		}
   		img {
+			display: block;
+			height: auto;
+			aspect-ratio: 300 / 200;
+			object-fit: contain;
   			@include MQ(Mneg) {
   				max-width: em(100px);
   			}
