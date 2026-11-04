@@ -106,8 +106,9 @@ function setGalerieHeight() {
         return;
     }
 
-    $('.carousel-inner .carousel-item.active .left-panel').css('max-height', `${height}px`);
-    $('.carousel-inner .carousel-item.active .right-panel').css('max-height', `${height}px`);
+    const panels = $('.carousel-inner .carousel-item.active .left-panel, .carousel-inner .carousel-item.active .right-panel');
+    panels.css('max-height', `${height}px`);
+    panels.getNiceScroll().resize();
 }
 
 function hidePreloader() {
@@ -348,6 +349,15 @@ function setupLegacyFilmstripGallery() {
     let requestId = 0;
     let transitioning = false;
     let pendingSlide = null;
+    const imageResizeObserver = 'ResizeObserver' in window ? new ResizeObserver(setGalerieHeight) : null;
+
+    function watchSlideImages(item) {
+        item.find('img').on('load', setGalerieHeight);
+        item.find('.middle-panel img').each(function watchImageSize() {
+            imageResizeObserver?.observe(this);
+        });
+        setGalerieHeight();
+    }
 
     function activateThumb(index) {
         $thumbs.find('.gallery-thumbnail').each(function setThumbState() {
@@ -363,6 +373,9 @@ function setupLegacyFilmstripGallery() {
 
     function removeInactiveItems() {
         $inner.children('.carousel-item:not(.active)').each(function removeSlide() {
+            $(this).find('.middle-panel img').each(function unwatchImageSize() {
+                imageResizeObserver?.unobserve(this);
+            });
             $(this).find('.left-panel, .right-panel').getNiceScroll().remove();
             $(this).remove();
         });
@@ -377,7 +390,7 @@ function setupLegacyFilmstripGallery() {
         pendingSlide = null;
         removeInactiveItems();
         $inner.append(item);
-        item.find('.middle-panel img').on('load', setGalerieHeight);
+        watchSlideImages(item);
         transitioning = true;
         $carousel.attr('data-current', index);
         carousel[direction]();
@@ -469,7 +482,7 @@ function setupLegacyFilmstripGallery() {
         $(this).addClass('active');
     });
 
-    $inner.find('.middle-panel img').on('load', setGalerieHeight);
+    watchSlideImages($inner);
     activateThumb(selectedIndex);
 }
 
