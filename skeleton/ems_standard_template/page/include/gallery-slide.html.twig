@@ -36,6 +36,18 @@
                 {% if version.date|default %}<li>{{ version.date|date('d/m/Y H:i') }}</li>{% endif %}
                 {% if version.pixel_size|default %}<li>{{ version.pixel_size }}</li>{% endif %}
             </ul>
+
+            {% if version.location %}
+                <div class="outer mb-4">
+                    <div class="inner map-div" id="map-canvas-{{ index }}"
+                         data-lat="{{ version.location.lat|e }}"
+                         data-lng="{{ version.location.lon|e }}"
+                         style="height: 180px;">
+                        {{ 'map.connecting'|trans }}
+                    </div>
+                </div>
+            {% endif %}
+
             {% set keywords = version.keywords|default([])|merge(version.locations|default([])) %}
             {% if keywords is not empty %}
                 <h3>{{ 'gallery.keywords.title'|trans }}</h3>

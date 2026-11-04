@@ -1,3 +1,5 @@
+map:
+    connecting: 'Connection à Google Maps ...'
 actions:
     buy_book: 'Acheter le livre'
 app:
