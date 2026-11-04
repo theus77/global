@@ -12,7 +12,7 @@
         {%- set from = requestPage*requestSize -%}
     {%- endif -%}
     {%- set resultsSearchBody = {
-        '_source': ['stack', 'label'],
+        '_source': ['stack', 'label', 'name'],
         'sort': [ {"_score": { "order": "desc" } },{ 'date': { 'order': 'desc' } } ],
     } -%}
 
@@ -110,7 +110,7 @@
         'results': search.hits.hits|map(hit => {
             id: hit._id,
             stack: hit._source.stack|default([]),
-            label: hit._source.label|default(null),
+            label: hit._source.label|default(hit._source.name|default('')),
         }|filter(v => null != v)),
         'query': query,
         'title': title,

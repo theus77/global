@@ -50,19 +50,21 @@
             <div class="col-md-12 galerie-thumb">
                  <div class="galerie-thumb-scroll" id="thumb-scroll-container" tabindex="0">
                     {% for count in 0..(search.total-1) %}
-                        <a id="thumb-{{ loop.index0 }}" href="#thumb-{{ loop.index0 }}" class="{{ html_classes('gallery-thumbnail', { 'active': loop.first }) }}" data-index="{{ loop.index0 }}">
+                        {% set hit = loop.index0 >= search.from ? search.results[loop.index0 - search.from]|default(null) : null %}
+                        {% set label = hit.label|default(hit.name|default('')) %}
+                        <a id="thumb-{{ loop.index0 }}" href="#thumb-{{ loop.index0 }}" class="{{ html_classes('gallery-thumbnail', { 'active': loop.first }) }}" data-index="{{ loop.index0 }}" alt="{{ label }}" title="{{ label }}">
                             {% set previewUrl = path('gallery_image_preview', search.query|merge({index: loop.index0})) %}
-                            {% if loop.index0 >= search.from and search.results|length > (loop.index0 - search.from) %}
-                                {% set hit = search.results[loop.index0 - search.from] %}
+                            {% if hit %}
                                 {% set attrs = {
                                     src: previewUrl,
-                                    alt: hit.label|default,
-                                    title: hit.label|default,
+                                    alt: label,
+                                    title: label,
                                 }|filter(v => v) %}
                             {% else %}
                                 {% set attrs = {
                                     src: asset('img/website/loading.jpg', 'emsch'),
                                     'data-src': previewUrl,
+                                    'data-label-url': path('gallery_thumbnail', search.query|merge({_locale: locale, index: loop.index0})),
                                 } %}
                             {% endif %}
                             <img {% for attr, value in attrs %} {{ attr }}="{{ value|e('html_attr') }}"{% endfor %} data-index="{{ loop.index0 }}" class="lazy-in-scroll lazy" width="300" height="200">

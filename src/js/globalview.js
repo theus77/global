@@ -38,6 +38,21 @@ function lazyLoadImages() {
         if (source && image.getAttribute('src') !== source) {
             image.setAttribute('src', source);
         }
+
+        const labelUrl = image.getAttribute('data-label-url');
+        if (labelUrl) {
+            $.ajax({ url: labelUrl, dataType: 'json' }).done((data) => {
+                if (typeof data.label !== 'string') {
+                    return;
+                }
+                image.setAttribute('alt', data.label);
+                image.setAttribute('title', data.label);
+                const link = image.closest('.gallery-thumbnail');
+                link?.setAttribute('alt', data.label);
+                link?.setAttribute('title', data.label);
+                image.removeAttribute('data-label-url');
+            });
+        }
     };
 
     if ('IntersectionObserver' in window) {
