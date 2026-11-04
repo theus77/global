@@ -1,0 +1,19 @@
+{%- macro search(config) -%}
+    {%- set searchTypes = ['globalview_version'] -%}
+    {%- set requestSize = 20 -%}
+    {%- set requestPage = 0 -%}
+    {%- set from = requestPage*requestSize -%}
+    {%- set resultsSearchBody = {} -%}
+    {%- set search = emsch_search(searchTypes, resultsSearchBody, from, requestSize) -%}
+    {%- set total = search.hits.total.value -%}
+
+    {{- {
+        'lastPage': ((total / requestSize) |round(0, 'ceil') -1),
+        'page': requestPage,
+        'size': requestSize,
+        'from': requestSize,
+        'total': total,
+        'results': search.hits.hits,
+        'query': {},
+    }|json_encode|raw -}}
+{%- endmacro -%}
