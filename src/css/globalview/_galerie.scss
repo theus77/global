@@ -28,7 +28,10 @@
 			margin-top:em(15px, 18px);
 		}
 	}
-	h3 {font-size:em(16px);margin-top:0;font-weight:normal;}
+	h3 {
+      font-size: 1.2em;
+      margin-top:0;font-weight:normal;
+  }
 
 	#map-ctp {margin:em(10px) 0;}
 	#price-ask a{
