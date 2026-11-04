@@ -57,7 +57,19 @@ function setupScrollPanels() {
         cursorfixedheight: '50'
     };
 
-    $('.galerie-thumb-scroll').niceScroll(niceScrollConfig);
+    document.querySelectorAll('.galerie-thumb-scroll').forEach((panel) => {
+        panel.addEventListener('wheel', (event) => {
+            if (event.ctrlKey || panel.scrollWidth <= panel.clientWidth) {
+                return;
+            }
+
+            const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+            const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? panel.clientWidth : 1;
+
+            event.preventDefault();
+            panel.scrollLeft += delta * unit;
+        }, { passive: false });
+    });
     $('.carousel-inner .left-panel').niceScroll(niceScrollConfig);
     $('.carousel-inner .right-panel').niceScroll(niceScrollConfig);
 }
