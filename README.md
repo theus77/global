@@ -49,3 +49,14 @@ docker run --rm -it \
   --output=/dump/aperture_v1_data.json \
   --type=data
 ````
+
+How to migrate Aperture documents to the new eMS
+
+Open a shell in the wcmtech-cli on the branch 
+
+```shell
+pbc ems:admin:login https://globalview-admin.theus.be
+pbc globalview:migrate:places ../global/es-dump/aperture_v1_data.json
+pbc globalview:migrate:keywords ../global/es-dump/aperture_v1_data.json
+pbc globalview:migrate:versions ../global/es-dump/aperture_v1_data.json --s3-credentials='$OLD_GV_S3_CRED' --s3-bucket='global-previews'
+```
