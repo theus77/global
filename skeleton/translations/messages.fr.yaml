@@ -99,3 +99,8 @@ search:
     placeholder: 'Entrez un ou plusieurs mots-clés'
     results: '{0} Aucun résultat trouvé|{1} 1 résultat trouvé|]1,Inf[%count% résultats trouvés'
     select_size: Résultats
+gallery:
+    result:
+        counter: '{0} Aucune référence trouvée|{1} 1 référence|]1,Inf[%count% références'
+    title:
+        all: 'Galerie des clichés de GlobalView'

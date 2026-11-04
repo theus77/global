@@ -2,7 +2,7 @@
 
 
 {%- block title -%}
-    {#TODO:#}
+     {{ 'gallery.title.all'|trans }}
 {%- endblock title -%}
 
 {%- block main -%}
@@ -13,7 +13,9 @@
     <div id="galerie-filmstrip" class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <h1>Galerie Le meilleur de 2014 <span class="badge">20</span>
+                <h1>
+                    {{ block('title') }}
+                    <span class="badge">{{ 'gallery.result.counter'|trans({'%count%': search.total}) }}</span>
                 </h1>
             </div>
         </div>
