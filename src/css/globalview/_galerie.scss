@@ -223,6 +223,9 @@
 	padding-bottom:em(15px);
 	.middle-wrapper {position:relative;}
 	@extend %gradient-gray;
+	&:before {
+		pointer-events:none;
+	}
 	.carousel-item {
 		&.active, &.carousel-item-next, &.carousel-item-prev {
 			display:flex;
