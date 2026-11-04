@@ -22,7 +22,7 @@
   	}
 	h2 {
 		color: $color1;
-		font-size:em(18px);
+		font-size: 1.4em;
 		margin-top: 0;
 		@include MQ(Sneg) {
 			margin-top:em(15px, 18px);
