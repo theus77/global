@@ -50,7 +50,7 @@
             <div class="col-md-12 galerie-thumb">
                  <div class="galerie-thumb-scroll" id="thumb-scroll-container" tabindex="0">
                     {% for count in 0..(search.total-1) %}
-                        <a href="#" class="gallery-thumbnail" data-index="{{ loop.index0 }}">
+                        <a href="#" class="{{ html_classes('gallery-thumbnail', { 'active': loop.first }) }}" data-index="{{ loop.index0 }}">
                             {% set previewUrl = path('gallery_image_preview', search.query|merge({index: loop.index0})) %}
                             {% if loop.index0 >= search.from and search.results|length > (loop.index0 - search.from) %}
                                 {% set hit = search.results[loop.index0 - search.from] %}
