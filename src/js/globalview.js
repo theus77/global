@@ -61,6 +61,23 @@ function lazyLoadImages() {
 }
 
 function setupScrollPanels() {
+    document.querySelectorAll('.galerie-thumb-scroll').forEach((panel) => {
+        panel.addEventListener('wheel', (event) => {
+            if (event.ctrlKey || panel.scrollWidth <= panel.clientWidth) {
+                return;
+            }
+
+            const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+            const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? panel.clientWidth : 1;
+
+            event.preventDefault();
+            panel.scrollLeft += delta * unit;
+        }, { passive: false });
+    });
+    setupGalleryScrollPanels();
+}
+
+function setupGalleryScrollPanels(scope = document) {
     const niceScrollConfig = {
         cursorcolor: '#7C7B7B',
         cursorborderradius: 0,
@@ -79,21 +96,7 @@ function setupScrollPanels() {
         cursorfixedheight: '50'
     };
 
-    document.querySelectorAll('.galerie-thumb-scroll').forEach((panel) => {
-        panel.addEventListener('wheel', (event) => {
-            if (event.ctrlKey || panel.scrollWidth <= panel.clientWidth) {
-                return;
-            }
-
-            const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
-            const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? panel.clientWidth : 1;
-
-            event.preventDefault();
-            panel.scrollLeft += delta * unit;
-        }, { passive: false });
-    });
-    $('.carousel-inner .left-panel').niceScroll(niceScrollConfig);
-    $('.carousel-inner .right-panel').niceScroll(niceScrollConfig);
+    $(scope).find('.carousel-item.active .left-panel, .carousel-item.active .right-panel').niceScroll(niceScrollConfig);
 }
 
 function setGalerieHeight() {
@@ -321,219 +324,153 @@ function addGalleryMap(element, lat, lng) {
     $(element).attr('data-map-set', true);
 }
 
-function normalizeLegacyGalleryHtml(html) {
-    return String(html || '')
-        .replaceAll('class="img-responsive"', 'class="img-fluid"')
-        .replaceAll('class="label label-default"', 'class="badge text-bg-secondary"');
-}
-
 function setupLegacyFilmstripGallery() {
     const $carousel = $('#carousel');
     const $thumbs = $('#thumb-scroll-container');
+    const slideUrl = $carousel.attr('data-slide-url');
 
-    if (!$carousel.length || !$thumbs.length) {
+    if (!$carousel.length || !$thumbs.length || !slideUrl) {
         return;
     }
 
     const carousel = bootstrap.Carousel.getOrCreateInstance($carousel[0], {
         interval: false,
         ride: false,
-        pause: true,
+        touch: false,
+        keyboard: false,
         wrap: true
     });
-    const pageTreated = [];
-    const pageUrl = $carousel.data('pageUrl');
-    const infoUrl = $carousel.data('infoUrl');
-    let query = {};
-
-    try {
-        query = $carousel.data('query') || {};
-    } catch (e) {
-        query = {};
-    }
-
-    function getCurrentIndex() {
-        return Number.parseInt($carousel.attr('data-current') || '0', 10);
-    }
-
-    function getCount() {
-        return Number.parseInt($carousel.attr('data-count') || '0', 10);
-    }
-
-    function getInactiveItem() {
-        return $carousel.find('.carousel-inner > .carousel-item:not(.active)').first();
-    }
+    const query = $carousel.data('query') || {};
+    const $inner = $carousel.find('.carousel-inner');
+    const $error = $('.gallery-load-error');
+    let selectedIndex = Number($carousel.attr('data-current'));
+    let request = null;
+    let requestId = 0;
+    let transitioning = false;
+    let pendingSlide = null;
 
     function activateThumb(index) {
-        $('.galerie-thumb .gallery-thumbnail.active').removeClass('active');
-        $(`#thumb-${index}`).parent().addClass('active');
-        $carousel.attr('data-current', index);
-    }
-
-    function bindAlternativeImages(scope = document) {
-        $(scope).find('.alternative-image').off('click.globalviewGallery').on('click.globalviewGallery', function showAlternativeImage(event) {
-            event.preventDefault();
-            event.stopPropagation();
-
-            const imageUrl = $(this).find('img').attr('data-image');
-            if (!imageUrl) {
-                return false;
+        $thumbs.find('.gallery-thumbnail').each(function setThumbState() {
+            const active = Number(this.dataset.index) === index;
+            $(this).toggleClass('active', active);
+            if (active) {
+                this.setAttribute('aria-current', 'true');
+            } else {
+                this.removeAttribute('aria-current');
             }
-
-            $carousel.find('.carousel-item.active .middle-panel img').attr('src', imageUrl);
-            $carousel.find('.alternative-image.active').removeClass('active');
-            $(this).addClass('active');
-            return false;
         });
     }
 
-    function updateItemFromInfo(item, data) {
-        item.find('.middle-panel img').attr('src', data.url || item.find('.middle-panel img').attr('src'));
-        item.find('.data-artist').html(data.artist || '');
-        item.find('.data-pixel_size').html(data.pixel_size || '');
-        item.find('.data-date').html(data.date || '');
-        item.find('input.hidden_ouuid').val(data.ouuid || '');
-        item.find('.inner-stack').html(normalizeLegacyGalleryHtml(data.stack));
-        item.find('.keywordList').html(normalizeLegacyGalleryHtml(data.keywords));
-
-        item.find('.map-div').each(function refreshMap() {
-            $(this).attr({
-                'data-lat': data.lat || '',
-                'data-lng': data.lng || '',
-                'data-map-set': null
-            });
-            addGalleryMap(this, data.lat, data.lng);
+    function removeInactiveItems() {
+        $inner.children('.carousel-item:not(.active)').each(function removeSlide() {
+            $(this).find('.left-panel, .right-panel').getNiceScroll().remove();
+            $(this).remove();
         });
-
-        bindAlternativeImages(item);
-        setGalerieHeight();
     }
 
-    function fetchThumbPage(index) {
-        if (!pageUrl) {
+    function showPendingSlide() {
+        if (transitioning || !pendingSlide) {
             return;
         }
 
-        const page = Math.floor(Number($(`#thumb-${index}`).data('index')) / 100);
-        if (pageTreated.includes(page)) {
-            return;
-        }
-
-        pageTreated.push(page);
-        $.ajax({
-            url: pageUrl,
-            data: { ...query, page }
-        }).done((data) => {
-            $.each(data.items || [], function updateThumb(_index, value) {
-                $(`#thumb-${value.id}`).attr({
-                    'data-ouuid': value.ouuid,
-                    alt: value.label,
-                    'data-original': value.preview
-                });
-
-                if (($(`#thumb-${value.id}`).attr('src') || '').match(/2$/)) {
-                    $(`#thumb-${value.id}`).attr('src', value.preview);
-                }
-            });
-        });
+        const { item, index, direction } = pendingSlide;
+        pendingSlide = null;
+        removeInactiveItems();
+        $inner.append(item);
+        item.find('.middle-panel img').on('load', setGalerieHeight);
+        transitioning = true;
+        $carousel.attr('data-current', index);
+        carousel[direction]();
     }
 
     function goTo(index) {
-        const targetIndex = Number.parseInt(index, 10);
-        const $thumb = $(`#thumb-${targetIndex}`);
-
-        if (!$thumb.length || getCurrentIndex() === targetIndex) {
+        const targetIndex = Number(index);
+        const count = Number($carousel.attr('data-count'));
+        if (!Number.isInteger(targetIndex) || targetIndex < 0 || targetIndex >= count || targetIndex === selectedIndex) {
             return;
         }
 
-        if (!$thumb.attr('data-ouuid')) {
-            fetchThumbPage(targetIndex);
+        const previousIndex = selectedIndex;
+        selectedIndex = targetIndex;
+        activateThumb(targetIndex);
+        $error.prop('hidden', true);
+        pendingSlide = null;
+        const currentRequestId = ++requestId;
+        request?.abort();
+
+        if (targetIndex === Number($carousel.attr('data-current'))) {
+            $carousel.attr('aria-busy', 'false');
             return;
         }
 
-        const item = getInactiveItem();
-        if (!item.length) {
-            return;
-        }
-
-        const image = item.find('.middle-panel img');
-        const previewUrl = $thumb.attr('data-original') || $thumb.attr('src');
-
-        item.find('.versionTitle').html($thumb.attr('alt') || '');
-        item.find('.data-artist, .data-pixel_size, .data-date, .keywordList, .inner-stack').html('');
-
-        image.one('load.globalviewGallery', function onPreviewLoaded() {
-            if (infoUrl) {
-                $.ajax({
-                    url: infoUrl,
-                    data: { ouuid: $thumb.attr('data-ouuid') }
-                }).done((data) => updateItemFromInfo(item, data));
+        $carousel.attr('aria-busy', 'true');
+        request = $.ajax({
+            url: slideUrl,
+            data: { ...query, index: targetIndex },
+            dataType: 'html'
+        }).done((html) => {
+            if (currentRequestId !== requestId) {
+                return;
             }
-
-            if (getCurrentIndex() > targetIndex) {
-                carousel.prev();
-            } else {
-                carousel.next();
+            const item = $($.parseHTML(html)).filter('.carousel-item');
+            if (item.length !== 1 || Number(item.attr('data-index')) !== targetIndex) {
+                onLoadFailure();
+                return;
             }
-
-            activateThumb(targetIndex);
-            setGalerieHeight();
+            pendingSlide = { item, index: targetIndex, direction: targetIndex > previousIndex ? 'next' : 'prev' };
+            showPendingSlide();
+        }).fail((_xhr, status) => {
+            if (status !== 'abort' && currentRequestId === requestId) {
+                onLoadFailure();
+            }
         });
-
-        image.attr('src', previewUrl);
-        if (image[0]?.complete) {
-            image.triggerHandler('load');
-        }
     }
 
-    window.goTo = goTo;
-    window.previous = function previous(event) {
-        event?.stopPropagation();
-        const count = getCount();
-        let value = getCurrentIndex() - 1;
-        if (value < 0) {
-            value = count - 1;
+    function onLoadFailure() {
+        selectedIndex = Number($carousel.attr('data-current'));
+        activateThumb(selectedIndex);
+        $carousel.attr('aria-busy', 'false');
+        $error.prop('hidden', false);
+    }
+
+    $carousel.on('slid.bs.carousel', () => {
+        transitioning = false;
+        removeInactiveItems();
+        setupGalleryScrollPanels($inner[0]);
+        setGalerieHeight();
+        if (pendingSlide) {
+            showPendingSlide();
+        } else if (Number($carousel.attr('data-current')) === selectedIndex) {
+            $carousel.attr('aria-busy', 'false');
         }
-        goTo(value);
-    };
-    window.next = function next(event) {
-        event?.stopPropagation();
-        const count = getCount();
-        let value = getCurrentIndex() + 1;
-        if (value >= count) {
-            value = 0;
-        }
-        goTo(value);
-    };
+    });
 
     $thumbs.on('click', '.gallery-thumbnail', function onThumbClick(event) {
         event.preventDefault();
-        goTo($(this).data('index'));
+        goTo(this.dataset.index);
     });
 
-    $carousel.on('click', '.carousel-control-prev', function onPreviousClick(event) {
+    $carousel.on('click', '.carousel-control-prev, .carousel-control-next', function onArrowClick(event) {
         event.preventDefault();
-        window.previous(event);
+        const count = Number($carousel.attr('data-count'));
+        const offset = this.classList.contains('carousel-control-prev') ? -1 : 1;
+        goTo((selectedIndex + offset + count) % count);
     });
 
-    $carousel.on('click', '.carousel-control-next', function onNextClick(event) {
+    $carousel.on('click', '.alternative-image', function showAlternativeImage(event) {
         event.preventDefault();
-        window.next(event);
-    });
-
-    $('img.lazy-in-scroll').on('load.globalviewGallery', function onLazyThumbLoad() {
-        if (!$(this).data('ouuid')) {
-            fetchThumbPage($(this).data('index'));
+        const imageUrl = $(this).find('img').attr('data-image');
+        if (!imageUrl) {
+            return;
         }
-    }).lazyload({
-        container: $thumbs
+        const item = $(this).closest('.carousel-item');
+        item.find('.middle-panel img').attr('src', imageUrl);
+        item.find('.alternative-image').removeClass('active');
+        $(this).addClass('active');
     });
 
-    $('.map-div').each(function initMap() {
-        addGalleryMap(this, $(this).attr('data-lat'), $(this).attr('data-lng'));
-    });
-
-    bindAlternativeImages();
+    $inner.find('.middle-panel img').on('load', setGalerieHeight);
+    activateThumb(selectedIndex);
 }
 
 function setupGallery() {

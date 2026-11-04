@@ -100,6 +100,7 @@ search:
     results: '{0} Aucun résultat trouvé|{1} 1 résultat trouvé|]1,Inf[%count% résultats trouvés'
     select_size: Résultats
 gallery:
+    load_error: 'Impossible de charger cette image. Veuillez réessayer.'
     result:
         counter: '{0} Aucune référence trouvée|{1} 1 référence|]1,Inf[%count% références'
     title:

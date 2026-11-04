@@ -1,0 +1,22 @@
+{%- trans_default_domain trans_default_domain -%}
+{%- set index = app.request.query.get('index', '') -%}
+{%- if not (index matches '/^\\d+$/') -%}
+    {%- do emsch_http_error('404', 'Invalid gallery index') -%}
+{%- endif -%}
+{%- import '@EMSCH/ems_standard_template/page/include/gallery.twig' as gallery -%}
+{%- set search = gallery.search({
+    locale: app.request.locale,
+    domain: trans_default_domain,
+    size: 1,
+    from: index,
+})|ems_json_decode -%}
+{%- if search.results is empty -%}
+    {%- do emsch_http_error('404', 'Gallery image not found') -%}
+{%- endif -%}
+{%- set versionDocument = ('globalview_version:' ~ search.results[0].id)|emsch_get -%}
+{%- include '@EMSCH/ems_standard_template/page/include/gallery-slide.html.twig' with {
+    version: versionDocument.raw._source,
+    locale: app.request.locale,
+    index: index,
+    active: false,
+} -%}

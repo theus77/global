@@ -221,7 +221,7 @@
 	.middle-wrapper {position:relative;}
 	@extend %gradient-gray;
 	.carousel-item {
-		&.active {
+		&.active, &.carousel-item-next, &.carousel-item-prev {
 			display:flex;
 		}
 		.left-panel, .right-panel, .middle-panel {

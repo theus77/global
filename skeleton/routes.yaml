@@ -33,6 +33,12 @@ gallery:
         requirements: { _locale: nl|fr|de|en }
         defaults: { _locale: fr }
     template_static: ems_standard_template/page/gallery.html.twig
+gallery_slide:
+    config:
+        path: '/{_locale}/gallery/slide'
+        requirements: { _locale: nl|fr|de|en }
+        defaults: { _locale: fr, _format: html }
+    template_static: ems_standard_template/page/gallery-slide.html.twig
 gallery_image_preview:
     config:
         path: '/gallery/preview/{index}.webp'
