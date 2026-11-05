@@ -1,0 +1,20 @@
+{
+    "faqs": "[]",
+    "fr": {
+        "blocks": "[{\"id\":\"959eb33c-27af-45d2-9cab-1775f432e726\",\"label\":\"Th\u00e8mes et mots cl\u00e9s\",\"type\":\"keywords\",\"object\":{\"label\":\"Th\u00e8mes et mots cl\u00e9s\",\"title\":\"Th\u00e8mes et mots cl\u00e9s\"},\"children\":[]}]",
+        "seo_no_index": false,
+        "seo_title": "Th\u00e8mes et mots cl\u00e9s",
+        "show": true,
+        "slug": "themes-et-mots-cles",
+        "title": "Th\u00e8mes et mots cl\u00e9s"
+    },
+    "label": "Th\u00e8mes et mots cl\u00e9s",
+    "search_fr": [
+        "Th\u00e8mes et mots cl\u00e9s",
+        "themes-et-mots-cles",
+        "Th\u00e8mes et mots cl\u00e9s"
+    ],
+    "search_title_fr": "Th\u00e8mes et mots cl\u00e9s",
+    "structure_item": "202fa645-8a9e-429b-b525-3c9b5a39573a",
+    "translate": false
+}
