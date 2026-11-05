@@ -27,12 +27,12 @@ and [advanced markers](https://developers.google.com/maps/documentation/javascri
 
 ## Aggregation behavior
 
-| Google Maps zoom | Location levels         |
-|------------------|-------------------------|
-| 2–6              | 1: country              |
-| 7–9              | 2: region/province      |
-| 10–11            | 16: municipality        |
-| 12–20            | Geohash groups          |
+| Google Maps zoom | Location levels    |
+|------------------|--------------------|
+| 2–6              | 1: country         |
+| 7–9              | 2: region/province |
+| 10–11            | 16: municipality   |
+| 12–20            | Geohash groups     |
 
 The JSON endpoint requires `zoom`, `north`, `south`, `east`, and `west`. It
 filters versions by their coordinates inside this bounding box, groups their
@@ -59,10 +59,13 @@ results. Geohash groups are returned in a single response (`after: null`).
 
 Each pin displays the cell's version count at the centroid of its matching
 versions, with a representative preview. Its link uses the localized `search`
-route with `?geohash=<cell>`, e.g. `/fr/chercher?geohash=u15162xf`. Filtering the
-gallery by geohash is implemented separately.
+route with `?geohash=<cell>`, e.g. `/fr/chercher?geohash=u15162xf`. The gallery
+uses this hash to filter version coordinates within the complete
+geohash cell. The filter is preserved for AJAX slides, preview images and
+thumbnail labels; malformed geohashes return HTTP 400.
 
-Location results use composite aggregation pages of 200 groups. The `after` response
+Location results use composite aggregation pages of 200 groups. The `after`
+response
 field is sent back unchanged to retrieve the next page; the client retrieves
 every page before replacing the markers. Map movement cancels the previous
 request and prevents stale responses from updating the map.

@@ -87,6 +87,8 @@ search:
 gallery:
     keywords:
         title: 'Keywords'
+    title:
+        geohash: 'Photos in area "%geohash%"'
 map:
     connecting: 'Loading map…'
     title: 'Geographic search'

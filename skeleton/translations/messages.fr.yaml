@@ -113,6 +113,7 @@ gallery:
     result:
         counter: '{0} Aucune référence trouvée|{1} 1 référence|]1,Inf[%count% références'
     title:
+        geohash: 'Photos de la zone "%geohash%"'
         all: 'Galerie des clichés de GlobalView'
         query: 'Galerie correspondant à la recherche "%query%"'
         no_result_for: 'Pas de résultat pour la recherche "%query%"'

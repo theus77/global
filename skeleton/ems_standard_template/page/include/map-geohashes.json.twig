@@ -47,7 +47,7 @@
                 _config_type: 'image', _image_format: 'webp', _width: 360, _height: 240, _resize: 'smartCrop', _quality: 85,
             }) : asset('img/website/missing.' ~ app.request.locale ~ '.jpg', 'emsch'),
             imageLabel: label,
-            url: path('search', {_locale: app.request.locale, geohash: bucket.key}),
+            url: path('search', {_locale: app.request.locale, geohash: bucket.key, label: label}),
         }]) -%}
     {%- endif -%}
 {%- endfor -%}

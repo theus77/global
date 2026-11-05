@@ -32,6 +32,16 @@
         }) -%}
         {%- set title = 'gallery.title.query'|trans({'%query%': queryString}) -%}
         {%- set query = {q: queryString} -%}
+    {%- elseif '' != app.request.query.get('geohash', '') -%}
+        {%- set geohash = app.request.query.get('geohash')|lower -%}
+        {%- if not (geohash matches '/^[0-9bcdefghjkmnpqrstuvwxyz]{1,12}$/') -%}
+            {%- do emsch_http_error('400', 'Invalid geohash') -%}
+        {%- endif -%}
+        {%- set resultsSearchBody = resultsSearchBody|merge({query: {bool: {filter: [{
+            geo_bounding_box: {location: {top_left: geohash, bottom_right: geohash}},
+        }]}}}) -%}
+        {%- set title = 'gallery.title.geohash'|trans({'%geohash%': app.request.query.get('label', geohash)}) -%}
+        {%- set query = {geohash: geohash} -%}
     {%- elseif app.request.query.get('version') -%}
         {%- set versionId = app.request.query.get('version') -%}
         {%- set resultsSearchBody = resultsSearchBody|merge({query: {ids: {values: [versionId]}}}) -%}
