@@ -12,7 +12,7 @@
         {%- set from = requestPage*requestSize -%}
     {%- endif -%}
     {%- set resultsSearchBody = {
-        '_source': ['stack', 'label', 'name', 'location'],
+        '_source': ['stack', 'label', 'name', 'location', 'position'],
         'sort': [ {"_score": { "order": "desc" } },{ 'date': { 'order': 'desc' } } ],
     } -%}
 
@@ -130,6 +130,7 @@
             id: hit._id,
             stack: hit._source.stack|default([]),
             location: hit._source.location|default(null),
+            position: hit._source.position|default(null),
             label: hit._source.label|default(hit._source.name|default('')),
         }|filter(v => null != v)),
         'query': query,
