@@ -9,13 +9,13 @@
 {%- set pageSize = 200 -%}
 {%- set result = emsch_search('globalview_version', {
     query: viewportQuery,
-    _source: ['label', 'name', 'stack', 'location'],
+    _source: ['label', 'name', 'stack', 'location', 'position'],
     sort: ['_doc'],
 }, offset, pageSize) -%}
 {%- set markers = [] -%}
 {%- for hit in result.hits.hits -%}
     {%- set version = hit._source -%}
-    {%- set image = version.stack|default([])|first|default(null) -%}
+    {%- set image = version.stack[version.position|default(0)]|default(version.stack|first|default) -%}
     {%- set label = version.label|default(version.name|default('')) -%}
     {%- if version.location.lat is defined and version.location.lon is defined -%}
         {%- set markers = markers|merge([{

@@ -58,7 +58,7 @@
                                         preview: {top_hits: {
                                             size: 1,
                                             sort: [{rating: {order: 'desc', missing: '_last'}}, {date: {order: 'desc', missing: '_last'}}],
-                                            _source: ['stack', 'label', 'name'],
+                                            _source: ['stack', 'label', 'name', 'position'],
                                         }},
                                     },
                                 },
@@ -102,7 +102,9 @@
     {%- if center and (corners[0][0] - corners[1][0])|abs > 180 and referenceLocation.lat is defined and referenceLocation.lon is defined -%}
         {%- set center = {lat: referenceLocation.lat / 1, lon: referenceLocation.lon / 1} -%}
     {%- endif -%}
-    {%- set image = version.stack|default([])|first|default(null) -%}
+
+
+    {%- set image = version.stack[version.position|default(0)]|default(version.stack|first|default) -%}
     {%- set label = attribute(details, 'name_' ~ app.request.locale)|default(details.name_fr|default(details.name_en|default(bucket.key.place))) -%}
     {%- if center and bucket.versions.doc_count > 0 -%}
         {%- set markers = markers|merge([{

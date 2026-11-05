@@ -18,7 +18,7 @@
                         preview: {top_hits: {
                             size: 1,
                             sort: [{rating: {order: 'desc', missing: '_last'}}, {date: {order: 'desc', missing: '_last'}}],
-                            _source: ['stack', 'label', 'name'],
+                            _source: ['stack', 'label', 'name', 'position'],
                         }},
                     },
                 },
@@ -32,7 +32,7 @@
 {%- set markers = [] -%}
 {%- for bucket in buckets -%}
     {%- set version = bucket.preview.hits.hits|first._source|default({}) -%}
-    {%- set image = version.stack|default([])|first|default(null) -%}
+    {%- set image = version.stack[version.position|default(0)]|default(version.stack|first|default) -%}
     {%- set label = version.label|default(version.name|default('')) -%}
     {%- set center = bucket.center.location|default(null) -%}
     {%- if center -%}
