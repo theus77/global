@@ -74,13 +74,10 @@ export function createMapPopup(data, openGallery) {
     caption.className = 'location-map-popup-caption';
     const title = document.createElement('span');
     title.textContent = data.label;
-    caption.append(title);
-    if (data.kind !== 'version') {
-        const count = document.createElement('span');
-        count.className = 'badge rounded-pill';
-        count.textContent = String(data.count);
-        caption.append(count);
-    }
+    const count = document.createElement('span');
+    count.className = 'badge rounded-pill';
+    count.textContent = String(data.count);
+    caption.append(title, count);
     link.append(image, caption);
     popup.append(link);
     return popup;
@@ -145,19 +142,16 @@ export function mountLocationMap(element, { Map, InfoWindow }, { AdvancedMarkerE
             markers = data.map((group) => {
                 const pin = document.createElement('div');
                 pin.className = 'location-map-pin';
-                if (group.kind !== 'version') {
-                    const count = document.createElement('span');
-                    count.textContent = String(group.count);
-                    pin.append(count);
-                }
+                const count = document.createElement('span');
+                count.textContent = String(group.count);
+                pin.append(count);
                 const marker = new AdvancedMarkerElement({
                     map,
                     position: { lat: Number(group.lat), lng: Number(group.lng) },
-                    title: group.kind === 'version' ? group.label : `${group.label} (${group.count})`,
-                    gmpClickable: true
+                    title: `${group.label} (${group.count})`
                 });
                 marker.append(pin);
-                marker.addEventListener('gmp-click', () => {
+                marker.addListener('click', () => {
                     infoWindow.setContent(createMapPopup(group, element.dataset.openGallery));
                     infoWindow.open({ map, anchor: marker });
                 });

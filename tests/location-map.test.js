@@ -47,7 +47,7 @@ function fixture() {
     class InfoWindow { constructor() { return info; } }
     class AdvancedMarkerElement extends Element {
         constructor(options) { super(); Object.assign(this, options); points.push(this); }
-        addEventListener(name, callback) { this[name] = callback; }
+        addListener(name, callback) { this[name] = callback; }
     }
     globalThis.window = { location: { href: 'https://example.test/fr/carte' } };
     globalThis.document = { createElement: () => new Element() };
@@ -92,8 +92,7 @@ test('pins show counts and their popup links the photo and label to the location
     await view.refresh();
     assert.equal(f.points.length, 1);
     assert.equal(f.points[0].children[0].children[0].textContent, '42');
-    assert.equal(f.points[0].gmpClickable, true);
-    f.points[0]['gmp-click']();
+    f.points[0].click();
     const link = f.info.content.children[0];
     assert.equal(link.href, group.url);
     assert.equal(link.children[0].src, group.image);
@@ -147,43 +146,4 @@ test('a missing API key leaves an understandable error and retry action', async 
     await setupLocationMap();
     assert.equal(f.status.parts.span.textContent, 'Error');
     assert.equal(f.status.parts.button.hidden, false);
-});
-
-test('individual versions remain separate pins and do not display aggregation counts', async () => {
-    const f = fixture();
-    f.map.zoom = 12;
-    const versions = [
-        { ...group, id: 'version-a', kind: 'version', count: 1, url: '/fr/chercher?version=version-a' },
-        { ...group, id: 'version-b', kind: 'version', count: 1, url: '/fr/chercher?version=version-b' }
-    ];
-    globalThis.fetch = async (url) => {
-        assert.equal(url.searchParams.get('zoom'), '12');
-        return response(versions);
-    };
-    const view = controller(f);
-    await view.refresh();
-    assert.equal(f.points.length, 2);
-    assert.equal(f.points[0].children[0].children.length, 0);
-    assert.equal(f.points[0].title, group.label);
-    f.points[1]['gmp-click']();
-    const link = f.info.content.children[0];
-    assert.equal(link.href, '/fr/chercher?version=version-b');
-    assert.equal(link.children[1].children.length, 1);
-    view.destroy();
-});
-
-test('geohash groups show their count and link to the geohash gallery', async () => {
-    const f = fixture();
-    f.map.zoom = 17;
-    const cell = { ...group, id: 'u15162xf', kind: 'geohash', count: 85, url: '/fr/chercher?geohash=u15162xf' };
-    globalThis.fetch = async () => response([cell]);
-    const view = controller(f);
-    await view.refresh();
-    assert.equal(f.points.length, 1);
-    assert.equal(f.points[0].children[0].children[0].textContent, '85');
-    f.points[0]['gmp-click']();
-    const link = f.info.content.children[0];
-    assert.equal(link.href, '/fr/chercher?geohash=u15162xf');
-    assert.equal(link.children[1].children[1].textContent, '85');
-    view.destroy();
 });

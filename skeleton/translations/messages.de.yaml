@@ -87,8 +87,6 @@ search:
 gallery:
     keywords:
         title: 'Stichwörter'
-    title:
-        geohash: 'Fotos im Gebiet "%geohash%"'
 map:
     connecting: 'Karte wird geladen…'
     title: 'Geografische Suche'
