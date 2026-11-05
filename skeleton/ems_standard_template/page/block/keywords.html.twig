@@ -73,7 +73,7 @@
                     <a href="{{ path('search', {_locale: locale, keyword: agg.keyword_id|split(':')|last } ) }}" class="news-list-link btn btn-lg d-flex flex-column justify-content-center w-100 h-100">
                         <h3 class="mt-0">{{- agg.keyword.("name_#{locale}")|default(agg.keyword.name_fr|default('')) -}} </h3>
                         <span class="text-wrapper mt-3">
-                            <img src="{{ ems_asset_path(agg.image, {
+                            <img src="{{ asset('img/website/loading-square.jpg', 'emsch') }}" data-src="{{ ems_asset_path(agg.image, {
                                 _config_type: 'image',
                                 _width: 176,
                                 _height: 176,
@@ -82,7 +82,7 @@
                                 _image_format:'webp',
                                 _author: 'Simon Schmitt',
                                 _copyright: '© GlobalView.be',
-                            }) }}" class="img-fluid rounded-circle" alt="" width="176" height="176">
+                            }) }}" class="img-fluid rounded-circle lazy" alt="" width="176" height="176">
                         </span>
                         <span class="mt-3 text-white">{{ 'gallery.result.counter'|trans({'%count%': agg.total}) }}</span>
                     </a>
