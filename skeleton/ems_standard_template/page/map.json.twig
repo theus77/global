@@ -73,13 +73,15 @@
 {%- set places = result.aggregations.locations.selected.places -%}
 {%- set placeIds = places.buckets|map(bucket => bucket.key.place|split(':')|last) -%}
 {%- set geometries = {} -%}
+{%- set referenceLocations = {} -%}
 {%- if placeIds is not empty -%}
     {%- set placeDocuments = emsch_search('globalview_place', {
-        _source: ['geometry'],
+        _source: ['geometry', 'location'],
         query: {ids: {values: placeIds}},
     }, 0, placeIds|length) -%}
     {%- for place in placeDocuments.hits.hits -%}
         {%- set geometries = geometries|merge({(place._id): place._source.geometry|default(null)}) -%}
+        {%- set referenceLocations = referenceLocations|merge({(place._id): place._source.location|default(null)}) -%}
     {%- endfor -%}
 {%- endif -%}
 {%- set markers = [] -%}
@@ -94,6 +96,11 @@
             lat: (corners[0][1] + corners[1][1]) / 2,
             lon: (corners[0][0] + corners[1][0]) / 2,
         } -%}
+    {%- endif -%}
+    {%- set referenceLocation = referenceLocations[bucket.key.place|split(':')|last]|default(null) -%}
+    {# Wide envelopes can span distant territories; use the place's reference point. #}
+    {%- if center and (corners[0][0] - corners[1][0])|abs > 180 and referenceLocation.lat is defined and referenceLocation.lon is defined -%}
+        {%- set center = {lat: referenceLocation.lat / 1, lon: referenceLocation.lon / 1} -%}
     {%- endif -%}
     {%- set image = version.stack|default([])|first|default(null) -%}
     {%- set label = attribute(details, 'name_' ~ app.request.locale)|default(details.name_fr|default(details.name_en|default(bucket.key.place))) -%}

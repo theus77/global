@@ -41,7 +41,9 @@ nested `locations` by `place_id` at the selected levels, and uses
 the `geometry` bounding box on each corresponding `globalview_place` document.
 The place geometries are fetched in one batch per aggregation page. Positions
 therefore stay fixed when the viewport changes, even when the box center falls
-outside the viewport. Places without a valid envelope are omitted.
+outside the viewport. For envelopes wider than 180° of longitude, such as the
+United States including distant territories, the place's `location` reference
+point is used when available. Places without a valid envelope are omitted.
 
 A representative version provides the preview image. Each popup links to the
 complete location gallery via the `search` route, preserving the current
