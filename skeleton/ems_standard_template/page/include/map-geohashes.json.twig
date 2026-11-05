@@ -1,0 +1,54 @@
+{%- if app.request.query.get('after', '') != '' -%}
+    {%- do emsch_http_error('400', 'Geohash results do not use a cursor') -%}
+{%- endif -%}
+{%- set preferredPrecision = zoom <= 13 ? 6 : (zoom <= 16 ? 7 : 8) -%}
+{%- set precision = preferredPrecision -%}
+{%- set buckets = [] -%}
+{%- set resolved = false -%}
+{%- for candidate in range(preferredPrecision, 1) -%}
+    {%- if not resolved -%}
+        {%- set result = emsch_search('globalview_version', {
+            size: 0,
+            query: viewportQuery,
+            aggs: {
+                cells: {
+                    geohash_grid: {field: 'location', precision: candidate, size: 201, shard_size: 1000},
+                    aggs: {
+                        center: {geo_centroid: {field: 'location'}},
+                        preview: {top_hits: {
+                            size: 1,
+                            sort: [{rating: {order: 'desc', missing: '_last'}}, {date: {order: 'desc', missing: '_last'}}],
+                            _source: ['stack', 'label', 'name'],
+                        }},
+                    },
+                },
+            },
+        }, 0, 0) -%}
+        {%- set buckets = result.aggregations.cells.buckets -%}
+        {%- set precision = candidate -%}
+        {%- set resolved = buckets|length <= 200 -%}
+    {%- endif -%}
+{%- endfor -%}
+{%- set markers = [] -%}
+{%- for bucket in buckets -%}
+    {%- set version = bucket.preview.hits.hits|first._source|default({}) -%}
+    {%- set image = version.stack|default([])|first|default(null) -%}
+    {%- set label = version.label|default(version.name|default('')) -%}
+    {%- set center = bucket.center.location|default(null) -%}
+    {%- if center -%}
+        {%- set markers = markers|merge([{
+            id: bucket.key,
+            kind: 'geohash',
+            label: label,
+            count: bucket.doc_count,
+            lat: center.lat,
+            lng: center.lon,
+            image: image ? ems_asset_path(image, {
+                _config_type: 'image', _image_format: 'webp', _width: 360, _height: 240, _resize: 'smartCrop', _quality: 85,
+            }) : asset('img/website/missing.' ~ app.request.locale ~ '.jpg', 'emsch'),
+            imageLabel: label,
+            url: path('search', {_locale: app.request.locale, geohash: bucket.key}),
+        }]) -%}
+    {%- endif -%}
+{%- endfor -%}
+{{- {markers: markers, levels: [], precision: precision, after: null}|json_encode|raw -}}

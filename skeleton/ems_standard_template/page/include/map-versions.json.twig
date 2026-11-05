@@ -1,0 +1,41 @@
+{%- set after = app.request.query.get('after', '') -%}
+{%- set offset = 0 -%}
+{%- if after != '' -%}
+    {%- if not (after matches '/^version:[0-9]+$/') -%}
+        {%- do emsch_http_error('400', 'Invalid version cursor') -%}
+    {%- endif -%}
+    {%- set offset = (after|split(':')|last) / 1 -%}
+{%- endif -%}
+{%- set pageSize = 200 -%}
+{%- set result = emsch_search('globalview_version', {
+    query: viewportQuery,
+    _source: ['label', 'name', 'stack', 'location'],
+    sort: ['_doc'],
+}, offset, pageSize) -%}
+{%- set markers = [] -%}
+{%- for hit in result.hits.hits -%}
+    {%- set version = hit._source -%}
+    {%- set image = version.stack|default([])|first|default(null) -%}
+    {%- set label = version.label|default(version.name|default('')) -%}
+    {%- if version.location.lat is defined and version.location.lon is defined -%}
+        {%- set markers = markers|merge([{
+            id: hit._id,
+            kind: 'version',
+            label: label,
+            count: 1,
+            lat: version.location.lat / 1,
+            lng: version.location.lon / 1,
+            image: image ? ems_asset_path(image, {
+                _config_type: 'image', _image_format: 'webp', _width: 360, _height: 240, _resize: 'smartCrop', _quality: 85,
+            }) : asset('img/website/missing.' ~ app.request.locale ~ '.jpg', 'emsch'),
+            imageLabel: label,
+            url: path('search', {_locale: app.request.locale, version: hit._id}),
+        }]) -%}
+    {%- endif -%}
+{%- endfor -%}
+{%- set nextOffset = offset + result.hits.hits|length -%}
+{{- {
+    markers: markers,
+    levels: [],
+    after: result.hits.hits is not empty and nextOffset < result.hits.total.value ? 'version:' ~ nextOffset : null,
+}|json_encode|raw -}}

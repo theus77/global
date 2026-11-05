@@ -14,7 +14,16 @@
 {%- if bounds.south > bounds.north -%}
     {%- do emsch_http_error('400', 'Invalid map bounds') -%}
 {%- endif -%}
-{%- set levels = zoom <= 6 ? [1] : (zoom <= 8 ? [2] : (zoom <= 11 ? [16] : [43, 47])) -%}
+{%- set viewportQuery = {bool: {filter: [{geo_bounding_box: {
+    location: {
+        top_left: {lat: bounds.north, lon: bounds.west},
+        bottom_right: {lat: bounds.south, lon: bounds.east},
+    },
+}}]}} -%}
+{%- if zoom >= 12 -%}
+    {%- include '@EMSCH/ems_standard_template/page/include/map-geohashes.json.twig' -%}
+{%- else -%}
+{%- set levels = zoom <= 6 ? [1] : (zoom <= 9 ? [2] : [16]) -%}
 {%- set composite = {
     size: 200,
     sources: [{place: {terms: {field: 'locations.place_id'}}}],
@@ -28,12 +37,7 @@
 {%- endif -%}
 {%- set result = emsch_search('globalview_version', {
     size: 0,
-    query: {bool: {filter: [{geo_bounding_box: {
-        location: {
-            top_left: {lat: bounds.north, lon: bounds.west},
-            bottom_right: {lat: bounds.south, lon: bounds.east},
-        },
-    }}]}},
+    query: viewportQuery,
     aggs: {
         locations: {
             nested: {path: 'locations'},
@@ -51,7 +55,6 @@
                                 versions: {
                                     reverse_nested: {},
                                     aggs: {
-                                        center: {geo_centroid: {field: 'location'}},
                                         preview: {top_hits: {
                                             size: 1,
                                             sort: [{rating: {order: 'desc', missing: '_last'}}, {date: {order: 'desc', missing: '_last'}}],
@@ -68,11 +71,30 @@
     },
 }, 0, 0) -%}
 {%- set places = result.aggregations.locations.selected.places -%}
+{%- set placeIds = places.buckets|map(bucket => bucket.key.place|split(':')|last) -%}
+{%- set geometries = {} -%}
+{%- if placeIds is not empty -%}
+    {%- set placeDocuments = emsch_search('globalview_place', {
+        _source: ['geometry'],
+        query: {ids: {values: placeIds}},
+    }, 0, placeIds|length) -%}
+    {%- for place in placeDocuments.hits.hits -%}
+        {%- set geometries = geometries|merge({(place._id): place._source.geometry|default(null)}) -%}
+    {%- endfor -%}
+{%- endif -%}
 {%- set markers = [] -%}
 {%- for bucket in places.buckets -%}
     {%- set details = bucket.details.hits.hits|first._source|default({}) -%}
     {%- set version = bucket.versions.preview.hits.hits|first._source|default({}) -%}
-    {%- set center = bucket.versions.center.location|default(null) -%}
+    {%- set geometry = geometries[bucket.key.place|split(':')|last]|default(null) -%}
+    {%- set corners = geometry.coordinates|default([]) -%}
+    {%- set center = null -%}
+    {%- if geometry.type|default('') == 'envelope' and corners|length == 2 and corners[0]|length == 2 and corners[1]|length == 2 -%}
+        {%- set center = {
+            lat: (corners[0][1] + corners[1][1]) / 2,
+            lon: (corners[0][0] + corners[1][0]) / 2,
+        } -%}
+    {%- endif -%}
     {%- set image = version.stack|default([])|first|default(null) -%}
     {%- set label = attribute(details, 'name_' ~ app.request.locale)|default(details.name_fr|default(details.name_en|default(bucket.key.place))) -%}
     {%- if center and bucket.versions.doc_count > 0 -%}
@@ -91,3 +113,4 @@
     {%- endif -%}
 {%- endfor -%}
 {{- {markers: markers, levels: levels, after: places.after_key.place|default(null)}|json_encode|raw -}}
+{%- endif -%}
