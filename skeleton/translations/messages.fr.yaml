@@ -40,7 +40,7 @@ flight:
     contact:
         title: Contactez-nous
 footer:
-    follow_us: 'Follow us'
+    follow_us: 'Suivez-nous'
 form:
     error: 'Le formulaire a rencontré un problème : %message%'
     error_try_later: 'Le formulaire a rencontré un problème, veuillez réessayer plus tard.'
@@ -118,6 +118,6 @@ gallery:
         query: 'Galerie correspondant à la recherche "%query%"'
         no_result_for: 'Pas de résultat pour la recherche "%query%"'
         no_result: 'Pas de résultat pour cette recherche'
-        location: '{1} Pays "%location%"|{2} %location%|[16,20[ Commune "%location%"|[20,60[ Quartier "%location%"|]-Inf,Inf[ Emplacement "%location%"'
+        location: '{1} Pays "%location%"|{2} %location%|[16,20[ Localité "%location%"|[20,60[ Quartier "%location%"|]-Inf,Inf[ Emplacement "%location%"'
         keyword: 'Mot clé "%keyword%"'
 loading: 'Chargement en cours ...'
