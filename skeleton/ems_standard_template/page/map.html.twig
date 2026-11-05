@@ -4,5 +4,23 @@
 {% block title %}{{ 'map.title'|trans }}{% endblock title %}
 
 {%- block main -%}
-    <h1 class="visually-hidden">{{ block('title') }}</h1>
+    <main id="wrapper" class="location-map-page">
+        <h1 class="visually-hidden">{{ block('title') }}</h1>
+        <div class="location-map-container">
+            <div id="location-map" class="location-map"
+                 aria-label="{{ 'map.title'|trans }}"
+                 data-markers-url="{{ path('emsch_map', {_locale: locale, _format: 'json'}) }}"
+                 data-google-maps-key="{{ googleMapsApiKey|default(googleApiKey|default('')) }}"
+                 data-google-maps-id="{{ googleMapsMapId|default('') }}"
+                 data-language="{{ locale }}"
+                 data-connecting="{{ 'map.connecting'|trans }}"
+                 data-load-error="{{ 'map.load_error'|trans }}"
+                 data-no-results="{{ 'map.no_results'|trans }}"
+                 data-open-gallery="{{ 'map.open_gallery'|trans }}"></div>
+            <div class="location-map-status" role="status" aria-live="polite">
+                <span>{{ 'map.connecting'|trans }}</span>
+                <button type="button" class="btn btn-primary btn-sm" hidden>{{ 'map.retry'|trans }}</button>
+            </div>
+        </div>
+    </main>
 {%- endblock main -%}

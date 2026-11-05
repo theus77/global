@@ -87,3 +87,10 @@ search:
 gallery:
     keywords:
         title: 'Stichwörter'
+map:
+    connecting: 'Karte wird geladen…'
+    title: 'Geografische Suche'
+    load_error: 'Die Karte oder Ergebnisse konnten nicht geladen werden. Bitte versuchen Sie es erneut.'
+    no_results: 'Keine Fotos in diesem Bereich auf dieser Zoomstufe.'
+    open_gallery: 'Galerie ansehen'
+    retry: 'Erneut versuchen'

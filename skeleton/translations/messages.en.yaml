@@ -87,3 +87,10 @@ search:
 gallery:
     keywords:
         title: 'Keywords'
+map:
+    connecting: 'Loading map…'
+    title: 'Geographic search'
+    load_error: 'Unable to load the map or its results. Please try again.'
+    no_results: 'No photos in this area at this zoom level.'
+    open_gallery: 'View gallery'
+    retry: 'Try again'

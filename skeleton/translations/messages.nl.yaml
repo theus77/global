@@ -86,3 +86,10 @@ search:
 gallery:
     keywords:
         title: 'Trefwoorden'
+map:
+    connecting: 'Kaart laden…'
+    title: 'Geografisch zoeken'
+    load_error: 'De kaart of resultaten kunnen niet worden geladen. Probeer het opnieuw.'
+    no_results: 'Geen foto’s in dit gebied op dit zoomniveau.'
+    open_gallery: 'Galerij bekijken'
+    retry: 'Opnieuw proberen'

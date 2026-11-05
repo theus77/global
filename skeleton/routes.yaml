@@ -65,8 +65,9 @@ missing:
     template_static: ems_standard_template/page/missing.html.twig
 emsch_map:
     config:
-        path: { fr: '/{_locale}/carte.{_format}', en: '/{_locale}/map.{_format}' }
-        defaults: { _locale: fr, _format: html, }
+        path: { fr: '/{_locale}/carte.{_format}', nl: '/{_locale}/kaart.{_format}', de: '/{_locale}/karte.{_format}', en: '/{_locale}/map.{_format}' }
+        requirements: { _locale: nl|fr|de|en, _format: html|json }
+        defaults: { _locale: fr, _format: html }
     template_static: ems_standard_template/page/map.%_format%.twig
 structure:
     config:

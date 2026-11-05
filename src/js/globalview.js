@@ -2,6 +2,7 @@ import '../css/globalview.scss';
 import $ from 'jquery';
 import * as bootstrap from 'bootstrap';
 import SmoothScroll from 'smooth-scroll';
+import { setupLocationMap } from './module/location-map.js';
 import form from "./module/form/form.js";
 
 window.$ = window.jQuery = $;
@@ -673,6 +674,7 @@ async function init() {
     $(setupScrollPanels);
     $(setupLegacyInteractions);
     $(setupGallery);
+    $(setupLocationMap);
 }
 
 init();

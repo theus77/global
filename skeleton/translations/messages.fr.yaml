@@ -1,6 +1,10 @@
 map:
     connecting: 'Connection à Google Maps ...'
     title: 'Recherche géographique'
+    load_error: 'Impossible de charger la carte ou ses résultats. Veuillez réessayer.'
+    no_results: 'Aucune photo dans cette zone à ce niveau de zoom.'
+    open_gallery: 'Voir la galerie'
+    retry: 'Réessayer'
 actions:
     buy_book: 'Acheter le livre'
 app:
