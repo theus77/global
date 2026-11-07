@@ -1,8 +1,8 @@
 {%- extends '@EMSCH/ems_standard_template/page/block/abstract-block.html.twig' -%}
 
 {%- block row -%}
-    <section {% if block.object.anchor is defined %}id="{{ block.object.anchor }}" {% endif%}class="my-5">
-        <div class="container wysiwyg-content text-center">
+    <section {% if block.object.anchor is defined %}id="{{ block.object.anchor }}" {% endif %}class="my-5">
+        <div class="container text-center">
             {{ block('widget') }}
         </div>
     </section>
@@ -10,23 +10,21 @@
 
 {%- block widget -%}
     {% import '@EMSCH/ems_standard_template/macros/wysiwyg.twig' as wysiwyg %}
-    <h2>{{ block.object.label|replace(replacements)|raw }}</h2>
 
-    <div>
-        {% for item in block.object.collection|default([]) %}
-            {% set icon = item.icon %}
-            {% set color = item.color %}
-            {% set title = item.title %}
-            {% set link = item.link|emsch_routing_config(emsch_routing_config) %}
-            <div class="">
-                <ul>
-                    <li>{{ icon }}</li>
-                    <li>{{ color }}</li>
-                    <li>{{ title }}</li>
-                    <li>{{ link }}</li>
-                </ul>
-            </div>
-        {% endfor %}
-    </div>
-
+    {% if block.object.label|default('') is not empty %}
+        <h2 class="">{{ block.object.label|replace(replacements)|raw }}</h2>
+    {% endif %}
+    {% set block %}
+        <div class="row">
+            {% for item in block.object.collection|default([]) %}
+                <div class="col-12 col-sm-4">
+                    <a href="ems://object:{{ item.link }}" class="services style2 d-block text-white text-decoration-none">
+                        <span class="fa {{ item.icon }} d-inline-flex align-items-center justify-content-center lh-1" style="background-color: {{ item.color }};" aria-hidden="true"></span>
+                        <span class="h4 d-block mb-0 fw-bold">{{ item.title }}</span>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    {% endset %}
+    {{ wysiwyg.transform(block|emsch_routing_config(emsch_routing_config), trans_default_domain) }}
 {%- endblock widget -%}
