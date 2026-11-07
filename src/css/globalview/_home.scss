@@ -88,9 +88,9 @@
 		text-align:center;
 		background:$color8;
 		margin-bottom:em(30px,85px);
-		@include transition(all 0.3s ease-in-out);
+		@include transition(transform 0.3s ease-in-out);
 		&:hover {
-			font-size:em(90px);
+			transform: scale(1.0588235294);
 		}
 		a {
 		    display: inline-block;
