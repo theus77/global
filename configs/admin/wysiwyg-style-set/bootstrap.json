@@ -10,7 +10,7 @@
         "contentCss": "css/admin.css",
         "contentJs": "js/admin.js",
         "assets": {
-            "sha1": "9a0a3e489938a6e72e28d5b237c3a3f7afc2afec",
+            "sha1": "0c361a4354a188c40d3c6d204f8893e2a11aa6e0",
             "mimetype": "application/json",
             "filename": "bundle.json"
         }

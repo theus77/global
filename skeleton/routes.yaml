@@ -36,7 +36,7 @@ gallery_slide:
 gallery_thumbnail:
     config:
         path: '/{_locale}/gallery/thumbnail/{index}.json'
-        requirements: { _locale: nl|fr|de|en, index: '\d+' }
+        requirements: { _locale: nl|fr|de|en, index: \d+ }
         defaults: { _locale: fr, _format: json }
     template_static: ems_standard_template/page/gallery-thumbnail.json.twig
 gallery_image_preview:

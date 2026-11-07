@@ -10,7 +10,7 @@
             "prefix_instance_id": true,
             "inline_editor": false,
             "searchConfig": "[]",
-            "entryPath": "./",
+            "entryPath": "./fr",
             "attributes": "{\r\n    \"_backend\": \"/.\",\r\n    \"_locale\": \"fr\"\r\n}"
         },
         "orderKey": 1
