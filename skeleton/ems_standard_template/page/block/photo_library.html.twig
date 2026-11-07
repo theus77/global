@@ -1,0 +1,32 @@
+{%- extends '@EMSCH/ems_standard_template/page/block/abstract-block.html.twig' -%}
+
+{%- block row -%}
+    <section {% if block.object.anchor is defined %}id="{{ block.object.anchor }}" {% endif%}class="my-5">
+        <div class="container wysiwyg-content text-center">
+            {{ block('widget') }}
+        </div>
+    </section>
+{%- endblock row -%}
+
+{%- block widget -%}
+    {% import '@EMSCH/ems_standard_template/macros/wysiwyg.twig' as wysiwyg %}
+    <h2>{{ block.object.label|replace(replacements)|raw }}</h2>
+
+    <div>
+        {% for item in block.object.collection|default([]) %}
+            {% set icon = item.icon %}
+            {% set color = item.color %}
+            {% set title = item.title %}
+            {% set link = item.link|emsch_routing_config(emsch_routing_config) %}
+            <div class="">
+                <ul>
+                    <li>{{ icon }}</li>
+                    <li>{{ color }}</li>
+                    <li>{{ title }}</li>
+                    <li>{{ link }}</li>
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+
+{%- endblock widget -%}
