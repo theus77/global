@@ -37,8 +37,8 @@
     height: 52px;
     margin-bottom: 12px;
     border-radius: 50% 50% 50% 0;
-    border: 2px solid #c44740;
-    background: #ff6256;
+    border: 2px solid darken($color2, 15%);
+    background: $color2;
     color: #000;
     transform: rotate(-45deg);
     cursor: pointer;

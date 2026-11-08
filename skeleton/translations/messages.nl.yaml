@@ -86,6 +86,8 @@ search:
 gallery:
     keywords:
         title: 'Trefwoorden'
+    title:
+        geohash: 'Foto’s van gebied "%geohash%"'
 map:
     connecting: 'Kaart laden…'
     title: 'Geografisch zoeken'

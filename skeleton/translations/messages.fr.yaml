@@ -1,10 +1,3 @@
-map:
-    connecting: 'Connection à Google Maps ...'
-    title: 'Recherche géographique'
-    load_error: 'Impossible de charger la carte ou ses résultats. Veuillez réessayer.'
-    no_results: 'Aucune photo dans cette zone à ce niveau de zoom.'
-    open_gallery: 'Voir la galerie'
-    retry: 'Réessayer'
 actions:
     buy_book: 'Acheter le livre'
 app:
@@ -40,7 +33,7 @@ flight:
     contact:
         title: Contactez-nous
 footer:
-    follow_us: 'Follow us'
+    follow_us: Suivez-nous
 form:
     error: 'Le formulaire a rencontré un problème : %message%'
     error_try_later: 'Le formulaire a rencontré un problème, veuillez réessayer plus tard.'
@@ -56,9 +49,31 @@ form:
     remove_all: 'Supprimer tout'
     required_field: '(*) Champ obligatoire'
     saved: 'Votre message a été envoyé.'
+gallery:
+    keywords:
+        title: 'Mots clés'
+    load_error: 'Impossible de charger cette image. Veuillez réessayer.'
+    result:
+        counter: '{0} Aucune référence trouvée|{1} 1 référence|]1,Inf[%count% références'
+    title:
+        all: 'Galerie des clichés de GlobalView'
+        geohash: 'Photos de la zone "%geohash%"'
+        keyword: 'Mot clé "%keyword%"'
+        location: '{1} Pays "%location%"|{2} %location%|[16,20[ Localité "%location%"|[20,60[ Quartier "%location%"|]-Inf,Inf[ Emplacement "%location%"'
+        no_result: 'Pas de résultat pour cette recherche'
+        no_result_for: 'Pas de résultat pour la recherche "%query%"'
+        query: 'Galerie correspondant à la recherche "%query%"'
 key:
     home: Accueil
     new_window: "S'ouvre dans une nouvelle fenêtre"
+loading: 'Chargement en cours ...'
+map:
+    connecting: 'Connection à Google Maps ...'
+    load_error: 'Impossible de charger la carte ou ses résultats. Veuillez réessayer.'
+    no_results: 'Aucune photo dans cette zone à ce niveau de zoom.'
+    open_gallery: 'Voir la galerie'
+    retry: Réessayer
+    title: 'Recherche géographique'
 meta:
     description_news_overview: 'Tous les articles'
 missing:
@@ -106,17 +121,3 @@ search:
     placeholder: 'Entrez un ou plusieurs mots-clés'
     results: '{0} Aucun résultat trouvé|{1} 1 résultat trouvé|]1,Inf[%count% résultats trouvés'
     select_size: Résultats
-gallery:
-    keywords:
-        title: 'Mots clés'
-    load_error: 'Impossible de charger cette image. Veuillez réessayer.'
-    result:
-        counter: '{0} Aucune référence trouvée|{1} 1 référence|]1,Inf[%count% références'
-    title:
-        all: 'Galerie des clichés de GlobalView'
-        query: 'Galerie correspondant à la recherche "%query%"'
-        no_result_for: 'Pas de résultat pour la recherche "%query%"'
-        no_result: 'Pas de résultat pour cette recherche'
-        location: '{1} Pays "%location%"|{2} %location%|[16,20[ Commune "%location%"|[20,60[ Quartier "%location%"|]-Inf,Inf[ Emplacement "%location%"'
-        keyword: 'Mot clé "%keyword%"'
-loading: 'Chargement en cours ...'
