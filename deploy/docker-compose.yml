@@ -135,7 +135,7 @@ services:
             - EMSF_AUTHKEY=${EMSF_AUTHKEY}
             - TRUSTED_PROXIES=127.0.0.1,REMOTE_ADDR
             - TRUSTED_HOSTS=global-admin-ems7.theus.be
-            - APP_SECRET=376be74a59481b1b61a843c9c3de301d
+            - APP_SECRET=${APP_SECRET_ADMIN}
             - PHP_OPENTELEMETRY_ENABLED=false
             - METRICS_ENABLED=false
             - MESSENGER_ENABLED=true
@@ -162,18 +162,64 @@ services:
             traefik.http.routers.ems-admin.service: ems-admin
             traefik.http.services.ems-admin.loadbalancer.server.port: "9000"
 
-    whoami:
-        image: traefik/whoami:v1.11.0
+    ems-web:
+        image: elasticms/website-skeleton:${EMS_VERSION}
         restart: unless-stopped
+        environment:
+            - APP_ENV=redis
+            - APP_SECRET=${APP_SECRET_WEB}
+            - TZ=Europe/Brussels
+            - PHP_FPM_PM_MAX_CHILDREN=8
+            - PHP_MEMORY_LIMIT=64M
+            - MAILER_URL=smtp://mailserver:1025
+            - EMS_BACKEND_URL=https://global-admin-ems7.theus.be
+            - INSTANCE_ID=${INSTANCE_ID:-globalview_}
+            - EMSF_AUTHKEY=${EMSF_AUTHKEY}
+            - EMS_ELASTICSEARCH_HOSTS=${EMS_ELASTICSEARCH_HOSTS}
+            - EMS_STORAGES=${EMS_WEB_STORAGES}
+            - REDIS_HOST=redis
+            - REDIS_PORT=6379
+            - TRUSTED_PROXIES=127.0.0.1,REMOTE_ADDR
+            - TRUSTED_HOSTS=global-web-ems7.theus.be,globalview.be,www.globalview.be
+            - EMS_HTTP_CACHES=[{"header":"x-varnish","url":"http://varnish/","headers":{"X-Invalidate-Token":"${VARNISH_TOKEN}"}}]
+            - PHP_OPENTELEMETRY_ENABLED=false
+            - METRICS_ENABLED=true
+            - MESSENGER_ENABLED=true
+            - APP_LOG_DIR=/app/var/log/elasticms
+            - APP_CACHE_DIR=/app/var/cache/elasticms
+            - OTEL_SDK_DISABLED=true
+            - OTEL_PHP_AUTOLOAD_ENABLED=false
+            - OTEL_PHP_FIBERS_ENABLED=false
+            - OTEL_PHP_DISABLED_INSTRUMENTATIONS=all
+        tmpfs:
+            - /opt/sbin:rw,exec,size=8m,mode=1777
+            - /opt/etc:rw,noexec,size=8m,mode=1777
+            - /app/var:rw,exec,size=512m,mode=1777
+            - /app/tmp:rw,noexec,size=64m,mode=1777
+        volumes:
+            - ./web:/opt/config/elasticms
+            - /srv/cms-cache/ems-web-config:/var/lib/ems
         labels:
             traefik.enable: "true"
-#            traefik.http.routers.whoami.rule: Host(`global-admin-ems7.theus.be`) || Host(`global-web-ems7.theus.be`)
-            traefik.http.routers.whoami.rule: Host(`global-web-ems7.theus.be`)
-            traefik.http.routers.whoami.entrypoints: websecure
-            traefik.http.routers.whoami.tls: "true"
-            traefik.http.routers.whoami.tls.certresolver: letsencrypt
-            traefik.http.routers.whoami.service: whoami
-            traefik.http.services.whoami.loadbalancer.server.port: "80"
+            traefik.http.routers.ems-web.rule: Host(`global-web-ems7.theus.be`)
+            traefik.http.routers.ems-web.entrypoints: websecure
+            traefik.http.routers.ems-web.tls: "true"
+            traefik.http.routers.ems-web.tls.certresolver: letsencrypt
+            traefik.http.routers.ems-web.service: ems-web
+            traefik.http.services.ems-web.loadbalancer.server.port: "9000"
+
+#    whoami:
+#        image: traefik/whoami:v1.11.0
+#        restart: unless-stopped
+#        labels:
+#            traefik.enable: "true"
+##            traefik.http.routers.whoami.rule: Host(`global-admin-ems7.theus.be`) || Host(`global-web-ems7.theus.be`)
+#            traefik.http.routers.whoami.rule: Host(`global-web-ems7.theus.be`)
+#            traefik.http.routers.whoami.entrypoints: websecure
+#            traefik.http.routers.whoami.tls: "true"
+#            traefik.http.routers.whoami.tls.certresolver: letsencrypt
+#            traefik.http.routers.whoami.service: whoami
+#            traefik.http.services.whoami.loadbalancer.server.port: "80"
 
 volumes:
     letsencrypt:
