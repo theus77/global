@@ -19,6 +19,27 @@ services:
             - traefik.http.routers.globalview-acc-tls.service=globalview-acc-apache
             - traefik.http.services.globalview-acc-apache.loadbalancer.server.port=9000
 
+    skeleton-prd:
+        extends:
+            file: docker-skeleton.yml
+            service: skeleton
+        environment:
+            - 'ES_CLUSTER_CONFIG=${ELASTICSEARCH_CONFIG}'
+            - 'APP_BACKEND_PROXY_URL=https://global-admin-ems7.theus.be/'
+            - 'EMS_STORAGES=${EMS_STORAGES_PRD}'
+            - 'APP_SECRET=${APP_SECRET}'
+            - 'EMS_ELASTICSEARCH_PROXY_API=true'
+        labels:
+            - traefik.enable=true
+            - 'traefik.http.routers.globalview-prd.rule=HostRegexp(`^prd\-([a-z0-9\-_\.]+)\.globalview\.localhost$$`)'
+            - traefik.http.routers.globalview-prd.entrypoints=web
+            - traefik.http.routers.globalview-prd.service=globalview-prd-apache
+            - 'traefik.http.routers.globalview-prd-tls.rule=HostRegexp(`^prd\-([a-z0-9\-_\.]+)\.globalview\.localhost$$`)'
+            - traefik.http.routers.globalview-prd-tls.entrypoints=websecure
+            - traefik.http.routers.globalview-prd-tls.tls=true
+            - traefik.http.routers.globalview-prd-tls.service=globalview-prd-apache
+            - traefik.http.services.globalview-prd-apache.loadbalancer.server.port=9000
+
     cli:
         image: 'elasticms/cli:${SKELETON_VERSION}'
         user: ${DOCKER_USER-1000}
