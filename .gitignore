@@ -1,6 +1,7 @@
 /node_modules/
 /dist/
 /.env
+/deploy/.env
 /ide-elasticms/vendor/
 /ide-elasticms/var/
 /ide-elasticms/src/PhpStorm/
