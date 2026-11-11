@@ -1,3 +1,5 @@
+webshop:
+    url: 'https://shopit.ag/5eYQt'
 actions:
     buy_book: 'Acheter le livre'
 app:
