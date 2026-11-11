@@ -80,4 +80,25 @@ sudo curl -fSL \
   -o /usr/local/lib/docker/cli-plugins/docker-compose
 sudo chmod 0755 /usr/local/lib/docker/cli-plugins/docker-compose
 sudo usermod -aG docker "ec2-user"
+
+sudo mkfs.ext4 -L cms-cache /dev/sdb
+sudo mkdir -p /srv/cms-cache
+sudo mount /dev/sdb /srv/cms-cache
+findmnt --mountpoint /srv/cms-cache
+df -h /srv/cms-cache
+sudo sysctl -w vm.max_map_count=1048576
+echo 'vm.max_map_count=1048576' | sudo tee /etc/sysctl.d/99-elasticsearch.conf 
+sudo sysctl --system
+```
+
+La commande `sudo blkid /dev/sdb` devrait afficher quelque chose comme `/dev/sdb: LABEL="cms-cache" UUID="37ae2742-fd57-46de-9bc9-bb83280079f8" BLOCK_SIZE="4096" TYPE="ext4"`
+
+Il faut ajouter cette ligne à `/etc/fstab` (`sudo vi /etc/fstab`)
+
+Initialise le cluster elasticsearch:
+
+```shell
+docker compose exec -T elasticsearch sh <<'SH' 
+curl --fail-with-body -sS -u "elastic:$ELASTIC_PASSWORD" -X PUT "http://localhost:9200/_index_template/dev-single-node" -H "Content-Type: application/json" -d '{"index_patterns":["*"],"priority":1,"template":{"settings":{"number_of_replicas":0}}}' 
+SH
 ```

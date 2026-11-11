@@ -20,17 +20,43 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - letsencrypt:/letsencrypt
 
-  whoami:
-    image: traefik/whoami:v1.11.0
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.19.25
     restart: unless-stopped
+    environment:
+      discovery.type: single-node
+      cluster.name: globalview
+      node.name: elasticsearch
+      xpack.security.enabled: "true"
+      xpack.security.autoconfiguration.enabled: "false"
+      xpack.security.http.ssl.enabled: "false"
+      ELASTIC_PASSWORD: ${ELASTIC_PASSWORD}
+    mem_limit: ${ELASTICSEARCH_MEMORY_LIMIT:-2g}
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - 'curl --fail --silent --user "elastic:$$ELASTIC_PASSWORD" "http://localhost:9200/_cluster/health?wait_for_status=yellow&timeout=5s" > /dev/null'
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
     labels:
-      traefik.enable: "true"
-      traefik.http.routers.whoami.rule: Host(`global-admin-ems7.theus.be`) || Host(`global-web-ems7.theus.be`)
-      traefik.http.routers.whoami.entrypoints: websecure
-      traefik.http.routers.whoami.tls: "true"
-      traefik.http.routers.whoami.tls.certresolver: letsencrypt
-      traefik.http.routers.whoami.service: whoami
-      traefik.http.services.whoami.loadbalancer.server.port: "80"
+      traefik.enable: "false"
+
+  whoami:
+      image: traefik/whoami:v1.11.0
+      restart: unless-stopped
+      labels:
+          traefik.enable: "true"
+          traefik.http.routers.whoami.rule: Host(`global-admin-ems7.theus.be`) || Host(`global-web-ems7.theus.be`)
+          traefik.http.routers.whoami.entrypoints: websecure
+          traefik.http.routers.whoami.tls: "true"
+          traefik.http.routers.whoami.tls.certresolver: letsencrypt
+          traefik.http.routers.whoami.service: whoami
+          traefik.http.services.whoami.loadbalancer.server.port: "80"
 
 volumes:
   letsencrypt:
+  elasticsearch-data:
