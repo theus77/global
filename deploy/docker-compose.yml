@@ -45,6 +45,24 @@ services:
     labels:
       traefik.enable: "false"
 
+  postgres:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-globalview}
+      POSTGRES_USER: ${POSTGRES_USER:-globalview}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", 'pg_isready -h 127.0.0.1 -U "$$POSTGRES_USER" -d "$$POSTGRES_DB"']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    labels:
+      traefik.enable: "false"
+
   whoami:
       image: traefik/whoami:v1.11.0
       restart: unless-stopped
@@ -60,3 +78,4 @@ services:
 volumes:
   letsencrypt:
   elasticsearch-data:
+  postgres-data:

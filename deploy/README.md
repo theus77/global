@@ -1,4 +1,4 @@
-# Traefik, whoami et Elasticsearch
+# Traefik, whoami, Elasticsearch et PostgreSQL
 
 Les domaines `global-admin-ems7.theus.be` et `global-web-ems7.theus.be`
 sont routés vers `whoami` en HTTPS. Les requêtes HTTP sont redirigées vers HTTPS.
@@ -7,7 +7,8 @@ Depuis ce dossier, démarrer les services :
 
 ```bash
 cp .env.dist .env
-# Renseigner ELASTIC_PASSWORD dans .env et, si souhaité, ACME_EMAIL.
+# Renseigner ELASTIC_PASSWORD et POSTGRES_PASSWORD dans .env.
+# ACME_EMAIL est facultatif.
 docker compose config --quiet
 docker compose up -d
 ```
@@ -70,3 +71,34 @@ docker compose logs -f elasticsearch
 
 Le contrôle de santé attend au minimum l'état `yellow`, acceptable pour un
 single node dont les répliques ne peuvent pas être allouées sur un autre nœud.
+
+## PostgreSQL 17
+
+Le service `postgres` est accessible aux services du même réseau Docker à
+`postgres:5432`. Aucun port PostgreSQL n'est publié sur le serveur et aucune
+route Traefik ne l'expose.
+
+Ajouter les variables suivantes dans `.env` en s'appuyant sur `.env.dist` :
+
+- `POSTGRES_DB` : base créée au premier démarrage (`globalview` par défaut).
+- `POSTGRES_USER` : utilisateur initial (`globalview` par défaut).
+- `POSTGRES_PASSWORD` : mot de passe initial obligatoire.
+
+Ces variables initialisent un volume vide. Les modifier ensuite dans `.env`
+ne modifie pas les utilisateurs, bases ou mots de passe déjà enregistrés.
+Les données sont conservées dans le volume `postgres-data`, monté sur
+`/var/lib/postgresql/data`, conformément à l'[image officielle PostgreSQL 17](https://hub.docker.com/_/postgres).
+
+Après avoir renseigné `.env`, depuis ce dossier :
+
+```bash
+docker compose config --quiet
+docker compose up -d postgres
+docker compose ps postgres
+```
+
+Pour ouvrir une session SQL dans le conteneur :
+
+```bash
+docker compose exec postgres sh -c 'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB"'
+```
