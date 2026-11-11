@@ -1,0 +1,44 @@
+{
+    "date_news": "2026/04/29",
+    "dates_news_slideshow": {
+        "from": "2026-04-28T00:00:00+02:00",
+        "to": "2026-04-28T23:59:59+02:00"
+    },
+    "de": {
+        "seo_no_index": false,
+        "show": false
+    },
+    "en": {
+        "seo_no_index": false,
+        "show": false
+    },
+    "fr": {
+        "body": "<p>Vol pr&eacute;vu dans la r&eacute;gion Bruxelloise dans le courrant du printemps 2026.</p>",
+        "seo_no_index": false,
+        "show": true,
+        "slug": "bruxelles-anvers-printemps-2026",
+        "title": "Bruxelles-Anvers - Printemps 2026"
+    },
+    "image_news": {
+        "_algo": "sha1",
+        "_hash": "f8e4975d717992bddee0eae0ec8b75c04a1baa66",
+        "_name": "map-bruxelles.png",
+        "_type": "image/png",
+        "filename": "map-bruxelles.png",
+        "filesize": 48188,
+        "mimetype": "image/png",
+        "sha1": "f8e4975d717992bddee0eae0ec8b75c04a1baa66"
+    },
+    "label": "Bruxelles-Anvers - Printemps 2026",
+    "nl": {
+        "seo_no_index": false,
+        "show": false
+    },
+    "search_fr": [
+        "Bruxelles-Anvers - Printemps 2026",
+        "bruxelles-anvers-printemps-2026",
+        "Vol pr\u00e9vu dans la r\u00e9gion Bruxelloise dans le courrant du printemps 2026."
+    ],
+    "search_title_fr": "Bruxelles-Anvers - Printemps 2026",
+    "translate": false
+}

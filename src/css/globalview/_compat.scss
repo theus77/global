@@ -1,0 +1,23 @@
+@mixin transition($value...) {
+  transition: $value;
+}
+
+@mixin transform($value...) {
+  transform: $value;
+}
+
+@mixin border-radius($value...) {
+  border-radius: $value;
+}
+
+@mixin filter($value...) {
+  filter: $value;
+}
+
+@mixin text-shadow($value...) {
+  text-shadow: $value;
+}
+
+@function image-url($path) {
+  @return url("/img/#{$path}");
+}

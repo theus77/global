@@ -18,7 +18,7 @@
 
 {%- block column_name -%}
 {%- verbatim -%}
-    <a href="{{path('data.revisions', {ouuid: data.id, type: data.contentType} ) }}">{{ data.source.name }}</a>
+    <a href="{{path('emsco_view_revisions', {ouuid: data.id, type: data.contentType} ) }}">{{ data.source.name }}</a>
 {%- endverbatim -%}
 {%- endblock column_name -%}
 

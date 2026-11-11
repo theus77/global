@@ -1,0 +1,16 @@
+{
+    "de": {
+        "show": false
+    },
+    "en": {
+        "show": false
+    },
+    "fr": {
+        "link": "%base%/fr/carte",
+        "show": true
+    },
+    "label": "Geographical search",
+    "nl": {
+        "show": false
+    }
+}

@@ -44,7 +44,7 @@
         'image': h._source.image_news|default(false),
     }]))  -%}
     <div class="container">
-    <h1 id="{{ anchor }}" class="text-primary">{{ 'news.title'|trans }}</h1>
+    <h1 id="{{ anchor }}" class="">{{ 'news.title'|trans }}</h1>
     {% if newsItems|length > 0 %}
         <div class="row">
             {%- for newsItem in newsItems -%}

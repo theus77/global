@@ -79,7 +79,7 @@
 
     {%- if document is defined and source is defined -%}
         {%- set emsLink = "#{document._source._contenttype}:#{document._id}"|ems_link -%}
-        {%- if source.structure_item is defined and structure.getItemById(source.structure_item) is not null -%}
+        {%- if source.structure_item|default and structure.getItemById(source.structure_item) is not null -%}
             {%- set activeItem = structure.getItemById(source.structure_item) -%}
         {%- endif -%}
         {%- set alerts = emsch_search('ems_standard_alert', {

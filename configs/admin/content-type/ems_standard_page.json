@@ -634,8 +634,7 @@
                                                                                     "multiple": false,
                                                                                     "sortable": false,
                                                                                     "type": "ems_standard_faq",
-                                                                                    "searchId": null,
-                                                                                    "defaultValue": null
+                                                                                    "searchId": null
                                                                                 },
                                                                                 "mappingOptions": {
                                                                                     "analyzer": "keyword"
@@ -774,6 +773,7 @@
                     "extension": null,
                     "active": false,
                     "role": "ROLE_AUTHOR",
+                    "environments": [],
                     "roleTo": "not-defined",
                     "roleCc": "not-defined",
                     "circlesTo": null,
@@ -788,7 +788,9 @@
                     "tag": null,
                     "allowedRemoteHosts": []
                 },
-                "replaced": []
+                "replaced": [
+                    "environments"
+                ]
             },
             {
                 "class": "EMS\\CoreBundle\\Entity\\Template",
@@ -809,6 +811,7 @@
                     "extension": null,
                     "active": false,
                     "role": "ROLE_AUTHOR",
+                    "environments": [],
                     "roleTo": "not-defined",
                     "roleCc": "not-defined",
                     "circlesTo": null,
@@ -823,7 +826,9 @@
                     "tag": null,
                     "allowedRemoteHosts": []
                 },
-                "replaced": []
+                "replaced": [
+                    "environments"
+                ]
             },
             {
                 "class": "EMS\\CoreBundle\\Entity\\Template",
@@ -844,6 +849,7 @@
                     "extension": null,
                     "active": false,
                     "role": "ROLE_AUTHOR",
+                    "environments": [],
                     "roleTo": "not-defined",
                     "roleCc": "not-defined",
                     "circlesTo": null,
@@ -858,7 +864,9 @@
                     "tag": null,
                     "allowedRemoteHosts": []
                 },
-                "replaced": []
+                "replaced": [
+                    "environments"
+                ]
             },
             {
                 "class": "EMS\\CoreBundle\\Entity\\Template",
@@ -879,6 +887,7 @@
                     "extension": null,
                     "active": false,
                     "role": "ROLE_AUTHOR",
+                    "environments": [],
                     "roleTo": "not-defined",
                     "roleCc": "not-defined",
                     "circlesTo": null,
@@ -893,7 +902,9 @@
                     "tag": null,
                     "allowedRemoteHosts": []
                 },
-                "replaced": []
+                "replaced": [
+                    "environments"
+                ]
             }
         ],
         "views": [

@@ -3,8 +3,8 @@
 {%- set siteHashAssets = emsch_assets_version(include('@EMSCH/ems_standard_template/asset_hash.twig')|trim, null) -%}
 
 {%- set locale = app.request.locale|default('fr') -%}
-{%- set route = app.request.get('_route') -%}
-{%- set routeParams = app.request.get('_route_params') -%}
+{%- set route = app.request.attributes.get('_route') -%}
+{%- set routeParams = app.request.attributes.get('_route_params') -%}
 {%- set date_format = 'd/m/Y' -%}
 {%- set date_format_full = 'j %F% Y' -%}
 {%- set emsch_routing_config = {} %}
@@ -12,10 +12,11 @@
 
 {%- set replacements = {
     '%bb%': '<strong class="font-weight-bold">',
-    '%eb%': '</strong>'
+    '%eb%': '</strong>',
+    '%base%': path('homepage')|trim('/', 'right'),
 } -%}
 
-{% set monthsTrans = {
+{%- set monthsTrans = {
     '%January%': 'month.January'|trans,
     '%February%': 'month.February'|trans,
     '%March%': 'month.March'|trans,
@@ -28,7 +29,21 @@
     '%October%': 'month.October'|trans,
     '%November%': 'month.November'|trans,
     '%December%': 'month.December'|trans
-} %}
+} -%}
+
+{%-  set sliderImages = [
+    asset('img/slider/bg_01.jpg', 'emsch'),
+    asset('img/slider/bg_02.jpg', 'emsch'),
+    asset('img/slider/bg_11.jpg', 'emsch'),
+    asset('img/slider/bg_04.jpg', 'emsch'),
+    asset('img/slider/bg_05.jpg', 'emsch'),
+    asset('img/slider/bg_12.jpg', 'emsch'),
+    asset('img/slider/bg_06.jpg', 'emsch'),
+    asset('img/slider/bg_07.jpg', 'emsch'),
+    asset('img/slider/bg_08.jpg', 'emsch'),
+    asset('img/slider/bg_09.jpg', 'emsch'),
+    asset('img/slider/bg_10.jpg', 'emsch'),
+] -%}
 
 {%- block pre_request -%}
     {%- block request -%}{%- endblock request -%}

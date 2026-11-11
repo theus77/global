@@ -108,7 +108,7 @@
 
 {% block button_revision %}
     {%- if is_granted('ROLE_WEBMASTER') -%}
-        <a class="btn btn-sm btn-default" href="{{ path('revision.new-draft', { 'type': mediaFile.document.contentType, 'ouuid': mediaFile.id  }) }}">
+        <a class="btn btn-sm btn-default" href="{{ path('emsco_data_new_draft', { 'type': mediaFile.document.contentType, 'ouuid': mediaFile.id  }) }}">
             <i class="fa fa-pencil"></i> Edit
         </a>
     {%- else -%}

@@ -1,0 +1,11 @@
+@function em($px, $base: 16px) {
+    @if unit($px) == "" {
+        $px: $px * 1px;
+    }
+
+    @if unit($base) == "" {
+        $base: $base * 1px;
+    }
+
+    @return calc($px / $base) * 1em;
+}

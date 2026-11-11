@@ -8,8 +8,6 @@ export default function form() {
         const form = new skeletonForm(iframes[i]);
         form.loadForm(iframes[i]);
     }
-
-    console.log(iframes.length + ' forms have been initiated');
 }
 
 export class skeletonForm {
@@ -29,12 +27,14 @@ export class skeletonForm {
 
         const formId = iframe.getAttribute('data-form-id');
         const messageId = iframe.getAttribute('data-message-id');
+        const defaultData = JSON.parse(iframe.getAttribute('data-default-data') ?? '{}');
 
         const emsForm = new window.emsForm({
             idForm: formId,
             idMessage: messageId,
             idIframe: iframe.id,
             context: self,
+            defaultData,
             onLoad() {
                 self.onLoad(this.elementForm, this.elementMessage);
             },
@@ -63,8 +63,6 @@ export class skeletonForm {
         if (firstInvalid) {
             this.focus_on_invalid(firstInvalid);
         }
-
-        console.log('My onload function');
     }
 
     onSubmit(elementForm, elementMessage) {

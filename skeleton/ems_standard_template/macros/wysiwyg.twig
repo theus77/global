@@ -36,7 +36,7 @@
     ] %}
     {% for a in crawler.filter(anchorSelectors|join(', ')) %}
         {% set span = a.ownerDocument.createElement('span') %}
-        {% do span.setAttribute('class', 'sr-only') %}
+        {% do span.setAttribute('class', 'visually-hidden') %}
         {% do span.append(new_window) %}
         {% do a.append(span) %}
         {% do a.setAttribute('target', '_blank') %}

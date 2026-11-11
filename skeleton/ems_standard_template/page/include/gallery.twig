@@ -1,0 +1,139 @@
+{%- macro search(config) -%}
+    {%- set searchTypes = ['globalview_version'] -%}
+    {%- set requestSize = config.size|default(20) -%}
+    {%- set locale = config.locale -%}
+    {%- set from = config.from|default(false) -%}
+    {%- trans_default_domain config.domain -%}
+    {%- if from -%}
+        {%- set from = from/1 -%}
+        {%- set requestPage = (from/requestSize)|round(0, 'ceil')  -%}
+    {%- else -%}
+        {%- set requestPage = config.page|default(0) -%}
+        {%- set from = requestPage*requestSize -%}
+    {%- endif -%}
+    {%- set resultsSearchBody = {
+        '_source': ['stack', 'label', 'name', 'location', 'position'],
+        'sort': [ {"_score": { "order": "desc" } },{ 'date': { 'order': 'desc' } } ],
+    } -%}
+
+    {%- if '' != app.request.query.get('q', '') -%}
+        {%- set queryString = app.request.query.get('q') -%}
+        {%- set resultsSearchBody = resultsSearchBody|merge({
+            query: {
+                bool: {
+                    must: [{
+                        query_string: {
+                            query: queryString,
+                            default_operator: 'AND',
+                        }
+                    }]
+                }
+            }
+        }) -%}
+        {%- set title = 'gallery.title.query'|trans({'%query%': queryString}) -%}
+        {%- set query = {q: queryString} -%}
+    {%- elseif '' != app.request.query.get('geohash', '') -%}
+        {%- set geohash = app.request.query.get('geohash')|lower -%}
+        {%- if not (geohash matches '/^[0-9bcdefghjkmnpqrstuvwxyz]{1,12}$/') -%}
+            {%- do emsch_http_error('400', 'Invalid geohash') -%}
+        {%- endif -%}
+        {%- set resultsSearchBody = resultsSearchBody|merge({query: {bool: {filter: [{
+            geo_bounding_box: {location: {top_left: geohash, bottom_right: geohash}},
+        }]}}}) -%}
+        {%- set title = 'gallery.title.geohash'|trans({'%geohash%': app.request.query.get('label', geohash)}) -%}
+        {%- set query = {geohash: geohash} -%}
+    {%- elseif app.request.query.get('version') -%}
+        {%- set versionId = app.request.query.get('version') -%}
+        {%- set resultsSearchBody = resultsSearchBody|merge({query: {ids: {values: [versionId]}}}) -%}
+        {%- set title = 'gallery.title.all'|trans -%}
+        {%- set query = {version: versionId} -%}
+    {%- elseif app.request.query.get('keyword') -%}
+        {%- set keyword = app.request.query.get('keyword') -%}
+        {%- set resultsSearchBody = resultsSearchBody|merge({
+            query: {
+                bool: {
+                    must: [{
+                        nested: {
+                            path: 'keywords',
+                            query: {
+                                term: {
+                                    'keywords.keyword_id': {
+                                        value: "globalview_keyword:#{keyword}",
+                                    }
+                                }
+                            }
+                        }
+                    }]
+                }
+            }
+        }) -%}
+        {%- set keywordDoc = "globalview_keyword:#{keyword}"|emsch_get -%}
+        {%- if not keywordDoc -%}
+            {%- do emsch_http_error('404', 'Keyword not found') -%}
+        {%- endif -%}
+        {%- set title = 'gallery.title.keyword'|trans({'%keyword%': keywordDoc.source.("name_#{locale}")|default(keywordDoc.source.name_fr) }) -%}
+        {%- set query = {keyword: keyword} -%}
+    {%- elseif app.request.query.get('location') -%}
+        {%- set location = app.request.query.get('location') -%}
+        {%- set resultsSearchBody = resultsSearchBody|merge({
+            query: {
+                bool: {
+                    must: [{
+                        nested: {
+                            path: 'locations',
+                            query: {
+                                term: {
+                                    'locations.place_id': {
+                                        value: "globalview_place:#{location}",
+                                    }
+                                }
+                            }
+                        }
+                    }]
+                }
+            }
+        }) -%}
+        {%- set locationDoc = "globalview_place:#{location}"|emsch_get -%}
+        {%- if not locationDoc -%}
+            {%- do emsch_http_error('404', 'Location not found') -%}
+        {%- endif -%}
+        {%- set title = 'gallery.title.location'|trans({'%location%': locationDoc.source.("name_#{locale}")|default(locationDoc.source.name_fr), '%level%': locationDoc.source.level, '%count%': locationDoc.source.level }) -%}
+        {%- set query = {location: location} -%}
+    {%- else -%}
+        {%- set title = 'gallery.title.all'|trans -%}
+        {%- set query = {} -%}
+    {%- endif -%}
+
+
+
+    {%- set search = emsch_search(searchTypes, resultsSearchBody, from, requestSize) -%}
+    {%- set total = search.hits.total.value -%}
+    {%- if query.version is defined and total > 0 -%}
+        {%- set version = search.hits.hits|first._source -%}
+        {%- set title = version.label|default(version.name|default('')) -%}
+    {%- endif -%}
+    {%- if total == 0 and '' != app.request.query.get('q', '') -%}
+        {%- set queryString = app.request.query.get('q') -%}
+        {%- set title = 'gallery.title.no_result_for'|trans({'%query%': queryString}) -%}
+    {%- elseif total == 0 -%}
+        {%- set title = 'gallery.title.no_result'|trans -%}
+    {%- endif -%}
+
+
+    {{- {
+        'lastPage': ((total / requestSize) |round(0, 'ceil') -1),
+        'page': requestPage,
+        'size': requestSize,
+        'from': from,
+        'total': total,
+        'results': search.hits.hits|map(hit => {
+            id: hit._id,
+            stack: hit._source.stack|default([]),
+            location: hit._source.location|default(null),
+            position: hit._source.position|default(null),
+            label: hit._source.label|default(hit._source.name|default('')),
+        }|filter(v => null != v)),
+        'query': query,
+        'title': title,
+    }|json_encode|raw -}}
+{%- endmacro -%}

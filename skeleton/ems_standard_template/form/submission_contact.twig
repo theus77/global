@@ -1,19 +1,21 @@
 {%- block emailEndpoint -%}
-    {{- "no-reply@elasticms.eu" -}}
+    {{- "simon@globalview.be" -}}
 {%- endblock emailEndpoint -%}
 
 {%- block emailMessage -%}
+    {% set subject = 'Demande de contact' %}
+    {% if data.flight|default %}
+        {% set subject = "A propos du vol #{data.flight}" %}
+    {% endif %}
     {% set body %}
         ----------- REQUEST INFORMATION -----------
-        Subject: {{ data.subject|raw }}
+        Subject: {{ subject }}
 
         Message:
         {{ data.message|raw }}
 
         ----------- CONTACT -----------
-        LANG: {{ config.locale }}
         Lastname: {{ data.name|raw }}
-        Firstname:  {{ data.firstname|raw }}
         Email: {{ data.email|raw }}
         {% if data.project_phone|default %}Phone: {{ data.phone|raw }}
         {% endif %}
@@ -21,7 +23,7 @@
 
     {%- set mail = {
         'from': "no-reply@ems_standard.be",
-        'subject': "Form submission from ems standard contact",
+        'subject': subject,
         'body': body|nl2br
     } -%}
 

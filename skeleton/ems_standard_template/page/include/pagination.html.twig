@@ -4,7 +4,7 @@
         <ul class="pagination list-inline justify-content-center">
             {%- if currentPage > 0 -%}
                 <li class="page-item">
-                    <a href="{{ path(searchRoute, currentFilters|merge({(pageParameter): currentPage-1})) }}#{{ anchor }}" class="page-link">«  <span class="sr-only">({{ 'nav.previous'|trans }})</span></a>
+                    <a href="{{ path(searchRoute, currentFilters|merge({(pageParameter): currentPage-1})) }}#{{ anchor }}" class="page-link">«  <span class="visually-hidden">({{ 'nav.previous'|trans }})</span></a>
                 </li>
 
                 {%- for i in range(0, extremePagesLimit)|filter(i => i < currentPage - nearbyPagesLimit) -%}
@@ -20,13 +20,13 @@
                 {%- endfor -%}
             {%- endif -%}
             <li class="page-item active">
-                <a class="page-link" href="{{ path(searchRoute, currentFilters|merge({ (pageParameter): currentPage })) }}#{{ anchor }}">{{ currentPage+1 }} <span class="sr-only">({{ 'nav.current'|trans }})</span></a>
+                <a class="page-link" href="{{ path(searchRoute, currentFilters|merge({ (pageParameter): currentPage })) }}#{{ anchor }}">{{ currentPage+1 }} <span class="visually-hidden">({{ 'nav.current'|trans }})</span></a>
             </li>
             {%- for i in range(currentPage+1, currentPage + nearbyPagesLimit)|filter(i => i <= lastPage) -%}
                 <li class="page-item"><a class="page-link" href="{{ path(searchRoute, currentFilters|merge({(pageParameter): i})) }}#{{ anchor }}">{{ i+1 }}</a></li>
             {%- endfor -%}
             {%- if currentPage < lastPage -%}
-                <li class="page-item"><a class="page-link" href="{{ path(searchRoute, currentFilters|merge({(pageParameter): currentPage+1})) }}#{{ anchor }}">»  <span class="sr-only">({{ 'nav.next'|trans }})</span></a></li>
+                <li class="page-item"><a class="page-link" href="{{ path(searchRoute, currentFilters|merge({(pageParameter): currentPage+1})) }}#{{ anchor }}">»  <span class="visually-hidden">({{ 'nav.next'|trans }})</span></a></li>
             {%- endif -%}
         </ul>
     </nav>
