@@ -67,3 +67,17 @@ pbc globalview:migrate:places ../global/es-dump/aperture_v1_data.json
 pbc globalview:migrate:keywords ../global/es-dump/aperture_v1_data.json
 pbc globalview:migrate:versions ../global/es-dump/aperture_v1_data.json --s3-credentials='$OLD_GV_S3_CRED' --s3-bucket='global-previews'
 ```
+
+## Install AWS server
+
+```shell
+sudo dnf install -y docker
+sudo systemctl enable --now docker
+sudo docker run --rm hello-world
+sudo install -d -m 0755 /usr/local/lib/docker/cli-plugins
+sudo curl -fSL \
+  https://github.com/docker/compose/releases/download/v5.6.0/docker-compose-linux-aarch64 \
+  -o /usr/local/lib/docker/cli-plugins/docker-compose
+sudo chmod 0755 /usr/local/lib/docker/cli-plugins/docker-compose
+sudo usermod -aG docker "ec2-user"
+```
