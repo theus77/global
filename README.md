@@ -92,16 +92,17 @@ Open a shell in the wcmtech-cli on the branch
 pbc ems:admin:login https://globalview-admin.theus.be
 pbc globalview:migrate:places ../global/es-dump/aperture_v1_data.json
 pbc globalview:migrate:keywords ../global/es-dump/aperture_v1_data.json
-pbc globalview:migrate:versions ../global/es-dump/aperture_v1_data.json --s3-credentials='$OLD_GV_S3_CRED' --s3-bucket='global-previews'
+pbc globalview:migrate:versions ../global/es-dump/aperture_v1_data.json --s3-credentials=$OLD_GV_S3_CRED --s3-bucket='global-previews'
 ```
 
 The same commands but from the GlobalView server :
 
 ```shell
-elasticms ems:admin:login https://globalview-admin.theus.be
+sudo docker run -it -v "$PWD/es-dump:/app/global/es-dump" --rm smalswebtech/elasticms-wcmtech-cli:latest bash
+elasticms ems:admin:login https://global-admin-ems7.theus.be/
 elasticms globalview:migrate:places /app/global/es-dump/aperture_v1_data.json
 elasticms globalview:migrate:keywords /app/global/es-dump/aperture_v1_data.json
-elasticms globalview:migrate:versions /app/global/es-dump/aperture_v1_data.json --s3-credentials='$OLD_GV_S3_CRED' --s3-bucket='global-previews'
+elasticms globalview:migrate:versions /app/global/es-dump/aperture_v1_data.json --s3-credentials=$OLD_GV_S3_CRED --s3-bucket='global-previews'
 ```
 
 ## Install AWS server
