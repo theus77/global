@@ -1,4 +1,4 @@
-# Traefik, whoami, Elasticsearch et PostgreSQL
+# Traefik, whoami, Elasticsearch, PostgreSQL, Tika et Redis
 
 Les domaines `global-admin-ems7.theus.be` et `global-web-ems7.theus.be`
 sont routés vers `whoami` en HTTPS. Les requêtes HTTP sont redirigées vers HTTPS.
@@ -101,4 +101,46 @@ Pour ouvrir une session SQL dans le conteneur :
 
 ```bash
 docker compose exec postgres sh -c 'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB"'
+```
+
+## Apache Tika
+
+Le service `tika` utilise l'image `apache/tika:3.3.0.0` (version minimale).
+Il est accessible aux services du même réseau Docker à `http://tika:9998`.
+Aucun port n'est publié sur le serveur et aucune route Traefik ne l'expose.
+Il ne nécessite ni volume persistant ni variable supplémentaire dans `.env`.
+
+Depuis ce dossier :
+
+```bash
+docker compose up -d tika
+docker compose logs -f tika
+```
+
+La variante minimale fournit le serveur et ses dépendances principales.
+Pour l'OCR Tesseract et les dépendances GDAL, l'image propose aussi une
+[variante `3.3.0.0-full`](https://github.com/apache/tika-docker).
+
+## Redis 7
+
+Le service `redis` utilise l'[image officielle `redis:7`](https://hub.docker.com/_/redis).
+Il est accessible aux services du même réseau Docker à `redis://redis:6379`,
+sans authentification. Aucun port n'est publié sur le serveur et aucune route
+Traefik ne l'expose. Aucune variable supplémentaire n'est nécessaire dans `.env`.
+
+La persistance AOF est activée et les données sont conservées dans le volume
+`redis-data`, monté sur `/data`. Le contrôle de santé vérifie la réponse `PONG`.
+
+Depuis ce dossier :
+
+```bash
+docker compose up -d redis
+docker compose ps redis
+docker compose exec redis redis-cli ping
+```
+
+Pour ouvrir une session Redis interactive :
+
+```bash
+docker compose exec redis redis-cli
 ```
