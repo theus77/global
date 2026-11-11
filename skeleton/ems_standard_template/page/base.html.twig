@@ -14,7 +14,7 @@
     {%- else -%}
         {%- set canonical = absolute_url(app.request.pathInfo) -%}
     {%- endif -%}
-    <link rel="canonical" href="{{ canonical }}" />
+    <link rel="canonical" href="{{ canonical|replace({(url('homepage')|trim('/', 'right')): 'https://www.globalview.be'}) }}" />
 {%- endblock meta -%}
 
 {%- block breadcrumb -%}
