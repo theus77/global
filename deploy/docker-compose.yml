@@ -117,7 +117,7 @@ services:
             - TZ=Europe/Brussels
             - PHP_FPM_PM_MAX_CHILDREN=4
             - PHP_MEMORY_LIMIT=256M
-            - MAILER_URL=smtp://mailserver:1025
+            - MAILER_URL=${MAILER_URL}
             - EMSCO_TIKA_SERVER=http://tika:9998
             - EMS_BACKEND_URL=https://global-admin-ems7.theus.be
             - INSTANCE_ID=${INSTANCE_ID:-globalview_}
@@ -171,7 +171,7 @@ services:
             - TZ=Europe/Brussels
             - PHP_FPM_PM_MAX_CHILDREN=8
             - PHP_MEMORY_LIMIT=64M
-            - MAILER_URL=smtp://mailserver:1025
+            - MAILER_URL=${MAILER_URL}
             - EMS_BACKEND_URL=https://global-admin-ems7.theus.be
             - INSTANCE_ID=${INSTANCE_ID:-globalview_}
             - EMSF_AUTHKEY=${EMSF_AUTHKEY}
