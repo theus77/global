@@ -108,6 +108,10 @@ fake-ide: ## Generate and update the fake ide-elasticms project
 sandbox: ## Start a sandbox bash
 	@$(DOCKER_COMP) exec sandbox bash
 
+##
+pull-server-configs: ## Pull the server configs
+	@rsync -avh --progress global-ems7:/home/ec2-user/globalview/ ./serveur/
+
 ## —— EXTRA ————————————————————————————————————————————————————————————————————————————————————————————————————————————
 find-crlf: ## Find files with CRLF line endings
 	@find . \( -path "./node_modules" -o -path "./dist" \) -prune -o \( ! -path '*/.*' \) -type f -exec file "{}" ";" | grep CRLF
