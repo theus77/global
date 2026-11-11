@@ -110,7 +110,9 @@ sandbox: ## Start a sandbox bash
 
 ##
 pull-server-configs: ## Pull the server configs
-	@rsync -avh --progress global-ems7:/home/ec2-user/globalview/ ./serveur/
+	@rsync -avh --progress global-ems7:/home/ec2-user/globalview/ ./deploy/
+push-server-configs: ## Push the server configs
+	@rsync -avh --progress ./deploy/ global-ems7:/home/ec2-user/globalview/
 
 ## —— EXTRA ————————————————————————————————————————————————————————————————————————————————————————————————————————————
 find-crlf: ## Find files with CRLF line endings
