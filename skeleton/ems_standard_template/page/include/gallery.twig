@@ -42,8 +42,8 @@
         }]}}}) -%}
         {%- set title = 'gallery.title.geohash'|trans({'%geohash%': app.request.query.get('label', geohash)}) -%}
         {%- set query = {geohash: geohash} -%}
-    {%- elseif app.request.query.get('version') -%}
-        {%- set versionId = app.request.query.get('version') -%}
+    {%- elseif app.request.query.get('version')|default(app.request.attributes.get('version')) -%}
+        {%- set versionId = app.request.query.get('version')|default(app.request.attributes.get('version')) -%}
         {%- set resultsSearchBody = resultsSearchBody|merge({query: {ids: {values: [versionId]}}}) -%}
         {%- set title = 'gallery.title.all'|trans -%}
         {%- set query = {version: versionId} -%}

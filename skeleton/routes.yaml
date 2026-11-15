@@ -64,6 +64,12 @@ search:
         defaults: { _locale: fr, _format: html, l: 10 }
         requirements: { _locale: fr, _format: html|json }
     template_static: ems_standard_template/page/gallery.html.twig
+version:
+    config:
+        path: { fr: '/{_locale}/version/{version}' }
+        defaults: { _locale: fr, _format: html, l: 10 }
+        requirements: { _locale: fr, _format: html|json }
+    template_static: ems_standard_template/page/gallery.html.twig
 missing:
     config:
         path: { nl: '/{_locale}/niet-beschikbaar/{type}/{ouuid}', fr: '/{_locale}/non-disponible/{type}/{ouuid}', de: '/{_locale}/missing/{type}/{ouuid}', en: '/{_locale}/missing/{type}/{ouuid}' }
