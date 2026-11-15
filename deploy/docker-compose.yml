@@ -193,6 +193,7 @@ services:
             - OTEL_PHP_FIBERS_ENABLED=false
             - OTEL_PHP_DISABLED_INSTRUMENTATIONS=all
             - EMS_FROM_EMAIL_ADDRESS=${EMS_FROM_EMAIL_ADDRESS}
+            - APP_IS_PROD_LIVE=true
         tmpfs:
             - /opt/sbin:rw,exec,size=8m,mode=1777
             - /opt/etc:rw,noexec,size=8m,mode=1777
