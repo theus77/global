@@ -107,9 +107,7 @@
                                     "multiple": false,
                                     "sortable": false,
                                     "type": "template",
-                                    "searchId": null,
-                                    "defaultValue": null,
-                                    "querySearch": null
+                                    "searchId": null
                                 },
                                 "mappingOptions": {
                                     "analyzer": "keyword",

@@ -1,0 +1,57 @@
+{%- extends '@EMSCH/ems_standard_template/page/block/abstract-block.html.twig' -%}
+
+{%- block row -%}
+    {% import '@EMSCH/ems_standard_template/macros/wysiwyg.twig' as wysiwyg %}
+    <section id="photo-books" class="section photo-books wow fadeInUp mt-3">
+        <div class="container">
+            {%- if block.object.label is defined -%}
+                <div class="section-heading pt-0">
+                    <h2>{{ block.object.label|replace(replacements)|raw }}</h2>
+                </div>
+            {%- endif -%}
+            {%- if block.object.body is defined -%}
+                <div class="photo-books-intro">
+                    {{ wysiwyg.transform(block.object.body|emsch_routing_config(emsch_routing_config), trans_default_domain) }}
+                </div>
+            {%- endif -%}
+            <div class="row g-4">
+                {{ block('widget') }}
+            </div>
+        </div>
+    </section>
+{%- endblock row -%}
+
+{%- block widget -%}
+    {% import '@EMSCH/ems_standard_template/macros/wysiwyg.twig' as wysiwyg %}
+    {%- trans_default_domain trans_default_domain -%}
+    {% for item in block.object.items|default([]) %}
+        <div class="col-md-4">
+            <article class="photo-book photo-book-featured">
+                {% if item.image is defined %}
+                    <figure class="photo-book-cover m-2">
+                        <img src="{{ ems_asset_path(item.image, {
+                            _config_type: 'image',
+                            _width: 800,
+                            _height: 800,
+                            _quality: 80,
+                            _image_format:'webp',
+                            _author: 'Simon Schmitt',
+                            _copyright: '© GlobalView.be',
+                        }) }}" alt="{{ item.name|default('') }}" class="img-fluid" width="400" height="400">
+                    </figure>
+                {% endif %}
+                {% if item.body is defined %}
+                    <div class="photo-book-content">
+                        {{ wysiwyg.transform(item.body|emsch_routing_config(emsch_routing_config), trans_default_domain) }}
+                        {% if item.url is defined %}
+                            <a href="{{ item.url }}" target="_blank" class="btn btn-primary text-uppercase">
+                                {{ item.cta ? item.cta : 'actions.buy_book'|trans }}
+                                <span class="visually-hidden"> {{ item.name }}</span>
+                            </a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </article>
+        </div>
+    {% endfor %}
+{%- endblock widget -%}

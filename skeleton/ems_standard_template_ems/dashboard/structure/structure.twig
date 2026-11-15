@@ -44,7 +44,7 @@
             'field_path': '[structure]',
             'template': "@EMSCH/ems_standard_template_ems/dashboard/structure/template.twig",
             'context_block': 'build_context',
-            'active_item_id': app.request.get('activeItemId')|default(null),
+            'active_item_id': app.request.attributes.get('activeItemId')|default(null),
             'locale': locale,
             'context': {
                 'structureId': structureHit._id,

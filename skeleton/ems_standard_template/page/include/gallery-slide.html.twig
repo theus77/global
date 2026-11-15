@@ -1,0 +1,71 @@
+{%- trans_default_domain trans_default_domain -%}
+{% set images = version.stack|default([]) %}
+{% set imageConfig = {_config_type: 'image', _image_format: 'webp', _width: 1600, _height: 1200, _quality: 90, _watermark_hash: '8fd9c7479c932fead585f83b866b920d5aabcfdb'} %}
+{% set previewConfig = {_config_type: 'image', _image_format: 'webp', _width: 300, _height: 200, _quality: 90, _resize: 'smartCrop'} %}
+{% set imageUrl = images is not empty ? ems_asset_path(images|first, imageConfig) : asset('img/website/missing.' ~ locale ~ '.jpg', 'emsch') %}
+<div class="{{ html_classes('carousel-item row g-0', {active: active|default(false)}) }}" data-index="{{ index }}">
+    <div class="col-3 col-md-2 left-panel" tabindex="0">
+        <div class="inner-stack">
+            {% for image in images %}
+                <a href="#" class="{{ html_classes('alternative-image', {active: loop.first}) }}">
+                    <img src="{{ ems_asset_path(image, previewConfig) }}"
+                         data-image="{{ ems_asset_path(image, imageConfig) }}"
+                         alt="{{ version.label|default('') }}" class="img-fluid" width="300" height="200">
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-9 col-md-7 middle-panel">
+        <div class="middle-wrapper">
+            <a href="#carousel" class="carousel-control-prev" role="button">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">{{ 'nav.previous'|trans }}</span>
+            </a>
+            <img src="{{ imageUrl }}" alt="{{ version.label|default('') }}" class="img-fluid" >
+            <a href="#carousel" class="carousel-control-next" role="button">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">{{ 'nav.next'|trans }}</span>
+            </a>
+        </div>
+    </div>
+    <div class="col-12 col-md-3 right-panel" tabindex="0">
+        <div class="wrapper-right-panel">
+            <h2 class="versionTitle">{{ version.label|default(version.name|default('')) }}</h2>
+            <ul>
+                {% if version.artist|default %}<li>{{ version.artist }}</li>{% endif %}
+                {% if version.date|default %}<li>{{ version.date|date('d/m/Y H:i') }}</li>{% endif %}
+                {% if version.pixel_size|default %}<li>{{ version.pixel_size }}</li>{% endif %}
+            </ul>
+
+            {% if version.location %}
+                <div class="outer mb-4">
+                    <div class="inner map-div" id="map-canvas-{{ index }}"
+                         data-lat="{{ version.location.lat|e }}"
+                         data-lng="{{ version.location.lon|e }}"
+                         style="height: 180px;">
+                        {{ 'map.connecting'|trans }}
+                    </div>
+                </div>
+            {% endif %}
+
+            {% set keywords = version.keywords|default([])|merge(version.locations|default([])) %}
+            {% if keywords is not empty %}
+                <h3>{{ 'gallery.keywords.title'|trans }}</h3>
+            {% endif %}
+            <div class="keywordList">
+                {% for keyword in version.keywords|default([]) %}
+                    {% set label = attribute(keyword, 'name_' ~ locale)|default(keyword.name_fr|default('')) %}
+                    {% if label %}
+                        <span class="badge"><a href="{{ path('search', {_locale: locale, keyword: keyword.keyword_id|split(':')|last }) }}">{{ label }}</a></span>
+                    {% endif %}
+                {% endfor %}
+                {% for location in version.locations|default([]) %}
+                    {% set label = attribute(location, 'name_' ~ locale)|default(location.name_fr|default('')) %}
+                    {% if label %}
+                        <span class="badge"><a href="{{ path('search', {_locale: locale, location: location.place_id|split(':')|last}) }}">{{ label }}</a></span>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
