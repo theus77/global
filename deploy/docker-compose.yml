@@ -204,7 +204,7 @@ services:
             - /srv/cms-cache/ems-web-config:/var/lib/ems
         labels:
             traefik.enable: "true"
-            traefik.http.routers.ems-web.rule: Host(`global-web-ems7.theus.be`) || Host(`www.globalview.be`) || Host(`globalview.be`) || Host(`63.190.28.242`) || Host(`www.louvain-la-haut.be`) || Host(`louvain-la-haut.be`)
+            traefik.http.routers.ems-web.rule: Host(`global-web-ems7.theus.be`) || Host(`www.globalview.be`) || Host(`globalview.be`) || Host(`www.louvain-la-haut.be`) || Host(`louvain-la-haut.be`)
             traefik.http.routers.ems-web.entrypoints: websecure
             traefik.http.routers.ems-web.tls: "true"
             traefik.http.routers.ems-web.tls.certresolver: letsencrypt
