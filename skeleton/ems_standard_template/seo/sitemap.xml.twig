@@ -1,10 +1,16 @@
 {%- set search = emsch_search('globalview_version', {
     'size': 0,
 }) -%}
+{%- set searchPlace = emsch_search('globalview_place', {
+    'size': 0,
+}) -%}
 {%- set size = 1000 -%}
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {% for page in 0..((search.hits.total.value/size)|round(0, 'floor')) %}
     <sitemap><loc>https://www.globalview.be{{ path('sitemap-version-xml', {page: page}) }}</loc></sitemap>
+{% endfor -%}
+{% for page in 0..((searchPlace.hits.total.value/size)|round(0, 'floor')) %}
+    <sitemap><loc>https://www.globalview.be{{ path('sitemap-places-xml', {page: page}) }}</loc></sitemap>
 {% endfor -%}
 </sitemapindex>

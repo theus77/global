@@ -2,7 +2,7 @@ louvain_la_haut_domain:
     config:
         path: /
         host: '{domain}'
-        requirements: { domain: 'www.louvain-la-haut.be|louvain-la-haut.be' }
+        requirements: { domain: www.louvain-la-haut.be|louvain-la-haut.be }
         defaults: { domain: www.louvain-la-haut.be }
     template_static: ems_standard_template/sites/louvain-la-haut.html.twig
 homepage:
@@ -23,10 +23,16 @@ sitemap-xml:
     template_static: ems_standard_template/seo/sitemap.xml.twig
 sitemap-version-xml:
     config:
-        path: sitemap-version-{page}.xml
+        path: 'sitemap-version-{page}.xml'
         defaults: { _format: xml }
-        requirements: {page: '[0-9]+'}
+        requirements: { page: '[0-9]+' }
     template_static: ems_standard_template/seo/sitemap-version.xml.twig
+sitemap-places-xml:
+    config:
+        path: 'sitemap-places-{page}.xml'
+        defaults: { _format: xml }
+        requirements: { page: '[0-9]+' }
+    template_static: ems_standard_template/seo/sitemap-places.xml.twig
 page:
     config:
         path: { nl: '/{_locale}/pagina/{slug}', fr: '/{_locale}/page/{slug}', de: '/{_locale}/seite/{slug}', en: '/{_locale}/page/{slug}' }
@@ -73,6 +79,12 @@ search:
 version:
     config:
         path: { fr: '/{_locale}/version/{version}' }
+        defaults: { _locale: fr, _format: html, l: 10 }
+        requirements: { _locale: fr, _format: html|json }
+    template_static: ems_standard_template/page/gallery.html.twig
+location:
+    config:
+        path: { fr: '/{_locale}/place/{location}' }
         defaults: { _locale: fr, _format: html, l: 10 }
         requirements: { _locale: fr, _format: html|json }
     template_static: ems_standard_template/page/gallery.html.twig

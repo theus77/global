@@ -73,8 +73,8 @@
         {%- endif -%}
         {%- set title = 'gallery.title.keyword'|trans({'%keyword%': keywordDoc.source.("name_#{locale}")|default(keywordDoc.source.name_fr) }) -%}
         {%- set query = {keyword: keyword} -%}
-    {%- elseif app.request.query.get('location') -%}
-        {%- set location = app.request.query.get('location') -%}
+    {%- elseif app.request.query.get('location')|default(app.request.attributes.get('location')) -%}
+        {%- set location = app.request.query.get('location')|default(app.request.attributes.get('location')) -%}
         {%- set resultsSearchBody = resultsSearchBody|merge({
             query: {
                 bool: {
@@ -114,9 +114,9 @@
     {%- endif -%}
     {%- if total == 0 and '' != app.request.query.get('q', '') -%}
         {%- set queryString = app.request.query.get('q') -%}
-        {%- set title = 'gallery.title.no_result_for'|trans({'%query%': queryString}) -%}
+        {%- set title = 'gallery.title.no_result_for_search'|trans({'%query%': queryString}) -%}
     {%- elseif total == 0 -%}
-        {%- set title = 'gallery.title.no_result'|trans -%}
+        {%- set title = 'gallery.title.no_result_for'|trans({'%title%': title}) -%}
     {%- endif -%}
 
 
