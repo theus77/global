@@ -112,7 +112,14 @@ function setupGalleryScrollPanels(scope = document) {
         cursorfixedheight: '50'
     };
 
-    $(scope).find('.carousel-item.active .left-panel, .carousel-item.active .right-panel').niceScroll(niceScrollConfig);
+    $(scope).find('.carousel-item.active .left-panel').niceScroll(niceScrollConfig);
+    const rightPanels = $(scope).find('.carousel-item.active .right-panel, .carousel-item-next .right-panel, .carousel-item-prev .right-panel');
+    if (window.matchMedia('(min-width: 768px)').matches) {
+        rightPanels.niceScroll(niceScrollConfig);
+    } else {
+        rightPanels.getNiceScroll().remove();
+        rightPanels.css({ height: '', 'max-height': '', overflow: '' });
+    }
 }
 
 let galleryHeightFrame = null;
@@ -124,6 +131,7 @@ function setGalerieHeight() {
 
     galleryHeightFrame = window.requestAnimationFrame(() => {
         galleryHeightFrame = null;
+        setupGalleryScrollPanels();
         $('.carousel-inner > .carousel-item.active, .carousel-inner > .carousel-item-next, .carousel-inner > .carousel-item-prev').each(function resizeSlidePanels() {
             const item = $(this);
             const height = item.find('.middle-panel img').height();
@@ -131,7 +139,9 @@ function setGalerieHeight() {
                 return;
             }
 
-            const panels = item.find('.left-panel, .right-panel');
+            const panels = item.find(window.matchMedia('(min-width: 768px)').matches
+                ? '.left-panel, .right-panel'
+                : '.left-panel');
             panels.css({ height: `${height}px`, 'max-height': `${height}px` });
             panels.getNiceScroll().resize();
         });
