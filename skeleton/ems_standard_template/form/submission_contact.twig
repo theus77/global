@@ -22,9 +22,9 @@
     {% endset %}
 
     {%- set mail = {
-        'from': "no-reply@ems_standard.be",
+        'from': app.request.server.all['EMS_FROM_EMAIL_ADDRESS']|default('no-reply@ems_standard.be'),
         'subject': subject,
-        'body': body|nl2br
+        'body': body|nl2br,
     } -%}
 
     {{- mail|json_encode|raw -}}
