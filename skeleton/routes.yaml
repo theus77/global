@@ -1,7 +1,9 @@
 louvain_la_haut_domain:
     config:
-        path: '/'
-        host: 'www.louvain-la-haut.be'
+        path: /
+        host: '{domain}'
+        requirements: { domain: 'www.louvain-la-haut.be|louvain-la-haut.be' }
+        defaults: { domain: www.louvain-la-haut.be }
     template_static: ems_standard_template/sites/louvain-la-haut.html.twig
 homepage:
     config:
@@ -140,5 +142,5 @@ _emsch_error:
         defaults: { statusCode: 500 }
 louvain_la_haut:
     config:
-        path: '/louvain-la-haut'
+        path: /louvain-la-haut
     template_static: ems_standard_template/sites/louvain-la-haut.html.twig

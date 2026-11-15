@@ -181,7 +181,7 @@ services:
             - REDIS_HOST=redis
             - REDIS_PORT=6379
             - TRUSTED_PROXIES=127.0.0.1,REMOTE_ADDR
-            - TRUSTED_HOSTS=global-web-ems7.theus.be,globalview.be,www.globalview.be,63.190.28.242,globalview-cname.theus.be
+            - TRUSTED_HOSTS=global-web-ems7.theus.be,globalview.be,www.globalview.be,63.190.28.242,globalview-cname.theus.be,www.louvain-la-haut.be,louvain-la-haut.be
             - EMS_HTTP_CACHES=[{"header":"x-varnish","url":"http://varnish/","headers":{"X-Invalidate-Token":"${VARNISH_TOKEN}"}}]
             - PHP_OPENTELEMETRY_ENABLED=false
             - METRICS_ENABLED=true
