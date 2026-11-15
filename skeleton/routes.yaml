@@ -21,6 +21,11 @@ sitemap-xml:
         path: sitemap.xml
         defaults: { _format: xml }
     template_static: ems_standard_template/seo/sitemap.xml.twig
+sitemap-version-xml:
+    config:
+        path: sitemap-version-{page}.xml
+        defaults: { _format: xml }
+    template_static: ems_standard_template/seo/sitemap-version.xml.twig
 page:
     config:
         path: { nl: '/{_locale}/pagina/{slug}', fr: '/{_locale}/page/{slug}', de: '/{_locale}/seite/{slug}', en: '/{_locale}/page/{slug}' }
