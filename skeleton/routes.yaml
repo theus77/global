@@ -25,6 +25,7 @@ sitemap-version-xml:
     config:
         path: sitemap-version-{page}.xml
         defaults: { _format: xml }
+        requirements: {page: '[0-9]+'}
     template_static: ems_standard_template/seo/sitemap-version.xml.twig
 page:
     config:
