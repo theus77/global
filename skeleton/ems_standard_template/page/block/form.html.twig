@@ -1,7 +1,7 @@
 {%- extends '@EMSCH/ems_standard_template/page/block/abstract-block.html.twig' -%}
 
 {%- block row -%}
-    <section class="my-5">
+    <section {% if block.object.anchor is defined %}id="{{ block.object.anchor }}" {% endif%}class="my-5">
         <div class="container">
             {{ block('widget') }}
         </div>
@@ -10,11 +10,16 @@
 
 {%- block widget -%}
     {%- trans_default_domain trans_default_domain -%}
+    {%- if block.object.label is defined -%}
+        <div class="mb-4 text-center">
+            <h2>{{ block.object.label|replace(replacements)|raw }}</h2>
+        </div>
+    {%- endif -%}
     {%- if block.object.form is defined -%}
         {%- set form = block.object.form|emsch_get -%}
         {%- set iframeUrl = absolute_url(path('emsf_iframe', { ouuid: form.id, _locale: locale })) -%}
-        <div id="ems-form-{{ block.id }}" class="mb-5 ems-form-custom col-lg-8">
-            <p class="text-primary">{{ 'form.loading'|trans|raw }}</p>
+        <div id="ems-form-{{ block.id }}" class="mb-5 ems-form-custom col-lg-8 mx-auto">
+            <p class="">{{ 'form.loading'|trans|raw }}</p>
         </div>
         <iframe id="ems-form-iframe-{{ block.id }}"
                 src="{{ iframeUrl }}"
@@ -23,6 +28,6 @@
                 data-form-id="ems-form-{{ block.id }}"
                 data-message-id="ems-message-{{ block.id }}">
         </iframe>
-        <div id="ems-message-{{ block.id }}" class="col-lg-8"></div>
+        <div id="ems-message-{{ block.id }}" class="col-lg-8 mx-auto"></div>
     {%- endif -%}
 {%- endblock widget -%}

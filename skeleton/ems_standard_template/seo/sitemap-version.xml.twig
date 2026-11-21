@@ -1,0 +1,17 @@
+{%- set page = app.request.attributes.get('page', 0) -%}
+{%- set size = 1000 -%}
+{%- set search = emsch_search('globalview_version', {
+    'size': size,
+    'from': (page*size),
+    '_source': ['_id'],
+    'sort': [ { 'date': { 'order': 'desc' } } ],
+}) -%}
+{%- if 0 == search.hits.hits|default([])|length -%}
+    {% do emsch_http_error(404, 'Page not found') %}
+{%- endif -%}
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+{% for version in search.hits.hits %}
+    <url><loc>https://www.globalview.be{{ path('version', {version: version._id}) }}</loc></url>
+{% endfor -%}
+</urlset>

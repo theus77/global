@@ -1,0 +1,5 @@
+{%- set replacements = {
+    '%base%': path('homepage')|trim('/', 'right'),
+} -%}
+
+{{- source.(locale).link|replace(replacements) -}}

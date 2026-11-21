@@ -1,0 +1,45 @@
+{
+    "date_news": "2026/04/29",
+    "dates_news_slideshow": {
+        "from": "2026-04-28T00:00:00+02:00",
+        "to": "2026-04-28T23:59:59+02:00"
+    },
+    "de": {
+        "seo_no_index": false,
+        "show": false
+    },
+    "en": {
+        "seo_no_index": false,
+        "show": false
+    },
+    "fr": {
+        "body": "<p>Vol pr&eacute;vu au Grand-Duch&egrave; du Luxembourg dans le courrant du printemps 2026.</p>",
+        "seo_no_index": false,
+        "show": true,
+        "slug": "grand-duche-de-luxembourg-printemps-2026",
+        "title": "Grand-Duch\u00e9 de Luxembourg  - Printemps 2026"
+    },
+    "image_news": {
+        "_algo": "sha1",
+        "_hash": "efba83817f73bf7c3e7bed7a86950c36a3358e78",
+        "_name": "map-luxembourg.png",
+        "_size": 48188,
+        "_type": "image/png",
+        "filename": "map-luxembourg.png",
+        "filesize": 46065,
+        "mimetype": "image/png",
+        "sha1": "efba83817f73bf7c3e7bed7a86950c36a3358e78"
+    },
+    "label": "Grand-Duch\u00e9 de Luxembourg  - Printemps 2026",
+    "nl": {
+        "seo_no_index": false,
+        "show": false
+    },
+    "search_fr": [
+        "Grand-Duch\u00e9 de Luxembourg  - Printemps 2026",
+        "grand-duche-de-luxembourg-printemps-2026",
+        "Vol pr\u00e9vu au Grand-Duch\u00e8 du Luxembourg dans le courrant du printemps 2026."
+    ],
+    "search_title_fr": "Grand-Duch\u00e9 de Luxembourg  - Printemps 2026",
+    "translate": false
+}

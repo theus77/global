@@ -1,0 +1,33 @@
+{%- set galleryTemplate = '@EMSCH/ems_standard_template/page/include/gallery.twig' -%}
+{%- import galleryTemplate as macro -%}
+
+{%- set search = macro.search({
+    'locale': app.request.locale,
+    'domain': trans_default_domain,
+    'size': 1,
+    'from': app.request.get('index'),
+})|ems_json_decode -%}
+
+{%- set version = search.results[0] -%}
+{%- set stack = version.stack|default([]) -%}
+{%- set image = stack[version.position|default(0)]|default(stack|first|default) -%}
+{%- set config = {
+        _config_type: 'image',
+        _image_format: 'webp',
+        _resize: 'smartCrop',
+        _width: 300,
+        _height: 200,
+        _quality: 90,
+    } -%}
+
+{%- if image -%}
+    {{ {
+        controller: 'EMS\\CommonBundle\\Controller\\FileController::resolveAsset',
+        path: {
+           fileField: image,
+           configArray: config,
+        },
+    }|json_encode|raw }}
+{%- else %}
+    {{- emsch_asset_redirect("img/website/missing.#{app.request.locale}.jpg", config)|json_encode|raw -}}
+{%- endif -%}

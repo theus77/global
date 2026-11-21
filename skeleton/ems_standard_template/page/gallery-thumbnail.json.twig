@@ -1,0 +1,12 @@
+{%- import '@EMSCH/ems_standard_template/page/include/gallery.twig' as gallery -%}
+{%- set index = app.request.attributes.get('index') -%}
+{%- set search = gallery.search({
+    locale: app.request.locale,
+    domain: trans_default_domain,
+    size: 1,
+    from: index,
+})|ems_json_decode -%}
+{%- if search.results is empty -%}
+    {%- do emsch_http_error('404', 'Gallery image not found') -%}
+{%- endif -%}
+{{- {label: search.results[0].label|default('')}|json_encode|raw -}}

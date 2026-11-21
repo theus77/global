@@ -3,7 +3,7 @@ a {
   &[target="_blank"]:not(.btn):not(.stretched-link):not(.no-icon) {
     &:after {
       margin-left: 5px;
-      @include faw-icon($fa-var-external-link-alt);
+      @include faw-icon(\f35d);
     }
     @each $doc, $value in $icon-link {
       @include icon-link($doc, $value);
