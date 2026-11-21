@@ -169,34 +169,34 @@ services:
         image: elasticms/website-skeleton:${EMS_VERSION}
         restart: unless-stopped
         environment:
-            - APP_ENV=redis
-            - APP_SECRET=${APP_SECRET_WEB}
-            - TZ=Europe/Brussels
-            - PHP_FPM_PM_MAX_CHILDREN=8
-            - PHP_MEMORY_LIMIT=64M
-            - MAILER_URL=${MAILER_URL}
-            - EMS_BACKEND_URL=https://global-admin-ems7.theus.be
-            - INSTANCE_ID=${INSTANCE_ID:-globalview_}
-            - EMSF_AUTHKEY=${EMSF_AUTHKEY}
-            - EMS_ELASTICSEARCH_HOSTS=${EMS_ELASTICSEARCH_HOSTS}
-            - EMS_STORAGES=${EMS_WEB_STORAGES}
-            - REDIS_HOST=redis
-            - REDIS_PORT=6379
-            - TRUSTED_PROXIES=127.0.0.1,REMOTE_ADDR
-            - TRUSTED_HOSTS=global-web-ems7.theus.be,globalview.be,www.globalview.be,63.190.28.242,globalview-cname.theus.be,www.louvain-la-haut.be,louvain-la-haut.be
-            - EMS_HTTP_CACHES=[{"header":"x-varnish","url":"http://varnish/","headers":{"X-Invalidate-Token":"${VARNISH_TOKEN}"}}]
-            - PHP_OPENTELEMETRY_ENABLED=false
-            - METRICS_ENABLED=true
-            - MESSENGER_ENABLED=true
-            - APP_LOG_DIR=/app/var/log/elasticms
-            - APP_CACHE_DIR=/app/var/cache/elasticms
-            - OTEL_SDK_DISABLED=true
-            - OTEL_PHP_AUTOLOAD_ENABLED=false
-            - OTEL_PHP_FIBERS_ENABLED=false
-            - OTEL_PHP_DISABLED_INSTRUMENTATIONS=all
-            - EMS_FROM_EMAIL_ADDRESS=${EMS_FROM_EMAIL_ADDRESS}
-            - APP_IS_PROD_LIVE=true
-            - NGINX_CONTENT_SECURITY_POLICY=${APP_NGINX_CONTENT_SECURITY_POLICY}
+            APP_ENV: redis
+            APP_SECRET: ${APP_SECRET_WEB}
+            TZ: Europe/Brussels
+            PHP_FPM_PM_MAX_CHILDREN: 8
+            PHP_MEMORY_LIMIT: 64M
+            MAILER_URL: ${MAILER_URL}
+            EMS_BACKEND_URL: https://global-admin-ems7.theus.be
+            INSTANCE_ID: ${INSTANCE_ID:-globalview_}
+            EMSF_AUTHKEY: ${EMSF_AUTHKEY}
+            EMS_ELASTICSEARCH_HOSTS: ${EMS_ELASTICSEARCH_HOSTS}
+            EMS_STORAGES: ${EMS_WEB_STORAGES}
+            REDIS_HOST: redis
+            REDIS_PORT: 6379
+            TRUSTED_PROXIES: 127.0.0.1,REMOTE_ADDR
+            TRUSTED_HOSTS: global-web-ems7.theus.be,globalview.be,www.globalview.be,63.190.28.242,globalview-cname.theus.be,www.louvain-la-haut.be,louvain-la-haut.be
+            EMS_HTTP_CACHES: '[{"header":"x-varnish","url":"http://varnish/","headers":{"X-Invalidate-Token":"${VARNISH_TOKEN}"}}]'
+            PHP_OPENTELEMETRY_ENABLED: false
+            METRICS_ENABLED: true
+            MESSENGER_ENABLED: true
+            APP_LOG_DIR: /app/var/log/elasticms
+            APP_CACHE_DIR: /app/var/cache/elasticms
+            OTEL_SDK_DISABLED: true
+            OTEL_PHP_AUTOLOAD_ENABLED: false
+            OTEL_PHP_FIBERS_ENABLED: false
+            OTEL_PHP_DISABLED_INSTRUMENTATIONS: all
+            EMS_FROM_EMAIL_ADDRESS: ${EMS_FROM_EMAIL_ADDRESS}
+            APP_IS_PROD_LIVE: true
+            NGINX_CONTENT_SECURITY_POLICY: "script-src 'self' https://maps.googleapis.com"
         tmpfs:
             - /opt/sbin:rw,exec,size=8m,mode=1777
             - /opt/etc:rw,noexec,size=8m,mode=1777
@@ -218,7 +218,7 @@ services:
         image: elasticms/website-skeleton:${EMS_PREVIEW_VERSION}
         restart: "no"
         environment:
-            - APP_ENV=dev
+            - APP_ENV=redis
             - APP_SECRET=${APP_SECRET_WEB}
             - TZ=Europe/Brussels
             - PHP_FPM_PM_MAX_CHILDREN=8
@@ -229,6 +229,7 @@ services:
             - EMSF_AUTHKEY=${EMSF_AUTHKEY}
             - EMS_ELASTICSEARCH_HOSTS=${EMS_ELASTICSEARCH_HOSTS}
             - EMS_STORAGES=${EMS_WEB_STORAGES}
+            - EMS_TRUSTED_IPS=${DEV_IPS}
             - REDIS_HOST=redis
             - REDIS_PORT=6379
             - TRUSTED_PROXIES=127.0.0.1,REMOTE_ADDR
